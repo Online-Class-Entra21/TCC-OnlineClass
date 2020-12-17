@@ -30,11 +30,21 @@
                 </div>
 
                 <div>
-                    <input class="submit" type="submit" value="Logar">                   
+                    <input class="submit" onclick= 'logar()' type="submit" value="Logar">            
                 </div>
             </form>
 
          </div> <!-- Fim Container-->
+         <script>
+             function logar(){
 
+                if($("#senha").val() == "123"){
+                    window.alert('Olá mundo');
+                }else{
+                    window.alert('Negado');
+                }
+                
+             }
+        </script>
     </body>
 </html>
