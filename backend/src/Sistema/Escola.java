@@ -38,8 +38,9 @@ public class Escola {
     /**
      * 
      */
-    public void getNome() {
+    public String getNome() {
         // TODO implement here
+    	return this.nome;
     }
 
     /**
@@ -52,8 +53,9 @@ public class Escola {
     /**
      * 
      */
-    public void getDataInicioLetivo() {
+    public Date getDataInicioLetivo() {
         // TODO implement here
+    	return this.dataInicioLetivo;
     }
 
     /**
@@ -66,8 +68,9 @@ public class Escola {
     /**
      * 
      */
-    public void getDataFinalLetivo() {
+    public Date getDataFinalLetivo() {
         // TODO implement here
+    	return this.dataFinalLetivo;
     }
 
     /**
@@ -75,6 +78,7 @@ public class Escola {
      */
     public void setDataFinalLetivo() {
         // TODO implement here
+    	
     }
 
     /**
