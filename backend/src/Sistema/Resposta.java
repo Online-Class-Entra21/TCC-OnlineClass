@@ -6,6 +6,7 @@ import java.util.*;
  * Classe contendo métodos e atributos para o envio de uma resposta à uma atividade específica.
  * Respostas são enviadas pelo Aluno.
  * @see Aluno
+ * @see Atividade
  * @author 
  */
 public class Resposta {
@@ -17,17 +18,18 @@ public class Resposta {
     private int codAtividade;
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Resposta.
+     * @param
      */
     public Resposta() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID da resposta.
+     * @return Int - ID da resposta
      */
-    public void getIdResposta() {
-        // TODO implement here
+    public int getIdResposta() {
+        return idResposta;
     }
 
     /**
@@ -37,11 +39,11 @@ public class Resposta {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da nota.
+     * @return Double - Nota
      */
-    public void getNota() {
-        // TODO implement here
+    public double getNota() {
+        return nota;
     }
 
     /**
@@ -51,11 +53,11 @@ public class Resposta {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno de um comentário na atividade.
+     * @return String - Comentário da atividade
      */
-    public void getComentarioAtividade() {
-        // TODO implement here
+    public String getComentarioAtividade() {
+        return comentarioAtividade;
     }
 
     /**
@@ -65,11 +67,11 @@ public class Resposta {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno se a atividade foi corrigida.
+     * @return Boolean - Foi corrigida? True / False
      */
-    public void getCorrecaoAtividade() {
-        // TODO implement here
+    public boolean getCorrecaoAtividade() {
+        return correcaoAtividade;
     }
 
     /**
@@ -79,11 +81,11 @@ public class Resposta {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da data de entrega.
+     * @return Date - Data de entrega 
      */
-    public void getDataEntrega() {
-        // TODO implement here
+    public Date getDataEntrega() {
+        return dataEntrega;
     }
 
     /**
@@ -93,11 +95,11 @@ public class Resposta {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do código da atividade.
+     * @return Int - Código da atividade
      */
-    public void getCodAtividade() {
-        // TODO implement here
+    public int getCodAtividade() {
+        return codAtividade;
     }
 
     /**

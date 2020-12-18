@@ -20,17 +20,18 @@ public class Turma {
     private SalaPadrao salaPadrao;
     
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Turma.
+     * @param
      */
     public Turma() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID da turma.
+     * @return Int - ID da turma
      */
-    public void getIdTurma() {
-        // TODO implement here
+    public int getIdTurma() {
+        return idTurma;
     }
 
     /**
@@ -40,11 +41,11 @@ public class Turma {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ano da turma.
+     * @return String - Ano da turma
      */
-    public void getAno() {
-        // TODO implement here
+    public String getAno() {
+        return ano;
     }
 
     /**
@@ -54,11 +55,11 @@ public class Turma {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da quantidade de alunos na turma.
+     * @return Int - Quantidade de alunos na turma
      */
-    public void getQtdAluno() {
-        // TODO implement here
+    public int getQtdAluno() {
+        return qtdAluno;
     }
 
     /**
@@ -68,11 +69,11 @@ public class Turma {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do horário inicial da aula.
+     * @return Time - Horário inicial da aula
      */
-    public void getHorarioInicioAula() {
-        // TODO implement here
+    public Time getHorarioInicioAula() {
+        return horarioInicioAula;
     }
 
     /**
@@ -82,11 +83,11 @@ public class Turma {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do horário final da aula.
+     * @return Time - Horário final da aula
      */
-    public void getHorarioFinalAula() {
-        // TODO implement here
+    public Time getHorarioFinalAula() {
+        return horarioFinalAula;
     }
 
     /**
@@ -96,11 +97,11 @@ public class Turma {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno dos alunos na turma.
+     * @return Aluno - Array de alunos
      */
-    public void getAlunos() {
-        // TODO implement here
+    public Aluno[] getAlunos() {
+        return alunos;
     }
 
     /**
@@ -117,11 +118,11 @@ public class Turma {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da sala padrão da turma.
+     * @return SalaPadrao - SalaPadrao da turma
      */
-    public void getSalaPadrao() {
-        // TODO implement here
+    public SalaPadrao getSalaPadrao() {
+        return salaPadrao;
     }
 
     /**

@@ -15,17 +15,18 @@ public class Escola {
     private PeriodoAvaliacao periodos[];
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Escola.
+     * @param
      */
     public Escola() {
     }
 
     
-    /**
-     * 
+    /** Método para retorno do ID da escola.
+     * @return Int - ID da escola
      */
-    public void getIdEscola() {
-        // TODO implement here
+    public int getIdEscola() {
+        return idEscola;
     }
 
     /**
@@ -35,12 +36,11 @@ public class Escola {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do nome da escola.
+     * @return String - Nome da escola
      */
     public String getNome() {
-        // TODO implement here
-    	return this.nome;
+        return nome;
     }
 
     /**
@@ -50,12 +50,12 @@ public class Escola {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da data de início do ano letivo.
+     * @return Date - Data de início do ano letivo
      */
     public Date getDataInicioLetivo() {
-        // TODO implement here
-    	return this.dataInicioLetivo;
+        return dataInicioLetivo;
+
     }
 
     /**
@@ -65,12 +65,11 @@ public class Escola {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da data final do ano letivo.
+     * @return Date - Data final do ano letivo
      */
     public Date getDataFinalLetivo() {
-        // TODO implement here
-    	return this.dataFinalLetivo;
+        return dataFinalLetivo;
     }
 
     /**
@@ -81,36 +80,37 @@ public class Escola {
     	
     }
 
-    /**
-     * 
+    /** Método para retorno dos usuários.
+     * @return Usuario - Array de usuários
      */
-    public void getUsuarios() {
-        // TODO implement here
+    public Usuario[] getUsuarios() {
+        return usuarios;
     }
 
-    /**
-     * 
+    /** Método para buscar um usuário específico.
+     * @param -
+     * @return Usuario - Usuario a ser buscado.
      */
-    public void buscarUsuario() {
-        // TODO implement here
+    public Usuario buscarUsuario() {
+        return null;
     }
 
-    /**
-     * 
+    /** Método para adicionar um usuário ao sistema.
+     * @param -
      */
     public void adicionarUsuario() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para buscar um periodo de avaliação específico.
+     * @return PeriodoAvaliacao
      */
-    public void buscarPeriodo() {
-        // TODO implement here
+    public PeriodoAvaliacao buscarPeriodo() {
+        return null;
     }
 
-    /**
-     * 
+    /** Método para adicionar um período de avaliação.
+     * @param -
      */
     public void adicionarPeriodo() {
         // TODO implement here

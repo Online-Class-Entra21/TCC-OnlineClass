@@ -9,19 +9,29 @@ import java.util.*;
  * @author  
  */
 public class Professor extends Usuario {
+	private int idProfessor;
 
-    /**
-     * Default constructor
+	/**
+     * Construtor usado ao instanciar a classe Professor.
+     * @param
      */
     public Professor() {
     }
-
-
-    /**
-     * 
+    
+    
+    /** Método para retorno do ID do professor.
+     *  @return Int - ID do professor
      */
-    public void verDisciplinas() {
-        // TODO implement here
+    public int getIdProfessor() {
+    	return idProfessor;
+    }
+
+    /** Método para visualizar as disciplinas do professor.
+     * @param - 
+     * @return ProfessorDisciplina - Disciplinas do professor.
+     */
+    public ProfessorDisciplina verDisciplinas() {
+        return null;
     }
 
     /**

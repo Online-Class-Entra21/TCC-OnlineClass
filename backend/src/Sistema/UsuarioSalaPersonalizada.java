@@ -14,17 +14,18 @@ public class UsuarioSalaPersonalizada {
     private Usuario usuario;
     
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe UsuarioSalaPersonalizada.
+     * @param
      */
     public UsuarioSalaPersonalizada() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID do UsuarioSalaPersonalizada.
+     * @return Int - ID UsuarioSalaPersonalizada
      */
-    public void getIdUsuarioSalaPersonalizada() {
-        // TODO implement here
+    public int getIdUsuarioSalaPersonalizada() {
+        return idUsuarioSalaPersonalizada;
     }
 
     /**
@@ -34,11 +35,11 @@ public class UsuarioSalaPersonalizada {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do código da sala personalizada.
+     * @return Int - Código da sala personalizada
      */
-    public void getCodSalaPersonalizada() {
-        // TODO implement here
+    public int getCodSalaPersonalizada() {
+        return codSalaPersonalizada;
     }
 
     /**
@@ -48,11 +49,11 @@ public class UsuarioSalaPersonalizada {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do usuário.
+     * @return Usuario - Usuario
      */
-    public void getUsuario() {
-        // TODO implement here
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     /**

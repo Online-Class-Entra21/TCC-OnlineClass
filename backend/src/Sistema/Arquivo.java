@@ -14,17 +14,18 @@ public class Arquivo {
     private byte arquivo[];
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Arquivo.
+     * @param
      */
     public Arquivo() {
     }
 
     
-    /** Método para retorno do nome da mãe do usuário.
-     * @return String - Nome do mãe do usuário
+    /** Método para retorno do ID do arquivo.
+     * @return Int - ID do arquivo
      */
-    public void getIdArquivo() {
-        // TODO implement here
+    public int getIdArquivo() {
+        return idArquivo;
     }
 
     /**
@@ -34,11 +35,11 @@ public class Arquivo {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da extensão.
+     * @return String - Extensão do arquivo
      */
-    public void getExtensao() {
-        // TODO implement here
+    public String getExtensao() {
+        return extensao;
     }
 
     /**
@@ -48,11 +49,11 @@ public class Arquivo {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da data de envio.
+     * @return Date - Data de envio
      */
-    public void getDataEnvio() {
-        // TODO implement here
+    public Date getDataEnvio() {
+        return dataEnvio;
     }
 
     /**
@@ -62,11 +63,11 @@ public class Arquivo {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do remetente.
+     * @return Int - ID do remetente
      */
-    public void getRemetente() {
-        // TODO implement here
+    public int getRemetente() {
+        return remetente;
     }
 
     /**
@@ -76,11 +77,12 @@ public class Arquivo {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do tipo de envio.
+     * @return Int - Tipo de envio 
      */
-    public void getTipoEnvio() {
-        // TODO implement here
+    public int getTipoEnvio() {
+    	UsuarioArquivo usuarioArquivo = new UsuarioArquivo();
+        return usuarioArquivo.getTipoEnvio();
     }
 
     /**
@@ -90,11 +92,11 @@ public class Arquivo {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do arquivo.
+     * @return Byte - Array de arquivos
      */
-    public void getArquivo() {
-        // TODO implement here
+    public byte[] getArquivo() {
+        return arquivo;
     }
 
     /**

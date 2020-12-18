@@ -16,17 +16,18 @@ public class Relatorio {
     private int remetente;
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Relatorio.
+     * @param
      */
     public Relatorio() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID do relatório.
+     * @return Int - ID do relatório
      */
-    public void getIdRelatorio() {
-        // TODO implement here
+    public int getIdRelatorio() {
+    	return idRelatorio;
     }
 
     /**
@@ -36,11 +37,11 @@ public class Relatorio {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do titulo do relatório.
+     * @return String - Titulo do relatório
      */
-    public void getTitulo() {
-        // TODO implement here
+    public String getTitulo() {
+        return titulo;
     }
 
     /**
@@ -50,11 +51,11 @@ public class Relatorio {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do destinatário.
+     * @return Int - ID do destinatário
      */
-    public void getDestinatario() {
-        // TODO implement here
+    public int getDestinatario() {
+        return destinatario;
     }
 
     /**
@@ -64,11 +65,11 @@ public class Relatorio {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do texto do relatório.
+     * @return String - Texto do relatório
      */
-    public void getTexto() {
-        // TODO implement here
+    public String getTexto() {
+        return texto;
     }
 
     /**
@@ -78,11 +79,11 @@ public class Relatorio {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do tipo de relatório.
+     * @return Int - Tipo do relatório
      */
-    public void getTipoRelatorio() {
-        // TODO implement here
+    public int getTipoRelatorio() {
+        return tipoRelatorio;
     }
 
     /**
@@ -92,11 +93,11 @@ public class Relatorio {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do remetente.
+     * @return Int - ID do remetente
      */
-    public void getRemetente() {
-        // TODO implement here
+    public int getRemetente() {
+        return remetente;
     }
 
     /**

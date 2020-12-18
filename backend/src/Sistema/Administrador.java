@@ -11,7 +11,8 @@ import java.util.*;
 public class Administrador extends Usuario {
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Administrador.
+     * @param
      */
     public Administrador() {
     	
@@ -20,56 +21,58 @@ public class Administrador extends Usuario {
     /** Método para retorno da escola.
      * @return String - Nome do usuário
      */
-    public void getEscola() {
-        // TODO implement here
+    public String getEscola() {
+    	Escola escola = new Escola();
+        return escola.getNome();
     }
 
-    /**
-     * 
+    /** Método para adicionar uma escola ao sistema.
+     * @param - 
      */
     public void adicionarEscola() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a atualização da escola.
+     * @param Escola - Escola a ser atualizada.
      */
-    public void atualizarEscola() {
+    public void atualizarEscola(Escola escola) {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a remoção de uma escola.
+     * @param Escola - Escola a ser removida do sistema.
      */
-    public void removerEscola() {
+    public void removerEscola(Escola escola) {
         // TODO implement here
     }
 
-    /** Método para retorno do nome do usuário.
-     * @return String - Nome do usuário
+    /** Método para retorno do ID do diretor.
+     * @return Int - ID do diretor
      */
-    public void getDiretor() {
-        // TODO implement here
+    public int getDiretor() {
+    	Diretor diretor =  new Diretor();
+        return diretor.getIdUsuario();
     }
 
-    /**
-     * 
+    /** Método para adicionar um diretor.
+     * @param -
      */
     public void adicionarDiretor() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a atualização do diretor.
+     * @param Diretor - Diretor a ser atualizado.
      */
-    public void atualizarDiretor() {
+    public void atualizarDiretor(Diretor diretor) {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a remoção do diretor
+     * @param Diretor - Diretor a ser removido.
      */
-    public void removerDiretor() {
+    public void removerDiretor(Diretor diretor) {
         // TODO implement here
     }
 

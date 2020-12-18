@@ -14,17 +14,18 @@ public class TurmaAtividade {
     private Atividade atividade;
     
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe TurmaAtividade.
+     * @param
      */
     public TurmaAtividade() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID da TurmaAtividade.
+     * @return Int - ID TurmaAtividade
      */
-    public void getIdAtividade() {
-        // TODO implement here
+    public int getIdAtividade() {
+        return idTurmaAtividade;
     }
 
     /**
@@ -34,11 +35,11 @@ public class TurmaAtividade {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID da turma.
+     * @return Int - ID da turma
      */
-    public void getIdTurma() {
-        // TODO implement here
+    public int getIdTurma() {
+        return idTurma;
     }
 
     /**
@@ -48,11 +49,11 @@ public class TurmaAtividade {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da atividade.
+     * @return Atividade - Atividade
      */
-    public void getAtividade() {
-        // TODO implement here
+    public Atividade getAtividade() {
+        return atividade;
     }
 
     /**

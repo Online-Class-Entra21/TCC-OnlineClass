@@ -12,17 +12,18 @@ public class Disciplina {
     private int numeroAulas;
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Disciplina.
+     * @param
      */
     public Disciplina() {
     }
 
     
-    /**
-     * 
+    /** Método para retorno do ID da disciplina.
+     * @return Int - ID da disciplina
      */
-    public void getIdDisciplina() {
-        // TODO implement here
+    public int getIdDisciplina() {
+        return idDisciplina;
     }
 
     /**
@@ -32,11 +33,11 @@ public class Disciplina {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do nome da disciplina.
+     * @return String - Nome da disciplina
      */
-    public void getNome() {
-        // TODO implement here
+    public String getNome() {
+        return nome;
     }
 
     /**
@@ -46,11 +47,11 @@ public class Disciplina {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do número de aulas da disciplina.
+     * @return Int - Número de aulas
      */
-    public void getNumeroAulas() {
-        // TODO implement here
+    public int getNumeroAulas() {
+        return numeroAulas;
     }
 
     /**

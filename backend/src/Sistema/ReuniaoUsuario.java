@@ -16,17 +16,18 @@ public class ReuniaoUsuario {
     public Usuario Participa;
     
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe ReuniaoUsuario.
+     * @param
      */
     public ReuniaoUsuario() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID da ReuniaoUsuario.
+     * @return Int - ID da ReuniaoUsuario
      */
-    public void getIdReuniaoUsuario() {
-        // TODO implement here
+    public int getIdReuniaoUsuario() {
+        return idReuniaoUsuario;
     }
 
     /**
@@ -36,11 +37,11 @@ public class ReuniaoUsuario {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do horário de entrada da reunião.
+     * @return Time - Horário de entrada na reunião
      */
-    public void getEntradaReuniao() {
-        // TODO implement here
+    public Time getEntradaReuniao() {
+        return entradaReuniao;
     }
 
     /**
@@ -50,11 +51,11 @@ public class ReuniaoUsuario {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da nota da reunião.
+     * @return Double - Nota da reunião
      */
-    public void getNotaReuniao() {
-        // TODO implement here
+    public double getNotaReuniao() {
+        return notaReuniao;
     }
 
     /**
@@ -64,13 +65,12 @@ public class ReuniaoUsuario {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno dos comentários da reunião.
+     * @return String - Comentários da reunião
      */
-    public void getComantarioReuniao() {
-        // TODO implement here
+    public String getComantarioReuniao() {
+        return comentarioReuniao;
     }
-
     /**
      * 
      */
@@ -78,11 +78,11 @@ public class ReuniaoUsuario {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do usuário.
+     * @return Usuario - Usuario
      */
-    public void getUsuario() {
-        // TODO implement here
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     /**
@@ -92,11 +92,11 @@ public class ReuniaoUsuario {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do código da reunião.
+     * @return Int - Código da reunião
      */
-    public void getCodReuniao() {
-        // TODO implement here
+    public int getCodReuniao() {
+        return codReuniao;
     }
 
     /**

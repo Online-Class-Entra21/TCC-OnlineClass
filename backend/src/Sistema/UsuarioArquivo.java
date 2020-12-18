@@ -15,17 +15,18 @@ public class UsuarioArquivo {
     private int destinatario;
     
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe UsuarioArquivo.
+     * @param
      */
     public UsuarioArquivo() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID do UsuarioArquivo.
+     * @return Int - ID UsuarioArquivo
      */
-    public void getIdUsuarioArquivo() {
-        // TODO implement here
+    public int getIdUsuarioArquivo() {
+        return idUsuarioArquivo;
     }
 
     /**
@@ -35,11 +36,11 @@ public class UsuarioArquivo {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do tipo de envio.
+     * @return Int - Tipo de envio
      */
-    public void getTipoEnvio() {
-        // TODO implement here
+    public int getTipoEnvio() {
+        return tipoEnvio;
     }
 
     /**
@@ -49,11 +50,11 @@ public class UsuarioArquivo {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do arquivo.
+     * @return Arquivo - Arquivo
      */
-    public void getArquivo() {
-        // TODO implement here
+    public Arquivo getArquivo() {
+        return arquivo;
     }
 
     /**
@@ -63,11 +64,11 @@ public class UsuarioArquivo {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do destinatário.
+     * @return Int - ID destinatário
      */
-    public void getDestinatario() {
-        // TODO implement here
+    public int getDestinatario() {
+        return destinatario;
     }
 
     /**

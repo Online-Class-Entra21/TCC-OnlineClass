@@ -16,17 +16,18 @@ public class Endereco {
     private String cep;
     
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Endereco.
+     * @param
      */
     public Endereco() {
     }
 
     
-    /**
-     * 
+    /** Método para retorno do estado.
+     * @return String - Estado
      */
-    public void getEstado() {
-        // TODO implement here
+    public String getEstado() {
+        return estado;
     }
 
     /**
@@ -36,11 +37,11 @@ public class Endereco {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da cidade.
+     * @return String - Cidade
      */
-    public void getCidade() {
-        // TODO implement here
+    public String getCidade() {
+        return cidade;
     }
 
     /**
@@ -50,11 +51,11 @@ public class Endereco {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do bairro.
+     * @return String - Bairro
      */
-    public void getBairro() {
-        // TODO implement here
+    public String getBairro() {
+        return bairro;
     }
 
     /**
@@ -64,11 +65,11 @@ public class Endereco {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da rua.
+     * @return String - Rua
      */
-    public void getRua() {
-        // TODO implement here
+    public String getRua() {
+        return rua;
     }
 
     /**
@@ -78,11 +79,11 @@ public class Endereco {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do número.
+     * @return Int - Número
      */
-    public void getNumero() {
-        // TODO implement here
+    public int getNumero() {
+        return numero;
     }
 
     /**
@@ -92,11 +93,11 @@ public class Endereco {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do CEP.
+     * @return String - CEP
      */
-    public void getCep() {
-        // TODO implement here
+    public String getCep() {
+        return cep;
     }
 
     /**
