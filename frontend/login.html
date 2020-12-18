@@ -33,7 +33,7 @@
                 </div>
 
                 <div id="botao">
-                    <input class="submit" type="submit" value="Logar" onclick= "logar()">        
+                    <input type="button" value="Logar" class="submit" onclick= "logar()">     
                 </div>
             </form>
 
@@ -41,7 +41,8 @@
          <script>
              function logar(){
                 if($("#senha").val() == "123"){
-                    window.location.href = "http://127.0.0.1:5500/frontend/aluno.html"   
+                    window.alert('Passou');
+                    window.location.href = "aluno.html";   
                 }else{
                     window.alert('Negado');
                 }
