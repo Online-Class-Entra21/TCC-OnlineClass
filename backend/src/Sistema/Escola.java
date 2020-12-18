@@ -55,6 +55,7 @@ public class Escola {
      */
     public Date getDataInicioLetivo() {
         return dataInicioLetivo;
+
     }
 
     /**
@@ -76,6 +77,7 @@ public class Escola {
      */
     public void setDataFinalLetivo() {
         // TODO implement here
+    	
     }
 
     /** Método para retorno dos usuários.
