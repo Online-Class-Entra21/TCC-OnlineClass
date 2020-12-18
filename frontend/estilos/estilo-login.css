@@ -4,13 +4,13 @@ Estilo tela Login - Online Class
 
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    background: #bb1060 url(../imagens/fundo2.png);
+    background: #3f0a7c url(../imagens/fundo.png) no-repeat;
 }
 
 #logo {
     
-    margin-top: -150px;
-    margin-left: 510px;
+    margin-top: 110px;
+    margin-left: 800px;
 }
 
 #container {
@@ -21,7 +21,7 @@ body {
     -moz-border-radius:10px;
     border-radius: 15px;
     margin: 0 auto;
-    margin-top: -5px;
+    margin-top: 100px;
     text-align: center;
 }
 
@@ -31,6 +31,7 @@ body {
     margin-top: -60px;
     margin-bottom: 30px;
 }
+
 
 /*
 Caixas para escrever [login] [senha]
