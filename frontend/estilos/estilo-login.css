@@ -74,3 +74,9 @@ input.submit {
     width: 90%;
 }
 
+#botao-esqueceu{
+    margin-top: -14px;
+    font-size: 18px;
+    color: #630c13;
+}
+

@@ -11,16 +11,11 @@
 
     <body>
         <div id="logo">
-            
             <img src="imagens/Logo-OnlineClass.png">
-
         </div>
 
-        <!-- Inicio Container 2 -->
         <div id="container">
-
             <img src="imagens/perfil.png">
-
             <form>
                 <div>
                     <input class="email" type="text" name="email" id="email"
@@ -32,19 +27,31 @@
                     placeholder="Digite sua senha">
                 </div>
 
-                <div id="botao">
+                <div id="botao-login">
                     <input type="button" value="Logar" class="submit" onclick= "logar()">     
                 </div>
-            </form>
 
-         </div> <!-- Fim Container-->
+                <div id="botao-esqueceu">
+                    <h5 style="cursor: pointer" onclick="mudarSenha()">Esqueceu sua senha?</h5>
+                </div>
+            </form>
+         </div> 
+
          <script>
+             //Verifica as informações e loga no sistema 
              function logar(){
                 if($("#senha").val() == "123"){
-                    window.alert('Passou');
-                    window.location.href = "aluno.html";   
+                    alert('Passou');
+                    location.href = "aluno.html";   
                 }else{
-                    window.alert('Negado');
+                    alert('Negado');
+                }
+             }
+             //Muda a senha do login no sistema 
+             function mudarSenha(){   
+                var resultado = confirm('Deseja receber um código de verificação para recuperar a senha?');
+                if(resultado){
+                    alert("Enviou o código")
                 }
              }
         </script>
