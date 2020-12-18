@@ -15,17 +15,18 @@ public class SalaPersonalizada extends Sala {
     private UsuarioSalaPersonalizada usuariosSalaPersonalizada[];
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe SalaPersonalizada.
+     * @param
      */
     public SalaPersonalizada() {
     }
     
     
-    /**
-     * 
+    /** Método para retorno do ID da sala personalizada.
+     * @return Int - ID da sala personalizada
      */
-    public void getIdSalaPersonalizada() {
-        // TODO implement here
+    public int getIdSalaPersonalizada() {
+        return idSalaPersonalizada;
     }
 
     /**
@@ -35,11 +36,11 @@ public class SalaPersonalizada extends Sala {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do dono da sala.
+     * @return Int - ID do dono da sala
      */
-    public void getDono() {
-        // TODO implement here
+    public int getDono() {
+        return dono;
     }
 
     /**
@@ -49,18 +50,19 @@ public class SalaPersonalizada extends Sala {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do UsuarioSalaPersonalizada
+     * @return UsuarioSalaPersonalizada - UsuarioSalaPersonalizada
      */
-    public void getUsuariosSalaPersonalizada() {
-        // TODO implement here
+    public UsuarioSalaPersonalizada[] getUsuariosSalaPersonalizada() {
+        return usuariosSalaPersonalizada;
     }
 
-    /**
-     * 
+    /** Método para pesquisar o usuário da sala personalizada
+     * @param -
+     * @return UsuarioSalaPersonalizada
      */
-    public void pesquisarUsuarioSalaPersonalizada() {
-        // TODO implement here
+    public UsuarioSalaPersonalizada pesquisarUsuarioSalaPersonalizada() {
+    	return null;
     }
 
     /**

@@ -13,17 +13,18 @@ public class Chamada {
     private int codReuniao;
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Chamada.
+     * @param
      */
     public Chamada() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID da chamada.
+     * @return Int - ID da chamada
      */
-    public void getIdChamda() {
-        // TODO implement here
+    public int getIdChamada() {
+        return idChamada;
     }
 
     /**
@@ -33,11 +34,11 @@ public class Chamada {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da situação da chamada.
+     * @return Boolean - Aluno faltante? True / False
      */
-    public void getSituacao() {
-        // TODO implement here
+    public boolean getSituacao() {
+        return situacao;
     }
 
     /**
@@ -47,11 +48,11 @@ public class Chamada {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do código do aluno.
+     * @return Int - Código do aluno
      */
-    public void getCodAluno() {
-        // TODO implement here
+    public int getCodAluno() {
+        return codAluno;
     }
 
     /**
@@ -61,11 +62,11 @@ public class Chamada {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do código da reunião.
+     * @return Int - Código da reunião
      */
-    public void getCodReuniao() {
-        // TODO implement here
+    public int getCodReuniao() {
+    	return codReuniao;
     }
 
     /**

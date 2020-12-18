@@ -1,5 +1,6 @@
 package Sistema;
 
+import java.sql.Connection;
 import java.util.*;
 
 /**
@@ -22,11 +23,11 @@ public class Conexao {
     }
 
     
-    /**
-     * 
+    /** Método para retorno da conexão.
+     * @return String - Conexão
      */
-    public void getConexao() {
-        // TODO implement here
+    public Connection getConexao() {
+        return null;
     }
 
     /**

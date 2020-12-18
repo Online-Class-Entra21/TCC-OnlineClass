@@ -11,8 +11,9 @@ import java.util.*;
  */
 public class SalaPadrao extends Sala {
 
-    /**
-     * Default constructor
+	/**
+     * Construtor usado ao instanciar a classe SalaPadrao.
+     * @param
      */
     public SalaPadrao() {
     }

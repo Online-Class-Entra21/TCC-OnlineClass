@@ -5,6 +5,7 @@ import java.util.*;
 /**
  * Classe contendo métodos e atributos para a criação de reuniões pelo Usuario.
  * @see Usuario
+ * @see TurmaProfessor
  * @author 
  */
 public class Reuniao {
@@ -14,51 +15,22 @@ public class Reuniao {
     private int dono;
     private double notaMediaAula;
     private Sala sala;
+    private ReuniaoUsuario reuniaoUsuarios[];
+    private TurmaProfessorDisciplina turmaProfessorDisciplina;
     
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Reuniao.
+     * @param
      */
     public Reuniao() {
     }
 
-    
-    /**
-     * 
+
+    /** Método para retorno do ID da reunião.
+     * @return Int - ID da reunião
      */
-    private ReuniaoUsuario reuniaoUsuarios[];
-
-    /**
-     * 
-     */
-    private TurmaProfessorDisciplina turmaProfessorDisciplina;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * 
-     */
-    public void getIdReuniao() {
-        // TODO implement here
+    public int getIdReuniao() {
+        return idReuniao;
     }
 
     /**
@@ -68,11 +40,11 @@ public class Reuniao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da descrição da reunião.
+     * @return String - Descrição da reunião
      */
-    public void getDescricao() {
-        // TODO implement here
+    public String getDescricao() {
+        return descricao;
     }
 
     /**
@@ -82,11 +54,11 @@ public class Reuniao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da data de início da reunião.
+     * @return Date - Data de início da reunião 
      */
-    public void getDataInicioReuniao() {
-        // TODO implement here
+    public Date getDataInicioReuniao() {
+        return dataInicio;
     }
 
     /**
@@ -96,11 +68,11 @@ public class Reuniao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do dono da reunião.
+     * @return Int - ID do dono da reunião
      */
-    public void getDono() {
-        // TODO implement here
+    public int getDono() {
+        return dono;
     }
 
     /**
@@ -110,11 +82,11 @@ public class Reuniao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da nota média da aula.
+     * @return Double - Nota média da aula
      */
-    public void getNotaMediaAula() {
-        // TODO implement here
+    public double getNotaMediaAula() {
+        return notaMediaAula;
     }
 
     /**
@@ -124,11 +96,11 @@ public class Reuniao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da sala.
+     * @return Sala - Sala
      */
-    public void getSala() {
-        // TODO implement here
+    public Sala getSala() {
+        return sala;
     }
 
     /**
@@ -138,18 +110,19 @@ public class Reuniao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno dos usuários conectados à reunião.
+     * @return ReuniaoUsuario - Array de usuários conectados
      */
-    public void getReuniaoUsuarios() {
-        // TODO implement here
+    public ReuniaoUsuario[] getReuniaoUsuarios() {
+        return reuniaoUsuarios;
     }
 
-    /**
-     * 
+    /** Método para buscar um usuário da reunião.
+     * @param - 
+     * @return ReuniaoUsuario.
      */
-    public void buscarReuniaoUsuario() {
-        // TODO implement here
+    public ReuniaoUsuario buscarReuniaoUsuario() {
+        return null;
     }
 
     /**
@@ -159,11 +132,11 @@ public class Reuniao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da TurmaProfessorDisciplina.
+     * @return TurmaProfessorDisciplina - TurmaProfessorDisciplina
      */
-    public void getTurmaProfessorDisciplina() {
-        // TODO implement here
+    public TurmaProfessorDisciplina getTurmaProfessorDisciplina() {
+        return turmaProfessorDisciplina;
     }
 
     /**

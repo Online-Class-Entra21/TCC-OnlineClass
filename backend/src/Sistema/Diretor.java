@@ -10,18 +10,20 @@ import java.util.*;
  */
 public class Diretor extends Usuario {
 
-    /**
-     * Default constructor
+	/**
+     * Construtor usado ao instanciar a classe Diretor.
+     * @param
      */
     public Diretor() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID da escola.
+     * @return Int - ID da escola
      */
-    public void getEscola() {
-        // TODO implement here
+    public int getEscola() {
+        Escola escola = new Escola();
+        return escola.getIdEscola();
     }
 
     /**
@@ -38,11 +40,12 @@ public class Diretor extends Usuario {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do PeriodoAvaliacao.
+     * @return Int - ID PeriodoAvaliacao
      */
-    public void getPeriodoAvaliacao() {
-        // TODO implement here
+    public int getPeriodoAvaliacao() {
+        PeriodoAvaliacao periodoAvaliacao =  new PeriodoAvaliacao();
+        return periodoAvaliacao.getIdPeriodoAvaliacao();		
     }
 
     /**
@@ -66,11 +69,11 @@ public class Diretor extends Usuario {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do usuário.
+     * @return Int - ID do usuário
      */
-    public void getUsuario() {
-        // TODO implement here
+    public int getUsuario() {
+        return getIdUsuario();
     }
 
     /**

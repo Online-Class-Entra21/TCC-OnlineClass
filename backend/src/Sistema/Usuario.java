@@ -29,15 +29,8 @@ public class Usuario {
     private Endereco endereco;
     
     /**
-     * Construtor utilizado para instanciar a classe Usuario.
-	 * @param nome				Nome completo do usuário do sistema.
-	 * @param tipoUsuario		Tipo de conta do Usuário:
-	 * 							0 - Aluno
-	 * 							1 - Professor
-	 * 							2 - Coordenador
-	 * 							3 - Diretor
-	 * 							4 - Administrador
-	 * @param email				Email cadastrado pelo usuário.
+     * Construtor usado ao instanciar a classe Usuario.
+     * @param
      */
     public Usuario() {
     }
@@ -60,8 +53,8 @@ public class Usuario {
     /** Método para retorno do nome do usuário.
      * @return String - Nome do usuário
      */
-    public void getNome() {
-        // TODO implement here
+    public String getNome() {
+        return nome;
     }
 
     /**
@@ -74,8 +67,8 @@ public class Usuario {
     /** Método para retorno do sobrenome do usuário.
      * @return String - Sobrenome do usuário
      */
-    public void getSobrenome() {
-        // TODO implement here
+    public String getSobrenome() {
+        return sobrenome;
     }
 
     /**
@@ -88,8 +81,8 @@ public class Usuario {
     /** Método para retorno do CPF do usuário.
      * @return String - CPF do usuário
      */
-    public void getCpf() {
-        // TODO implement here
+    public String getCpf() {
+        return cpf;
     }
 
     /**
@@ -102,8 +95,8 @@ public class Usuario {
     /** Método para retorno do telefone do usuário.
      * @return String - Telefone do usuário
      */
-    public void getTelefone() {
-        // TODO implement here
+    public String getTelefone() {
+        return telefone;
     }
 
     /**
@@ -116,8 +109,8 @@ public class Usuario {
     /** Método para retorno do número de celular do usuário.
      * @return String - Número de celular do usuário
      */
-    public void getCelular() {
-        // TODO implement here
+    public String getCelular() {
+        return celular;
     }
 
     /**
@@ -129,14 +122,14 @@ public class Usuario {
 
     /** Método para retorno do tipo de conta do usuário.
      * @return Byte - Tipo de conta do usuário.
-     * 							0 - Aluno
-	 * 							1 - Professor
-	 * 							2 - Coordenador
-	 * 							3 - Diretor
+     * 							0 - Aluno,
+	 * 							1 - Professor,
+	 * 							2 - Coordenador,
+	 * 							3 - Diretor,
 	 * 							4 - Administrador
      */
-    public void getTipoUsuario() {
-        // TODO implement here
+    public Byte getTipoUsuario() {
+        return tipoUsuario;
     }
 
     /**
@@ -149,8 +142,8 @@ public class Usuario {
     /** Método para retorno do email do usuário.
      * @return String - Email do usuário
      */
-    public void getEmail() {
-        // TODO implement here
+    public String getEmail() {
+        return email;
     }
 
     /**
@@ -163,8 +156,8 @@ public class Usuario {
     /** Método para retorno da senha do usuário.
      * @return String - Senha do usuário
      */
-    private void getSenha() {
-        // TODO implement here
+    private String getSenha() {
+        return senha;
     }
 
     /**
@@ -177,8 +170,8 @@ public class Usuario {
     /** Método para retorno do horário inicial do expediente do usuário.
      * @return Time - Horário inicial do expediente do usuário
      */
-    public void getHorarioInicioExpediente() {
-        // TODO implement here
+    public Time getHorarioInicioExpediente() {
+        return horarioInicioExpediente;
     }
 
     /**
@@ -191,8 +184,8 @@ public class Usuario {
     /** Método para retorno do horário final do expediente do usuário.
      * @return Time - Horário final do expediente do usuário
      */
-    public void getHorarioFinalExpediente() {
-        // TODO implement here
+    public Time getHorarioFinalExpediente() {
+        return horarioFinalExpediente;
     }
 
     /**
@@ -203,10 +196,10 @@ public class Usuario {
     }
 
     /** Método para retorno da foto do usuário.
-     * @return Byte - Foto do usuário
+     * @return Byte - Array de fotos dos usuários
      */
-    public void getFoto() {
-        // TODO implement here
+    public byte[] getFoto() {
+        return fotoUsuario;
     }
 
     /**
@@ -219,8 +212,8 @@ public class Usuario {
     /** Método para retorno do endereço do usuário.
      * @return Endereco - Endereço do usuário
      */
-    public void getEndereco() {
-        // TODO implement here
+    public Endereco getEndereco() {
+        return endereco;
     }
 
     /**
@@ -230,255 +223,276 @@ public class Usuario {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a verificação de cpf.
+     * Recebe uma String e converte para inteiro, realizando o cálculo para a verificação do dígito veríficador.
+     * @param String - CPF a ser verificado. 
+     * @return Boolean - True para CPF válido / False para inválido.
      */
-    public void verificarCpf() {
-        // TODO implement here
+    public boolean verificarCpf(String cpf) {
+        return false;
     }
 
-    /**
-     * 
+    /** Método para verificação do login.
+     * 	Recebe o email e senha e verifica no banco de dados se os dados coincidem com os cadastrados pelo usuário.
+     * @param String - Email a ser verificado.
+     * @param String - Senha a ser verificada.
+     * @return Boolean - True para login correto / False para incorreto.
      */
-    public void verificarLogin() {
-        // TODO implement here
+    public boolean verificarLogin(String email, String senha) {
+        return false;
     }
 
-    /**
-     * 
+    /** Método para pesquisar um usuário específico a partir do ID.
+     * @param Int - ID do usuário.
+     * @return Usuario - Retorna o usuário.
      */
-    public void pesquisarUsuario() {
-        // TODO implement here
+    public void pesquisarUsuario(int id) {
     }
 
-    /**
-     * 
+    /** Método para envio de um relatório. 
+     * @param -
      */
     public void mandarRelatorio() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar os relatórios enviados, a partir do banco de dados.
+     * @param -
+     * @return Relatorio - Retorna os relatórios enviados.
      */
-    public void verRelatoriosEnviados() {
-        // TODO implement here
+    public Relatorio verRelatoriosEnviados() {
+        return null;
     }
 
-    /**
-     * 
+    /** Método para buscar um relatório enviado, a partir do banco de dados.
+     * @param -
+     * @return Relatorio - Retorna um relatório.
      */
     public void buscarRelatorioEnviado() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar os relatórios recebidos, a partir do banco de dados.
+     * @param -
+     * @return Relatorio - Retorna os relatórios recebidos.
      */
     public void verRelatoriosRecebidos() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para buscar um relatório recebido, a partir do banco de dados.
+     * @param -
+     * @return Relatorio - Retorna um relatório.
      */
     public void buscarRelatorioRecebido() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a remoção de um relatório.
+     * @param Relatorio - Relatório a ser removido.
      */
-    public void removerRelatorio() {
+    public void removerRelatorio(Relatorio relatorio) {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para o envio do convite para acessar uma reunião.
+     * @param -
      */
     public void mandarConvite() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar os convites enviados, a partir do banco de dados.
+     * @param -
+     * @return Convite - Retorna os convites enviados.
      */
     public void verConvitesEnviados() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para buscar um convite enviado, a partir do banco de dados.
+     * @param -
+     * @return Convite - Retorna um convite.
      */
     public void buscarConviteEnviado() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para buscar os convites recebidos, a partir do banco de dados.
+     * @param -
+     * @return Convite - Retorna os convites recebidos.
      */
     public void verConvitesRecebidos() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para buscar um convite recebido, a partir do banco de dados.
+     * @param -
+     * @return Convite - Retorna um convite.
      */
     public void buscarConviteRecebido() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a remoção de um convite.
+     * @param Convite - Convite a ser removido.
      */
     public void removerConvite() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a aceitação de um convite.
+     * @param Boolean - Resposta do convite.
+     * @return Boolean - True.
      */
-    public void aceitarConvite() {
-        // TODO implement here
+    public boolean aceitarConvite(boolean convite) {
+        return true;
     }
 
-    /**
-     * 
+    /** Método para recusar um convite.
+     * @param Boolean - Resposta do convite.
+     * @return Boolean - False.
      */
-    public void recusarConvite() {
-        // TODO implement here
+    public boolean recusarConvite(boolean convite) {
+        return false;
     }
 
-    /**
-     * 
+    /** Método para o envio de um arquivo.
+     * @param -
      */
     public void mandarArquivo() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar os arquivos enviados, a partir do banco de dados.
+     * @param -
+     * @return Arquivo - Retorna os arquivos enviados.
      */
-    public void verArquivosEnviados() {
-        // TODO implement here
+    public Arquivo verArquivosEnviados() {
+        return null;
     }
 
-    /**
-     * 
+    /** Método para visualizar um arquivo específico enviado, a partir do banco de dados.
+     * @param -
+     * @return Arquivo - Retorna o arquivo.
      */
     public void buscarArquivoEnviado() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar os arquivos recebidos, a partir do banco de dados.
+     * @param -
+     * @return Arquivo - Retorna os arquivos recebidos.
      */
     public void verArquivosRecebidos() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar arquivo específico recebido, a partir do banco de dados.
+     * @param -
+     * @return Arquivo - Retorna o arquivo.
      */
     public void buscarArquivoRecebido() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a remoção de um arquivo.
+     * @param -
      */
     public void removerArquivo() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar uma sala personalizada.
+     * @param -
+     * @return SalaPersonalizada.
      */
-    public void getSalaPersonalizada() {
-        // TODO implement here
+    public SalaPersonalizada getSalaPersonalizada() {
+        return null;
     }
 
-    /**
-     * 
+    /** Método para a criação de uma sala personalizada.
+     * @param -
      */
     public void criarSalaPersonalizada() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para atualizar uma sala personalizada.
+     * @param SalaPersonalizada - Sala a ser atualizada.
      */
-    public void atualizarSalaPersonalizada() {
+    public void atualizarSalaPersonalizada(SalaPersonalizada salaP) {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para remoção de uma sala personalizada.
+     * @param SalaPersonalizada - Sala a ser removida.
      */
-    public void removerSalaPersonalizada() {
+    public void removerSalaPersonalizada(SalaPersonalizada salaP) {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar uma reunião.
+     * @return Reuniao.
      */
-    public void getReuniao() {
-        // TODO implement here
+    public Reuniao getReuniao() {
+        return null;
     }
 
-    /**
-     * 
+    /** Método para a criação de uma reunião.
+     * @param -
      */
     public void criarReuniao() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a atualização de uma reunião.
+     * @param Reuniao - Reunião a ser atualizada.
      */
-    public void atualizarReuniao() {
+    public void atualizarReuniao(Reuniao reuniao) {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para a remoção de uma reunião.
+     * @param Reuniao - Reunião a ser removida.
      */
-    public void removerReuniao() {
+    public void removerReuniao(Reuniao reuniao) {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para entrar em uma reunião.
+     * @param - 
      */
     public void entrarReuniao() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para sair de uma reunião.
+     * @param -
      */
     public void sairReuniao() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar uma chamada.
+     * @param - 
+     * @return Chamada.
      */
-    public void getChamada() {
-        // TODO implement here
+    public Chamada getChamada() {
+        return null;
     }
 
-    /**
-     * 
+    /** Método para a realização da chamada.
+     * @param -
      */
     public void fazerChamada() {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método a remoção de uma chamada.
+     *  @param Chamada - Chamada a ser removida.
      */
-    public void removerChamada() {
+    public void removerChamada(Chamada chamada) {
         // TODO implement here
     }
 

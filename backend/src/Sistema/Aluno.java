@@ -20,17 +20,18 @@ public class Aluno extends Usuario {
     private Resposta respostas[];
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Aluno.
+     * @param
      */
     public Aluno() {
     }
     
     
-    /** Método para retorno do ID do usuário.
+    /** Método para retorno do ID do aluno.
      * @return Int - ID do usuário
      */
-    public void getIdAluno() {
-        // TODO implement here
+    public int getIdAluno() {
+        return idAluno;
     }
 
     /**
@@ -40,11 +41,11 @@ public class Aluno extends Usuario {
         // TODO implement here
     }
 
-    /** Método para retorno do RA do usuário.
+    /** Método para retorno do RA do aluno.
      * @return Int - RA do usuário
      */
-    public void getRa() {
-        // TODO implement here
+    public int getRa() {
+        return ra;
     }
 
     /**
@@ -54,11 +55,11 @@ public class Aluno extends Usuario {
         // TODO implement here
     }
 
-    /** Método para retorno da matrícula do usuário.
+    /** Método para retorno da matrícula do aluno.
      * @return String - Matrícula do usuário
      */
-    public void getMatricula() {
-        // TODO implement here
+    public String getMatricula() {
+        return matricula;
     }
 
     /**
@@ -68,11 +69,11 @@ public class Aluno extends Usuario {
         // TODO implement here
     }
 
-    /** Método para retornar se o usuário possum alguma deficiência física.
+    /** Método para retornar se o aluno possui alguma deficiência física.
      * @return Boolean - Possui deficiência física? True / False
      */
-    public void getDeficienciaFisica() {
-        // TODO implement here
+    public boolean getDeficienciaFisica() {
+        return deficienciaFisica;
     }
 
     /**
@@ -82,11 +83,11 @@ public class Aluno extends Usuario {
         // TODO implement here
     }
 
-    /** Método para retorno do nome da mãe do usuário.
-     * @return String - Nome do mãe do usuário
+    /** Método para retorno do nome da mãe do aluno.
+     * @return String - Nome do mãe do aluno
      */
-    public void getNomeMae() {
-        // TODO implement here
+    public String getNomeMae() {
+        return nomeMae;
     }
 
     /**
@@ -96,11 +97,11 @@ public class Aluno extends Usuario {
         // TODO implement here
     }
 
-    /** Método para retorno do nome da pai do usuário.
-     * @return String - Nome do pai do usuário
+    /** Método para retorno do nome do pai do aluno.
+     * @return String - Nome do pai do aluno
      */
-    public void getNomePai() {
-        // TODO implement here
+    public String getNomePai() {
+        return nomePai;
     }
 
     /**
@@ -110,11 +111,11 @@ public class Aluno extends Usuario {
         // TODO implement here
     }
 
-    /** Método para retorno do nome da mãe do usuário.
-     * @return String - Nome do mãe do usuário
+    /** Método para retorno do nome do responsável pelo aluno.
+     * @return String - Nome do responsável pelo aluno
      */
-    public void getNomeResponsavel() {
-        // TODO implement here
+    public String getNomeResponsavel() {
+        return nomeResponsavel;
     }
 
     /**
@@ -124,11 +125,11 @@ public class Aluno extends Usuario {
         // TODO implement here
     }
 
-    /** Método para retorno da situação do ano letivo do usuário.
+    /** Método para retorno da situação do ano letivo do aluno.
      * @return Boolean - True para aprovado / False para reprovado
      */
-    public void getSituacaoAnoLetivo() {
-        // TODO implement here
+    public boolean getSituacaoAnoLetivo() {
+        return situacaoAnoLetivo;
     }
 
     /**
@@ -138,53 +139,58 @@ public class Aluno extends Usuario {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para o envio de uma resposta à uma atividade.
+     * @param Resposta - Resposta a ser enviada.
      */
-    public void mandarResposta() {
+    public void mandarResposta(Resposta resposta) {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar as respostas enviadas, a partir do banco de dados.
+     * @param -
+     * @return Resposta - Retorna as respostas enviadas.
      */
-    public void verRespostasEnviadas() {
+    public Resposta verRespostasEnviadas() {
+        return null;
+    }
+
+    /** Método para visualizar uma resposta enviada específica, a partir do banco de dados.
+     * @param -
+     * @return Resposta - Retorna uma resposta.
+     */
+    public Resposta buscarRespostaEnviada(Resposta resposta) {
+        return null;
+    }
+
+    /** Método para a remoção de uma resposta.
+     * @param Resposta - Resposta a ser removida.
+     */
+    public void removerResposta(Resposta resposta) {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para visualizar as atividades recebidas, a partir do banco de dados.
+     * @param -
+     * @return Atividade - Retorna as atividades recebidas.
      */
-    public void buscarRespostaEnviada() {
-        // TODO implement here
+    public Atividade verAtividadesRecebidas() {
+        return null;
     }
 
-    /**
-     * 
+    /** Método para visualizar uma atividade recebida específica, a partir do banco de dados.
+     * @param -
+     * @return Atividade - retorna uma atividade.
      */
-    public void removerResposta() {
-        // TODO implement here
+    public Atividade pesquisarAtividadeRecebida() {
+        return null;
     }
 
-    /**
-     * 
+    /** Método para a visualização das notas
+     * @param -
+     * @return Resposta - Retorna as notas.
      */
-    public void verAtividadesRecebidas() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void pesquisarAtividadeRecebida() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void verNotas() {
-        // TODO implement here
+    public Resposta verNotas() {
+        return null;
     }
 
 }

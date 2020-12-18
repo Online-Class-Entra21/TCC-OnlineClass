@@ -14,17 +14,18 @@ public class TurmaProfessorDisciplina {
     private ProfessorDisciplina professorDisciplina;
     
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe TurmaProfessorDisciplina.
+     * @param
      */
     public TurmaProfessorDisciplina() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID TurmaProfessorDisciplina
+     * @return Int - TurmaProfessorDisciplina
      */
-    public void getIdTurmaProfessorDisciplina() {
-        // TODO implement here
+    public int getIdTurmaProfessorDisciplina() {
+        return idTurmaProfessorDisciplina;
     }
 
     /**
@@ -34,11 +35,11 @@ public class TurmaProfessorDisciplina {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da turma.
+     * @return Turma - Turma
      */
-    public void getTurma() {
-        // TODO implement here
+    public Turma getTurma() {
+        return turma;
     }
 
     /**
@@ -48,11 +49,11 @@ public class TurmaProfessorDisciplina {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do professor da disciplina.
+     * @return ProfessorDisciplina - ProfessorDisciplina
      */
-    public void getTurmaProfessorDisciplina() {
-        // TODO implement here
+    public ProfessorDisciplina getTurmaProfessorDisciplina() {
+        return professorDisciplina;
     }
 
     /**

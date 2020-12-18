@@ -3,7 +3,8 @@ package Sistema;
 import java.util.*;
 
 /**
- * 
+ * Classe com métodos e atributos para o período de avaliação.
+ * @author 
  */
 public class PeriodoAvaliacao {
     private int idPeriodoAvaliacao;
@@ -12,17 +13,18 @@ public class PeriodoAvaliacao {
     private String descricao;
     
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe PeriodoAvaliacao.
+     * @param
      */
     public PeriodoAvaliacao() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID do PeriodoAvaliacao.
+     * @return Int - ID PeriodoAvaliacao
      */
-    public void getIdPeriodoAvaliacao() {
-        // TODO implement here
+    public int getIdPeriodoAvaliacao() {
+        return idPeriodoAvaliacao;
     }
 
     /**
@@ -32,11 +34,11 @@ public class PeriodoAvaliacao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da data inicial do PeriodoAvaliacao.
+     * @return Date - Data inicial do PeriodoAvaliacao
      */
-    public void getDataInicial() {
-        // TODO implement here
+    public Date getDataInicial() {
+        return dataInicial;
     }
 
     /**
@@ -46,11 +48,11 @@ public class PeriodoAvaliacao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da data final do PeriodoAvaliacao.
+     * @return Date - Data final do PeriodoAvaliacao
      */
-    public void getDataFinal() {
-        // TODO implement here
+    public Date getDataFinal() {
+        return dataFinal;
     }
 
     /**
@@ -60,11 +62,11 @@ public class PeriodoAvaliacao {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da descrição do PeriodoAvaliacao.
+     * @return String -  Descrição PeriodoAvaliacao
      */
-    public void getDescricao() {
-        // TODO implement here
+    public String getDescricao() {
+        return descricao;
     }
 
     /**

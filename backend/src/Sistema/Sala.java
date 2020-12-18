@@ -17,17 +17,18 @@ public class Sala {
     private String link;
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Sala.
+     * @param
      */
     public Sala() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID da sala.
+     * @return Int - ID da sala
      */
-    public void getIdSala() {
-        // TODO implement here
+    public int getIdSala() {
+        return idSala;
     }
 
     /**
@@ -37,11 +38,11 @@ public class Sala {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do nome da sala.
+     * @return String - Nome da sala
      */
-    public void getNome() {
-        // TODO implement here
+    public String getNome() {
+        return nome;
     }
 
     /**
@@ -51,11 +52,11 @@ public class Sala {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da descrição da sala.
+     * @return String - Descrição da sala
      */
-    public void getDescricao() {
-        // TODO implement here
+    public String getDescricao() {
+        return descricao;
     }
 
     /**
@@ -65,11 +66,11 @@ public class Sala {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da situação de acesso.
+     * @return Boolean - Permitida a entrada? True / False
      */
-    public void getSituacaoAcesso() {
-        // TODO implement here
+    public boolean getSituacaoAcesso() {
+        return situacaoAcesso;
     }
 
     /**
@@ -79,11 +80,11 @@ public class Sala {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do tipo da sala.
+     * @return Boolean - True para sala padrão / False para sala personalizada
      */
-    public void getTipoSala() {
-        // TODO implement here
+    public boolean getTipoSala() {
+        return tipoSala;
     }
 
     /**
@@ -93,11 +94,11 @@ public class Sala {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do link da reunião.
+     * @return String - Link da reunião
      */
-    public void getLink() {
-        // TODO implement here
+    public String getLink() {
+        return link;
     }
 
     /**

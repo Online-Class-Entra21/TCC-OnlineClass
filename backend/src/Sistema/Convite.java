@@ -14,17 +14,18 @@ public class Convite {
     private int remetente;
 
     /**
-     * Default constructor
+     * Construtor usado ao instanciar a classe Convite.
+     * @param
      */
     public Convite() {
     }
 
 
-    /**
-     * 
+    /** Método para retorno do ID do destinatário.
+     * @return Int - ID do destinatário
      */
-    public void getDestinatario() {
-        // TODO implement here
+    public int getDestinatario() {
+        return destinatario;
     }
 
     /**
@@ -34,11 +35,11 @@ public class Convite {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do convite da sala.
+     * @return Int - ID do convite da sala
      */
-    public void getSalaConvite() {
-        // TODO implement here
+    public int getSalaConvite() {
+        return salaConvite;
     }
 
     /**
@@ -48,11 +49,11 @@ public class Convite {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno da situação do convite.
+     * @return Boolean - Usuário aceitou? True / False
      */
-    public void getSituacaoConvite() {
-        // TODO implement here
+    public boolean getSituacaoConvite() {
+        return situacaoConvite;
     }
 
     /**
@@ -62,11 +63,11 @@ public class Convite {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do remetente.
+     * @return Int - ID do remetente
      */
-    public void getRemetente() {
-        // TODO implement here
+    public int getRemetente() {
+        return remetente;
     }
 
     /**
@@ -76,11 +77,11 @@ public class Convite {
         // TODO implement here
     }
 
-    /**
-     * 
+    /** Método para retorno do ID do convite.
+     * @return Int - ID do convite
      */
-    public void getIdConvite() {
-        // TODO implement here
+    public int getIdConvite() {
+        return idConvite;
     }
 
     /**
