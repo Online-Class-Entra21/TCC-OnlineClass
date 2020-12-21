@@ -1,9 +1,8 @@
 package testes;
 
-public class Testes {
+public class TestesBreno {
 
 	public static void main(String[] args) {
 		
 	}
-
 }
