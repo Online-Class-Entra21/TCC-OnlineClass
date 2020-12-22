@@ -104,7 +104,7 @@ public class SalaDAO {
 	/**
 	 * Método de busca de todas as informações de uma linha
 	 * da tabela Sala do banco de dados
-	 * @param cod
+	 * @param idSalaPersonalizada
 	 * @return
 	 */
 	public Sala buscarPorId(int idSala) {

@@ -1,5 +1,7 @@
 package entidade;
 
+import java.util.Arrays;
+
 /**
  * Herda métodos e atributos da classe Sala.
  * Salas personalizadas podem ser criadas pelo Usuario.
@@ -28,19 +30,23 @@ public class SalaPersonalizada extends Sala {
 	 */
 	public SalaPersonalizada(int dono, int fk_sala) {
 		setDono(dono);
-		setFk_sala(fk_sala);
+		setFk_Sala(fk_sala);
 	}
 	
-	
+	/**
+	 * Método de exibição das inforações
+	 */
+	@Override
+	public String toString() {
+		return "SalaPersonalizada [idSalaPersonalizada=" + idSalaPersonalizada + ", dono=" + dono + ", fk_sala="
+				+ fk_sala + ", usuariosSalaPersonalizada=" + Arrays.toString(usuariosSalaPersonalizada) + "]";
+	}
+
 	/** Método para retorno do ID da sala personalizada
 	 * @return Int - ID da sala personalizada
 	 */
 	public int getIdSalaPersonalizada() {
 	    return idSalaPersonalizada;
-	}
-	
-	public void setUsuariosSalaPersonalizada(UsuarioSalaPersonalizada[] usuariosSalaPersonalizada) {
-		this.usuariosSalaPersonalizada = usuariosSalaPersonalizada;
 	}
 	
 	/**
@@ -70,7 +76,7 @@ public class SalaPersonalizada extends Sala {
 	 * Método para retorno do numero da sala
 	 * @return
 	 */
-	public int getFk_sala() {
+	public int getFk_Sala() {
 		return fk_sala;
 	}
 	
@@ -78,7 +84,7 @@ public class SalaPersonalizada extends Sala {
 	 * Método de inserção no numero da sala que faz referência na sala personalizada 
 	 * @param fk_sala
 	 */
-	public void setFk_sala(int fk_sala) {
+	public void setFk_Sala(int fk_sala) {
 		this.fk_sala = fk_sala;
 	}
 	
@@ -89,7 +95,15 @@ public class SalaPersonalizada extends Sala {
 	    return usuariosSalaPersonalizada;
 	}
 	
-	/** Método para pesquisar o usuário da sala personalizada
+	/**
+	 * Método para registro de todos os usuários da sala personalizada 
+	 * @param usuariosSalaPersonalizada
+	 */
+	public void setUsuariosSalaPersonalizada(UsuarioSalaPersonalizada[] usuariosSalaPersonalizada) {
+		this.usuariosSalaPersonalizada = usuariosSalaPersonalizada;
+	}
+	
+	/** Método para pesquisar um usuário da sala personalizada
 	 * @param -
 	 * @return UsuarioSalaPersonalizada
 	 */
