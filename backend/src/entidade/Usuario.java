@@ -419,14 +419,14 @@ public class Usuario {
     }
 
     /** Método para atualizar uma sala personalizada.
-     * @param SalaPersonalizada - Sala a ser atualizada.
+     * @param SalaPersonalizadaDAO - Sala a ser atualizada.
      */
     public void atualizarSalaPersonalizada(SalaPersonalizada salaP) {
         // TODO implement here
     }
 
     /** Método para remoção de uma sala personalizada.
-     * @param SalaPersonalizada - Sala a ser removida.
+     * @param SalaPersonalizadaDAO - Sala a ser removida.
      */
     public void removerSalaPersonalizada(SalaPersonalizada salaP) {
         // TODO implement here

@@ -13,7 +13,7 @@ public class SalaDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 
 	/**
-	 * Realiza o registro de uma sala no banco de dados
+	 * Realiza o registro de uma Sala no banco de dados
 	 * @param sala
 	 * @return
 	 */
@@ -43,7 +43,7 @@ public class SalaDAO {
 	}
 	
 	/**
-	 * Realiza atualização dos dados da sala no banco de dados
+	 * Realiza atualização dos dados da Sala no banco de dados
 	 * @param sala
 	 * @return
 	 */
@@ -75,7 +75,7 @@ public class SalaDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela sala
+	 * Realiza a exclusão dos dados de uma linha da tabela Sala
 	 * @param idSala
 	 * @return
 	 */
@@ -103,7 +103,7 @@ public class SalaDAO {
 	
 	/**
 	 * Método de busca de todas as informações de uma linha
-	 * de uma tabela do banco de dados
+	 * da tabela Sala do banco de dados
 	 * @param cod
 	 * @return
 	 */
@@ -138,7 +138,7 @@ public class SalaDAO {
 	}
 	
 	/**
-	 * Retorna todos os dados listados da tabela sala do banco de dados 
+	 * Retorna todos os dados listados da tabela Sala do banco de dados 
 	 * @return
 	 */
 	public List<Sala> buscarTodos() {
