@@ -118,7 +118,7 @@ public class ProfessorDisciplina {
 
 
     /** Método para a remoção de uma atividade da turma.
-     * @param TurmaAtividade - A ser removida
+     * @param TurmaAtividadeDAO - A ser removida
      */
     public void removerTurmaAtividade(TurmaAtividade turmaAtiv) {
         // TODO implement here

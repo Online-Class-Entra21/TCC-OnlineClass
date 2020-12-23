@@ -1,7 +1,5 @@
 package entidade;
 
-import java.util.*;
-
 /**
  * Classe contendo métodos e atributos para o administrador.
  * Herda métodos e atributos da classe Usuario.
@@ -15,15 +13,14 @@ public class Administrador extends Usuario {
      * @param
      */
     public Administrador() {
-    	
     }
 
     /** Método para retorno da escola.
-     * @return String - Nome do usuário
+     * @return escola
      */
-    public String getEscola() {
+    public Escola getEscola() {
     	Escola escola = new Escola();
-        return escola.getNome();
+        return escola;
     }
 
     /** Método para adicionar uma escola ao sistema.

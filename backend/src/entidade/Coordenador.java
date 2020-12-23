@@ -178,7 +178,7 @@ public class Coordenador extends Usuario {
     }
 
     /** Método para remover a ligação entre a turma, professor e disciplina.
-     * @param TurmaProfessorDisciplina
+     * @param TurmaProfessorDisciplinaDAO
      */
     public void removerTurmaProfessorDisciplina(TurmaProfessorDisciplina turmaPD) {
         // TODO implement here

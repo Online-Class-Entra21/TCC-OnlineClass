@@ -16,7 +16,7 @@ public class SalaPersonalizadaDAO {
 
 	/**
 	 * Realiza o registro de uma Sala Personalizada no banco de dados
-	 * @param sala
+	 * @param salaPersonalizada
 	 * @return
 	 */
 	public boolean insert(SalaPersonalizada salaPersonalizada) {
@@ -43,7 +43,7 @@ public class SalaPersonalizadaDAO {
 	
 	/**
 	 * Realiza atualização dos dados da Sala personalizada no banco de dados
-	 * @param sala
+	 * @param salaPersonalizada
 	 * @return
 	 */
 	public boolean update(SalaPersonalizada salaPersonalizada) {
@@ -71,7 +71,7 @@ public class SalaPersonalizadaDAO {
 	
 	/**
 	 * Realiza a exclusão dos dados de uma linha da tabela Sala Personalizada
-	 * @param idSala
+	 * @param idSalaPersonalizada
 	 * @return
 	 */
 	public boolean delete(int idSalaPersonalizada) {
