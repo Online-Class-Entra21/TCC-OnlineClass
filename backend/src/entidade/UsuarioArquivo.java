@@ -32,6 +32,15 @@ public class UsuarioArquivo {
 		setArquivo(arquivo);
 		setUsuario(usuario);
 	}
+    
+    /**
+     * Método de exibição de todos os atributos da classe
+     */
+	@Override
+	public String toString() {
+		return "UsuarioArquivo [idUsuarioArquivo=" + idUsuarioArquivo + ", tipoEnvio=" + tipoEnvio + ", arquivo="
+				+ arquivo + ", usuario=" + usuario + "]";
+	}
 
 	/** Método para retorno do ID do UsuarioArquivo.
      * @return Int - ID UsuarioArquivo
