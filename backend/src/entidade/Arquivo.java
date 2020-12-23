@@ -29,13 +29,14 @@ public class Arquivo {
     }
 
     /**
-     * 
+     * Método de inserção de id do arquivo
+     * @param idArquivo
      */
-    public void setIdArquivo() {
-        // TODO implement here
-    }
+    public void setIdArquivo(int idArquivo) {
+		this.idArquivo = idArquivo;
+	}
 
-    /** Método para retorno da extensão.
+	/** Método para retorno da extensão.
      * @return String - Extensão do arquivo
      */
     public String getExtensao() {
