@@ -37,8 +37,7 @@ public class Turma {
      * @param alunos
      * @param salaPadrao
      */
-    public Turma(int idTurma, String ano, int qtdAluno, Time horarioInicioAula, Time horarioFinalAula, 
-    			 Aluno[] alunos, SalaPadrao salaPadrao) {
+    public Turma(int idTurma, String ano, int qtdAluno, Time horarioInicioAula, Time horarioFinalAula, SalaPadrao salaPadrao) {
 		setIdTurma(idTurma);
 		setAno(ano);
 		setQtdAluno(qtdAluno);
@@ -47,7 +46,15 @@ public class Turma {
 		setSalaPadrao(salaPadrao);
 	}
 
-
+    /**
+     * Método de exibição dos atributos da classe
+     */
+	@Override
+	public String toString() {
+		return "Turma [idTurma=" + idTurma + ", ano=" + ano + ", qtdAluno=" + qtdAluno + ", horarioInicioAula="
+				+ horarioInicioAula + ", horarioFinalAula=" + horarioFinalAula + ", alunos=" + Arrays.toString(alunos)
+				+ ", salaPadrao=" + salaPadrao + "]";
+	}
 
 	/** Método para retorno do ID da turma.
      * @return Int - ID da turma

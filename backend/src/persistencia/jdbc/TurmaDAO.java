@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class TurmaDAO {
 	 */
 	public boolean insert(Turma turma) {
 		
-		String sql = "insert into turma (ano, qtdAluno, horaInicioAula, horaFinalAula) values (?,?,?,?)"; 
+		String sql = "insert into turma (ano, qtdAluno, horaInicioAula, horaFinalAula, fk_sala) values (?,?,?,?,?)"; 
 		
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
@@ -30,6 +31,7 @@ public class TurmaDAO {
 			comandoSql.setInt(2, turma.getQtdAluno());
 			comandoSql.setTime(3, turma.getHorarioInicioAula());
 			comandoSql.setTime(4, turma.getHorarioFinalAula());
+			comandoSql.setInt(5, turma.getSalaPadrao().getIdSala());
 			
 			comandoSql.execute(); 
 			
@@ -50,8 +52,8 @@ public class TurmaDAO {
 	 */
 	public boolean update(Turma turma) {
 		
-		String sql = "Update turma set ano = ?, qtdAluno = ?,"
-				+ "horarioInicioAula = ?, horarioFinalAula = ? where idTurma = ?"; 
+		String sql = "Update turma set ano = ?, qtdAluno = ?, horaInicioAula = ?, "
+				   + "horaFinalAula = ?, fk_sala = ? where idTurma = ?"; 
 		
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
@@ -60,7 +62,8 @@ public class TurmaDAO {
 			comandoSql.setInt(2, turma.getQtdAluno());
 			comandoSql.setTime(3, turma.getHorarioInicioAula());
 			comandoSql.setTime(4, turma.getHorarioFinalAula());
-			comandoSql.setInt(5, turma.getIdTurma());
+			comandoSql.setInt(5, turma.getSalaPadrao().getIdSala());
+			comandoSql.setInt(6, turma.getIdTurma());
 
 			comandoSql.execute(); 
 			

@@ -16,5 +16,4 @@ public class SalaPadrao extends Sala {
     public SalaPadrao() {
     	// TODO Auto-generated 
     }
-
 }

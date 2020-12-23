@@ -8,8 +8,8 @@ package entidade;
  */
 public class TurmaAtividade {
     private int idTurmaAtividade;
-    private int idTurma;
-    private int idAtividade;
+    private Turma turma;
+    private Atividade atividade;
     
     /**
      * Construtor usado ao instanciar a classe TurmaAtividade.
@@ -24,10 +24,10 @@ public class TurmaAtividade {
      * @param idTurma
      * @param idAtividade
      */
-    public TurmaAtividade(int idTurmaAtividade, int idTurma, int idAtividade) {
+    public TurmaAtividade(int idTurmaAtividade, Turma turma, Atividade atividade) {
 		setIdTurmaAtividade(idTurmaAtividade);
-		setFk_Turma(idTurma);
-		setFk_Atividade(idAtividade);
+		setTurma(turma);
+		setAtividade(atividade);
 	}
 
 	/** Método para retorno do ID da TurmaAtividade.
@@ -48,31 +48,31 @@ public class TurmaAtividade {
     /** Método para retorno do ID da turma.
      * @return Int - ID da turma
      */
-    public int getFk_Turma() {
-        return idTurma;
+    public Turma getTurma() {
+        return turma;
     }
     
     /**
      * Método de inserção do idTurma
      * @param idTurma
      */
-	public void setFk_Turma(int idTurma) {
-		this.idTurma = idTurma;
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
     /** Método para retorno da atividade.
      * @return int - idAtividade
      */
-    public int getFk_Atividade() {
-        return idAtividade;
+    public Atividade getAtividade() {
+        return atividade;
     }
 
     /**
      * Método de iserção da atividade 
      * @param idAtividade
      */
-	public void setFk_Atividade(int idAtividade) {
-		this.idAtividade = idAtividade;
+	public void setAtividade(Atividade atividade) {
+		this.atividade = atividade;
 	}
 
 }

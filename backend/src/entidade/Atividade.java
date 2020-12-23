@@ -30,14 +30,13 @@ public class Atividade {
         return idAtividade;
     }
 
-    /**
-     * 
-     */
-    public void setIdAtividade() {
-        // TODO implement here
-    }
+    
+    public void setIdAtividade(int idAtividade) {
+		this.idAtividade = idAtividade;
+	}
 
-    /** Método para retorno da descrição da atividade.
+
+	/** Método para retorno da descrição da atividade.
      * @return String - Descrição da atividade
      */
     public String getDescricao() {

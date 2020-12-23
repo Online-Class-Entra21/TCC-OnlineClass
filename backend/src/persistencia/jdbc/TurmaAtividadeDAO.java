@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Sala;
+import entidade.Turma;
 import entidade.TurmaAtividade;
 
 public class TurmaAtividadeDAO {
@@ -21,14 +22,14 @@ public class TurmaAtividadeDAO {
 	 */
 	public boolean insert(TurmaAtividade turmaAtividade) {
 		
-		String sql = "insert into turmaAtividade (id_Turma_Atividade, fk_Turma, fk_Atividade) values (?,?,?)"; 
+		String sql = "insert into turma_Atividade (id_Turma_Atividade, fk_Turma, fk_Atividade) values (?,?,?)"; 
 		
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		     
 			comandoSql.setInt(1, turmaAtividade.getIdTurmaAtividade());
-			comandoSql.setInt(2, turmaAtividade.getFk_Turma());
-			comandoSql.setInt(3, turmaAtividade.getFk_Atividade());
+			comandoSql.setInt(2, turmaAtividade.getTurma().getIdTurma());
+			comandoSql.setInt(3, turmaAtividade.getAtividade().getIdAtividade());
 			
 			comandoSql.execute(); 
 			
@@ -49,14 +50,14 @@ public class TurmaAtividadeDAO {
 	 */
 	public boolean update(TurmaAtividade turmaAtividade) {
 		
-		String sql = "Update turmaAtividade set fk_Turma = ?,"
-				+ "fk_Atividade = ? where idTurmaAtividade = ?"; 
+		String sql = "Update turma_Atividade set fk_Turma = ?,"
+				+ "fk_Atividade = ? where id_Turma_Atividade = ?"; 
 		
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		    
-			comandoSql.setInt(1, turmaAtividade.getFk_Turma());
-			comandoSql.setInt(2, turmaAtividade.getFk_Atividade());
+			comandoSql.setInt(1, turmaAtividade.getTurma().getIdTurma());
+			comandoSql.setInt(2, turmaAtividade.getAtividade().getIdAtividade());
 			comandoSql.setInt(3, turmaAtividade.getIdTurmaAtividade());
 			
 			comandoSql.execute(); 
@@ -78,7 +79,7 @@ public class TurmaAtividadeDAO {
 	 */
 	public boolean delete(int idTurmaAtividade) {
 		
-		String sql = "delete from turmaAtividade where idSala = ?"; 
+		String sql = "delete from turma_Atividade where id_Turma_Atividade = ?"; 
 		
 		try {
 			
@@ -107,7 +108,7 @@ public class TurmaAtividadeDAO {
 	public TurmaAtividade buscarPorId(int idTurmaAtividade) {
 		TurmaAtividade turmaAtividade = new TurmaAtividade(); 
 		
-		String sql = "select * from turmaAtividade where idTurmaAtividade = ?"; 
+		String sql = "select * from turma_Atividade where id_Turma_Atividade = ?"; 
 		
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
@@ -118,8 +119,23 @@ public class TurmaAtividadeDAO {
 			
 			if (resultSet.next()) {
 				turmaAtividade.setIdTurmaAtividade(resultSet.getInt(1));
-				turmaAtividade.setFk_Turma(resultSet.getInt(2));
-				turmaAtividade.setFk_Atividade(resultSet.getInt(3));
+				
+				/**
+				 * Realiza a consulta por id para criar o objeto turma
+				 * apartir do fk da turma
+				 */
+//				TurmaDAO turmaDao = new TurmaDAO();
+//				Turma turma = turmaDao.buscarPorId((resultSet.getInt(2)));
+//				turmaAtividade.setTurma(turma);
+				
+				/**
+				 * Realiza a consulta por id para criar o objeto atividade
+				 * apartir do fk da atividade
+				 */
+//				AtividadeDAO atividade = new AtividadeDAO();
+//				Atividade atividade = atividadeDao.buscarPoId((resultSet.getInt(3)));
+//				turmaAtividade.setAtividade(atividade);
+				
 				comandoSql.close(); 
 				return turmaAtividade;
 			}
@@ -139,7 +155,7 @@ public class TurmaAtividadeDAO {
 		
 		List<TurmaAtividade> lista = new ArrayList<TurmaAtividade>(); 
 		
-		String sql = "select * from turmaAtividade"; 
+		String sql = "select * from turma_Atividade"; 
 		
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
@@ -150,9 +166,24 @@ public class TurmaAtividadeDAO {
 			while (resultSet.next()) {
 				TurmaAtividade turmaAtividade = new TurmaAtividade(); 
 				turmaAtividade.setIdTurmaAtividade(resultSet.getInt(1));
-				turmaAtividade.setFk_Turma(resultSet.getInt(2));
-				turmaAtividade.setFk_Atividade(resultSet.getInt(3));
-				lista.add(turmaAtividade); 
+				
+				/**
+				 * Realiza a consulta por id para criar o objeto turma
+				 * apartir do fk da turma
+				 */
+//				TurmaDAO turmaDao = new TurmaDAO();
+//				Turma turma = turmaDao.buscarPorId((resultSet.getInt(2)));
+//				turmaAtividade.setTurma(turma);
+				
+				/**
+				 * Realiza a consulta por id para criar o objeto atividade
+				 * apartir do fk da atividade
+				 */
+//				AtividadeDAO atividade = new AtividadeDAO();
+//				Atividade atividade = atividadeDao.buscarPoId((resultSet.getInt(3)));
+//				turmaAtividade.setAtividade(atividade);
+				
+ 				lista.add(turmaAtividade); 
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
