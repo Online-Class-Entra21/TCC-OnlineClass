@@ -1,13 +1,12 @@
 package entidade;
 
-import java.util.*;
-
 /**
  * Classe contendo métodos e atributos para o endereço dos usuários cadastrados no sistema.
  * @see Usuario
  * @author 
  */
 public class Endereco {
+	private int idEndereco;
     private String estado;
     private String cidade;
     private String bairro;
@@ -22,8 +21,23 @@ public class Endereco {
     public Endereco() {
     }
 
-    
-    /** Método para retorno do estado.
+    /**
+     * Método de retorno do id endereço
+     * @return
+     */
+    public int getIdEndereco() {
+		return idEndereco;
+	}
+
+    /**
+     * Método de inserção do id endereço
+     * @param idEndereco
+     */
+	public void setIdEndereco(int idEndereco) {
+		this.idEndereco = idEndereco;
+	}
+
+	/** Método para retorno do estado.
      * @return String - Estado
      */
     public String getEstado() {

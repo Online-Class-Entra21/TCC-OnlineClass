@@ -14,19 +14,21 @@ import java.util.*;
  * @author 
  */
 public class Usuario {
+	
     private int idUsuario;
     private String nome;
     private String sobrenome;
     private String cpf;
     private String telefone;
     private String celular;
-    private byte tipoUsuario;
+    private int tipoUsuario;
     private String email;
     private String senha;
     private Time horarioInicioExpediente;
     private Time horarioFinalExpediente;
-    private byte fotoUsuario[];
+    private String fotoUsuario;
     private Endereco endereco;
+    private Escola escola;
     
     /**
      * Construtor usado ao instanciar a classe Usuario.
@@ -35,8 +37,43 @@ public class Usuario {
     public Usuario() {
     }
 
+    /**
+     * Método construtor que preenche todos os atributos da classe 
+     * @param idUsuario
+     * @param nome
+     * @param sobrenome
+     * @param cpf
+     * @param telefone
+     * @param celular
+     * @param tipoUsuario
+     * @param email
+     * @param senha
+     * @param horarioInicioExpediente
+     * @param horarioFinalExpediente
+     * @param fotoUsuario
+     * @param endereco
+     * @param escola
+     */
+    public Usuario(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
+				   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+				   String fotoUsuario, Endereco endereco, Escola escola) {
+    	setIdUsuario(idUsuario);
+		setNome(nome);
+		setSobrenome(sobrenome);
+		setCpf(cpf);
+		setTelefone(telefone);
+		setCelular(celular);
+		setTipoUsuario(tipoUsuario);
+		setEmail(email);
+		setSenha(senha);
+		setHorarioInicioExpediente(horarioInicioExpediente);
+		setHorarioFinalExpediente(horarioFinalExpediente);
+		setFotoUsuario(fotoUsuario);
+		setEndereco(endereco);
+		setEscola(escola);
+	}
 
-    /** Método para retorno do ID do usuário.
+	/** Método para retorno do ID do usuário.
      * @return Int - ID do usuário
      */
     public int getIdUsuario() {
@@ -44,26 +81,45 @@ public class Usuario {
     }
 
     /**
-     * 
+     * Método de inserção do id usuario 
+     * @param idUsuario
      */
-    public void setIdUsuario() {
-        // TODO implement here
-    }
+    public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
-    /** Método para retorno do nome do usuário.
+	/** Método para retorno do nome do usuário.
      * @return String - Nome do usuário
      */
     public String getNome() {
         return nome;
     }
+    
+    /**
+     * Método de inserção do nome
+     * @param nome
+     */
+    public void setNome(String nome) {
+		this.nome = nome;
+	}
 
     /**
-     * 
+     * Método para pegar o caminho da foto do usuario
+     * @return
      */
-    public void setNome() {
-        // TODO implement here
-    }
+    public String getFotoUsuario() {
+		return fotoUsuario;
+	}
 
+    /**
+     * Método de inserção do caminho da foto do usuario
+     * @param fotoUsuario
+     */
+	public void setFotoUsuario(String fotoUsuario) {
+		this.fotoUsuario = fotoUsuario;
+	}
+
+	
     /** Método para retorno do sobrenome do usuário.
      * @return String - Sobrenome do usuário
      */
@@ -72,11 +128,12 @@ public class Usuario {
     }
 
     /**
-     * 
+     * Método de inserção do sobrenome do usuario
+     * @param sobrenome
      */
-    public void setSobrenome() {
-        // TODO implement here
-    }
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
 
     /** Método para retorno do CPF do usuário.
      * @return String - CPF do usuário
@@ -86,12 +143,13 @@ public class Usuario {
     }
 
     /**
-     * 
+     * Método de inserção do cpf do usuario 
+     * @param cpf
      */
-    public void setCpf() {
-        // TODO implement here
-    }
-
+    public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+    
     /** Método para retorno do telefone do usuário.
      * @return String - Telefone do usuário
      */
@@ -100,11 +158,12 @@ public class Usuario {
     }
 
     /**
-     * 
+     * Método para inserção do telefone do usuario 
+     * @param telefone
      */
-    public void setTelefone() {
-        // TODO implement here
-    }
+    public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
 
     /** Método para retorno do número de celular do usuário.
      * @return String - Número de celular do usuário
@@ -114,11 +173,12 @@ public class Usuario {
     }
 
     /**
-     * 
+     * Método para inserção do celular do usuario 
+     * @param celular
      */
-    public void setCelular() {
-        // TODO implement here
-    }
+    public void setCelular(String celular) {
+		this.celular = celular;
+	}
 
     /** Método para retorno do tipo de conta do usuário.
      * @return Byte - Tipo de conta do usuário.
@@ -128,16 +188,16 @@ public class Usuario {
 	 * 							3 - Diretor,
 	 * 							4 - Administrador
      */
-    public Byte getTipoUsuario() {
+    public int getTipoUsuario() {
         return tipoUsuario;
     }
 
-    /**
-     * 
+    /** Método para inserção do tipo do usuario
+     * @param tipoUsuario
      */
-    public void setTipoUsuario() {
-        // TODO implement here
-    }
+    public void setTipoUsuario(int tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 
     /** Método para retorno do email do usuário.
      * @return String - Email do usuário
@@ -147,27 +207,30 @@ public class Usuario {
     }
 
     /**
-     * 
+     * Método de inserção do email do usuario
+     * @param email
      */
-    public void setEmail() {
-        // TODO implement here
-    }
-
-    /** Método para retorno da senha do usuário.
-     * @return String - Senha do usuário
-     */
-    private String getSenha() {
-        return senha;
-    }
+    public void setEmail(String email) {
+		this.email = email;
+	}
 
     /**
-     * 
+     * Método de inserção de senha 
+     * @param senha
      */
-    public void setSenha() {
-        // TODO implement here
-    }
+    public void setSenha(String senha) {
+		this.senha = senha;
+	}
+    
+    /**
+     * Método de retorno da senha do usuario
+     * @return
+     */
+	public String getSenha() {
+		return senha;
+	}
 
-    /** Método para retorno do horário inicial do expediente do usuário.
+	/** Método para retorno do horário inicial do expediente do usuário.
      * @return Time - Horário inicial do expediente do usuário
      */
     public Time getHorarioInicioExpediente() {
@@ -175,11 +238,12 @@ public class Usuario {
     }
 
     /**
-     * 
+     * Método para inserção do horarioInicioExpediente do usuario
+     * @param horarioInicioExpediente
      */
-    public void setHorarioInicioExpediente() {
-        // TODO implement here
-    }
+    public void setHorarioInicioExpediente(Time horarioInicioExpediente) {
+		this.horarioInicioExpediente = horarioInicioExpediente;
+	}
 
     /** Método para retorno do horário final do expediente do usuário.
      * @return Time - Horário final do expediente do usuário
@@ -189,25 +253,12 @@ public class Usuario {
     }
 
     /**
-     * 
+     * Método para inserção do horarioFinalExpediente do usuario 
+     * @param horarioFinalExpediente
      */
-    public void setHorarioFinalExpediente() {
-        // TODO implement here
-    }
-
-    /** Método para retorno da foto do usuário.
-     * @return Byte - Array de fotos dos usuários
-     */
-    public byte[] getFoto() {
-        return fotoUsuario;
-    }
-
-    /**
-     * 
-     */
-    public void setFoto() {
-        // TODO implement here
-    }
+    public void setHorarioFinalExpediente(Time horarioFinalExpediente) {
+		this.horarioFinalExpediente = horarioFinalExpediente;
+	}
 
     /** Método para retorno do endereço do usuário.
      * @return Endereco - Endereço do usuário
@@ -215,15 +266,33 @@ public class Usuario {
     public Endereco getEndereco() {
         return endereco;
     }
+    
+    /**
+     * Método para inserção do endereco do usuario
+     * @param endereco
+     */
+    public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 
     /**
-     * 
+     * Método de retorno da escola 
+     * @return
      */
-    public void setEndereco() {
-        // TODO implement here
-    }
+    public Escola getEscola() {
+		return escola;
+	}
 
-    /** Método para a verificação de cpf.
+    /**
+     * Método de inserção da escola 
+     * @param escola
+     */
+	public void setEscola(Escola escola) {
+		this.escola = escola;
+	}
+
+
+	/** Método para a verificação de cpf.
      * Recebe uma String e converte para inteiro, realizando o cálculo para a verificação do dígito veríficador.
      * @param String - CPF a ser verificado. 
      * @return Boolean - True para CPF válido / False para inválido.

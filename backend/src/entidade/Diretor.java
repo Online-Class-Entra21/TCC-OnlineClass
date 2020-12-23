@@ -21,9 +21,9 @@ public class Diretor extends Usuario {
     /** Método para retorno do ID da escola.
      * @return Int - ID da escola
      */
-    public int getEscola() {
+    public Escola getEscola() {
         Escola escola = new Escola();
-        return escola.getIdEscola();
+        return escola;
     }
 
     /**
