@@ -29,6 +29,15 @@ public class TurmaAtividade {
 		setTurma(turma);
 		setAtividade(atividade);
 	}
+    
+    /**
+     * Método de exibição dos atributos da classe 
+     */
+	@Override
+	public String toString() {
+		return "TurmaAtividade [idTurmaAtividade=" + idTurmaAtividade + ", turma=" + turma + ", atividade=" + atividade
+				+ "]";
+	}
 
 	/** Método para retorno do ID da TurmaAtividade.
      * @return Int - ID TurmaAtividade

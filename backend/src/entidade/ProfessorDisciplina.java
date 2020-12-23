@@ -10,7 +10,7 @@ import java.util.*;
  * @author
  */
 public class ProfessorDisciplina {
-	public int idProfessorDisciplina;
+	private int idProfessorDisciplina;
     private Professor professor;
     private Disciplina disciplina;
     private Atividade atividades[];
@@ -31,13 +31,14 @@ public class ProfessorDisciplina {
     }
 
     /**
-     * 
+     * Método de inserção do id do ProfessorDiciplina
+     * @param idProfessorDisciplina
      */
-    public void setIdProfessorDisciplina() {
-        // TODO implement here
-    }
+    public void setIdProfessorDisciplina(int idProfessorDisciplina) {
+		this.idProfessorDisciplina = idProfessorDisciplina;
+	}
 
-    /** Método para retorno do professor.
+	/** Método para retorno do professor.
      * @return Professor - Professor
      */
     public Professor getProfessor() {

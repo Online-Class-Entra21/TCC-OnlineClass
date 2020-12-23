@@ -27,7 +27,7 @@ public class SalaPersonalizadaDAO {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		     
 			comandoSql.setInt(1, salaPersonalizada.getDono());
-			comandoSql.setInt(2, salaPersonalizada.getFk_Sala());
+			comandoSql.setInt(2, salaPersonalizada.getSala().getIdSala());
 			
 			comandoSql.execute(); 
 			
@@ -54,7 +54,7 @@ public class SalaPersonalizadaDAO {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		    
 			comandoSql.setInt(1, salaPersonalizada.getDono());
-			comandoSql.setInt(2, salaPersonalizada.getFk_Sala());
+			comandoSql.setInt(2, salaPersonalizada.getSala().getIdSala());
 			comandoSql.setInt(3, salaPersonalizada.getIdSalaPersonalizada());
 			
 			comandoSql.execute(); 
@@ -117,7 +117,15 @@ public class SalaPersonalizadaDAO {
 			if (resultSet.next()) {
 				salaPersonalizada.setIdSalaPersonalizada(resultSet.getInt(1));
 				salaPersonalizada.setDono(resultSet.getInt(2));
-				salaPersonalizada.setFk_Sala(resultSet.getInt(3));
+				
+				/**
+				 * Realiza a consulta por id para criar o objeto sala
+				 * apartir do fk da sala
+				 */
+				SalaDAO salaDao = new SalaDAO();
+				Sala sala = salaDao.buscarPorId((resultSet.getInt(3)));
+				salaPersonalizada.setSala(sala);
+
 				comandoSql.close(); 
 				return salaPersonalizada;
 			}
@@ -149,7 +157,15 @@ public class SalaPersonalizadaDAO {
 				SalaPersonalizada salaPersonalizada = new SalaPersonalizada(); 
 				salaPersonalizada.setIdSalaPersonalizada(resultSet.getInt(1));
 				salaPersonalizada.setDono(resultSet.getInt(2));
-				salaPersonalizada.setFk_Sala(resultSet.getInt(3));
+				
+				/**
+				 * Realiza a consulta por id para criar o objeto sala
+				 * apartir do fk da sala
+				 */
+				SalaDAO salaDao = new SalaDAO();
+				Sala sala = salaDao.buscarPorId((resultSet.getInt(3)));
+				salaPersonalizada.setSala(sala);
+				
 				lista.add(salaPersonalizada); 
 			}
 		} catch (SQLException e) {

@@ -13,7 +13,7 @@ public class SalaPersonalizada extends Sala {
 	
 	private int idSalaPersonalizada;
 	private int dono;
-	private int fk_sala;
+	private Sala sala;
 	private UsuarioSalaPersonalizada usuariosSalaPersonalizada[];
 
 	/**
@@ -28,9 +28,9 @@ public class SalaPersonalizada extends Sala {
 	 * Construtor que preenche o dono da sala personalizada
 	 * @param dono
 	 */
-	public SalaPersonalizada(int dono, int fk_sala) {
+	public SalaPersonalizada(int dono, Sala sala) {
 		setDono(dono);
-		setFk_Sala(fk_sala);
+		setSala(sala);
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public class SalaPersonalizada extends Sala {
 	@Override
 	public String toString() {
 		return "SalaPersonalizada [idSalaPersonalizada=" + idSalaPersonalizada + ", dono=" + dono + ", fk_sala="
-				+ fk_sala + ", usuariosSalaPersonalizada=" + Arrays.toString(usuariosSalaPersonalizada) + "]";
+				+ sala + ", usuariosSalaPersonalizada=" + Arrays.toString(usuariosSalaPersonalizada) + "]";
 	}
 
 	/** Método para retorno do ID da sala personalizada
@@ -76,16 +76,16 @@ public class SalaPersonalizada extends Sala {
 	 * Método para retorno do numero da sala
 	 * @return
 	 */
-	public int getFk_Sala() {
-		return fk_sala;
+	public Sala getSala() {
+		return sala;
 	}
 	
 	/**
 	 * Método de inserção no numero da sala que faz referência na sala personalizada 
 	 * @param fk_sala
 	 */
-	public void setFk_Sala(int fk_sala) {
-		this.fk_sala = fk_sala;
+	public void setSala(Sala sala) {
+		this.sala = sala;
 	}
 	
 	/** Método para retorno do UsuarioSalaPersonalizada

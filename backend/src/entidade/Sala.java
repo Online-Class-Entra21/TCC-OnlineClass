@@ -52,6 +52,14 @@ public class Sala {
     public int getIdSala() {
         return idSala;
     }
+    
+    /**
+     * Método de inserção do id da sala
+     * @param idSala
+     */
+    public void setIdSala(int idSala) {
+		this.idSala = idSala;
+	}
 
     /** Método para retorno do nome da sala.
      * @return String - Nome da sala
@@ -60,12 +68,28 @@ public class Sala {
         return nome;
     }
 
+    /**
+     * Método de inserção do nome da sala
+     * @param nome
+     */
+    public void setNome(String nome) {
+		this.nome = nome;
+	}
+    
     /** Método para retorno da descrição da sala.
      * @return String - Descrição da sala
      */
     public String getDescricao() {
         return descricao;
     }
+    
+    /**
+     * Método de inserção da descrição da sala
+     * @param descricao
+     */
+    public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
     /** Método para retorno da situação de acesso.
      * @return Boolean - Permitida a entrada? True / False
@@ -73,6 +97,14 @@ public class Sala {
     public boolean getSituacaoAcesso() {
         return situacaoAcesso;
     }
+    
+    /**
+     * Método de inserção da situação de acesso da sala 
+     * @param situacaoAcesso
+     */
+    public void setSituacaoAcesso(boolean situacaoAcesso) {
+		this.situacaoAcesso = situacaoAcesso;
+	}
 
     /** Método para retorno do tipo da sala.
      * @return Boolean - True para sala padrão / False para sala personalizada
@@ -80,6 +112,14 @@ public class Sala {
     public boolean getTipoSala() {
         return tipoSala;
     }
+    
+    /**
+     * Método de inserção do tipo da sala 
+     * @param tipoSala
+     */
+    public void setTipoSala(boolean tipoSala) {
+		this.tipoSala = tipoSala;
+	}
 
     /** Método para retorno do link da reunião.
      * @return String - Link da reunião
@@ -88,27 +128,11 @@ public class Sala {
         return link;
     }
 
-	public void setIdSala(int idSala) {
-		this.idSala = idSala;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
-	public void setSituacaoAcesso(boolean situacaoAcesso) {
-		this.situacaoAcesso = situacaoAcesso;
-	}
-
-	public void setTipoSala(boolean tipoSala) {
-		this.tipoSala = tipoSala;
-	}
-
-	public void setLink(String link) {
+    /**
+     * Método de inserção do link da reunião da sala 
+     * @param link
+     */
+    public void setLink(String link) {
 		this.link = link;
 	}
 }

@@ -44,35 +44,6 @@ public class TurmaAtividadeDAO {
 	}
 	
 	/**
-	 * Realiza atualização dos dados da TurmaAtividade no banco de dados
-	 * @param turmaAtividade
-	 * @return
-	 */
-	public boolean update(TurmaAtividade turmaAtividade) {
-		
-		String sql = "Update turma_Atividade set fk_Turma = ?,"
-				+ "fk_Atividade = ? where id_Turma_Atividade = ?"; 
-		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-		    
-			comandoSql.setInt(1, turmaAtividade.getTurma().getIdTurma());
-			comandoSql.setInt(2, turmaAtividade.getAtividade().getIdAtividade());
-			comandoSql.setInt(3, turmaAtividade.getIdTurmaAtividade());
-			
-			comandoSql.execute(); 
-			
-			comandoSql.close(); 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false; 
-		}
-		return true; 
-	}
-	
-	/**
 	 * Realiza a exclusão dos dados de uma linha da tabela TurmaAtividade
 	 * @param idTurmaAtividade
 	 * @return

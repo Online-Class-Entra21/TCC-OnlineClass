@@ -1,7 +1,5 @@
 package entidade;
 
-import java.util.*;
-
 /**
  * Classe conténdo métodos e atributos para a ligação do Professor e sua Disciplina à Turma.
  * @see ProfessorDisciplina
@@ -9,6 +7,7 @@ import java.util.*;
  * @author
  */
 public class TurmaProfessorDisciplina {
+	
     private int idTurmaProfessorDisciplina;
     private Turma turma;
     private ProfessorDisciplina professorDisciplina;
@@ -19,9 +18,19 @@ public class TurmaProfessorDisciplina {
      */
     public TurmaProfessorDisciplina() {
     }
-
-
-    /** Método para retorno do ID TurmaProfessorDisciplina
+    
+    /**
+     * Método construtor que preenche todos os atributos da classe 
+     * @param idTurmaProfessorDisciplina
+     * @param turma
+     * @param professorDisciplina
+     */
+    public TurmaProfessorDisciplina(ProfessorDisciplina professorDisciplina, Turma turma) {
+		setProfessorDisciplina(professorDisciplina);
+		setTurma(turma);
+	}
+    
+	/** Método para retorno do ID TurmaProfessorDisciplina
      * @return Int - TurmaProfessorDisciplina
      */
     public int getIdTurmaProfessorDisciplina() {
@@ -29,11 +38,12 @@ public class TurmaProfessorDisciplina {
     }
 
     /**
-     * 
+     * Método de inserção do id da turmaProfessorDisciplina
+     * @param idTurmaProfessorDisciplina
      */
-    public void setIdTurmaProfessorDisciplina() {
-        // TODO implement here
-    }
+    public void setIdTurmaProfessorDisciplina(int idTurmaProfessorDisciplina) {
+		this.idTurmaProfessorDisciplina = idTurmaProfessorDisciplina;
+	}
 
     /** Método para retorno da turma.
      * @return Turma - Turma
@@ -43,24 +53,25 @@ public class TurmaProfessorDisciplina {
     }
 
     /**
-     * 
+     * Método de inserção da turma 
+     * @param turma
      */
-    public void setTurma() {
-        // TODO implement here
-    }
+    public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
 
     /** Método para retorno do professor da disciplina.
      * @return ProfessorDisciplina - ProfessorDisciplina
      */
-    public ProfessorDisciplina getTurmaProfessorDisciplina() {
+    public ProfessorDisciplina getProfessorDisciplina() {
         return professorDisciplina;
     }
 
     /**
-     * 
+     * Método de inserção do PorfessorDisciplina
+     * @param professorDisciplina
      */
-    public void setTurmaProfessorDisciplina() {
-        // TODO implement here
-    }
-
+    public void setProfessorDisciplina(ProfessorDisciplina professorDisciplina) {
+		this.professorDisciplina = professorDisciplina;
+	}
 }
