@@ -62,14 +62,14 @@ public class Coordenador extends Usuario {
     }
 
     /** Método para atualizar uma disciplina.
-     * @param Disciplina - Disciplina a ser atualizada.
+     * @param DisciplinaDAO - Disciplina a ser atualizada.
      */
     public void atualizarDisciplina(Disciplina disciplina) {
         // TODO implement here
     }
 
     /** Método para a remoção de uma disciplina.
-     * @param Disciplina - Disciplina a ser removida.
+     * @param DisciplinaDAO - Disciplina a ser removida.
      */
     public void removerDisciplina(Disciplina disciplina) {
         // TODO implement here
