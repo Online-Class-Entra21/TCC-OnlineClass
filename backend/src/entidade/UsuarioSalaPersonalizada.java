@@ -1,7 +1,5 @@
 package entidade;
 
-import java.util.*;
-
 /**
  * Classe contendo métodos e atributos para a ligação do Usuario à Sala Personalizada.
  * @see Usuario
@@ -9,8 +7,9 @@ import java.util.*;
  * @author
  */
 public class UsuarioSalaPersonalizada {
+	
     private int idUsuarioSalaPersonalizada;
-    private int codSalaPersonalizada;
+    private SalaPersonalizada salaPersonalizada;
     private Usuario usuario;
     
     /**
@@ -18,10 +17,30 @@ public class UsuarioSalaPersonalizada {
      * @param
      */
     public UsuarioSalaPersonalizada() {
+    	
     }
 
+    /**
+     * Método construtor que preenche todos os atributos da classe
+     * @param idUsuarioSalaPersonalizada
+     * @param codSalaPersonalizada
+     * @param usuario
+     */
+    public UsuarioSalaPersonalizada(int idUsuarioSalaPersonalizada, SalaPersonalizada salaPersonalizada, Usuario usuario) {
+		setSalaPersonalizada(salaPersonalizada);
+		setUsuario(usuario);
+	}
+    
+    /**
+     * Método de exibição de todos os atributos da classe
+     */
+	@Override
+	public String toString() {
+		return "UsuarioSalaPersonalizada [idUsuarioSalaPersonalizada=" + idUsuarioSalaPersonalizada
+				+ ", salaPersonalizada=" + salaPersonalizada + ", usuario=" + usuario + "]";
+	}
 
-    /** Método para retorno do ID do UsuarioSalaPersonalizada.
+	/** Método para retorno do ID do UsuarioSalaPersonalizada.
      * @return Int - ID UsuarioSalaPersonalizada
      */
     public int getIdUsuarioSalaPersonalizada() {
@@ -29,25 +48,27 @@ public class UsuarioSalaPersonalizada {
     }
 
     /**
-     * 
+     * Método de inserção do idUsuarioSalaPersonalizada
+     * @param idUsuarioSalaPersonalizada
      */
-    public void setIdUsuarioSalaPersonalizada() {
-        // TODO implement here
-    }
+	public void setIdUsuarioSalaPersonalizada(int idUsuarioSalaPersonalizada) {
+		this.idUsuarioSalaPersonalizada = idUsuarioSalaPersonalizada;
+	}
 
     /** Método para retorno do código da sala personalizada.
-     * @return Int - Código da sala personalizada
+     * @return Salapersonalizada
      */
-    public int getCodSalaPersonalizada() {
-        return codSalaPersonalizada;
+    public SalaPersonalizada getSalaPersonalizada() {
+        return salaPersonalizada;
     }
-
+    
     /**
-     * 
+     * Método de inserção da sala personalizada
+     * @param SalaPersonalizada
      */
-    public void setCodSalaPersonalizada() {
-        // TODO implement here
-    }
+    public void setSalaPersonalizada(SalaPersonalizada salaPersonalizada) {
+		this.salaPersonalizada = salaPersonalizada;
+	}
 
     /** Método para retorno do usuário.
      * @return Usuario - Usuario
@@ -55,12 +76,12 @@ public class UsuarioSalaPersonalizada {
     public Usuario getUsuario() {
         return usuario;
     }
-
+    
     /**
-     * 
+     * Método de inserção do usuario 
+     * @param usuario
      */
-    public void setUsuario() {
-        // TODO implement here
-    }
-
+    public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 }
