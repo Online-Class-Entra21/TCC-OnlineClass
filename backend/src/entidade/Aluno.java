@@ -12,7 +12,7 @@ import java.util.*;
 public class Aluno extends Usuario {
     private int idAluno;
     private int ra;
-    private String matricula;
+    private int matricula;
     private boolean deficienciaFisica;
     private String nomeMae;
     private String nomePai;
@@ -36,7 +36,7 @@ public class Aluno extends Usuario {
  * @param situacaoAnoLetivo
  * @param turma
  */
-    public Aluno(int idAluno, int ra, String matricula, boolean deficienciaFisica, 
+    public Aluno(int idAluno, int ra, int matricula, boolean deficienciaFisica, 
     			 String nomeMae, String nomePai, String nomeResponsavel, boolean situacaoAnoLetivo, Turma turma) {
     	setIdAluno(idAluno);
     	setRa(ra);
@@ -72,8 +72,8 @@ public class Aluno extends Usuario {
     /**
      * 
      */
-    public void setIdAluno() {
-        // TODO implement here
+    public void setIdAluno(int idAluno) {
+        this.idAluno = idAluno;
     }
 
     /** Método para retorno do RA do aluno.
@@ -86,22 +86,22 @@ public class Aluno extends Usuario {
     /**
      * 
      */
-    public void setRa() {
-        // TODO implement here
+    public void setRa(int ra) {
+        this.ra = ra;
     }
 
     /** Método para retorno da matrícula do aluno.
      * @return String - Matrícula do usuário
      */
-    public String getMatricula() {
-        return matricula;
+    public int getMatricula() {
+        return 0;
     }
 
     /**
      * 
      */
-    public void setMatricula() {
-        // TODO implement here
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
     }
 
     /** Método para retornar se o aluno possui alguma deficiência física.
@@ -114,8 +114,8 @@ public class Aluno extends Usuario {
     /**
      * 
      */
-    public void setDeficienciaFisica() {
-        // TODO implement here
+    public void setDeficienciaFisica(boolean deficienciaFisica) {
+        this.deficienciaFisica = deficienciaFisica;
     }
 
     /** Método para retorno do nome da mãe do aluno.
@@ -128,8 +128,8 @@ public class Aluno extends Usuario {
     /**
      * 
      */
-    public void setNomeMae() {
-        // TODO implement here
+    public void setNomeMae(String nomeMae) {
+        this.nomeMae =  nomeMae;
     }
 
     /** Método para retorno do nome do pai do aluno.
@@ -142,8 +142,8 @@ public class Aluno extends Usuario {
     /**
      * 
      */
-    public void setNomePai() {
-        // TODO implement here
+    public void setNomePai(String nomePai) {
+    	this.nomePai = nomePai;
     }
 
     /** Método para retorno do nome do responsável pelo aluno.
@@ -156,8 +156,8 @@ public class Aluno extends Usuario {
     /**
      * 
      */
-    public void setNomeResponsavel() {
-        // TODO implement here
+    public void setNomeResponsavel(String nomeResponsavel) {
+        this.nomeResponsavel = nomeResponsavel;
     }
 
     /** Método para retorno da situação do ano letivo do aluno.
@@ -170,8 +170,8 @@ public class Aluno extends Usuario {
     /**
      * 
      */
-    public void setSituacaoAnoLetivo() {
-        // TODO implement here
+    public void setSituacaoAnoLetivo(boolean situacaoAnoLetivo) {
+        this.situacaoAnoLetivo = situacaoAnoLetivo;
     }
 
     /**

@@ -31,8 +31,8 @@ public class Convite {
     /**
      * 
      */
-    public void setDestinatario() {
-        // TODO implement here
+    public void setDestinatario(int idDestinatario) {
+        this.destinatario = idDestinatario;
     }
 
     /** Método para retorno do ID do convite da sala.
@@ -45,8 +45,8 @@ public class Convite {
     /**
      * 
      */
-    public void setSalaConvite() {
-        // TODO implement here
+    public void setSalaConvite(int idSalaConvite) {
+        this.salaConvite = idSalaConvite;
     }
 
     /** Método para retorno da situação do convite.
@@ -59,8 +59,8 @@ public class Convite {
     /**
      * 
      */
-    public void setSituacaoConvite() {
-        // TODO implement here
+    public void setSituacaoConvite(boolean situacaoConvite) {
+        this.situacaoConvite = situacaoConvite;
     }
 
     /** Método para retorno do ID do remetente.
@@ -73,8 +73,8 @@ public class Convite {
     /**
      * 
      */
-    public void setRemetente() {
-        // TODO implement here
+    public void setRemetente(int idRemetente) {
+        this.remetente = idRemetente;
     }
 
     /** Método para retorno do ID do convite.
@@ -87,8 +87,8 @@ public class Convite {
     /**
      * 
      */
-    public void setIdConvite() {
-        // TODO implement here
+    public void setIdConvite(int idConvite) {
+        this.idConvite = idConvite;
     }
 
 }
