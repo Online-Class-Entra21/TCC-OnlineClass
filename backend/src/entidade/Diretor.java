@@ -1,5 +1,6 @@
 package entidade;
 
+import java.sql.Time;
 import java.util.*;
 
 /**
@@ -9,12 +10,21 @@ import java.util.*;
  * @author 
  */
 public class Diretor extends Usuario {
-
+	public Diretor() {
+		
+	}
+	
 	/**
      * Construtor usado ao instanciar a classe Diretor.
      * @param
      */
-    public Diretor() {
+    public Diretor(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
+			   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+			   String fotoUsuario, Endereco endereco, Escola escola) {
+    	super(idUsuario, nome, sobrenome, cpf, telefone, celular,
+				   tipoUsuario, email, senha, horarioInicioExpediente, horarioFinalExpediente,
+				   fotoUsuario, endereco, escola);
+ 	setTipoUsuario(3);
     }
 
 

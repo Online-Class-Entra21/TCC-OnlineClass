@@ -15,7 +15,10 @@ public class Disciplina {
      * Construtor usado ao instanciar a classe Disciplina.
      * @param
      */
-    public Disciplina() {
+    public Disciplina(int idDisciplina, String nome, int numeroAulas) {
+    	setIdDisciplina(idDisciplina);
+    	setNome(nome);
+    	setNumeroAulas(numeroAulas);
     }
 
     

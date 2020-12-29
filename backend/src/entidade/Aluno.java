@@ -1,5 +1,6 @@
 package entidade;
 
+import java.sql.Time;
 import java.util.*;
 
 /**
@@ -18,12 +19,46 @@ public class Aluno extends Usuario {
     private String nomeResponsavel;
     private boolean situacaoAnoLetivo;
     private Resposta respostas[];
-
+    private Turma turma;
+    
+    public Aluno() {
+    	
+    }
+/**
+ * 
+ * @param idAluno
+ * @param ra
+ * @param matricula
+ * @param deficienciaFisica
+ * @param nomeMae
+ * @param nomePai
+ * @param nomeResponsavel
+ * @param situacaoAnoLetivo
+ * @param turma
+ */
+    public Aluno(int idAluno, int ra, String matricula, boolean deficienciaFisica, 
+    			 String nomeMae, String nomePai, String nomeResponsavel, boolean situacaoAnoLetivo, Turma turma) {
+    	setIdAluno(idAluno);
+    	setRa(ra);
+    	setMatricula(matricula);
+    	setDeficienciaFisica(deficienciaFisica);
+    	setNomeMae(nomeMae);
+    	setNomePai(nomePai);
+    	setNomeResponsavel(nomeResponsavel);
+    	setSituacaoAnoLetivo(situacaoAnoLetivo);
+    	setTurma(turma);
+    }
     /**
      * Construtor usado ao instanciar a classe Aluno.
      * @param
      */
-    public Aluno() {
+    public Aluno(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
+			   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+			   String fotoUsuario, Endereco endereco, Escola escola) {
+    	super(idUsuario, nome, sobrenome, cpf, telefone, celular,
+				   tipoUsuario, email, senha, horarioInicioExpediente, horarioFinalExpediente,
+				   fotoUsuario, endereco, escola);
+	setTipoUsuario(0);
     }
     
     
@@ -139,7 +174,19 @@ public class Aluno extends Usuario {
         // TODO implement here
     }
 
-    /** Método para o envio de uma resposta à uma atividade.
+    /**
+	 * @return the turma
+	 */
+	public Turma getTurma() {
+		return turma;
+	}
+	/**
+	 * @param turma the turma to set
+	 */
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+	/** Método para o envio de uma resposta à uma atividade.
      * @param Resposta - Resposta a ser enviada.
      */
     public void mandarResposta(Resposta resposta) {
