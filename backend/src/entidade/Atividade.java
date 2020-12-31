@@ -21,6 +21,18 @@ public class Atividade {
      */
     public Atividade() {
     }
+    
+    /**
+     * 
+     */
+    public Atividade(int idAtividade, String descricao, Date inicioAtividade, Date finalAtividade, int tipoAtividade, double pesoNota) {
+    	setIdAtividade(idAtividade);
+    	setDescricao(descricao);
+    	setInicioAtividade(inicioAtividade);
+    	setFinalAtividade(finalAtividade);
+    	setTipoAtividade(tipoAtividade);
+    	setPesoNota(pesoNota);
+    }
 
 
     /** Método para retorno do ID da atividade.
@@ -46,8 +58,8 @@ public class Atividade {
     /**
      * 
      */
-    public void setDescricao() {
-        // TODO implement here
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     /** Método para retorno da data de início da atividade.
@@ -60,8 +72,8 @@ public class Atividade {
     /**
      * 
      */
-    public void setInicioAtividade() {
-        // TODO implement here
+    public void setInicioAtividade(Date inicioAtividade) {
+        this.inicioAtividade = inicioAtividade;
     }
 
     /** Método para retorno da data final da atividade.
@@ -74,8 +86,8 @@ public class Atividade {
     /**
      * 
      */
-    public void setFinalAtividade() {
-        // TODO implement here
+    public void setFinalAtividade(Date finalAtividade) {
+        this.finalAtividade = finalAtividade;
     }
 
     /** Método para retorno do tipo de atividade.
@@ -88,8 +100,8 @@ public class Atividade {
     /**
      * 
      */
-    public void setTipoAtividade() {
-        // TODO implement here
+    public void setTipoAtividade(int tipoAtividade) {
+        this.tipoAtividade = tipoAtividade;
     }
 
     /** Método para retorno do peso da nota.
@@ -102,8 +114,8 @@ public class Atividade {
     /**
      * 
      */
-    public void setPesoNota() {
-        // TODO implement here
+    public void setPesoNota(double pesoNota) {
+        this.pesoNota = pesoNota;
     }
 
 }

@@ -19,6 +19,17 @@ public class Convite {
      */
     public Convite() {
     }
+    
+    /**
+     * 
+     */
+    public Convite(int idConvite, int destinatario, int salaConvite, boolean situacaoConvite, int remetente) {
+    	setIdConvite(idConvite);
+    	setDestinatario(destinatario);
+    	setSalaConvite(salaConvite);
+    	setSituacaoConvite(situacaoConvite);
+    	setRemetente(remetente);
+    }
 
 
     /** Método para retorno do ID do destinatário.
