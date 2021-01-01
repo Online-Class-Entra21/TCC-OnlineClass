@@ -18,6 +18,15 @@ public class Chamada {
      */
     public Chamada() {
     }
+    /**
+     * 
+     */
+    public Chamada(int idChamada, boolean situacao, int codAluno, int codReuniao) {
+    	setIdChamada(idChamada);
+    	setSituacao(situacao);
+    	setCodAluno(codAluno);
+    	setCodReuniao(codReuniao);
+    }
 
 
     /** Método para retorno do ID da chamada.
@@ -30,8 +39,8 @@ public class Chamada {
     /**
      * 
      */
-    public void setIdChamada() {
-        // TODO implement here
+    public void setIdChamada(int idChamada) {
+        this.idChamada = idChamada;
     }
 
     /** Método para retorno da situação da chamada.
@@ -44,8 +53,8 @@ public class Chamada {
     /**
      * 
      */
-    public void setSituacao() {
-        // TODO implement here
+    public void setSituacao(boolean situacao) {
+    	this.situacao = situacao;
     }
 
     /** Método para retorno do código do aluno.
@@ -58,8 +67,8 @@ public class Chamada {
     /**
      * 
      */
-    public void setCodAluno() {
-        // TODO implement here
+    public void setCodAluno(int codAluno) {
+        this.codAluno = codAluno;
     }
 
     /** Método para retorno do código da reunião.
@@ -72,8 +81,8 @@ public class Chamada {
     /**
      * 
      */
-    public void setCodReuniao() {
-        // TODO implement here
+    public void setCodReuniao(int codReuniao) {
+        this.codReuniao = codReuniao;
     }
 
 }

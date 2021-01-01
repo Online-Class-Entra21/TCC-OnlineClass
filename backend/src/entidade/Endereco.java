@@ -47,8 +47,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setEstado() {
+    public void setEstado(String estado) {
         // TODO implement here
+    	this.estado = estado;
     }
 
     /** Método para retorno da cidade.
@@ -61,8 +62,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setCidade() {
+    public void setCidade(String cidade) {
         // TODO implement here
+    	this.cidade = cidade;
     }
 
     /** Método para retorno do bairro.
@@ -75,8 +77,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setBairro() {
+    public void setBairro(String bairro) {
         // TODO implement here
+    	this.bairro = bairro;    	
     }
 
     /** Método para retorno da rua.
@@ -89,8 +92,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setRua() {
+    public void setRua(String rua) {
         // TODO implement here
+    	this.rua = rua;
     }
 
     /** Método para retorno do número.
@@ -103,8 +107,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setNumero() {
+    public void setNumero(int num) {
         // TODO implement here
+    	this.numero = num;
     }
 
     /** Método para retorno do CEP.
@@ -117,8 +122,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setCep() {
+    public void setCep(String cep) {
         // TODO implement here
+    	this.cep = cep;
     }
 
 }

@@ -2,6 +2,7 @@ package entidade;
 
 
 import java.sql.Date;
+import java.util.Arrays;
 
 /**
  * Classe contendo métodos e atributos para as devidas funções da escola.
@@ -135,4 +136,13 @@ public class Escola {
         // TODO implement here
     }
 
+
+	@Override
+	public String toString() {
+		return "Escola [idEscola=" + idEscola + ", nome=" + nome + ", dataInicioLetivo=" + dataInicioLetivo
+				+ ", dataFinalLetivo=" + dataFinalLetivo;
+	}
+
+    
+    
 }
