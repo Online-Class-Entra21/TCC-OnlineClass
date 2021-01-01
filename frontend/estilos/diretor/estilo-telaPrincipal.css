@@ -1,0 +1,138 @@
+/*Bara Principal da tela*/
+#barraPrincipal{
+    border: none;
+    left: 0px;
+    top: 0px;
+    width: 1518px;
+    height: 60px;
+    position: fixed;
+    background-color: #630c13;
+}
+
+/*Título - nome da escola*/
+.textoBarra{
+    position: absolute;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-family: 'Trebuchet MS', sans-serif;
+    cursor: default;
+}
+
+/*Confg. img*/
+img {
+    height: 10x;
+    width: 2%;
+    padding-left: 5px;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: 5px;
+}
+
+/*Botão de menu*/
+#botao-menu{
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+#menuOpcoes{
+    position: fixed;
+    border: solid 2px white;
+    width: 15%;
+    margin-top: -10px;
+    height: 100%;
+    background: #630c13;
+    margin-left: -10px;
+    display: none;
+}
+
+#tituloPrincipal{
+    margin-top: 20px;
+    margin-left: 180px;
+}
+
+#tipoUsuario{
+    margin-top: 12px;
+    margin-left: 1400px;
+}
+
+#tituloMenu{
+    margin-top: 20px;
+    margin-left: 65px;
+}
+
+.opcoes{
+    border: none;
+    border-radius: 0px 16px 16px 0px;
+    left: 0px;
+    top: 90px;
+    width: 150px;
+    height: 30px;
+    margin-top: 10px;
+    background: rgb(255, 255, 255);
+    position: relative;
+}
+
+.opcoes:hover {
+    width: 180px;
+    transition:  all 0.2s;
+}
+
+#abreMenu{
+    position: fixed;
+    width: 0.5%;
+    margin-top: -10px;
+    height: 100%;
+    background: transparent;
+    margin-left: -10px;
+}
+
+.textoOpcao{
+    font-family: Arial;
+    font-size: 14px;
+    color:#630c13;
+    margin-left: 10px;
+    padding-top: 8px;
+    cursor: pointer;
+}
+
+#opcao-08{
+    margin-top: 190px;
+}
+
+.caixa{
+    position: absolute;
+    margin-top: 52px;
+    height: 91.3%;
+    width: 33.39%;
+}
+
+#solicitacoesReuniao{
+    margin-right: 0px;
+    margin-left: -8px;
+    float: left;
+}
+
+#caixaRelatorios{
+    margin-right: 0px;
+    margin-left: 498px;
+    float: right;
+}
+
+#historicoReuniao{
+    margin-right: 0px;
+    margin-left: 1003px;
+    float: right;
+}
+
+.textoCaixa{
+    position: absolute;
+    font-family: 'Arial';
+    color: #630c13;
+    font-size: 18px;
+    margin-left: 30px;
+}
+
+
+
+

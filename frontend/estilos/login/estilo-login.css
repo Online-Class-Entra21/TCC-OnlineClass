@@ -1,0 +1,80 @@
+/*********************
+Estilo tela Login - Online Class
+*********************/
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: #3f0a7c url(/frontend/imagens/fundo.png) no-repeat;
+}
+
+#logo {
+    margin-top: 110px;
+    margin-left: 800px;
+}
+
+#container {
+    width: 400px;
+    height: 300px;
+    background-color: #ffffff4d;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius: 15px;
+    margin: 0 auto;
+    margin-top: 100px;
+    text-align: center;
+}
+
+#container img {
+    width: 120px;
+    height: 120px;
+    margin-top: -60px;
+    margin-bottom: 30px;
+}
+
+/*
+Caixas para escrever [login] [senha]
+*/
+input {
+    height: 40px;
+    width: 80%;
+    font-size: 18px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding-left: 40px;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: 10px;
+}
+
+/*
+Imagem [e-mail] [senha]
+*/
+input.email {
+    background-image: url(/frontend/imagens/icone-usuario.png);
+}
+input.senha {
+    background-image: url(/frontend/imagens/icone-cadeado.png);
+}
+
+/*
+Botão Login
+*/
+input.submit:hover {
+    background-color: #946335;
+}
+
+input.submit {
+    color: rgb(255, 255, 255);
+    background-color: #df884e;
+    border: 2px solid #df884e;
+    padding: 5px 20px;
+    height: 45px;
+    width: 90%;
+}
+
+#botao-esqueceu{
+    margin-top: -14px;
+    font-size: 18px;
+    color: #630c13;
+}
+

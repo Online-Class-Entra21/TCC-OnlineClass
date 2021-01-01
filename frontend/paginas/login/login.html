@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="urf-8">
+
+        <title> Online Class </title>
+
+         <link rel="stylesheet" type="text/css" href="\frontend\estilos\login\estilo-login.css">
+         <script src="/frontend/jquery/jquery-3.5.1.min.js"> </script>
+    </head>
+
+    <body>
+        <div id="logo">
+            <img src="/frontend/imagens/Logo-OnlineClass.png">
+        </div>
+
+        <div id="container">
+            <img src="/frontend/imagens/perfil.png">
+            <form>
+                <div>
+                    <input class="email" type="text" name="email" id="email"
+                    placeholder="Digite seu e-mail">
+                </div>
+
+                <div>
+                    <input class="senha" type="password" name="senha" id="senha"
+                    placeholder="Digite sua senha">
+                </div>
+
+                <div id="botao-login">
+                    <input type="button" value="Logar" class="submit" onclick= "logar()">     
+                </div>
+
+                <div id="botao-esqueceu">
+                    <h5 style="cursor: pointer" onclick="mudarSenha()">Esqueceu sua senha?</h5>
+                </div>
+            </form>
+         </div> 
+
+         <script>
+             //Verifica as informações e loga no sistema 
+             function logar(){
+                if($("#senha").val() == "123"){
+                    alert('Passou');
+                    location.href = "aluno.html";   
+                }else{
+                    alert('Negado');
+                }
+             }
+             //Muda a senha do login no sistema 
+             function mudarSenha(){   
+                var resultado = confirm('Deseja receber um código de verificação para recuperar a senha?');
+                if(resultado){
+                    alert("Enviou o código")
+                }
+             }
+        </script>
+    </body>
+</html>
