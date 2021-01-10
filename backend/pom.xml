@@ -8,11 +8,11 @@
 		<version>2.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>onlineclasstcc</groupId>
-	<artifactId>onlineclass-rest-api</artifactId>
+	<groupId>onlineclass-api</groupId>
+	<artifactId>onlineclass</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>onlineclass-rest-api</name>
-	<description>OnlineClass Rest API</description>
+	<name>onlineclass</name>
+	<description>onlineclass-api</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -20,7 +20,7 @@
 
 	<dependencies>
 		<!-- <dependency>
-		 <groupId>org.springframework.boot</groupId>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency> -->
 		<dependency>

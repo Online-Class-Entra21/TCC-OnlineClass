@@ -1,13 +1,13 @@
-package onlineclasstcc.onlineclass.rest.api;
+package onlineclassapi.onlineclass;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OnlineclassRestApiApplication {
+public class OnlineclassApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OnlineclassRestApiApplication.class, args);
+		SpringApplication.run(OnlineclassApplication.class, args);
 	}
 
 }

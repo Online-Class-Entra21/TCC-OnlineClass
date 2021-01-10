@@ -1,10 +1,10 @@
-package onlineclasstcc.onlineclass.rest.api;
+package onlineclassapi.onlineclass;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OnlineclassRestApiApplicationTests {
+class OnlineclassApplicationTests {
 
 	@Test
 	void contextLoads() {
