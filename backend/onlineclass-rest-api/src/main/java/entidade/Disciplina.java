@@ -29,25 +29,11 @@ public class Disciplina {
         return idDisciplina;
     }
 
-    /**
-     * 
-     */
-    public void setIdDisciplina() {
-        // TODO implement here
-    }
-
     /** Método para retorno do nome da disciplina.
      * @return String - Nome da disciplina
      */
     public String getNome() {
         return nome;
-    }
-
-    /**
-     * 
-     */
-    public void setNome() {
-        // TODO implement here
     }
 
     /** Método para retorno do número de aulas da disciplina.
@@ -57,11 +43,16 @@ public class Disciplina {
         return numeroAulas;
     }
 
-    /**
-     * 
-     */
-    public void setNumeroAulas() {
-        // TODO implement here
-    }
+	public void setIdDisciplina(int idDisciplina) {
+		this.idDisciplina = idDisciplina;
+	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setNumeroAulas(int numeroAulas) {
+		this.numeroAulas = numeroAulas;
+	}
+    
 }
