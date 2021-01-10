@@ -1,10 +1,10 @@
-package onlineclassapi.onlineclass;
+package backend.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OnlineclassApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {

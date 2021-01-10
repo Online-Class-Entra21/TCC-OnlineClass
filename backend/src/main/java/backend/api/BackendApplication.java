@@ -1,13 +1,13 @@
-package onlineclassapi.onlineclass;
+package backend.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OnlineclassApplication {
+public class BackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OnlineclassApplication.class, args);
+		SpringApplication.run(BackendApplication.class, args);
 	}
 
 }

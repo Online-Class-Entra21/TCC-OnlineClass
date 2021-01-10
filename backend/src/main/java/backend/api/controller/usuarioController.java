@@ -1,4 +1,4 @@
-package onlineclassapi.onlineclass.controller;
+package backend.api.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +9,7 @@ import persistencia.jdbc.UsuarioDAO;
 
 @RestController
 public class usuarioController {
-
+	
 	@GetMapping(path = "/api/usuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		Usuario usuario = new Usuario();
