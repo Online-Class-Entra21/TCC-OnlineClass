@@ -53,7 +53,7 @@ public class UsuarioDAO {
 	}
 	
 	/**
-	 * Realiza atualização dos dados da Usuario no banco de dados
+	 * Realiza atualizaï¿½ï¿½o dos dados da Usuario no banco de dados
 	 * @param usuario
 	 * @return
 	 */
@@ -94,7 +94,7 @@ public class UsuarioDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela Usuario
+	 * Realiza a exclusï¿½o dos dados de uma linha da tabela Usuario
 	 * @param idUsuario
 	 * @return
 	 */
@@ -121,7 +121,7 @@ public class UsuarioDAO {
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Mï¿½todo de busca de todas as informaï¿½ï¿½es de uma linha
 	 * da tabela Usuario do banco de dados
 	 * @param idUsuario
 	 * @return
