@@ -10,7 +10,7 @@ import java.util.*;
  * @author
  */
 public class ProfessorDisciplina {
-	public int idProfessorDisciplina;
+	private int idProfessorDisciplina;
     private Professor professor;
     private Disciplina disciplina;
     private Atividade atividades[];
@@ -31,13 +31,14 @@ public class ProfessorDisciplina {
     }
 
     /**
-     * 
+     * Método de inserção do id do ProfessorDiciplina
+     * @param idProfessorDisciplina
      */
-    public void setIdProfessorDisciplina() {
-        // TODO implement here
-    }
+    public void setIdProfessorDisciplina(int idProfessorDisciplina) {
+		this.idProfessorDisciplina = idProfessorDisciplina;
+	}
 
-    /** Método para retorno do professor.
+	/** Método para retorno do professor.
      * @return Professor - Professor
      */
     public Professor getProfessor() {
@@ -118,7 +119,7 @@ public class ProfessorDisciplina {
 
 
     /** Método para a remoção de uma atividade da turma.
-     * @param TurmaAtividade - A ser removida
+     * @param TurmaAtividadeDAO - A ser removida
      */
     public void removerTurmaAtividade(TurmaAtividade turmaAtiv) {
         // TODO implement here

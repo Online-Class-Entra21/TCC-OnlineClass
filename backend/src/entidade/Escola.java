@@ -1,6 +1,8 @@
 package entidade;
 
-import java.util.*;
+
+import java.sql.Date;
+import java.util.Arrays;
 
 /**
  * Classe contendo métodos e atributos para as devidas funções da escola.
@@ -14,7 +16,23 @@ public class Escola {
     private Usuario usuarios[];
     private PeriodoAvaliacao periodos[];
 
+    
     /**
+     * Construtor usado para criar uma instancia com os dados do Banco de Dados
+     * @param idEscola
+     * @param nome
+     * @param dataInicioLetivo
+     * @param dataFinalLetivo
+     */
+    public Escola(int idEscola, String nome, Date dataInicioLetivo, Date dataFinalLetivo) {
+		setIdEscola(idEscola);
+		setNome(nome);
+		setDataInicioLeitvo(dataInicioLetivo);
+		setDataFinalLetivo(dataFinalLetivo);
+	}
+
+
+	/**
      * Construtor usado ao instanciar a classe Escola.
      * @param
      */
@@ -32,8 +50,8 @@ public class Escola {
     /**
      * 
      */
-    public void setIdEscola() {
-        // TODO implement here
+    public void setIdEscola(int idEscola) {
+        this.idEscola = idEscola;
     }
 
     /** Método para retorno do nome da escola.
@@ -44,10 +62,11 @@ public class Escola {
     }
 
     /**
+     * @param nome 
      * 
      */
-    public void setNome() {
-        // TODO implement here
+    public void setNome(String nome) {
+    	this.nome = nome;
     }
 
     /** Método para retorno da data de início do ano letivo.
@@ -59,10 +78,11 @@ public class Escola {
     }
 
     /**
+     * @param dataInicioLetivo2 
      * 
      */
-    public void setDataInicioLeitvo() {
-        // TODO implement here
+    public void setDataInicioLeitvo(Date dataInicioLetivo) {
+    	this.dataInicioLetivo = dataInicioLetivo;
     }
 
     /** Método para retorno da data final do ano letivo.
@@ -73,11 +93,11 @@ public class Escola {
     }
 
     /**
+     * @param dataFinalLetivo2 
      * 
      */
-    public void setDataFinalLetivo() {
-        // TODO implement here
-    	
+    public void setDataFinalLetivo(Date dataFinalLetivo) {
+        this.dataFinalLetivo = dataFinalLetivo;
     }
 
     /** Método para retorno dos usuários.
@@ -116,4 +136,13 @@ public class Escola {
         // TODO implement here
     }
 
+
+	@Override
+	public String toString() {
+		return "Escola [idEscola=" + idEscola + ", nome=" + nome + ", dataInicioLetivo=" + dataInicioLetivo
+				+ ", dataFinalLetivo=" + dataFinalLetivo;
+	}
+
+    
+    
 }

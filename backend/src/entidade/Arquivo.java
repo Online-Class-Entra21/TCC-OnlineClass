@@ -11,6 +11,7 @@ public class Arquivo {
     private String extensao;
     private Date dataEnvio;
     private int remetente;
+    private int tipoEnvio;
     private byte arquivo[];
 
     /**
@@ -18,6 +19,17 @@ public class Arquivo {
      * @param
      */
     public Arquivo() {
+    }
+    
+    /**
+     * 
+     */
+    public Arquivo(int idArquivo, String extensao, Date dataEnvio, int remetente, int tipoEnvio) {
+    	setIdArquivo(idArquivo);
+    	setExtensao(extensao);
+    	setDataEnvio(dataEnvio);
+    	setRemetente(remetente);
+    	setTipoEnvio(tipoEnvio);
     }
 
     
@@ -29,13 +41,14 @@ public class Arquivo {
     }
 
     /**
-     * 
+     * Método de inserção de id do arquivo
+     * @param idArquivo
      */
-    public void setIdArquivo() {
-        // TODO implement here
-    }
+    public void setIdArquivo(int idArquivo) {
+		this.idArquivo = idArquivo;
+	}
 
-    /** Método para retorno da extensão.
+	/** Método para retorno da extensão.
      * @return String - Extensão do arquivo
      */
     public String getExtensao() {
@@ -45,8 +58,8 @@ public class Arquivo {
     /**
      * 
      */
-    public void setExtensao() {
-        // TODO implement here
+    public void setExtensao(String extensao) {
+        this.extensao = extensao;
     }
 
     /** Método para retorno da data de envio.
@@ -59,8 +72,8 @@ public class Arquivo {
     /**
      * 
      */
-    public void setDataEnvio() {
-        // TODO implement here
+    public void setDataEnvio(Date dataEnvio) {
+        this.dataEnvio = dataEnvio;
     }
 
     /** Método para retorno do remetente.
@@ -73,23 +86,22 @@ public class Arquivo {
     /**
      * 
      */
-    public void setRemetente() {
-        // TODO implement here
+    public void setRemetente(int remetente) {
+        this.remetente = remetente;
     }
 
     /** Método para retorno do tipo de envio.
      * @return Int - Tipo de envio 
      */
     public int getTipoEnvio() {
-    	UsuarioArquivo usuarioArquivo = new UsuarioArquivo();
-        return usuarioArquivo.getTipoEnvio();
+    	return tipoEnvio;
     }
 
     /**
      * 
      */
-    public void setTipoEnvio() {
-        // TODO implement here
+    public void setTipoEnvio(int tipoEnvio) {
+        this.tipoEnvio = tipoEnvio;
     }
 
     /** Método para retorno do arquivo.
@@ -102,8 +114,8 @@ public class Arquivo {
     /**
      * 
      */
-    public void setArquivo() {
-        // TODO implement here
+    public void setArquivo(byte[] arquivo) {
+        this.arquivo = arquivo;
     }
 
 }

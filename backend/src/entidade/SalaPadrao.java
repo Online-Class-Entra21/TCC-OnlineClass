@@ -1,7 +1,5 @@
 package entidade;
 
-import java.util.*;
-
 /**
  * Herda métodos e atributos da classe Sala.
  * Cada turma tem uma sala como padrão.
@@ -16,6 +14,6 @@ public class SalaPadrao extends Sala {
      * @param
      */
     public SalaPadrao() {
+    	// TODO Auto-generated 
     }
-
 }

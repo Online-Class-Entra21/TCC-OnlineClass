@@ -4,7 +4,7 @@ Estilo tela Login - Online Class
 
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    background: #3f0a7c url(../imagens/fundo.png) no-repeat;
+    background: #3f0a7c url(/frontend/imagens/fundo.png) no-repeat;
 }
 
 #logo {
@@ -31,7 +31,6 @@ body {
     margin-bottom: 30px;
 }
 
-
 /*
 Caixas para escrever [login] [senha]
 */
@@ -51,10 +50,10 @@ input {
 Imagem [e-mail] [senha]
 */
 input.email {
-    background-image: url(../imagens/icone-usuario.png);
+    background-image: url(/frontend/imagens/icone-usuario.png);
 }
 input.senha {
-    background-image: url(../imagens/icone-cadeado.png);
+    background-image: url(/frontend/imagens/icone-cadeado.png);
 }
 
 /*

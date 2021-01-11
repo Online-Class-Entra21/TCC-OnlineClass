@@ -1,13 +1,12 @@
 package entidade;
 
-import java.util.*;
-
 /**
  * Classe contendo métodos e atributos para o endereço dos usuários cadastrados no sistema.
  * @see Usuario
  * @author 
  */
 public class Endereco {
+	private int idEndereco;
     private String estado;
     private String cidade;
     private String bairro;
@@ -22,8 +21,23 @@ public class Endereco {
     public Endereco() {
     }
 
-    
-    /** Método para retorno do estado.
+    /**
+     * Método de retorno do id endereço
+     * @return
+     */
+    public int getIdEndereco() {
+		return idEndereco;
+	}
+
+    /**
+     * Método de inserção do id endereço
+     * @param idEndereco
+     */
+	public void setIdEndereco(int idEndereco) {
+		this.idEndereco = idEndereco;
+	}
+
+	/** Método para retorno do estado.
      * @return String - Estado
      */
     public String getEstado() {
@@ -33,8 +47,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setEstado() {
+    public void setEstado(String estado) {
         // TODO implement here
+    	this.estado = estado;
     }
 
     /** Método para retorno da cidade.
@@ -47,8 +62,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setCidade() {
+    public void setCidade(String cidade) {
         // TODO implement here
+    	this.cidade = cidade;
     }
 
     /** Método para retorno do bairro.
@@ -61,8 +77,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setBairro() {
+    public void setBairro(String bairro) {
         // TODO implement here
+    	this.bairro = bairro;    	
     }
 
     /** Método para retorno da rua.
@@ -75,8 +92,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setRua() {
+    public void setRua(String rua) {
         // TODO implement here
+    	this.rua = rua;
     }
 
     /** Método para retorno do número.
@@ -89,8 +107,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setNumero() {
+    public void setNumero(int num) {
         // TODO implement here
+    	this.numero = num;
     }
 
     /** Método para retorno do CEP.
@@ -103,8 +122,9 @@ public class Endereco {
     /**
      * 
      */
-    public void setCep() {
+    public void setCep(String cep) {
         // TODO implement here
+    	this.cep = cep;
     }
 
 }
