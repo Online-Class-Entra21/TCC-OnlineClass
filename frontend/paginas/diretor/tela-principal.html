@@ -3,138 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chamada do Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="\frontend\frameworks\bootstrap-5.0.0-beta1-dist\css\bootstrap-reboot.min.css">
+    <!-- Chamada do CSS -->
     <link rel="stylesheet" type="text/css" href="\frontend\estilos\diretor\estilo-telaPrincipal.css">
+    <!-- Chamada da biblioteca Jquery -->
     <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
+    <!-- Chamada das funções JS -->
+    <script src="/frontend/scripts/diretor/tela-principal.js"></script>
     <title>Diretor</title>
 </head>
 <body>
-    <div id="solicitacoesReuniao" class="caixa">
-        <h4 id="textoSolicitacao" class="textoCaixa">Solicitações de Reunião</h4>
-    </div>
-    <div id="historicoReuniao" class="caixa">
-        <h4 id="textoReuniao" class="textoCaixa">Histórico de Reuniões</h4>
-    </div>
-    <div id="caixaRelatorios" class="caixa">
-        <h4 id="textoRelatorios" class="textoCaixa">Relatórios Recebidos</h4>
-    </div>
-    <div id="barraPrincipal">
-        <div id="botao-menu">
-            <img src="/frontend/imagens/botao-menu.png" type="button" value="" class="menu" onmouseover= "abrirMenu()">     
+    <!--Cabeçalho do site -->
+    <header>
+        <!-- Barra principal - cabeçalho de opções do site-->
+        <div id="barraPrincipal">
+            <!-- Botão do menu -->
+            <div id="botao-menu">
+                <img src="/frontend/imagens/botao-menu.png" type="button" value="" class="menu" onmouseover= "abrirMenu()">     
+            </div>
+            <!-- Nome da escola na barra -->
+            <h5 id="tituloPrincipal" class="textoBarra">Nome da Escola</h5>
         </div>
-        <h5 id="tituloPrincipal" class="textoBarra">Nome da Escola</h5>
-    </div>
-    <div id="menuOpcoes" onmouseout="fecharMenu()">
-        <h3 id="tituloMenu" class="textoBarra">OnlineClass</h3>
-        <div id="opcao-01" class="opcoes" onclick="entrarOpcao1()">
-            <h5 class="textoOpcao">Menu Principal</h5> 
+    </header>
+    <!-- Corpo do Site --> 
+    <main>
+        <!-- Caixa de solicitações das reuniões -->
+        <div id="solicitacoesReuniao" class="caixa">
+            <h4 id="textoSolicitacao" class="textoCaixa">Solicitações de Reunião</h4>
         </div>
-        <div id="opcao-02" class="opcoes" onclick="entrarOpcao2()">
-            <h5 class="textoOpcao">Perfil</h5> 
+        <!-- Caixa de histórico das reuniões realizadas -->
+        <div id="historicoReuniao" class="caixa">
+            <h4 id="textoReuniao" class="textoCaixa">Histórico de Reuniões</h4>
         </div>
-        <div id="opcao-03" class="opcoes" onclick="entrarOpcao3()">
-            <h5 class="textoOpcao">Escola</h5> 
+        <!-- Caixa de relatórios recebidos -->
+        <div id="caixaRelatorios" class="caixa">
+            <h4 id="textoRelatorios" class="textoCaixa">Relatórios Recebidos</h4>
         </div>
-        <div id="opcao-04" class="opcoes" onclick="entrarOpcao4()">
-            <h5 class="textoOpcao">Relatórios</h5> 
+        <!-- Menu de opções -->
+        <div id="menuOpcoes" onmouseout="fecharMenu()">
+            <h3 id="tituloMenu" class="textoBarra">OnlineClass</h3>
+            <!-- Opção de seleção do menu principal -->
+            <div id="opcao-01" class="opcoes" onclick="entrarOpcao1()">
+                <h5 class="textoOpcao">Menu Principal</h5> 
+            </div>
+            <!-- Opção de perfil -->
+            <div id="opcao-02" class="opcoes" onclick="entrarOpcao2()">
+                <h5 class="textoOpcao">Perfil</h5> 
+            </div>
+            <!-- Opção de escola -->
+            <div id="opcao-03" class="opcoes" onclick="entrarOpcao3()">
+                <h5 class="textoOpcao">Escola</h5> 
+            </div>
+            <!-- Opção de relatório -->
+            <div id="opcao-04" class="opcoes" onclick="entrarOpcao4()">
+                <h5 class="textoOpcao">Relatórios</h5> 
+            </div>
+            <!-- Opção de profissionais  -->
+            <div id="opcao-05" class="opcoes" onclick="entrarOpcao5()">
+                <h5 class="textoOpcao">Profissionais</h5> 
+            </div>
+            <!-- Opção de reuniões -->
+            <div id="opcao-06" class="opcoes" onclick="entrarOpcao6()">
+                <h5 class="textoOpcao">Reuniões</h5> 
+            </div>
+            <!-- Opção de estatísticas -->
+            <div id="opcao-07" class="opcoes" onclick="entrarOpcao7()"> 
+                <h5 class="textoOpcao">Estatísticas</h5> 
+            </div>
+            <!-- Opção de sair -->
+            <div id="opcao-08" class="opcoes" onclick= "sair()">
+                <h5 class="textoOpcao">Sair</h5> 
+            </div>
         </div>
-        <div id="opcao-05" class="opcoes" onclick="entrarOpcao5()">
-            <h5 class="textoOpcao">Profissionais</h5> 
-        </div>
-        <div id="opcao-06" class="opcoes" onclick="entrarOpcao6()">
-            <h5 class="textoOpcao">Reuniões</h5> 
-        </div>
-        <div id="opcao-07" class="opcoes" onclick="entrarOpcao7()"> 
-            <h5 class="textoOpcao">Estatísticas</h5> 
-        </div>
-        <div id="opcao-08" class="opcoes" onclick= "sair()">
-            <h5 class="textoOpcao">Sair</h5> 
-        </div>
-    </div>
-    <h5 id="tipoUsuario" class="textoBarra">Diretor</h5>
-    <div id="abreMenu" onmouseover= "abrirMenu()"></div>
+            <!-- Tipo do usuário -->
+            <h5 id="tipoUsuario" class="textoBarra">Diretor</h5>
+            <!-- Div de abertura lateral do menu -->
+            <div id="abreMenu" onmouseover= "abrirMenu()"></div>
+    </main>
+    <!-- Rodapé do Site -->
+    <footer>
+
+    </footer>
 </body>
 </html>
-
-<script>
-
-    //Abre o menu de opções da tela diretor 
-    function abrirMenu(){
-        $("#menuOpcoes").css("display","block");
-        $("#tituloPrincipal").css("margin-left",280);
-    }
-
-    //Fecha o menu de opções da tela diretor 
-    function fecharMenu(){
-        if((!$("#opcao-01").is(':hover'))&&(!$("#opcao-02").is(':hover'))&&
-        (!$("#opcao-03").is(':hover'))&&(!$("#opcao-04").is(':hover'))&&
-        (!$('#menuOpcoes').is(':hover')))
-        {
-            $("#menuOpcoes").css("display","none");
-            $("#tituloPrincipal").css("margin-left",180);
-        }
-    }
-
-    //Entrar na opção 1 do menu 
-    function entrarOpcao1(){
-        if(location != "http://127.0.0.1:5500/frontend/paginas/diretor/tela-principal.html"){
-            location.href = "../diretor/menu-principal.html"; 
-        }else{
-            $("#menuOpcoes").css("display","none");
-            $("#tituloPrincipal").css("margin-left",180);
-        }
-    }
-
-    //Entrar na opção 2 do menu 
-    function entrarOpcao2(){
-        location.href = "../diretor/perfil.html"; 
-    }
-
-    //Entrar na opção 3 do menu 
-    function entrarOpcao3(){
-        location.href = "../diretor/escola.html"; 
-    }
-
-    //Entrar na opção 4 do menu 
-    function entrarOpcao4(){
-        location.href = "../diretor/relatorios.html"; 
-    }
-
-    //Entrar na opção 5 do menu 
-    function entrarOpcao5(){
-        location.href = "../diretor/profissionais.html"; 
-    }
-
-    //Entrar na opção 6 do menu 
-    function entrarOpcao6(){
-        location.href = "../diretor/reunioes.html"; 
-    }
-
-    //Entrar na opção 7 do menu 
-    function entrarOpcao7(){
-        location.href = "../diretor/estatisticas.html"; 
-    }
-
-    //Volta para a tela de login
-    function sair(){
-        location.href = "../login/login.html";  
-    }
-
-    const options = {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'default'
-    }
-    
-    const showData = (result)=>{
-        for(const campo in result){
-            $("#tituloPrincipal").html(result[campo]);
-        }
-    }
-
-    fetch(`https://viacep.com.br/ws/01001000/json/`, options)
-    .then(response =>{ response.json()
-        .then(data => showData(data))
-    })
-    .catch(e => console.log('Deu erro ' + e,menssage))
-
-</Script>
