@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="\frontend\estilos\diretor\estilo-telaPrincipal.css">
-    <script src="/frontend/jquery/jquery-3.5.1.min.js"> </script>
+    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
     <title>Diretor</title>
 </head>
 <body>
@@ -56,6 +56,7 @@
 </html>
 
 <script>
+
     //Abre o menu de opções da tela diretor 
     function abrirMenu(){
         $("#menuOpcoes").css("display","block");
@@ -65,13 +66,14 @@
     //Fecha o menu de opções da tela diretor 
     function fecharMenu(){
         if((!$("#opcao-01").is(':hover'))&&(!$("#opcao-02").is(':hover'))&&
-           (!$("#opcao-03").is(':hover'))&&(!$("#opcao-04").is(':hover'))&&
-           (!$('#menuOpcoes').is(':hover')))
+        (!$("#opcao-03").is(':hover'))&&(!$("#opcao-04").is(':hover'))&&
+        (!$('#menuOpcoes').is(':hover')))
         {
             $("#menuOpcoes").css("display","none");
             $("#tituloPrincipal").css("margin-left",180);
         }
     }
+
     //Entrar na opção 1 do menu 
     function entrarOpcao1(){
         if(location != "http://127.0.0.1:5500/frontend/paginas/diretor/tela-principal.html"){
@@ -116,4 +118,23 @@
     function sair(){
         location.href = "../login/login.html";  
     }
-</script>
+
+    const options = {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'default'
+    }
+    
+    const showData = (result)=>{
+        for(const campo in result){
+            $("#tituloPrincipal").html(result[campo]);
+        }
+    }
+
+    fetch(`https://viacep.com.br/ws/01001000/json/`, options)
+    .then(response =>{ response.json()
+        .then(data => showData(data))
+    })
+    .catch(e => console.log('Deu erro ' + e,menssage))
+
+</Script>
