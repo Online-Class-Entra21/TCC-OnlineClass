@@ -5,8 +5,8 @@
 
         <title> Online Class </title>
 
-         <link rel="stylesheet" type="text/css" href="\frontend\estilos\login\estilo-login.css">
-         <script src="/frontend/jquery/jquery-3.5.1.min.js"> </script>
+         <link rel="stylesheet" type="text/css" href="/frontend/estilos/login/estilo-login.css">
+         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
     </head>
 
     <body>
@@ -41,9 +41,12 @@
              //Verifica as informações e loga no sistema 
              function logar(){
                 if($("#senha").val() == "123"){
-                    alert('Passou');
-                    location.href = "aluno.html";   
-                }else{
+                    location.href = "/frontend/paginas/aluno/aluno.html";
+                }
+                else if($("#senha").val() == "321") {
+                    location.href = "/frontend/paginas/diretor/tela-principal.html";
+                }
+                else{
                     alert('Negado');
                 }
              }

@@ -1,7 +1,3 @@
-/*************************
-Estilo tela Aluno - Online Class
-**************************/
-
 body {
 /*	background: #3f0a7c url(../imagens/fundo.png) no-repeat;
 */	
@@ -10,6 +6,14 @@ body {
     font-family: 62.5%/1.2 Verdana, Helvetica, Arial, sans-serif;
 }
 
+
+#dados-pessoais{
+	margin-top: 200px;
+}
+
+/********************************
+Estilo Barra Principal - Superior
+********************************/
 #barraPrincipal{
     border: none;
     left: 0px;
@@ -35,92 +39,7 @@ body {
     margin-left: 910px;
 }
 
-/********************
-Estilo Centro - center
-*********************/
-#center{
-	margin-top: 200px;
-}
-#center ul {
-	list-style: none;
-}
-#center li a {
-	text-decoration: none;
-	display: block;
-	text-align: center;
-}
-#center li a:hover {
-	font-size: 3.2em;
-	color:#9e0505c7;
-	text-decoration: none;
-	display: block;
-	text-align: center;
-	transition: 0;
-}
 
-.math{
-	width: 300px;
-	height: 150px;
-	margin: 10px;
-	margin-left: 250px;
-	padding: 0;
-	background-color: #ffffffb2;
-	float: left;
-	box-shadow: 10px 10px 5px black;
-}
-.port{
-	width: 300px;
-	height: 150px;
-	margin: 10px;
-	margin-left: 200px;
-	margin-right: 200px;
-	padding: 0;
-	background-color: #ffffffb2;
-	float: left;
-	box-shadow: 10px 10px 5px black;
-}
-.qui{
-	width: 300px;
-	height: 150px;
-	margin: 10px;
-	margin-right: 250px;
-	margin-bottom: 200px;
-	padding: 0;
-	background-color: #ffffffb2;
-	float: left;
-	box-shadow: 10px 10px 5px black;
-}
-.fis{
-	width: 300px;
-	height: 150px;
-	margin: 10px;
-	margin-left: 250px;
-	padding: 0;
-	background-color: #ffffffb2;
-	float: left;
-	box-shadow: 10px 10px 5px black;
-}
-.hist{
-	width: 300px;
-	height: 150px;
-	margin: 10px;
-	margin-left: 200px;
-	margin-right: 200px;
-	padding: 0;
-	background-color: #ffffffb2;
-	float: left;
-	box-shadow: 10px 10px 5px black;
-}
-.bio{
-	width: 300px;
-	height: 150px;
-	margin: 10px;
-	margin-right: 250px;
-	padding: 0;
-	background-color: #ffffffb2;
-	float: left;
-	box-shadow: 10px 10px 5px black;
-}
 
 /********************
 Estilo Menu lateal
@@ -141,7 +60,7 @@ Estilo Menu lateal
 	position:fixed;
 	top:0;
 	left:-320px;
-	}
+}
 #menu-lateral:before {
 	z-index:1000;
 	font-size:4em;
@@ -149,10 +68,10 @@ Estilo Menu lateal
 	position:fixed;
 	left:4px;
 	top:45px;
-	}
+}
 #menu-lateral:hover:before, #lateral:focus:before {
 	left:-500px
-	}
+}
 #menu-lateral:hover, #lateral:focus,  #lateral:active  {
 	overflow-y:scroll;
 	transform: translate(320px, 0);
@@ -165,7 +84,7 @@ Estilo Menu lateal
 	list-style-type:none;
 	margin-bottom:1em;;
 	padding-bottom:1em;
-	}
+}
 #menu-lateral h3 {
 	display:inline-block;
 	font-weight:bold;
@@ -175,14 +94,14 @@ Estilo Menu lateal
 	margin: 2em 0 2em 0.81em;
 	color:rgb(255,255,255);
 	border-bottom: 4px solid rgb(155,155,155);
-	}
+}
 #menu {
 	font-style:italic;
 	position:relative;
 	font-size:1.0em;
 	margin:1em 0 1em -1em;
 	padding:0;
-	}
+}
 #menu li {padding:0; margin:0;}
 
 #menu li a {
@@ -192,10 +111,10 @@ Estilo Menu lateal
 	padding: 0.8em 0 0.8em 1em;
 	display: block;
 	transition: all 1.2s ease;
-	}
+}
 	
 #menu li a:hover {
 	color:rgb(255,255,255);
 	background-color:#ffffff33;
 	transition: all 0.5s ease;
-	}
+}
