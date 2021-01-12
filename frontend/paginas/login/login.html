@@ -1,62 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <meta charset="urf-8">
-
         <title> Online Class </title>
-
-         <link rel="stylesheet" type="text/css" href="/frontend/estilos/login/estilo-login.css">
-         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
+        <!-- Chamada do Bootstrap -->
+        <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <!-- Chamada do CSS -->
+        <link rel="stylesheet" href="/frontend/estilos/login/estilo-login.css"></link>
+        <!-- Chamada da biblioteca Jquery -->
+        <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
+        <!-- Chamada das funções JS -->
+        <script src="/frontend/scripts/login/login.js"></script>
     </head>
-
     <body>
-        <div id="logo">
-            <img src="/frontend/imagens/Logo-OnlineClass.png">
-        </div>
+        <!-- Cabeçalho do Site -->
+        <header>
+            <!-- Imagem da logo do Online Class -->
+            <img src="/frontend/imagens/Logo-OnlineClass.png" class="mx-auto d-block" id="logo">
+        </header>
+        <!-- Corpo do Site -->
+        <main>
+            <div id="container">
+                <img src="/frontend/imagens/perfil.png" class="mx-auto d-block" id="usuario-login">
+                <form>
+                    <div>
+                        <input class="email" type="text" name="email" id="email"
+                        placeholder="Digite seu e-mail">
+                    </div>
+    
+                    <div>
+                        <input class="senha" type="password" name="senha" id="senha"
+                        placeholder="Digite sua senha">
+                    </div>
+    
+                    <div id="botao-login">
+                        <input type="button" value="Logar" class="submit" onclick= "logar()">     
+                    </div>
+    
+                    <div id="botao-esqueceu">
+                        <h5 style="cursor: pointer" onclick="mudarSenha()">Esqueceu sua senha?</h5>
+                    </div>
+                </form>
+             </div> 
+        </main>
+        <!-- Rodapé do Site -->
+        <footer>
 
-        <div id="container">
-            <img src="/frontend/imagens/perfil.png">
-            <form>
-                <div>
-                    <input class="email" type="text" name="email" id="email"
-                    placeholder="Digite seu e-mail">
-                </div>
-
-                <div>
-                    <input class="senha" type="password" name="senha" id="senha"
-                    placeholder="Digite sua senha">
-                </div>
-
-                <div id="botao-login">
-                    <input type="button" value="Logar" class="submit" onclick= "logar()">     
-                </div>
-
-                <div id="botao-esqueceu">
-                    <h5 style="cursor: pointer" onclick="mudarSenha()">Esqueceu sua senha?</h5>
-                </div>
-            </form>
-         </div> 
-
-         <script>
-             //Verifica as informações e loga no sistema 
-             function logar(){
-                if($("#senha").val() == "123"){
-                    location.href = "/frontend/paginas/aluno/aluno.html";
-                }
-                else if($("#senha").val() == "321") {
-                    location.href = "/frontend/paginas/diretor/tela-principal.html";
-                }
-                else{
-                    alert('Negado');
-                }
-             }
-             //Muda a senha do login no sistema 
-             function mudarSenha(){   
-                var resultado = confirm('Deseja receber um código de verificação para recuperar a senha?');
-                if(resultado){
-                    alert("Enviou o código")
-                }
-             }
-        </script>
+        </footer>
     </body>
 </html>

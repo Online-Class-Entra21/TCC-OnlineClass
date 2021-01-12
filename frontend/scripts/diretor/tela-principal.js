@@ -73,12 +73,13 @@
     
     const showData = (result)=>{
         for(const campo in result){
+            console.log(result)
             $("#tituloPrincipal").html(result[campo]);
         }
     }
 
     //Consumindo API
-    fetch(`https://viacep.com.br/ws/01001000/json/`, options)
+    fetch(`http://localhost:8080/api/usuario/1`, options)
     .then(response =>{ response.json()
         .then(data => showData(data))
     })

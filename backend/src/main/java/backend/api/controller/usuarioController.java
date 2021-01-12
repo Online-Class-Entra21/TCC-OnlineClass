@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+
 import entidade.Usuario;
 import persistencia.jdbc.UsuarioDAO;
 
@@ -20,11 +22,17 @@ public class usuarioController {
 	 * @return
 	 */
 	@GetMapping(path = "/api/usuario/{codigo}")
-	public Usuario consultar(@PathVariable("codigo") int codigo) {
+	public String consultar(@PathVariable("codigo") int codigo) {
 		Usuario usuario = new Usuario();
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		usuario = usuarioDao.buscarPorId(codigo);
-		return usuario;
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(usuario);
+		
+
+		
+		return json;
 	}
 	
 	/**

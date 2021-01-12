@@ -1,8 +1,47 @@
-/*********************
+/*-------------------------------
 Estilo tela Login - Online Class
-*********************/
+*-------------------------------/
 
-body {
+/*
+Logo do Online Class 
+*/
+#logo{
+    margin-top: 3%;
+    width: auto;
+    height: 100px;
+}
+
+/*
+Logo de Usuário 
+*/
+#usuario-login{
+    padding: 3%;
+}
+
+/*
+Caixas para escrever [login] [senha]
+*/
+input {
+    font-size: 18px;
+    margin-bottom: 1%;
+    background-color: #fff;
+    padding-left: 3%;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: 4%;
+}
+
+/*
+Imagem [e-mail] [senha]
+*/
+input.email {
+    background-image: url(/frontend/imagens/icone-usuario.png);
+}
+input.senha {
+    background-image: url(/frontend/imagens/icone-cadeado.png);
+}
+
+/*body {
     font-family: 'Trebuchet MS', sans-serif;
     background: #3f0a7c url(/frontend/imagens/fundo.png) no-repeat;
 }
@@ -33,7 +72,7 @@ body {
 
 /*
 Caixas para escrever [login] [senha]
-*/
+
 input {
     height: 40px;
     width: 80%;
@@ -48,7 +87,7 @@ input {
 
 /*
 Imagem [e-mail] [senha]
-*/
+
 input.email {
     background-image: url(/frontend/imagens/icone-usuario.png);
 }
@@ -58,7 +97,7 @@ input.senha {
 
 /*
 Botão Login
-*/
+
 input.submit:hover {
     background-color: #946335;
 }
@@ -77,4 +116,5 @@ input.submit {
     font-size: 18px;
     color: #630c13;
 }
+*/
 
