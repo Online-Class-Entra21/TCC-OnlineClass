@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
     <head>
         <meta charset="urf-8">
         <title> Online Class </title>
@@ -12,40 +13,56 @@
         <!-- Chamada das funções JS -->
         <script src="/frontend/scripts/login/login.js"></script>
     </head>
+
     <body>
         <!-- Cabeçalho do Site -->
         <header>
             <!-- Imagem da logo do Online Class -->
-            <img src="/frontend/imagens/Logo-OnlineClass.png" class="mx-auto d-block" id="logo">
+            <figure>
+                <img src="/frontend/imagens/Logo-OnlineClass.png" alt="Logo OnlineClass" title="Logo" id="logo">   
+            </figure>
         </header>
+        <!-- Fim do cabecalho do site -->
+
         <!-- Corpo do Site -->
         <main>
-            <div id="container">
-                <img src="/frontend/imagens/perfil.png" class="mx-auto d-block" id="usuario-login">
-                <form>
-                    <div>
-                        <input class="email" type="text" name="email" id="email"
-                        placeholder="Digite seu e-mail">
-                    </div>
-    
-                    <div>
-                        <input class="senha" type="password" name="senha" id="senha"
-                        placeholder="Digite sua senha">
-                    </div>
-    
-                    <div id="botao-login">
-                        <input type="button" value="Logar" class="submit" onclick= "logar()">     
-                    </div>
-    
-                    <div id="botao-esqueceu">
-                        <h5 style="cursor: pointer" onclick="mudarSenha()">Esqueceu sua senha?</h5>
-                    </div>
-                </form>
+            <!-- Caixa de login -->
+            <div id="caixa-login" class="container">
+
+                <!-- Imagem de login -->
+                <figure id="img-container">
+                    <img src="/frontend/imagens/perfil.png" class="mx-auto d-block" id="usuario-login">
+                </figure>
+
+                <!-- Inserção do email -->
+                <div class="nav justify-content-center">
+                    <input type="text" name="email" id="input-email" class="inputs" placeholder="Digite seu e-mail">
+                </div>
+
+                <!-- Inserção de senha -->
+                <div class="nav justify-content-center">
+                    <input type="password" name="senha" id="input-senha" class="inputs" placeholder="Digite sua senha">
+                </div>
+
+                <!-- Botão de login-->
+                <div class="nav justify-content-center">
+                    <input id="input-login" type="button" value="Logar" class="submit" onclick= "logar()">     
+                </div>
+
+                <!-- Botão de esquceu a senha -->
+                <div id="botao-esqueceu">
+                    <h5 style="cursor: pointer" onclick="mudarSenha()">Esqueceu sua senha?</h5>
+                </div>
              </div> 
         </main>
-        <!-- Rodapé do Site -->
+        <!-- Fim do corpo do site -->
+
+        <!-- Rodapé do site -->
         <footer>
 
         </footer>
+        <!-- Fim do rodapé do site-->
+
     </body>
+
 </html>

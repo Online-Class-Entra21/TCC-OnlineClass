@@ -1,5 +1,6 @@
 /*Bara Principal da tela*/
 
+/*
 #barraPrincipal{
     border: none;
     left: 0px;
@@ -10,7 +11,6 @@
     background-color: #630c13;
 }
 
-/*Título - nome da escola*/
 .textoBarra{
     position: absolute;
     color: rgb(255, 255, 255);
@@ -19,7 +19,6 @@
     cursor: default;
 }
 
-/*Confg. img*/
 img {
     height: 10x;
     width: 2%;
@@ -29,7 +28,6 @@ img {
     background-position: 5px;
 }
 
-/*Botão de menu*/
 #botao-menu{
     position: absolute;
     margin-top: 20px;
@@ -133,7 +131,6 @@ img {
     font-size: 18px;
     margin-left: 30px;
 }
-
-
+*/
 
 

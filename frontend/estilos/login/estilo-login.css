@@ -3,118 +3,88 @@ Estilo tela Login - Online Class
 *-------------------------------/
 
 /*
+Imagem de fundo 
+*/
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: #3f0a7c url(/frontend/imagens/fundo.png) no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+/*
 Logo do Online Class 
 */
 #logo{
     margin-top: 3%;
-    width: auto;
-    height: 100px;
+    width: 170px;
+    height: auto;
+    margin-left: 7%;
+}
+
+/*
+Caixa de login 
+*/
+#caixa-login {
+    width: 400px;
+    height: auto;
+    background-color: #ffffff4d;
+    border-radius: 7%;
+    text-align: center;
 }
 
 /*
 Logo de Usuário 
 */
 #usuario-login{
-    padding: 3%;
+    padding: 6%;
 }
 
 /*
 Caixas para escrever [login] [senha]
 */
-input {
-    font-size: 18px;
-    margin-bottom: 1%;
+.inputs {
+    text-align: left;
+    font-size: 20px;
+    margin-bottom: 3%;
     background-color: #fff;
-    padding-left: 3%;
     border: none;
     background-repeat: no-repeat;
-    background-position: 4%;
+    padding-left: 12%;
+    background-position: 7%;
+    border-radius: 12px 10px;
 }
 
 /*
 Imagem [e-mail] [senha]
 */
-input.email {
+#input-email {
     background-image: url(/frontend/imagens/icone-usuario.png);
 }
-input.senha {
-    background-image: url(/frontend/imagens/icone-cadeado.png);
-}
-
-/*body {
-    font-family: 'Trebuchet MS', sans-serif;
-    background: #3f0a7c url(/frontend/imagens/fundo.png) no-repeat;
-}
-
-#logo {
-    margin-top: 110px;
-    margin-left: 800px;
-}
-
-#container {
-    width: 400px;
-    height: 300px;
-    background-color: #ffffff4d;
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px;
-    border-radius: 15px;
-    margin: 0 auto;
-    margin-top: 100px;
-    text-align: center;
-}
-
-#container img {
-    width: 120px;
-    height: 120px;
-    margin-top: -60px;
-    margin-bottom: 30px;
-}
-
-/*
-Caixas para escrever [login] [senha]
-
-input {
-    height: 40px;
-    width: 80%;
-    font-size: 18px;
-    margin-bottom: 10px;
-    background-color: #fff;
-    padding-left: 40px;
-    border: none;
-    background-repeat: no-repeat;
-    background-position: 10px;
-}
-
-/*
-Imagem [e-mail] [senha]
-
-input.email {
-    background-image: url(/frontend/imagens/icone-usuario.png);
-}
-input.senha {
+#input-senha {
     background-image: url(/frontend/imagens/icone-cadeado.png);
 }
 
 /*
-Botão Login
-
-input.submit:hover {
-    background-color: #946335;
-}
-
-input.submit {
+Botão de login
+*/
+#input-login {
     color: rgb(255, 255, 255);
     background-color: #df884e;
     border: 2px solid #df884e;
-    padding: 5px 20px;
-    height: 45px;
-    width: 90%;
+    border-radius: 12px 12px;
+    font-size: 120%;
+    height: auto;
+    margin-bottom: 9%;
+    width: 130px;
 }
 
+/*
+Botão de esquecimento da senha 
+*/
 #botao-esqueceu{
-    margin-top: -14px;
     font-size: 18px;
     color: #630c13;
+    padding-bottom: 4%;
 }
-*/
 
