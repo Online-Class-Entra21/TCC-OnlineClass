@@ -3,6 +3,8 @@
     Script - Tela-Principal Diretor 
     **************************/
 
+//const { result } = require("lodash");
+
     //Abre o menu de opções da tela diretor 
     function abrirMenu(){
         $("#menuOpcoes").css("display","block");
@@ -79,8 +81,16 @@
     }
 
     //Consumindo API
-    fetch(`http://localhost:8080/api/usuario/1`, options)
-    .then(response =>{ response.json()
-        .then(data => showData(data))
+    // fetch(`http://localhost:8080/api/usuario/1`, options)
+    // .then(response =>{ response.json()
+    //     .then(data => showData(data))
+    // })
+    // .catch(e => console.log('Deu erro ' + e,menssage))
+    fetch('http://localhost:8080/api/usuario/2')
+    .then(function(response) {
+        return response.json();
     })
-    .catch(e => console.log('Deu erro ' + e,menssage))
+    .then(function(json) {
+        console.log(json.nome)
+        $("#tituloPrincipal").html(json.nome)
+    })
