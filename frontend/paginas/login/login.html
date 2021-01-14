@@ -27,7 +27,7 @@
         <!-- Corpo do Site -->
         <main>
             <!-- Caixa de login -->
-            <div id="caixa-login" class="container">
+            <div id="caixa-login" class="container-lg">
 
                 <!-- Imagem de login -->
                 <figure id="img-container">
@@ -36,24 +36,24 @@
 
                 <!-- Inserção do email -->
                 <div class="nav justify-content-center">
-                    <input type="text" name="email" id="input-email" class="inputs" placeholder="Digite seu e-mail">
+                    <input id="email" type="text" name="email" id="input-email" class="inputs" placeholder="Digite seu e-mail">
                 </div>
 
                 <!-- Inserção de senha -->
                 <div class="nav justify-content-center">
-                    <input type="password" name="senha" id="input-senha" class="inputs" placeholder="Digite sua senha">
+                    <input id="senha" type="password" name="senha" id="input-senha" class="inputs" placeholder="Digite sua senha">
                 </div>
 
                 <!-- Botão de login-->
                 <div class="nav justify-content-center">
-                    <input id="input-login" type="button" value="Logar" class="submit" onclick= "logar()">     
+                    <input id="input-login" type="button" value="Logar" class="submit" onclick= "logar($('#email').val(), $('#senha').val())">     
                 </div>
 
                 <!-- Botão de esquceu a senha -->
                 <div id="botao-esqueceu">
                     <h5 style="cursor: pointer" onclick="mudarSenha()">Esqueceu sua senha?</h5>
                 </div>
-             </div> 
+            </div> 
         </main>
         <!-- Fim do corpo do site -->
 
@@ -62,7 +62,6 @@
 
         </footer>
         <!-- Fim do rodapé do site-->
-
     </body>
 
 </html>

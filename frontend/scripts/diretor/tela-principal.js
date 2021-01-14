@@ -67,30 +67,17 @@
         location.href = "../login/login.html";  
     }
 
-    const options = {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'default'
-    }
     
-    const showData = (result)=>{
-        for(const campo in result){
-            console.log(result)
-            $("#tituloPrincipal").html(result[campo]);
-        }
-    }
 
-    //Consumindo API
     // fetch(`http://localhost:8080/api/usuario/1`, options)
     // .then(response =>{ response.json()
     //     .then(data => showData(data))
     // })
     // .catch(e => console.log('Deu erro ' + e,menssage))
-    fetch('http://localhost:8080/api/usuario/2')
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(json) {
-        console.log(json.nome)
-        $("#tituloPrincipal").html(json.nome)
-    })
+
+    //const showData = (result)=>{
+    //    for(const campo in result){
+    //        console.log(result)
+    //        $("#tituloPrincipal").html(result[campo]);
+    //    }
+    //}

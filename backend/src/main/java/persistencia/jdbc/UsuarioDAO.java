@@ -233,4 +233,57 @@ public class UsuarioDAO {
 		}
 		return lista;
 	}	
+	
+	public Usuario buscarPorEmail(String email) {
+		Usuario usuario = new Usuario(); 
+		
+		String sql = "select * from usuario where email = ?"; 
+		
+		try {
+			PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+			comandoSql.setString(1, email);
+			
+			ResultSet resultSet = comandoSql.executeQuery();
+			
+			if (resultSet.next()) {
+				usuario.setIdUsuario(resultSet.getInt(1));
+				usuario.setNome(resultSet.getString(2));
+				usuario.setSobrenome(resultSet.getString(3));
+				usuario.setCpf(resultSet.getString(4));
+				usuario.setTelefone(resultSet.getString(5));
+				usuario.setCelular(resultSet.getString(6));
+				usuario.setTipoUsuario(resultSet.getInt(7));
+				usuario.setEmail(resultSet.getString(8));
+				usuario.setSenha(resultSet.getString(9));
+				usuario.setHorarioFinalExpediente(resultSet.getTime(10));
+				usuario.setHorarioInicioExpediente(resultSet.getTime(11));
+				usuario.setFotoUsuario(resultSet.getString(12));
+				
+				/**
+				 * Realiza a consulta por id para criar o objeto endereco
+				 * apartir do fk da endereco
+				 */
+//				EnderecoDAO enderecoDao = new EnderecoDAO();
+//				Endereco endereco = enderecoDao.buscarPorId(resultSet.getString(13));
+//				usuario.setEndereco(endereco);
+				
+				/**
+				 * Realiza a consulta por id para criar o objeto escola
+				 * apartir do fk da escola
+				 */
+//				EscolaDAO escolaDAO = new EscolaDAO();
+//				Escola escola = escolaDAO.buscarPorId(resultSet.getString(14));
+//				usuario.setEscola(escola);
+				
+				comandoSql.close(); 
+				return usuario;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return null; 
+	}
 }

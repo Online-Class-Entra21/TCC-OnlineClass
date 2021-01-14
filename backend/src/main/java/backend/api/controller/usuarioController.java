@@ -26,12 +26,18 @@ public class usuarioController {
 		Usuario usuario = new Usuario();
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		usuario = usuarioDao.buscarPorId(codigo);
-		
 		Gson gson = new Gson();
 		String json = gson.toJson(usuario);
-		
-
-		
+		return json;
+	}
+	
+	@GetMapping(path = "/api/usuario/email/{email}")
+	public String consultarPorEmail(@PathVariable("email") String email) {
+		Usuario usuario = new Usuario();
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		usuario = usuarioDao.buscarPorEmail(email);
+		Gson gson = new Gson();
+		String json = gson.toJson(usuario);
 		return json;
 	}
 	
