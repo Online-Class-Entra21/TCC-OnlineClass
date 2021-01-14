@@ -1,47 +1,47 @@
 /*-------------------------------
 Estilo tela Login - Online Class
-*-------------------------------/
+-------------------------------*/
+
+* {
+    margin: 0%;
+    border: 0%;
+    padding: 0%;
+}
+
+html,
+body {
+    height: 100%;
+    width: auto;
+}
+
 
 /*
 Imagem de fundo 
 */
+
 body {
     background: #3f0a7c url(/frontend/imagens/fundo.png) no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
 }
 
-/*
-Logo do Online Class 
-*/
-#logo{
-    margin-top: 3%;
-    width: 160px;
-    height: auto;
-    margin-left: 7%;
+header {
+    height: 25%;
 }
 
-/*
-Caixa de login 
-*/
-#caixa-login {
-    width: 350px;
-    height: auto;
-    background-color: #ffffff4d;
-    border-radius: 7%;
-    text-align: center;
+main {
+    height: 70%;
 }
 
-/*
-Logo de Usuário 
-*/
-#usuario-login{
-    padding: 6%;
-    width: 150px;
-    height: auto;
+footer {
+    height: 5%;
 }
+
 
 /*
 Caixas para escrever [login] [senha]
 */
+
 .inputs {
     font-size: 20px;
     margin-bottom: 4%;
@@ -58,21 +58,62 @@ Caixas para escrever [login] [senha]
     padding-right: 3%;
 }
 
+
+/*
+Logo do Online Class 
+*/
+
+#logo {
+    margin-top: 3%;
+    width: 160px;
+    height: auto;
+    margin-left: 7%;
+}
+
+
+/*
+Caixa de login 
+*/
+
+#caixa-login {
+    width: 350px;
+    height: auto;
+    background-color: #ffffff4d;
+    border-radius: 7%;
+    text-align: center;
+}
+
+
+/*
+Logo de Usuário 
+*/
+
+#usuario-login {
+    padding: 6%;
+    width: 150px;
+    height: auto;
+}
+
+
 /*
 Imagem [e-mail] [senha]
 */
+
 #input-email {
     background-image: url(/frontend/imagens/icone-usuario.png);
     background-position: left;
 }
+
 #input-senha {
     background-image: url(/frontend/imagens/icone-cadeado.png);
     background-position: left;
 }
 
+
 /*
 Botão de login
 */
+
 #input-login {
     color: rgb(255, 255, 255);
     background-color: #df884e;
@@ -85,12 +126,13 @@ Botão de login
     width: 110px;
 }
 
+
 /*
 Botão de esquecimento da senha 
 */
-#botao-esqueceu{
+
+#botao-esqueceu {
     font-size: 18px;
     color: #630c13;
     padding-bottom: 6%;
 }
-
