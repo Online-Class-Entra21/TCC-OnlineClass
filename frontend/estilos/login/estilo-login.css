@@ -116,6 +116,11 @@ Imagem [e-mail] [senha]
     background-size: 2.5vh;
 }
 
+#visao-senha{
+    width: 4vh;
+    height: auto;
+}
+
 /*
 Botão de login
 */

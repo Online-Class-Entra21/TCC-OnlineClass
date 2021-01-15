@@ -64,7 +64,8 @@ function mudarSenha() {
     //André - Quinta   
 }
 
-function myFunction() {
+//Mostra e oculta a senha digitada 
+function mostrarSenha() {
     var x = document.getElementById("input-senha");
     if (x.type === "password") {
       x.type = "text";
@@ -72,7 +73,6 @@ function myFunction() {
       x.type = "password";
     }
   }
-
 
 //Breno - Responsividade
 //Breno - Manter o ID para as demais pastas 
