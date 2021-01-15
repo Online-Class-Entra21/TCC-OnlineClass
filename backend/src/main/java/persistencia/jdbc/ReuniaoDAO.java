@@ -17,7 +17,7 @@ public class ReuniaoDAO {
 		
 		try {
 			
-			PreparedStatement comandoSql = conexao.prepareStatement("insert into resposta (idresposta, nota, comentarioatividade, correcaoatividade, dataentrega, fk_aluno, fk_atividade) values (?, ?, ?, ?, ?, ?, ?)");
+			PreparedStatement comandoSql = conexao.prepareStatement("insert into reuniao (descricao, datainicio, dono, notamediaaula, fk_sala, fk_usuario_disciplina_turma) values (?, ?, ?, ?, ?, ?)");
 			
 			comandoSql.setString(1, reuniao.getDescricao());
 			comandoSql.setDate(2, (Date) reuniao.getDataInicioReuniao());
@@ -42,7 +42,7 @@ public class ReuniaoDAO {
 		
 		try {
 			
-			PreparedStatement comandoSql = conexao.prepareStatement("update resposta set SET idresposta=?, nota=?, comentarioatividade=?, correcaoatividade=?, dataentrega=?, fk_aluno=?, fk_atividade=? where idresposta = ?");
+			PreparedStatement comandoSql = conexao.prepareStatement("update reuniao set SET descricao=?, datainicio=?, dono=?, notamediaaula=?, fk_sala=?, fk_usuario_disciplina_turma=? where idreuniao = ?");
 
 			comandoSql.setString(1, reuniao.getDescricao());
 			comandoSql.setDate(2, (Date) reuniao.getDataInicioReuniao());
@@ -50,7 +50,7 @@ public class ReuniaoDAO {
 			comandoSql.setDouble(4, reuniao.getNotaMediaAula());
 			comandoSql.setInt(5, reuniao.getSala().getIdSala());
 			comandoSql.setInt(6, reuniao.getTurmaProfessorDisciplina().getIdTurmaProfessorDisciplina());
-			
+			comandoSql.setInt(7, reuniao.getIdReuniao());
 			comandoSql.execute();
 			
 			comandoSql.close();
@@ -118,7 +118,7 @@ public class ReuniaoDAO {
 		List<Reuniao> lista = new ArrayList<Reuniao>();
 		try {
 			
-			PreparedStatement comandoSql = conexao.prepareStatement("select * from Escola");
+			PreparedStatement comandoSql = conexao.prepareStatement("select * from reuniao");
 			
 			ResultSet resultSet = comandoSql.executeQuery();
 			comandoSql.close();
