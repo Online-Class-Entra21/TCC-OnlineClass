@@ -1,43 +1,43 @@
-package testes;
-
-import java.sql.Date;
-import java.sql.Time;
-import java.util.List;
-
-import entidade.Endereco;
-import entidade.Escola;
-import entidade.Professor;
-import persistencia.jdbc.EscolaDAO;
-import persistencia.jdbc.ProfessorDAO;
-
-/*
- * Esse main � destinado para os testes do Andr�
- * n�o edite !!
- */
-public class TestesAndre {
-	
-	public static void main(String[] args) {
-		
-		ProfessorDAO profDao = new ProfessorDAO();
-		Professor prof = new Professor();
-		prof.setNome("Anderson");
-		prof.setCelular("3412124124");
-		prof.setCpf("231241241");
-		prof.setEmail("anderson@gmail.com");
-		prof.setEndereco(new Endereco(1, "SC", "bLUMENAU", "nao rua", "nao bairro", 19, "12312412"));
-		Escola escola = new EscolaDAO().buscarId(1);
-		prof.setEscola(escola);
-		prof.setFotoUsuario("nao muito feio");
-		prof.setHorarioFinalExpediente(new Time(7, 30, 00));
-		prof.setHorarioInicioExpediente(new Time(12, 15, 00));
-		prof.setSenha("123");
-		prof.setSobrenome("Augusto");
-		prof.setTelefone("123123123");
-		
-		profDao.insert(prof);
-	}
-	
-}
+//package testes;
+//
+//import java.sql.Date;
+//import java.sql.Time;
+//import java.util.List;
+//
+//import entidade.Endereco;
+//import entidade.Escola;
+//import entidade.Professor;
+//import persistencia.jdbc.EscolaDAO;
+//import persistencia.jdbc.ProfessorDAO;
+//
+///*
+// * Esse main � destinado para os testes do Andr�
+// * n�o edite !!
+// */
+//public class TestesAndre {
+//	
+//	public static void main(String[] args) {
+//		
+//		ProfessorDAO profDao = new ProfessorDAO();
+//		Professor prof = new Professor();
+//		prof.setNome("Anderson");
+//		prof.setCelular("3412124124");
+//		prof.setCpf("231241241");
+//		prof.setEmail("anderson@gmail.com");
+//		prof.setEndereco(new Endereco(1, "SC", "bLUMENAU", "nao rua", "nao bairro", 19, "12312412"));
+//		Escola escola = new EscolaDAO().buscarId(1);
+//		prof.setEscola(escola);
+//		prof.setFotoUsuario("nao muito feio");
+//		prof.setHorarioFinalExpediente(new Time(7, 30, 00));
+//		prof.setHorarioInicioExpediente(new Time(12, 15, 00));
+//		prof.setSenha("123");
+//		prof.setSobrenome("Augusto");
+//		prof.setTelefone("123123123");
+//		
+//		profDao.insert(prof);
+//	}
+//	
+//}
 //	
 //	
 //	

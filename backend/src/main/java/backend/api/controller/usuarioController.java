@@ -2,6 +2,7 @@ package backend.api.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -63,6 +64,23 @@ public class usuarioController {
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		return usuarioDao.delete(codigo);
 	}
+	
+	@GetMapping(path = "/api/codigo")
+	public String codigo(){
+		String codigo = "";
+		
+		int digitos[] = new int[6];
+		Random sortear = new Random();
+		for (int i = 0; i < digitos.length; i++) {
+			digitos[i] = sortear.nextInt(10);
+			codigo = codigo+digitos[i];
+		}
+		return codigo;
+	}
+	
+	
+	
+	
 }
 
 

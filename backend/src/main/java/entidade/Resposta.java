@@ -3,8 +3,8 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo métodos e atributos para o envio de uma resposta à uma atividade específica.
- * Respostas são enviadas pelo Aluno.
+ * Classe contendo mï¿½todos e atributos para o envio de uma resposta ï¿½ uma atividade especï¿½fica.
+ * Respostas sï¿½o enviadas pelo Aluno.
  * @see Aluno
  * @see Atividade
  * @author 
@@ -16,6 +16,7 @@ public class Resposta {
     private boolean correcaoAtividade;
     private Date dataEntrega;
     private int codAtividade;
+    private Aluno aluno;
 
     /**
      * Construtor usado ao instanciar a classe Resposta.
@@ -23,9 +24,21 @@ public class Resposta {
      */
     public Resposta() {
     }
+    
+    
+    public Aluno getAluno() {
+		return aluno;
+	}
 
 
-    /** Método para retorno do ID da resposta.
+
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+
+	/** Mï¿½todo para retorno do ID da resposta.
      * @return Int - ID da resposta
      */
     public int getIdResposta() {
@@ -35,11 +48,11 @@ public class Resposta {
     /**
      * 
      */
-    public void setIdResposta() {
-        // TODO implement here
+    public void setIdResposta(int idResposta) {
+        this.idResposta = idResposta;
     }
 
-    /** Método para retorno da nota.
+    /** Mï¿½todo para retorno da nota.
      * @return Double - Nota
      */
     public double getNota() {
@@ -49,12 +62,12 @@ public class Resposta {
     /**
      * 
      */
-    public void setNota() {
-        // TODO implement here
+    public void setNota(Double nota) {
+        this.nota = nota;
     }
 
-    /** Método para retorno de um comentário na atividade.
-     * @return String - Comentário da atividade
+    /** Mï¿½todo para retorno de um comentï¿½rio na atividade.
+     * @return String - Comentï¿½rio da atividade
      */
     public String getComentarioAtividade() {
         return comentarioAtividade;
@@ -63,11 +76,11 @@ public class Resposta {
     /**
      * 
      */
-    public void setComentarioAtividade() {
-        // TODO implement here
+    public void setComentarioAtividade(String comentarioAtividade) {
+        this.comentarioAtividade = comentarioAtividade;
     }
 
-    /** Método para retorno se a atividade foi corrigida.
+    /** Mï¿½todo para retorno se a atividade foi corrigida.
      * @return Boolean - Foi corrigida? True / False
      */
     public boolean getCorrecaoAtividade() {
@@ -77,11 +90,11 @@ public class Resposta {
     /**
      * 
      */
-    public void setCorrecaoAtividade() {
-        // TODO implement here
+    public void setCorrecaoAtividade(Boolean correcaoAtividade) {
+        this.correcaoAtividade = correcaoAtividade;
     }
 
-    /** Método para retorno da data de entrega.
+    /** Mï¿½todo para retorno da data de entrega.
      * @return Date - Data de entrega 
      */
     public Date getDataEntrega() {
@@ -91,12 +104,12 @@ public class Resposta {
     /**
      * 
      */
-    public void setDataEntrega() {
-        // TODO implement here
+    public void setDataEntrega(Date dataEntrega) {
+        this.dataEntrega = dataEntrega;
     }
 
-    /** Método para retorno do código da atividade.
-     * @return Int - Código da atividade
+    /** Mï¿½todo para retorno do cï¿½digo da atividade.
+     * @return Int - Cï¿½digo da atividade
      */
     public int getCodAtividade() {
         return codAtividade;
@@ -105,8 +118,8 @@ public class Resposta {
     /**
      * 
      */
-    public void setCodAtividade() {
-        // TODO implement here
+    public void setCodAtividade(int codAtividade) {
+        this.codAtividade = codAtividade;
     }
 
 }

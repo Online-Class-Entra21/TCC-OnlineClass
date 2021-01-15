@@ -3,7 +3,7 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo métodos e atributos para a criação de reuniões pelo Usuario.
+ * Classe contendo mï¿½todos e atributos para a criaï¿½ï¿½o de reuniï¿½es pelo Usuario.
  * @see Usuario
  * @see TurmaProfessor
  * @author 
@@ -26,8 +26,8 @@ public class Reuniao {
     }
 
 
-    /** Método para retorno do ID da reunião.
-     * @return Int - ID da reunião
+    /** Mï¿½todo para retorno do ID da reuniï¿½o.
+     * @return Int - ID da reuniï¿½o
      */
     public int getIdReuniao() {
         return idReuniao;
@@ -36,12 +36,12 @@ public class Reuniao {
     /**
      * 
      */
-    public void setIdReuniao() {
-        // TODO implement here
+    public void setIdReuniao(int idReuniao) {
+        this.idReuniao = idReuniao;
     }
 
-    /** Método para retorno da descrição da reunião.
-     * @return String - Descrição da reunião
+    /** Mï¿½todo para retorno da descriï¿½ï¿½o da reuniï¿½o.
+     * @return String - Descriï¿½ï¿½o da reuniï¿½o
      */
     public String getDescricao() {
         return descricao;
@@ -50,12 +50,12 @@ public class Reuniao {
     /**
      * 
      */
-    public void setDescricao() {
-        // TODO implement here
+    public void setDescricao(String descricao) {
+        this.descricao = descricao; 
     }
 
-    /** Método para retorno da data de início da reunião.
-     * @return Date - Data de início da reunião 
+    /** Mï¿½todo para retorno da data de inï¿½cio da reuniï¿½o.
+     * @return Date - Data de inï¿½cio da reuniï¿½o 
      */
     public Date getDataInicioReuniao() {
         return dataInicio;
@@ -64,12 +64,12 @@ public class Reuniao {
     /**
      * 
      */
-    public void setDataInicioReuniao() {
-        // TODO implement here
+    public void setDataInicioReuniao(Date dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
-    /** Método para retorno do ID do dono da reunião.
-     * @return Int - ID do dono da reunião
+    /** Mï¿½todo para retorno do ID do dono da reuniï¿½o.
+     * @return Int - ID do dono da reuniï¿½o
      */
     public int getDono() {
         return dono;
@@ -78,12 +78,12 @@ public class Reuniao {
     /**
      * 
      */
-    public void setDono() {
-        // TODO implement here
+    public void setDono(int dono) {
+        this.dono = dono;
     }
 
-    /** Método para retorno da nota média da aula.
-     * @return Double - Nota média da aula
+    /** Mï¿½todo para retorno da nota mï¿½dia da aula.
+     * @return Double - Nota mï¿½dia da aula
      */
     public double getNotaMediaAula() {
         return notaMediaAula;
@@ -92,11 +92,11 @@ public class Reuniao {
     /**
      * 
      */
-    public void setNotaMediaAula() {
-        // TODO implement here
+    public void setNotaMediaAula(Double notaMediaAula) {
+    	this.notaMediaAula = notaMediaAula;
     }
 
-    /** Método para retorno da sala.
+    /** Mï¿½todo para retorno da sala.
      * @return Sala - Sala
      */
     public Sala getSala() {
@@ -106,18 +106,18 @@ public class Reuniao {
     /**
      * 
      */
-    public void setSala() {
-        // TODO implement here
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
 
-    /** Método para retorno dos usuários conectados à reunião.
-     * @return ReuniaoUsuario - Array de usuários conectados
+    /** Mï¿½todo para retorno dos usuï¿½rios conectados ï¿½ reuniï¿½o.
+     * @return ReuniaoUsuario - Array de usuï¿½rios conectados
      */
     public ReuniaoUsuario[] getReuniaoUsuarios() {
         return reuniaoUsuarios;
     }
 
-    /** Método para buscar um usuário da reunião.
+    /** Mï¿½todo para buscar um usuï¿½rio da reuniï¿½o.
      * @param - 
      * @return ReuniaoUsuario.
      */
@@ -132,7 +132,7 @@ public class Reuniao {
         // TODO implement here
     }
 
-    /** Método para retorno da TurmaProfessorDisciplina.
+    /** Mï¿½todo para retorno da TurmaProfessorDisciplina.
      * @return TurmaProfessorDisciplina - TurmaProfessorDisciplina
      */
     public TurmaProfessorDisciplina getTurmaProfessorDisciplina() {
@@ -142,8 +142,8 @@ public class Reuniao {
     /**
      * 
      */
-    public void setTurmaProfessorDisciplina() {
-        // TODO implement here
+    public void setTurmaProfessorDisciplina(TurmaProfessorDisciplina turmaProfessorDisciplina) {
+        this.turmaProfessorDisciplina = turmaProfessorDisciplina;
     }
 
 }
