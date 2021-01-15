@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.SimpleEmail;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,8 +67,8 @@ public class usuarioController {
 		return usuarioDao.delete(codigo);
 	}
 	
-	@GetMapping(path = "/api/codigo")
-	public String codigo(){
+	@GetMapping(path = "/api/codigo/{email}")
+	public String codigo(@PathVariable("email") String email){
 		String codigo = "";
 		
 		int digitos[] = new int[6];
@@ -75,6 +77,27 @@ public class usuarioController {
 			digitos[i] = sortear.nextInt(10);
 			codigo = codigo+digitos[i];
 		}
+		
+		String nossoEmail = "";
+		String nossaSenha = "";
+		
+		SimpleEmail emailCon = new SimpleEmail();
+		emailCon.setHostName("smtp.gmail.com");
+		emailCon.setSmtpPort(465);
+		emailCon.setAuthenticator(new DefaultAuthenticator(nossoEmail, nossaSenha));
+		emailCon.setSSLOnConnect(true);
+		
+		try {
+			emailCon.setFrom(nossoEmail);
+			emailCon.setSubject("Codigo Verificação");
+			emailCon.setMsg("Seu codigo de Verificação é '"+codigo+"' use esse codigo para alterar sua senha no site");
+			emailCon.addTo(email);
+			emailCon.send();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return codigo;
 	}
 	
