@@ -8,14 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Diretor;
-import entidade.Usuario;
 
 public class DiretorDAO {
 private Connection conexao = ConexaoFactory.getConnection();
 
 	/**
 	 * Realiza o registro de um administrador no banco de dados na tabela Usuario
-	 * O usuario cadastrado é definido como administrador a partir do tipoUsuario = 4
+	 * O usuario cadastrado ï¿½ definido como administrador a partir do tipoUsuario = 4
 	 * @param usuario
 	 * @return
 	 */
@@ -53,7 +52,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 	}
 	
 	/**
-	 * Realiza atualização dos dados do administrador no banco de dados
+	 * Realiza atualizaï¿½ï¿½o dos dados do administrador no banco de dados
 	 * @param usuario
 	 * @return
 	 */
@@ -93,7 +92,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela Usuario
+	 * Realiza a exclusï¿½o dos dados de uma linha da tabela Usuario
 	 * @param idUsuario
 	 * @return
 	 */
@@ -120,7 +119,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Mï¿½todo de busca de todas as informaï¿½ï¿½es de uma linha
 	 * da tabela Usuario do banco de dados
 	 * @param idUsuario
 	 * @return

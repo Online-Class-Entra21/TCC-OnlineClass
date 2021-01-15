@@ -3,7 +3,7 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo métodos e atributos para o gerenciamento das atividades e ligação do Professor à Disciplina.
+ * Classe contendo mï¿½todos e atributos para o gerenciamento das atividades e ligaï¿½ï¿½o do Professor ï¿½ Disciplina.
  * @see Professor
  * @see Disciplina
  * @see Atividade
@@ -23,7 +23,7 @@ public class ProfessorDisciplina {
     }
 
 
-    /** Método para retorno do ID do ProfessorDisciplina.
+    /** Mï¿½todo para retorno do ID do ProfessorDisciplina.
      * @return Int - ID ProfessorDisciplina
      */
     public int getIdProfessorDisciplina() {
@@ -31,14 +31,14 @@ public class ProfessorDisciplina {
     }
 
     /**
-     * Método de inserção do id do ProfessorDiciplina
+     * Mï¿½todo de inserï¿½ï¿½o do id do ProfessorDiciplina
      * @param idProfessorDisciplina
      */
     public void setIdProfessorDisciplina(int idProfessorDisciplina) {
 		this.idProfessorDisciplina = idProfessorDisciplina;
 	}
 
-	/** Método para retorno do professor.
+	/** Mï¿½todo para retorno do professor.
      * @return Professor - Professor
      */
     public Professor getProfessor() {
@@ -48,11 +48,11 @@ public class ProfessorDisciplina {
     /**
      * 
      */
-    public void setProfessor() {
-        // TODO implement here
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
-    /** Método para retorno da disciplina.
+    /** Mï¿½todo para retorno da disciplina.
      * @return Disciplina - Disciplina
      */
     public Disciplina getDisciplina() {
@@ -60,20 +60,22 @@ public class ProfessorDisciplina {
     }
 
     /**
+     * @param disciplina 
      * 
      */
-    public void setDisciplina() {
+    public void setDisciplina(Disciplina disciplina) {
         // TODO implement here
+    	this.disciplina = disciplina;
     }
 
-    /** Método para retorno das atividades.
+    /** Mï¿½todo para retorno das atividades.
      * @return Atividade - Array de atividades
      */
-    public Atividade[] getAtividades() {
-        return atividades;
-    }
+//    public Atividade[] getAtividades() {
+//        return atividades;
+//    }
 
-    /** Método para visualizar uma atividade.
+    /** Mï¿½todo para visualizar uma atividade.
      * @param -
      * @return Atividade - Atividade a ser visualizada.
      */
@@ -81,35 +83,35 @@ public class ProfessorDisciplina {
     	return null;
     }
 
-    /** Método para adicionar uma atividade.
+    /** Mï¿½todo para adicionar uma atividade.
      * @param -
      */
     public void adicionarAtividade() {
         // TODO implement here
     }
 
-    /** Método para atualizar uma atividade.
+    /** Mï¿½todo para atualizar uma atividade.
      * @param Atividade - Atividade a ser atualizada
      */
     public void atualizarAtividade(Atividade atividade) {
         // TODO implement here
     }
 
-    /** Método para a remoção de uma atividade.
+    /** Mï¿½todo para a remoï¿½ï¿½o de uma atividade.
      * @param Atividade - Atividade a ser removida.
      */
     public void removerAtividade(Atividade atividade) {
         // TODO implement here
     }
 
-    /** Método para visualizar uma atividade da turma.
+    /** Mï¿½todo para visualizar uma atividade da turma.
      * @return TurmaAtividade
      */
     public TurmaAtividade pesquisarTurmaAtividade() {
     	return null;
     }
 
-    /** Método para adicionar uma atividade da turma.
+    /** Mï¿½todo para adicionar uma atividade da turma.
      * @param -
      */
     public void adicionarTurmaAtivdade() {
@@ -118,14 +120,14 @@ public class ProfessorDisciplina {
 
 
 
-    /** Método para a remoção de uma atividade da turma.
+    /** Mï¿½todo para a remoï¿½ï¿½o de uma atividade da turma.
      * @param TurmaAtividadeDAO - A ser removida
      */
     public void removerTurmaAtividade(TurmaAtividade turmaAtiv) {
         // TODO implement here
     }
 
-    /** Método para retorno da nota.
+    /** Mï¿½todo para retorno da nota.
      * @return Double - Nota
      */
     public double getNota() {
@@ -133,28 +135,28 @@ public class ProfessorDisciplina {
         return resposta.getNota();
     }
 
-    /** Método para criar uma nota.
+    /** Mï¿½todo para criar uma nota.
      * @param -
      */
     public void criarNota() {
         // TODO implement here
     }
 
-    /** Método para atualizar uma nota.
+    /** Mï¿½todo para atualizar uma nota.
      * @param Nota - Nota a ser atualizada.
      */
     public void atualizarNota(Resposta nota) {
         // TODO implement here
     }
 
-    /** Método para a remoção de uma nota.
+    /** Mï¿½todo para a remoï¿½ï¿½o de uma nota.
      * @param Nota - Nota a ser removida.
      */
     public void removerNota(Resposta nota) {
         // TODO implement here
     }
 
-    /** Método para a visualização das turmas do professor.
+    /** Mï¿½todo para a visualizaï¿½ï¿½o das turmas do professor.
      * @param - 
      * @return Turma - Turmas do professor.
      */
@@ -162,7 +164,7 @@ public class ProfessorDisciplina {
         return null;
     }
 
-    /** Método para pesquisar uma turma específica.
+    /** Mï¿½todo para pesquisar uma turma especï¿½fica.
      * @param -
      * @return Turma - Turma a ser pesquisada.
      */
@@ -170,7 +172,7 @@ public class ProfessorDisciplina {
         return null;
     }
 
-    /** Método para visualizar as respostas para uma atividade.
+    /** Mï¿½todo para visualizar as respostas para uma atividade.
      * @param -
      * @return Resposta - Respostas enviadas para uma atividade.
      */
@@ -178,7 +180,7 @@ public class ProfessorDisciplina {
         return null;
     }
 
-    /** Método para procurar uma resposta específica para uma atividade.
+    /** Mï¿½todo para procurar uma resposta especï¿½fica para uma atividade.
      * @param - 
      * @return Resposta - Resposta de uma atividade.
      */

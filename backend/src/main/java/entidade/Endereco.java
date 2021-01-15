@@ -1,7 +1,7 @@
 package entidade;
 
 /**
- * Classe contendo métodos e atributos para o endereço dos usuários cadastrados no sistema.
+ * Classe contendo mï¿½todos e atributos para o endereï¿½o dos usuï¿½rios cadastrados no sistema.
  * @see Usuario
  * @author 
  */
@@ -21,8 +21,22 @@ public class Endereco {
     public Endereco() {
     }
 
-    /**
-     * Método de retorno do id endereço
+    
+    
+    public Endereco(int idEndereco, String estado, String cidade, String bairro, String rua, int numero, String cep) {
+		this.idEndereco = idEndereco;
+		this.estado = estado;
+		this.cidade = cidade;
+		this.bairro = bairro;
+		this.rua = rua;
+		this.numero = numero;
+		this.cep = cep;
+	}
+
+
+
+	/**
+     * Mï¿½todo de retorno do id endereï¿½o
      * @return
      */
     public int getIdEndereco() {
@@ -30,14 +44,14 @@ public class Endereco {
 	}
 
     /**
-     * Método de inserção do id endereço
+     * Mï¿½todo de inserï¿½ï¿½o do id endereï¿½o
      * @param idEndereco
      */
 	public void setIdEndereco(int idEndereco) {
 		this.idEndereco = idEndereco;
 	}
 
-	/** Método para retorno do estado.
+	/** Mï¿½todo para retorno do estado.
      * @return String - Estado
      */
     public String getEstado() {
@@ -52,7 +66,7 @@ public class Endereco {
     	this.estado = estado;
     }
 
-    /** Método para retorno da cidade.
+    /** Mï¿½todo para retorno da cidade.
      * @return String - Cidade
      */
     public String getCidade() {
@@ -67,7 +81,7 @@ public class Endereco {
     	this.cidade = cidade;
     }
 
-    /** Método para retorno do bairro.
+    /** Mï¿½todo para retorno do bairro.
      * @return String - Bairro
      */
     public String getBairro() {
@@ -82,7 +96,7 @@ public class Endereco {
     	this.bairro = bairro;    	
     }
 
-    /** Método para retorno da rua.
+    /** Mï¿½todo para retorno da rua.
      * @return String - Rua
      */
     public String getRua() {
@@ -97,8 +111,8 @@ public class Endereco {
     	this.rua = rua;
     }
 
-    /** Método para retorno do número.
-     * @return Int - Número
+    /** Mï¿½todo para retorno do nï¿½mero.
+     * @return Int - Nï¿½mero
      */
     public int getNumero() {
         return numero;
@@ -112,7 +126,7 @@ public class Endereco {
     	this.numero = num;
     }
 
-    /** Método para retorno do CEP.
+    /** Mï¿½todo para retorno do CEP.
      * @return String - CEP
      */
     public String getCep() {

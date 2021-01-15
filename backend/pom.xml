@@ -47,7 +47,12 @@
   			<groupId>com.microsoft.graph</groupId>
   			<artifactId>microsoft-graph</artifactId>
   			<version>2.5.0</version>
-</dependency>
+		</dependency>
+		<dependency>
+    		<groupId>com.microsoft.azure</groupId>
+    		<artifactId>msal4j</artifactId>
+    		<version>1.8.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -58,5 +63,19 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+	  	<profile>
+	     <id>allow-snapshots</id>
+	        <activation><activeByDefault>true</activeByDefault></activation>
+	     <repositories>
+	       <repository>
+	         <id>snapshots-repo</id>
+	         <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+	         <releases><enabled>false</enabled></releases>
+	         <snapshots><enabled>true</enabled></snapshots>
+	       </repository>
+	     </repositories>
+	   </profile>
+	</profiles>
 
 </project>

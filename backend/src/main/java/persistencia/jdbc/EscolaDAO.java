@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Escola;
-import entidade.Sala;
 
 public class EscolaDAO {
 
