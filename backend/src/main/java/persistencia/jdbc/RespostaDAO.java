@@ -17,7 +17,7 @@ public class RespostaDAO {
 		
 		try {
 			
-			PreparedStatement comandoSql = conexao.prepareStatement("insert into resposta (idresposta, nota, comentarioatividade, correcaoatividade, dataentrega, fk_aluno, fk_atividade) values (?, ?, ?, ?, ?, ?, ?)");
+			PreparedStatement comandoSql = conexao.prepareStatement("insert into resposta (nota, comentarioatividade, correcaoatividade, dataentrega, fk_aluno, fk_atividade) values (?, ?, ?, ?, ?, ?)");
 			
 			comandoSql.setDouble(1, resposta.getNota());
 			comandoSql.setString(2, resposta.getComentarioAtividade());
@@ -42,7 +42,7 @@ public class RespostaDAO {
 		
 		try {
 			
-			PreparedStatement comandoSql = conexao.prepareStatement("update resposta set SET idresposta=?, nota=?, comentarioatividade=?, correcaoatividade=?, dataentrega=?, fk_aluno=?, fk_atividade=? where idresposta = ?");
+			PreparedStatement comandoSql = conexao.prepareStatement("update resposta set SET nota=?, comentarioatividade=?, correcaoatividade=?, dataentrega=?, fk_aluno=?, fk_atividade=? where idresposta = ?");
 
 			comandoSql.setDouble(1, resposta.getNota());
 			comandoSql.setString(2, resposta.getComentarioAtividade());
@@ -50,6 +50,7 @@ public class RespostaDAO {
 			comandoSql.setDate(4, (Date) resposta.getDataEntrega());
 			comandoSql.setInt(5, resposta.getAluno().getIdAluno());
 			comandoSql.setInt(6, resposta.getCodAtividade());
+			comandoSql.setInt(7, resposta.getIdResposta());
 			
 			comandoSql.execute();
 			
@@ -118,7 +119,7 @@ public class RespostaDAO {
 		List<Resposta> lista = new ArrayList<Resposta>();
 		try {
 			
-			PreparedStatement comandoSql = conexao.prepareStatement("select * from Escola");
+			PreparedStatement comandoSql = conexao.prepareStatement("select * from Resposta");
 			
 			ResultSet resultSet = comandoSql.executeQuery();
 			comandoSql.close();
