@@ -30,10 +30,6 @@ function logar(email, senha) {
                 //Verifica se a senha está correta 
                 if (json.senha == senha) {
 
-                    //Pegar ID do usuário
-                    const usuario = new Usuario(json.idUsuario);
-                    console.log(usuario.getIdUsuario())
-
                     //Redireciona para a pagina correspondente ao tipo do usuário 
                     switch (json.tipoUsuario) {
                         case 1:
