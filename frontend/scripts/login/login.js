@@ -64,7 +64,14 @@ function mudarSenha() {
     //André - Quinta   
 }
 
-
+function myFunction() {
+    var x = document.getElementById("input-senha");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
 
 
 //Breno - Responsividade
