@@ -9,8 +9,7 @@
     <!-- Chamada do CSS -->
     <link rel="stylesheet" href="/frontend/estilos/login/estilo-login.css">
     <!-- Chamada da biblioteca Jquery -->
-    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js">
-    </script>
+    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
     <!-- Chamada das funções JS -->
     <script src="/frontend/scripts/login/login.js"></script>
 </head>
@@ -20,7 +19,7 @@
     <header>
         <!-- Imagem da logo do Online Class -->
         <figure>
-            <img src="/frontend/imagens/Logo-OnlineClass.png" alt="Logo OnlineClass" title="Logo" id="logo">
+            <img id="logo" src="/frontend/imagens/Logo-OnlineClass.png" alt="Logo OnlineClass" title="Logo">
         </figure>
     </header>
     <!-- Fim do cabecalho do site -->
@@ -28,41 +27,34 @@
     <!-- Corpo do Site -->
     <main>
         <!-- Caixa de login -->
-        <div id="caixa-login" class="container-lg">
-
+        <div id="caixa-login">
             <!-- Imagem de login -->
             <figure id="img-container">
-                <img src="/frontend/imagens/perfil.png" class="mx-auto d-block" id="usuario-login">
+                <img id="usuario-login" src="/frontend/imagens/perfil.png" class="mx-auto d-block" title="Usuário">
             </figure>
 
             <!-- Inserção do email -->
             <div class="nav justify-content-center">
-                <input id="email" type="text" name="email" id="input-email" class="inputs" placeholder="Digite seu e-mail">
+                <input type="text" name="email" id="input-email" class="inputs" placeholder="Digite seu e-mail" title="E-mail">
             </div>
 
             <!-- Inserção de senha -->
             <div class="nav justify-content-center">
-                <input id="senha" type="password" name="senha" id="input-senha" class="inputs" placeholder="Digite sua senha">
+                <input type="password" name="senha" id="input-senha" class="inputs" placeholder="Digite sua senha" title="Senha">
             </div>
 
             <!-- Botão de login-->
             <div class="nav justify-content-center">
-                <input id="input-login" type="button" value="Logar" class="submit" onclick="logar($('#email').val(), $('#senha').val())">
+                <input id="input-login" type="button" value="Logar" class="submit" onclick="logar($('#email').val(), $('#senha').val())" title="Logar">
             </div>
 
             <!-- Botão de esquceu a senha -->
             <div id="botao-esqueceu">
-                <h5 style="cursor: pointer" onclick="mudarSenha()">Esqueceu sua senha?</h5>
+                <h5 id="texto-esqueceu" onclick="mudarSenha()" title="Recuperação de senha">Esqueceu sua senha?</h5>
             </div>
         </div>
     </main>
     <!-- Fim do corpo do site -->
-
-    <!-- Rodapé do site -->
-    <footer>
-
-    </footer>
-    <!-- Fim do rodapé do site-->
 </body>
 
 </html>

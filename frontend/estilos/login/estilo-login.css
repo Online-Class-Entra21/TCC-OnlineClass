@@ -2,137 +2,143 @@
 Estilo tela Login - Online Class
 -------------------------------*/
 
+/*
+Resetando config.
+*/
 * {
     margin: 0%;
     border: 0%;
     padding: 0%;
 }
 
-html,
-body {
+/*
+Corpo do programa / HTML
+*/
+html, body {
     height: 100%;
     width: auto;
 }
 
-
 /*
-Imagem de fundo 
+Corpo do programa 
 */
-
 body {
     background: #3f0a7c url(/frontend/imagens/fundo.png) no-repeat;
-    background-attachment: fixed;
-    background-size: auto;
+    background-repeat: no-repeat;
+    background-size:100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background-size: cover;
+    margin: 0px;
 }
 
+/*
+Cabeçalho 
+*/
 header {
     height: 25%;
+    width: auto;
 }
 
+/*
+Parte principal 
+*/
 main {
-    height: 70%;
+    height: 75%;
+    width: auto;
 }
-
-footer {
-    height: 5%;
-}
-
 
 /*
 Caixas para escrever [login] [senha]
 */
-
 .inputs {
-    font-size: 20px;
-    margin-bottom: 4%;
-    margin-left: 2%;
     background-color: #fff;
-    border: none;
     background-repeat: no-repeat;
-    width: 75%;
+    width: 45vh;
     height: auto;
-    border-radius: 14px 14px;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    padding-left: 12%;
-    padding-right: 3%;
+    font-size: 3vh;
+    border: none;
+    border-radius: 2vh;
+    padding: 0.5% 3% 0.5% 12%;
+    margin-left: 2%;
+    margin-bottom: 4%;
 }
-
 
 /*
 Logo do Online Class 
 */
-
 #logo {
     margin-top: 3%;
-    width: 160px;
+    width: 25vh;
     height: auto;
     margin-left: 7%;
 }
 
-
 /*
 Caixa de login 
 */
-
 #caixa-login {
-    width: 350px;
+    width: 52vh;
     height: auto;
     background-color: #ffffff4d;
     border-radius: 7%;
     text-align: center;
+    position: absolute;
 }
-
 
 /*
 Logo de Usuário 
 */
-
 #usuario-login {
-    padding: 6%;
-    width: 150px;
+    padding: 7%;
+    width: 22vh;
     height: auto;
 }
-
 
 /*
 Imagem [e-mail] [senha]
 */
-
 #input-email {
     background-image: url(/frontend/imagens/icone-usuario.png);
-    background-position: left;
+    background-position-x: 5%;
+    background-position-y: center;
+    background-size: 2.5vh;
 }
 
 #input-senha {
     background-image: url(/frontend/imagens/icone-cadeado.png);
-    background-position: left;
+    background-position-x: 5%;
+    background-position-y: center;
+    background-size: 2.5vh;
 }
-
 
 /*
 Botão de login
 */
-
 #input-login {
     color: rgb(255, 255, 255);
     background-color: #df884e;
     border: 2px solid #df884e;
-    border-radius: 14px 12px;
-    font-size: 120%;
+    font-size: 3vh;
+    border-radius: 2vh;
+    width: 17vh;
     height: auto;
-    margin-bottom: 5%;
     margin-top: 4%;
-    width: 110px;
+    margin-bottom: 5%;
 }
-
 
 /*
 Botão de esquecimento da senha 
 */
-
-#botao-esqueceu {
-    font-size: 18px;
+#botao-esqueceu{
+    cursor: pointer;
     color: #630c13;
-    padding-bottom: 6%;
+    margin-bottom: 6%;
+}
+
+#texto-esqueceu{
+    font-size: 3vh;
 }
