@@ -1,0 +1,29 @@
+#cadastro {
+    width: 350px;
+    height: 450px;
+    background: #85858567;
+    border-radius: 30px;
+    box-shadow: 3px 3px 4px black;
+    float: left;
+    margin: 40px;
+    margin-top: 200px;
+}
+
+p a {
+    text-decoration: none;
+    color: rgb(112, 112, 112);
+    text-transform: uppercase;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    transition: 1s;
+    display: block;
+    padding: 0 2em;
+    color: #999999;
+    margin-top: 200px;
+}
+
+p a:hover {
+    text-decoration: none;
+    color: black;
+    font-size: 18px
+}
