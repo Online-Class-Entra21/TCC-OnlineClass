@@ -59,8 +59,8 @@ Caixas para escrever [login] [senha]
     background-color: #fff;
     background-repeat: no-repeat;
     width: 28vh;
-    height: 4vh;
-    font-size: 3vh;
+    height: 5vh;
+    font-size: 2vh;
     border: none;
     border-radius: 2vh;
     padding: 0.5% 3% 0.5% 12%;
@@ -117,8 +117,8 @@ Imagem [e-mail] [senha]
 }
 
 #visao-senha{
-    width: 4vh;
-    height: auto;
+    width: auto;
+    height: 4vh;
 }
 
 /*
@@ -128,7 +128,7 @@ Botão de login
     color: rgb(255, 255, 255);
     background-color: #df884e;
     border: 2px solid #df884e;
-    font-size: 3vh;
+    font-size: 2.2vh;
     border-radius: 2vh;
     width: 17vh;
     height: 5vh;
@@ -146,5 +146,5 @@ Botão de esquecimento da senha
 }
 
 #texto-esqueceu{
-    font-size: 3vh;
+    font-size: 2.5vh;
 }
