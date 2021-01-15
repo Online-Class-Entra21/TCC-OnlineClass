@@ -68,6 +68,9 @@ function mudarSenha() {
     //André - Quinta   
 }
 
+
+
+
 //Breno - Responsividade
 //Breno - Manter o ID para as demais pastas 
 //André - Mudança de senha

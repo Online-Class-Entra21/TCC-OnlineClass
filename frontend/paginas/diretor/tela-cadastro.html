@@ -9,11 +9,23 @@
         <!-- Chamada da biblioteca Jquery -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
         <!-- Chamada das funções JS -->
-        <script src="/frontend/scripts/login/login.js"></script>
+        <script src=""></script>
 
         <title>Cadastro - OnlineClass</title>
     </head>
     <body>
+    <!--Cabeçalho do site -->
+        <header>
+            <!-- Barra principal - cabeçalho de opções do site -->
+            <nav id="barraPrincipal">
+                <!-- Botão do menu -->
+                <div id="botao-menu">
+                    <img src="/frontend/imagens/botao-menu.png" type="button" value="" class="menu" onmouseover= "abrirMenu()">     
+                </div>
+                <!-- Nome da escola na barra -->
+                <h5 id="tituloPrincipal" class="textoBarra">Nome da Escola</h5>
+            </nav>
+        </header>
         <div>
             <div class="nav justify-content-center"> 
                 <div id="cadastro">
@@ -25,9 +37,10 @@
                 </div>
     
                 <div id="cadastro">
-                    <p><a href="/frontend/paginas/diretor/tela-cadastro-aluno.html">Cadastrar Aluno</a></p>
+                    <p><a href="/frontend/paginas/diretor/tela-cadastro-aluno.html">Cadastrar<br>Aluno</a></p>
                 </div>
             </div>    
         </div>
+        
     </body>
 </html>

@@ -49,7 +49,7 @@
 
     //Entrar na opção 5 do menu 
     function entrarOpcao5(){
-        location.href = "../diretor/profissionais.html"; 
+        location.href = "../diretor/tela-cadastro.html"; 
     }
 
     //Entrar na opção 6 do menu 
