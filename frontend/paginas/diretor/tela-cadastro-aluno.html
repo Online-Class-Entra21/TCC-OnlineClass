@@ -14,41 +14,61 @@
         <title>Cadastro - Aluno</title>
     </head>
     <body>
-        <div id="dados-pessoais">
-            <h2> Dados Pessoais</h2>
-            <br/>
-            <div>
-                <label> Nome: </label>
-                <br/>
-                <input type="text">
-                <br/>
-                <label> Cod. Mátricula: </label>
-                <br/>
-                <input type="text">
-                <br/>
-                <label> Ano Escolar: </label>
-                <br/>
-                <input type="text">
-                <br/>
-                <label> CPF: </label>
-                <br/>
-                <input type="text">
-                <br/>
-                <label> Nome do Pai: </label>
-                <br/>
-                <input type="text">
-                <br/>
-                <label> Nome da Mãe: </label>
-                <br/>
-                <input type="text">
-                <br/>
-                <label> Celular: </label>
-                <br/>
-                <input type="text">
-                <br>
-                <a href="/frontend/paginas/diretor/tela-cadastro.html">
-                    <buttom class="button button1">Cadastrar</buttom>
-                </a>
+    <!--Cabeçalho do site -->
+    <header>
+        <!-- Barra principal - cabeçalho de opções do site -->
+        <nav id="barraPrincipal">
+            <!-- Botão do menu -->
+            <div id="botao-menu">
+                <img src="/frontend/imagens/botao-menu.png" type="button" value="" class="menu" onmouseover= "abrirMenu()">     
             </div>
+            <!-- Nome da escola na barra -->
+            <h5 id="tituloPrincipal" class="textoBarra">Nome da Escola</h5>
+        </nav>
+    </header>
+    <div id="dados-pessoais">
+        <h2> Dados Pessoais</h2>
+        <br/>
+        <form>
+            <label> Nome: </label>
+            <br/>
+            <input type="text">
+            <br/>
+            <label> Cod. Mátricula: </label>
+            <br/>
+            <input type="text">
+            <br/>
+            <label> Ano Escolar: </label>
+            <br/>
+            <select>
+                <option>Sexto Ano - E.F.II</option>
+                <option>Sétimo Ano - E.F.II</option>
+                <option>Oitavo Ano - E.F.II</option>
+                <option>Nono Ano - E.F.II</option>
+                <option>Primeiro Ano - E.M.</option>
+                <option>Segundo Ano - E.M.</option>
+                <option>Terceiro Ano - E.M.</option>
+            </select>
+            <br/>
+            <label> CPF: </label>
+            <br/>
+            <input type="text">
+            <br/>
+            <label> Nome do Pai: </label>
+            <br/>
+            <input type="text">
+            <br/>
+            <label> Nome da Mãe: </label>
+            <br/>
+            <input type="text">
+            <br/>
+            <label> Celular: </label>
+            <br/>
+            <input type="text">
+            <br>
+            <a href="/frontend/paginas/diretor/tela-cadastro.html">
+            <buttom class="button button1">Cadastrar</buttom>
+            </a>
+        </form>
     </body>
 </html>

@@ -2,6 +2,8 @@
 Estilo tela Login - Online Class
 -------------------------------*/
 
+
+
 /*
 Resetando config.
 */
@@ -14,7 +16,7 @@ Resetando config.
 /*
 Corpo do programa / HTML
 */
-html, body {
+html, body, form {
     height: 100%;
     width: auto;
 }
@@ -24,13 +26,9 @@ Corpo do programa
 */
 body {
     background: #3f0a7c url(/frontend/imagens/fundo.png) no-repeat;
+    font-family: 'Times New Roman', Times, serif;
     background-repeat: no-repeat;
-    background-size:100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow: auto;
+    background-size: 100%;
     background-size: cover;
     margin: 0px;
 }
@@ -47,8 +45,11 @@ header {
 Parte principal 
 */
 main {
-    height: 75%;
+    height: 55%;
     width: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 /*
@@ -57,13 +58,14 @@ Caixas para escrever [login] [senha]
 .inputs {
     background-color: #fff;
     background-repeat: no-repeat;
-    width: 45vh;
-    height: auto;
-    font-size: 3vh;
+    width: 28vh;
+    height: 5vh;
+    font-size: 2vh;
     border: none;
     border-radius: 2vh;
     padding: 0.5% 3% 0.5% 12%;
-    margin-left: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
     margin-bottom: 4%;
 }
 
@@ -81,12 +83,11 @@ Logo do Online Class
 Caixa de login 
 */
 #caixa-login {
-    width: 52vh;
+    width: 50vh;
     height: auto;
     background-color: #ffffff4d;
     border-radius: 7%;
-    text-align: center;
-    position: absolute;
+    text-align: center; 
 }
 
 /*
@@ -94,7 +95,7 @@ Logo de Usuário
 */
 #usuario-login {
     padding: 7%;
-    width: 22vh;
+    width: 18vh;
     height: auto;
 }
 
@@ -115,6 +116,11 @@ Imagem [e-mail] [senha]
     background-size: 2.5vh;
 }
 
+#visao-senha{
+    width: auto;
+    height: 4vh;
+}
+
 /*
 Botão de login
 */
@@ -122,10 +128,10 @@ Botão de login
     color: rgb(255, 255, 255);
     background-color: #df884e;
     border: 2px solid #df884e;
-    font-size: 3vh;
+    font-size: 2.2vh;
     border-radius: 2vh;
     width: 17vh;
-    height: auto;
+    height: 5vh;
     margin-top: 4%;
     margin-bottom: 5%;
 }
@@ -140,5 +146,5 @@ Botão de esquecimento da senha
 }
 
 #texto-esqueceu{
-    font-size: 3vh;
+    font-size: 2.5vh;
 }

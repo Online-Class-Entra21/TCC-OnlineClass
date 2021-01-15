@@ -30,10 +30,6 @@ function logar(email, senha) {
                 //Verifica se a senha está correta 
                 if (json.senha == senha) {
 
-                    //Pegar ID do usuário
-                    const usuario = new Usuario(json.idUsuario);
-                    console.log(usuario.getIdUsuario())
-
                     //Redireciona para a pagina correspondente ao tipo do usuário 
                     switch (json.tipoUsuario) {
                         case 1:
@@ -67,6 +63,16 @@ function logar(email, senha) {
 function mudarSenha() {
     //André - Quinta   
 }
+
+//Mostra e oculta a senha digitada 
+function mostrarSenha() {
+    var x = document.getElementById("input-senha");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
 
 //Breno - Responsividade
 //Breno - Manter o ID para as demais pastas 
