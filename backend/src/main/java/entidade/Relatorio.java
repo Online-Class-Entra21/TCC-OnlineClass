@@ -3,7 +3,7 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo métodos e atributos para o envio e criação de relatórios pelo usuário.
+ * Classe contendo mï¿½todos e atributos para o envio e criaï¿½ï¿½o de relatï¿½rios pelo usuï¿½rio.
  * @see Usuario
  * @author
  */
@@ -12,7 +12,7 @@ public class Relatorio {
     private String titulo;
     private int destinatario;
     private String texto;
-    private int tipoRelatorio;
+    private String tipoRelatorio;
     private int remetente;
 
     /**
@@ -23,36 +23,40 @@ public class Relatorio {
     }
 
 
-    /** Método para retorno do ID do relatório.
-     * @return Int - ID do relatório
+    /** Mï¿½todo para retorno do ID do relatï¿½rio.
+     * @return Int - ID do relatï¿½rio
      */
     public int getIdRelatorio() {
     	return idRelatorio;
     }
 
     /**
+     * @param i 
      * 
      */
-    public void setIdRelatorio() {
+    public void setIdRelatorio(int idRelatorio) {
         // TODO implement here
+    	this.idRelatorio = idRelatorio;
     }
 
-    /** Método para retorno do titulo do relatório.
-     * @return String - Titulo do relatório
+    /** Mï¿½todo para retorno do titulo do relatï¿½rio.
+     * @return String - Titulo do relatï¿½rio
      */
     public String getTitulo() {
         return titulo;
     }
 
     /**
+     * @param string 
      * 
      */
-    public void setTitulo() {
+    public void setTitulo(String titulo) {
         // TODO implement here
+    	this.titulo = titulo;
     }
 
-    /** Método para retorno do ID do destinatário.
-     * @return Int - ID do destinatário
+    /** Mï¿½todo para retorno do ID do destinatï¿½rio.
+     * @return Int - ID do destinatï¿½rio
      */
     public int getDestinatario() {
         return destinatario;
@@ -61,12 +65,13 @@ public class Relatorio {
     /**
      * 
      */
-    public void setDestinatario() {
+    public void setDestinatario(int destinatario) {
         // TODO implement here
+    	this.destinatario = destinatario;
     }
 
-    /** Método para retorno do texto do relatório.
-     * @return String - Texto do relatório
+    /** Mï¿½todo para retorno do texto do relatï¿½rio.
+     * @return String - Texto do relatï¿½rio
      */
     public String getTexto() {
         return texto;
@@ -75,25 +80,27 @@ public class Relatorio {
     /**
      * 
      */
-    public void setTexto() {
+    public void setTexto(String texto) {
         // TODO implement here
+    	this.texto = texto;
     }
 
-    /** Método para retorno do tipo de relatório.
-     * @return Int - Tipo do relatório
+    /** Mï¿½todo para retorno do tipo de relatï¿½rio.
+     * @return Int - Tipo do relatï¿½rio
      */
-    public int getTipoRelatorio() {
+    public String getTipoRelatorio() {
         return tipoRelatorio;
     }
 
     /**
      * 
      */
-    public void setTipoRelatorio() {
+    public void setTipoRelatorio(String tipoRelatorio) {
         // TODO implement here
+    	this.tipoRelatorio = tipoRelatorio;
     }
 
-    /** Método para retorno do ID do remetente.
+    /** Mï¿½todo para retorno do ID do remetente.
      * @return Int - ID do remetente
      */
     public int getRemetente() {
@@ -103,8 +110,9 @@ public class Relatorio {
     /**
      * 
      */
-    public void setRemetente() {
+    public void setRemetente(int remetente) {
         // TODO implement here
+    	this.remetente = remetente;
     }
 
 }

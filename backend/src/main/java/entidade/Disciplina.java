@@ -3,7 +3,7 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo métodos e atributos para a disciplina.
+ * Classe contendo mï¿½todos e atributos para a disciplina.
  * @author 
  */
 public class Disciplina {
@@ -21,23 +21,25 @@ public class Disciplina {
     	setNumeroAulas(numeroAulas);
     }
 
+    public Disciplina() {
+	}
     
-    /** Método para retorno do ID da disciplina.
+    /** Mï¿½todo para retorno do ID da disciplina.
      * @return Int - ID da disciplina
      */
     public int getIdDisciplina() {
         return idDisciplina;
     }
 
-    /** Método para retorno do nome da disciplina.
+    /** Mï¿½todo para retorno do nome da disciplina.
      * @return String - Nome da disciplina
      */
     public String getNome() {
         return nome;
     }
 
-    /** Método para retorno do número de aulas da disciplina.
-     * @return Int - Número de aulas
+    /** Mï¿½todo para retorno do nï¿½mero de aulas da disciplina.
+     * @return Int - Nï¿½mero de aulas
      */
     public int getNumeroAulas() {
         return numeroAulas;

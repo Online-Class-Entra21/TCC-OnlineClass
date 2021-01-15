@@ -3,7 +3,7 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe com métodos e atributos para o período de avaliação.
+ * Classe com mï¿½todos e atributos para o perï¿½odo de avaliaï¿½ï¿½o.
  * @author 
  */
 public class PeriodoAvaliacao {
@@ -11,6 +11,7 @@ public class PeriodoAvaliacao {
     private Date dataInicial;
     private Date dataFinal;
     private String descricao;
+    private int idEscola;
     
     /**
      * Construtor usado ao instanciar a classe PeriodoAvaliacao.
@@ -19,8 +20,18 @@ public class PeriodoAvaliacao {
     public PeriodoAvaliacao() {
     }
 
+    
+    public int getIdEscola() {
+		return idEscola;
+	}
 
-    /** Método para retorno do ID do PeriodoAvaliacao.
+
+	public void setIdEscola(int idEscola) {
+		this.idEscola = idEscola;
+	}
+
+
+	/** Mï¿½todo para retorno do ID do PeriodoAvaliacao.
      * @return Int - ID PeriodoAvaliacao
      */
     public int getIdPeriodoAvaliacao() {
@@ -30,11 +41,11 @@ public class PeriodoAvaliacao {
     /**
      * 
      */
-    public void setIdPeriodoAvaliacao() {
-        // TODO implement here
+    public void setIdPeriodoAvaliacao(int idPeriodoAvaliacao) {
+        this.idPeriodoAvaliacao = idPeriodoAvaliacao;
     }
 
-    /** Método para retorno da data inicial do PeriodoAvaliacao.
+    /** Mï¿½todo para retorno da data inicial do PeriodoAvaliacao.
      * @return Date - Data inicial do PeriodoAvaliacao
      */
     public Date getDataInicial() {
@@ -44,11 +55,11 @@ public class PeriodoAvaliacao {
     /**
      * 
      */
-    public void setDataInicial() {
-        // TODO implement here
+    public void setDataInicial(Date dataInicial) {
+        this.dataInicial = dataInicial;
     }
 
-    /** Método para retorno da data final do PeriodoAvaliacao.
+    /** Mï¿½todo para retorno da data final do PeriodoAvaliacao.
      * @return Date - Data final do PeriodoAvaliacao
      */
     public Date getDataFinal() {
@@ -58,12 +69,12 @@ public class PeriodoAvaliacao {
     /**
      * 
      */
-    public void setDataFinal() {
-        // TODO implement here
+    public void setDataFinal(Date dataFinal) {
+        this.dataFinal = dataFinal;
     }
 
-    /** Método para retorno da descrição do PeriodoAvaliacao.
-     * @return String -  Descrição PeriodoAvaliacao
+    /** Mï¿½todo para retorno da descriï¿½ï¿½o do PeriodoAvaliacao.
+     * @return String -  Descriï¿½ï¿½o PeriodoAvaliacao
      */
     public String getDescricao() {
         return descricao;
@@ -72,8 +83,8 @@ public class PeriodoAvaliacao {
     /**
      * 
      */
-    public void setDescricao() {
-        // TODO implement here
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
 }
