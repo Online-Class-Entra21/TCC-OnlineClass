@@ -3,7 +3,6 @@ Estilo tela Login - Online Class
 -------------------------------*/
 
 
-
 /*
 Resetando config.
 */
@@ -116,9 +115,14 @@ Imagem [e-mail] [senha]
     background-size: 2.5vh;
 }
 
+
+
 #visao-senha{
-    width: auto;
-    height: 4vh;
+    width: 3vh;
+    height: auto;
+    float: right;
+    margin-top: -6.1vh;
+    margin-right: 3.7vh;
 }
 
 /*
