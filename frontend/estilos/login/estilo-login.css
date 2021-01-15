@@ -57,7 +57,7 @@ Caixas para escrever [login] [senha]
     background-color: #fff;
     background-repeat: no-repeat;
     width: 28vh;
-    height: auto;
+    height: 4vh;
     font-size: 3vh;
     border: none;
     border-radius: 2vh;
@@ -124,7 +124,7 @@ Botão de login
     font-size: 3vh;
     border-radius: 2vh;
     width: 17vh;
-    height: auto;
+    height: 5vh;
     margin-top: 4%;
     margin-bottom: 5%;
 }
