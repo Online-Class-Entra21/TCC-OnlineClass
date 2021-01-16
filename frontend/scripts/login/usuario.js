@@ -1,9 +1,8 @@
 class Usuario {
-
     construtor(idUsuario) {
-        setIdUsuario(idUsuario);
+        setIdUsuario(idUsuario)
     }
-
+    
     set setIdUsuario(idUsuario) {
         this.idUsuario = idUsuario
     }

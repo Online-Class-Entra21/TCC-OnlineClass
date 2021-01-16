@@ -101,9 +101,21 @@ public class usuarioController {
 		return codigo;
 	}
 	
-	
-	
-	
+	/**
+	 * Verifica se o usuario existe no banco de dados 
+	 * @param email
+	 * @return
+	 */
+	@GetMapping(path = "api/verificar/{email}")
+	public boolean verificarEmail(@PathVariable("email") String email) {
+		Usuario usuario = new Usuario();
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		usuario = usuarioDao.buscarPorEmail(email);
+		if(usuario != null) {
+			return true;
+		}
+		return false;
+	}
 }
 
 

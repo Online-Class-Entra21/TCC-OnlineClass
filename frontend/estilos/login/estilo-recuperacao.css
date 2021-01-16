@@ -35,7 +35,7 @@ body {
 Cabeçalho 
 */
 header {
-    height: 25%;
+    height: 20%;
     width: auto;
 }
 
@@ -51,16 +51,25 @@ main {
 }
 
 /*
-Caixas para escrever [login] [senha]
+Título da caixa 
 */
-.inputs {
+label{
+    color: #630c13;
+    font-size: 4vh;
+    margin-top: 5%;
+}
+
+/*
+Config. Inputs 
+*/
+.inputs{
     background-color: #fff;
     background-repeat: no-repeat;
-    width: 30vh;
-    height: 5vh;
-    font-size: 2.3vh;
+    width: 45vh;
+    height: 6.5vh;
+    font-size: 2.8vh;
     border: none;
-    border-radius: 2vh;
+    border-radius: 3vh;
     padding: 0.5% 3% 0.5% 12%;
     margin-left: 3%;
     margin-right: 3%;
@@ -81,7 +90,7 @@ Logo do Online Class
 Caixa de login 
 */
 #caixa-login {
-    width: 50vh;
+    width: 55vh;
     height: auto;
     background-color: #ffffff4d;
     border-radius: 3vh;
@@ -89,55 +98,58 @@ Caixa de login
 }
 
 /*
-Logo de Usuário 
-*/
-#usuario-login {
-    padding: 7%;
-    width: 20vh;
-    height: auto;
-}
-
-/*
-Imagem [e-mail] [senha]
+Imagem [e-mail] [código]
 */
 #input-email {
     background-image: url(/frontend/imagens/icone-usuario.png);
     background-position-x: 5%;
     background-position-y: center;
     background-size: 2.5vh;
+    margin-top: 6%;
 }
-
-#input-senha {
-    background-image: url(/frontend/imagens/icone-cadeado.png);
+#input-codigo {
+    background-image: none;
     background-position-x: 5%;
     background-position-y: center;
     background-size: 2.5vh;
+    margin-top: 6%;
+    display: none;
 }
 
 /*
-Botão de login
+Tira as setas do tipo number
 */
-#input-login {
+#input-codigo::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+/*
+Botão de envio 1
+*/
+#input-enviar-email {
     color: rgb(255, 255, 255);
     background-color: #df884e;
     border: 2px solid #df884e;
-    font-size: 2.3vh;
-    border-radius: 2vh;
-    width: 17vh;
-    height: 5vh;
+    font-size: 2.8vh;
+    border-radius: 3vh;
+    width: 18vh;
+    height: 6vh;
     margin-top: 4%;
     margin-bottom: 5%;
 }
 
 /*
-Botão de esquecimento da senha 
+Botão de envio 2
 */
-#botao-esqueceu{
-    cursor: pointer;
-    color: #630c13;
-    margin-bottom: 6%;
-}
-
-#texto-esqueceu{
-    font-size: 2.5vh;
+#input-enviar-codigo {
+    color: rgb(255, 255, 255);
+    background-color: #df884e;
+    border: 2px solid #df884e;
+    font-size: 2.8vh;
+    border-radius: 3vh;
+    width: 18vh;
+    height: 6vh;
+    margin-top: 4%;
+    margin-bottom: 5%;
+    display: none;
 }

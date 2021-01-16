@@ -7,73 +7,67 @@ const options = {
 
 //Verifica as informações e loga no sistema 
 function logar(email, senha) {
-    $('#email').css('border', 'none')
-    $('#senha').css('border', 'none')
+    $('#input-email').css('border', 'none')
+    $('#input-senha').css('border', 'none')
         //Preenchimento de informações 
-    if ($('#email').val() == "" && $('#senha').val() == "") {
-        $('#email').css('border', '2px solid red')
-        $('#senha').css('border', '2px solid red')
-        alert('Preencha as informações de login!')
-    } else if ($('#email').val() != "" && $('#senha').val() == "") {
-        $('#senha').css('border', '2px solid red')
+    if (email == "" && senha == "") {
+        $('#input-email').css('border', '2px solid red')
+        $('#input-senha').css('border', '2px solid red')
+        alert('Preencha as informações de login!','OnlineClass')
+    } else if (email != "" && senha == "") {
+        $('#input-senha').css('border', '2px solid red')
         alert('Preencha o campo de senha!')
-    } else if ($('#email').val() == "" && $('#senha').val() != "") {
-        $('#email').css('border', '2px solid red')
+    } else if (email == "" && senha != "") {
+        $('#input-email').css('border', '2px solid red')
         alert('Preencha o campo de e-mail!')
     } else {
         //Consumindo API
         fetch('http://localhost:8080/api/usuario/email/' + email)
             .then(function(response) {
-                return response.json();
+                return response.json()
             })
             .then(function(json) {
                 //Verifica se a senha está correta 
                 if (json.senha == senha) {
 
+                    const usuario = new Usuario(json.idUsuario);
+                    console.log(usuario.getIdUsuario());
+
                     //Redireciona para a pagina correspondente ao tipo do usuário 
                     switch (json.tipoUsuario) {
                         case 1:
-                            location.href = "/frontend/paginas/diretor/tela-principal.html"
+                            location.href = "/frontend/paginas/administrador/tela-principal.html"
                             break;
                         case 2:
-                            location.href = "/frontend/paginas/coordenador/tela-principal.html"
+                            location.href = "/frontend/paginas/diretor/tela-principal.html"
                             break;
                         case 3:
-                            location.href = "/frontend/paginas/professor/tela-principal.html"
+                            location.href = "/frontend/paginas/coordenador/tela-principal.html"
                             break;
                         case 4:
+                            location.href = "/frontend/paginas/professor/tela-principal.html"
+                            break;
+                        case 5:
                             location.href = "/frontend/paginas/aluno/aluno.html"
                             break;
                     }
                 } else {
-                    $('#senha').css('border', '2px solid red')
-                    alert('Senha inválida!');
+                    $('#input-senha').css('border', '2px solid red')
+                    alert('Senha inválida!')
                 }
             })
             .catch(function() {
                 //Mensagem de erro de login
-                $('#email').css('border', '2px solid red')
-                $('#senha').css('border', '2px solid red')
-                alert('Senha e/ou e-mail inválidos!');
+                $('#input-email').css('border', '2px solid red')
+                $('#input-senha').css('border', '2px solid red')
+                alert('Senha e/ou e-mail inválidos!')
             });
     }
 }
 
-//Muda a senha do login no sistema 
+//Abre uma nova guia para digitar o email de recuperação 
 function mudarSenha() {
-    //André - Quinta   
+    novaJanela = window.open ("/frontend/paginas/login/recuperacao.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
 }
 
-//Mostra e oculta a senha digitada 
-function mostrarSenha() {
-    var x = document.getElementById("input-senha");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-  }
-
-//Breno - Responsividade
 //Breno - Manter o ID para as demais pastas 
-//André - Mudança de senha
