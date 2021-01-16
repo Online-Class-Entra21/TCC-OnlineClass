@@ -78,8 +78,8 @@ public class usuarioController {
 			codigo = codigo+digitos[i];
 		}
 		
-		String nossoEmail = "";
-		String nossaSenha = "";
+		String nossoEmail = "suporteonlineclass@gmail.com";
+		String nossaSenha = "aabir1029384756";
 		
 		SimpleEmail emailCon = new SimpleEmail();
 		emailCon.setHostName("smtp.gmail.com");
