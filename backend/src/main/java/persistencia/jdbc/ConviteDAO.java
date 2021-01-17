@@ -95,7 +95,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 				 * apartir do fk do usuario
 				 */
 				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				Usuario usuario = usuarioDAO.buscarPorId(resultSet.getInt(5));
+				Usuario usuario = usuarioDAO.buscarId(resultSet.getInt(5));
 				convite.setRemetente(usuario.getIdUsuario());
 			
 			}
@@ -129,7 +129,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 				 * apartir do fk do usuario
 				 */
 				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				Usuario usuario = usuarioDAO.buscarPorId(resultSet.getInt(5));
+				Usuario usuario = usuarioDAO.buscarId(resultSet.getInt(5));
 				convite.setRemetente(usuario.getIdUsuario());
 
 			lista.add(convite);

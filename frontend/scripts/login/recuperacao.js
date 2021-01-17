@@ -51,4 +51,5 @@ function mandarCodigo(email){
 
 function verificarCodigo(codigo){
     //Verifica se o código é igual ao enviado 
+    
 }
