@@ -8,6 +8,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfigure {
 	
+	/**
+	 * Configura o servidor para realizar os métodos padrões 
+	 * de uma API, além de desbloquear o acesso dela no 
+	 * site do sistema web
+	 * @return
+	 */
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {

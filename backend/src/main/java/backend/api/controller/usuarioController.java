@@ -28,17 +28,22 @@ public class usuarioController {
 	public String consultar(@PathVariable("codigo") int codigo) {
 		Usuario usuario = new Usuario();
 		UsuarioDAO usuarioDao = new UsuarioDAO();
-		usuario = usuarioDao.buscarPorId(codigo);
+		usuario = usuarioDao.buscarId(codigo);
 		Gson gson = new Gson();
 		String json = gson.toJson(usuario);
 		return json;
 	}
 	
+	/**
+	 * Retorna o usuário que corresponde ao email indicado
+	 * @param email
+	 * @return
+	 */
 	@GetMapping(path = "/api/usuario/email/{email}")
 	public String consultarPorEmail(@PathVariable("email") String email) {
 		Usuario usuario = new Usuario();
 		UsuarioDAO usuarioDao = new UsuarioDAO();
-		usuario = usuarioDao.buscarPorEmail(email);
+		usuario = usuarioDao.buscarEmail(email);
 		Gson gson = new Gson();
 		String json = gson.toJson(usuario);
 		return json;
@@ -67,6 +72,27 @@ public class usuarioController {
 		return usuarioDao.delete(codigo);
 	}
 	
+	/**
+	 * Verifica se o usuario existe no banco de dados 
+	 * @param email
+	 * @return
+	 */
+	@GetMapping(path = "api/verificar/{email}")
+	public boolean verificarEmail(@PathVariable("email") String email) {
+		Usuario usuario = new Usuario();
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		usuario = usuarioDao.buscarEmail(email);
+		if(usuario != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Envia um código de verificação via e-mail ao usuário
+	 * @param email
+	 * @return
+	 */
 	@GetMapping(path = "/api/codigo/{email}")
 	public String codigo(@PathVariable("email") String email){
 		String codigo = "";
@@ -99,22 +125,6 @@ public class usuarioController {
 		}
 		
 		return codigo;
-	}
-	
-	/**
-	 * Verifica se o usuario existe no banco de dados 
-	 * @param email
-	 * @return
-	 */
-	@GetMapping(path = "api/verificar/{email}")
-	public boolean verificarEmail(@PathVariable("email") String email) {
-		Usuario usuario = new Usuario();
-		UsuarioDAO usuarioDao = new UsuarioDAO();
-		usuario = usuarioDao.buscarPorEmail(email);
-		if(usuario != null) {
-			return true;
-		}
-		return false;
 	}
 }
 

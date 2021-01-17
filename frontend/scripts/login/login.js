@@ -30,8 +30,8 @@ function logar(email, senha) {
                 //Verifica se a senha está correta 
                 if (json.senha == senha) {
 
-                    const usuario = new Usuario(json.idUsuario);
-                    console.log(usuario.getIdUsuario());
+                    //Persistencia de dados para as próximas páginas - ID
+                    usuarioDados = new usuarioDados(json.idUsuario);
 
                     //Redireciona para a pagina correspondente ao tipo do usuário 
                     switch (json.tipoUsuario) {
@@ -69,5 +69,3 @@ function logar(email, senha) {
 function mudarSenha() {
     novaJanela = window.open ("/frontend/paginas/login/recuperacao.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
 }
-
-//Breno - Manter o ID para as demais pastas 

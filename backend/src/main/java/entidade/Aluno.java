@@ -1,138 +1,141 @@
 package entidade;
 
-import java.sql.Time;
-import java.util.*;
-
 /**
- * Classe contendo métodos e atributos para o aluno.
- * Herda métodos e atributos da classe Usuario.
+ * Classe contendo metodos e atributos para o aluno.
+ * Herda metodos e atributos da classe Usuario.
  * @see Usuario
  * @author  
  */
 public class Aluno extends Usuario {
-    private int idAluno;
+    
+	private int idAluno;
     private int ra;
     private int matricula;
-    private boolean deficienciaFisica;
+    private boolean deficiencia;
     private String nomeMae;
     private String nomePai;
     private String nomeResponsavel;
     private boolean situacaoAnoLetivo;
-    private Resposta respostas[];
+    private Usuario usuario;
     private Turma turma;
     
-    public Aluno() {
-    	
+    /**
+     * Construtor padrao
+     */
+    public Aluno() {    	
     }
-/**
- * 
- * @param idAluno
- * @param ra
- * @param matricula
- * @param deficienciaFisica
- * @param nomeMae
- * @param nomePai
- * @param nomeResponsavel
- * @param situacaoAnoLetivo
- * @param turma
- */
+    
+	/**
+	 * MÃ©todo construtor preenchendo todas as informaÃ§Ãµes 
+	 * @param idAluno
+	 * @param ra
+	 * @param matricula
+	 * @param deficienciaFisica
+	 * @param nomeMae
+	 * @param nomePai
+	 * @param nomeResponsavel
+	 * @param situacaoAnoLetivo
+	 * @param usuario
+	 * @param turma
+	 */
     public Aluno(int idAluno, int ra, int matricula, boolean deficienciaFisica, 
-    			 String nomeMae, String nomePai, String nomeResponsavel, boolean situacaoAnoLetivo, Turma turma) {
+    			 String nomeMae, String nomePai, String nomeResponsavel, boolean situacaoAnoLetivo,
+    			 Usuario usuario, Turma turma) {
+    	
     	setIdAluno(idAluno);
     	setRa(ra);
     	setMatricula(matricula);
-    	setDeficienciaFisica(deficienciaFisica);
+    	setDeficiencia(deficienciaFisica);
     	setNomeMae(nomeMae);
     	setNomePai(nomePai);
     	setNomeResponsavel(nomeResponsavel);
     	setSituacaoAnoLetivo(situacaoAnoLetivo);
+    	setUsuario(usuario);
     	setTurma(turma);
     }
-    /**
-     * Construtor usado ao instanciar a classe Aluno.
-     * @param
-     */
-    public Aluno(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-			   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
-			   String fotoUsuario, Endereco endereco, Escola escola) {
-    	super(idUsuario, nome, sobrenome, cpf, telefone, celular,
-				   tipoUsuario, email, senha, horarioInicioExpediente, horarioFinalExpediente,
-				   fotoUsuario, endereco, escola);
-	setTipoUsuario(0);
-    }
-    
-    
-    /** Método para retorno do ID do aluno.
-     * @return Int - ID do usuário
+
+    /** 
+     * Metodo para retorno do ID do aluno.
+     * @return Int - ID do usuUrio
      */
     public int getIdAluno() {
         return idAluno;
     }
 
     /**
-     * 
+     * Metodo para inserÃ§Ã£o do id do aluno 
+     * @param idAluno
      */
     public void setIdAluno(int idAluno) {
         this.idAluno = idAluno;
     }
 
-    /** Método para retorno do RA do aluno.
-     * @return Int - RA do usuário
+    /** 
+     * Metodo para retorno do RA do aluno.
+     * @return Int - RA do usuurio
      */
     public int getRa() {
         return ra;
     }
 
     /**
-     * 
+     * Metodo para inserÃ§Ã£o do RA
+     * @param ra
      */
     public void setRa(int ra) {
         this.ra = ra;
     }
 
-    /** Método para retorno da matrícula do aluno.
-     * @return String - Matrícula do usuário
+    /** 
+     * Metodo para retorno da matrï¿½cula do aluno.
+     * @return String - Matricula do usuï¿½rio
      */
     public int getMatricula() {
-        return 0;
+        return matricula;
     }
 
     /**
-     * 
+     * Metodo para inserÃ§Ã£o de matricula 
+     * @param matricula
      */
     public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
 
-    /** Método para retornar se o aluno possui alguma deficiência física.
-     * @return Boolean - Possui deficiência física? True / False
+    /** 
+     * Metodo para retornar se o aluno possui alguma deficiencia fisica.
+     * @return Boolean - Possui deficiencia fï¿½sica? True / False
      */
-    public boolean getDeficienciaFisica() {
-        return deficienciaFisica;
+    public boolean getDeficiencia() {
+        return deficiencia;
     }
 
     /**
-     * 
+     * Metodo para inserÃ§Ã£o da deficiencia 
+     * @param deficienciaFisica
      */
-    public void setDeficienciaFisica(boolean deficienciaFisica) {
-        this.deficienciaFisica = deficienciaFisica;
+    public void setDeficiencia(boolean deficienciaFisica) {
+        this.deficiencia = deficienciaFisica;
     }
 
-    /** Método para retorno do nome da mãe do aluno.
-     * @return String - Nome do mãe do aluno
+    /** 
+     * Metodo para retorno do nome da mae do aluno.
+     * @return String - Nome do mae do aluno
      */
     public String getNomeMae() {
         return nomeMae;
     }
 
     /**
-     * 
+     * Metodo para inserÃ§Ã£o do nome da mae 
+     * @param nomeMae
      */
     public void setNomeMae(String nomeMae) {
         this.nomeMae =  nomeMae;
     }
 
-    /** Método para retorno do nome do pai do aluno.
+    /** 
+     * Metodo para retorno do nome do pai do aluno.
      * @return String - Nome do pai do aluno
      */
     public String getNomePai() {
@@ -140,27 +143,31 @@ public class Aluno extends Usuario {
     }
 
     /**
-     * 
+     * Metodo para inserÃ§Ã£o do nome do pai 
+     * @param nomePai
      */
     public void setNomePai(String nomePai) {
     	this.nomePai = nomePai;
     }
 
-    /** Método para retorno do nome do responsável pelo aluno.
-     * @return String - Nome do responsável pelo aluno
+    /** 
+     * Metodo para retorno do nome do responsavel pelo aluno.
+     * @return String - Nome do responsï¿½vel pelo aluno
      */
     public String getNomeResponsavel() {
         return nomeResponsavel;
     }
 
     /**
-     * 
+     * Metodo de inserÃ§Ã£o do nome do responsavel 
+     * @param nomeResponsavel
      */
     public void setNomeResponsavel(String nomeResponsavel) {
         this.nomeResponsavel = nomeResponsavel;
     }
 
-    /** Método para retorno da situação do ano letivo do aluno.
+    /** 
+     * Metodo para retorno da situacao do ano letivo do aluno.
      * @return Boolean - True para aprovado / False para reprovado
      */
     public boolean getSituacaoAnoLetivo() {
@@ -168,32 +175,56 @@ public class Aluno extends Usuario {
     }
 
     /**
-     * 
+     * Metodo de insercao da situacao do ano letivo 
+     * @param situacaoAnoLetivo
      */
     public void setSituacaoAnoLetivo(boolean situacaoAnoLetivo) {
         this.situacaoAnoLetivo = situacaoAnoLetivo;
     }
+    
+    /**
+     * MÃ©todo para retorno do Usuario
+     * @return
+     */
+    public Usuario getUsuario() {
+		return usuario;
+	}
 
     /**
+     * MÃ©todo para inserÃ§Ã£o do Usuario
+     * @param usuario
+     */
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+
+	/**
+     * Metodo de retorno da turma 
 	 * @return the turma
 	 */
 	public Turma getTurma() {
 		return turma;
 	}
+	
 	/**
+	 * Metodo de insercao da turma 
 	 * @param turma the turma to set
 	 */
 	public void setTurma(Turma turma) {
 		this.turma = turma;
 	}
-	/** Método para o envio de uma resposta à uma atividade.
+	
+	/** 
+	 * Metodo para o envio de uma resposta de uma atividade.
      * @param Resposta - Resposta a ser enviada.
      */
     public void mandarResposta(Resposta resposta) {
         // TODO implement here
     }
 
-    /** Método para visualizar as respostas enviadas, a partir do banco de dados.
+    /** 
+     * Metodo para visualizar as respostas enviadas, a partir do banco de dados.
      * @param -
      * @return Resposta - Retorna as respostas enviadas.
      */
@@ -201,7 +232,8 @@ public class Aluno extends Usuario {
         return null;
     }
 
-    /** Método para visualizar uma resposta enviada específica, a partir do banco de dados.
+    /** 
+     * Metodo para visualizar uma resposta enviada especï¿½fica, a partir do banco de dados.
      * @param -
      * @return Resposta - Retorna uma resposta.
      */
@@ -209,14 +241,16 @@ public class Aluno extends Usuario {
         return null;
     }
 
-    /** Método para a remoção de uma resposta.
+    /** 
+     * Metodo para a remocao de uma resposta.
      * @param Resposta - Resposta a ser removida.
      */
     public void removerResposta(Resposta resposta) {
         // TODO implement here
     }
 
-    /** Método para visualizar as atividades recebidas, a partir do banco de dados.
+    /** 
+     * Metodo para visualizar as atividades recebidas, a partir do banco de dados.
      * @param -
      * @return Atividade - Retorna as atividades recebidas.
      */
@@ -224,7 +258,8 @@ public class Aluno extends Usuario {
         return null;
     }
 
-    /** Método para visualizar uma atividade recebida específica, a partir do banco de dados.
+    /** 
+     * Metodo para visualizar uma atividade recebida especï¿½fica, a partir do banco de dados.
      * @param -
      * @return Atividade - retorna uma atividade.
      */
@@ -232,7 +267,7 @@ public class Aluno extends Usuario {
         return null;
     }
 
-    /** Método para a visualização das notas
+    /** Metodo para a visualizaï¿½ï¿½o das notas
      * @param -
      * @return Resposta - Retorna as notas.
      */

@@ -1,13 +1,14 @@
-class Usuario {
-    construtor(idUsuario) {
-        setIdUsuario(idUsuario)
-    }
-    
-    set setIdUsuario(idUsuario) {
-        this.idUsuario = idUsuario
+function usuarioDados(value){
+
+    var idUsuario = value;
+
+    //Metodo de retorno do idUsuario
+    this.getIdUsuario = function(){
+        return idUsuario;
     }
 
-    get getIdUsuario() {
-        return this.idUsuario;
+    //Metodo de insercao do idUsuario
+    this.setIdUsuario = function(value){
+        this.idUsuario = value;
     }
 }

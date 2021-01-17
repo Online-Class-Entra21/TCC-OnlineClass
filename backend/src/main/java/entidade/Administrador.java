@@ -6,17 +6,19 @@ import java.sql.Time;
 
 import persistencia.jdbc.DiretorDAO;
 import persistencia.jdbc.EscolaDAO;
-import persistencia.jdbc.UsuarioDAO;
 
 /**
- * Classe contendo métodos e atributos para o administrador.
- * Herda métodos e atributos da classe Usuario.
+ * Classe contendo metodos e atributos para o administrador.
+ * Herda metodos e atributos da classe Usuario.
  * @see Usuario
  * @author 
  */
 public class Administrador extends Usuario {
+	
+	/**
+	 * Construtor padrÃ£o
+	 */
 	public Administrador() {
-		
 	}
 
     /**
@@ -24,22 +26,16 @@ public class Administrador extends Usuario {
      * @param
      */
     public Administrador(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-			   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
-			   String fotoUsuario, Endereco endereco, Escola escola) {
+			   			 int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+			   			 String fotoUsuario, Endereco endereco, Escola escola) {
+    	
     	super(idUsuario, nome, sobrenome, cpf, telefone, celular,
-				   tipoUsuario, email, senha, horarioInicioExpediente, horarioFinalExpediente,
-				   fotoUsuario, endereco, escola);
-    	setTipoUsuario(4);
+			  tipoUsuario, email, senha, horarioInicioExpediente, horarioFinalExpediente,
+			  fotoUsuario, endereco, escola);
     }
 
-    /** Método para retorno da escola.
-     * @return escola
-     */
-    public Escola getEscola() {
-        return getEscola();
-    }
-
-    /** Método para adicionar uma escola ao sistema.
+    /** 
+     * Metodo para adicionar uma escola ao sistema.
      * @param - 
      */
     public void adicionarEscola(int idEscola, String nome, Date dataInicioLetivo, Date dataFinalLetivo) {
@@ -48,7 +44,8 @@ public class Administrador extends Usuario {
         escolaDAO.insert(escola);
     }
 
-    /** Método para a atualização da escola.
+    /** 
+     * Metodo para a atualizacao da escola.
      * @param Escola - Escola a ser atualizada.
      */
     public void atualizarEscola(Escola escola) {
@@ -56,7 +53,8 @@ public class Administrador extends Usuario {
         escolaDAO.update(escola);
     }
 
-    /** Método para a remoção de uma escola.
+    /**
+     * Metodo para a remocao de uma escola.
      * @param Escola - Escola a ser removida do sistema.
      */
     public void removerEscola(Escola escola) {
@@ -64,26 +62,30 @@ public class Administrador extends Usuario {
         escolaDAO.deleteID(escola.getIdEscola());
     }
 
-    /** Método para retorno do ID do diretor.
+    /** 
+     * Metodo para retorno do ID do diretor.
      * @return Int - ID do diretor
      */
     public Diretor getDiretor(Diretor diretor) {
     	return diretor;
     }
 
-    /** Método para adicionar um diretor.
+    /** 
+     * Metodo para adicionar um diretor.
      * @param -
      */
     public void adicionarDiretor(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular, String email,
     							 String senha, Time horarioInicioExpediente, Time horarioFinalExpediente, String fotoUsuario,
     							 Endereco endereco, Escola escola) {
+    	
     	Diretor diretor = new Diretor(idUsuario, nome, sobrenome, cpf, telefone, celular, 3, email, senha, horarioInicioExpediente,
     			                      horarioFinalExpediente, fotoUsuario, endereco, escola);
     	DiretorDAO diretorDAO = new DiretorDAO();
     	diretorDAO.insert(diretor);
     }
 
-    /** Método para a atualização do diretor.
+    /** 
+     * Metodo para a atualizacao do diretor.
      * @param Diretor - Diretor a ser atualizado.
      */
     public void atualizarDiretor(Diretor diretor) {
@@ -91,7 +93,8 @@ public class Administrador extends Usuario {
     	diretorDAO.update(diretor);
     }
 
-    /** Método para a remoção do diretor
+    /** 
+     * Metodo para a remocao do diretor
      * @param Diretor - Diretor a ser removido.
      */
     public void removerDiretor(Diretor diretor) {

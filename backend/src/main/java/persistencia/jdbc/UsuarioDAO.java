@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import entidade.Endereco;
+import entidade.Escola;
 import entidade.Usuario;
 
 public class UsuarioDAO {
@@ -121,12 +124,12 @@ public class UsuarioDAO {
 	}
 	
 	/**
-	 * M�todo de busca de todas as informa��es de uma linha
+	 * Metodo de busca de todas as informacoes de uma linha
 	 * da tabela Usuario do banco de dados
 	 * @param idUsuario
 	 * @return
 	 */
-	public Usuario buscarPorId(int idUsuario) {
+	public Usuario buscarId(int idUsuario) {
 		Usuario usuario = new Usuario(); 
 		
 		String sql = "select * from usuario where idUsuario = ?"; 
@@ -156,17 +159,17 @@ public class UsuarioDAO {
 				 * Realiza a consulta por id para criar o objeto endereco
 				 * apartir do fk da endereco
 				 */
-//				EnderecoDAO enderecoDao = new EnderecoDAO();
-//				Endereco endereco = enderecoDao.buscarPorId(resultSet.getString(13));
-//				usuario.setEndereco(endereco);
+				EnderecoDAO enderecoDao = new EnderecoDAO();
+				Endereco endereco = enderecoDao.buscarId(resultSet.getInt(13));
+				usuario.setEndereco(endereco);
 				
 				/**
 				 * Realiza a consulta por id para criar o objeto escola
 				 * apartir do fk da escola
 				 */
-//				EscolaDAO escolaDAO = new EscolaDAO();
-//				Escola escola = escolaDAO.buscarPorId(resultSet.getString(14));
-//				usuario.setEscola(escola);
+				EscolaDAO escolaDAO = new EscolaDAO();
+				Escola escola = escolaDAO.buscarId(resultSet.getInt(14));
+				usuario.setEscola(escola);
 				
 				comandoSql.close(); 
 				return usuario;
@@ -214,17 +217,18 @@ public class UsuarioDAO {
 				 * Realiza a consulta por id para criar o objeto endereco
 				 * apartir do fk da endereco
 				 */
-//				EnderecoDAO enderecoDao = new EnderecoDAO();
-//				Endereco endereco = enderecoDao.buscarPorId(resultSet.getString(13));
-//				usuario.setEndereco(endereco);
+				EnderecoDAO enderecoDao = new EnderecoDAO();
+				Endereco endereco = enderecoDao.buscarId(resultSet.getInt(13));
+				usuario.setEndereco(endereco);
 				
 				/**
 				 * Realiza a consulta por id para criar o objeto escola
 				 * apartir do fk da escola
 				 */
-//				EscolaDAO escolaDAO = new EscolaDAO();
-//				Escola escola = escolaDAO.buscarPorId(resultSet.getString(14));
-//				usuario.setEscola(escola);
+				EscolaDAO escolaDAO = new EscolaDAO();
+				Escola escola = escolaDAO.buscarId(resultSet.getInt(14));
+				usuario.setEscola(escola);
+				
 				lista.add(usuario); 
 			}
 		} catch (SQLException e) {
@@ -234,7 +238,13 @@ public class UsuarioDAO {
 		return lista;
 	}	
 	
-	public Usuario buscarPorEmail(String email) {
+	/**
+	 * Metodo de busca de todas as informacoes de uma linha
+	 * da tabela Usuario do banco de dados através do email
+	 * @param email
+	 * @return
+	 */
+	public Usuario buscarEmail(String email) {
 		Usuario usuario = new Usuario(); 
 		
 		String sql = "select * from usuario where email = ?"; 
@@ -264,17 +274,17 @@ public class UsuarioDAO {
 				 * Realiza a consulta por id para criar o objeto endereco
 				 * apartir do fk da endereco
 				 */
-//				EnderecoDAO enderecoDao = new EnderecoDAO();
-//				Endereco endereco = enderecoDao.buscarPorId(resultSet.getString(13));
-//				usuario.setEndereco(endereco);
+				EnderecoDAO enderecoDao = new EnderecoDAO();
+				Endereco endereco = enderecoDao.buscarId(resultSet.getInt(13));
+				usuario.setEndereco(endereco);
 				
 				/**
 				 * Realiza a consulta por id para criar o objeto escola
 				 * apartir do fk da escola
 				 */
-//				EscolaDAO escolaDAO = new EscolaDAO();
-//				Escola escola = escolaDAO.buscarPorId(resultSet.getString(14));
-//				usuario.setEscola(escola);
+				EscolaDAO escolaDAO = new EscolaDAO();
+				Escola escola = escolaDAO.buscarId(resultSet.getInt(14));
+				usuario.setEscola(escola);
 				
 				comandoSql.close(); 
 				return usuario;

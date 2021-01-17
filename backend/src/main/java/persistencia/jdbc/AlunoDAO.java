@@ -12,17 +12,19 @@ import entidade.Turma;
 import entidade.Usuario;
 
 public class AlunoDAO {
+	
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	public boolean insertTabelaAluno(Aluno aluno, Turma turma) {
+		
 		String sql = "insert into aluno (ra, matricula, deficiencia, nomemae, nomepai, nomeresponsavel, "
-				             + "situacaoanoletivo, fk_usuario, fk_turma) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				   + "situacaoanoletivo, fk_usuario, fk_turma) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			comandoSql.setInt(1, aluno.getRa());
 			comandoSql.setInt(2, aluno.getMatricula());
-			comandoSql.setBoolean(3, aluno.getDeficienciaFisica());
+			comandoSql.setBoolean(3, aluno.getDeficiencia());
 			comandoSql.setString(4, aluno.getNomeMae());
 			comandoSql.setString(5, aluno.getNomePai());
 			comandoSql.setString(6, aluno.getNomeResponsavel());
@@ -60,7 +62,7 @@ public class AlunoDAO {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			comandoSql.setInt(1, aluno.getRa());
 			comandoSql.setInt(2, aluno.getMatricula());
-			comandoSql.setBoolean(3, aluno.getDeficienciaFisica());
+			comandoSql.setBoolean(3, aluno.getDeficiencia());
 			comandoSql.setString(4, aluno.getNomeMae());
 			comandoSql.setString(5, aluno.getNomePai());
 			comandoSql.setString(6, aluno.getNomeResponsavel());
@@ -122,7 +124,7 @@ public class AlunoDAO {
 				aluno.setIdAluno(resultSet.getInt(1));
 				aluno.setRa(resultSet.getInt(2));
 				aluno.setMatricula(resultSet.getInt(3));
-				aluno.setDeficienciaFisica(resultSet.getBoolean(4));
+				aluno.setDeficiencia(resultSet.getBoolean(4));
 				aluno.setNomeMae(resultSet.getString(5));
 				aluno.setNomePai(resultSet.getString(6));
 				aluno.setNomeResponsavel(resultSet.getString(7));
@@ -133,7 +135,7 @@ public class AlunoDAO {
 				 * apartir do fk do usuario
 				 */
 				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				Usuario usuario = usuarioDAO.buscarPorId(resultSet.getInt(9));
+				Usuario usuario = usuarioDAO.buscarId(resultSet.getInt(9));
 				aluno.setIdUsuario(usuario.getIdUsuario());
 			
 				/**
@@ -167,7 +169,7 @@ public class AlunoDAO {
 				aluno.setIdAluno(resultSet.getInt(1));
 				aluno.setRa(resultSet.getInt(2));
 				aluno.setMatricula(resultSet.getInt(3));
-				aluno.setDeficienciaFisica(resultSet.getBoolean(4));
+				aluno.setDeficiencia(resultSet.getBoolean(4));
 				aluno.setNomeMae(resultSet.getString(5));
 				aluno.setNomePai(resultSet.getString(6));
 				aluno.setNomeResponsavel(resultSet.getString(7));
@@ -178,7 +180,7 @@ public class AlunoDAO {
 				 * apartir do fk do usuario
 				 */
 				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				Usuario usuario = usuarioDAO.buscarPorId(resultSet.getInt(9));
+				Usuario usuario = usuarioDAO.buscarId(resultSet.getInt(9));
 				aluno.setIdUsuario(usuario.getIdUsuario());
 			
 				/**

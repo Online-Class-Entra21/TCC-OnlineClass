@@ -1,47 +1,51 @@
-//Verifica se o email existe antes de enviar o código
-function verificarEmail(email){
-        fetch('http://localhost:8080/api/usuario/email/' + email)
-        .then(function(response) {
-            return response
-        })
-        .catch(function() {
-            $('#input-email').css('border', '2px solid red')
-            alert('Erro de conexão do sistema!')
-        });
-}
-
 //Muda a senha do login no sistema 
 function mandarCodigo(email){
 
-    var result = verificarEmail(email);
+    $('#input-email').css('border', 'none')
 
-    //Verifica se retornou uma resposta
-    if(result != null){
-        //Verifica se é verdadeiro ou falso
-        if(result){
-            var codigo = (function(email){
+    if(email != ""){
+        //Verifica se o email existe antes de enviar o código
+        fetch('http://localhost:8080/api/verificar/' + email)
+        .then(function(response) {
+            return response.json()
+        })
+        .then(function(resposta){
+            //Verifica se a resposta é true ou false
+            if(resposta){
+
                 fetch('http://localhost:8080/api/codigo/' + email)
                 .then(function(response) {
-                    return response;
+                    return response.json()
+                })
+                .then(function(codigo){
+                    //Armazena o código para testar na outra função
+                    salvarCodigo = new salvarCodigo(codigo);
+                    console.log(salvarCodigo.getCodigo());
+
+                    //Muda o design para a segunda etapa 
+                    alert('Verifique seu e-mail, para inserir o código corretamente')
+                    $('#input-email').css('display','none')
+                    $('#input-codigo').css('display','inline')
+                    $('#input-enviar-email').css('display','none')
+                    $('#input-enviar-codigo').css('display','inline')
                 })
                 .catch(function() {
                     $('#input-email').css('border', '2px solid red')
                     alert('Erro de conexão do sistema!')
                 })
-            });
 
-            //Verifica se deu erro
-            if(codigo != null){
-                alert('Verifique seu e-mail, para inserir o código corretamente')
-                document.getElementById('input-email').remove();
-                $('#input-codigo').css('display','none')
-                document.getElementById('input-enviar-email').remove();
-                $('#input-enviar-codigo').css('display','none')
+            }else{
+                $('#input-email').css('border', '2px solid red')
+                alert('E-mail não cadastrado!')
             }
-        }else{
+        })
+        .catch(function() {
             $('#input-email').css('border', '2px solid red')
-            alert('E-mail não cadastrado!')
-        }
+            alert('Erro de conexão do sistema!')
+        });
+    }else{
+        $('#input-email').css('border', '2px solid red')
+        alert('Digite o e-mail primeiro!')
     }
 }
 

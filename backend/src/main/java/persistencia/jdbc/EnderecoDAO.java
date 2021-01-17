@@ -91,7 +91,7 @@ public class EnderecoDAO {
 	public Endereco buscarId(int id) {
 		Endereco endereco = new Endereco();
 		
-		String sql = "select * from Endereco where idendereco = ?";
+		String sql = "select * from Endereco where idEndereco = ?";
 		
 		try {
 			
