@@ -98,7 +98,7 @@ Caixa de login
 }
 
 /*
-Imagem [e-mail] [código]
+Imagem [e-mail] [código] [senha] [repetição de senha]
 */
 #input-email {
     background-image: url(/frontend/imagens/icone-usuario.png);
@@ -115,11 +115,40 @@ Imagem [e-mail] [código]
     margin-top: 6%;
     display: none;
 }
+#input-senha {
+    background-image: none;
+    background-position-x: 5%;
+    background-position-y: center;
+    background-size: 2.5vh;
+    margin-top: 6%;
+    display: none;
+}
+#input-senha-repetida {
+    background-image: none;
+    background-position-x: 5%;
+    background-position-y: center;
+    background-size: 2.5vh;
+    display: none;
+}
 
 /*
 Tira as setas do tipo number
 */
 #input-codigo::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+/*
+Tira as setas do tipo number
+*/
+#input-senha::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+/*
+Tira as setas do tipo number
+*/
+#input-senha-repetida::-webkit-inner-spin-button{
     -webkit-appearance: none;
 }
 

@@ -46,6 +46,16 @@
                 <input type="number" name="codigo" id="input-codigo" class="inputs" placeholder="Digite o código" title="Código">
             </div>
 
+            <!-- Inserção da nova senha -->
+            <div class="nav justify-content-center">
+                <input type="text" name="senha" id="input-senha" class="inputs" placeholder="Nova senha" title="Senha">
+            </div>
+
+            <!-- Inserção da nova senha repetida  -->
+            <div class="nav justify-content-center">
+                <input type="text" name="senha-repetida" id="input-senha-repetida" class="inputs" placeholder="Repita nova senha" title="Senha">
+            </div>
+
             <!-- Botão de envio 1-->
             <div class="nav justify-content-center">
                 <input id="input-enviar-email" type="button" value="Enviar" class="submit" title="Enviar" onclick="mandarCodigo($('#input-email').val())">
@@ -53,7 +63,7 @@
 
             <!-- Botão de envio 2-->
             <div class="nav justify-content-center">
-                <input id="input-enviar-codigo" type="button" value="Enviar" class="submit" title="Enviar" onclick="verificarCodigo($('#input-codigo').val())">
+                <input id="input-enviar-codigo" type="button" value="Enviar" class="submit" title="Enviar" onclick="verificarCodigo($('#input-codigo').val(),$('#input-senha').val(),$('#input-senha-repetida').val())">
             </div>
 
         </div>

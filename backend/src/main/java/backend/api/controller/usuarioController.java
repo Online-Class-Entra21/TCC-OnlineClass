@@ -9,6 +9,8 @@ import org.apache.commons.mail.SimpleEmail;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -125,6 +127,21 @@ public class usuarioController {
 		}
 		
 		return codigo;
+	}
+	
+	/**
+	 * Metodo para mudar a senha do usuario informado 
+	 * @param email
+	 * @param senha
+	 * @return 
+	 */
+	@PutMapping(path = "/api/mudar/senha/{email}/{senha-digitada}")
+	public void mudarSenha(@PathVariable("email") String email, @PathVariable("senha-digitada") String senha) {
+		Usuario usuario = new Usuario();
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		usuario = usuarioDao.buscarEmail(email);
+		usuario.setSenha(senha);
+		usuarioDao.update(usuario);
 	}
 }
 

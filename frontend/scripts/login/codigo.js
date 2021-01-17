@@ -1,14 +1,25 @@
-function salvarCodigo(value){
+function salvarCodigo(cod, eml){
 
-    var codigo = value;
+    var codigo = cod;
+    var email = eml;
 
-    //Metodo de retorno do idUsuario
+    //Metodo de retorno do codigo
     this.getCodigo = function(){
         return codigo;
     }
 
-    //Metodo de insercao do idUsuario
+    //Metodo de insercao do codigo
     this.setCodigo = function(value){
-        this.codigo = value;
+        codigo = value;
+    }
+
+    //Metodo de retorno do email
+    this.getEmail = function(){
+        return email;
+    }
+
+    //Metodo de insercao do email
+    this.setEmail = function(value){
+        email = value;
     }
 }

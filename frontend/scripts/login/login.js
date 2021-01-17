@@ -1,10 +1,3 @@
-//Config padrão da consulta na API
-const options = {
-    method: 'GET',
-    mode: 'cors',
-    cache: 'default'
-}
-
 //Verifica as informações e loga no sistema 
 function logar(email, senha) {
     $('#input-email').css('border', 'none')
