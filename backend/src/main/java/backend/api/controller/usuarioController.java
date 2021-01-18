@@ -90,6 +90,18 @@ public class usuarioController {
 		return false;
 	}
 	
+	@PostMapping(path = "api/usuario/inserir/{json}")
+	public boolean inserirUsuario(@PathVariable("json") String json) {
+		System.out.println(json);
+		Gson gson = new Gson();
+		
+		Usuario user = gson.fromJson(json.toString(), Usuario.class);
+		UsuarioDAO userDao = new UsuarioDAO();
+		userDao.insert(user);
+		return true;
+	}
+	
+	
 	/**
 	 * Envia um código de verificação via e-mail ao usuário
 	 * @param email
