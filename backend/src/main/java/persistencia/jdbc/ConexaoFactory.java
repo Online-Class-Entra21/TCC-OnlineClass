@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class ConexaoFactory {
 	
-	private static Connection conexao = null;
+	private Connection conexao = null;
 	
-	public static Connection getConnection() {
+	public Connection getConnection() {
 		
 		try {
 			

@@ -1,105 +1,117 @@
 package entidade;
 
-import java.util.*;
-
 /**
- * Classe contendo métodos e atributos para a criação de convites de acesso às reuniões.
- * @author
+ * Classe contendo metodos e atributos para a criacao de convites de acesso as reunioes.
+ * @author AndrÃ© 
  */
 public class Convite {
     private int idConvite;
     private int destinatario;
     private int salaConvite;
     private boolean situacaoConvite;
-    private int remetente;
+    private int fk_usuario;
 
     /**
-     * Construtor usado ao instanciar a classe Convite.
+     * Construtor padrao
      * @param
      */
     public Convite() {
+    	//Nenhum atributo inicializado
     }
     
     /**
-     * 
+     * Metodo construtor que preenche todos os atributos da classe 
+     * @param idConvite
+     * @param destinatario
+     * @param salaConvite
+     * @param situacaoConvite
+     * @param fk_usuario
      */
-    public Convite(int idConvite, int destinatario, int salaConvite, boolean situacaoConvite, int remetente) {
-    	setIdConvite(idConvite);
-    	setDestinatario(destinatario);
-    	setSalaConvite(salaConvite);
-    	setSituacaoConvite(situacaoConvite);
-    	setRemetente(remetente);
-    }
+    public Convite(int idConvite, int destinatario, int salaConvite, boolean situacaoConvite, int fk_usuario) {
+		setIdConvite(idConvite);
+		setDestinatario(destinatario);
+		setSalaConvite(salaConvite);
+		setSituacaoConvite(situacaoConvite);
+		setFk_usuario(fk_usuario);
+	}
 
+	/**
+     * Metodo para retorno do ID do convite 
+     * @return
+     */
+    public int getIdConvite() {
+		return idConvite;
+	}
 
-    /** Método para retorno do ID do destinatário.
-     * @return Int - ID do destinatário
+    /**
+     * Metodo para insercao do ID do convite 
+     * @param idConvite
+     */
+	public void setIdConvite(int idConvite) {
+		this.idConvite = idConvite;
+	}
+
+    /** 
+     * Metodo para retorno do ID do destinatario.
+     * @return destinatario 
      */
     public int getDestinatario() {
         return destinatario;
     }
 
     /**
-     * 
+     * Metodo para insercao do ID do destinatario 
+     * @param idDestinatario
      */
     public void setDestinatario(int idDestinatario) {
         this.destinatario = idDestinatario;
     }
 
-    /** Método para retorno do ID do convite da sala.
-     * @return Int - ID do convite da sala
+    /** 
+     * Metodo para retorno do ID do convite da sala.
+     * @return salaConvite 
      */
     public int getSalaConvite() {
         return salaConvite;
     }
 
     /**
-     * 
+     * Metodo para insercao do ID do convite da sala 
+     * @param idSalaConvite
      */
     public void setSalaConvite(int idSalaConvite) {
         this.salaConvite = idSalaConvite;
     }
 
-    /** Método para retorno da situação do convite.
-     * @return Boolean - Usuário aceitou? True / False
+    /** 
+     * Metodo para retorno da situacao do convite.
+     * @return situacaoConvite
      */
     public boolean getSituacaoConvite() {
         return situacaoConvite;
     }
 
     /**
-     * 
+     * Metodo para insercao da situacao do convite 
+     * @param situacaoConvite
      */
     public void setSituacaoConvite(boolean situacaoConvite) {
         this.situacaoConvite = situacaoConvite;
     }
-
-    /** Método para retorno do ID do remetente.
-     * @return Int - ID do remetente
-     */
-    public int getRemetente() {
-        return remetente;
-    }
-
+    
     /**
-     * 
+     * Metodo para retorno do FK do usuario 
+     * @return
      */
-    public void setRemetente(int idRemetente) {
-        this.remetente = idRemetente;
-    }
+	public int getFk_usuario() {
+		return fk_usuario;
+	}
 
-    /** Método para retorno do ID do convite.
-     * @return Int - ID do convite
-     */
-    public int getIdConvite() {
-        return idConvite;
-    }
-
-    /**
-     * 
-     */
-    public void setIdConvite(int idConvite) {
-        this.idConvite = idConvite;
-    }
-
+	/**
+	 * Metodo para insercao do FK do usuario 
+	 * @param fk_usuario
+	 */
+	public void setFk_usuario(int fk_usuario) {
+		this.fk_usuario = fk_usuario;
+	}
 }

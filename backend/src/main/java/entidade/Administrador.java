@@ -11,7 +11,7 @@ import persistencia.jdbc.EscolaDAO;
  * Classe contendo metodos e atributos para o administrador.
  * Herda metodos e atributos da classe Usuario.
  * @see Usuario
- * @author 
+ * @author André
  */
 public class Administrador extends Usuario {
 	
@@ -19,21 +19,27 @@ public class Administrador extends Usuario {
 	 * Construtor padrão
 	 */
 	public Administrador() {
+		//Nenhum atributo inicializado
 	}
 
     /**
-     * Construtor usado ao instanciar a classe Administrador.
+     * Construtor usado ao instanciar a classe Administrador, herdando 
+     * atributos da classe pai.
      * @param
      */
-    public Administrador(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-			   			 int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
-			   			 String fotoUsuario, Endereco endereco, Escola escola) {
-    	
-    	super(idUsuario, nome, sobrenome, cpf, telefone, celular,
-			  tipoUsuario, email, senha, horarioInicioExpediente, horarioFinalExpediente,
-			  fotoUsuario, endereco, escola);
-    }
+	public Administrador(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
+						 int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+						 String fotoUsuario, int fk_endereco) {
+		
+		super(idUsuario, nome, sobrenome, cpf, telefone, celular, tipoUsuario, email, senha, horarioInicioExpediente,
+				horarioFinalExpediente, fotoUsuario, fk_endereco);
+	}
+    
+    
+    //----------
 
+    
+    
     /** 
      * Metodo para adicionar uma escola ao sistema.
      * @param - 
@@ -43,8 +49,8 @@ public class Administrador extends Usuario {
         EscolaDAO escolaDAO = new EscolaDAO();
         escolaDAO.insert(escola);
     }
-
-    /** 
+    
+	/** 
      * Metodo para a atualizacao da escola.
      * @param Escola - Escola a ser atualizada.
      */
@@ -101,5 +107,4 @@ public class Administrador extends Usuario {
     	DiretorDAO diretorDAO = new DiretorDAO();
     	diretorDAO.delete(diretor.getIdUsuario());
     }
-
 }

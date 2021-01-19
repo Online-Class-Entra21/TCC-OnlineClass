@@ -1,88 +1,98 @@
 package entidade;
 
-import java.util.*;
-
 /**
- * Classe contendo métodos e atributos para realizar a chamada dos alunos na reunião.
- * @author
+ * Classe contendo metodos e atributos para realizar 
+ * a chamada dos alunos na reuniao.
+ * @author AndrÃ© 
  */
 public class Chamada {
     private int idChamada;
     private boolean situacao;
-    private int codAluno;
-    private int codReuniao;
+    private int fk_aluno;
+    private int fk_reuniao;
 
     /**
-     * Construtor usado ao instanciar a classe Chamada.
-     * @param
+     * Construtor padrao
      */
     public Chamada() {
+    	//Nenhum atributo inicializado
     }
+    
     /**
-     * 
+     * Metodo que preenche todos os atributos da classe chamada 
+     * @param idChamada
+     * @param situacao
+     * @param fk_aluno
+     * @param fk_reuniao
      */
-    public Chamada(int idChamada, boolean situacao, int codAluno, int codReuniao) {
-    	setIdChamada(idChamada);
-    	setSituacao(situacao);
-    	setCodAluno(codAluno);
-    	setCodReuniao(codReuniao);
-    }
+    public Chamada(int idChamada, boolean situacao, int fk_aluno, int fk_reuniao) {
+		this.idChamada = idChamada;
+		this.situacao = situacao;
+		this.fk_aluno = fk_aluno;
+		this.fk_reuniao = fk_reuniao;
+	}
 
-
-    /** Método para retorno do ID da chamada.
-     * @return Int - ID da chamada
+	/** 
+	 * Metodo para retorno do ID da chamada.
+     * @return idChamada 
      */
     public int getIdChamada() {
         return idChamada;
     }
 
     /**
-     * 
+     * Metodo de insercao do id da chamada 
+     * @param idChamada
      */
     public void setIdChamada(int idChamada) {
         this.idChamada = idChamada;
     }
 
-    /** Método para retorno da situação da chamada.
-     * @return Boolean - Aluno faltante? True / False
+    /** 
+     * Metodo para retorno da situacao da chamada.
+     * @return situacao
      */
     public boolean getSituacao() {
         return situacao;
     }
 
     /**
-     * 
+     * Metodo de insercao da situacao da chamada 
+     * @param situacao
      */
     public void setSituacao(boolean situacao) {
     	this.situacao = situacao;
     }
 
-    /** Método para retorno do código do aluno.
-     * @return Int - Código do aluno
+    /** 
+     * Metodo para retorno do FK do aluno.
+     * @return fk_aluno
      */
-    public int getCodAluno() {
-        return codAluno;
-    }
+    public int getFk_aluno() {
+		return fk_aluno;
+	}
 
     /**
-     * 
+     * Metodo para insercao do FK do aluno 
+     * @param fk_aluno
      */
-    public void setCodAluno(int codAluno) {
-        this.codAluno = codAluno;
-    }
+    public void setFk_aluno(int fk_aluno) {
+		this.fk_aluno = fk_aluno;
+	}
 
-    /** Método para retorno do código da reunião.
-     * @return Int - Código da reunião
-     */
-    public int getCodReuniao() {
-    	return codReuniao;
-    }
+	/**
+	 * Metodo para retorno do FK da reuniao  
+	 * @return
+	 */
+	public int getFk_reuniao() {
+		return fk_reuniao;
+	}
 
-    /**
-     * 
-     */
-    public void setCodReuniao(int codReuniao) {
-        this.codReuniao = codReuniao;
-    }
-
+	/**
+	 * Metodo para insercao do FK da reuniao 
+	 * @param fk_reuniao
+	 */
+	public void setFk_reuniao(int fk_reuniao) {
+		this.fk_reuniao = fk_reuniao;
+	}
 }

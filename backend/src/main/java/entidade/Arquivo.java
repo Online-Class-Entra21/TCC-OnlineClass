@@ -3,119 +3,113 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo métodos e atributos para a criação e uso de arquivos.
- * @author 
+ * Classe contendo metodos e atributos para a criacao e uso de arquivos.
+ * @author AndrÃ© 
  */
 public class Arquivo {
     private int idArquivo;
     private String extensao;
     private Date dataEnvio;
     private int remetente;
-    private int tipoEnvio;
-    private byte arquivo[];
+    private String caminhoArquivo;
 
     /**
-     * Construtor usado ao instanciar a classe Arquivo.
-     * @param
+     * Construtor padrao
      */
     public Arquivo() {
+    	//Nenhum atributo inicializado
     }
     
     /**
-     * 
+     * Metodo construtor que preenche todas os atributos da classe 
+     * @param idArquivo
+     * @param extensao
+     * @param dataEnvio
+     * @param remetente
+     * @param caminhoArquivo
      */
-    public Arquivo(int idArquivo, String extensao, Date dataEnvio, int remetente, int tipoEnvio) {
-    	setIdArquivo(idArquivo);
-    	setExtensao(extensao);
-    	setDataEnvio(dataEnvio);
-    	setRemetente(remetente);
-    	setTipoEnvio(tipoEnvio);
-    }
+    public Arquivo(int idArquivo, String extensao, Date dataEnvio, int remetente, String caminhoArquivo) {
+		setIdArquivo(idArquivo);
+		setExtensao(extensao);
+		setDataEnvio(dataEnvio);
+		setRemetente(remetente);
+		setCaminhoArquivo(caminhoArquivo);
+	}
 
-    
-    /** Método para retorno do ID do arquivo.
-     * @return Int - ID do arquivo
+	/** Metodo para retorno do ID do arquivo.
+     * @return idArquivo
      */
     public int getIdArquivo() {
         return idArquivo;
     }
 
     /**
-     * Método de inserção de id do arquivo
+     * Metodo de insercao de ID do arquivo
      * @param idArquivo
      */
     public void setIdArquivo(int idArquivo) {
 		this.idArquivo = idArquivo;
 	}
 
-	/** Método para retorno da extensão.
-     * @return String - Extensão do arquivo
+	/** Metodo para retorno da extensao.
+     * @return extensao
      */
     public String getExtensao() {
         return extensao;
     }
 
     /**
-     * 
+     * Metodo para insercao da extensao do arquivo 
+     * @param extensao
      */
     public void setExtensao(String extensao) {
         this.extensao = extensao;
     }
 
-    /** Método para retorno da data de envio.
-     * @return Date - Data de envio
+    /** Metodo para retorno da data de envio.
+     * @return dataEnvio 
      */
     public Date getDataEnvio() {
         return dataEnvio;
     }
 
     /**
-     * 
+     * Metodo para insercao da data de envio do arquivo 
+     * @param dataEnvio
      */
     public void setDataEnvio(Date dataEnvio) {
         this.dataEnvio = dataEnvio;
     }
 
-    /** Método para retorno do remetente.
-     * @return Int - ID do remetente
+    /** 
+     * Metodo para retorno do remetente.
+     * @return remetente 
      */
     public int getRemetente() {
         return remetente;
     }
 
     /**
-     * 
+     * Metodo para insercao do remetente 
+     * @param remetente
      */
     public void setRemetente(int remetente) {
         this.remetente = remetente;
     }
 
-    /** Método para retorno do tipo de envio.
-     * @return Int - Tipo de envio 
-     */
-    public int getTipoEnvio() {
-    	return tipoEnvio;
-    }
-
     /**
-     * 
+     * Metodo para retorno do caminho onde estÃ¡ o arquivo 
+     * @return
      */
-    public void setTipoEnvio(int tipoEnvio) {
-        this.tipoEnvio = tipoEnvio;
-    }
+	public String getCaminhoArquivo() {
+		return caminhoArquivo;
+	}
 
-    /** Método para retorno do arquivo.
-     * @return Byte - Array de arquivos
-     */
-    public byte[] getArquivo() {
-        return arquivo;
-    }
-
-    /**
-     * 
-     */
-    public void setArquivo(byte[] arquivo) {
-        this.arquivo = arquivo;
-    }
-
+	/**
+	 * Metodo para insercao do caminho onde estÃ¡ o arquivo 
+	 * @param caminhoArquivo
+	 */
+	public void setCaminhoArquivo(String caminhoArquivo) {
+		this.caminhoArquivo = caminhoArquivo;
+	}
 }

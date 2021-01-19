@@ -2,32 +2,21 @@ package entidade;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.*;
 
 import persistencia.jdbc.ConexaoFactory;
 
 /**
- * Classe com métodos e atributos para realizar a conexão com o Banco de Dados.
- * @author
+ * Classe com metodos e atributos para realizar a conexao com o Banco de Dados.
+ * @author Breno
  */
 public class Conexao {
-    private String status;
-    private String driveNome;
-    private String serveNome;
-    private String nomeDatabase;
-    private String url;
-    private String userNome;
-    private String password;
+	
+	//Instancia a classe conexaoFactory 
     private ConexaoFactory conexaoFactory = new ConexaoFactory();
-    /**
-     * Default constructor
-     */
-    public Conexao() {
-    }
 
     
-    /** Método para retorno da conexão.
-     * @return String - Conexão
+    /** Metodo para abrir a conexao.
+     * @return conexao
      */
     public Connection getConexao() {
     	Connection conexao;
@@ -36,14 +25,8 @@ public class Conexao {
     }
 
     /**
-     * 
-     */
-    public void statusConexao() {
-        // TODO implement here
-    }
-
-    /**
-     * 
+     * Metodo para fechar a conexao
+     * @param conexao
      */
     public void fecharConexao(Connection conexao) {
         conexao = conexaoFactory.getConnection();
@@ -54,5 +37,4 @@ public class Conexao {
 			e.printStackTrace();
 		}
     }
-
 }

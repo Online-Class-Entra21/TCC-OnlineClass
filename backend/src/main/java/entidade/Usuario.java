@@ -4,7 +4,7 @@ import java.sql.Time;
 
 /**
  * Classe contendo metodos e atributos para o usu�rio do sistema.
- * Os atributos e metodos dessa classe s�o herdados pelas classes Administrador, Aluno, Coordenador, Diretor e Professor.
+ * Os atributos e metodos dessa classe sao herdados pelas classes Administrador, Aluno, Coordenador, Diretor e Professor.
  * @see Administrador
  * @see Aluno
  * @see Coordenador
@@ -26,8 +26,8 @@ public class Usuario {
     private Time horarioInicioExpediente;
     private Time horarioFinalExpediente;
     private String fotoUsuario;
-    private Endereco endereco;
-    private Escola escola;
+    private int fk_endereco;
+    private int fk_escola;
     
     /**
      * Construtor usado ao instanciar a classe Usuario.
@@ -55,7 +55,7 @@ public class Usuario {
      */
     public Usuario(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
 				   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
-				   String fotoUsuario, Endereco endereco, Escola escola) {
+				   String fotoUsuario, int fk_endereco, int fk_escola) {
     	
     	setIdUsuario(idUsuario);
 		setNome(nome);
@@ -69,9 +69,44 @@ public class Usuario {
 		setHorarioInicioExpediente(horarioInicioExpediente);
 		setHorarioFinalExpediente(horarioFinalExpediente);
 		setFotoUsuario(fotoUsuario);
-		setEndereco(endereco);
-		setEscola(escola);
+		setEndereco(fk_endereco);
+		setEscola(fk_escola);
 	}
+    
+    /**
+     * Metodo construtor que preenche todos os atributos da classe menos a escola 
+     * @param idUsuario
+     * @param nome
+     * @param sobrenome
+     * @param cpf
+     * @param telefone
+     * @param celular
+     * @param tipoUsuario
+     * @param email
+     * @param senha
+     * @param horarioInicioExpediente
+     * @param horarioFinalExpediente
+     * @param fotoUsuario
+     * @param endereco
+     */
+    public Usuario(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
+			   	   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+			       String fotoUsuario, int fk_endereco) {
+	
+		setIdUsuario(idUsuario);
+		setNome(nome);
+		setSobrenome(sobrenome);
+		setCpf(cpf);
+		setTelefone(telefone);
+		setCelular(celular);
+		setTipoUsuario(tipoUsuario);
+		setEmail(email);
+		setSenha(senha);
+		setHorarioInicioExpediente(horarioInicioExpediente);
+		setHorarioFinalExpediente(horarioFinalExpediente);
+		setFotoUsuario(fotoUsuario);
+		setEndereco(fk_endereco);
+}
 
 	/**
 	 * Metodo para retorno do ID do usuario.
@@ -272,32 +307,32 @@ public class Usuario {
     /** Mwtodo para retorno do endere�o do usuario.
      * @return Endereco - Endereco do usuario
      */
-    public Endereco getEndereco() {
-        return endereco;
+    public int getEndereco() {
+        return fk_endereco;
     }
     
     /**
      * Metodo para insercao do endereco do usuario
      * @param endereco
      */
-    public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+    public void setEndereco(int fk_endereco) {
+		this.fk_endereco = fk_endereco;
 	}
 
     /**
      * Metodo de retorno da escola 
      * @return
      */
-    public Escola getEscola() {
-		return escola;
+    public int getEscola() {
+		return fk_escola;
 	}
 
     /**
      * Metodo de insercao da escola 
      * @param escola
      */
-	public void setEscola(Escola escola) {
-		this.escola = escola;
+	public void setEscola(int fk_escola) {
+		this.fk_escola = fk_escola;
 	}
 
 

@@ -22,7 +22,7 @@ import persistencia.jdbc.UsuarioDAO;
 public class usuarioController {
 	
 	/**
-	 * Retorna o usuário que corresponde ao id indicado
+	 * Retorna o usuário que corresponde ao id indicado {GET}
 	 * @param codigo
 	 * @return
 	 */
@@ -37,7 +37,51 @@ public class usuarioController {
 	}
 	
 	/**
-	 * Retorna o usuário que corresponde ao email indicado
+	 * Retorna a lista de usuarios registrados no sistema {GET}
+	 * @return
+	 */
+	@GetMapping(path = "/api/usuarios")
+	public List<Usuario> consultar(){
+		List<Usuario> lista = new ArrayList<Usuario>();
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		lista = usuarioDao.buscarTodos();
+		return lista;
+	}
+	
+	/**
+	 * Insere uma novo usuário no banco de dados {POST}
+	 * @param json
+	 * @return
+	 */
+	@PostMapping(path = "api/usuario/inserir/{json}")
+	public boolean inserirUsuario(@PathVariable("json") String json) {
+		System.out.println(json);
+		Gson gson = new Gson();
+		
+		Usuario user = gson.fromJson(json.toString(), Usuario.class);
+		UsuarioDAO userDao = new UsuarioDAO();
+		userDao.insert(user);
+		return true;
+	}
+	
+	/**
+	 * Método de exclusão do usuario que corresponde ao codigo informado {DELETE}
+	 * @param codigo
+	 * @return
+	 */
+	@DeleteMapping(path = "/api/usuario/deletar/{codigo}")
+	public boolean deletar(@PathVariable("codigo") int codigo) {
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		return usuarioDao.delete(codigo);
+	}
+	
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Retorna o usuário que corresponde ao email indicado {GET}
 	 * @param email
 	 * @return
 	 */
@@ -52,30 +96,7 @@ public class usuarioController {
 	}
 	
 	/**
-	 * Retorna a lista de usuarios registrados no sistema
-	 * @return
-	 */
-	@GetMapping(path = "/api/usuarios")
-	public List<Usuario> consultar(){
-		List<Usuario> lista = new ArrayList<Usuario>();
-		UsuarioDAO usuarioDao = new UsuarioDAO();
-		lista = usuarioDao.buscarTodos();
-		return lista;
-	}
-	
-	/**
-	 * Método de exclusão do usuario que corresponde ao codigo informado 
-	 * @param codigo
-	 * @return
-	 */
-	@DeleteMapping(path = "/api/usuario/deletar/{codigo}")
-	public boolean deletar(@PathVariable("codigo") int codigo) {
-		UsuarioDAO usuarioDao = new UsuarioDAO();
-		return usuarioDao.delete(codigo);
-	}
-	
-	/**
-	 * Verifica se o usuario existe no banco de dados 
+	 * Verifica se o usuario existe no banco de dados  {GET}
 	 * @param email
 	 * @return
 	 */
@@ -90,20 +111,8 @@ public class usuarioController {
 		return false;
 	}
 	
-	@PostMapping(path = "api/usuario/inserir/{json}")
-	public boolean inserirUsuario(@PathVariable("json") String json) {
-		System.out.println(json);
-		Gson gson = new Gson();
-		
-		Usuario user = gson.fromJson(json.toString(), Usuario.class);
-		UsuarioDAO userDao = new UsuarioDAO();
-		userDao.insert(user);
-		return true;
-	}
-	
-	
 	/**
-	 * Envia um código de verificação via e-mail ao usuário
+	 * Envia um código de verificação via e-mail ao usuário {GET}
 	 * @param email
 	 * @return
 	 */
@@ -142,7 +151,7 @@ public class usuarioController {
 	}
 	
 	/**
-	 * Metodo para mudar a senha do usuario informado 
+	 * Metodo para mudar a senha do usuario informado {PUT}
 	 * @param email
 	 * @param senha
 	 * @return 

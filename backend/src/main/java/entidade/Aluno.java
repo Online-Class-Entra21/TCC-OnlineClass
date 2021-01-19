@@ -4,7 +4,7 @@ package entidade;
  * Classe contendo metodos e atributos para o aluno.
  * Herda metodos e atributos da classe Usuario.
  * @see Usuario
- * @author  
+ * @author André 
  */
 public class Aluno extends Usuario {
     
@@ -16,54 +16,54 @@ public class Aluno extends Usuario {
     private String nomePai;
     private String nomeResponsavel;
     private boolean situacaoAnoLetivo;
-    private Usuario usuario;
-    private Turma turma;
+    private int fk_usuario;
+    private int fk_turma;
     
     /**
      * Construtor padrao
      */
-    public Aluno() {    	
+    public Aluno() {
+    	//Nenhum atributo inicializado
     }
     
-	/**
-	 * Método construtor preenchendo todas as informações 
-	 * @param idAluno
-	 * @param ra
-	 * @param matricula
-	 * @param deficienciaFisica
-	 * @param nomeMae
-	 * @param nomePai
-	 * @param nomeResponsavel
-	 * @param situacaoAnoLetivo
-	 * @param usuario
-	 * @param turma
-	 */
-    public Aluno(int idAluno, int ra, int matricula, boolean deficienciaFisica, 
-    			 String nomeMae, String nomePai, String nomeResponsavel, boolean situacaoAnoLetivo,
-    			 Usuario usuario, Turma turma) {
-    	
+    /**
+     * Metodo construtor que preenche todos os atributos da classe aluno 
+     * @param idAluno
+     * @param ra
+     * @param matricula
+     * @param deficiencia
+     * @param nomeMae
+     * @param nomePai
+     * @param nomeResponsavel
+     * @param situacaoAnoLetivo
+     * @param fk_usuario
+     * @param fk_turma
+     */
+    public Aluno(int idAluno, int ra, int matricula, boolean deficiencia, String nomeMae, String nomePai,
+			String nomeResponsavel, boolean situacaoAnoLetivo, int fk_usuario, int fk_turma) {
+
     	setIdAluno(idAluno);
     	setRa(ra);
     	setMatricula(matricula);
-    	setDeficiencia(deficienciaFisica);
+    	setDeficiencia(deficiencia);
     	setNomeMae(nomeMae);
     	setNomePai(nomePai);
     	setNomeResponsavel(nomeResponsavel);
     	setSituacaoAnoLetivo(situacaoAnoLetivo);
-    	setUsuario(usuario);
-    	setTurma(turma);
-    }
+    	setFk_usuario(fk_usuario);
+    	setFk_turma(fk_turma);
+	}
 
-    /** 
+	/** 
      * Metodo para retorno do ID do aluno.
-     * @return Int - ID do usuUrio
+     * @return idAluno
      */
     public int getIdAluno() {
         return idAluno;
     }
 
     /**
-     * Metodo para inserção do id do aluno 
+     * Metodo para inserção do ID do aluno 
      * @param idAluno
      */
     public void setIdAluno(int idAluno) {
@@ -72,7 +72,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno do RA do aluno.
-     * @return Int - RA do usuurio
+     * @return ra
      */
     public int getRa() {
         return ra;
@@ -87,8 +87,8 @@ public class Aluno extends Usuario {
     }
 
     /** 
-     * Metodo para retorno da matr�cula do aluno.
-     * @return String - Matricula do usu�rio
+     * Metodo para retorno da matricula do aluno.
+     * @return matricula
      */
     public int getMatricula() {
         return matricula;
@@ -104,30 +104,30 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retornar se o aluno possui alguma deficiencia fisica.
-     * @return Boolean - Possui deficiencia f�sica? True / False
+     * @return deficiencia
      */
     public boolean getDeficiencia() {
         return deficiencia;
     }
 
     /**
-     * Metodo para inserção da deficiencia 
-     * @param deficienciaFisica
+     * Metodo para insercao da deficiencia 
+     * @param deficiencia
      */
-    public void setDeficiencia(boolean deficienciaFisica) {
-        this.deficiencia = deficienciaFisica;
+    public void setDeficiencia(boolean deficiencia) {
+        this.deficiencia = deficiencia;
     }
 
     /** 
      * Metodo para retorno do nome da mae do aluno.
-     * @return String - Nome do mae do aluno
+     * @return nomeMae
      */
     public String getNomeMae() {
         return nomeMae;
     }
 
     /**
-     * Metodo para inserção do nome da mae 
+     * Metodo para insercao do nome da mae 
      * @param nomeMae
      */
     public void setNomeMae(String nomeMae) {
@@ -136,14 +136,14 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno do nome do pai do aluno.
-     * @return String - Nome do pai do aluno
+     * @return nomePai
      */
     public String getNomePai() {
         return nomePai;
     }
 
     /**
-     * Metodo para inserção do nome do pai 
+     * Metodo para insercao do nome do pai 
      * @param nomePai
      */
     public void setNomePai(String nomePai) {
@@ -152,7 +152,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno do nome do responsavel pelo aluno.
-     * @return String - Nome do respons�vel pelo aluno
+     * @return nomeResponsavel
      */
     public String getNomeResponsavel() {
         return nomeResponsavel;
@@ -168,7 +168,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno da situacao do ano letivo do aluno.
-     * @return Boolean - True para aprovado / False para reprovado
+     * @return situacaoAnoLetivo
      */
     public boolean getSituacaoAnoLetivo() {
         return situacaoAnoLetivo;
@@ -181,43 +181,48 @@ public class Aluno extends Usuario {
     public void setSituacaoAnoLetivo(boolean situacaoAnoLetivo) {
         this.situacaoAnoLetivo = situacaoAnoLetivo;
     }
-    
+
     /**
-     * Método para retorno do Usuario
-     * @return
+     * Metodo para retorno do FK do usuario
+     * @return fk_usuario
      */
-    public Usuario getUsuario() {
-		return usuario;
+    public int getFk_usuario() {
+		return fk_usuario;
 	}
 
     /**
-     * Método para inserção do Usuario
-     * @param usuario
+     * Metodo para inserção FK do usuario
+     * @param fk_usuario
      */
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setFk_usuario(int fk_usuario) {
+		this.fk_usuario = fk_usuario;
 	}
-
 
 	/**
      * Metodo de retorno da turma 
-	 * @return the turma
+	 * @return fk_turma
 	 */
-	public Turma getTurma() {
-		return turma;
+	public int getFk_turma() {
+		return fk_turma;
 	}
-	
+
 	/**
 	 * Metodo de insercao da turma 
-	 * @param turma the turma to set
+	 * @param fk_turma
 	 */
-	public void setTurma(Turma turma) {
-		this.turma = turma;
+	public void setFk_turma(int fk_turma) {
+		this.fk_turma = fk_turma;
 	}
+	
+	
+	
+	//-----
+	
+	
 	
 	/** 
 	 * Metodo para o envio de uma resposta de uma atividade.
-     * @param Resposta - Resposta a ser enviada.
+     * @param 
      */
     public void mandarResposta(Resposta resposta) {
         // TODO implement here
@@ -225,8 +230,8 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para visualizar as respostas enviadas, a partir do banco de dados.
-     * @param -
-     * @return Resposta - Retorna as respostas enviadas.
+     * @param 
+     * @retur
      */
     public Resposta verRespostasEnviadas() {
         return null;
@@ -234,8 +239,8 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para visualizar uma resposta enviada espec�fica, a partir do banco de dados.
-     * @param -
-     * @return Resposta - Retorna uma resposta.
+     * @param 
+     * @return
      */
     public Resposta buscarRespostaEnviada(Resposta resposta) {
         return null;
@@ -243,7 +248,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para a remocao de uma resposta.
-     * @param Resposta - Resposta a ser removida.
+     * @param 
      */
     public void removerResposta(Resposta resposta) {
         // TODO implement here
@@ -251,25 +256,25 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para visualizar as atividades recebidas, a partir do banco de dados.
-     * @param -
-     * @return Atividade - Retorna as atividades recebidas.
+     * @param 
+     * @return
      */
     public Atividade verAtividadesRecebidas() {
         return null;
     }
 
     /** 
-     * Metodo para visualizar uma atividade recebida espec�fica, a partir do banco de dados.
-     * @param -
-     * @return Atividade - retorna uma atividade.
+     * Metodo para visualizar uma atividade recebida especafica, a partir do banco de dados.
+     * @param 
+     * @return
      */
     public Atividade pesquisarAtividadeRecebida() {
         return null;
     }
 
-    /** Metodo para a visualiza��o das notas
-     * @param -
-     * @return Resposta - Retorna as notas.
+    /** Metodo para a visualizacao das notas
+     * @param 
+     * @return
      */
     public Resposta verNotas() {
         return null;
