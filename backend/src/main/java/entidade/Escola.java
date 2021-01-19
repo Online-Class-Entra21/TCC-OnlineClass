@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Arrays;
 
 /**
- * Classe contendo métodos e atributos para as devidas funções da escola.
+ * Classe contendo mï¿½todos e atributos para as devidas funï¿½ï¿½es da escola.
  * @author 
  */
 public class Escola {
@@ -16,7 +16,6 @@ public class Escola {
     private Usuario usuarios[];
     private PeriodoAvaliacao periodos[];
 
-    
     /**
      * Construtor usado para criar uma instancia com os dados do Banco de Dados
      * @param idEscola
@@ -31,7 +30,6 @@ public class Escola {
 		setDataFinalLetivo(dataFinalLetivo);
 	}
 
-
 	/**
      * Construtor usado ao instanciar a classe Escola.
      * @param
@@ -40,7 +38,7 @@ public class Escola {
     }
 
     
-    /** Método para retorno do ID da escola.
+    /** Mï¿½todo para retorno do ID da escola.
      * @return Int - ID da escola
      */
     public int getIdEscola() {
@@ -54,7 +52,7 @@ public class Escola {
         this.idEscola = idEscola;
     }
 
-    /** Método para retorno do nome da escola.
+    /** Mï¿½todo para retorno do nome da escola.
      * @return String - Nome da escola
      */
     public String getNome() {
@@ -69,8 +67,8 @@ public class Escola {
     	this.nome = nome;
     }
 
-    /** Método para retorno da data de início do ano letivo.
-     * @return Date - Data de início do ano letivo
+    /** Mï¿½todo para retorno da data de inï¿½cio do ano letivo.
+     * @return Date - Data de inï¿½cio do ano letivo
      */
     public Date getDataInicioLetivo() {
         return dataInicioLetivo;
@@ -85,7 +83,7 @@ public class Escola {
     	this.dataInicioLetivo = dataInicioLetivo;
     }
 
-    /** Método para retorno da data final do ano letivo.
+    /** Mï¿½todo para retorno da data final do ano letivo.
      * @return Date - Data final do ano letivo
      */
     public Date getDataFinalLetivo() {
@@ -100,14 +98,14 @@ public class Escola {
         this.dataFinalLetivo = dataFinalLetivo;
     }
 
-    /** Método para retorno dos usuários.
-     * @return Usuario - Array de usuários
+    /** Mï¿½todo para retorno dos usuï¿½rios.
+     * @return Usuario - Array de usuï¿½rios
      */
     public Usuario[] getUsuarios() {
         return usuarios;
     }
 
-    /** Método para buscar um usuário específico.
+    /** Mï¿½todo para buscar um usuï¿½rio especï¿½fico.
      * @param -
      * @return Usuario - Usuario a ser buscado.
      */
@@ -115,34 +113,24 @@ public class Escola {
         return null;
     }
 
-    /** Método para adicionar um usuário ao sistema.
+    /** Mï¿½todo para adicionar um usuï¿½rio ao sistema.
      * @param -
      */
     public void adicionarUsuario() {
         // TODO implement here
     }
 
-    /** Método para buscar um periodo de avaliação específico.
+    /** Mï¿½todo para buscar um periodo de avaliaï¿½ï¿½o especï¿½fico.
      * @return PeriodoAvaliacao
      */
     public PeriodoAvaliacao buscarPeriodo() {
         return null;
     }
 
-    /** Método para adicionar um período de avaliação.
+    /** Mï¿½todo para adicionar um perï¿½odo de avaliaï¿½ï¿½o.
      * @param -
      */
     public void adicionarPeriodo() {
         // TODO implement here
     }
-
-
-	@Override
-	public String toString() {
-		return "Escola [idEscola=" + idEscola + ", nome=" + nome + ", dataInicioLetivo=" + dataInicioLetivo
-				+ ", dataFinalLetivo=" + dataFinalLetivo;
-	}
-
-    
-    
 }

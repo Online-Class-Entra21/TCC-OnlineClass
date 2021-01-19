@@ -220,64 +220,64 @@ public class Aluno extends Usuario {
 	
 	
 	
-	/** 
-	 * Metodo para o envio de uma resposta de uma atividade.
-     * @param 
-     */
-    public void mandarResposta(Resposta resposta) {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar as respostas enviadas, a partir do banco de dados.
-     * @param 
-     * @retur
-     */
-    public Resposta verRespostasEnviadas() {
-        return null;
-    }
-
-    /** 
-     * Metodo para visualizar uma resposta enviada espec�fica, a partir do banco de dados.
-     * @param 
-     * @return
-     */
-    public Resposta buscarRespostaEnviada(Resposta resposta) {
-        return null;
-    }
-
-    /** 
-     * Metodo para a remocao de uma resposta.
-     * @param 
-     */
-    public void removerResposta(Resposta resposta) {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar as atividades recebidas, a partir do banco de dados.
-     * @param 
-     * @return
-     */
-    public Atividade verAtividadesRecebidas() {
-        return null;
-    }
-
-    /** 
-     * Metodo para visualizar uma atividade recebida especafica, a partir do banco de dados.
-     * @param 
-     * @return
-     */
-    public Atividade pesquisarAtividadeRecebida() {
-        return null;
-    }
-
-    /** Metodo para a visualizacao das notas
-     * @param 
-     * @return
-     */
-    public Resposta verNotas() {
-        return null;
-    }
+//	/** 
+//	 * Metodo para o envio de uma resposta de uma atividade.
+//     * @param 
+//     */
+//    public void mandarResposta(Resposta resposta) {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar as respostas enviadas, a partir do banco de dados.
+//     * @param 
+//     * @retur
+//     */
+//    public Resposta verRespostasEnviadas() {
+//        return null;
+//    }
+//
+//    /** 
+//     * Metodo para visualizar uma resposta enviada espec�fica, a partir do banco de dados.
+//     * @param 
+//     * @return
+//     */
+//    public Resposta buscarRespostaEnviada(Resposta resposta) {
+//        return null;
+//    }
+//
+//    /** 
+//     * Metodo para a remocao de uma resposta.
+//     * @param 
+//     */
+//    public void removerResposta(Resposta resposta) {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar as atividades recebidas, a partir do banco de dados.
+//     * @param 
+//     * @return
+//     */
+//    public Atividade verAtividadesRecebidas() {
+//        return null;
+//    }
+//
+//    /** 
+//     * Metodo para visualizar uma atividade recebida especafica, a partir do banco de dados.
+//     * @param 
+//     * @return
+//     */
+//    public Atividade pesquisarAtividadeRecebida() {
+//        return null;
+//    }
+//
+//    /** Metodo para a visualizacao das notas
+//     * @param 
+//     * @return
+//     */
+//    public Resposta verNotas() {
+//        return null;
+//    }
 
 }

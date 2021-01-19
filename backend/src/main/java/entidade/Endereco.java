@@ -1,11 +1,12 @@
 package entidade;
 
 /**
- * Classe contendo m�todos e atributos para o endere�o dos usu�rios cadastrados no sistema.
+ * Classe contendo metodos e atributos para o endere�o dos usu�rios cadastrados no sistema.
  * @see Usuario
- * @author 
+ * @author Andrey 
  */
 public class Endereco {
+	
 	private int idEndereco;
     private String estado;
     private String cidade;
@@ -15,130 +16,147 @@ public class Endereco {
     private String cep;
     
     /**
-     * Construtor usado ao instanciar a classe Endereco.
+     * Construtor padrao
      * @param
      */
     public Endereco() {
+    	//Nenhum atributo inicializado
     }
 
-    
-    
-    public Endereco(int idEndereco, String estado, String cidade, String bairro, String rua, int numero, String cep) {
-		this.idEndereco = idEndereco;
-		this.estado = estado;
-		this.cidade = cidade;
-		this.bairro = bairro;
-		this.rua = rua;
-		this.numero = numero;
-		this.cep = cep;
+    /**
+     * Metodo construtor que preenche todos os atributos da classe 
+     * @param idEndereco
+     * @param estado
+     * @param cidade
+     * @param bairro
+     * @param rua
+     * @param numero
+     * @param cep
+     */
+	public Endereco(int idEndereco, String estado, String cidade, String bairro, String rua, int numero, String cep) {
+		setIdEndereco(idEndereco);
+		setEstado(estado);
+		setCidade(cidade);
+		setBairro(bairro);
+		setRua(rua);
+		setNumero(numero);
+		setCep(cep);
 	}
 
-
-
 	/**
-     * M�todo de retorno do id endere�o
-     * @return
+     * Metodo de retorno do id endereco
+     * @return idEndereco
      */
     public int getIdEndereco() {
 		return idEndereco;
 	}
 
     /**
-     * M�todo de inser��o do id endere�o
+     * Metodo de insercao do id endereco
      * @param idEndereco
      */
 	public void setIdEndereco(int idEndereco) {
 		this.idEndereco = idEndereco;
 	}
 
-	/** M�todo para retorno do estado.
-     * @return String - Estado
+	/** 
+	 * Metodo para retorno do estado.
+     * @return estado
      */
     public String getEstado() {
         return estado;
     }
 
     /**
-     * 
+     * Metodo para insercao do estado 
+     * @param estado
      */
     public void setEstado(String estado) {
         // TODO implement here
     	this.estado = estado;
     }
 
-    /** M�todo para retorno da cidade.
-     * @return String - Cidade
+    /** 
+     * Metodo para retorno da cidade.
+     * @return cidade
      */
     public String getCidade() {
         return cidade;
     }
 
     /**
-     * 
+     * Metodo para insercao da cidade 
+     * @param cidade
      */
     public void setCidade(String cidade) {
         // TODO implement here
     	this.cidade = cidade;
     }
 
-    /** M�todo para retorno do bairro.
-     * @return String - Bairro
+    /** 
+     * Metodo para retorno do bairro
+     * @return bairro
      */
     public String getBairro() {
         return bairro;
     }
 
     /**
-     * 
+     * Metodo para insercao do bairro
+     * @param bairro
      */
     public void setBairro(String bairro) {
         // TODO implement here
     	this.bairro = bairro;    	
     }
 
-    /** M�todo para retorno da rua.
-     * @return String - Rua
+    /** 
+     * Metodo para retorno da rua.
+     * @return rua
      */
     public String getRua() {
         return rua;
     }
 
     /**
-     * 
+     * Metodo para insercao da rua 
+     * @param rua
      */
     public void setRua(String rua) {
         // TODO implement here
     	this.rua = rua;
     }
 
-    /** M�todo para retorno do n�mero.
-     * @return Int - N�mero
+    /** 
+     * Metodo para retorno do numero.
+     * @return numero
      */
     public int getNumero() {
         return numero;
     }
 
     /**
-     * 
+     * Metodo para insercao do numero 
+     * @param num
      */
     public void setNumero(int num) {
         // TODO implement here
     	this.numero = num;
     }
 
-    /** M�todo para retorno do CEP.
-     * @return String - CEP
+    /** 
+     * Metodo para retorno do CEP.
+     * @return cep
      */
     public String getCep() {
         return cep;
     }
 
     /**
-     * 
+     * Metodo para insercao do CEP
+     * @param cep
      */
     public void setCep(String cep) {
-        // TODO implement here
     	this.cep = cep;
     }
-
 }

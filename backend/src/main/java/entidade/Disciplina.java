@@ -1,18 +1,24 @@
 package entidade;
 
-import java.util.*;
-
 /**
- * Classe contendo m�todos e atributos para a disciplina.
- * @author 
+ * Classe contendo metodos e atributos para a disciplina.
+ * @author André 
  */
 public class Disciplina {
+	
     private int idDisciplina;
     private String nome;
     private int numeroAulas;
+    
+    /**
+     * Construtor padrao
+     */
+    public Disciplina() {
+    	//Nenhum atributo inicializado
+	}
 
     /**
-     * Construtor usado ao instanciar a classe Disciplina.
+     * Metodo construtor que preenche os atributos da classe 
      * @param
      */
     public Disciplina(int idDisciplina, String nome, int numeroAulas) {
@@ -20,41 +26,52 @@ public class Disciplina {
     	setNome(nome);
     	setNumeroAulas(numeroAulas);
     }
-
-    public Disciplina() {
-	}
     
-    /** M�todo para retorno do ID da disciplina.
-     * @return Int - ID da disciplina
+    /** 
+     * Metodo para retorno do ID da disciplina
+     * @return idDisciplina 
      */
     public int getIdDisciplina() {
         return idDisciplina;
     }
+    
+    /**
+     * Metodo para insercao do ID da disciplina 
+     * @param idDisciplina
+     */
+    public void setIdDisciplina(int idDisciplina) {
+		this.idDisciplina = idDisciplina;
+	}
 
-    /** M�todo para retorno do nome da disciplina.
-     * @return String - Nome da disciplina
+    /** 
+     * Metodo para retorno do nome da disciplina
+     * @return nome
      */
     public String getNome() {
         return nome;
     }
+    
+    /**
+     * Metodo para insercao do nome da disciplina 
+     * @param nome
+     */
+    public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    /** M�todo para retorno do n�mero de aulas da disciplina.
-     * @return Int - N�mero de aulas
+    /** 
+     * Metodo para retorno do numero de aulas da disciplina
+     * @return numeroAulas
      */
     public int getNumeroAulas() {
         return numeroAulas;
     }
 
-	public void setIdDisciplina(int idDisciplina) {
-		this.idDisciplina = idDisciplina;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
+    /**
+     * Metodo para insercao do numero de aulas 
+     * @param numeroAulas
+     */
 	public void setNumeroAulas(int numeroAulas) {
 		this.numeroAulas = numeroAulas;
 	}
-    
 }
