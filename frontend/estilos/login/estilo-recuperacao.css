@@ -53,10 +53,11 @@ main {
 /*
 Título da caixa 
 */
-label{
+h2{
     color: #630c13;
-    font-size: 4vh;
+    font-size: 110%;
     margin-top: 5%;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /*
@@ -65,7 +66,7 @@ Config. Inputs
 .inputs{
     background-color: #fff;
     background-repeat: no-repeat;
-    width: 45vh;
+    width: 70%;
     height: 6.5vh;
     font-size: 2.8vh;
     border: none;
