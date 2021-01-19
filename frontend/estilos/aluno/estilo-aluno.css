@@ -129,7 +129,7 @@ Estilo Menu lateal
 #menu-lateral:hover, #lateral:focus,  #lateral:active  {
 	overflow-y:scroll;
 	transform: translate(85%, 0);
-	background:#286faaa1;
+	background:#007bff;
     background-image: linear-gradient(135deg, #737d8671, #2e393d81);
 	padding-right:0;
 }	
