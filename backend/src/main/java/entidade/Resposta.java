@@ -25,7 +25,29 @@ public class Resposta {
     public Resposta() {
     	//Nenhum atributo inicializado
     }
-   
+    
+    /**
+     * Metodo construtor que preenche todos os atributos da classe
+     * @param idResposta
+     * @param nota
+     * @param comentarioAtividade
+     * @param correcaoAtividade
+     * @param dataEntrega
+     * @param fk_aluno
+     * @param fk_Atividade
+     */
+	public Resposta(int idResposta, double nota, String comentarioAtividade, boolean correcaoAtividade,
+			Date dataEntrega, int fk_aluno, int fk_Atividade) {
+		
+		setIdResposta(idResposta);
+		setNota(nota);
+		setComentarioAtividade(comentarioAtividade);
+		setCorrecaoAtividade(correcaoAtividade);
+		setDataEntrega(dataEntrega);
+		setFk_aluno(fk_aluno);
+		setFk_Atividade(fk_Atividade);
+	}
+
 	/** 
 	 * Metodo para retorno do ID da resposta
      * @return idResposta

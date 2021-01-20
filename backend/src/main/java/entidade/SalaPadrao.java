@@ -1,19 +1,32 @@
 package entidade;
 
 /**
- * Herda métodos e atributos da classe Sala.
- * Cada turma tem uma sala como padrão.
+ * Herda metodos e atributos da classe Sala.
+ * Cada turma tem uma sala como padrao
  * @see Sala
  * @see Turma
- * @author
+ * @author Breno
  */
 public class SalaPadrao extends Sala {
 
 	/**
-     * Construtor usado ao instanciar a classe SalaPadrao.
+     * construtor padrao
      * @param
      */
     public SalaPadrao() {
-    	// TODO Auto-generated 
+    	//Nenhum atributo inicializado 
     }
+
+    /**
+     * Metodo construtor que preenche todos os atributos da classe 
+     * @param idSala
+     * @param nome
+     * @param descricao
+     * @param situacaoAcesso
+     * @param link
+     */
+	public SalaPadrao(int idSala, String nome, String descricao, boolean situacaoAcesso, String link) {
+		
+		super(idSala, nome, descricao, situacaoAcesso, false, link);
+	}
 }

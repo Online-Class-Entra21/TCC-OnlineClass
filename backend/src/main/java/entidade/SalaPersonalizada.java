@@ -1,113 +1,95 @@
 package entidade;
 
-import java.util.Arrays;
-
 /**
- * Herda métodos e atributos da classe Sala.
- * Salas personalizadas podem ser criadas pelo Usuario.
+ * Herda metodos e atributos da classe Sala.
+ * Salas personalizadas podem ser criadas pelo Usuario
  * @see Sala
  * @see Usuario
- * @author
+ * @author Breno 
  */
 public class SalaPersonalizada extends Sala {
 	
 	private int idSalaPersonalizada;
 	private int dono;
-	private Sala sala;
-	private UsuarioSalaPersonalizada usuariosSalaPersonalizada[];
+	private int fk_sala;
 
 	/**
-	 * Construtor usado ao instanciar a classe sala personalizada
+	 * Construtor padrao
 	 * @param
 	 */
 	public SalaPersonalizada() {
-		// TODO Auto-generated
+		//Nenhum atributo inicializado 
 	}
 	
 	/**
-	 * Construtor que preenche o dono da sala personalizada
+	 * Metodo construtor que preenche todos os atributos da classe 
+	 * @param idSalaPersonalizada
 	 * @param dono
+	 * @param fk_sala
 	 */
-	public SalaPersonalizada(int dono, Sala sala) {
+	public SalaPersonalizada(int idSalaPersonalizada, int dono, int fk_sala) {
+		
+		setIdSalaPersonalizada(idSalaPersonalizada);
 		setDono(dono);
-		setSala(sala);
-	}
-	
-	/**
-	 * Método de exibição das inforações
-	 */
-	@Override
-	public String toString() {
-		return "SalaPersonalizada [idSalaPersonalizada=" + idSalaPersonalizada + ", dono=" + dono + ", fk_sala="
-				+ sala + ", usuariosSalaPersonalizada=" + Arrays.toString(usuariosSalaPersonalizada) + "]";
+		setFk_sala(fk_sala);
 	}
 
-	/** Método para retorno do ID da sala personalizada
-	 * @return Int - ID da sala personalizada
+	/** Metodo para retorno do ID da sala personalizada
+	 * @return idSalaPersonalizada 
 	 */
 	public int getIdSalaPersonalizada() {
 	    return idSalaPersonalizada;
 	}
 	
 	/**
-	 * Método que adiciona o id na sala personalizada 
+	 * Metodo que adiciona o id na sala personalizada 
 	 * @param idSalaPersonalizada
 	 */
 	public void setIdSalaPersonalizada(int idSalaPersonalizada) {
 		this.idSalaPersonalizada = idSalaPersonalizada;
 	}
 	
-	/** Método para retorno do ID do dono da sala
-	 * @return Int - ID do dono da sala
+	/** 
+	 * Metodo para retorno do ID do dono da sala
+	 * @return dono
 	 */
 	public int getDono() {
 	    return dono;
 	}
 	
 	/**
-	 * Método que adiciona o criador da sala 
+	 * Metodo que adiciona o criador da sala 
 	 * @param dono
 	 */
 	public void setDono(int dono) {
 		this.dono = dono;
 	}
-	
+
 	/**
-	 * Método para retorno do numero da sala
+	 * Metodo para retorno do FK sala 
 	 * @return
 	 */
-	public Sala getSala() {
-		return sala;
+	public int getFk_sala() {
+		return fk_sala;
 	}
-	
+
 	/**
-	 * Método de inserção no numero da sala que faz referência na sala personalizada 
+	 * Metodo para insercao do FK da sala 
 	 * @param fk_sala
 	 */
-	public void setSala(Sala sala) {
-		this.sala = sala;
+	public void setFk_sala(int fk_sala) {
+		this.fk_sala = fk_sala;
 	}
 	
-	/** Método para retorno do UsuarioSalaPersonalizada
-	 * @return UsuarioSalaPersonalizada - UsuarioSalaPersonalizada
-	 */
-	public UsuarioSalaPersonalizada[] getUsuariosSalaPersonalizada() {
-	    return usuariosSalaPersonalizada;
-	}
 	
-	/**
-	 * Método para registro de todos os usuários da sala personalizada 
-	 * @param usuariosSalaPersonalizada
-	 */
-	public void setUsuariosSalaPersonalizada(UsuarioSalaPersonalizada[] usuariosSalaPersonalizada) {
-		this.usuariosSalaPersonalizada = usuariosSalaPersonalizada;
-	}
+	//---------------
 	
-	/** Método para pesquisar um usuário da sala personalizada
-	 * @param -
-	 * @return UsuarioSalaPersonalizada
-	 */
-	public UsuarioSalaPersonalizada pesquisarUsuarioSalaPersonalizada() {
-		return null;
-	}
+	
+//	/** Mï¿½todo para pesquisar um usuï¿½rio da sala personalizada
+//	 * @param -
+//	 * @return UsuarioSalaPersonalizada
+//	 */
+//	public UsuarioSalaPersonalizada pesquisarUsuarioSalaPersonalizada() {
+//		return null;
+//	}
 }

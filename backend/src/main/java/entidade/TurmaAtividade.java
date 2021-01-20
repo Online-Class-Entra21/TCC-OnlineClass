@@ -1,10 +1,10 @@
 package entidade;
 
 /**
- * Classe contendo métodos e atributos para a ligação da Turma com as Atividades.
+ * Classe contendo metodos e atributos para a ligacao da Turma com as Atividades.
  * @see Turma
  * @see Atividade
- * @author
+ * @author Breno 
  */
 public class TurmaAtividade {
     private int idTurmaAtividade;
@@ -12,14 +12,14 @@ public class TurmaAtividade {
     private Atividade atividade;
     
     /**
-     * Construtor usado ao instanciar a classe TurmaAtividade.
+     * Construtor padrao
      * @param
      */
     public TurmaAtividade() {
     }
     
     /**
-     * Método construtor que preenche todas as informações da classe TurmaAtividade
+     * Metodo construtor que preenche todos os atributos da classe
      * @param idTurmaAtividade
      * @param idTurma
      * @param idAtividade
@@ -29,32 +29,24 @@ public class TurmaAtividade {
 		setTurma(turma);
 		setAtividade(atividade);
 	}
-    
-    /**
-     * Método de exibição dos atributos da classe 
-     */
-	@Override
-	public String toString() {
-		return "TurmaAtividade [idTurmaAtividade=" + idTurmaAtividade + ", turma=" + turma + ", atividade=" + atividade
-				+ "]";
-	}
 
-	/** Método para retorno do ID da TurmaAtividade.
-     * @return Int - ID TurmaAtividade
+	/** 
+	 * Metodo para retorno do ID da TurmaAtividade
+     * @return idTurmaAtividade 
      */
 	public int getIdTurmaAtividade() {
 		return idTurmaAtividade;
 	}
 	
 	/**
-	 * Método de inserção do idTurmaAtividade
+	 * Metodo de insercao do idTurmaAtividade
 	 * @param idTurmaAtividade
 	 */
 	public void setIdTurmaAtividade(int idTurmaAtividade) {
 		this.idTurmaAtividade = idTurmaAtividade;
 	}
 
-    /** Método para retorno do ID da turma.
+    /** Mï¿½todo para retorno do ID da turma.
      * @return Int - ID da turma
      */
     public Turma getTurma() {
@@ -62,14 +54,14 @@ public class TurmaAtividade {
     }
     
     /**
-     * Método de inserção do idTurma
+     * Mï¿½todo de inserï¿½ï¿½o do idTurma
      * @param idTurma
      */
 	public void setTurma(Turma turma) {
 		this.turma = turma;
 	}
 
-    /** Método para retorno da atividade.
+    /** Mï¿½todo para retorno da atividade.
      * @return int - idAtividade
      */
     public Atividade getAtividade() {
@@ -77,7 +69,7 @@ public class TurmaAtividade {
     }
 
     /**
-     * Método de iserção da atividade 
+     * Mï¿½todo de iserï¿½ï¿½o da atividade 
      * @param idAtividade
      */
 	public void setAtividade(Atividade atividade) {

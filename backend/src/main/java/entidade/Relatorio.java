@@ -15,7 +15,7 @@ public class Relatorio {
     private int fk_usuario;
 
     /**
-     *Construtor padrao
+     * Construtor padrao
      * @param
      */
     public Relatorio() {

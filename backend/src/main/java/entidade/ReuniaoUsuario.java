@@ -1,109 +1,143 @@
 package entidade;
 
 import java.sql.Time;
-import java.util.*;
 
 /**
- * 
+ * Classe contendo metodos e atributos sobre o usuario que participa de uma reuniao em especifico 
+ * Respostas sao enviadas pelo Aluno
+ * @author Andrey 
+ *
  */
 public class ReuniaoUsuario {
+	
     private int idReuniaoUsuario;
+    private int fk_reuniao;
+    private int fk_usuario;
     private Time entradaReuniao;
     private double notaReuniao;
     private String comentarioReuniao;
-    private Usuario usuario;
-    private int codReuniao;
-    public Usuario Participa;
     
     /**
-     * Construtor usado ao instanciar a classe ReuniaoUsuario.
+     * Construtor padrao
      * @param
      */
     public ReuniaoUsuario() {
+    	//Nenhum atributo inicializado
     }
+    
+    /**
+     * Metodo construtor que preenche todas os atributos da classe 
+     * @param idReuniaoUsuario
+     * @param fk_reuniao
+     * @param fk_usuario
+     * @param entradaReuniao
+     * @param notaReuniao
+     * @param comentarioReuniao
+     */
+    public ReuniaoUsuario(int idReuniaoUsuario, int fk_reuniao, int fk_usuario, Time entradaReuniao, double notaReuniao,
+			String comentarioReuniao) {
 
+		setIdReuniaoUsuario(idReuniaoUsuario);
+		setFk_reuniao(fk_reuniao);
+		setFk_usuario(fk_usuario);
+		setEntradaReuniao(entradaReuniao);
+		setNotaReuniao(notaReuniao);
+		setComentarioReuniao(comentarioReuniao);
+	}
 
-    /** Método para retorno do ID da ReuniaoUsuario.
-     * @return Int - ID da ReuniaoUsuario
+	/** 
+     * Metodo para retorno do ID da ReuniaoUsuario
+     * @return idReuniaoUsuario 
      */
     public int getIdReuniaoUsuario() {
         return idReuniaoUsuario;
     }
 
     /**
-     * 
+     * Metodo para insercao do ID da reuniaoUsuario
+     * @param idReuniaoUsuario
      */
-    public void setReuniaoUsuario() {
-        // TODO implement here
-    }
-
-    /** Método para retorno do horário de entrada da reunião.
-     * @return Time - Horário de entrada na reunião
-     */
-    public Time getEntradaReuniao() {
-        return entradaReuniao;
-    }
+    public void setIdReuniaoUsuario(int idReuniaoUsuario) {
+		this.idReuniaoUsuario = idReuniaoUsuario;
+	}
 
     /**
-     * 
+     * Metodo para retorno do FK da reuniao 
+     * @return
      */
-    public void setEntradaReuniao() {
-        // TODO implement here
-    }
+	public int getFk_reuniao() {
+		return fk_reuniao;
+	}
 
-    /** Método para retorno da nota da reunião.
-     * @return Double - Nota da reunião
-     */
-    public double getNotaReuniao() {
-        return notaReuniao;
-    }
+	/**
+	 * Metodo para insercao do FK da reuniao 
+	 * @param fk_reuniao
+	 */
+	public void setFk_reuniao(int fk_reuniao) {
+		this.fk_reuniao = fk_reuniao;
+	}
 
-    /**
-     * 
-     */
-    public void setNotaReuniao() {
-        // TODO implement here
-    }
+	/**
+	 * Metodo para retorno do FK do usuario 
+	 * @return
+	 */
+	public int getFk_usuario() {
+		return fk_usuario;
+	}
 
-    /** Método para retorno dos comentários da reunião.
-     * @return String - Comentários da reunião
-     */
-    public String getComantarioReuniao() {
-        return comentarioReuniao;
-    }
-    /**
-     * 
-     */
-    public void setComentarioReuniao() {
-        // TODO implement here
-    }
+	/**
+	 * Metodo para insercao do FK do usuario 
+	 * @param fk_usuario
+	 */
+	public void setFk_usuario(int fk_usuario) {
+		this.fk_usuario = fk_usuario;
+	}
 
-    /** Método para retorno do usuário.
-     * @return Usuario - Usuario
-     */
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	/**
+	 * Metodo para retorno da hora de entrada da reuniao 
+	 * @return entradaReuniao 
+	 */
+	public Time getEntradaReuniao() {
+		return entradaReuniao;
+	}
 
-    /**
-     * 
-     */
-    public void setUsuario() {
-        // TODO implement here
-    }
+	/**
+	 * Metodo para insercao da hora de entrada da reuniao 
+	 * @param entradaReuniao
+	 */
+	public void setEntradaReuniao(Time entradaReuniao) {
+		this.entradaReuniao = entradaReuniao;
+	}
 
-    /** Método para retorno do código da reunião.
-     * @return Int - Código da reunião
-     */
-    public int getCodReuniao() {
-        return codReuniao;
-    }
+	/**
+	 * Metodo para retorno da nota da reuniao 
+	 * @return
+	 */
+	public double getNotaReuniao() {
+		return notaReuniao;
+	}
 
-    /**
-     * 
-     */
-    public void setCodReuniao() {
-        // TODO implement here
-    }
+	/**
+	 * Metodo para insercao da nota da reuniao 
+	 * @param notaReuniao
+	 */
+	public void setNotaReuniao(double notaReuniao) {
+		this.notaReuniao = notaReuniao;
+	}
 
+	/**
+	 * Metodo para retorno do comentario 
+	 * @return
+	 */
+	public String getComentarioReuniao() {
+		return comentarioReuniao;
+	}
+
+	/**
+	 * Metodo para insercao do comentario 
+	 * @param comentarioReuniao
+	 */
+	public void setComentarioReuniao(String comentarioReuniao) {
+		this.comentarioReuniao = comentarioReuniao;
+	}
 }

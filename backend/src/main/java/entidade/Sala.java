@@ -1,12 +1,13 @@
 package entidade;
 
 /**
- * Classe contendo métodos e atributos para a sala de aula.
- * Local onde ocorre as reuniões
+ * Classe contendo metodos e atributos para a sala de aula
+ * Local onde ocorre as reunioes
  * @see Reuniao
- * @author 
+ * @author Breno 
  */
 public class Sala {
+	
     private int idSala;
     private String nome;
     private String descricao;
@@ -15,121 +16,119 @@ public class Sala {
     private String link;
 
     /**
-     * Construtor usado ao instanciar a classe Sala.
+     * Construtor padrao
      * @param
      */
     public Sala() {
+        //Nenhum atributo inicializado
     }
 
     /**
-     * Método construtor que preenche todas os dados da tabela sala
+     * Metodo construtor que preenche todas os dados da tabela sala
+     * @param idSala
      * @param nome
      * @param descricao
      * @param situacaoAcesso
      * @param tipoSala
      * @param link
      */
-	public Sala(String nome, String descricao, boolean situacaoAcesso, boolean tipoSala, String link) {
+	public Sala(int idSala, String nome, String descricao, boolean situacaoAcesso, boolean tipoSala, String link) {
+		setIdSala(idSala);
 		setNome(nome);
 		setDescricao(descricao);
 		setSituacaoAcesso(situacaoAcesso);
 		setTipoSala(tipoSala);
 		setLink(link);
 	}
-	
-	/**
-	 * Método de exbição de dados da classe
-	 */
-	@Override
-	public String toString() {
-		return "Sala [idSala=" + idSala + ", nome=" + nome + ", descricao=" + descricao + ", situacaoAcesso="
-				+ situacaoAcesso + ", tipoSala=" + tipoSala + ", link=" + link + "]";
-	}
 
-	/** Método para retorno do ID da sala.
-     * @return Int - ID da sala
+	/** 
+	 * Metodo para retorno do ID da sala
+     * @return idSala
      */
     public int getIdSala() {
         return idSala;
     }
     
     /**
-     * Método de inserção do id da sala
+     * Mï¿½todo de insercao do id da sala
      * @param idSala
      */
     public void setIdSala(int idSala) {
 		this.idSala = idSala;
 	}
 
-    /** Método para retorno do nome da sala.
-     * @return String - Nome da sala
+    /** 
+     * Metodo para retorno do nome da sala
+     * @return nome
      */
     public String getNome() {
         return nome;
     }
 
     /**
-     * Método de inserção do nome da sala
+     * Metodo de insercao do nome da sala
      * @param nome
      */
     public void setNome(String nome) {
 		this.nome = nome;
 	}
     
-    /** Método para retorno da descrição da sala.
-     * @return String - Descrição da sala
+    /** 
+     * Metodo para retorno da descricao da sala
+     * @return descricao
      */
     public String getDescricao() {
         return descricao;
     }
     
     /**
-     * Método de inserção da descrição da sala
+     * Metodo de insercao da descricao da sala
      * @param descricao
      */
     public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
-    /** Método para retorno da situação de acesso.
-     * @return Boolean - Permitida a entrada? True / False
+    /** Metodo para retorno da situacao de acesso
+     * @return situacaoAcesso
      */
     public boolean getSituacaoAcesso() {
         return situacaoAcesso;
     }
     
     /**
-     * Método de inserção da situação de acesso da sala 
+     * Metodo de insercao da situacao de acesso da sala 
      * @param situacaoAcesso
      */
     public void setSituacaoAcesso(boolean situacaoAcesso) {
 		this.situacaoAcesso = situacaoAcesso;
 	}
 
-    /** Método para retorno do tipo da sala.
-     * @return Boolean - True para sala padrão / False para sala personalizada
+    /** Metodo para retorno do tipo da sala.
+     * @return tipoSala
      */
     public boolean getTipoSala() {
         return tipoSala;
     }
     
     /**
-     * Método de inserção do tipo da sala 
+     * Metodo de insercao do tipo da sala 
      * @param tipoSala
      */
     public void setTipoSala(boolean tipoSala) {
 		this.tipoSala = tipoSala;
 	}
 
-    /** Método para retorno do link da reunião.
-     * @return String - Link da reunião
+    /** 
+     * Metodo para retorno do link da reuniao
+     * @return link
      */
     public String getLink() {
         return link;
     }
 
     /**
-     * Método de inserção do link da reunião da sala 
+     * Metodo de insercao do link da reuniao da sala 
      * @param link
      */
     public void setLink(String link) {

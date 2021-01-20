@@ -11,7 +11,7 @@ import java.sql.Time;
 public class Professor extends Usuario {
 
 	/**
-     * Metodo construtor que preenche os atributos da classe 
+     * Construtor padrao
      * @param
      */
     public Professor() {
