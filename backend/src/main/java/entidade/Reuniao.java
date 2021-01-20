@@ -3,52 +3,56 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo m�todos e atributos para a cria��o de reuni�es pelo Usuario.
+ * Classe contendo metodos e atributos para a criacao de reunioes pelo Usuario
  * @see Usuario
  * @see TurmaProfessor
  * @author 
  */
 public class Reuniao {
+	
     private int idReuniao;
     private String descricao;
     private Date dataInicio;
     private int dono;
     private double notaMediaAula;
-    private Sala sala;
-    private ReuniaoUsuario reuniaoUsuarios[];
-    private TurmaProfessorDisciplina turmaProfessorDisciplina;
+    private int fk_sala;
+    private int fk_usuario_disciplina;
     
     /**
-     * Construtor usado ao instanciar a classe Reuniao.
+     * Construtor padrao
      * @param
      */
     public Reuniao() {
+    	//Nenhum atributo inicializado
     }
 
-
-    /** M�todo para retorno do ID da reuni�o.
-     * @return Int - ID da reuni�o
+    /** 
+     * Metodo para retorno do ID da reuniao
+     * @return idReuniao
      */
     public int getIdReuniao() {
         return idReuniao;
     }
 
     /**
-     * 
+     * Metodo de insercao do ID da reuniao
+     * @param idReuniao
      */
     public void setIdReuniao(int idReuniao) {
         this.idReuniao = idReuniao;
     }
 
-    /** M�todo para retorno da descri��o da reuni�o.
-     * @return String - Descri��o da reuni�o
+    /** 
+     * Metodo para retorno da descricao da reuniao
+     * @return descricao
      */
     public String getDescricao() {
         return descricao;
     }
 
     /**
-     * 
+     * Metodo para insercao 
+     * @param descricao
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao; 

@@ -23,10 +23,10 @@ public class Administrador extends Usuario {
      * @param
      */
 	public Administrador(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-						 int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+						 String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
 						 String fotoUsuario, int fk_endereco) {
 		
-		super(idUsuario, nome, sobrenome, cpf, telefone, celular, tipoUsuario, email, senha, horarioInicioExpediente,
+		super(idUsuario, nome, sobrenome, cpf, telefone, celular, 1, email, senha, horarioInicioExpediente,
 				horarioFinalExpediente, fotoUsuario, fk_endereco);
 	}
     

@@ -22,10 +22,10 @@ public class Diretor extends Usuario {
      * @param
      */
 	 public Diretor(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-				int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
-				String fotoUsuario, int fk_endereco, int fk_escola) {
+					String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+				    String fotoUsuario, int fk_endereco, int fk_escola) {
 		 
-			super(idUsuario, nome, sobrenome, cpf, telefone, celular, tipoUsuario, email, senha, horarioInicioExpediente,
+			super(idUsuario, nome, sobrenome, cpf, telefone, celular, 2, email, senha, horarioInicioExpediente,
 					horarioFinalExpediente, fotoUsuario, fk_endereco, fk_escola);
 		}
 

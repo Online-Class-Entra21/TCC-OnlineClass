@@ -1,44 +1,63 @@
 package entidade;
 
-import java.util.*;
+import java.sql.Time;
 
 /**
- * Classe contendo métodos e atributos para o professor.
- * Herda métodos e atributos da classe Usuario.
+ * Classe contendo metodos e atributos para o professor.
+ * Herda metodos e atributos da classe Usuario.
  * @see Usuario
- * @author  
+ * @author Andrey 
  */
 public class Professor extends Usuario {
-	private int idProfessor;
 
 	/**
-     * Construtor usado ao instanciar a classe Professor.
+     * Metodo construtor que preenche os atributos da classe 
      * @param
      */
     public Professor() {
-    }
-    
-    
-    /** Método para retorno do ID do professor.
-     *  @return Int - ID do professor
-     */
-    public int getIdProfessor() {
-    	return idProfessor;
-    }
-
-    /** Método para visualizar as disciplinas do professor.
-     * @param - 
-     * @return ProfessorDisciplina - Disciplinas do professor.
-     */
-    public ProfessorDisciplina verDisciplinas() {
-        return null;
+    	//Nenhum atributo inicializado
     }
 
     /**
-     * 
+     * Metodo construtor que preenche os atributos da classe 
+     * @param idUsuario
+     * @param nome
+     * @param sobrenome
+     * @param cpf
+     * @param telefone
+     * @param celular
+     * @param email
+     * @param senha
+     * @param horarioInicioExpediente
+     * @param horarioFinalExpediente
+     * @param fotoUsuario
+     * @param fk_endereco
+     * @param fk_escola
      */
-    public void escolherDisciplinaGerenciar() {
-        // TODO implement here
-    }
+	public Professor(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
+					 String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+					 String fotoUsuario, int fk_endereco, int fk_escola) {
+		
+		super(idUsuario, nome, sobrenome, cpf, telefone, celular, 4, email, senha, horarioInicioExpediente,
+				horarioFinalExpediente, fotoUsuario, fk_endereco, fk_escola);
+	}
 
+    
+    //------------
+    
+    
+//    /** Mï¿½todo para visualizar as disciplinas do professor.
+//     * @param - 
+//     * @return ProfessorDisciplina - Disciplinas do professor.
+//     */
+//    public ProfessorDisciplina verDisciplinas() {
+//        return null;
+//    }
+//
+//    /**
+//     * 
+//     */
+//    public void escolherDisciplinaGerenciar() {
+//        // TODO implement here
+//    }
 }

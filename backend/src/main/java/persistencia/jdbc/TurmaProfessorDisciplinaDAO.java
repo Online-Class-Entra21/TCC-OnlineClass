@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.ProfessorDisciplina;
+import entidade.UsuarioDisciplina;
 import entidade.Sala;
 import entidade.TurmaProfessorDisciplina;
 
@@ -43,7 +43,7 @@ public class TurmaProfessorDisciplinaDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela TurmaProfessorDisciplina
+	 * Realiza a exclusï¿½o dos dados de uma linha da tabela TurmaProfessorDisciplina
 	 * @param idTurmaProfessorDisciplina
 	 * @return
 	 */
@@ -70,7 +70,7 @@ public class TurmaProfessorDisciplinaDAO {
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Mï¿½todo de busca de todas as informaï¿½ï¿½es de uma linha
 	 * da tabela TurmaProfessorDisciplina do banco de dados
 	 * @param idSalaPersonalizada
 	 * @return

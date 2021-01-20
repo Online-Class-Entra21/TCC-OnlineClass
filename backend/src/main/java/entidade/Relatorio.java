@@ -1,118 +1,142 @@
 package entidade;
 
-import java.util.*;
-
 /**
- * Classe contendo m�todos e atributos para o envio e cria��o de relat�rios pelo usu�rio.
+ * Classe contendo m�todos e atributos para o envio e criacao de relatorios pelo usuario.
  * @see Usuario
- * @author
+ * @author Andrey
  */
 public class Relatorio {
+	
     private int idRelatorio;
     private String titulo;
     private int destinatario;
     private String texto;
     private String tipoRelatorio;
-    private int remetente;
+    private int fk_usuario;
 
     /**
-     * Construtor usado ao instanciar a classe Relatorio.
+     *Construtor padrao
      * @param
      */
     public Relatorio() {
+    	//Nenhum atributo inicializado
     }
+    
+    /**
+     * Metodo construtor que preenche todos os atributos da classe 
+     * @param idRelatorio
+     * @param titulo
+     * @param destinatario
+     * @param texto
+     * @param tipoRelatorio
+     * @param fk_usuario
+     */
+    public Relatorio(int idRelatorio, String titulo, int destinatario, String texto, String tipoRelatorio,
+					 int fk_usuario) {
+    	
+		setIdRelatorio(idRelatorio);
+		setTitulo(titulo);
+		setDestinatario(destinatario);
+		setTexto(texto);
+		setTipoRelatorio(tipoRelatorio);
+		setFk_usuario(fk_usuario);
+	}
 
-
-    /** M�todo para retorno do ID do relat�rio.
-     * @return Int - ID do relat�rio
+	/** 
+     * Metodo para retorno do ID do relatorio
+     * @return idRelatorio
      */
     public int getIdRelatorio() {
     	return idRelatorio;
     }
 
     /**
-     * @param i 
-     * 
+     * Metodo para insercao do ID do relatorio 
+     * @param idRelatorio
      */
     public void setIdRelatorio(int idRelatorio) {
-        // TODO implement here
     	this.idRelatorio = idRelatorio;
     }
 
-    /** M�todo para retorno do titulo do relat�rio.
-     * @return String - Titulo do relat�rio
+    /**
+     * Metodo para retorno do titulo do relatorio.
+     * @return titulo
      */
     public String getTitulo() {
         return titulo;
     }
 
     /**
-     * @param string 
-     * 
+     * Metodo para insercao do titulo do relatorio 
+     * @param titulo
      */
     public void setTitulo(String titulo) {
-        // TODO implement here
     	this.titulo = titulo;
     }
 
-    /** M�todo para retorno do ID do destinat�rio.
-     * @return Int - ID do destinat�rio
+    /** 
+     * Metodo para retorno do destinatorio
+     * @return destinatario
      */
     public int getDestinatario() {
         return destinatario;
     }
 
     /**
-     * 
+     * Metodo para insercao do destinatario 
+     * @param destinatario
      */
     public void setDestinatario(int destinatario) {
         // TODO implement here
     	this.destinatario = destinatario;
     }
 
-    /** M�todo para retorno do texto do relat�rio.
-     * @return String - Texto do relat�rio
+    /** 
+     * Metodo para retorno do texto do relatorio
+     * @return texto
      */
     public String getTexto() {
         return texto;
     }
 
     /**
-     * 
+     * Metodo para insercao do texto 
+     * @param texto
      */
     public void setTexto(String texto) {
         // TODO implement here
     	this.texto = texto;
     }
 
-    /** M�todo para retorno do tipo de relat�rio.
-     * @return Int - Tipo do relat�rio
+    /** 
+     * Metodo para retorno do tipo de relatorio
+     * @return tipoRelatorio
      */
     public String getTipoRelatorio() {
         return tipoRelatorio;
     }
 
     /**
-     * 
+     * Metodo para insercao do tipo relatorio 
+     * @param tipoRelatorio
      */
     public void setTipoRelatorio(String tipoRelatorio) {
-        // TODO implement here
     	this.tipoRelatorio = tipoRelatorio;
     }
 
-    /** M�todo para retorno do ID do remetente.
-     * @return Int - ID do remetente
-     */
-    public int getRemetente() {
-        return remetente;
-    }
-
     /**
-     * 
+     * Metodo para retorno do FK do usuario 
+     * @return
      */
-    public void setRemetente(int remetente) {
-        // TODO implement here
-    	this.remetente = remetente;
-    }
+	public int getFk_usuario() {
+		return fk_usuario;
+	}
 
+	/**
+	 * Metodo para insercao do FK do usuario
+	 * @param fk_usuario
+	 */
+	public void setFk_usuario(int fk_usuario) {
+		this.fk_usuario = fk_usuario;
+	}
 }
