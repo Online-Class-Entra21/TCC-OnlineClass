@@ -1,5 +1,13 @@
 package persistencia.jdbc;
 
+/*
+ * nota para o pessoal do back, 
+ * insert  = 100%
+ * update  = 100%
+ * delete  = 100%
+ * javadoc = 80% < precisa de revisão
+ */
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,14 +16,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Aluno;
-import entidade.Turma;
-import entidade.Usuario;
 
+
+/**
+ * 
+ * @author Andrey
+ *
+ */
 public class AlunoDAO {
 	
 	private Connection conexao = ConexaoFactory.getConnection();
 	
-	public boolean insertTabelaAluno(Aluno aluno, Turma turma) {
+	/**
+	 * Metodo para Inseri um aluno no banco de dados.
+	 * 
+	 * 	 
+	 * @param aluno
+	 * @param turma
+	 * @return true caso seja bem sucedido o delete, e false e um erro caso ocorra falha
+	 * @author Andrey 
+	 */
+	public boolean insert(Aluno aluno) {
 		
 		String sql = "insert into aluno (ra, matricula, deficiencia, nomemae, nomepai, nomeresponsavel, "
 				   + "situacaoanoletivo, fk_usuario, fk_turma) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -30,7 +51,7 @@ public class AlunoDAO {
 			comandoSql.setString(6, aluno.getNomeResponsavel());
 			comandoSql.setBoolean(7, aluno.getSituacaoAnoLetivo());
 			comandoSql.setInt(8, aluno.getIdUsuario());
-			comandoSql.setInt(9, turma.getIdTurma());
+			comandoSql.setInt(9, aluno.getFk_turma());
 			
 			comandoSql.execute();
 			comandoSql.close();
@@ -43,18 +64,18 @@ public class AlunoDAO {
 		
 		return true;	
 	}
-	public boolean insertTabelaUsuario(Aluno aluno) {
-		try {
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			aluno.setTipoUsuario(0);
-			usuarioDAO.insert(aluno);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			return false;
-		}
-		return true;
-	}
-	public boolean update(Aluno aluno, Turma turma) {
+	
+	/**
+	 * Metodo para Atualiza o banco de dados.
+	 * 
+	 * Nota: o idAluno do Aluno deve ser o id que deseja atualizar no banco 
+	 * 
+	 * @param aluno
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
+	 */
+	
+	public boolean update(Aluno aluno) {
 		String sql = "update aluno set ra = ?, matricula = ?, deficiencia = ?, nomemae = ?, nomepai = ?, nomeresponsavel = ?,"
 				+ "situacaoanoletivo = ?, fk_usuario = ?, fk_turma = ? where idaluno = ?";
 		
@@ -67,8 +88,8 @@ public class AlunoDAO {
 			comandoSql.setString(5, aluno.getNomePai());
 			comandoSql.setString(6, aluno.getNomeResponsavel());
 			comandoSql.setBoolean(7, aluno.getSituacaoAnoLetivo());
-			comandoSql.setInt(8, aluno.getIdUsuario());
-			comandoSql.setInt(9, turma.getIdTurma());
+			comandoSql.setInt(8, aluno.getFk_usuario());
+			comandoSql.setInt(9, aluno.getFk_turma());
 			comandoSql.setInt(10, aluno.getIdAluno());
 			
 			comandoSql.execute();
@@ -79,6 +100,13 @@ public class AlunoDAO {
 		}
 		return true;
 	}
+	/**
+	 * Deleta o aluno do respectivo ID do banco de dados
+	 * 
+	 * @param <code>idAluno</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
+	 */
 	public boolean delete(int idAluno) {
 		String sql = "delete from aluno where idaluno = ?";
 		
@@ -95,21 +123,13 @@ public class AlunoDAO {
 		
 		return true;
 	}
-	public boolean deleteTabelaUsuario(int idUsuario) {
-		String sql = "delete from usuario where idUsuario = ? and tipoUsuario = 0";
-		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, idUsuario);
-			
-			comandoSql.execute();
-			comandoSql.close();
-		} catch (SQLException e) {
-			return false;
-		}
-		
-		return true;
-	}
+	/**
+	 * Metodo para selecionar o aluno do banco de dados apartir do respectivo id
+	 * 
+	 * @param idAluno id do aluno que deseja selecionar
+	 * @return Aluno referente ao id de entrada
+	 * @author Andrey
+	 */
 	public Aluno buscarId(int idAluno) {
 		Aluno aluno = new Aluno();
 		
@@ -129,22 +149,8 @@ public class AlunoDAO {
 				aluno.setNomePai(resultSet.getString(6));
 				aluno.setNomeResponsavel(resultSet.getString(7));
 				aluno.setSituacaoAnoLetivo(resultSet.getBoolean(8));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto usuario
-				 * apartir do fk do usuario
-				 */
-				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				Usuario usuario = usuarioDAO.buscarId(resultSet.getInt(9));
-				aluno.setIdUsuario(usuario.getIdUsuario());
-			
-				/**
-				 * Realiza a consulta por id para criar o objeto turma
-				 * apartir do fk da turma
-				 */
-				TurmaDAO turmaDAO = new TurmaDAO();
-				Turma turma = turmaDAO.buscarPorId(resultSet.getInt(10));
-				aluno.setTurma(turma);
+				aluno.setFk_usuario(resultSet.getInt(9));						
+				aluno.setFk_turma(resultSet.getInt(10));
 			}
 			comandoSql.close();
 			return aluno;
@@ -155,6 +161,13 @@ public class AlunoDAO {
 		}
 		
 	}
+	
+	/**
+	 * Metodo para Selecionar do banco de dados todos os alunos cadastrados nele
+	 *  
+	 * @return Lista de objetos Aluno com todos os alunos do banco de dados
+	 * @author Andrey
+	 */
 	public List<Aluno> buscarTodos() {
 		Aluno aluno = new Aluno();
 		List<Aluno> lista =  new ArrayList<Aluno>();
@@ -174,22 +187,8 @@ public class AlunoDAO {
 				aluno.setNomePai(resultSet.getString(6));
 				aluno.setNomeResponsavel(resultSet.getString(7));
 				aluno.setSituacaoAnoLetivo(resultSet.getBoolean(8));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto usuario
-				 * apartir do fk do usuario
-				 */
-				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				Usuario usuario = usuarioDAO.buscarId(resultSet.getInt(9));
-				aluno.setIdUsuario(usuario.getIdUsuario());
-			
-				/**
-				 * Realiza a consulta por id para criar o objeto turma
-				 * apartir do fk da turma
-				 */
-				TurmaDAO turmaDAO = new TurmaDAO();
-				Turma turma = turmaDAO.buscarPorId(resultSet.getInt(10));
-				aluno.setTurma(turma);
+				aluno.setFk_escola(resultSet.getInt(9));
+				aluno.setFk_turma(resultSet.getInt(10));
 				
 			lista.add(aluno);
 			}
