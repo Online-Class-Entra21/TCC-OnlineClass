@@ -100,7 +100,8 @@ public class Escola {
     }
     
     
-    //------------------------
+    //Descomentar após correções do André - ClassesDAO
+  	//-------------------------------------------------
     
     
 //    /**

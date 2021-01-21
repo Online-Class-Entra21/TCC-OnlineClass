@@ -340,7 +340,8 @@ public class Usuario {
 	}
 	
 	
-	//-------------
+	//Descomentar após correções do André - ClassesDAO
+  	//-------------------------------------------------
 	
 
 //	/** 

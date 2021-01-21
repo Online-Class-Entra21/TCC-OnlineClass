@@ -42,7 +42,8 @@ public class Administrador extends Usuario {
 	} 
 	
 	
-	//-----------------------
+	//Descomentar após correções do André - ClassesDAO
+	//-------------------------------------------------
 	
 	
 //	/**

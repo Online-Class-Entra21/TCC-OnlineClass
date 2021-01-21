@@ -81,10 +81,10 @@ public class UsuarioDisciplina {
 	}
     
     
-	//--------------
+	//Descomentar após correções do André - ClassesDAO
+  	//-------------------------------------------------
 
 	
-    
 //    /** M�todo para visualizar uma atividade.
 //     * @param -
 //     * @return Atividade - Atividade a ser visualizada.
