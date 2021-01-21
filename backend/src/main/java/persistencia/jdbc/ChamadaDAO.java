@@ -78,6 +78,7 @@ public class ChamadaDAO {
 	 * 
 	 * @param idChamada
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
 	 */
 	public boolean delete(int idChamada) {
 		String sql = "delete from chamada where idchamada = ?";
@@ -103,6 +104,7 @@ public class ChamadaDAO {
 	 * 
 	 * @param idChamada
 	 * @return Chamada
+	 * @author Andrey
 	 */
 	public Chamada buscarId(int idChamada) {
 		Chamada chamada = new Chamada();
@@ -134,6 +136,7 @@ public class ChamadaDAO {
 	 * Metodo para selecionar todas as chamadas do banco de dados
 	 * 
 	 * @return List
+	 * @author Andrey
 	 */
 	public List<Chamada> buscarTodos() {
 		Chamada chamada = new Chamada();
