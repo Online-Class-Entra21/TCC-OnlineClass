@@ -2,11 +2,6 @@ package entidade;
 
 import java.sql.Time;
 
-import persistencia.jdbc.AlunoDAO;
-import persistencia.jdbc.DisciplinaDAO;
-import persistencia.jdbc.ProfessorDAO;
-import persistencia.jdbc.TurmaDAO;
-
 /**
  * Classe contendo mwtodos e atributos para o coordenador.
  * Herda metodos e atributos da classe Usuario

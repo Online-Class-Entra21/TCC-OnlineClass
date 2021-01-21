@@ -2,8 +2,6 @@ package entidade;
 
 import java.sql.Time;
 
-import persistencia.jdbc.ProfessorDAO;
-
 /**
  * Classe contendo metodos e atributos para o diretor.
  * Herda metodos e atributos da classe Usuario.
