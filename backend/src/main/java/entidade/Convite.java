@@ -1,10 +1,11 @@
 package entidade;
 
 /**
- * Classe contendo metodos e atributos para a criacao de convites de acesso as reunioes.
+ * Classe contendo metodos e atributos para a criacao de convites de acesso as reunioes
  * @author André 
  */
 public class Convite {
+	
     private int idConvite;
     private int destinatario;
     private int salaConvite;
@@ -13,7 +14,6 @@ public class Convite {
 
     /**
      * Construtor padrao
-     * @param
      */
     public Convite() {
     	//Nenhum atributo inicializado
@@ -37,7 +37,7 @@ public class Convite {
 
 	/**
      * Metodo para retorno do ID do convite 
-     * @return
+     * @return int idConvite 
      */
     public int getIdConvite() {
 		return idConvite;
@@ -45,7 +45,7 @@ public class Convite {
 
     /**
      * Metodo para insercao do ID do convite 
-     * @param idConvite
+     * @param int idConvite
      */
 	public void setIdConvite(int idConvite) {
 		this.idConvite = idConvite;
@@ -53,7 +53,7 @@ public class Convite {
 
     /** 
      * Metodo para retorno do ID do destinatario.
-     * @return destinatario 
+     * @return int destinatario 
      */
     public int getDestinatario() {
         return destinatario;
@@ -61,15 +61,15 @@ public class Convite {
 
     /**
      * Metodo para insercao do ID do destinatario 
-     * @param idDestinatario
+     * @param int idDestinatario
      */
     public void setDestinatario(int idDestinatario) {
         this.destinatario = idDestinatario;
     }
 
     /** 
-     * Metodo para retorno do ID do convite da sala.
-     * @return salaConvite 
+     * Metodo para retorno do ID do convite da sala
+     * @return int salaConvite 
      */
     public int getSalaConvite() {
         return salaConvite;
@@ -77,7 +77,7 @@ public class Convite {
 
     /**
      * Metodo para insercao do ID do convite da sala 
-     * @param idSalaConvite
+     * @param int idSalaConvite
      */
     public void setSalaConvite(int idSalaConvite) {
         this.salaConvite = idSalaConvite;
@@ -85,7 +85,7 @@ public class Convite {
 
     /** 
      * Metodo para retorno da situacao do convite.
-     * @return situacaoConvite
+     * @return boolean situacaoConvite
      */
     public boolean getSituacaoConvite() {
         return situacaoConvite;
@@ -93,7 +93,7 @@ public class Convite {
 
     /**
      * Metodo para insercao da situacao do convite 
-     * @param situacaoConvite
+     * @param boolean situacaoConvite
      */
     public void setSituacaoConvite(boolean situacaoConvite) {
         this.situacaoConvite = situacaoConvite;
@@ -101,7 +101,7 @@ public class Convite {
     
     /**
      * Metodo para retorno do FK do usuario 
-     * @return
+     * @return int fk_usuario 
      */
 	public int getFk_usuario() {
 		return fk_usuario;
@@ -109,7 +109,7 @@ public class Convite {
 
 	/**
 	 * Metodo para insercao do FK do usuario 
-	 * @param fk_usuario
+	 * @param int fk_usuario
 	 */
 	public void setFk_usuario(int fk_usuario) {
 		this.fk_usuario = fk_usuario;

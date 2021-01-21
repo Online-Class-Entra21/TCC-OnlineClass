@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import persistencia.jdbc.ConexaoFactory;
 
 /**
- * Classe com metodos e atributos para realizar a conexao com o Banco de Dados.
- * @author
+ * Classe com metodos e atributos para realizar a conexao com o Banco de Dados
+ * @author Breno
  */
 public class Conexao {
 	
@@ -21,7 +21,7 @@ public class Conexao {
     }
     
     /** 
-     * Metodo para retorno da conexao.
+     * Metodo para retorno da conexao
      * @return conexao
      */
     @SuppressWarnings("static-access")
@@ -44,5 +44,4 @@ public class Conexao {
 			e.printStackTrace();
 		}
     }
-
 }
