@@ -4,7 +4,7 @@ import java.sql.Time;
 
 /**
  * Classe contendo metodos e atributos para o professor.
- * Herda metodos e atributos da classe Usuario.
+ * Herda metodos e atributos da classe Usuario
  * @see Usuario
  * @author Andrey 
  */

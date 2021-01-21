@@ -3,7 +3,7 @@ package entidade;
 import java.sql.Time;
 
 /**
- * Classe contendo metodos e atributos sobre o usuario que participa de uma reuniao em especifico 
+ * Classe contendo metodos e atributos sobre o usuario que participa de uma reuniao em especifico.
  * Respostas sao enviadas pelo Aluno
  * @author Andrey 
  *
@@ -47,7 +47,7 @@ public class ReuniaoUsuario {
 
 	/** 
      * Metodo para retorno do ID da ReuniaoUsuario
-     * @return idReuniaoUsuario 
+     * @return int idReuniaoUsuario 
      */
     public int getIdReuniaoUsuario() {
         return idReuniaoUsuario;
@@ -55,7 +55,7 @@ public class ReuniaoUsuario {
 
     /**
      * Metodo para insercao do ID da reuniaoUsuario
-     * @param idReuniaoUsuario
+     * @param int idReuniaoUsuario
      */
     public void setIdReuniaoUsuario(int idReuniaoUsuario) {
 		this.idReuniaoUsuario = idReuniaoUsuario;
@@ -63,7 +63,7 @@ public class ReuniaoUsuario {
 
     /**
      * Metodo para retorno do FK da reuniao 
-     * @return
+     * @return int fk_reuniao
      */
 	public int getFk_reuniao() {
 		return fk_reuniao;
@@ -71,7 +71,7 @@ public class ReuniaoUsuario {
 
 	/**
 	 * Metodo para insercao do FK da reuniao 
-	 * @param fk_reuniao
+	 * @param int fk_reuniao
 	 */
 	public void setFk_reuniao(int fk_reuniao) {
 		this.fk_reuniao = fk_reuniao;
@@ -79,7 +79,7 @@ public class ReuniaoUsuario {
 
 	/**
 	 * Metodo para retorno do FK do usuario 
-	 * @return
+	 * @return int fk_usuario 
 	 */
 	public int getFk_usuario() {
 		return fk_usuario;
@@ -87,7 +87,7 @@ public class ReuniaoUsuario {
 
 	/**
 	 * Metodo para insercao do FK do usuario 
-	 * @param fk_usuario
+	 * @param int fk_usuario
 	 */
 	public void setFk_usuario(int fk_usuario) {
 		this.fk_usuario = fk_usuario;
@@ -95,7 +95,7 @@ public class ReuniaoUsuario {
 
 	/**
 	 * Metodo para retorno da hora de entrada da reuniao 
-	 * @return entradaReuniao 
+	 * @return Time entradaReuniao 
 	 */
 	public Time getEntradaReuniao() {
 		return entradaReuniao;
@@ -103,7 +103,7 @@ public class ReuniaoUsuario {
 
 	/**
 	 * Metodo para insercao da hora de entrada da reuniao 
-	 * @param entradaReuniao
+	 * @param Time entradaReuniao
 	 */
 	public void setEntradaReuniao(Time entradaReuniao) {
 		this.entradaReuniao = entradaReuniao;
@@ -111,7 +111,7 @@ public class ReuniaoUsuario {
 
 	/**
 	 * Metodo para retorno da nota da reuniao 
-	 * @return
+	 * @return double notaReuniao
 	 */
 	public double getNotaReuniao() {
 		return notaReuniao;
@@ -119,7 +119,7 @@ public class ReuniaoUsuario {
 
 	/**
 	 * Metodo para insercao da nota da reuniao 
-	 * @param notaReuniao
+	 * @param double notaReuniao
 	 */
 	public void setNotaReuniao(double notaReuniao) {
 		this.notaReuniao = notaReuniao;
@@ -127,7 +127,7 @@ public class ReuniaoUsuario {
 
 	/**
 	 * Metodo para retorno do comentario 
-	 * @return
+	 * @return String comentarioReuniao
 	 */
 	public String getComentarioReuniao() {
 		return comentarioReuniao;
@@ -135,7 +135,7 @@ public class ReuniaoUsuario {
 
 	/**
 	 * Metodo para insercao do comentario 
-	 * @param comentarioReuniao
+	 * @param String comentarioReuniao
 	 */
 	public void setComentarioReuniao(String comentarioReuniao) {
 		this.comentarioReuniao = comentarioReuniao;

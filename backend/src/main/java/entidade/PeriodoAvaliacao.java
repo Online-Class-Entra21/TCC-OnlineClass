@@ -3,7 +3,7 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe com metodos e atributos para o periodo de avaliacao.
+ * Classe com metodos e atributos para o periodo de avaliacao
  * @author Andrey 
  */
 public class PeriodoAvaliacao {
@@ -16,7 +16,6 @@ public class PeriodoAvaliacao {
     
     /**
      * Construtor padrao
-     * @param
      */
     public PeriodoAvaliacao() {
     	//Nenhum atributo inicializado
@@ -40,7 +39,7 @@ public class PeriodoAvaliacao {
 
 	/** 
 	 * Metodo para retorno do ID do PeriodoAvaliacao
-     * @return idPeriodoAvaliacao
+     * @return int idPeriodoAvaliacao
      */
     public int getIdPeriodoAvaliacao() {
         return idPeriodoAvaliacao;
@@ -48,7 +47,7 @@ public class PeriodoAvaliacao {
 
     /**
      * Metodo para insercao do periodo de avaliacao 
-     * @param idPeriodoAvaliacao
+     * @param int idPeriodoAvaliacao
      */
     public void setIdPeriodoAvaliacao(int idPeriodoAvaliacao) {
         this.idPeriodoAvaliacao = idPeriodoAvaliacao;
@@ -56,7 +55,7 @@ public class PeriodoAvaliacao {
 
     /** 
      * Metodo para retorno da data inicial do PeriodoAvaliacao
-     * @return dataInicial
+     * @return Date dataInicial
      */
     public Date getDataInicial() {
         return dataInicial;
@@ -64,7 +63,7 @@ public class PeriodoAvaliacao {
 
     /**
      * Metodo para insercao da data inicial do PeriodoAvaliacao 
-     * @param dataInicial
+     * @param Date dataInicial
      */
     public void setDataInicial(Date dataInicial) {
         this.dataInicial = dataInicial;
@@ -72,7 +71,7 @@ public class PeriodoAvaliacao {
 
     /** 
      * Metodo para retorno da data final do PeriodoAvaliacao
-     * @return dataFinal
+     * @return Date dataFinal
      */
     public Date getDataFinal() {
         return dataFinal;
@@ -80,7 +79,7 @@ public class PeriodoAvaliacao {
 
     /**
      * Metodo para insercao da data final do PeriodoAvaliacao 
-     * @param dataFinal
+     * @param Date dataFinal
      */
     public void setDataFinal(Date dataFinal) {
         this.dataFinal = dataFinal;
@@ -88,7 +87,7 @@ public class PeriodoAvaliacao {
 
     /** 
      * Metodo para retorno da descricao do PeriodoAvaliacao
-     * @return descricao
+     * @return String descricao
      */
     public String getDescricao() {
         return descricao;
@@ -96,7 +95,7 @@ public class PeriodoAvaliacao {
 
     /**
      * Metodo para insercao da descricao do 
-     * @param descricao
+     * @param String descricao
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
@@ -104,7 +103,7 @@ public class PeriodoAvaliacao {
 
     /**
      * Metodo para retorno do FK da escola
-     * @return fk_escola
+     * @return int fk_escola
      */
 	public int getFk_escola() {
 		return fk_escola;
@@ -112,7 +111,7 @@ public class PeriodoAvaliacao {
 
 	/**
 	 * Metodo para insercao do FK da escola 
-	 * @param fk_escola
+	 * @param int fk_escola
 	 */
 	public void setFk_escola(int fk_escola) {
 		this.fk_escola = fk_escola;

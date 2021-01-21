@@ -1,7 +1,7 @@
 package entidade;
 
 /**
- * Classe contendo metodos e atributos para a sala de aula
+ * Classe contendo metodos e atributos para a sala de aula.
  * Local onde ocorre as reunioes
  * @see Reuniao
  * @author Breno 
@@ -43,7 +43,7 @@ public class Sala {
 
 	/** 
 	 * Metodo para retorno do ID da sala
-     * @return idSala
+     * @return int idSala
      */
     public int getIdSala() {
         return idSala;
@@ -51,7 +51,7 @@ public class Sala {
     
     /**
      * M�todo de insercao do id da sala
-     * @param idSala
+     * @param int idSala
      */
     public void setIdSala(int idSala) {
 		this.idSala = idSala;
@@ -59,7 +59,7 @@ public class Sala {
 
     /** 
      * Metodo para retorno do nome da sala
-     * @return nome
+     * @return String nome
      */
     public String getNome() {
         return nome;
@@ -67,7 +67,7 @@ public class Sala {
 
     /**
      * Metodo de insercao do nome da sala
-     * @param nome
+     * @param Stirng nome
      */
     public void setNome(String nome) {
 		this.nome = nome;
@@ -75,7 +75,7 @@ public class Sala {
     
     /** 
      * Metodo para retorno da descricao da sala
-     * @return descricao
+     * @return String descricao
      */
     public String getDescricao() {
         return descricao;
@@ -83,14 +83,14 @@ public class Sala {
     
     /**
      * Metodo de insercao da descricao da sala
-     * @param descricao
+     * @param String descricao
      */
     public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
     /** Metodo para retorno da situacao de acesso
-     * @return situacaoAcesso
+     * @return boolean situacaoAcesso
      */
     public boolean getSituacaoAcesso() {
         return situacaoAcesso;
@@ -98,14 +98,14 @@ public class Sala {
     
     /**
      * Metodo de insercao da situacao de acesso da sala 
-     * @param situacaoAcesso
+     * @param boolean situacaoAcesso
      */
     public void setSituacaoAcesso(boolean situacaoAcesso) {
 		this.situacaoAcesso = situacaoAcesso;
 	}
 
     /** Metodo para retorno do tipo da sala.
-     * @return tipoSala
+     * @return boolean tipoSala
      */
     public boolean getTipoSala() {
         return tipoSala;
@@ -113,7 +113,7 @@ public class Sala {
     
     /**
      * Metodo de insercao do tipo da sala 
-     * @param tipoSala
+     * @param boolean tipoSala
      */
     public void setTipoSala(boolean tipoSala) {
 		this.tipoSala = tipoSala;
@@ -121,7 +121,7 @@ public class Sala {
 
     /** 
      * Metodo para retorno do link da reuniao
-     * @return link
+     * @return String link
      */
     public String getLink() {
         return link;
@@ -129,7 +129,7 @@ public class Sala {
 
     /**
      * Metodo de insercao do link da reuniao da sala 
-     * @param link
+     * @param String link
      */
     public void setLink(String link) {
 		this.link = link;

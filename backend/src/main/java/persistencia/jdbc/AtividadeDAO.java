@@ -30,7 +30,7 @@ public class AtividadeDAO {
 			comandoSql.setDate(3, (java.sql.Date) atividade.getFinalAtividade());
 			comandoSql.setInt(4, atividade.getTipoAtividade());
 			comandoSql.setDouble(5, atividade.getPesoNota());
-			comandoSql.setInt(6, atividade.getFk_usuario_disciplina());
+			comandoSql.setInt(6, atividade.getFk_usuarioDisciplina());
 			
 			comandoSql.execute();
 			comandoSql.close();
@@ -64,7 +64,7 @@ public class AtividadeDAO {
 			comandoSql.setDate(3, (java.sql.Date) atividade.getFinalAtividade());
 			comandoSql.setInt(4, atividade.getTipoAtividade());
 			comandoSql.setDouble(5, atividade.getPesoNota());
-			comandoSql.setInt(6, atividade.getFk_usuario_disciplina());
+			comandoSql.setInt(6, atividade.getFk_usuarioDisciplina());
 			comandoSql.setInt(7, atividade.getIdAtividade());
 			
 			comandoSql.execute();

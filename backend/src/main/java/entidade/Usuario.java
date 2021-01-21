@@ -3,8 +3,8 @@ package entidade;
 import java.sql.Time;
 
 /**
- * Classe contendo metodos e atributos para o usu�rio do sistema.
- * Os atributos e metodos dessa classe sao herdados pelas classes Administrador, Aluno, Coordenador, Diretor e Professor.
+ * Classe contendo metodos e atributos para o usuario do sistema.
+ * Os atributos e metodos dessa classe sao herdados pelas classes Administrador, Aluno, Coordenador, Diretor e Professor
  * @see Administrador
  * @see Aluno
  * @see Coordenador
@@ -30,8 +30,7 @@ public class Usuario {
     private int fk_escola;
     
     /**
-     * Construtor usado ao instanciar a classe Usuario.
-     * @param
+     * Construtor padrao
      */
     public Usuario() {
     	//Nenhum atributo inicializado
@@ -111,7 +110,7 @@ public class Usuario {
 
 	/**
 	 * Metodo para retorno do ID do usuario
-     * @return idUsuario
+     * @return int idUsuario
      */
     public int getIdUsuario() {
     	 return idUsuario;
@@ -119,7 +118,7 @@ public class Usuario {
 
     /**
      * Metodo de insercao do id usuario 
-     * @param idUsuario
+     * @param int idUsuario
      */
     public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
@@ -127,7 +126,7 @@ public class Usuario {
 
 	/** 
 	 * Metodo para retorno do nome do usuario
-     * @return nome
+     * @return String nome
      */
     public String getNome() {
         return nome;
@@ -135,7 +134,7 @@ public class Usuario {
     
     /**
      * Metodo de insercao do nome
-     * @param nome
+     * @param String nome
      */
     public void setNome(String nome) {
 		this.nome = nome;
@@ -143,7 +142,7 @@ public class Usuario {
 
     /** 
      * Metodo para retorno do sobrenome do usuario.
-     * @return sobrenome
+     * @return String sobrenome
      */
     public String getSobrenome() {
         return sobrenome;
@@ -151,15 +150,15 @@ public class Usuario {
 
     /**
      * Metodo de insercao do sobrenome do usuario
-     * @param sobrenome
+     * @param String sobrenome
      */
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
 
     /** 
-     * Metodo para retorno do CPF do usuario.
-     * @return cpf
+     * Metodo para retorno do cpf do usuario.
+     * @return String cpf
      */
     public String getCpf() {
         return cpf;
@@ -167,7 +166,7 @@ public class Usuario {
 
     /**
      * Metodo de insercao do cpf do usuario 
-     * @param cpf
+     * @param String cpf
      */
     public void setCpf(String cpf) {
 		this.cpf = cpf;
@@ -175,7 +174,7 @@ public class Usuario {
     
     /** 
      * Metodo para retorno do telefone do usuario.
-     * @return telefone
+     * @return String telefone
      */
     public String getTelefone() {
         return telefone;
@@ -183,7 +182,7 @@ public class Usuario {
 
     /**
      * Metodo para insercaoo do telefone do usuario 
-     * @param telefone
+     * @param String telefone
      */
     public void setTelefone(String telefone) {
 		this.telefone = telefone;
@@ -191,7 +190,7 @@ public class Usuario {
 
     /** 
      * Metodo para retorno do numero de celular do usuario.
-     * @return celular
+     * @return String celular
      */
     public String getCelular() {
         return celular;
@@ -199,7 +198,7 @@ public class Usuario {
 
     /**
      * Metodo para insercao do celular do usuario 
-     * @param celular
+     * @param String celular
      */
     public void setCelular(String celular) {
 		this.celular = celular;
@@ -213,7 +212,7 @@ public class Usuario {
 	 * 5 - Aluno.
      * 
      * Metodo para retorno do tipo de conta do usuario.
-     * @return tipoUsuario
+     * @return int tipoUsuario
 	 * 							
      */
     public int getTipoUsuario() {
@@ -222,7 +221,7 @@ public class Usuario {
 
     /** 
      * Metodo para insercao do tipo do usuario
-     * @param tipoUsuario
+     * @param int tipoUsuario
      */
     public void setTipoUsuario(int tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
@@ -230,7 +229,7 @@ public class Usuario {
 
     /** 
      * Metodo para retorno do email do usuario
-     * @return email
+     * @return String email
      */
     public String getEmail() {
         return email;
@@ -238,7 +237,7 @@ public class Usuario {
 
     /**
      * Metodo de insercao do email do usuario
-     * @param email
+     * @param String email
      */
     public void setEmail(String email) {
 		this.email = email;
@@ -246,7 +245,7 @@ public class Usuario {
 
     /**
      * Metodo de insercao de senha 
-     * @param senha
+     * @param String senha
      */
     public void setSenha(String senha) {
 		this.senha = senha;
@@ -254,7 +253,7 @@ public class Usuario {
     
     /**
      * Metodo de retorno da senha do usuario
-     * @return
+     * @return String senha 
      */
 	public String getSenha() {
 		return senha;
@@ -262,7 +261,7 @@ public class Usuario {
 
 	/** 
 	 * Metodo para retorno do horario inicial do expediente do usuario.
-     * @return horarioInicioExpediente
+     * @return Time horarioInicioExpediente
      */
     public Time getHorarioInicioExpediente() {
         return horarioInicioExpediente;
@@ -270,7 +269,7 @@ public class Usuario {
 
     /**
      * Metodo para insercao do horarioInicioExpediente do usuario
-     * @param horarioInicioExpediente
+     * @param Time horarioInicioExpediente
      */
     public void setHorarioInicioExpediente(Time horarioInicioExpediente) {
 		this.horarioInicioExpediente = horarioInicioExpediente;
@@ -278,7 +277,7 @@ public class Usuario {
 
     /** 
      * Metodo para retorno do horario final do expediente do usuario.
-     * @return horarioFinalExpediente
+     * @return Time horarioFinalExpediente
      */
     public Time getHorarioFinalExpediente() {
         return horarioFinalExpediente;
@@ -286,7 +285,7 @@ public class Usuario {
 
     /**
      * Metodo para insercao do horarioFinalExpediente do usuario 
-     * @param horarioFinalExpediente
+     * @param Time horarioFinalExpediente
      */
     public void setHorarioFinalExpediente(Time horarioFinalExpediente) {
 		this.horarioFinalExpediente = horarioFinalExpediente;
@@ -294,7 +293,7 @@ public class Usuario {
     
     /**
      * Metodo para pegar o caminho da foto do usuario
-     * @return fotoUsuario
+     * @return String fotoUsuario
      */
     public String getFotoUsuario() {
 		return fotoUsuario;
@@ -302,7 +301,7 @@ public class Usuario {
 
     /**
      * Metodo de insercao do caminho da foto do usuario
-     * @param fotoUsuario
+     * @param String fotoUsuario
      */
 	public void setFotoUsuario(String fotoUsuario) {
 		this.fotoUsuario = fotoUsuario;
@@ -310,7 +309,7 @@ public class Usuario {
 
 	/**
 	 * Metodo para retorno do FK do endereco
-	 * @return fk_endereco
+	 * @return int fk_endereco
 	 */
 	public int getFk_endereco() {
 		return fk_endereco;
@@ -318,7 +317,7 @@ public class Usuario {
 
 	/**
 	 * Metodo para insercao do FK do endereco
-	 * @param fk_endereco
+	 * @param int fk_endereco
 	 */
 	public void setFk_endereco(int fk_endereco) {
 		this.fk_endereco = fk_endereco;
@@ -326,7 +325,7 @@ public class Usuario {
 
 	/**
 	 * Metodo para retorno do FK da escola 
-	 * @return
+	 * @return int fk_escola 
 	 */
 	public int getFk_escola() {
 		return fk_escola;
@@ -334,7 +333,7 @@ public class Usuario {
 
 	/**
 	 * Metodo de insercao do FK da escola 
-	 * @param fk_escola
+	 * @param int fk_escola
 	 */
 	public void setFk_escola(int fk_escola) {
 		this.fk_escola = fk_escola;

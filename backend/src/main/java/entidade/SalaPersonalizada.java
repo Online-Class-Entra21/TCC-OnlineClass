@@ -15,7 +15,6 @@ public class SalaPersonalizada extends Sala {
 
 	/**
 	 * Construtor padrao
-	 * @param
 	 */
 	public SalaPersonalizada() {
 		//Nenhum atributo inicializado 
@@ -28,14 +27,13 @@ public class SalaPersonalizada extends Sala {
 	 * @param fk_sala
 	 */
 	public SalaPersonalizada(int idSalaPersonalizada, int dono, int fk_sala) {
-		
 		setIdSalaPersonalizada(idSalaPersonalizada);
 		setDono(dono);
 		setFk_sala(fk_sala);
 	}
 
 	/** Metodo para retorno do ID da sala personalizada
-	 * @return idSalaPersonalizada 
+	 * @return int idSalaPersonalizada 
 	 */
 	public int getIdSalaPersonalizada() {
 	    return idSalaPersonalizada;
@@ -43,7 +41,7 @@ public class SalaPersonalizada extends Sala {
 	
 	/**
 	 * Metodo que adiciona o id na sala personalizada 
-	 * @param idSalaPersonalizada
+	 * @param int idSalaPersonalizada
 	 */
 	public void setIdSalaPersonalizada(int idSalaPersonalizada) {
 		this.idSalaPersonalizada = idSalaPersonalizada;
@@ -51,7 +49,7 @@ public class SalaPersonalizada extends Sala {
 	
 	/** 
 	 * Metodo para retorno do ID do dono da sala
-	 * @return dono
+	 * @return int dono
 	 */
 	public int getDono() {
 	    return dono;
@@ -59,7 +57,7 @@ public class SalaPersonalizada extends Sala {
 	
 	/**
 	 * Metodo que adiciona o criador da sala 
-	 * @param dono
+	 * @param int dono
 	 */
 	public void setDono(int dono) {
 		this.dono = dono;
@@ -67,7 +65,7 @@ public class SalaPersonalizada extends Sala {
 
 	/**
 	 * Metodo para retorno do FK sala 
-	 * @return
+	 * @return int fk_sala
 	 */
 	public int getFk_sala() {
 		return fk_sala;
@@ -75,21 +73,9 @@ public class SalaPersonalizada extends Sala {
 
 	/**
 	 * Metodo para insercao do FK da sala 
-	 * @param fk_sala
+	 * @param int fk_sala
 	 */
 	public void setFk_sala(int fk_sala) {
 		this.fk_sala = fk_sala;
 	}
-	
-	
-	//---------------
-	
-	
-//	/** M�todo para pesquisar um usu�rio da sala personalizada
-//	 * @param -
-//	 * @return UsuarioSalaPersonalizada
-//	 */
-//	public UsuarioSalaPersonalizada pesquisarUsuarioSalaPersonalizada() {
-//		return null;
-//	}
 }

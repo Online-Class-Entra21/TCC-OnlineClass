@@ -1,7 +1,7 @@
 package entidade;
 
 /**
- * Classe contendo metodos e atributos para o gerenciamento das atividades e ligacoo do Professor e Disciplina.
+ * Classe contendo metodos e atributos para o gerenciamento das atividades e ligacoo do Professor e Disciplina
  * @see Professor
  * @see Disciplina
  * @see Atividade
@@ -15,7 +15,6 @@ public class UsuarioDisciplina {
     
     /**
      * Construtor padrao
-     * @param
      */
     public UsuarioDisciplina() {
     	//Nenhum atributo inicializado
@@ -35,7 +34,7 @@ public class UsuarioDisciplina {
 
 	/**
      * Metodo para retorno do ID do usuario disciplina 
-     * @return
+     * @return int idUsuarioDisciplina 
      */
 	public int getIdUsuarioDisciplina() {
 		return idUsuarioDisciplina;
@@ -43,7 +42,7 @@ public class UsuarioDisciplina {
 
 	/**
 	 * Metodo para insercao do ID do usuario disciplina 
-	 * @param idUsuarioDisciplina
+	 * @param int idUsuarioDisciplina
 	 */
 	public void setIdUsuarioDisciplina(int idUsuarioDisciplina) {
 		this.idUsuarioDisciplina = idUsuarioDisciplina;
@@ -51,7 +50,7 @@ public class UsuarioDisciplina {
 	
 	/**
 	 * Metodo de retorno do FK do usuario 
-	 * @return fk_usuario 
+	 * @return int fk_usuario 
 	 */
 	public int getFk_usuario() {
 		return fk_usuario;
@@ -59,7 +58,7 @@ public class UsuarioDisciplina {
 
 	/**
 	 * Metodo para insercao do FK do usuario 
-	 * @param fk_usuario
+	 * @param int fk_usuario
 	 */
 	public void setFk_usuario(int fk_usuario) {
 		this.fk_usuario = fk_usuario;
@@ -67,7 +66,7 @@ public class UsuarioDisciplina {
 
 	/**
 	 * Metodo de retorno do FK da disciplina 
-	 * @return
+	 * @return int fk_disciplina 
 	 */
 	public int getFk_disciplina() {
 		return fk_disciplina;
@@ -75,7 +74,7 @@ public class UsuarioDisciplina {
 
 	/**
 	 * Metodo para insercao do FK da disciplina 
-	 * @param fk_disciplina
+	 * @param int fk_disciplina
 	 */
 	public void setFk_disciplina(int fk_disciplina) {
 		this.fk_disciplina = fk_disciplina;

@@ -15,7 +15,7 @@ public class Atividade {
     private Date finalAtividade;
     private int tipoAtividade;
     private double pesoNota;
-    private int fk_usuario_disciplina;
+    private int fk_usuarioDisciplina;
 
     /**
      * Construtor usado ao instanciar a classe Atividade.
@@ -44,7 +44,7 @@ public class Atividade {
 		setFinalAtividade(finalAtividade);
 		setTipoAtividade(tipoAtividade);
 		setPesoNota(pesoNota);
-		setFk_usuario_disciplina(fk_usuario_disciplina);
+		setFk_usuarioDisciplina(fk_usuario_disciplina);
 	}
 
 	/** 
@@ -145,17 +145,17 @@ public class Atividade {
 
     /**
      * Metodo para retorno do fk do usuario disciplina
-     * @return int fk_usuario_disciplina 
+     * @return int fk_usuarioDisciplina 
      */
-	public int getFk_usuario_disciplina() {
-		return fk_usuario_disciplina;
+	public int getFk_usuarioDisciplina() {
+		return fk_usuarioDisciplina;
 	}
 
 	/**
 	 * Metodo para insercao do fk do usuario disciplina 
-	 * @param int fk_usuario_disciplina
+	 * @param int fk_usuarioDisciplina
 	 */
-	public void setFk_usuario_disciplina(int fk_usuario_disciplina) {
-		this.fk_usuario_disciplina = fk_usuario_disciplina;
+	public void setFk_usuarioDisciplina(int fk_usuarioDisciplina) {
+		this.fk_usuarioDisciplina = fk_usuarioDisciplina;
 	}
 }

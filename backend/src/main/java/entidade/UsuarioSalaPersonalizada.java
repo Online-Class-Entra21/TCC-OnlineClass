@@ -1,7 +1,7 @@
 package entidade;
 
 /**
- * Classe contendo m�todos e atributos para a liga��o do Usuario � Sala Personalizada.
+ * Classe contendo m�todos e atributos para a liga��o do Usuario � Sala Personalizada
  * @see Usuario
  * @see SalaPersonalizada
  * @author Breno
@@ -14,7 +14,6 @@ public class UsuarioSalaPersonalizada {
     
     /**
      * Construtor padrao 
-     * @param
      */
     public UsuarioSalaPersonalizada() {
     	//Nenhum atributo inicializado
@@ -34,7 +33,7 @@ public class UsuarioSalaPersonalizada {
 
 	/** 
 	 * Metodo para retorno do ID do UsuarioSalaPersonalizada
-     * @return idUsuarioSalaPersonalizada
+     * @return int idUsuarioSalaPersonalizada
      */
     public int getIdUsuarioSalaPersonalizada() {
         return idUsuarioSalaPersonalizada;
@@ -42,7 +41,7 @@ public class UsuarioSalaPersonalizada {
 
     /**
      * Mwtodo de insercao do idUsuarioSalaPersonalizada
-     * @param idUsuarioSalaPersonalizada
+     * @param int idUsuarioSalaPersonalizada
      */
 	public void setIdUsuarioSalaPersonalizada(int idUsuarioSalaPersonalizada) {
 		this.idUsuarioSalaPersonalizada = idUsuarioSalaPersonalizada;
@@ -50,7 +49,7 @@ public class UsuarioSalaPersonalizada {
 
 	/**
 	 * Metodo para retorno do FK da salaPersonalizada
-	 * @return fk_salaPersonalizada
+	 * @return int fk_salaPersonalizada
 	 */
 	public int getFk_salaPersonalizada() {
 		return fk_salaPersonalizada;
@@ -58,7 +57,7 @@ public class UsuarioSalaPersonalizada {
 
 	/**
 	 * Metodo para insercao da sala personalzada 
-	 * @param fk_salaPersonalizada
+	 * @param int fk_salaPersonalizada
 	 */
 	public void setFk_salaPersonalizada(int fk_salaPersonalizada) {
 		this.fk_salaPersonalizada = fk_salaPersonalizada;
@@ -66,7 +65,7 @@ public class UsuarioSalaPersonalizada {
 
 	/**
 	 * Metodo para retorno do FK do usuario 
-	 * @return fk_usuario
+	 * @return int fk_usuario
 	 */
 	public int getFk_usuario() {
 		return fk_usuario;
@@ -74,7 +73,7 @@ public class UsuarioSalaPersonalizada {
 
 	/**
 	 * Metodo para insercao do FK do usuario 
-	 * @param fk_usuario
+	 * @param int fk_usuario
 	 */
 	public void setFk_usuario(int fk_usuario) {
 		this.fk_usuario = fk_usuario;

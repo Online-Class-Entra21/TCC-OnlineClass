@@ -1,7 +1,7 @@
 package entidade;
 
 /**
- * Classe contendo m�todos e atributos para o envio e criacao de relatorios pelo usuario.
+ * Classe contendo m�todos e atributos para o envio e criacao de relatorios pelo usuario
  * @see Usuario
  * @author Andrey
  */
@@ -44,7 +44,7 @@ public class Relatorio {
 
 	/** 
      * Metodo para retorno do ID do relatorio
-     * @return idRelatorio
+     * @return int idRelatorio
      */
     public int getIdRelatorio() {
     	return idRelatorio;
@@ -52,7 +52,7 @@ public class Relatorio {
 
     /**
      * Metodo para insercao do ID do relatorio 
-     * @param idRelatorio
+     * @param int idRelatorio
      */
     public void setIdRelatorio(int idRelatorio) {
     	this.idRelatorio = idRelatorio;
@@ -60,7 +60,7 @@ public class Relatorio {
 
     /**
      * Metodo para retorno do titulo do relatorio.
-     * @return titulo
+     * @return String titulo
      */
     public String getTitulo() {
         return titulo;
@@ -68,7 +68,7 @@ public class Relatorio {
 
     /**
      * Metodo para insercao do titulo do relatorio 
-     * @param titulo
+     * @param String titulo
      */
     public void setTitulo(String titulo) {
     	this.titulo = titulo;
@@ -76,7 +76,7 @@ public class Relatorio {
 
     /** 
      * Metodo para retorno do destinatorio
-     * @return destinatario
+     * @return int destinatario
      */
     public int getDestinatario() {
         return destinatario;
@@ -84,7 +84,7 @@ public class Relatorio {
 
     /**
      * Metodo para insercao do destinatario 
-     * @param destinatario
+     * @param int destinatario
      */
     public void setDestinatario(int destinatario) {
         // TODO implement here
@@ -93,7 +93,7 @@ public class Relatorio {
 
     /** 
      * Metodo para retorno do texto do relatorio
-     * @return texto
+     * @return String texto
      */
     public String getTexto() {
         return texto;
@@ -101,16 +101,15 @@ public class Relatorio {
 
     /**
      * Metodo para insercao do texto 
-     * @param texto
+     * @param String texto
      */
     public void setTexto(String texto) {
-        // TODO implement here
     	this.texto = texto;
     }
 
     /** 
      * Metodo para retorno do tipo de relatorio
-     * @return tipoRelatorio
+     * @return String tipoRelatorio
      */
     public String getTipoRelatorio() {
         return tipoRelatorio;
@@ -118,7 +117,7 @@ public class Relatorio {
 
     /**
      * Metodo para insercao do tipo relatorio 
-     * @param tipoRelatorio
+     * @param String tipoRelatorio
      */
     public void setTipoRelatorio(String tipoRelatorio) {
     	this.tipoRelatorio = tipoRelatorio;
@@ -126,7 +125,7 @@ public class Relatorio {
 
     /**
      * Metodo para retorno do FK do usuario 
-     * @return
+     * @return int fk_usuario 
      */
 	public int getFk_usuario() {
 		return fk_usuario;
@@ -134,7 +133,7 @@ public class Relatorio {
 
 	/**
 	 * Metodo para insercao do FK do usuario
-	 * @param fk_usuario
+	 * @param int fk_usuario
 	 */
 	public void setFk_usuario(int fk_usuario) {
 		this.fk_usuario = fk_usuario;

@@ -26,7 +26,6 @@ public class SalaPadrao extends Sala {
      * @param link
      */
 	public SalaPadrao(int idSala, String nome, String descricao, boolean situacaoAcesso, String link) {
-		
 		super(idSala, nome, descricao, situacaoAcesso, false, link);
 	}
 }

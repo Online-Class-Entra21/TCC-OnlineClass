@@ -3,8 +3,8 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo metodos e atributos para o envio de uma resposta a uma atividade especifica
- * Respostas sao enviadas pelo Aluno
+ * Classe contendo metodos e atributos para o envio de uma resposta a uma atividade especifica.
+ * Rrespostas sao enviadas pelo Aluno
  * @see Aluno
  * @see Atividade
  * @author Andrey 
@@ -17,7 +17,7 @@ public class Resposta {
     private boolean correcaoAtividade;
     private Date dataEntrega;
     private int fk_aluno;
-    private int fk_Atividade;
+    private int fk_atividade;
 
     /**
      * Construtor padrao
@@ -45,12 +45,12 @@ public class Resposta {
 		setCorrecaoAtividade(correcaoAtividade);
 		setDataEntrega(dataEntrega);
 		setFk_aluno(fk_aluno);
-		setFk_Atividade(fk_Atividade);
+		setFk_atividade(fk_Atividade);
 	}
 
 	/** 
 	 * Metodo para retorno do ID da resposta
-     * @return idResposta
+     * @return int idResposta
      */
     public int getIdResposta() {
         return idResposta;
@@ -58,7 +58,7 @@ public class Resposta {
 
     /**
      * Metodo para insercao do ID da resposta 
-     * @param idResposta
+     * @param int idResposta
      */
     public void setIdResposta(int idResposta) {
         this.idResposta = idResposta;
@@ -66,7 +66,7 @@ public class Resposta {
     
     /** 
      * Metodo para retorno da nota
-     * @return nota
+     * @return double nota
      */
     public double getNota() {
         return nota;
@@ -74,7 +74,7 @@ public class Resposta {
     
     /**
      * Metodo para insercao da nota 
-     * @param nota
+     * @param double nota
      */
     public void setNota(double nota) {
 		this.nota = nota;
@@ -82,7 +82,7 @@ public class Resposta {
 
     /** 
      * Metodo para retorno de um comentario na atividade
-     * @return comantarioAtividade
+     * @return String comantarioAtividade
      */
     public String getComentarioAtividade() {
         return comentarioAtividade;
@@ -90,7 +90,7 @@ public class Resposta {
     
     /**
      * Metodo para insercao de um comentario na atividade 
-     * @param comentarioAtividade
+     * @param String comentarioAtividade
      */
     public void setComentarioAtividade(String comentarioAtividade) {
 		this.comentarioAtividade = comentarioAtividade;
@@ -98,7 +98,7 @@ public class Resposta {
 
 	/** 
      * Metodo para retorno se a atividade foi corrigida 
-     * @return correcaoAtividade 
+     * @return boolean correcaoAtividade 
      */
     public boolean getCorrecaoAtividade() {
         return correcaoAtividade;
@@ -106,7 +106,7 @@ public class Resposta {
     
     /**
      * Metodo para insercao da situacao da atividade corrigida 
-     * @param correcaoAtividade
+     * @param boolean correcaoAtividade
      */
 	public void setCorrecaoAtividade(boolean correcaoAtividade) {
 		this.correcaoAtividade = correcaoAtividade;
@@ -114,7 +114,7 @@ public class Resposta {
 
     /** 
      * Metodo para retorno da data de entrega
-     * @return dataEntrega
+     * @return Date dataEntrega
      */
     public Date getDataEntrega() {
         return dataEntrega;
@@ -122,7 +122,7 @@ public class Resposta {
 
     /**
      * Metodo para insercao da data de entrega 
-     * @param dataEntrega
+     * @param Date dataEntrega
      */
     public void setDataEntrega(Date dataEntrega) {
         this.dataEntrega = dataEntrega;
@@ -130,7 +130,7 @@ public class Resposta {
 
     /**
      * Metodo para retorno do FK do aluno 
-     * @return
+     * @return int fk_aluno
      */
 	public int getFk_aluno() {
 		return fk_aluno;
@@ -138,7 +138,7 @@ public class Resposta {
 
 	/**
 	 * Metodo para insercao do FK do aluno 
-	 * @param fk_aluno
+	 * @param int fk_aluno
 	 */
 	public void setFk_aluno(int fk_aluno) {
 		this.fk_aluno = fk_aluno;
@@ -146,17 +146,17 @@ public class Resposta {
 
 	/**
 	 * Metodo para retorno do FK da atividade 
-	 * @return
+	 * @return int fk_atividade 
 	 */
-	public int getFk_Atividade() {
-		return fk_Atividade;
+	public int getFk_atividade() {
+		return fk_atividade;
 	}
 
 	/**
 	 * Metodo para insercao do FK da atividade 
-	 * @param fk_Atividade
+	 * @param int fk_Atividade
 	 */
-	public void setFk_Atividade(int fk_Atividade) {
-		this.fk_Atividade = fk_Atividade;
+	public void setFk_atividade(int fk_atividade) {
+		this.fk_atividade = fk_atividade;
 	}
 }

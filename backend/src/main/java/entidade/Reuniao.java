@@ -16,7 +16,7 @@ public class Reuniao {
     private int dono;
     private double notaMediaAula;
     private int fk_sala;
-    private int fk_usuario_disciplina;
+    private int fk_usuarioDisciplina;
     
     /**
      * Construtor padrao
@@ -45,12 +45,12 @@ public class Reuniao {
 		setDono(dono);
 		setNotaMediaAula(notaMediaAula);
 		setFk_sala(fk_sala);
-		setFk_usuario_disciplina(fk_usuario_disciplina);
+		setFk_usuarioDisciplina(fk_usuario_disciplina);
 	}
 
 	/** 
      * Metodo para retorno do ID da reuniao
-     * @return idReuniao
+     * @return int idReuniao
      */
     public int getIdReuniao() {
         return idReuniao;
@@ -58,7 +58,7 @@ public class Reuniao {
 
     /**
      * Metodo de insercao do ID da reuniao
-     * @param idReuniao
+     * @param int idReuniao
      */
     public void setIdReuniao(int idReuniao) {
         this.idReuniao = idReuniao;
@@ -66,7 +66,7 @@ public class Reuniao {
 
     /** 
      * Metodo para retorno da descricao da reuniao
-     * @return descricao
+     * @return String descricao
      */
     public String getDescricao() {
         return descricao;
@@ -74,7 +74,7 @@ public class Reuniao {
 
     /**
      * Metodo para insercao da descricao da reuniao 
-     * @param descricao
+     * @param String descricao
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao; 
@@ -82,7 +82,7 @@ public class Reuniao {
     
     /** 
      * Metodo para retorno da data de inicio da reuniao.
-     * @return dataInicio 
+     * @return Date dataInicio 
      */
     public Date getDataInicio() {
 		return dataInicio;
@@ -90,7 +90,7 @@ public class Reuniao {
 
     /**
      * Metodo para insercao do inicio da reuniao 
-     * @param dataInicio
+     * @param Date dataInicio
      */
 	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
@@ -98,7 +98,7 @@ public class Reuniao {
 
     /** 
      * Metodo para retorno do dono da reuniao
-     * @return dono
+     * @return int dono
      */
     public int getDono() {
         return dono;
@@ -106,14 +106,15 @@ public class Reuniao {
 
     /**
      * Metodo para insercao do dono da reuniao 
-     * @param dono
+     * @param int dono
      */
     public void setDono(int dono) {
         this.dono = dono;
     }
 
-    /** Metodo para retorno da nota media da aula
-     * @return nataMediaAula 
+    /** 
+     * Metodo para retorno da nota media da aula
+     * @return double notaMediaAula 
      */
     public double getNotaMediaAula() {
         return notaMediaAula;
@@ -121,7 +122,7 @@ public class Reuniao {
     
     /**
      * Metodo para insercao da nota media da aula  
-     * @param notaMediaAula
+     * @param double notaMediaAula
      */
     public void setNotaMediaAula(double notaMediaAula) {
 		this.notaMediaAula = notaMediaAula;
@@ -129,7 +130,7 @@ public class Reuniao {
 
     /**
      * Metodo para retorno do FK da sala 
-     * @return
+     * @return int fk_sala
      */
 	public int getFk_sala() {
 		return fk_sala;
@@ -137,7 +138,7 @@ public class Reuniao {
 
 	/**
 	 * Metodo para insercao do FK da sala 
-	 * @param fk_sala
+	 * @param int fk_sala
 	 */
 	public void setFk_sala(int fk_sala) {
 		this.fk_sala = fk_sala;
@@ -145,18 +146,18 @@ public class Reuniao {
 
 	/**
 	 * Metodo para retorno do FK do usuario disciplina 
-	 * @return
+	 * @return int fk_usuarioDisciplina 
 	 */
-	public int getFk_usuario_disciplina() {
-		return fk_usuario_disciplina;
+	public int getFk_usuarioDisciplina() {
+		return fk_usuarioDisciplina;
 	}
 
 	/**
 	 * Metodo para insercao do FK do usuario disciplina 
-	 * @param fk_usuario_disciplina
+	 * @param int fk_usuarioDisciplina
 	 */
-	public void setFk_usuario_disciplina(int fk_usuario_disciplina) {
-		this.fk_usuario_disciplina = fk_usuario_disciplina;
+	public void setFk_usuarioDisciplina(int fk_usuarioDisciplina) {
+		this.fk_usuarioDisciplina = fk_usuarioDisciplina;
 	}
     
     

@@ -20,7 +20,6 @@ public class Turma {
     
     /**
      * Construtor padrao
-     * @param
      */
     public Turma() {
     	//Nenhum atributo inicializado
@@ -46,7 +45,7 @@ public class Turma {
 	}
 
 	/** Metodo para retorno do ID da turma
-     * @return idTurma
+     * @return int idTurma
      */
     public int getIdTurma() {
         return idTurma;
@@ -54,7 +53,7 @@ public class Turma {
     
     /**
      * Metodo de insercao do ID da turma 
-     * @param idTurma
+     * @param int idTurma
      */
 	public void setIdTurma(int idTurma) {
 		this.idTurma = idTurma;
@@ -62,7 +61,7 @@ public class Turma {
 
     /** 
      * Metodo para retorno do ano da turma
-     * @return ano
+     * @return String ano
      */
     public String getAno() {
         return ano;
@@ -70,16 +69,15 @@ public class Turma {
     
     /**
      * Metodo de insercao do ano 
-     * @param ano
+     * @param String ano
      */
     public void setAno(String ano) {
 		this.ano = ano;
 	}
 
-
     /** 
      * Metodo para retorno da quantidade de alunos na turma
-     * @return qtdAluno
+     * @return int qtdAluno
      */
     public int getQtdAluno() {
         return qtdAluno;
@@ -87,7 +85,7 @@ public class Turma {
     
     /**
      * Metodo de insercao da quantidade de alunos da turma
-     * @param qtdAluno
+     * @param int qtdAluno
      */
     public void setQtdAluno(int qtdAluno) {
 		this.qtdAluno = qtdAluno;
@@ -95,7 +93,7 @@ public class Turma {
 
     /** 
      * Metodo para retorno do horario inicial da aula
-     * @return horarioInicioAula
+     * @return Time horarioInicioAula
      */
     public Time getHorarioInicioAula() {
         return horarioInicioAula;
@@ -103,7 +101,7 @@ public class Turma {
     
     /**
      * Metodo de insercao do horario inicial da aula 
-     * @param horarioInicioAula
+     * @param Time horarioInicioAula
      */
     public void setHorarioInicioAula(Time horarioInicioAula) {
 		this.horarioInicioAula = horarioInicioAula;
@@ -111,7 +109,7 @@ public class Turma {
 
     /** 
      * Metodo para retorno do horario final da aula
-     * @return horarioFinalAula
+     * @return Time horarioFinalAula
      */
     public Time getHorarioFinalAula() {
         return horarioFinalAula;
@@ -119,7 +117,7 @@ public class Turma {
     
     /**
      * Metodo de insercao do horario final da aula
-     * @param horarioFinalAula
+     * @param Time horarioFinalAula
      */
     public void setHorarioFinalAula(Time horarioFinalAula) {
 		this.horarioFinalAula = horarioFinalAula;
@@ -127,7 +125,7 @@ public class Turma {
 
     /**
      * Metodo para retorno do FK da sala 
-     * @return
+     * @return int fk_sala 
      */
     public int getFk_sala() {
 		return fk_sala;
@@ -135,20 +133,9 @@ public class Turma {
 
     /**
      * Metodo para insercao do FK da sala 
-     * @param fk_sala
+     * @param int fk_sala
      */
 	public void setFk_sala(int fk_sala) {
 		this.fk_sala = fk_sala;
 	}
-
-	
-	//--------------
-
-	
-//	/**
-//     * M�todo de perquisa de um �nico usu�rio 
-//     */
-//    public void pesquisarAluno() {
-//        // TODO implement here
-//    }
 }

@@ -33,7 +33,7 @@ public class TurmaAtividade {
 
 	/** 
 	 * Metodo para retorno do ID da TurmaAtividade
-     * @return idTurmaAtividade 
+     * @return int idTurmaAtividade 
      */
 	public int getIdTurmaAtividade() {
 		return idTurmaAtividade;
@@ -41,7 +41,7 @@ public class TurmaAtividade {
 	
 	/**
 	 * Metodo de insercao do idTurmaAtividade
-	 * @param idTurmaAtividade
+	 * @param int idTurmaAtividade
 	 */
 	public void setIdTurmaAtividade(int idTurmaAtividade) {
 		this.idTurmaAtividade = idTurmaAtividade;
@@ -49,7 +49,7 @@ public class TurmaAtividade {
 
 	/**
 	 * Metodo para retorno do FK da turma 
-	 * @return fk_turma 
+	 * @return int fk_turma 
 	 */
 	public int getFk_turma() {
 		return fk_turma;
@@ -57,7 +57,7 @@ public class TurmaAtividade {
 
 	/**
 	 * Metodo para insercao do FK da turma 
-	 * @param fk_turma
+	 * @param int fk_turma
 	 */
 	public void setFk_turma(int fk_turma) {
 		this.fk_turma = fk_turma;
@@ -65,7 +65,7 @@ public class TurmaAtividade {
 
 	/**
 	 * Metodo para retorno do FK da atividade 
-	 * @return
+	 * @return int fk_atividade 
 	 */
 	public int getFk_atividade() {
 		return fk_atividade;
@@ -73,7 +73,7 @@ public class TurmaAtividade {
 
 	/**
 	 * Metodo para insercao do FK da atividade 
-	 * @param fk_atividade
+	 * @param int fk_atividade
 	 */
 	public void setFk_atividade(int fk_atividade) {
 		this.fk_atividade = fk_atividade;

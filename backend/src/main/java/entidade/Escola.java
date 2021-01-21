@@ -3,7 +3,7 @@ package entidade;
 import java.sql.Date;
 
 /**
- * Classe contendo metodos e atributos para as devidas funcoes da escola.
+ * Classe contendo metodos e atributos para as devidas funcoes da escola
  * @author Andrey
  */
 public class Escola {
@@ -15,7 +15,6 @@ public class Escola {
 
     /**
      * Construtor padrao
-     * @param
      */
     public Escola() {
     	//Nenhum atributo inicializado
@@ -37,7 +36,7 @@ public class Escola {
 
     /** 
      * Metodo para retorno do ID da escola
-     * @return idEscola
+     * @return int idEscola
      */
     public int getIdEscola() {
         return idEscola;
@@ -45,7 +44,7 @@ public class Escola {
 
     /**
      * Metodo para insercao do ID da escola 
-     * @param idEscola
+     * @param int idEscola
      */
     public void setIdEscola(int idEscola) {
         this.idEscola = idEscola;
@@ -53,7 +52,7 @@ public class Escola {
 
     /** 
      * Metodo para retorno do nome da escola
-     * @return nome
+     * @return String nome
      */
     public String getNome() {
         return nome;
@@ -61,7 +60,7 @@ public class Escola {
 
     /**
      * Metodo para insercao do nome da escola 
-     * @param nome
+     * @param String nome
      */
     public void setNome(String nome) {
     	this.nome = nome;
@@ -69,7 +68,7 @@ public class Escola {
 
     /** 
      * Metodo para retorno da data de inicio do ano letivo
-     * @return dataInicioLetivo
+     * @return Date dataInicioLetivo
      */
     public Date getDataInicioLetivo() {
         return dataInicioLetivo;
@@ -78,7 +77,7 @@ public class Escola {
 
     /**
      * Metodo para insercao da data de inicio do ano letivo 
-     * @param dataInicioLetivo
+     * @param Date dataInicioLetivo
      */
     public void setDataInicioLeitvo(Date dataInicioLetivo) {
     	this.dataInicioLetivo = dataInicioLetivo;
@@ -86,7 +85,7 @@ public class Escola {
 
     /** 
      * Metodo para retorno da data final do ano letivo
-     * @return dataFinalLetivo
+     * @return Date dataFinalLetivo
      */
     public Date getDataFinalLetivo() {
         return dataFinalLetivo;
@@ -94,23 +93,19 @@ public class Escola {
 
     /**
      * Metodo para insercao da data final do ano letivo 
-     * @param dataFinalLetivo
+     * @param Date dataFinalLetivo
      */
     public void setDataFinalLetivo(Date dataFinalLetivo) {
         this.dataFinalLetivo = dataFinalLetivo;
     }
     
-    
-    
-    //------------------
-    
-    
-
-//    /** M�todo para buscar um periodo de avalia��o espec�fico.
-//     * @return PeriodoAvaliacao
+//    /**
+//     * Metodo para buscar um periodo de avaliacao especifico
+//     * @param idPeriodoAvaliacao
+//     * @return PeriodoAvaliacao periodoAvaliacao
 //     */
-//    public PeriodoAvaliacao buscarPeriodo() {
-//        return null;
+//    public PeriodoAvaliacao buscarPeriodo(int idPeriodoAvaliacao) {
+//        PeriodoAvaliacaoDa
 //    }
 //
 //    /** M�todo para adicionar um per�odo de avalia��o.
