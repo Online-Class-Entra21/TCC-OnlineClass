@@ -3,10 +3,11 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo metodos e atributos para a criacao e uso de arquivos.
+ * Classe contendo metodos e atributos para a criacao e uso de arquivos
  * @author André 
  */
 public class Arquivo {
+	
     private int idArquivo;
     private String extensao;
     private Date dataEnvio;
@@ -36,8 +37,8 @@ public class Arquivo {
 		setCaminhoArquivo(caminhoArquivo);
 	}
 
-	/** Metodo para retorno do ID do arquivo.
-     * @return idArquivo
+	/** Metodo para retorno do ID do arquivo
+     * @return int idArquivo
      */
     public int getIdArquivo() {
         return idArquivo;
@@ -45,14 +46,14 @@ public class Arquivo {
 
     /**
      * Metodo de insercao de ID do arquivo
-     * @param idArquivo
+     * @param int idArquivo
      */
     public void setIdArquivo(int idArquivo) {
 		this.idArquivo = idArquivo;
 	}
 
 	/** Metodo para retorno da extensao.
-     * @return extensao
+     * @return String extensao
      */
     public String getExtensao() {
         return extensao;
@@ -60,14 +61,14 @@ public class Arquivo {
 
     /**
      * Metodo para insercao da extensao do arquivo 
-     * @param extensao
+     * @param String extensao
      */
     public void setExtensao(String extensao) {
         this.extensao = extensao;
     }
 
-    /** Metodo para retorno da data de envio.
-     * @return dataEnvio 
+    /** Metodo para retorno da data de envio
+     * @return Date dataEnvio 
      */
     public Date getDataEnvio() {
         return dataEnvio;
@@ -75,7 +76,7 @@ public class Arquivo {
 
     /**
      * Metodo para insercao da data de envio do arquivo 
-     * @param dataEnvio
+     * @param Date dataEnvio
      */
     public void setDataEnvio(Date dataEnvio) {
         this.dataEnvio = dataEnvio;
@@ -83,7 +84,7 @@ public class Arquivo {
 
     /** 
      * Metodo para retorno do remetente.
-     * @return remetente 
+     * @return int remetente 
      */
     public int getRemetente() {
         return remetente;
@@ -91,7 +92,7 @@ public class Arquivo {
 
     /**
      * Metodo para insercao do remetente 
-     * @param remetente
+     * @param int remetente
      */
     public void setRemetente(int remetente) {
         this.remetente = remetente;
@@ -99,7 +100,7 @@ public class Arquivo {
 
     /**
      * Metodo para retorno do caminho onde está o arquivo 
-     * @return
+     * @return String caminhoArquivo
      */
 	public String getCaminhoArquivo() {
 		return caminhoArquivo;
@@ -107,7 +108,7 @@ public class Arquivo {
 
 	/**
 	 * Metodo para insercao do caminho onde está o arquivo 
-	 * @param caminhoArquivo
+	 * @param String caminhoArquivo
 	 */
 	public void setCaminhoArquivo(String caminhoArquivo) {
 		this.caminhoArquivo = caminhoArquivo;

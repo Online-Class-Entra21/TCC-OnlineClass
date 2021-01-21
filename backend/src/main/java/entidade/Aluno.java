@@ -4,7 +4,7 @@ import persistencia.jdbc.AtividadeDAO;
 import persistencia.jdbc.RespostaDAO;
 
 /**
- * Classe contendo metodos e atributos para o aluno.
+ * Classe contendo metodos e atributos para o aluno
  * Herda metodos e atributos da classe Usuario.
  * @see Usuario
  * @author André 
@@ -30,7 +30,7 @@ public class Aluno extends Usuario {
     }
     
     /**
-     * Metodo construtor que preenche todos os atributos da classe aluno 
+     * Metodo construtor que preenche todos os atributos da classe aluno
      * @param idAluno
      * @param ra
      * @param matricula
@@ -43,7 +43,7 @@ public class Aluno extends Usuario {
      * @param fk_turma
      */
     public Aluno(int idAluno, int ra, int matricula, boolean deficiencia, String nomeMae, String nomePai,
-			String nomeResponsavel, boolean situacaoAnoLetivo, int fk_usuario, int fk_turma) {
+				 String nomeResponsavel, boolean situacaoAnoLetivo, int fk_usuario, int fk_turma) {
 
     	setIdAluno(idAluno);
     	setRa(ra);
@@ -58,7 +58,7 @@ public class Aluno extends Usuario {
 	}
 
 	/** 
-     * Metodo para retorno do ID do aluno.
+     * Metodo para retorno do ID do aluno
      * @return int idAluno
      */
     public int getIdAluno() {
@@ -74,7 +74,7 @@ public class Aluno extends Usuario {
     }
 
     /** 
-     * Metodo para retorno do RA do aluno.
+     * Metodo para retorno do RA do aluno
      * @return int ra
      */
     public int getRa() {
@@ -90,7 +90,7 @@ public class Aluno extends Usuario {
     }
 
     /** 
-     * Metodo para retorno da matricula do aluno.
+     * Metodo para retorno da matricula do aluno
      * @return int matricula
      */
     public int getMatricula() {
@@ -106,7 +106,7 @@ public class Aluno extends Usuario {
     }
 
     /** 
-     * Metodo para retornar se o aluno possui alguma deficiencia fisica.
+     * Metodo para retornar se o aluno possui alguma deficiencia fisica
      * @return boolean deficiencia
      */
     public boolean getDeficiencia() {
@@ -122,7 +122,7 @@ public class Aluno extends Usuario {
     }
 
     /** 
-     * Metodo para retorno do nome da mae do aluno.
+     * Metodo para retorno do nome da mae do aluno
      * @return String nomeMae
      */
     public String getNomeMae() {
@@ -138,7 +138,7 @@ public class Aluno extends Usuario {
     }
 
     /** 
-     * Metodo para retorno do nome do pai do aluno.
+     * Metodo para retorno do nome do pai do aluno
      * @return String nomePai
      */
     public String getNomePai() {
@@ -170,7 +170,7 @@ public class Aluno extends Usuario {
     }
 
     /** 
-     * Metodo para retorno da situacao do ano letivo do aluno.
+     * Metodo para retorno da situacao do ano letivo do aluno
      * @return boolean situacaoAnoLetivo
      */
     public boolean getSituacaoAnoLetivo() {
