@@ -5,12 +5,12 @@ package entidade;
  * @see Professor
  * @see Disciplina
  * @see Atividade
- * @author
+ * @author Breno
  */
 public class UsuarioDisciplina {
 	
-	private int idProfessorDisciplina;
-    private int fk_professor;
+	private int idUsuarioDisciplina;
+    private int fk_usuario;
     private int fk_disciplina;
     
     /**
@@ -20,41 +20,50 @@ public class UsuarioDisciplina {
     public UsuarioDisciplina() {
     	//Nenhum atributo inicializado
     }
-
-
-    /** 
-     * Metodo para retorno do ID do ProfessorDisciplina.
-     * @return idProfessorDisciplina
-     */
-    public int getIdProfessorDisciplina() {
-        return idProfessorDisciplina;
-    }
-
+    
     /**
-     * Metodo de insercao do id do ProfessorDiciplina
-     * @param idProfessorDisciplina
+     * Metodo construtor que preenche todos os atributos da classe 
+     * @param idUsuarioDisciplina
+     * @param fk_usuario
+     * @param fk_disciplina
      */
-    public void setIdProfessorDisciplina(int idProfessorDisciplina) {
-		this.idProfessorDisciplina = idProfessorDisciplina;
-	}
-
-
-    /**
-     * Metodo para retorno do FK do professor
-     * @return
-     */
-	public int getFk_professor() {
-		return fk_professor;
+    public UsuarioDisciplina(int idUsuarioDisciplina, int fk_usuario, int fk_disciplina) {
+		setIdUsuarioDisciplina(idUsuarioDisciplina);
+		setFk_usuario(fk_usuario);
+		setFk_disciplina(fk_disciplina);
 	}
 
 	/**
-	 * Metodo de insercao do FK do professor
-	 * @param fk_professor
-	 */
-	public void setFk_professor(int fk_professor) {
-		this.fk_professor = fk_professor;
+     * Metodo para retorno do ID do usuario disciplina 
+     * @return
+     */
+	public int getIdUsuarioDisciplina() {
+		return idUsuarioDisciplina;
 	}
 
+	/**
+	 * Metodo para insercao do ID do usuario disciplina 
+	 * @param idUsuarioDisciplina
+	 */
+	public void setIdUsuarioDisciplina(int idUsuarioDisciplina) {
+		this.idUsuarioDisciplina = idUsuarioDisciplina;
+	}
+	
+	/**
+	 * Metodo de retorno do FK do usuario 
+	 * @return fk_usuario 
+	 */
+	public int getFk_usuario() {
+		return fk_usuario;
+	}
+
+	/**
+	 * Metodo para insercao do FK do usuario 
+	 * @param fk_usuario
+	 */
+	public void setFk_usuario(int fk_usuario) {
+		this.fk_usuario = fk_usuario;
+	}
 
 	/**
 	 * Metodo de retorno do FK da disciplina 
@@ -63,7 +72,6 @@ public class UsuarioDisciplina {
 	public int getFk_disciplina() {
 		return fk_disciplina;
 	}
-
 
 	/**
 	 * Metodo para insercao do FK da disciplina 

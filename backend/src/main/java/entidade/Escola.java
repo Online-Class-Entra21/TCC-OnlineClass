@@ -14,7 +14,7 @@ public class Escola {
     private Date dataFinalLetivo;
 
     /**
-     * Construtor usado ao instanciar a classe Escola
+     * Construtor padrao
      * @param
      */
     public Escola() {

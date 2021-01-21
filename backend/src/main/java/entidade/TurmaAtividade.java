@@ -18,6 +18,18 @@ public class TurmaAtividade {
     public TurmaAtividade() {
     	//Nenhum atributo inicializado
     }
+    
+    /**
+     * Metodo construtor que preenche todos os atributos da classe 
+     * @param idTurmaAtividade
+     * @param fk_turma
+     * @param fk_atividade
+     */
+	public TurmaAtividade(int idTurmaAtividade, int fk_turma, int fk_atividade) {
+		setIdTurmaAtividade(idTurmaAtividade);
+		setFk_turma(fk_turma);
+		setFk_atividade(fk_atividade);
+	}
 
 	/** 
 	 * Metodo para retorno do ID da TurmaAtividade
