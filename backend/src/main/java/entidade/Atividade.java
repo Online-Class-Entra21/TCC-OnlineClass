@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Classe contendo metodos e atributos para a criacao de atividades.
- * As atividades sao em formato de arquivo e podem ser criadas pelo Professor.
+ * As atividades sao em formato de arquivo e podem ser criadas pelo Professor
  * @author André  
  */
 public class Atividade {
@@ -48,8 +48,8 @@ public class Atividade {
 	}
 
 	/** 
-     * Metodo para retorno do ID da atividade.
-     * @return idAtividade 
+     * Metodo para retorno do ID da atividade
+     * @return int idAtividade 
      */
     public int getIdAtividade() {
         return idAtividade;
@@ -57,16 +57,15 @@ public class Atividade {
 
     /**
      * Metodo para insercao do id da atividade 
-     * @param idAtividade
+     * @param int idAtividade
      */
     public void setIdAtividade(int idAtividade) {
 		this.idAtividade = idAtividade;
 	}
 
-
 	/** 
 	 * Metodo para retorno da descricao da atividade.
-     * @return descricao 
+     * @return String descricao 
      */
     public String getDescricao() {
         return descricao;
@@ -74,7 +73,7 @@ public class Atividade {
 
     /**
      * Metodo para insercao da descricao da atividade 
-     * @param descricao
+     * @param String descricao
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
@@ -82,7 +81,7 @@ public class Atividade {
 
     /** 
      * Metodo para retorno da data de inicio da atividade.
-     * @return inicioAtividade 
+     * @return Date inicioAtividade 
      */
     public Date getInicioAtividade() {
         return inicioAtividade;
@@ -90,7 +89,7 @@ public class Atividade {
 
     /**
      * Metodo para insercao da data de incio da atividade 
-     * @param inicioAtividade
+     * @param Date inicioAtividade
      */
     public void setInicioAtividade(Date inicioAtividade) {
         this.inicioAtividade = inicioAtividade;
@@ -98,7 +97,7 @@ public class Atividade {
 
     /** 
      * Metodo para retorno da data final da atividade.
-     * @return finalAtividade 
+     * @return Date finalAtividade 
      */
     public Date getFinalAtividade() {
         return finalAtividade;
@@ -106,7 +105,7 @@ public class Atividade {
 
     /**
      * Metodo para insercao da data final da atividade 
-     * @param finalAtividade
+     * @param Date finalAtividade
      */
     public void setFinalAtividade(Date finalAtividade) {
         this.finalAtividade = finalAtividade;
@@ -114,7 +113,7 @@ public class Atividade {
 
     /**
      * Metodo para retorno do tipo de atividade.
-     * @return tipoAtividade 
+     * @return int tipoAtividade 
      */
     public int getTipoAtividade() {
         return tipoAtividade;
@@ -122,7 +121,7 @@ public class Atividade {
 
     /**
      * Metodo para insercao do tipo de atividade 
-     * @param tipoAtividade
+     * @param int tipoAtividade
      */
     public void setTipoAtividade(int tipoAtividade) {
         this.tipoAtividade = tipoAtividade;
@@ -130,7 +129,7 @@ public class Atividade {
 
     /** 
      * Metodo para retorno do peso da nota.
-     * @return pesoNota
+     * @return double pesoNota
      */
     public double getPesoNota() {
         return pesoNota;
@@ -138,7 +137,7 @@ public class Atividade {
 
     /**
      * Metodo para insercao do peso da nota 
-     * @param pesoNota
+     * @param double pesoNota
      */
     public void setPesoNota(double pesoNota) {
         this.pesoNota = pesoNota;
@@ -146,7 +145,7 @@ public class Atividade {
 
     /**
      * Metodo para retorno do fk do usuario disciplina
-     * @return
+     * @return int fk_usuario_disciplina 
      */
 	public int getFk_usuario_disciplina() {
 		return fk_usuario_disciplina;
@@ -154,7 +153,7 @@ public class Atividade {
 
 	/**
 	 * Metodo para insercao do fk do usuario disciplina 
-	 * @param fk_usuario_disciplina
+	 * @param int fk_usuario_disciplina
 	 */
 	public void setFk_usuario_disciplina(int fk_usuario_disciplina) {
 		this.fk_usuario_disciplina = fk_usuario_disciplina;
