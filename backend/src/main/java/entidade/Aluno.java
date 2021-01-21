@@ -1,5 +1,8 @@
 package entidade;
 
+import persistencia.jdbc.AtividadeDAO;
+import persistencia.jdbc.RespostaDAO;
+
 /**
  * Classe contendo metodos e atributos para o aluno.
  * Herda metodos e atributos da classe Usuario.
@@ -56,7 +59,7 @@ public class Aluno extends Usuario {
 
 	/** 
      * Metodo para retorno do ID do aluno.
-     * @return idAluno
+     * @return int idAluno
      */
     public int getIdAluno() {
         return idAluno;
@@ -64,7 +67,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo para inserção do ID do aluno 
-     * @param idAluno
+     * @param int idAluno
      */
     public void setIdAluno(int idAluno) {
         this.idAluno = idAluno;
@@ -72,7 +75,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno do RA do aluno.
-     * @return ra
+     * @return int ra
      */
     public int getRa() {
         return ra;
@@ -80,7 +83,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo para inserção do RA
-     * @param ra
+     * @param int ra
      */
     public void setRa(int ra) {
         this.ra = ra;
@@ -88,7 +91,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno da matricula do aluno.
-     * @return matricula
+     * @return int matricula
      */
     public int getMatricula() {
         return matricula;
@@ -96,7 +99,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo para inserção de matricula 
-     * @param matricula
+     * @param int matricula
      */
     public void setMatricula(int matricula) {
         this.matricula = matricula;
@@ -104,7 +107,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retornar se o aluno possui alguma deficiencia fisica.
-     * @return deficiencia
+     * @return boolean deficiencia
      */
     public boolean getDeficiencia() {
         return deficiencia;
@@ -112,7 +115,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo para insercao da deficiencia 
-     * @param deficiencia
+     * @param boolean deficiencia
      */
     public void setDeficiencia(boolean deficiencia) {
         this.deficiencia = deficiencia;
@@ -120,7 +123,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno do nome da mae do aluno.
-     * @return nomeMae
+     * @return String nomeMae
      */
     public String getNomeMae() {
         return nomeMae;
@@ -128,7 +131,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo para insercao do nome da mae 
-     * @param nomeMae
+     * @param String nomeMae
      */
     public void setNomeMae(String nomeMae) {
         this.nomeMae =  nomeMae;
@@ -136,7 +139,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno do nome do pai do aluno.
-     * @return nomePai
+     * @return String nomePai
      */
     public String getNomePai() {
         return nomePai;
@@ -144,7 +147,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo para insercao do nome do pai 
-     * @param nomePai
+     * @param String nomePai
      */
     public void setNomePai(String nomePai) {
     	this.nomePai = nomePai;
@@ -152,7 +155,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno do nome do responsavel pelo aluno.
-     * @return nomeResponsavel
+     * @return String nomeResponsavel
      */
     public String getNomeResponsavel() {
         return nomeResponsavel;
@@ -160,7 +163,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo de inserção do nome do responsavel 
-     * @param nomeResponsavel
+     * @param String nomeResponsavel
      */
     public void setNomeResponsavel(String nomeResponsavel) {
         this.nomeResponsavel = nomeResponsavel;
@@ -168,7 +171,7 @@ public class Aluno extends Usuario {
 
     /** 
      * Metodo para retorno da situacao do ano letivo do aluno.
-     * @return situacaoAnoLetivo
+     * @return boolean situacaoAnoLetivo
      */
     public boolean getSituacaoAnoLetivo() {
         return situacaoAnoLetivo;
@@ -176,7 +179,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo de insercao da situacao do ano letivo 
-     * @param situacaoAnoLetivo
+     * @param boolean situacaoAnoLetivo
      */
     public void setSituacaoAnoLetivo(boolean situacaoAnoLetivo) {
         this.situacaoAnoLetivo = situacaoAnoLetivo;
@@ -184,7 +187,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo para retorno do FK do usuario
-     * @return fk_usuario
+     * @return int fk_usuario
      */
     public int getFk_usuario() {
 		return fk_usuario;
@@ -192,7 +195,7 @@ public class Aluno extends Usuario {
 
     /**
      * Metodo para inserção FK do usuario
-     * @param fk_usuario
+     * @param int fk_usuario
      */
 	public void setFk_usuario(int fk_usuario) {
 		this.fk_usuario = fk_usuario;
@@ -200,7 +203,7 @@ public class Aluno extends Usuario {
 
 	/**
      * Metodo de retorno da turma 
-	 * @return fk_turma
+	 * @return int fk_turma
 	 */
 	public int getFk_turma() {
 		return fk_turma;
@@ -208,76 +211,77 @@ public class Aluno extends Usuario {
 
 	/**
 	 * Metodo de insercao da turma 
-	 * @param fk_turma
+	 * @param int fk_turma
 	 */
 	public void setFk_turma(int fk_turma) {
 		this.fk_turma = fk_turma;
 	}
-	
-	
-	
-	//-----
-	
-	
-	
-//	/** 
-//	 * Metodo para o envio de uma resposta de uma atividade.
-//     * @param 
-//     */
-//    public void mandarResposta(Resposta resposta) {
-//        // TODO implement here
-//    }
-//
-//    /** 
-//     * Metodo para visualizar as respostas enviadas, a partir do banco de dados.
-//     * @param 
-//     * @retur
-//     */
-//    public Resposta verRespostasEnviadas() {
-//        return null;
-//    }
-//
-//    /** 
-//     * Metodo para visualizar uma resposta enviada espec�fica, a partir do banco de dados.
-//     * @param 
-//     * @return
-//     */
-//    public Resposta buscarRespostaEnviada(Resposta resposta) {
-//        return null;
-//    }
-//
-//    /** 
-//     * Metodo para a remocao de uma resposta.
-//     * @param 
-//     */
-//    public void removerResposta(Resposta resposta) {
-//        // TODO implement here
-//    }
-//
-//    /** 
-//     * Metodo para visualizar as atividades recebidas, a partir do banco de dados.
-//     * @param 
-//     * @return
-//     */
-//    public Atividade verAtividadesRecebidas() {
-//        return null;
-//    }
-//
-//    /** 
-//     * Metodo para visualizar uma atividade recebida especafica, a partir do banco de dados.
-//     * @param 
-//     * @return
-//     */
-//    public Atividade pesquisarAtividadeRecebida() {
-//        return null;
-//    }
-//
-//    /** Metodo para a visualizacao das notas
-//     * @param 
-//     * @return
-//     */
-//    public Resposta verNotas() {
-//        return null;
+
+	/**
+	 * Metodo para o envio de uma resposta de uma atividade
+	 * @param Resposta resposta
+	 */
+    public void mandarResposta(Resposta resposta) {
+        RespostaDAO respostaDao = new RespostaDAO();
+        respostaDao.insert(resposta);
+    }
+
+    
+//    public List<Resposta> verRespostasEnviadas(int idAtividade) {
+//    	RespostaDAO respostaDao = new RespostaDAO();
+//        List<Resposta> listaResposta = new ArrayList<Resposta>();
+//    	for (Resposta resposta : listaResposta) {
+//			respostaDao.
+//		}
 //    }
 
+    /**
+     * Metodo para visualizar uma resposta enviada especafica, a partir do banco de dados
+     * @param int idResposta
+     * @return Resposta resposta 
+     */
+    public Resposta buscarRespostaEnviada(int idResposta) {
+    	RespostaDAO respostaDao = new RespostaDAO();
+        Resposta resposta = respostaDao.buscarId(idResposta);
+        return resposta;
+    }
+
+    /**
+     * Metodo para a remocao de uma resposta
+     * @param int idResposta
+     */
+    public void removerResposta(int idResposta) {
+    	RespostaDAO respostaDao = new RespostaDAO();
+    	respostaDao.deleteID(idResposta);
+    }
+
+//    public Atividade verAtividadesRecebidas() {
+//    	AtividadeDAO atividadeDao = new AtividadeDAO();
+//    	List<Atividade> listaAtividade = new ArrayList<Atividade>();
+//    	for (Atividade atividade : listaAtividade) {
+//			atividadeDao.
+//		}
+//    }
+
+    /**
+     * Metodo para visualizar uma atividade recebida especafica, a partir do banco de dados
+     * @param int idAtividade
+     * @return Atividade atividade
+     */
+    public Atividade pesquisarAtividadeRecebida(int idAtividade) {
+        AtividadeDAO atividadeDao = new AtividadeDAO();
+        Atividade atividade = atividadeDao.buscarId(idAtividade);
+        return atividade;
+    }
+
+    /**
+     * Metodo para retorno de uma nota em especifico  
+     * @param int idResposta
+     * @return double nota
+     */
+    public double verNotas(int idResposta) {
+    	RespostaDAO respostaDao = new RespostaDAO();
+    	Resposta resposta = respostaDao.buscarId(idResposta);
+    	return resposta.getNota();
+    }
 }
