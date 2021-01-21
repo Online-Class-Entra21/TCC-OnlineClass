@@ -99,6 +99,10 @@ public class Escola {
         this.dataFinalLetivo = dataFinalLetivo;
     }
     
+    
+    //------------------------
+    
+    
 //    /**
 //     * Metodo para buscar um periodo de avaliacao especifico
 //     * @param idPeriodoAvaliacao

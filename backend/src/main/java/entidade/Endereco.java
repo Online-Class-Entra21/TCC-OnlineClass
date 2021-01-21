@@ -17,7 +17,6 @@ public class Endereco {
     
     /**
      * Construtor padrao
-     * @param
      */
     public Endereco() {
     	//Nenhum atributo inicializado

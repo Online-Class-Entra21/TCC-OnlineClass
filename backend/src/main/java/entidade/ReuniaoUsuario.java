@@ -19,7 +19,6 @@ public class ReuniaoUsuario {
     
     /**
      * Construtor padrao
-     * @param
      */
     public ReuniaoUsuario() {
     	//Nenhum atributo inicializado

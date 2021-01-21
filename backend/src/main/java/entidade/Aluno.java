@@ -1,6 +1,5 @@
 package entidade;
 
-import persistencia.jdbc.AtividadeDAO;
 import persistencia.jdbc.RespostaDAO;
 
 /**
@@ -217,6 +216,7 @@ public class Aluno extends Usuario {
 		this.fk_turma = fk_turma;
 	}
 
+	
 	/**
 	 * Metodo para o envio de uma resposta de uma atividade
 	 * @param Resposta resposta
@@ -227,61 +227,65 @@ public class Aluno extends Usuario {
     }
 
     
-//    public List<Resposta> verRespostasEnviadas(int idAtividade) {
+    //-------------------
+//    
+//    
+//    
+////    public List<Resposta> verRespostasEnviadas(int idAtividade) {
+////    	RespostaDAO respostaDao = new RespostaDAO();
+////        List<Resposta> listaResposta = new ArrayList<Resposta>();
+////    	for (Resposta resposta : listaResposta) {
+////			respostaDao.
+////		}
+////    }
+//
+//    /**
+//     * Metodo para visualizar uma resposta enviada especafica, a partir do banco de dados
+//     * @param int idResposta
+//     * @return Resposta resposta 
+//     */
+//    public Resposta buscarRespostaEnviada(int idResposta) {
 //    	RespostaDAO respostaDao = new RespostaDAO();
-//        List<Resposta> listaResposta = new ArrayList<Resposta>();
-//    	for (Resposta resposta : listaResposta) {
-//			respostaDao.
-//		}
+//        Resposta resposta = respostaDao.buscarId(idResposta);
+//        return resposta;
 //    }
-
-    /**
-     * Metodo para visualizar uma resposta enviada especafica, a partir do banco de dados
-     * @param int idResposta
-     * @return Resposta resposta 
-     */
-    public Resposta buscarRespostaEnviada(int idResposta) {
-    	RespostaDAO respostaDao = new RespostaDAO();
-        Resposta resposta = respostaDao.buscarId(idResposta);
-        return resposta;
-    }
-
-    /**
-     * Metodo para a remocao de uma resposta
-     * @param int idResposta
-     */
-    public void removerResposta(int idResposta) {
-    	RespostaDAO respostaDao = new RespostaDAO();
-    	respostaDao.deleteID(idResposta);
-    }
-
-//    public Atividade verAtividadesRecebidas() {
-//    	AtividadeDAO atividadeDao = new AtividadeDAO();
-//    	List<Atividade> listaAtividade = new ArrayList<Atividade>();
-//    	for (Atividade atividade : listaAtividade) {
-//			atividadeDao.
-//		}
+//
+//    /**
+//     * Metodo para a remocao de uma resposta
+//     * @param int idResposta
+//     */
+//    public void removerResposta(int idResposta) {
+//    	RespostaDAO respostaDao = new RespostaDAO();
+//    	respostaDao.deleteID(idResposta);
 //    }
-
-    /**
-     * Metodo para visualizar uma atividade recebida especafica, a partir do banco de dados
-     * @param int idAtividade
-     * @return Atividade atividade
-     */
-    public Atividade pesquisarAtividadeRecebida(int idAtividade) {
-        AtividadeDAO atividadeDao = new AtividadeDAO();
-        Atividade atividade = atividadeDao.buscarId(idAtividade);
-        return atividade;
-    }
-
-    /**
-     * Metodo para retorno de uma nota em especifico  
-     * @param int idResposta
-     * @return double nota
-     */
-    public double verNotas(int idResposta) {
-    	RespostaDAO respostaDao = new RespostaDAO();
-    	Resposta resposta = respostaDao.buscarId(idResposta);
-    	return resposta.getNota();
-    }
+//
+////    public Atividade verAtividadesRecebidas() {
+////    	AtividadeDAO atividadeDao = new AtividadeDAO();
+////    	List<Atividade> listaAtividade = new ArrayList<Atividade>();
+////    	for (Atividade atividade : listaAtividade) {
+////			atividadeDao.
+////		}
+////    }
+//
+//    /**
+//     * Metodo para visualizar uma atividade recebida especafica, a partir do banco de dados
+//     * @param int idAtividade
+//     * @return Atividade atividade
+//     */
+//    public Atividade pesquisarAtividadeRecebida(int idAtividade) {
+//        AtividadeDAO atividadeDao = new AtividadeDAO();
+//        Atividade atividade = atividadeDao.buscarId(idAtividade);
+//        return atividade;
+//    }
+//
+//    /**
+//     * Metodo para retorno de uma nota em especifico  
+//     * @param int idResposta
+//     * @return double nota
+//     */
+//    public double verNotas(int idResposta) {
+//    	RespostaDAO respostaDao = new RespostaDAO();
+//    	Resposta resposta = respostaDao.buscarId(idResposta);
+//    	return resposta.getNota();
+//    }
 }

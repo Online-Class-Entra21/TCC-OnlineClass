@@ -11,7 +11,6 @@ public class SalaPadrao extends Sala {
 
 	/**
      * construtor padrao
-     * @param
      */
     public SalaPadrao() {
     	//Nenhum atributo inicializado 

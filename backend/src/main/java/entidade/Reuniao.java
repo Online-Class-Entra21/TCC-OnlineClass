@@ -20,7 +20,6 @@ public class Reuniao {
     
     /**
      * Construtor padrao
-     * @param
      */
     public Reuniao() {
     	//Nenhum atributo inicializado
@@ -159,39 +158,4 @@ public class Reuniao {
 	public void setFk_usuarioDisciplina(int fk_usuarioDisciplina) {
 		this.fk_usuarioDisciplina = fk_usuarioDisciplina;
 	}
-    
-    
-    //--------------
-
-    
-//    /** 
-//     * Metodo para buscar um usuario da reuniao
-//     * @param - 
-//     * @return ReuniaoUsuario.
-//     */
-//    public ReuniaoUsuario buscarReuniaoUsuario() {
-//        return null;
-//    }
-//
-//    /**
-//     * 
-//     */
-//    public void setReuniaoUsuario() {
-//        // TODO implement here
-//    }
-//
-//    /** M�todo para retorno da TurmaProfessorDisciplina.
-//     * @return TurmaProfessorDisciplina - TurmaProfessorDisciplina
-//     */
-//    public TurmaProfessorDisciplina getTurmaProfessorDisciplina() {
-//        return turmaProfessorDisciplina;
-//    }
-//
-//    /**
-//     * 
-//     */
-//    public void setTurmaProfessorDisciplina(TurmaProfessorDisciplina turmaProfessorDisciplina) {
-//        this.turmaProfessorDisciplina = turmaProfessorDisciplina;
-//    }
-
 }

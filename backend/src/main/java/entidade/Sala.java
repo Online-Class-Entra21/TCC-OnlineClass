@@ -17,7 +17,6 @@ public class Sala {
 
     /**
      * Construtor padrao
-     * @param
      */
     public Sala() {
         //Nenhum atributo inicializado
