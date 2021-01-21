@@ -1,34 +1,23 @@
 package entidade;
 
 /**
- * Classe contendo metodos e atributos para a ligacao da Turma com as Atividades.
+ * Classe contendo metodos e atributos para a ligacao da Turma com as Atividades
  * @see Turma
  * @see Atividade
  * @author Breno 
  */
 public class TurmaAtividade {
+	
     private int idTurmaAtividade;
-    private Turma turma;
-    private Atividade atividade;
+    private int fk_turma;
+    private int fk_atividade;
     
     /**
      * Construtor padrao
-     * @param
      */
     public TurmaAtividade() {
+    	//Nenhum atributo inicializado
     }
-    
-    /**
-     * Metodo construtor que preenche todos os atributos da classe
-     * @param idTurmaAtividade
-     * @param idTurma
-     * @param idAtividade
-     */
-    public TurmaAtividade(int idTurmaAtividade, Turma turma, Atividade atividade) {
-		setIdTurmaAtividade(idTurmaAtividade);
-		setTurma(turma);
-		setAtividade(atividade);
-	}
 
 	/** 
 	 * Metodo para retorno do ID da TurmaAtividade
@@ -46,34 +35,35 @@ public class TurmaAtividade {
 		this.idTurmaAtividade = idTurmaAtividade;
 	}
 
-    /** M�todo para retorno do ID da turma.
-     * @return Int - ID da turma
-     */
-    public Turma getTurma() {
-        return turma;
-    }
-    
-    /**
-     * M�todo de inser��o do idTurma
-     * @param idTurma
-     */
-	public void setTurma(Turma turma) {
-		this.turma = turma;
+	/**
+	 * Metodo para retorno do FK da turma 
+	 * @return fk_turma 
+	 */
+	public int getFk_turma() {
+		return fk_turma;
 	}
 
-    /** M�todo para retorno da atividade.
-     * @return int - idAtividade
-     */
-    public Atividade getAtividade() {
-        return atividade;
-    }
-
-    /**
-     * M�todo de iser��o da atividade 
-     * @param idAtividade
-     */
-	public void setAtividade(Atividade atividade) {
-		this.atividade = atividade;
+	/**
+	 * Metodo para insercao do FK da turma 
+	 * @param fk_turma
+	 */
+	public void setFk_turma(int fk_turma) {
+		this.fk_turma = fk_turma;
 	}
 
+	/**
+	 * Metodo para retorno do FK da atividade 
+	 * @return
+	 */
+	public int getFk_atividade() {
+		return fk_atividade;
+	}
+
+	/**
+	 * Metodo para insercao do FK da atividade 
+	 * @param fk_atividade
+	 */
+	public void setFk_atividade(int fk_atividade) {
+		this.fk_atividade = fk_atividade;
+	} 
 }

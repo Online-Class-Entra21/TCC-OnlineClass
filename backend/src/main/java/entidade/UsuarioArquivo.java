@@ -1,27 +1,27 @@
 package entidade;
 
 /**
- * Classe conténdo métodos e atributos para a ligação do Usuario ao Arquivo enviado ou recebido.
+ * Classe contendo metodos e atributos para a ligacao do Usuario ao Arquivo enviado ou recebido
  * @see Usuario
  * @see Arquivo
  * @author
  */
 public class UsuarioArquivo {
 	
-    private int idUsuarioArquivo;
+    private int idArquivoUsuario;
+    private int fk_arquivo;
+    private int fk_usuario;
     private int tipoEnvio;
-    private Arquivo arquivo;
-    private Usuario usuario;
     
     /**
-     * Construtor usado ao instanciar a classe UsuarioArquivo.
+     * Construtor padrao
      * @param
      */
     public UsuarioArquivo() {
     }
     
     /**
-     * Método construtor que preenche todos os atributos da classe 
+     * Mï¿½todo construtor que preenche todos os atributos da classe 
      * @param idUsuarioArquivo
      * @param tipoEnvio
      * @param arquivo
@@ -32,17 +32,8 @@ public class UsuarioArquivo {
 		setArquivo(arquivo);
 		setUsuario(usuario);
 	}
-    
-    /**
-     * Método de exibição de todos os atributos da classe
-     */
-	@Override
-	public String toString() {
-		return "UsuarioArquivo [idUsuarioArquivo=" + idUsuarioArquivo + ", tipoEnvio=" + tipoEnvio + ", arquivo="
-				+ arquivo + ", usuario=" + usuario + "]";
-	}
 
-	/** Método para retorno do ID do UsuarioArquivo.
+	/** Mï¿½todo para retorno do ID do UsuarioArquivo.
      * @return Int - ID UsuarioArquivo
      */
     public int getIdUsuarioArquivo() {
@@ -50,14 +41,14 @@ public class UsuarioArquivo {
     }
     
     /**
-     * Método para inserção do id do arquivo 
+     * Mï¿½todo para inserï¿½ï¿½o do id do arquivo 
      * @param idUsuarioArquivo
      */
 	public void setIdUsuarioArquivo(int idUsuarioArquivo) {
 		this.idUsuarioArquivo = idUsuarioArquivo;
 	}
 
-    /** Método para retorno do tipo de envio.
+    /** Mï¿½todo para retorno do tipo de envio.
      * @return Int - Tipo de envio
      */
     public int getTipoEnvio() {
@@ -65,14 +56,14 @@ public class UsuarioArquivo {
     }
 
     /**
-     * Método para inserção do tipo do envio 
+     * Mï¿½todo para inserï¿½ï¿½o do tipo do envio 
      * @param tipoEnvio
      */
 	public void setTipoEnvio(int tipoEnvio) {
 		this.tipoEnvio = tipoEnvio;
 	}
 
-    /** Método para retorno do arquivo.
+    /** Mï¿½todo para retorno do arquivo.
      * @return Arquivo - Arquivo
      */
     public Arquivo getArquivo() {
@@ -80,7 +71,7 @@ public class UsuarioArquivo {
     }
 
     /**
-     * Método parai inserção do arquivo 
+     * Mï¿½todo parai inserï¿½ï¿½o do arquivo 
      * @param arquivo
      */
 	public void setArquivo(Arquivo arquivo) {
@@ -88,7 +79,7 @@ public class UsuarioArquivo {
 	}
 	
     /**
-     * Método para retorno do usuario
+     * Mï¿½todo para retorno do usuario
      * @return
      */
 	public Usuario getUsuario() {
@@ -96,7 +87,7 @@ public class UsuarioArquivo {
 	}
 
 	/**
-	 * Método para inserção do usaurio
+	 * Mï¿½todo para inserï¿½ï¿½o do usaurio
 	 * @param usuario
 	 */
 	public void setUsuario(Usuario usuario) {

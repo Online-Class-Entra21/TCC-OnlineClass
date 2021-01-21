@@ -1,7 +1,6 @@
 package entidade;
 
 import java.sql.Time;
-import java.util.*;
 
 /**
  * Classe contendo metodos e atributos para a turma.

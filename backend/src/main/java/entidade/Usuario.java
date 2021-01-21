@@ -10,7 +10,7 @@ import java.sql.Time;
  * @see Coordenador
  * @see Diretor
  * @see Professor
- * @author 
+ * @author Breno
  */
 public class Usuario {
 	
@@ -34,6 +34,7 @@ public class Usuario {
      * @param
      */
     public Usuario() {
+    	//Nenhum atributo inicializado
     }
 
     /**
@@ -50,8 +51,8 @@ public class Usuario {
      * @param horarioInicioExpediente
      * @param horarioFinalExpediente
      * @param fotoUsuario
-     * @param endereco
-     * @param escola
+     * @param fk_endereco
+     * @param fk_escola
      */
     public Usuario(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
 				   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
@@ -69,8 +70,8 @@ public class Usuario {
 		setHorarioInicioExpediente(horarioInicioExpediente);
 		setHorarioFinalExpediente(horarioFinalExpediente);
 		setFotoUsuario(fotoUsuario);
-		setEndereco(fk_endereco);
-		setEscola(fk_escola);
+		setFk_endereco(fk_endereco);
+		setFk_escola(fk_escola);
 	}
     
     /**
@@ -105,12 +106,12 @@ public class Usuario {
 		setHorarioInicioExpediente(horarioInicioExpediente);
 		setHorarioFinalExpediente(horarioFinalExpediente);
 		setFotoUsuario(fotoUsuario);
-		setEndereco(fk_endereco);
+		setFk_endereco(fk_endereco);
 }
 
 	/**
-	 * Metodo para retorno do ID do usuario.
-     * @return Int - ID do usuario
+	 * Metodo para retorno do ID do usuario
+     * @return idUsuario
      */
     public int getIdUsuario() {
     	 return idUsuario;
@@ -125,8 +126,8 @@ public class Usuario {
 	}
 
 	/** 
-	 * Metodo para retorno do nome do usuario.
-     * @return String - Nome do usuario
+	 * Metodo para retorno do nome do usuario
+     * @return nome
      */
     public String getNome() {
         return nome;
@@ -141,8 +142,8 @@ public class Usuario {
 	}
 
     /** 
-     * Metodo para retorno do sobrenome do usu�rio.
-     * @return String - Sobrenome do usu�rio
+     * Metodo para retorno do sobrenome do usuario.
+     * @return sobrenome
      */
     public String getSobrenome() {
         return sobrenome;
@@ -157,8 +158,8 @@ public class Usuario {
 	}
 
     /** 
-     * Metodo para retorno do CPF do usu�rio.
-     * @return String - CPF do usu�rio
+     * Metodo para retorno do CPF do usuario.
+     * @return cpf
      */
     public String getCpf() {
         return cpf;
@@ -173,8 +174,8 @@ public class Usuario {
 	}
     
     /** 
-     * Metodo para retorno do telefone do usu�rio.
-     * @return String - Telefone do usu�rio
+     * Metodo para retorno do telefone do usuario.
+     * @return telefone
      */
     public String getTelefone() {
         return telefone;
@@ -188,8 +189,9 @@ public class Usuario {
 		this.telefone = telefone;
 	}
 
-    /** Metodo para retorno do n�mero de celular do usu�rio.
-     * @return String - N�mero de celular do usu�rio
+    /** 
+     * Metodo para retorno do numero de celular do usuario.
+     * @return celular
      */
     public String getCelular() {
         return celular;
@@ -204,13 +206,15 @@ public class Usuario {
 	}
 
     /** 
+     * 1 - Administrador,
+	 * 2 - Diretor,
+	 * 3 - Coordenador,
+	 * 4 - Professor,
+	 * 5 - Aluno.
+     * 
      * Metodo para retorno do tipo de conta do usuario.
-     * @return Byte - Tipo de conta do usuario.
-	 * 							1 - Administrador,
-	 * 							2 - Diretor,
-	 * 							3 - Coordenador,
-	 * 							4 - Professor,
-	 * 							5 - Aluno
+     * @return tipoUsuario
+	 * 							
      */
     public int getTipoUsuario() {
         return tipoUsuario;
@@ -225,8 +229,8 @@ public class Usuario {
 	}
 
     /** 
-     * Metodo para retorno do email do usu�rio.
-     * @return String - Email do usu�rio
+     * Metodo para retorno do email do usuario
+     * @return email
      */
     public String getEmail() {
         return email;
@@ -258,7 +262,7 @@ public class Usuario {
 
 	/** 
 	 * Metodo para retorno do horario inicial do expediente do usuario.
-     * @return Time - Horario inicial do expediente do usuario
+     * @return horarioInicioExpediente
      */
     public Time getHorarioInicioExpediente() {
         return horarioInicioExpediente;
@@ -273,8 +277,8 @@ public class Usuario {
 	}
 
     /** 
-     * Metodo para retorno do hor�rio final do expediente do usu�rio.
-     * @return Time - Hor�rio final do expediente do usu�rio
+     * Metodo para retorno do horario final do expediente do usuario.
+     * @return horarioFinalExpediente
      */
     public Time getHorarioFinalExpediente() {
         return horarioFinalExpediente;
@@ -290,359 +294,362 @@ public class Usuario {
     
     /**
      * Metodo para pegar o caminho da foto do usuario
-     * @return
+     * @return fotoUsuario
      */
     public String getFotoUsuario() {
 		return fotoUsuario;
 	}
 
     /**
-     * M�todo de inser��o do caminho da foto do usuario
+     * Metodo de insercao do caminho da foto do usuario
      * @param fotoUsuario
      */
 	public void setFotoUsuario(String fotoUsuario) {
 		this.fotoUsuario = fotoUsuario;
 	}
 
-    /** Mwtodo para retorno do endere�o do usuario.
-     * @return Endereco - Endereco do usuario
-     */
-    public int getEndereco() {
-        return fk_endereco;
-    }
-    
-    /**
-     * Metodo para insercao do endereco do usuario
-     * @param endereco
-     */
-    public void setEndereco(int fk_endereco) {
+	/**
+	 * Metodo para retorno do FK do endereco
+	 * @return fk_endereco
+	 */
+	public int getFk_endereco() {
+		return fk_endereco;
+	}
+
+	/**
+	 * Metodo para insercao do FK do endereco
+	 * @param fk_endereco
+	 */
+	public void setFk_endereco(int fk_endereco) {
 		this.fk_endereco = fk_endereco;
 	}
 
-    /**
-     * Metodo de retorno da escola 
-     * @return
-     */
-    public int getEscola() {
+	/**
+	 * Metodo para retorno do FK da escola 
+	 * @return
+	 */
+	public int getFk_escola() {
 		return fk_escola;
 	}
 
-    /**
-     * Metodo de insercao da escola 
-     * @param escola
-     */
-	public void setEscola(int fk_escola) {
+	/**
+	 * Metodo de insercao do FK da escola 
+	 * @param fk_escola
+	 */
+	public void setFk_escola(int fk_escola) {
 		this.fk_escola = fk_escola;
 	}
+	
+	
+	//-------------
+	
 
-
-	/** 
-	 * Metodo para a verificacao de cpf.
-     * Recebe uma String e converte para inteiro, realizando o c�lculo para a verifica��o do d�gito ver�ficador.
-     * @param String - CPF a ser verificado. 
-     * @return Boolean - True para CPF v�lido / False para inv�lido.
-     */
-    public boolean verificarCpf(String cpf) {
-        return false;
-    }
-
-    /** 
-     * Metodo para verificacao do login.
-     * Recebe o email e senha e verifica no banco de dados se os dados coincidem com os cadastrados pelo usu�rio.
-     * @param String - Email a ser verificado.
-     * @param String - Senha a ser verificada.
-     * @return Boolean - True para login correto / False para incorreto.
-     */
-    public boolean verificarLogin(String email, String senha) {
-        return false;
-    }
-
-    /** 
-     * Metodo para pesquisar um usuario especifico a partir do ID.
-     * @param Int - ID do usuario.
-     * @return Usuario - Retorna o usu�rio.
-     */
-    public void pesquisarUsuario(int id) {
-    }
-
-    /** 
-     * Metodo para envio de um relatorio. 
-     * @param -
-     */
-    public void mandarRelatorio() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar os relatorios enviados, a partir do banco de dados.
-     * @param -
-     * @return Relatorio - Retorna os relat�rios enviados.
-     */
-    public Relatorio verRelatoriosEnviados() {
-        return null;
-    }
-
-    /** 
-     * Metodo para buscar um relatorio enviado, a partir do banco de dados.
-     * @param -
-     * @return Relatorio - Retorna um relat�rio.
-     */
-    public void buscarRelatorioEnviado() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar os relatorios recebidos, a partir do banco de dados.
-     * @param -
-     * @return Relatorio - Retorna os relat�rios recebidos.
-     */
-    public void verRelatoriosRecebidos() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para buscar um relatorio recebido, a partir do banco de dados.
-     * @param -
-     * @return Relatorio - Retorna um relat�rio.
-     */
-    public void buscarRelatorioRecebido() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para a remocao de um relatorio.
-     * @param Relatorio - Relat�rio a ser removido.
-     */
-    public void removerRelatorio(Relatorio relatorio) {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para o envio do convite para acessar uma reuni�o.
-     * @param -
-     */
-    public void mandarConvite() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar os convites enviados, a partir do banco de dados.
-     * @param -
-     * @return Convite - Retorna os convites enviados.
-     */
-    public void verConvitesEnviados() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para buscar um convite enviado, a partir do banco de dados.
-     * @param -
-     * @return Convite - Retorna um convite.
-     */
-    public void buscarConviteEnviado() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para buscar os convites recebidos, a partir do banco de dados.
-     * @param -
-     * @return Convite - Retorna os convites recebidos.
-     */
-    public void verConvitesRecebidos() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para buscar um convite recebido, a partir do banco de dados.
-     * @param -
-     * @return Convite - Retorna um convite.
-     */
-    public void buscarConviteRecebido() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para a remocao de um convite.
-     * @param Convite - Convite a ser removido.
-     */
-    public void removerConvite() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para a aceitacao de um convite.
-     * @param Boolean - Resposta do convite.
-     * @return Boolean - True.
-     */
-    public boolean aceitarConvite(boolean convite) {
-        return true;
-    }
-
-    /** 
-     * Metodo para recusar um convite.
-     * @param Boolean - Resposta do convite.
-     * @return Boolean - False.
-     */
-    public boolean recusarConvite(boolean convite) {
-        return false;
-    }
-
-    /** 
-     * Metodo para o envio de um arquivo.
-     * @param -
-     */
-    public void mandarArquivo() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar os arquivos enviados, a partir do banco de dados.
-     * @param -
-     * @return Arquivo - Retorna os arquivos enviados.
-     */
-    public Arquivo verArquivosEnviados() {
-        return null;
-    }
-
-    /** 
-     * Metodo para visualizar um arquivo especifico enviado, a partir do banco de dados.
-     * @param -
-     * @return Arquivo - Retorna o arquivo.
-     */
-    public void buscarArquivoEnviado() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar os arquivos recebidos, a partir do banco de dados.
-     * @param -
-     * @return Arquivo - Retorna os arquivos recebidos.
-     */
-    public void verArquivosRecebidos() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar arquivo especifico recebido, a partir do banco de dados.
-     * @param -
-     * @return Arquivo - Retorna o arquivo.
-     */
-    public void buscarArquivoRecebido() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para a remo��o de um arquivo.
-     * @param -
-     */
-    public void removerArquivo() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar uma sala personalizada.
-     * @param -
-     * @return SalaPersonalizada.
-     */
-    public SalaPersonalizada getSalaPersonalizada() {
-        return null;
-    }
-
-    /** 
-     * Metodo para a cria��o de uma sala personalizada.
-     * @param -
-     */
-    public void criarSalaPersonalizada() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para atualizar uma sala personalizada.
-     * @param SalaPersonalizadaDAO - Sala a ser atualizada.
-     */
-    public void atualizarSalaPersonalizada(SalaPersonalizada salaP) {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para remo��o de uma sala personalizada.
-     * @param SalaPersonalizadaDAO - Sala a ser removida.
-     */
-    public void removerSalaPersonalizada(SalaPersonalizada salaP) {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar uma reuni�o.
-     * @return Reuniao.
-     */
-    public Reuniao getReuniao() {
-        return null;
-    }
-
-    /** 
-     * Metodo para a cria��o de uma reuni�o.
-     * @param -
-     */
-    public void criarReuniao() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para a atualiza��o de uma reuni�o.
-     * @param Reuniao - Reuni�o a ser atualizada.
-     */
-    public void atualizarReuniao(Reuniao reuniao) {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para a remo��o de uma reuni�o.
-     * @param Reuniao - Reuni�o a ser removida.
-     */
-    public void removerReuniao(Reuniao reuniao) {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para entrar em uma reuni�o.
-     * @param - 
-     */
-    public void entrarReuniao() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para sair de uma reuni�o.
-     * @param -
-     */
-    public void sairReuniao() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo para visualizar uma chamada.
-     * @param - 
-     * @return Chamada.
-     */
-    public Chamada getChamada() {
-        return null;
-    }
-
-    /** 
-     * Metodo para a realiza��o da chamada.
-     * @param -
-     */
-    public void fazerChamada() {
-        // TODO implement here
-    }
-
-    /** 
-     * Metodo a remo��o de uma chamada.
-     *  @param Chamada - Chamada a ser removida.
-     */
-    public void removerChamada(Chamada chamada) {
-        // TODO implement here
-    }
-
+//	/** 
+//	 * Metodo para a verificacao de cpf.
+//     * Recebe uma String e converte para inteiro, realizando o c�lculo para a verifica��o do d�gito ver�ficador.
+//     * @param String - CPF a ser verificado. 
+//     * @return Boolean - True para CPF v�lido / False para inv�lido.
+//     */
+//    public boolean verificarCpf(String cpf) {
+//        return false;
+//    }
+//
+//    /** 
+//     * Metodo para verificacao do login.
+//     * Recebe o email e senha e verifica no banco de dados se os dados coincidem com os cadastrados pelo usu�rio.
+//     * @param String - Email a ser verificado.
+//     * @param String - Senha a ser verificada.
+//     * @return Boolean - True para login correto / False para incorreto.
+//     */
+//    public boolean verificarLogin(String email, String senha) {
+//        return false;
+//    }
+//
+//    /** 
+//     * Metodo para pesquisar um usuario especifico a partir do ID.
+//     * @param Int - ID do usuario.
+//     * @return Usuario - Retorna o usu�rio.
+//     */
+//    public void pesquisarUsuario(int id) {
+//    }
+//
+//    /** 
+//     * Metodo para envio de um relatorio. 
+//     * @param -
+//     */
+//    public void mandarRelatorio() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar os relatorios enviados, a partir do banco de dados.
+//     * @param -
+//     * @return Relatorio - Retorna os relat�rios enviados.
+//     */
+//    public Relatorio verRelatoriosEnviados() {
+//        return null;
+//    }
+//
+//    /** 
+//     * Metodo para buscar um relatorio enviado, a partir do banco de dados.
+//     * @param -
+//     * @return Relatorio - Retorna um relat�rio.
+//     */
+//    public void buscarRelatorioEnviado() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar os relatorios recebidos, a partir do banco de dados.
+//     * @param -
+//     * @return Relatorio - Retorna os relat�rios recebidos.
+//     */
+//    public void verRelatoriosRecebidos() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para buscar um relatorio recebido, a partir do banco de dados.
+//     * @param -
+//     * @return Relatorio - Retorna um relat�rio.
+//     */
+//    public void buscarRelatorioRecebido() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para a remocao de um relatorio.
+//     * @param Relatorio - Relat�rio a ser removido.
+//     */
+//    public void removerRelatorio(Relatorio relatorio) {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para o envio do convite para acessar uma reuni�o.
+//     * @param -
+//     */
+//    public void mandarConvite() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar os convites enviados, a partir do banco de dados.
+//     * @param -
+//     * @return Convite - Retorna os convites enviados.
+//     */
+//    public void verConvitesEnviados() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para buscar um convite enviado, a partir do banco de dados.
+//     * @param -
+//     * @return Convite - Retorna um convite.
+//     */
+//    public void buscarConviteEnviado() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para buscar os convites recebidos, a partir do banco de dados.
+//     * @param -
+//     * @return Convite - Retorna os convites recebidos.
+//     */
+//    public void verConvitesRecebidos() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para buscar um convite recebido, a partir do banco de dados.
+//     * @param -
+//     * @return Convite - Retorna um convite.
+//     */
+//    public void buscarConviteRecebido() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para a remocao de um convite.
+//     * @param Convite - Convite a ser removido.
+//     */
+//    public void removerConvite() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para a aceitacao de um convite.
+//     * @param Boolean - Resposta do convite.
+//     * @return Boolean - True.
+//     */
+//    public boolean aceitarConvite(boolean convite) {
+//        return true;
+//    }
+//
+//    /** 
+//     * Metodo para recusar um convite.
+//     * @param Boolean - Resposta do convite.
+//     * @return Boolean - False.
+//     */
+//    public boolean recusarConvite(boolean convite) {
+//        return false;
+//    }
+//
+//    /** 
+//     * Metodo para o envio de um arquivo.
+//     * @param -
+//     */
+//    public void mandarArquivo() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar os arquivos enviados, a partir do banco de dados.
+//     * @param -
+//     * @return Arquivo - Retorna os arquivos enviados.
+//     */
+//    public Arquivo verArquivosEnviados() {
+//        return null;
+//    }
+//
+//    /** 
+//     * Metodo para visualizar um arquivo especifico enviado, a partir do banco de dados.
+//     * @param -
+//     * @return Arquivo - Retorna o arquivo.
+//     */
+//    public void buscarArquivoEnviado() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar os arquivos recebidos, a partir do banco de dados.
+//     * @param -
+//     * @return Arquivo - Retorna os arquivos recebidos.
+//     */
+//    public void verArquivosRecebidos() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar arquivo especifico recebido, a partir do banco de dados.
+//     * @param -
+//     * @return Arquivo - Retorna o arquivo.
+//     */
+//    public void buscarArquivoRecebido() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para a remo��o de um arquivo.
+//     * @param -
+//     */
+//    public void removerArquivo() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar uma sala personalizada.
+//     * @param -
+//     * @return SalaPersonalizada.
+//     */
+//    public SalaPersonalizada getSalaPersonalizada() {
+//        return null;
+//    }
+//
+//    /** 
+//     * Metodo para a cria��o de uma sala personalizada.
+//     * @param -
+//     */
+//    public void criarSalaPersonalizada() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para atualizar uma sala personalizada.
+//     * @param SalaPersonalizadaDAO - Sala a ser atualizada.
+//     */
+//    public void atualizarSalaPersonalizada(SalaPersonalizada salaP) {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para remo��o de uma sala personalizada.
+//     * @param SalaPersonalizadaDAO - Sala a ser removida.
+//     */
+//    public void removerSalaPersonalizada(SalaPersonalizada salaP) {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar uma reuni�o.
+//     * @return Reuniao.
+//     */
+//    public Reuniao getReuniao() {
+//        return null;
+//    }
+//
+//    /** 
+//     * Metodo para a cria��o de uma reuni�o.
+//     * @param -
+//     */
+//    public void criarReuniao() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para a atualiza��o de uma reuni�o.
+//     * @param Reuniao - Reuni�o a ser atualizada.
+//     */
+//    public void atualizarReuniao(Reuniao reuniao) {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para a remo��o de uma reuni�o.
+//     * @param Reuniao - Reuni�o a ser removida.
+//     */
+//    public void removerReuniao(Reuniao reuniao) {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para entrar em uma reuni�o.
+//     * @param - 
+//     */
+//    public void entrarReuniao() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para sair de uma reuni�o.
+//     * @param -
+//     */
+//    public void sairReuniao() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo para visualizar uma chamada.
+//     * @param - 
+//     * @return Chamada.
+//     */
+//    public Chamada getChamada() {
+//        return null;
+//    }
+//
+//    /** 
+//     * Metodo para a realiza��o da chamada.
+//     * @param -
+//     */
+//    public void fazerChamada() {
+//        // TODO implement here
+//    }
+//
+//    /** 
+//     * Metodo a remo��o de uma chamada.
+//     *  @param Chamada - Chamada a ser removida.
+//     */
+//    public void removerChamada(Chamada chamada) {
+//        // TODO implement here
+//    }
 }
