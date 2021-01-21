@@ -227,10 +227,10 @@ public class Aluno extends Usuario {
     }
 
     
-    //-------------------
-//    
-//    
-//    
+    //Descomentar após correções do André - ClassesDAO
+  	//-------------------------------------------------
+ 
+    
 ////    public List<Resposta> verRespostasEnviadas(int idAtividade) {
 ////    	RespostaDAO respostaDao = new RespostaDAO();
 ////        List<Resposta> listaResposta = new ArrayList<Resposta>();

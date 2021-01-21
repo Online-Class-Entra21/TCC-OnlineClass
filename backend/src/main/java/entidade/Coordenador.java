@@ -43,7 +43,8 @@ public class Coordenador extends Usuario {
 	}
 	
 	
-	//---------------
+	//Descomentar após correções do André - ClassesDAO
+  	//-------------------------------------------------
 	
 
 //    /**

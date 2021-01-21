@@ -43,7 +43,8 @@ public class Professor extends Usuario {
 	}
 
     
-    //------------
+	//Descomentar após correções do André - ClassesDAO
+  	//-------------------------------------------------
     
     
 //    /** M�todo para visualizar as disciplinas do professor.

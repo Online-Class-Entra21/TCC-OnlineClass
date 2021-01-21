@@ -42,7 +42,8 @@ public class Diretor extends Usuario {
 	 }
 	 
 	 
-	 //---------------------
+	//Descomentar após correções do André - ClassesDAO
+	//-------------------------------------------------
 	 
 
 //    /** 
