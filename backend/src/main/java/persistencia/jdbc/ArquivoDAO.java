@@ -1,5 +1,13 @@
 package persistencia.jdbc;
 
+/*
+ * nota para o pessoal do back, 
+ * insert  = 100%
+ * update  = 100%
+ * delete  = 100%
+ * javadoc = 80% < precisa de revisão
+ */
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -13,6 +21,13 @@ import entidade.Arquivo;
 public class ArquivoDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
+	/**
+	 * Metodo para inserir um <code>arquivo</code> no banco de dados
+	 * 
+	 * @param arquivo
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
+	 */
 	public boolean insert(Arquivo arquivo) {
 		String sql = "insert into arquivo (extensao, dataenvio, remetente, arquivo) values (?, ?, ?, ?)";
 		
@@ -21,7 +36,7 @@ public class ArquivoDAO {
 			comandoSql.setString(1, arquivo.getExtensao());
 			comandoSql.setDate(2, (Date) arquivo.getDataEnvio());
 			comandoSql.setInt(3, arquivo.getRemetente());
-			comandoSql.setBytes(4, arquivo.getArquivo());
+			comandoSql.setString(4, arquivo.getCaminhoArquivo());
 			
 			comandoSql.execute();
 			comandoSql.close();
@@ -35,6 +50,15 @@ public class ArquivoDAO {
 		return true;	
 	}
 	
+	/**
+	 * Metodo para atualizar os dados de um arquivo no banco de dados.
+	 * 
+	 * O id do <code>Arquivos</code> deve ser igual ao arquivo que se deseja atualizar
+	 * 
+	 * @param arquivo
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
+	 */
 	public boolean update(Arquivo arquivo) {
 		String sql = "update arquivo set extensao = ?, dataenvio = ?, remetente = ?, arquivo = ? where idarquivo = ?";
 		
@@ -43,7 +67,7 @@ public class ArquivoDAO {
 			comandoSql.setString(1, arquivo.getExtensao());
 			comandoSql.setDate(2, (Date) arquivo.getDataEnvio());
 			comandoSql.setInt(3, arquivo.getRemetente());
-			comandoSql.setBytes(4, arquivo.getArquivo());
+			comandoSql.setString(4, arquivo.getCaminhoArquivo());
 			comandoSql.setInt(5, arquivo.getIdArquivo());
 			
 			comandoSql.execute();
@@ -55,6 +79,15 @@ public class ArquivoDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para deletar um arquivo do banco de dados
+	 * 
+	 * O <code>idArquivo</code> deve ser igual ao do arquivo que deseja deletar
+	 * 
+	 * @param idArquivo
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
+	 */
 	public boolean delete(int idArquivo) {
 		String sql = "delete from arquivo where idarquivo = ?";
 		
@@ -72,6 +105,15 @@ public class ArquivoDAO {
 		return true;
 	}
 	 
+	/**
+	 * Metodo para selecionar um arquivo do banco de dados.
+	 * 
+	 * O <code>idArquivo</code> deve ser igual ao do arquivo que você quer selecionar.
+	 * 
+	 * @param idArquivo
+	 * @return <code>Arquivo</code>
+	 * @author Andrey
+	 */
 	public Arquivo buscarId(int idArquivo) {
 		Arquivo arquivo = new Arquivo();
 		
@@ -87,7 +129,7 @@ public class ArquivoDAO {
 				arquivo.setExtensao(resultSet.getString(2));
 				arquivo.setDataEnvio(resultSet.getDate(3));
 				arquivo.setRemetente(resultSet.getInt(4));
-				arquivo.setArquivo(resultSet.getBytes(5));
+				arquivo.setCaminhoArquivo(resultSet.getString(5));
 			
 			}
 			comandoSql.close();
@@ -99,6 +141,13 @@ public class ArquivoDAO {
 		}
 		
 	}
+	
+	/**
+	 * Metodo para selecionar todos os arquivos do banco de dados
+	 * 
+	 * @return <code>List<Arquivo></code> com todos os arquivos do banco de dados
+	 * @author Andrey
+	 */
 	public List<Arquivo> buscarTodos() {
 		Arquivo arquivo = new Arquivo(); 
 		List<Arquivo> lista =  new ArrayList<Arquivo>();
@@ -114,7 +163,7 @@ public class ArquivoDAO {
 				arquivo.setExtensao(resultSet.getString(2));
 				arquivo.setDataEnvio(resultSet.getDate(3));
 				arquivo.setRemetente(resultSet.getInt(4));
-				arquivo.setArquivo(resultSet.getBytes(5));
+				arquivo.setCaminhoArquivo(resultSet.getString(5));
 
 			lista.add(arquivo);
 			}

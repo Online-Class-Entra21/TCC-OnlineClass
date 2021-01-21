@@ -15,7 +15,9 @@ import entidade.Usuario;
 public class ConviteDAO {
 private Connection conexao = ConexaoFactory.getConnection();
 	
-	public boolean insert(Convite convite, Usuario usuario) {
+	/**
+	 */
+	public boolean insert(Convite convite) {
 		String sql = "insert into convite (destinatario, salaconvite, situacaoconvite, fk_usuario) values (?, ?, ?, ?)";
 		
 		try {
@@ -23,7 +25,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 			comandoSql.setInt(1, convite.getDestinatario());
 			comandoSql.setInt(2, convite.getSalaConvite());
 			comandoSql.setBoolean(3, convite.getSituacaoConvite());
-			comandoSql.setInt(4, usuario.getIdUsuario());
+			comandoSql.setInt(4, convite.getFk_usuario());
 			
 			comandoSql.execute();
 			comandoSql.close();

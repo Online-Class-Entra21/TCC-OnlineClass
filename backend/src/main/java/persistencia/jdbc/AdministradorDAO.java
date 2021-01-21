@@ -1,5 +1,5 @@
 package persistencia.jdbc;
 
-public class AdministradorDAO {
+public class AdministradorDAO extends UsuarioDAO {
 
 }
