@@ -2,6 +2,8 @@ package entidade;
 
 import java.sql.Time;
 
+import persistencia.jdbc.ProfessorDAO;
+
 /**
  * Classe contendo metodos e atributos para o diretor.
  * Herda metodos e atributos da classe Usuario.
@@ -119,6 +121,44 @@ public class Diretor extends Usuario {
      */
     public void removerUsuario() {
         // TODO implement here
+    }
+    
+    /**
+     * Metodo para retorno do ID do professor
+     * @param int idProfessor
+     * @return Professor professor
+     */
+    public Professor getProfessor(int idProfessor) {
+    	ProfessorDAO professorDao = new ProfessorDAO();
+        Professor professor = professorDao.buscarId(idProfessor);
+        return professor;
+    }
+
+    /**
+     * Metodo para adicionar um professor
+     * @param professor
+     */
+    public void adicionarProfessor(Professor professor) {
+    	ProfessorDAO professorDao = new ProfessorDAO();
+    	professorDao.insert(professor);
+    }
+
+    /** 
+     * Metodo para atualizar um professor
+     * @param Professor professor
+     */
+    public void atualizarProfessor(Professor professor) {
+        ProfessorDAO professorDao = new ProfessorDAO();
+        professorDao.update(professor);
+    }
+
+    /** 
+     * Metodo para a remocao de um professor
+     * @param Professor professor 
+     */
+    public void removerProfessor(Professor professor) {
+        ProfessorDAO professorDao = new ProfessorDAO();
+        professorDao.delete(professor);
     }
 
 }

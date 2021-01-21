@@ -4,11 +4,12 @@ import java.sql.Time;
 
 import persistencia.jdbc.AlunoDAO;
 import persistencia.jdbc.DisciplinaDAO;
+import persistencia.jdbc.ProfessorDAO;
 import persistencia.jdbc.TurmaDAO;
 
 /**
  * Classe contendo mwtodos e atributos para o coordenador.
- * Herda metodos e atributos da classe Usuario.
+ * Herda metodos e atributos da classe Usuario
  * @see Usuario
  * @author André 
  */
@@ -46,8 +47,9 @@ public class Coordenador extends Usuario {
 				horarioFinalExpediente, fotoUsuario, fk_endereco, fk_escola);
 	}
 
-    /** 
+    /**
      * Metodo para retorno da turma
+     * @param int idTurma
      * @return Turma turma 
      */
     public Turma getTurma(int idTurma) {
@@ -70,8 +72,8 @@ public class Coordenador extends Usuario {
      * @param Turma turma
      */
     public void atualizarTurma(Turma turma) {
-        TurmaDAO turmaDAO = new TurmaDAO();
-        turmaDAO.update(turma);
+        TurmaDAO turmaDao = new TurmaDAO();
+        turmaDao.update(turma);
     }
 
     /** 
@@ -79,12 +81,13 @@ public class Coordenador extends Usuario {
      * @param int idTurma
      */
     public void removerTurma(int idTurma) {
-        TurmaDAO turmaDAO = new TurmaDAO();
-        turmaDAO.delete(idTurma);
+        TurmaDAO turmaDao = new TurmaDAO();
+        turmaDao.delete(idTurma);
     }
 
-    /** 
-     * Metodo para retorno do ID da disciplina
+    /**
+     * Metodo para retorno da disciplina
+     * @param int idDisciplina
      * @return Disciplina disciplina 
      */
     public Disciplina getDisciplina(int idDisciplina) {
@@ -94,12 +97,12 @@ public class Coordenador extends Usuario {
     }
 
     /** 
-     * Metodo para adicionar uma disciplina.
+     * Metodo para adicionar uma disciplina
      * @param Disciplina disciplina 
      */
     public void adicionarDisciplina(Disciplina disciplina) {
-        DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-        disciplinaDAO.insert(disciplina);
+        DisciplinaDAO disciplinaDao = new DisciplinaDAO();
+        disciplinaDao.insert(disciplina);
     }
     
     /** 
@@ -107,8 +110,8 @@ public class Coordenador extends Usuario {
      * @param Disciplina disciplina
      */
     public void atualizarDisciplina(Disciplina disciplina) {
-        DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-        disciplinaDAO.update(disciplina);
+        DisciplinaDAO disciplinaDao = new DisciplinaDAO();
+        disciplinaDao.update(disciplina);
     }
 
     /** 
@@ -116,8 +119,8 @@ public class Coordenador extends Usuario {
      * @param int idDisciplina 
      */
     public void removerDisciplina(int idDisciplina) {
-        DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-        disciplinaDAO.delete(idDisciplina);
+        DisciplinaDAO disciplinaDao = new DisciplinaDAO();
+        disciplinaDao.delete(idDisciplina);
     }
 
     /**
@@ -130,85 +133,32 @@ public class Coordenador extends Usuario {
         Aluno aluno =  alunoDao.buscarId(idAluno);
         return aluno;	
     }
+    
+    /**
+     * Metodo para insercao do aluno 
+     * @param Aluno aluno
+     */
+    public void adicionarAluno(Aluno aluno) {
+    	AlunoDAO alunoDao = new AlunoDAO();
+    	alunoDao.insert(aluno);
+    }
 
     /** 
      * Metodo para atualizar um aluno
      * @param Aluno aluno
      */
     public void atualizarAluno(Aluno aluno) {
-    	AlunoDAO alunoDAO = new AlunoDAO();
-        alunoDAO.update(aluno);
+    	AlunoDAO alunoDao = new AlunoDAO();
+        alunoDao.update(aluno);
     }
 
-    /** M�todo para a remo��o de um aluno.
-     * @param Aluno - Aluno a ser removido.
+    /** 
+     * Metodo para a remocao de um aluno
+     * @param int idAluno
      */
-    public void removerAluno(Aluno aluno) {
-        AlunoDAO alunoDAO = new AlunoDAO();
-        alunoDAO.delete(aluno);
-    }
-    /**
-     * 
-     */
-    public void removerAlunoTabelaUsuario(Usuario usuario) {
-    	UsuarioDAO usuarioDAO = new UsuarioDAO();
-    	usuarioDAO.delete(usuario.getIdUsuario());
-    }
-
-    /** M�todo para adicionar um aluno.
-     * @param -
-     */
-    public void adicionarAluno(int idAluno, int ra, String matricula, boolean deficienciaFisica, 
-			 				   String nomeMae, String nomePai, String nomeResponsavel, boolean situacaoAnoLetivo, Turma turma) {
-    	Aluno aluno = new Aluno(idAluno, ra, matricula, deficienciaFisica, nomeMae, nomePai, nomeResponsavel, situacaoAnoLetivo, turma);
-    	AlunoDAO alunoDAO = new AlunoDAO();
-    	alunoDAO.insert(aluno);
-    }
-    /**
-     * 
-     */
-    public void adicionarAlunoTabelaUsuario(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular, String email,
-			 String senha, Time horarioInicioExpediente, Time horarioFinalExpediente, String fotoUsuario,
-			 Endereco endereco, Escola escola) {
-    	Usuario aluno = new Usuario(idUsuario, nome, sobrenome, cpf, telefone, celular, 0, email, senha, horarioInicioExpediente,
-    								horarioFinalExpediente, fotoUsuario, endereco, escola);
-    	UsuarioDAO usuarioDAO = new UsuarioDAO();
-    	usuarioDAO.insert(aluno);
-    }
-    /** M�todo para retorno do ID do professor.
-     * @return Int - ID do professor
-     */
-    public Professor getProfessor(ProfessorDAO professorDAO, int idProfessor) {
-        Professor professor = ProfessorDAO.buscarId(idProfessor);
-        return professor;
-    }
-
-    /** M�todo para adicionar um professor.
-     * @param -
-     */
-    public void adicionarProfessor(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular, String email,
-			 String senha, Time horarioInicioExpediente, Time horarioFinalExpediente, String fotoUsuario,
-			 Endereco endereco, Escola escola) {
-    	Usuario professor = new Usuario(idUsuario, nome, sobrenome, cpf, telefone, celular, 1, email,
-				  senha, horarioInicioExpediente, horarioFinalExpediente, fotoUsuario, endereco, escola);
-    	ProfessorDAO professorDAO = new professorDAO();
-    	professorDAO.insert(professor);
-    }
-
-    /** M�todo para atualizar um professor.
-     * @param Professor - Professor a ser atualizado.
-     */
-    public void atualizarProfessor(Professor professor) {
-        ProfessorDAO professorDAO = new ProfessorDAO();
-        professorDAO.update(professor);
-    }
-
-    /** M�todo para a remo��o de um professor.
-     * @param Professor - Professor a ser removido.
-     */
-    public void removerProfessor(Professor professor) {
-        ProfessorDAO professorDAO = new ProfessorDAO();
-        professorDAO.delete(professor);
+    public void removerAluno(int idAluno) {
+        AlunoDAO alunoDao = new AlunoDAO();
+        alunoDao.delete(idAluno);
     }
 
     /** M�todo para retorno do ID do ProfessorDisciplina.

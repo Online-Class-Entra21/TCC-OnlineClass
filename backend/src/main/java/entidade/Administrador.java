@@ -83,9 +83,10 @@ public class Administrador extends Usuario {
         escolaDao.delete(escola.getIdEscola());
     }
 
-    /** 
+    /**
      * Metodo para retorno do diretor
-     * @return Diretor diretor
+     * @param int idDiretor
+     * @return Diretor diretor 
      */
     public Diretor getDiretor(int idDiretor) {
     	DiretorDAO diretorDao = new DiretorDAO();
@@ -98,8 +99,8 @@ public class Administrador extends Usuario {
      * @param Diretor diretor
      */
     public void adicionarDiretor(Diretor diretor) {
-    	DiretorDAO diretorDAO = new DiretorDAO();
-    	diretorDAO.insert(diretor);
+    	DiretorDAO diretorDao = new DiretorDAO();
+    	diretorDao.insert(diretor);
     }
 
     /** 
@@ -107,8 +108,8 @@ public class Administrador extends Usuario {
      * @param Diretor diretor
      */
     public void atualizarDiretor(Diretor diretor) {
-    	DiretorDAO diretorDAO = new DiretorDAO();
-    	diretorDAO.update(diretor);
+    	DiretorDAO diretorDao = new DiretorDAO();
+    	diretorDao.update(diretor);
     }
 
     /** 
@@ -116,7 +117,7 @@ public class Administrador extends Usuario {
      * @param int idDiretor
      */
     public void removerDiretor(int idDiretor) {
-    	DiretorDAO diretorDAO = new DiretorDAO();
-    	diretorDAO.delete(idDiretor);
+    	DiretorDAO diretorDao = new DiretorDAO();
+    	diretorDao.delete(idDiretor);
     }
 }

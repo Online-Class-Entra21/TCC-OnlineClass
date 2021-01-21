@@ -1,7 +1,7 @@
 package entidade;
 
 /**
- * Classe contendo metodos e atributos para a disciplina.
+ * Classe contendo metodos e atributos para a disciplina
  * @author André 
  */
 public class Disciplina {
@@ -19,7 +19,9 @@ public class Disciplina {
 
     /**
      * Metodo construtor que preenche os atributos da classe 
-     * @param
+     * @param idDisciplina
+     * @param nome
+     * @param numeroAulas
      */
     public Disciplina(int idDisciplina, String nome, int numeroAulas) {
     	setIdDisciplina(idDisciplina);
@@ -29,7 +31,7 @@ public class Disciplina {
     
     /** 
      * Metodo para retorno do ID da disciplina
-     * @return idDisciplina 
+     * @return int idDisciplina 
      */
     public int getIdDisciplina() {
         return idDisciplina;
@@ -37,7 +39,7 @@ public class Disciplina {
     
     /**
      * Metodo para insercao do ID da disciplina 
-     * @param idDisciplina
+     * @param int idDisciplina
      */
     public void setIdDisciplina(int idDisciplina) {
 		this.idDisciplina = idDisciplina;
@@ -45,7 +47,7 @@ public class Disciplina {
 
     /** 
      * Metodo para retorno do nome da disciplina
-     * @return nome
+     * @return String nome 
      */
     public String getNome() {
         return nome;
@@ -53,7 +55,7 @@ public class Disciplina {
     
     /**
      * Metodo para insercao do nome da disciplina 
-     * @param nome
+     * @param String nome
      */
     public void setNome(String nome) {
 		this.nome = nome;
@@ -61,7 +63,7 @@ public class Disciplina {
 
     /** 
      * Metodo para retorno do numero de aulas da disciplina
-     * @return numeroAulas
+     * @return int numeroAulas
      */
     public int getNumeroAulas() {
         return numeroAulas;
@@ -69,7 +71,7 @@ public class Disciplina {
 
     /**
      * Metodo para insercao do numero de aulas 
-     * @param numeroAulas
+     * @param int numeroAulas
      */
 	public void setNumeroAulas(int numeroAulas) {
 		this.numeroAulas = numeroAulas;
