@@ -3,6 +3,11 @@ package persistencia.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Estabelece a conexão com o banco de dados 
+ * @author breno
+ *
+ */
 public class ConexaoFactory {
 	
 	private static Connection conexao = null;
