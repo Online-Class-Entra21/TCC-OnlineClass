@@ -30,10 +30,10 @@ public class periodoAvaliacaoController {
 	}
 	
 	/**
-	 * Retorna a lista dos periodoAvaliacoes registrados no sistema {GET}
+	 * Retorna a lista dos periodosAvaliacoes registrados no sistema {GET}
 	 * @return PeriodoAvaliacao lista
 	 */
-	@GetMapping(path = "/api/periodoAvaliacoes")
+	@GetMapping(path = "/api/periodosAvaliacoes")
 	public List<PeriodoAvaliacao> consultar(){
 		return null;
 	}

@@ -30,10 +30,10 @@ public class arquivoUsuarioController {
 	}
 	
 	/**
-	 * Retorna a lista de arquivoUsuarios registrados no sistema {GET}
+	 * Retorna a lista de arquivosUsuarios registrados no sistema {GET}
 	 * @return ArquivoUsuario lista
 	 */
-	@GetMapping(path = "/api/arquivoUsuarios")
+	@GetMapping(path = "/api/arquivosUsuarios")
 	public List<ArquivoUsuario> consultar(){
 		return null;
 	}
