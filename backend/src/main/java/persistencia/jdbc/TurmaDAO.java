@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.Sala;
 import entidade.Turma;
 
 public class TurmaDAO {
@@ -19,6 +17,7 @@ public class TurmaDAO {
 	 * Realiza o registro de uma Turma no banco de dados
 	 * @param turma
 	 * @return
+	 * @author Breno
 	 */
 	public boolean insert(Turma turma) {
 		
@@ -31,7 +30,7 @@ public class TurmaDAO {
 			comandoSql.setInt(2, turma.getQtdAluno());
 			comandoSql.setTime(3, turma.getHorarioInicioAula());
 			comandoSql.setTime(4, turma.getHorarioFinalAula());
-			comandoSql.setInt(5, turma.getSalaPadrao().getIdSala());
+			comandoSql.setInt(5, turma.getFk_sala());
 			
 			comandoSql.execute(); 
 			
@@ -46,9 +45,10 @@ public class TurmaDAO {
 	}
 	
 	/**
-	 * Realiza atualização dos dados da Turma no banco de dados
+	 * Realiza atualizacao dos dados da Turma no banco de dados
 	 * @param turma
 	 * @return
+	 * @author Breno
 	 */
 	public boolean update(Turma turma) {
 		
@@ -62,7 +62,7 @@ public class TurmaDAO {
 			comandoSql.setInt(2, turma.getQtdAluno());
 			comandoSql.setTime(3, turma.getHorarioInicioAula());
 			comandoSql.setTime(4, turma.getHorarioFinalAula());
-			comandoSql.setInt(5, turma.getSalaPadrao().getIdSala());
+			comandoSql.setInt(5, turma.getFk_sala());
 			comandoSql.setInt(6, turma.getIdTurma());
 
 			comandoSql.execute(); 
@@ -78,11 +78,12 @@ public class TurmaDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela Turma
+	 * Realiza a exclusao dos dados de uma linha da tabela Turma
 	 * @param idTurma
 	 * @return
+	 * @author Breno
 	 */
-	public boolean delete(int idTurma) {
+	public boolean deleteId(int idTurma) {
 		
 		String sql = "delete from turma where idTurma = ?"; 
 		
@@ -105,12 +106,13 @@ public class TurmaDAO {
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Metodo de busca de todas as informacoes de uma linha
 	 * da tabela Turma do banco de dados
 	 * @param idTurma
 	 * @return
+	 * @author Breno
 	 */
-	public Turma buscarPorId(int idTurma) {
+	public Turma buscarId(int idTurma) {
 		Turma turma = new Turma(); 
 		
 		String sql = "select * from turma where idTurma = ?"; 
@@ -128,6 +130,7 @@ public class TurmaDAO {
 				turma.setQtdAluno(resultSet.getInt(3));
 				turma.setHorarioInicioAula(resultSet.getTime(4));
 				turma.setHorarioFinalAula(resultSet.getTime(5));
+				turma.setFk_sala(resultSet.getInt(6));
 				comandoSql.close(); 
 				return turma;
 			}
@@ -142,6 +145,7 @@ public class TurmaDAO {
 	/**
 	 * Retorna todos os dados listados da tabela Turma do banco de dados 
 	 * @return
+	 * @author Breno
 	 */
 	public List<Turma> buscarTodos() {
 		
@@ -163,6 +167,7 @@ public class TurmaDAO {
 				turma.setQtdAluno(resultSet.getInt(3));
 				turma.setHorarioInicioAula(resultSet.getTime(4));
 				turma.setHorarioFinalAula(resultSet.getTime(5));
+				turma.setFk_sala(resultSet.getInt(6));
 				lista.add(turma); 
 			}
 		} catch (SQLException e) {

@@ -13,6 +13,15 @@ public class EscolaDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
+	/**
+	 * Metodo para inserir Disciplina no banco de dados.
+	 * 
+	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
+	 * 
+	 * @param <code>Disciplina</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */	
 	public boolean insert(Escola escola) {
 		
 		try {
@@ -35,6 +44,16 @@ public class EscolaDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para atualizar uma Disciplina no banco de dados.
+	 * 
+	 * O id da <code>Disciplina</code> deve ser o mesmo id que esta no banco de dados.
+	 * 
+	 * @param Disciplina
+	 * @param turmaDisciplina
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */ 	
 	public boolean update(Escola escola) {
 		
 		try {
@@ -58,7 +77,16 @@ public class EscolaDAO {
 		return true;
 	}
 	
-	public boolean deleteID(int id) {
+	/**
+	 *  Metodo para deletar do banco de dados uma Disciplina
+	 *  <p>
+	 *  O <code>idDisciplina</code> deve ser igual ao id do banco de dados
+	 * 
+	 * @param idDisciplina
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */	
+	public boolean deleteId(int id) {
 		
 		try {
 			
@@ -78,6 +106,15 @@ public class EscolaDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para selecionar chamada no banco de dados
+	 * <p>
+	 * O idChamada deve ser igual a chamada que seseja selecionar
+	 * 
+	 * @param idChamada
+	 * @return Chamada
+	 * @author Andre
+	 */	
 	public Escola buscarId(int id) {
 		Escola escola = new Escola();
 		try {
@@ -105,6 +142,12 @@ public class EscolaDAO {
 		return null;
 	}
 	
+	/**
+	 * Metodo para selecionar todas as chamadas do banco de dados
+	 * 
+	 * @return List
+	 * @author Andre
+	 */	
 	public List<Escola> buscarTodos() {
 		List<Escola> lista = new ArrayList<Escola>();
 		try {

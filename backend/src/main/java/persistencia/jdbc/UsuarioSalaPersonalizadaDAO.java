@@ -17,6 +17,7 @@ public class UsuarioSalaPersonalizadaDAO {
 	 * Realiza o registro de uma UsuarioSalaPersonalizadaDAO no banco de dados
 	 * @param usuarioSalaPersonalizada
 	 * @return
+	 * @author Breno
 	 */
 	public boolean insert(UsuarioSalaPersonalizada usuarioSalaPersonalizada) {
 		
@@ -25,8 +26,8 @@ public class UsuarioSalaPersonalizadaDAO {
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		     
-			comandoSql.setInt(1, usuarioSalaPersonalizada.getUsuario().getIdUsuario());
-			comandoSql.setInt(2, usuarioSalaPersonalizada.getSalaPersonalizada().getIdSalaPersonalizada());
+			comandoSql.setInt(1, usuarioSalaPersonalizada.getFk_usuario());
+			comandoSql.setInt(2, usuarioSalaPersonalizada.getFk_salaPersonalizada());
 			
 			comandoSql.execute(); 
 			
@@ -41,11 +42,12 @@ public class UsuarioSalaPersonalizadaDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela UsuarioSalaPersonalizada
+	 * Realiza a exclusao dos dados de uma linha da tabela UsuarioSalaPersonalizada
 	 * @param idUsuarioSalaPersonalizada
 	 * @return
+	 * @author Breno
 	 */
-	public boolean delete(int idUsuarioSalaPersonalizada) {
+	public boolean deleteId(int idUsuarioSalaPersonalizada) {
 		
 		String sql = "delete from usuario_SalaPersonalizada where id_Usuario_SalaPersonalizada = ?"; 
 		
@@ -68,12 +70,13 @@ public class UsuarioSalaPersonalizadaDAO {
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Metodo de busca de todas as informacoes de uma linha
 	 * da tabela UsuarioSalaPersonalizada do banco de dados
 	 * @param idUsuarioSalaPersonalizada
 	 * @return
+	 * @author Breno
 	 */
-	public UsuarioSalaPersonalizada buscarPorId(int idUsuarioSalaPersonalizada) {
+	public UsuarioSalaPersonalizada buscarId(int idUsuarioSalaPersonalizada) {
 		UsuarioSalaPersonalizada usuarioSalaPersonalizada = new UsuarioSalaPersonalizada(); 
 		
 		String sql = "select * from usuario_SalaPersonalizada where id_Usuario_SalaPersonalizada = ?"; 
@@ -88,22 +91,8 @@ public class UsuarioSalaPersonalizadaDAO {
 			if (resultSet.next()) {
 				
 				usuarioSalaPersonalizada.setIdUsuarioSalaPersonalizada(resultSet.getInt(1));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto usuario
-				 * apartir do fk da usuario
-				 */
-//				UsuarioDAO usuarioDao = new UsuarioDAO();
-//				Usuario usuario = usuarioDao.buscarPorId((resultSet.getInt(2)));
-//				usuarioSalaPersonalizada.setUsuario(usuario);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto salaPersonalizada
-				 * apartir do fk da salaPersonalizada
-				 */
-//				SalaPersonalizadaDAO salaPersonalizadaDao = new SalaPersonalizadaDAO();
-//				SalaPersonalizada salaPersonalizada = salaPersonalizadaDao.buscarPorId((resultSet.getInt(3)));
-//				usuarioSalaPersonalizada.setSalaPersonalizada(salaPersonalizada);
+				usuarioSalaPersonalizada.setFk_usuario(resultSet.getInt(2));
+				usuarioSalaPersonalizada.setFk_salaPersonalizada(resultSet.getInt(3));
 				
 				comandoSql.close(); 
 				return usuarioSalaPersonalizada;
@@ -119,6 +108,7 @@ public class UsuarioSalaPersonalizadaDAO {
 	/**
 	 * Retorna todos os dados listados da tabela UsuarioSalaPersonalizada do banco de dados 
 	 * @return
+	 * @author Breno
 	 */
 	public List<UsuarioSalaPersonalizada> buscarTodos() {
 		
@@ -136,22 +126,8 @@ public class UsuarioSalaPersonalizadaDAO {
 				UsuarioSalaPersonalizada usuarioSalaPersonalizada = new UsuarioSalaPersonalizada();
 				
 				usuarioSalaPersonalizada.setIdUsuarioSalaPersonalizada(resultSet.getInt(1));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto usuario
-				 * apartir do fk da usuario
-				 */
-//				UsuarioDAO usuarioDao = new UsuarioDAO();
-//				Usuario usuario = usuarioDao.buscarPorId((resultSet.getInt(2)));
-//				usuarioSalaPersonalizada.setUsuario(usuario);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto salaPersonalizada
-				 * apartir do fk da salaPersonalizada
-				 */
-//				SalaPersonalizadaDAO salaPersonalizadaDao = new SalaPersonalizadaDAO();
-//				SalaPersonalizada salaPersonalizada = salaPersonalizadaDao.buscarPorId((resultSet.getInt(3)));
-//				usuarioSalaPersonalizada.setSalaPersonalizada(salaPersonalizada);
+				usuarioSalaPersonalizada.setFk_usuario(resultSet.getInt(2));
+				usuarioSalaPersonalizada.setFk_salaPersonalizada(resultSet.getInt(3));
 				lista.add(usuarioSalaPersonalizada); 
 				
 			}

@@ -11,6 +11,15 @@ import entidade.Disciplina;
 public class DisciplinaDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
+	/**
+	 * Metodo para inserir Disciplina no banco de dados.
+	 * 
+	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
+	 * 
+	 * @param <code>Disciplina</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */
 	public boolean insert(Disciplina disciplina) {
 		
 		String sql = "insert into disciplina (nome, numeroaulas) values (?,?)";
@@ -35,6 +44,15 @@ public class DisciplinaDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para atualizar uma Disciplina no banco de dados.
+	 * 
+	 * O id da <code>Disciplina</code> deve ser o mesmo id que esta no banco de dados.
+	 * 
+	 * @param <code>Disciplina</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */ 
 	public boolean update(Disciplina disciplina) {
 		
 		String sql = "update disciplina set nome = ?, numeroaulas = ? where iddisciplina = ?";
@@ -60,8 +78,16 @@ public class DisciplinaDAO {
 		return true;
 	}
 	
-	
-	public boolean deleteID(int id) {
+	/**
+	 *  Metodo para deletar do banco de dados uma Disciplina
+	 *  <p>
+	 *  O <code>idDisciplina</code> deve ser igual ao id do banco de dados
+	 * 
+	 * @param <code>Disciplina</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */
+	public boolean deleteId(int id) {
 		
 		String sql = "delete from disciplina where iddisciplina = ?";
 		
@@ -83,6 +109,15 @@ public class DisciplinaDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para selecionar <code>Disciplina</code> no banco de dados
+	 * <p>
+	 * O <code>idDisciplina</code> deve ser igual a Disciplina que deseja selecionar
+	 * 
+	 * @param <code>idDisciplina<code>
+	 * @return Disciplina
+	 * @author Andre
+	 */
 	public Disciplina buscarId(int id) {
 		Disciplina disciplina = new Disciplina();
 		
@@ -112,6 +147,12 @@ public class DisciplinaDAO {
 		return null;
 	}
 	
+	/**
+	 * Metodo para selecionar todas as <code>Disciplinas</code> do banco de dados
+	 * 
+	 * @return <code>List</code>
+	 * @author Andre
+	 */
 	public List<Disciplina> buscarTodos() {
 		List<Disciplina> lista = new ArrayList<Disciplina>();
 		

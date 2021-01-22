@@ -88,7 +88,7 @@ public class ArquivoDAO {
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
 	 * @author Andrey
 	 */
-	public boolean delete(int idArquivo) {
+	public boolean deleteId(int idArquivo) {
 		String sql = "delete from arquivo where idarquivo = ?";
 		
 		try {

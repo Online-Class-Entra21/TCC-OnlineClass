@@ -18,8 +18,6 @@ public class ChamadaDAO {
 	 * O idChamada sera gerado pelo banco de dados.
 	 * 
 	 * @param chamada
-	 * @param aluno
-	 * @param reuniao
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
 	 * @author Andrey
 	 */
@@ -80,7 +78,7 @@ public class ChamadaDAO {
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
 	 * @author Andrey
 	 */
-	public boolean delete(int idChamada) {
+	public boolean deleteId(int idChamada) {
 		String sql = "delete from chamada where idchamada = ?";
 		
 		try {
@@ -100,7 +98,7 @@ public class ChamadaDAO {
 	/**
 	 * Metodo para selecionar chamada no banco de dados
 	 * <p>
-	 * O idChamada deve ser igual a chamada que seseja selecionar
+	 * O idChamada deve ser igual a chamada que deseja selecionar
 	 * 
 	 * @param idChamada
 	 * @return Chamada

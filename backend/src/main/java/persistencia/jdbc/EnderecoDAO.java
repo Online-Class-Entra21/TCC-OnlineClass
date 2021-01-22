@@ -11,6 +11,15 @@ import entidade.Endereco;
 public class EnderecoDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
+	/**
+	 * Metodo para inserir Endereco no banco de dados.
+	 * 
+	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
+	 * 
+	 * @param <code>Endereco</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */
 	public boolean insert(Endereco endereco) {
 		
 		String sql = "insert into endereco (estado, cidade, bairro, rua, numero, cep) values (?,?,?,?,?,?).";
@@ -38,7 +47,16 @@ public class EnderecoDAO {
 		
 		return true;
 	}
-	
+
+	/**
+	 * Metodo para atualizar uma Endereco no banco de dados.
+	 * 
+	 * O id da <code>Endereco</code> deve ser o mesmo id que esta no banco de dados.
+	 * 
+	 * @param <code>Endereco</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */ 	
 	public boolean update(Endereco endereco) {
 		
 		String sql = "update escola set estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, cep = ? where idendereco = ?";
@@ -66,7 +84,16 @@ public class EnderecoDAO {
 		return true;
 	}
 	
-	public boolean deleteID(int id) {
+	/**
+	 *  Metodo para deletar do banco de dados uma Endereco
+	 *  <p>
+	 *  O <code>idEndereco</code> deve ser igual ao id do banco de dados
+	 * 
+	 * @param <code>Endereco</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */
+	public boolean deleteId(int id) {
 		
 		String sql = "delete from endereco where idescola = ?";
 		
@@ -88,6 +115,15 @@ public class EnderecoDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para selecionar <code>Endereco</code> no banco de dados
+	 * <p>
+	 * O <code>idEndereco</code> deve ser igual a Endereco que deseja selecionar
+	 * 
+	 * @param <code>idEndereco<code>
+	 * @return Endereco
+	 * @author Andre
+	 */
 	public Endereco buscarId(int id) {
 		Endereco endereco = new Endereco();
 		
@@ -121,6 +157,12 @@ public class EnderecoDAO {
 		return null;
 	}
 	
+	/**
+	 * Metodo para selecionar todos os <code>Endereco</code> do banco de dados
+	 * 
+	 * @return <code>List</code>
+	 * @author Andre
+	 */
 	public List<Endereco> buscarTodos() {
 		List<Endereco> lista = new ArrayList<Endereco>();
 		

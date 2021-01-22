@@ -16,6 +16,7 @@ public class SalaDAO {
 	 * Realiza o registro de uma Sala no banco de dados
 	 * @param sala
 	 * @return
+	 * @author Breno
 	 */
 	public boolean insert(Sala sala) {
 		
@@ -43,9 +44,10 @@ public class SalaDAO {
 	}
 	
 	/**
-	 * Realiza atualização dos dados da Sala no banco de dados
+	 * Realiza atualizacao dos dados da Sala no banco de dados
 	 * @param sala
 	 * @return
+	 * @author Breno
 	 */
 	public boolean update(Sala sala) {
 		
@@ -75,11 +77,12 @@ public class SalaDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela Sala
+	 * Realiza a exclusao dos dados de uma linha da tabela Sala
 	 * @param idSala
 	 * @return
+	 * @author Breno
 	 */
-	public boolean delete(int idSala) {
+	public boolean deleteId(int idSala) {
 		
 		String sql = "delete from sala where idSala = ?"; 
 		
@@ -102,12 +105,13 @@ public class SalaDAO {
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Metodo de busca de todas as informacoes de uma linha
 	 * da tabela Sala do banco de dados
 	 * @param idSalaPersonalizada
 	 * @return
+	 * @author Breno
 	 */
-	public Sala buscarPorId(int idSala) {
+	public Sala buscarId(int idSala) {
 		Sala sala = new Sala(); 
 		
 		String sql = "select * from sala where idSala = ?"; 
@@ -140,6 +144,7 @@ public class SalaDAO {
 	/**
 	 * Retorna todos os dados listados da tabela Sala do banco de dados 
 	 * @return
+	 * @author Breno
 	 */
 	public List<Sala> buscarTodos() {
 		

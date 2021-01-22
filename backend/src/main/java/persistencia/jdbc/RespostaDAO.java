@@ -13,6 +13,15 @@ public class RespostaDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
+	/**
+	 * Metodo para inserir Resposta no banco de dados.
+	 * 
+	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
+	 * 
+	 * @param <code>Resposta</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */	
 	public boolean insert(Resposta resposta) {
 		
 		try {
@@ -23,8 +32,8 @@ public class RespostaDAO {
 			comandoSql.setString(2, resposta.getComentarioAtividade());
 			comandoSql.setBoolean(3, resposta.getCorrecaoAtividade());
 			comandoSql.setDate(4, (Date) resposta.getDataEntrega());
-			comandoSql.setInt(5, resposta.getAluno().getIdAluno());
-			comandoSql.setInt(6, resposta.getCodAtividade());
+			comandoSql.setInt(5, resposta.getFk_aluno());
+			comandoSql.setInt(6, resposta.getFk_atividade());
 			comandoSql.execute();
 			
 			comandoSql.close();
@@ -38,6 +47,15 @@ public class RespostaDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para atualizar uma Resposta no banco de dados.
+	 * 
+	 * O id da <code>Resposta</code> deve ser o mesmo id que esta no banco de dados.
+	 * 
+	 * @param <code>Resposta</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */ 	
 	public boolean update(Resposta resposta) {
 		
 		try {
@@ -48,8 +66,8 @@ public class RespostaDAO {
 			comandoSql.setString(2, resposta.getComentarioAtividade());
 			comandoSql.setBoolean(3, resposta.getCorrecaoAtividade());
 			comandoSql.setDate(4, (Date) resposta.getDataEntrega());
-			comandoSql.setInt(5, resposta.getAluno().getIdAluno());
-			comandoSql.setInt(6, resposta.getCodAtividade());
+			comandoSql.setInt(5, resposta.getFk_aluno());
+			comandoSql.setInt(6, resposta.getFk_atividade());
 			comandoSql.setInt(7, resposta.getIdResposta());
 			
 			comandoSql.execute();
@@ -65,7 +83,16 @@ public class RespostaDAO {
 		return true;
 	}
 	
-	public boolean deleteID(int id) {
+	/**
+	 *  Metodo para deletar do banco de dados uma Resposta
+	 *  <p>
+	 *  O <code>idResposta</code> deve ser igual ao id do banco de dados
+	 * 
+	 * @param <code>Resposta</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */	
+	public boolean deleteId(int id) {
 		
 		try {
 			
@@ -85,6 +112,15 @@ public class RespostaDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para selecionar <code>Resposta</code> no banco de dados
+	 * <p>
+	 * O <code>idResposta</code> deve ser igual a Resposta que deseja selecionar
+	 * 
+	 * @param <code>idResposta<code>
+	 * @return Resposta
+	 * @author Andre
+	 */	
 	public Resposta buscarId(int id) {
 		Resposta resposta = new Resposta();
 		try {
@@ -101,8 +137,8 @@ public class RespostaDAO {
 				resposta.setComentarioAtividade(resultSet.getString(3));
 				resposta.setCorrecaoAtividade(resultSet.getBoolean(4));
 				resposta.setDataEntrega(resultSet.getDate(5));
-				resposta.setAluno(new AlunoDAO().buscarId(resultSet.getInt(6)));
-				resposta.setCodAtividade(resultSet.getInt(7));
+				resposta.setFk_aluno(resultSet.getInt(6));
+				resposta.setFk_atividade(resultSet.getInt(7));
 				return resposta;
 			}
 			
@@ -115,6 +151,12 @@ public class RespostaDAO {
 		return null;
 	}
 	
+	/**
+	 * Metodo para selecionar todas as <code>Respostas</code> do banco de dados
+	 * 
+	 * @return <code>List</code>
+	 * @author Andre
+	 */	
 	public List<Resposta> buscarTodos() {
 		List<Resposta> lista = new ArrayList<Resposta>();
 		try {
@@ -131,8 +173,8 @@ public class RespostaDAO {
 				resposta.setComentarioAtividade(resultSet.getString(3));
 				resposta.setCorrecaoAtividade(resultSet.getBoolean(4));
 				resposta.setDataEntrega(resultSet.getDate(5));
-				resposta.setAluno(new AlunoDAO().buscarId(resultSet.getInt(6)));
-				resposta.setCodAtividade(resultSet.getInt(7));
+				resposta.setFk_aluno(resultSet.getInt(6));
+				resposta.setFk_atividade(resultSet.getInt(7));
 				lista.add(resposta);
 			}
 			

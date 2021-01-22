@@ -13,6 +13,15 @@ public class ReuniaoDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
+	/**
+	 * Metodo para inserir Reuniao no banco de dados.
+	 * 
+	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
+	 * 
+	 * @param <code>Reuniao</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */	
 	public boolean insert(Reuniao reuniao) {
 		
 		try {
@@ -20,11 +29,11 @@ public class ReuniaoDAO {
 			PreparedStatement comandoSql = conexao.prepareStatement("insert into reuniao (descricao, datainicio, dono, notamediaaula, fk_sala, fk_usuario_disciplina_turma) values (?, ?, ?, ?, ?, ?)");
 			
 			comandoSql.setString(1, reuniao.getDescricao());
-			comandoSql.setDate(2, (Date) reuniao.getDataInicioReuniao());
+			comandoSql.setDate(2, (Date) reuniao.getDataInicio());
 			comandoSql.setInt(3, reuniao.getDono());
 			comandoSql.setDouble(4, reuniao.getNotaMediaAula());
-			comandoSql.setInt(5, reuniao.getSala().getIdSala());
-			comandoSql.setInt(6, reuniao.getTurmaProfessorDisciplina().getIdTurmaProfessorDisciplina());
+			comandoSql.setInt(5, reuniao.getFk_sala());
+			comandoSql.setInt(6, reuniao.getFk_usuarioDisciplina());
 			comandoSql.execute();
 			
 			comandoSql.close();
@@ -38,6 +47,15 @@ public class ReuniaoDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para atualizar uma Reuniao no banco de dados.
+	 * 
+	 * O id da <code>Reuniao</code> deve ser o mesmo id que esta no banco de dados.
+	 * 
+	 * @param <code>Reuniao</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */ 	
 	public boolean update(Reuniao reuniao) {
 		
 		try {
@@ -45,11 +63,11 @@ public class ReuniaoDAO {
 			PreparedStatement comandoSql = conexao.prepareStatement("update reuniao set SET descricao=?, datainicio=?, dono=?, notamediaaula=?, fk_sala=?, fk_usuario_disciplina_turma=? where idreuniao = ?");
 
 			comandoSql.setString(1, reuniao.getDescricao());
-			comandoSql.setDate(2, (Date) reuniao.getDataInicioReuniao());
+			comandoSql.setDate(2, (Date) reuniao.getDataInicio());
 			comandoSql.setInt(3, reuniao.getDono());
 			comandoSql.setDouble(4, reuniao.getNotaMediaAula());
-			comandoSql.setInt(5, reuniao.getSala().getIdSala());
-			comandoSql.setInt(6, reuniao.getTurmaProfessorDisciplina().getIdTurmaProfessorDisciplina());
+			comandoSql.setInt(5, reuniao.getFk_sala());
+			comandoSql.setInt(6, reuniao.getFk_usuarioDisciplina());
 			comandoSql.setInt(7, reuniao.getIdReuniao());
 			comandoSql.execute();
 			
@@ -64,7 +82,16 @@ public class ReuniaoDAO {
 		return true;
 	}
 	
-	public boolean deleteID(int id) {
+	/**
+	 *  Metodo para deletar do banco de dados uma Reuniao
+	 *  <p>
+	 *  O <code>idDisciplina</code> deve ser igual ao id do banco de dados
+	 * 
+	 * @param <code>Reuniao</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */	
+	public boolean deleteId(int id) {
 		
 		try {
 			
@@ -84,6 +111,15 @@ public class ReuniaoDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para selecionar <code>Reuniao</code> no banco de dados
+	 * <p>
+	 * O <code>idDisciplina</code> deve ser igual a Reuniao que deseja selecionar
+	 * 
+	 * @param <code>idDisciplina<code>
+	 * @return Reuniao
+	 * @author Andre
+	 */	
 	public Reuniao buscarId(int id) {
 		Reuniao reuniao = new Reuniao();
 		try {
@@ -97,11 +133,11 @@ public class ReuniaoDAO {
 			if (resultSet.next()) {
 				reuniao.setIdReuniao(resultSet.getInt(1));
 				reuniao.setDescricao(resultSet.getString(2));
-				reuniao.setDataInicioReuniao(resultSet.getDate(3));
+				reuniao.setDataInicio(resultSet.getDate(3));
 				reuniao.setDono(resultSet.getInt(4));
 				reuniao.setNotaMediaAula(resultSet.getDouble(5));
-				reuniao.setSala(new SalaDAO().buscarPorId(resultSet.getInt(6)));
-				reuniao.setTurmaProfessorDisciplina(new TurmaProfessorDisciplinaDAO().buscarPorId(resultSet.getInt(7)));
+				reuniao.setFk_sala(resultSet.getInt(6));
+				reuniao.setFk_usuarioDisciplina(resultSet.getInt(7));
 				return reuniao;
 			}
 			
@@ -114,6 +150,12 @@ public class ReuniaoDAO {
 		return null;
 	}
 	
+	/**
+	 * Metodo para selecionar todas as <code>Reuniaos</code> do banco de dados
+	 * 
+	 * @return <code>List</code>
+	 * @author Andre
+	 */	
 	public List<Reuniao> buscarTodos() {
 		List<Reuniao> lista = new ArrayList<Reuniao>();
 		try {
@@ -127,11 +169,11 @@ public class ReuniaoDAO {
 				Reuniao reuniao = new Reuniao();
 				reuniao.setIdReuniao(resultSet.getInt(1));
 				reuniao.setDescricao(resultSet.getString(2));
-				reuniao.setDataInicioReuniao(resultSet.getDate(3));
+				reuniao.setDataInicio(resultSet.getDate(3));
 				reuniao.setDono(resultSet.getInt(4));
 				reuniao.setNotaMediaAula(resultSet.getDouble(5));
-				reuniao.setSala(new SalaDAO().buscarPorId(resultSet.getInt(6)));
-				reuniao.setTurmaProfessorDisciplina(new TurmaProfessorDisciplinaDAO().buscarPorId(resultSet.getInt(7)));
+				reuniao.setFk_sala(resultSet.getInt(6));
+				reuniao.setFk_usuarioDisciplina(resultSet.getInt(7));
 				lista.add(reuniao);
 			}
 			
