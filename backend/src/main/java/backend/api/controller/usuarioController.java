@@ -43,7 +43,7 @@ public class usuarioController {
 	
 	/**
 	 * Retorna a lista de usuarios registrados no sistema {GET}
-	 * @return Usuario lista
+	 * @return lista de usuarios registrados no banco
 	 */
 	@GetMapping(path = "/api/usuarios")
 	public List<Usuario> consultar(){

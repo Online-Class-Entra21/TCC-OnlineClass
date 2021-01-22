@@ -31,7 +31,7 @@ public class arquivoController {
 	
 	/**
 	 * Retorna a lista de arquivos registrados no sistema {GET}
-	 * @return Arquivo lista
+	 * @return lista de arquivos registrados no banco 
 	 */
 	@GetMapping(path = "/api/arquivos")
 	public List<Arquivo> consultar(){

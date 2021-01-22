@@ -31,7 +31,7 @@ public class salaPersonalizadaController {
 	
 	/**
 	 * Retorna a lista das salasPersonalizadas registrados no sistema {GET}
-	 * @return SalaPersonalizada lista
+	 * @return lista de salasPersonalizadas registradas no banco
 	 */
 	@GetMapping(path = "/api/salasPersonalizadas")
 	public List<SalaPersonalizada> consultar(){

@@ -31,7 +31,7 @@ public class alunoController {
 	
 	/**
 	 * Retorna a lista de alunos registrados no sistema {GET}
-	 * @return Aluno lista
+	 * @return lista de aluno registrados no banco 
 	 */
 	@GetMapping(path = "/api/alunos")
 	public List<Aluno> consultar(){

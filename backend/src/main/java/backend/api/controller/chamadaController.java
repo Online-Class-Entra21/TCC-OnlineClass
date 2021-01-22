@@ -31,7 +31,7 @@ public class chamadaController {
 	
 	/**
 	 * Retorna a lista de chamadas registrados no sistema {GET}
-	 * @return Chamada lista
+	 * @return lista de chamadas registradas no banco
 	 */
 	@GetMapping(path = "/api/chamadas")
 	public List<Chamada> consultar(){

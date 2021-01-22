@@ -31,7 +31,7 @@ public class usuarioDisciplinaController {
 	
 	/**
 	 * Retorna a lista dos usuariosDisciplinas registrados no sistema {GET}
-	 * @return UsuarioDisciplina lista
+	 * @return lista de usuariosDisciplinas registrados no banco
 	 */
 	@GetMapping(path = "/api/usuariosDisciplinas")
 	public List<UsuarioDisciplina> consultar(){

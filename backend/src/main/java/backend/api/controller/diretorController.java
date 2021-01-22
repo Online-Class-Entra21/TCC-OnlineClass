@@ -31,7 +31,7 @@ public class diretorController {
 	
 	/**
 	 * Retorna a lista de diretores registrados no sistema {GET}
-	 * @return Diretor lista
+	 * @return lista de diretores registrados no banco
 	 */
 	@GetMapping(path = "/api/diretores")
 	public List<Diretor> consultar(){

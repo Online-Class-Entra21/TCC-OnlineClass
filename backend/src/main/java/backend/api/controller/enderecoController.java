@@ -31,7 +31,7 @@ public class enderecoController {
 	
 	/**
 	 * Retorna a lista de enderecos registrados no sistema {GET}
-	 * @return Endereco lista
+	 * @return lista de enderecos registrados no banco
 	 */
 	@GetMapping(path = "/api/enderecos")
 	public List<Endereco> consultar(){

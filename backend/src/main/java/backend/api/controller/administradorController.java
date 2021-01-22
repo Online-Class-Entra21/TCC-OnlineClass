@@ -29,7 +29,7 @@ public class administradorController {
 	
 	/**
 	 * Retorna a lista de administradores registrados no sistema {GET}
-	 * @return Administrador lista
+	 * @return lista de administradores registrados no banco 
 	 */
 	@GetMapping(path = "/api/administradores")
 	public List<Administrador> consultar(){
@@ -38,7 +38,7 @@ public class administradorController {
 
 	/**
 	 * Metodo para alteração das informações do usuario administrador {PUT}
-	 * @param codigo
+	 * @param int codigo
 	 */
 	@PutMapping(path = "api/administrador/alterar/{codigo}")
 	public void alterar(@PathVariable("codigo") int codigo) {

@@ -31,7 +31,7 @@ public class usuarioSalaPersonalizadaController {
 	
 	/**
 	 * Retorna a lista dos usuariosSalasPersonalizadas registrados no sistema {GET}
-	 * @return UsuarioSalaPersonalizada lista
+	 * @return lista de usuariosSalasPersonalizadas registrados no banco
 	 */
 	@GetMapping(path = "/api/usuariosSalasPersonalizadas")
 	public List<UsuarioSalaPersonalizada> consultar(){

@@ -31,7 +31,7 @@ public class reuniaoUsuarioController {
 	
 	/**
 	 * Retorna a lista das reunioesUsuarios registrados no sistema {GET}
-	 * @return ReuniaoUsuario lista
+	 * @return lista de reunioesUsuarios registradas no banco
 	 */
 	@GetMapping(path = "/api/reunioesUsuarios")
 	public List<ReuniaoUsuario> consultar(){

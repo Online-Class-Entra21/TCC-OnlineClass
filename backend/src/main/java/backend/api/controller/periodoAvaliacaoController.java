@@ -31,7 +31,7 @@ public class periodoAvaliacaoController {
 	
 	/**
 	 * Retorna a lista dos periodosAvaliacoes registrados no sistema {GET}
-	 * @return PeriodoAvaliacao lista
+	 * @return lista de periodosAvaliacoes registrados no banco
 	 */
 	@GetMapping(path = "/api/periodosAvaliacoes")
 	public List<PeriodoAvaliacao> consultar(){

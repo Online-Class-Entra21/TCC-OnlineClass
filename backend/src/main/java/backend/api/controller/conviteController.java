@@ -31,7 +31,7 @@ public class conviteController {
 	
 	/**
 	 * Retorna a lista de convites registrados no sistema {GET}
-	 * @return Convite lista
+	 * @return lista de convites registrados no banco
 	 */
 	@GetMapping(path = "/api/convites")
 	public List<Convite> consultar(){

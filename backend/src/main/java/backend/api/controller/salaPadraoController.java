@@ -31,7 +31,7 @@ public class salaPadraoController {
 	
 	/**
 	 * Retorna a lista das salasPadroes registrados no sistema {GET}
-	 * @return Sala lista
+	 * @return lista de salasPadroes registradas no banco
 	 */
 	@GetMapping(path = "/api/salasPadroes")
 	public List<Sala> consultar(){

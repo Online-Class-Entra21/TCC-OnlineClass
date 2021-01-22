@@ -31,7 +31,7 @@ public class disciplinaController {
 	
 	/**
 	 * Retorna a lista de disciplinas registrados no sistema {GET}
-	 * @return Disciplina lista
+	 * @return lista de disciplinas registrados no banco
 	 */
 	@GetMapping(path = "/api/disciplinas")
 	public List<Disciplina> consultar(){

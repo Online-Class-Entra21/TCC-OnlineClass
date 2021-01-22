@@ -31,7 +31,7 @@ public class professorController {
 	
 	/**
 	 * Retorna a lista dos professores registrados no sistema {GET}
-	 * @return Professor lista
+	 * @return lista de professores registrados no banco
 	 */
 	@GetMapping(path = "/api/professores")
 	public List<Professor> consultar(){

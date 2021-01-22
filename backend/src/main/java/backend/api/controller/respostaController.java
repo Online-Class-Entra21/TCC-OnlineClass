@@ -31,7 +31,7 @@ public class respostaController {
 	
 	/**
 	 * Retorna a lista das respostas registrados no sistema {GET}
-	 * @return Resposta lista
+	 * @return lista de respostas registrados no banco
 	 */
 	@GetMapping(path = "/api/respostas")
 	public List<Resposta> consultar(){

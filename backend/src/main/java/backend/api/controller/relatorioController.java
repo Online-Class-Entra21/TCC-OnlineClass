@@ -31,7 +31,7 @@ public class relatorioController {
 	
 	/**
 	 * Retorna a lista dos relatorios registrados no sistema {GET}
-	 * @return Relatorio lista
+	 * @return lista de relatorios registrados no banco
 	 */
 	@GetMapping(path = "/api/relatorios")
 	public List<Relatorio> consultar(){

@@ -10,7 +10,7 @@ import java.util.List;
 import entidade.Aluno;
 
 /**
- * Metodo para consulta do aluno do banco de dados 
+ * Metodo para consulta do aluno no banco de dados 
  * @author Andrey
  *
  */
@@ -19,11 +19,10 @@ public class AlunoDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para Inseri um aluno no banco de dados.
-	 * 
+	 * Metodo para inserir um aluno no banco de dados
 	 * 	 
-	 * @param aluno
-	 * @return true caso seja bem sucedido o delete, e false e um erro caso ocorra falha
+	 * @param Aluno aluno
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
 	 * @author Andrey 
 	 */
 	public boolean insert(Aluno aluno) {
@@ -40,7 +39,7 @@ public class AlunoDAO {
 			comandoSql.setString(5, aluno.getNomePai());
 			comandoSql.setString(6, aluno.getNomeResponsavel());
 			comandoSql.setBoolean(7, aluno.getSituacaoAnoLetivo());
-			comandoSql.setInt(8, aluno.getIdUsuario());
+			comandoSql.setInt(8, aluno.getFk_usuario());
 			comandoSql.setInt(9, aluno.getFk_turma());
 			
 			comandoSql.execute();
@@ -48,19 +47,18 @@ public class AlunoDAO {
 			
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return false;
 		}
-		
 		return true;	
 	}
 	
 	/**
-	 * Metodo para Atualiza o banco de dados.
+	 * Metodo para Atualizar aluno no banco de dados
 	 * 
 	 * Nota: o idAluno do Aluno deve ser o id que deseja atualizar no banco 
 	 * 
-	 * @param aluno
+	 * @param Aluno aluno
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
 	 * @author Andrey
 	 */
@@ -80,20 +78,22 @@ public class AlunoDAO {
 			comandoSql.setBoolean(7, aluno.getSituacaoAnoLetivo());
 			comandoSql.setInt(8, aluno.getFk_usuario());
 			comandoSql.setInt(9, aluno.getFk_turma());
-			comandoSql.setInt(10, aluno.getIdAluno());
+			comandoSql.setInt(10, aluno.getFk_usuario());
 			
 			comandoSql.execute();
 			comandoSql.close();
 	
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;
 	}
+	
 	/**
-	 * Deleta o aluno do respectivo ID do banco de dados
+	 * Deleta o aluno do respectivo id do banco de dados
 	 * 
-	 * @param <code>idAluno</code>
+	 * @param int idAluno
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
 	 * @author Andrey
 	 */
@@ -108,11 +108,12 @@ public class AlunoDAO {
 			comandoSql.close();
 		
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
-		
 		return true;
 	}
+	
 	/**
 	 * Metodo para selecionar o aluno do banco de dados apartir do respectivo id
 	 * 
@@ -146,16 +147,15 @@ public class AlunoDAO {
 			return aluno;
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return null;
 		}
-		
 	}
 	
 	/**
-	 * Metodo para Selecionar do banco de dados todos os alunos cadastrados nele
+	 * Metodo para selecionar do banco de dados todos os alunos cadastrados
 	 *  
-	 * @return Lista de objetos Aluno com todos os alunos do banco de dados
+	 * @return lista de objetos Aluno com todos os alunos do banco de dados
 	 * @author Andrey
 	 */
 	public List<Aluno> buscarTodos() {
@@ -177,7 +177,7 @@ public class AlunoDAO {
 				aluno.setNomePai(resultSet.getString(6));
 				aluno.setNomeResponsavel(resultSet.getString(7));
 				aluno.setSituacaoAnoLetivo(resultSet.getBoolean(8));
-				aluno.setFk_escola(resultSet.getInt(9));
+				aluno.setFk_usuario(resultSet.getInt(9));
 				aluno.setFk_turma(resultSet.getInt(10));
 				
 			lista.add(aluno);
@@ -185,9 +185,8 @@ public class AlunoDAO {
 			comandoSql.close();
 			return lista;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return null;
 		}
 	}
-	
 }

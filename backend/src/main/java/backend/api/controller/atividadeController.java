@@ -31,7 +31,7 @@ public class atividadeController {
 	
 	/**
 	 * Retorna a lista de atividades registrados no sistema {GET}
-	 * @return Atividade lista
+	 * @return lista de atividades registradas no banco
 	 */
 	@GetMapping(path = "/api/atividades")
 	public List<Atividade> consultar(){
