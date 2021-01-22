@@ -39,10 +39,10 @@ public class arquivoUsuarioController {
 	}
 	
 	/**
-	 * Insere uma novo aluno no banco de dados {POST}
+	 * Insere uma novo arquivosUsuario no banco de dados {POST}
 	 * @param String json
 	 */
-	@PostMapping(path = "api/aluno/inserir/{json}")
+	@PostMapping(path = "api/aluno/arquivosUsuario/{json}")
 	public void inserir(@PathVariable("json") String json) {
 		//Completar com o código
 	}

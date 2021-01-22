@@ -39,20 +39,20 @@ public class professorController {
 	}
 	
 	/**
-	 * Insere uma nova escola no banco de dados {POST}
+	 * Insere um novo professor no banco de dados {POST}
 	 * @param String json
 	 */
-	@PostMapping(path = "api/escola/inserir/{json}")
+	@PostMapping(path = "api/professor/inserir/{json}")
 	public void inserir(@PathVariable("json") String json) {
 		//Completar com o código
 	}
 
 	/**
-	 * Metodo para alteração do periodoAvaliacao que corresponde ao codigo informado {PUT}
+	 * Metodo para alteração do professor que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
 	 */
-	@PutMapping(path = "api/periodoAvaliacao/alterar/{codigo}/{json}")
+	@PutMapping(path = "api/professor/alterar/{codigo}/{json}")
 	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		//Completar com o código
 	}

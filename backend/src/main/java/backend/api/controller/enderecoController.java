@@ -48,20 +48,20 @@ public class enderecoController {
 	}
 
 	/**
-	 * Metodo para alteração da disciplina que corresponde ao codigo informado {PUT}
+	 * Metodo para alteração do endereco que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
 	 */
-	@PutMapping(path = "api/disciplina/alterar/{codigo}/{json}")
+	@PutMapping(path = "api/endereco/alterar/{codigo}/{json}")
 	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		//Completar com o código
 	}
 	
 	/**
-	 * Método de exclusão da disciplina que corresponde ao codigo informado {DELETE}
+	 * Método de exclusão do endereco que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
 	 */
-	@DeleteMapping(path = "/api/disciplina/deletar/{codigo}")
+	@DeleteMapping(path = "/api/endereco/deletar/{codigo}")
 	public void deletar(@PathVariable("codigo") int codigo) {
 		//Completar com o código
 	}

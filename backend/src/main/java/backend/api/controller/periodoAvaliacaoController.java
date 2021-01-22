@@ -39,10 +39,10 @@ public class periodoAvaliacaoController {
 	}
 	
 	/**
-	 * Insere uma nova escola no banco de dados {POST}
+	 * Insere um novo periodoAvaliacao no banco de dados {POST}
 	 * @param String json
 	 */
-	@PostMapping(path = "api/escola/inserir/{json}")
+	@PostMapping(path = "api/periodoAvaliacao/inserir/{json}")
 	public void inserir(@PathVariable("json") String json) {
 		//Completar com o código
 	}

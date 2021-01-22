@@ -1,13 +1,5 @@
 package persistencia.jdbc;
 
-/*
- * nota para o pessoal do back, 
- * insert  = 100%
- * update  = 100%
- * delete  = 100%
- * javadoc = 80% < precisa de revisão
- */
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,9 +9,8 @@ import java.util.List;
 
 import entidade.Aluno;
 
-
 /**
- * 
+ * Metodo para consulta do aluno do banco de dados 
  * @author Andrey
  *
  */

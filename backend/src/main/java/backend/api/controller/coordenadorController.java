@@ -33,7 +33,7 @@ public class coordenadorController {
 	 * Retorna a lista de coordenadores registrados no sistema {GET}
 	 * @return Coordenador lista
 	 */
-	@GetMapping(path = "/api/convites")
+	@GetMapping(path = "/api/coordenadores")
 	public List<Coordenador> consultar(){
 		return null;
 	}
