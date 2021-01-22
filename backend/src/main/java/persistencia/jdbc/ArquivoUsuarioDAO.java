@@ -9,7 +9,7 @@ import java.util.List;
 
 import entidade.ArquivoUsuario;
 
-public class UsuarioArquivoDAO {
+public class ArquivoUsuarioDAO {
 	
 	private Connection conexao = ConexaoFactory.getConnection();
 

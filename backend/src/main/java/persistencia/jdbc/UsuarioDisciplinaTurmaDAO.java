@@ -9,7 +9,7 @@ import java.util.List;
 
 import entidade.TurmaUsuarioDisciplina;
 
-public class TurmaUsuarioDisciplinaDAO {
+public class UsuarioDisciplinaTurmaDAO {
 	
 	private Connection conexao = ConexaoFactory.getConnection();
 
