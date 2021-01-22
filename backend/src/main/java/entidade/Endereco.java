@@ -1,7 +1,7 @@
 package entidade;
 
 /**
- * Classe contendo metodos e atributos para o endere�o dos usu�rios cadastrados no sistema.
+ * Classe contendo metodos e atributos para o endere�o dos usuarios cadastrados no sistema
  * @see Usuario
  * @author Andrey 
  */
@@ -17,7 +17,6 @@ public class Endereco {
     
     /**
      * Construtor padrao
-     * @param
      */
     public Endereco() {
     	//Nenhum atributo inicializado
@@ -44,24 +43,24 @@ public class Endereco {
 	}
 
 	/**
-     * Metodo de retorno do id endereco
-     * @return idEndereco
+     * Metodo de retorno do ID endereco
+     * @return int idEndereco
      */
     public int getIdEndereco() {
 		return idEndereco;
 	}
 
     /**
-     * Metodo de insercao do id endereco
-     * @param idEndereco
+     * Metodo de insercao do ID endereco
+     * @param int idEndereco
      */
 	public void setIdEndereco(int idEndereco) {
 		this.idEndereco = idEndereco;
 	}
 
 	/** 
-	 * Metodo para retorno do estado.
-     * @return estado
+	 * Metodo para retorno do estado
+     * @return String estado
      */
     public String getEstado() {
         return estado;
@@ -69,16 +68,15 @@ public class Endereco {
 
     /**
      * Metodo para insercao do estado 
-     * @param estado
+     * @param String estado
      */
     public void setEstado(String estado) {
-        // TODO implement here
     	this.estado = estado;
     }
 
     /** 
-     * Metodo para retorno da cidade.
-     * @return cidade
+     * Metodo para retorno da cidade
+     * @return String cidade
      */
     public String getCidade() {
         return cidade;
@@ -86,16 +84,15 @@ public class Endereco {
 
     /**
      * Metodo para insercao da cidade 
-     * @param cidade
+     * @param String cidade
      */
     public void setCidade(String cidade) {
-        // TODO implement here
     	this.cidade = cidade;
     }
 
     /** 
      * Metodo para retorno do bairro
-     * @return bairro
+     * @return String bairro
      */
     public String getBairro() {
         return bairro;
@@ -103,16 +100,15 @@ public class Endereco {
 
     /**
      * Metodo para insercao do bairro
-     * @param bairro
+     * @param String bairro
      */
     public void setBairro(String bairro) {
-        // TODO implement here
     	this.bairro = bairro;    	
     }
 
     /** 
-     * Metodo para retorno da rua.
-     * @return rua
+     * Metodo para retorno da rua
+     * @return String rua
      */
     public String getRua() {
         return rua;
@@ -120,16 +116,15 @@ public class Endereco {
 
     /**
      * Metodo para insercao da rua 
-     * @param rua
+     * @param String rua
      */
     public void setRua(String rua) {
-        // TODO implement here
     	this.rua = rua;
     }
 
     /** 
-     * Metodo para retorno do numero.
-     * @return numero
+     * Metodo para retorno do numero
+     * @return String numero
      */
     public int getNumero() {
         return numero;
@@ -137,24 +132,23 @@ public class Endereco {
 
     /**
      * Metodo para insercao do numero 
-     * @param num
+     * @param String numero
      */
-    public void setNumero(int num) {
-        // TODO implement here
-    	this.numero = num;
+    public void setNumero(int numero) {
+    	this.numero = numero;
     }
 
     /** 
-     * Metodo para retorno do CEP.
-     * @return cep
+     * Metodo para retorno do cep
+     * @return String cep
      */
     public String getCep() {
         return cep;
     }
 
     /**
-     * Metodo para insercao do CEP
-     * @param cep
+     * Metodo para insercao do cep
+     * @param String cep
      */
     public void setCep(String cep) {
     	this.cep = cep;

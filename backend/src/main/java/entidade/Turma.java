@@ -1,174 +1,141 @@
 package entidade;
 
 import java.sql.Time;
-import java.util.*;
 
 /**
- * Classe contendo métodos e atributos para a turma.
- * As turmas possuem alunos, e cada uma tem uma sala como padrão.
+ * Classe contendo metodos e atributos para a turma.
+ * As turmas possuem alunos, e cada uma tem uma sala como padrao
  * @see Aluno
  * @see SalaPadrao
- * @author 
+ * @author Breno
  */
 public class Turma {
+	
     private int idTurma;
     private String ano;
     private int qtdAluno;
     private Time horarioInicioAula;
     private Time horarioFinalAula;
-    private Aluno alunos[];
-    private SalaPadrao salaPadrao;
+    private int fk_sala;
     
     /**
-     * Construtor usado ao instanciar a classe Turma.
-     * @param
+     * Construtor padrao
      */
     public Turma() {
+    	//Nenhum atributo inicializado
     }
 
     /**
-     * Método de construção que preenche todas as informações relevantes 
-     * ao inicio da criação da turma 
+     * Metodo construtor que preenche todos os tributos da classe 
      * @param idTurma
      * @param ano
      * @param qtdAluno
      * @param horarioInicioAula
      * @param horarioFinalAula
-     * @param alunos
-     * @param salaPadrao
+     * @param fk_sala
      */
-    public Turma(int idTurma, String ano, int qtdAluno, Time horarioInicioAula, Time horarioFinalAula, SalaPadrao salaPadrao) {
+	public Turma(int idTurma, String ano, int qtdAluno, Time horarioInicioAula, Time horarioFinalAula, int fk_sala) {
+		
 		setIdTurma(idTurma);
 		setAno(ano);
 		setQtdAluno(qtdAluno);
 		setHorarioInicioAula(horarioInicioAula);
 		setHorarioFinalAula(horarioFinalAula);
-		setSalaPadrao(salaPadrao);
+		setFk_sala(fk_sala);
 	}
 
-    /**
-     * Método de exibição dos atributos da classe
-     */
-	@Override
-	public String toString() {
-		return "Turma [idTurma=" + idTurma + ", ano=" + ano + ", qtdAluno=" + qtdAluno + ", horarioInicioAula="
-				+ horarioInicioAula + ", horarioFinalAula=" + horarioFinalAula + ", alunos=" + Arrays.toString(alunos)
-				+ ", salaPadrao=" + salaPadrao + "]";
-	}
-
-	/** Método para retorno do ID da turma.
-     * @return Int - ID da turma
+	/** Metodo para retorno do ID da turma
+     * @return int idTurma
      */
     public int getIdTurma() {
         return idTurma;
     }
     
     /**
-     * Método de inserção do id da turma 
-     * @param idTurma
+     * Metodo de insercao do ID da turma 
+     * @param int idTurma
      */
 	public void setIdTurma(int idTurma) {
 		this.idTurma = idTurma;
 	}
 
-    /** Método para retorno do ano da turma.
-     * @return String - Ano da turma
+    /** 
+     * Metodo para retorno do ano da turma
+     * @return String ano
      */
     public String getAno() {
         return ano;
     }
     
     /**
-     * Método de inserção do ano 
-     * @param ano
+     * Metodo de insercao do ano 
+     * @param String ano
      */
     public void setAno(String ano) {
 		this.ano = ano;
 	}
 
-
-    /** Método para retorno da quantidade de alunos na turma.
-     * @return Int - Quantidade de alunos na turma
+    /** 
+     * Metodo para retorno da quantidade de alunos na turma
+     * @return int qtdAluno
      */
     public int getQtdAluno() {
         return qtdAluno;
     }
     
     /**
-     * Método de inserção da quantidade de alunos da turma
-     * @param qtdAluno
+     * Metodo de insercao da quantidade de alunos da turma
+     * @param int qtdAluno
      */
     public void setQtdAluno(int qtdAluno) {
 		this.qtdAluno = qtdAluno;
 	}
 
-    /** Método para retorno do horário inicial da aula.
-     * @return Time - Horário inicial da aula
+    /** 
+     * Metodo para retorno do horario inicial da aula
+     * @return Time horarioInicioAula
      */
     public Time getHorarioInicioAula() {
         return horarioInicioAula;
     }
     
     /**
-     * Método de inserção do horário inicial da aula 
-     * @param horarioInicioAula
+     * Metodo de insercao do horario inicial da aula 
+     * @param Time horarioInicioAula
      */
     public void setHorarioInicioAula(Time horarioInicioAula) {
 		this.horarioInicioAula = horarioInicioAula;
 	}
 
-
-    /** Método para retorno do horário final da aula.
-     * @return Time - Horário final da aula
+    /** 
+     * Metodo para retorno do horario final da aula
+     * @return Time horarioFinalAula
      */
     public Time getHorarioFinalAula() {
         return horarioFinalAula;
     }
     
     /**
-     * Método de inserção do horário final da aula
-     * @param horarioFinalAula
+     * Metodo de insercao do horario final da aula
+     * @param Time horarioFinalAula
      */
     public void setHorarioFinalAula(Time horarioFinalAula) {
 		this.horarioFinalAula = horarioFinalAula;
 	}
 
-    /** Método para retorno dos alunos na turma.
-     * @return Aluno - Array de alunos
-     */
-    public Aluno[] getAlunos() {
-        return alunos;
-    }
-    
     /**
-     * Método de inserção dos alunos na turma
-     * @param alunos
+     * Metodo para retorno do FK da sala 
+     * @return int fk_sala 
      */
-	public void setAlunos(Aluno[] alunos) {
-		this.alunos = alunos;
+    public int getFk_sala() {
+		return fk_sala;
 	}
 
     /**
-     * Método de perquisa de um único usuário 
+     * Metodo para insercao do FK da sala 
+     * @param int fk_sala
      */
-    public void pesquisarAluno() {
-        // TODO implement here
-    }
-
-    /** Método para retorno da sala padrão da turma.
-     * @return SalaPadrao - SalaPadrao da turma
-     */
-    public SalaPadrao getSalaPadrao() {
-        return salaPadrao;
-    }
-
-    /**
-     * Método de inserção da sala padrão 
-     * @param salaPadrao
-     */
-	public void setSalaPadrao(SalaPadrao salaPadrao) {
-		this.salaPadrao = salaPadrao;
+	public void setFk_sala(int fk_sala) {
+		this.fk_sala = fk_sala;
 	}
-    
-    
 }

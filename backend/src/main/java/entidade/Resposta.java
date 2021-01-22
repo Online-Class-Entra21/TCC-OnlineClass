@@ -3,123 +3,160 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo m�todos e atributos para o envio de uma resposta � uma atividade espec�fica.
- * Respostas s�o enviadas pelo Aluno.
+ * Classe contendo metodos e atributos para o envio de uma resposta a uma atividade especifica.
+ * Rrespostas sao enviadas pelo Aluno
  * @see Aluno
  * @see Atividade
- * @author 
+ * @author Andrey 
  */
 public class Resposta {
+	
     private int idResposta;
     private double nota;
     private String comentarioAtividade;
     private boolean correcaoAtividade;
     private Date dataEntrega;
-    private int codAtividade;
-    private Aluno aluno;
+    private int fk_aluno;
+    private int fk_atividade;
 
     /**
-     * Construtor usado ao instanciar a classe Resposta.
-     * @param
+     * Construtor padrao
      */
     public Resposta() {
+    	//Nenhum atributo inicializado
     }
     
-    
-    public Aluno getAluno() {
-		return aluno;
+    /**
+     * Metodo construtor que preenche todos os atributos da classe
+     * @param idResposta
+     * @param nota
+     * @param comentarioAtividade
+     * @param correcaoAtividade
+     * @param dataEntrega
+     * @param fk_aluno
+     * @param fk_Atividade
+     */
+	public Resposta(int idResposta, double nota, String comentarioAtividade, boolean correcaoAtividade,
+			Date dataEntrega, int fk_aluno, int fk_Atividade) {
+		
+		setIdResposta(idResposta);
+		setNota(nota);
+		setComentarioAtividade(comentarioAtividade);
+		setCorrecaoAtividade(correcaoAtividade);
+		setDataEntrega(dataEntrega);
+		setFk_aluno(fk_aluno);
+		setFk_atividade(fk_Atividade);
 	}
 
-
-
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
-	}
-
-
-	/** M�todo para retorno do ID da resposta.
-     * @return Int - ID da resposta
+	/** 
+	 * Metodo para retorno do ID da resposta
+     * @return int idResposta
      */
     public int getIdResposta() {
         return idResposta;
     }
 
     /**
-     * 
+     * Metodo para insercao do ID da resposta 
+     * @param int idResposta
      */
     public void setIdResposta(int idResposta) {
         this.idResposta = idResposta;
     }
-
-    /** M�todo para retorno da nota.
-     * @return Double - Nota
+    
+    /** 
+     * Metodo para retorno da nota
+     * @return double nota
      */
     public double getNota() {
         return nota;
     }
-
+    
     /**
-     * 
+     * Metodo para insercao da nota 
+     * @param double nota
      */
-    public void setNota(Double nota) {
-        this.nota = nota;
-    }
+    public void setNota(double nota) {
+		this.nota = nota;
+	}
 
-    /** M�todo para retorno de um coment�rio na atividade.
-     * @return String - Coment�rio da atividade
+    /** 
+     * Metodo para retorno de um comentario na atividade
+     * @return String comantarioAtividade
      */
     public String getComentarioAtividade() {
         return comentarioAtividade;
     }
-
+    
     /**
-     * 
+     * Metodo para insercao de um comentario na atividade 
+     * @param String comentarioAtividade
      */
     public void setComentarioAtividade(String comentarioAtividade) {
-        this.comentarioAtividade = comentarioAtividade;
-    }
+		this.comentarioAtividade = comentarioAtividade;
+	}
 
-    /** M�todo para retorno se a atividade foi corrigida.
-     * @return Boolean - Foi corrigida? True / False
+	/** 
+     * Metodo para retorno se a atividade foi corrigida 
+     * @return boolean correcaoAtividade 
      */
     public boolean getCorrecaoAtividade() {
         return correcaoAtividade;
     }
-
+    
     /**
-     * 
+     * Metodo para insercao da situacao da atividade corrigida 
+     * @param boolean correcaoAtividade
      */
-    public void setCorrecaoAtividade(Boolean correcaoAtividade) {
-        this.correcaoAtividade = correcaoAtividade;
-    }
+	public void setCorrecaoAtividade(boolean correcaoAtividade) {
+		this.correcaoAtividade = correcaoAtividade;
+	}
 
-    /** M�todo para retorno da data de entrega.
-     * @return Date - Data de entrega 
+    /** 
+     * Metodo para retorno da data de entrega
+     * @return Date dataEntrega
      */
     public Date getDataEntrega() {
         return dataEntrega;
     }
 
     /**
-     * 
+     * Metodo para insercao da data de entrega 
+     * @param Date dataEntrega
      */
     public void setDataEntrega(Date dataEntrega) {
         this.dataEntrega = dataEntrega;
     }
 
-    /** M�todo para retorno do c�digo da atividade.
-     * @return Int - C�digo da atividade
-     */
-    public int getCodAtividade() {
-        return codAtividade;
-    }
-
     /**
-     * 
+     * Metodo para retorno do FK do aluno 
+     * @return int fk_aluno
      */
-    public void setCodAtividade(int codAtividade) {
-        this.codAtividade = codAtividade;
-    }
+	public int getFk_aluno() {
+		return fk_aluno;
+	}
 
+	/**
+	 * Metodo para insercao do FK do aluno 
+	 * @param int fk_aluno
+	 */
+	public void setFk_aluno(int fk_aluno) {
+		this.fk_aluno = fk_aluno;
+	}
+
+	/**
+	 * Metodo para retorno do FK da atividade 
+	 * @return int fk_atividade 
+	 */
+	public int getFk_atividade() {
+		return fk_atividade;
+	}
+
+	/**
+	 * Metodo para insercao do FK da atividade 
+	 * @param int fk_Atividade
+	 */
+	public void setFk_atividade(int fk_atividade) {
+		this.fk_atividade = fk_atividade;
+	}
 }

@@ -1,87 +1,81 @@
 package entidade;
 
 /**
- * Classe contendo métodos e atributos para a ligação do Usuario à Sala Personalizada.
+ * Classe contendo mï¿½todos e atributos para a ligaï¿½ï¿½o do Usuario ï¿½ Sala Personalizada
  * @see Usuario
  * @see SalaPersonalizada
- * @author
+ * @author Breno
  */
 public class UsuarioSalaPersonalizada {
 	
     private int idUsuarioSalaPersonalizada;
-    private SalaPersonalizada salaPersonalizada;
-    private Usuario usuario;
+    private int fk_salaPersonalizada;
+    private int fk_usuario;
     
     /**
-     * Construtor usado ao instanciar a classe UsuarioSalaPersonalizada.
-     * @param
+     * Construtor padrao 
      */
     public UsuarioSalaPersonalizada() {
-    	
+    	//Nenhum atributo inicializado
     }
-
-    /**
-     * Método construtor que preenche todos os atributos da classe
-     * @param idUsuarioSalaPersonalizada
-     * @param codSalaPersonalizada
-     * @param usuario
-     */
-    public UsuarioSalaPersonalizada(int idUsuarioSalaPersonalizada, SalaPersonalizada salaPersonalizada, Usuario usuario) {
-		setSalaPersonalizada(salaPersonalizada);
-		setUsuario(usuario);
-	}
     
     /**
-     * Método de exibição de todos os atributos da classe
+     * Metodo construtor que preenche todos os atributos da classe
+     * @param idUsuarioSalaPersonalizada
+     * @param fk_salaPersonalizada
+     * @param fk_usuario
      */
-	@Override
-	public String toString() {
-		return "UsuarioSalaPersonalizada [idUsuarioSalaPersonalizada=" + idUsuarioSalaPersonalizada
-				+ ", salaPersonalizada=" + salaPersonalizada + ", usuario=" + usuario + "]";
+	public UsuarioSalaPersonalizada(int idUsuarioSalaPersonalizada, int fk_salaPersonalizada, int fk_usuario) {
+		setIdUsuarioSalaPersonalizada(idUsuarioSalaPersonalizada);
+		setFk_salaPersonalizada(fk_salaPersonalizada);
+		setFk_usuario(fk_usuario);
 	}
 
-	/** Método para retorno do ID do UsuarioSalaPersonalizada.
-     * @return Int - ID UsuarioSalaPersonalizada
+	/** 
+	 * Metodo para retorno do ID do UsuarioSalaPersonalizada
+     * @return int idUsuarioSalaPersonalizada
      */
     public int getIdUsuarioSalaPersonalizada() {
         return idUsuarioSalaPersonalizada;
     }
 
     /**
-     * Método de inserção do idUsuarioSalaPersonalizada
-     * @param idUsuarioSalaPersonalizada
+     * Mwtodo de insercao do idUsuarioSalaPersonalizada
+     * @param int idUsuarioSalaPersonalizada
      */
 	public void setIdUsuarioSalaPersonalizada(int idUsuarioSalaPersonalizada) {
 		this.idUsuarioSalaPersonalizada = idUsuarioSalaPersonalizada;
 	}
 
-    /** Método para retorno do código da sala personalizada.
-     * @return Salapersonalizada
-     */
-    public SalaPersonalizada getSalaPersonalizada() {
-        return salaPersonalizada;
-    }
-    
-    /**
-     * Método de inserção da sala personalizada
-     * @param SalaPersonalizada
-     */
-    public void setSalaPersonalizada(SalaPersonalizada salaPersonalizada) {
-		this.salaPersonalizada = salaPersonalizada;
+	/**
+	 * Metodo para retorno do FK da salaPersonalizada
+	 * @return int fk_salaPersonalizada
+	 */
+	public int getFk_salaPersonalizada() {
+		return fk_salaPersonalizada;
 	}
 
-    /** Método para retorno do usuário.
-     * @return Usuario - Usuario
-     */
-    public Usuario getUsuario() {
-        return usuario;
-    }
-    
-    /**
-     * Método de inserção do usuario 
-     * @param usuario
-     */
-    public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	/**
+	 * Metodo para insercao da sala personalzada 
+	 * @param int fk_salaPersonalizada
+	 */
+	public void setFk_salaPersonalizada(int fk_salaPersonalizada) {
+		this.fk_salaPersonalizada = fk_salaPersonalizada;
+	}
+
+	/**
+	 * Metodo para retorno do FK do usuario 
+	 * @return int fk_usuario
+	 */
+	public int getFk_usuario() {
+		return fk_usuario;
+	}
+
+	/**
+	 * Metodo para insercao do FK do usuario 
+	 * @param int fk_usuario
+	 */
+	public void setFk_usuario(int fk_usuario) {
+		this.fk_usuario = fk_usuario;
 	}
 }

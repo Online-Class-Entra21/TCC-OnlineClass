@@ -18,6 +18,11 @@ import com.google.gson.Gson;
 import entidade.Usuario;
 import persistencia.jdbc.UsuarioDAO;
 
+/**
+ * Metodo controller do usuario para consulta no banco de dados através da API Rest
+ * @author Breno
+ *
+ */
 @RestController
 public class usuarioController {
 	

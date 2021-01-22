@@ -17,28 +17,38 @@ public class Diretor extends Usuario {
 		//Nenhum atributo inicializado
 	}
 	
-	/**
-     * Metodo construtor que preenche todos os atributos da classe superior 
-     * @param
-     */
+	 /**
+	  * Metodo construtor que preenche todos os atributos da classe superior
+	  * @param idUsuario
+	  * @param nome
+	  * @param sobrenome
+	  * @param cpf
+	  * @param telefone
+	  * @param celular
+	  * @param email
+	  * @param senha
+	  * @param horarioInicioExpediente
+	  * @param horarioFinalExpediente
+	  * @param fotoUsuario
+	  * @param fk_endereco
+	  * @param fk_escola
+	  */
 	 public Diretor(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-				int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
-				String fotoUsuario, int fk_endereco, int fk_escola) {
+					String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+				    String fotoUsuario, int fk_endereco, int fk_escola) {
 		 
-			super(idUsuario, nome, sobrenome, cpf, telefone, celular, tipoUsuario, email, senha, horarioInicioExpediente,
+			super(idUsuario, nome, sobrenome, cpf, telefone, celular, 2, email, senha, horarioInicioExpediente,
 					horarioFinalExpediente, fotoUsuario, fk_endereco, fk_escola);
-		}
+	 }
+	 
+	 
+	//Descomentar após correções do André - ClassesDAO
+	//-------------------------------------------------
+	 
 
-	 
-	 
-	 
-	 //---------
-	 
-	 
-	 
-//
-//    /** M�todo para retorno do ID da escola.
-//     * @return Int - ID da escola
+//    /** 
+//     * Metodo para retorno do ID da escola.
+//     * @return Escola 
 //     */
 //    public Escola getEscola() {
 //        Escola escola = new Escola();
@@ -114,6 +124,44 @@ public class Diretor extends Usuario {
 //     */
 //    public void removerUsuario() {
 //        // TODO implement here
+//    }
+//    
+//    /**
+//     * Metodo para retorno do ID do professor
+//     * @param int idProfessor
+//     * @return Professor professor
+//     */
+//    public Professor getProfessor(int idProfessor) {
+//    	ProfessorDAO professorDao = new ProfessorDAO();
+//        Professor professor = professorDao.buscarId(idProfessor);
+//        return professor;
+//    }
+//
+//    /**
+//     * Metodo para adicionar um professor
+//     * @param professor
+//     */
+//    public void adicionarProfessor(Professor professor) {
+//    	ProfessorDAO professorDao = new ProfessorDAO();
+//    	professorDao.insert(professor);
+//    }
+//
+//    /** 
+//     * Metodo para atualizar um professor
+//     * @param Professor professor
+//     */
+//    public void atualizarProfessor(Professor professor) {
+//        ProfessorDAO professorDao = new ProfessorDAO();
+//        professorDao.update(professor);
+//    }
+//
+//    /** 
+//     * Metodo para a remocao de um professor
+//     * @param Professor professor 
+//     */
+//    public void removerProfessor(Professor professor) {
+//        ProfessorDAO professorDao = new ProfessorDAO();
+//        professorDao.delete(professor);
 //    }
 
 }

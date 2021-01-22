@@ -9,14 +9,14 @@ import java.util.List;
 
 import entidade.Disciplina;
 import entidade.Professor;
-import entidade.ProfessorDisciplina;
+import entidade.UsuarioDisciplina;
 
 
 public class ProfessorDisciplinaDAO {
 	
 	private Connection conexao = ConexaoFactory.getConnection();
 	
-	public boolean insert(ProfessorDisciplina professorDisciplina) {
+	public boolean insert(UsuarioDisciplina professorDisciplina) {
 		
 		try {
 			
@@ -37,7 +37,7 @@ public class ProfessorDisciplinaDAO {
 		return true;
 	}
 	
-	public boolean update(ProfessorDisciplina professorDisciplina) {
+	public boolean update(UsuarioDisciplina professorDisciplina) {
 		
 		try {
 			
@@ -79,8 +79,8 @@ public class ProfessorDisciplinaDAO {
 		return true;
 	}
 	
-	public ProfessorDisciplina buscarId(int id) {
-		ProfessorDisciplina professorDisciplina = new ProfessorDisciplina();
+	public UsuarioDisciplina buscarId(int id) {
+		UsuarioDisciplina professorDisciplina = new UsuarioDisciplina();
 		try {
 			
 			PreparedStatement comandoSql = conexao.prepareStatement("select * from ProfessorDisciplina where id_usuario_disciplina = ?");
@@ -107,8 +107,8 @@ public class ProfessorDisciplinaDAO {
 		return null;
 	}
 	
-	public List<ProfessorDisciplina> buscarTodos() {
-		List<ProfessorDisciplina> lista = new ArrayList<ProfessorDisciplina>();
+	public List<UsuarioDisciplina> buscarTodos() {
+		List<UsuarioDisciplina> lista = new ArrayList<UsuarioDisciplina>();
 		
 		String sql = "select * from Endereco";
 		
@@ -120,7 +120,7 @@ public class ProfessorDisciplinaDAO {
 			comandoSql.close();
 			
 			while (resultSet.next()) {
-				ProfessorDisciplina professorDisciplina = new ProfessorDisciplina();
+				UsuarioDisciplina professorDisciplina = new UsuarioDisciplina();
 				professorDisciplina.setIdProfessorDisciplina(resultSet.getInt(1));
 				Professor prof = new ProfessorDAO().buscarPorId(resultSet.getInt(2));
 				professorDisciplina.setProfessor(prof);

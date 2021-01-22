@@ -1,87 +1,81 @@
 package entidade;
 
 /**
- * Classe contendo métodos e atributos para a ligação da Turma com as Atividades.
+ * Classe contendo metodos e atributos para a ligacao da Turma com as Atividades
  * @see Turma
  * @see Atividade
- * @author
+ * @author Breno 
  */
 public class TurmaAtividade {
+	
     private int idTurmaAtividade;
-    private Turma turma;
-    private Atividade atividade;
+    private int fk_turma;
+    private int fk_atividade;
     
     /**
-     * Construtor usado ao instanciar a classe TurmaAtividade.
-     * @param
+     * Construtor padrao
      */
     public TurmaAtividade() {
+    	//Nenhum atributo inicializado
     }
     
     /**
-     * Método construtor que preenche todas as informações da classe TurmaAtividade
+     * Metodo construtor que preenche todos os atributos da classe 
      * @param idTurmaAtividade
-     * @param idTurma
-     * @param idAtividade
+     * @param fk_turma
+     * @param fk_atividade
      */
-    public TurmaAtividade(int idTurmaAtividade, Turma turma, Atividade atividade) {
+	public TurmaAtividade(int idTurmaAtividade, int fk_turma, int fk_atividade) {
 		setIdTurmaAtividade(idTurmaAtividade);
-		setTurma(turma);
-		setAtividade(atividade);
-	}
-    
-    /**
-     * Método de exibição dos atributos da classe 
-     */
-	@Override
-	public String toString() {
-		return "TurmaAtividade [idTurmaAtividade=" + idTurmaAtividade + ", turma=" + turma + ", atividade=" + atividade
-				+ "]";
+		setFk_turma(fk_turma);
+		setFk_atividade(fk_atividade);
 	}
 
-	/** Método para retorno do ID da TurmaAtividade.
-     * @return Int - ID TurmaAtividade
+	/** 
+	 * Metodo para retorno do ID da TurmaAtividade
+     * @return int idTurmaAtividade 
      */
 	public int getIdTurmaAtividade() {
 		return idTurmaAtividade;
 	}
 	
 	/**
-	 * Método de inserção do idTurmaAtividade
-	 * @param idTurmaAtividade
+	 * Metodo de insercao do idTurmaAtividade
+	 * @param int idTurmaAtividade
 	 */
 	public void setIdTurmaAtividade(int idTurmaAtividade) {
 		this.idTurmaAtividade = idTurmaAtividade;
 	}
 
-    /** Método para retorno do ID da turma.
-     * @return Int - ID da turma
-     */
-    public Turma getTurma() {
-        return turma;
-    }
-    
-    /**
-     * Método de inserção do idTurma
-     * @param idTurma
-     */
-	public void setTurma(Turma turma) {
-		this.turma = turma;
+	/**
+	 * Metodo para retorno do FK da turma 
+	 * @return int fk_turma 
+	 */
+	public int getFk_turma() {
+		return fk_turma;
 	}
 
-    /** Método para retorno da atividade.
-     * @return int - idAtividade
-     */
-    public Atividade getAtividade() {
-        return atividade;
-    }
-
-    /**
-     * Método de iserção da atividade 
-     * @param idAtividade
-     */
-	public void setAtividade(Atividade atividade) {
-		this.atividade = atividade;
+	/**
+	 * Metodo para insercao do FK da turma 
+	 * @param int fk_turma
+	 */
+	public void setFk_turma(int fk_turma) {
+		this.fk_turma = fk_turma;
 	}
 
+	/**
+	 * Metodo para retorno do FK da atividade 
+	 * @return int fk_atividade 
+	 */
+	public int getFk_atividade() {
+		return fk_atividade;
+	}
+
+	/**
+	 * Metodo para insercao do FK da atividade 
+	 * @param int fk_atividade
+	 */
+	public void setFk_atividade(int fk_atividade) {
+		this.fk_atividade = fk_atividade;
+	} 
 }

@@ -3,147 +3,159 @@ package entidade;
 import java.util.*;
 
 /**
- * Classe contendo m�todos e atributos para a cria��o de reuni�es pelo Usuario.
+ * Classe contendo metodos e atributos para a criacao de reunioes pelo Usuario
  * @see Usuario
  * @see TurmaProfessor
- * @author 
+ * @author Andrey 
  */
 public class Reuniao {
+	
     private int idReuniao;
     private String descricao;
     private Date dataInicio;
     private int dono;
     private double notaMediaAula;
-    private Sala sala;
-    private ReuniaoUsuario reuniaoUsuarios[];
-    private TurmaProfessorDisciplina turmaProfessorDisciplina;
+    private int fk_sala;
+    private int fk_usuarioDisciplina;
     
     /**
-     * Construtor usado ao instanciar a classe Reuniao.
-     * @param
+     * Construtor padrao
      */
     public Reuniao() {
+    	//Nenhum atributo inicializado
     }
+    
+    /**
+     * Metodo construtor que preenche todos os atributos da classe 
+     * @param idReuniao
+     * @param descricao
+     * @param dataInicio
+     * @param dono
+     * @param notaMediaAula
+     * @param fk_sala
+     * @param fk_usuario_disciplina
+     */
+    public Reuniao(int idReuniao, String descricao, Date dataInicio, int dono, double notaMediaAula, int fk_sala,
+			int fk_usuario_disciplina) {
 
+		setIdReuniao(idReuniao);
+		setDescricao(descricao);
+		setDataInicio(dataInicio);
+		setDono(dono);
+		setNotaMediaAula(notaMediaAula);
+		setFk_sala(fk_sala);
+		setFk_usuarioDisciplina(fk_usuario_disciplina);
+	}
 
-    /** M�todo para retorno do ID da reuni�o.
-     * @return Int - ID da reuni�o
+	/** 
+     * Metodo para retorno do ID da reuniao
+     * @return int idReuniao
      */
     public int getIdReuniao() {
         return idReuniao;
     }
 
     /**
-     * 
+     * Metodo de insercao do ID da reuniao
+     * @param int idReuniao
      */
     public void setIdReuniao(int idReuniao) {
         this.idReuniao = idReuniao;
     }
 
-    /** M�todo para retorno da descri��o da reuni�o.
-     * @return String - Descri��o da reuni�o
+    /** 
+     * Metodo para retorno da descricao da reuniao
+     * @return String descricao
      */
     public String getDescricao() {
         return descricao;
     }
 
     /**
-     * 
+     * Metodo para insercao da descricao da reuniao 
+     * @param String descricao
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao; 
     }
-
-    /** M�todo para retorno da data de in�cio da reuni�o.
-     * @return Date - Data de in�cio da reuni�o 
+    
+    /** 
+     * Metodo para retorno da data de inicio da reuniao.
+     * @return Date dataInicio 
      */
-    public Date getDataInicioReuniao() {
-        return dataInicio;
-    }
+    public Date getDataInicio() {
+		return dataInicio;
+	}
 
     /**
-     * 
+     * Metodo para insercao do inicio da reuniao 
+     * @param Date dataInicio
      */
-    public void setDataInicioReuniao(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
 
-    /** M�todo para retorno do ID do dono da reuni�o.
-     * @return Int - ID do dono da reuni�o
+    /** 
+     * Metodo para retorno do dono da reuniao
+     * @return int dono
      */
     public int getDono() {
         return dono;
     }
 
     /**
-     * 
+     * Metodo para insercao do dono da reuniao 
+     * @param int dono
      */
     public void setDono(int dono) {
         this.dono = dono;
     }
 
-    /** M�todo para retorno da nota m�dia da aula.
-     * @return Double - Nota m�dia da aula
+    /** 
+     * Metodo para retorno da nota media da aula
+     * @return double notaMediaAula 
      */
     public double getNotaMediaAula() {
         return notaMediaAula;
     }
+    
+    /**
+     * Metodo para insercao da nota media da aula  
+     * @param double notaMediaAula
+     */
+    public void setNotaMediaAula(double notaMediaAula) {
+		this.notaMediaAula = notaMediaAula;
+	}
 
     /**
-     * 
+     * Metodo para retorno do FK da sala 
+     * @return int fk_sala
      */
-    public void setNotaMediaAula(Double notaMediaAula) {
-    	this.notaMediaAula = notaMediaAula;
-    }
+	public int getFk_sala() {
+		return fk_sala;
+	}
 
-    /** M�todo para retorno da sala.
-     * @return Sala - Sala
-     */
-    public Sala getSala() {
-        return sala;
-    }
+	/**
+	 * Metodo para insercao do FK da sala 
+	 * @param int fk_sala
+	 */
+	public void setFk_sala(int fk_sala) {
+		this.fk_sala = fk_sala;
+	}
 
-    /**
-     * 
-     */
-    public void setSala(Sala sala) {
-        this.sala = sala;
-    }
+	/**
+	 * Metodo para retorno do FK do usuario disciplina 
+	 * @return int fk_usuarioDisciplina 
+	 */
+	public int getFk_usuarioDisciplina() {
+		return fk_usuarioDisciplina;
+	}
 
-    /** M�todo para retorno dos usu�rios conectados � reuni�o.
-     * @return ReuniaoUsuario - Array de usu�rios conectados
-     */
-    public ReuniaoUsuario[] getReuniaoUsuarios() {
-        return reuniaoUsuarios;
-    }
-
-    /** M�todo para buscar um usu�rio da reuni�o.
-     * @param - 
-     * @return ReuniaoUsuario.
-     */
-    public ReuniaoUsuario buscarReuniaoUsuario() {
-        return null;
-    }
-
-    /**
-     * 
-     */
-    public void setReuniaoUsuario() {
-        // TODO implement here
-    }
-
-    /** M�todo para retorno da TurmaProfessorDisciplina.
-     * @return TurmaProfessorDisciplina - TurmaProfessorDisciplina
-     */
-    public TurmaProfessorDisciplina getTurmaProfessorDisciplina() {
-        return turmaProfessorDisciplina;
-    }
-
-    /**
-     * 
-     */
-    public void setTurmaProfessorDisciplina(TurmaProfessorDisciplina turmaProfessorDisciplina) {
-        this.turmaProfessorDisciplina = turmaProfessorDisciplina;
-    }
-
+	/**
+	 * Metodo para insercao do FK do usuario disciplina 
+	 * @param int fk_usuarioDisciplina
+	 */
+	public void setFk_usuarioDisciplina(int fk_usuarioDisciplina) {
+		this.fk_usuarioDisciplina = fk_usuarioDisciplina;
+	}
 }

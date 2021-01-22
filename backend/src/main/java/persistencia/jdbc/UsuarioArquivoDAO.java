@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.UsuarioArquivo;
+import entidade.ArquivoUsuario;
 
 public class UsuarioArquivoDAO {
 	
@@ -18,7 +18,7 @@ public class UsuarioArquivoDAO {
 	 * @param usuarioArquivo
 	 * @return
 	 */
-	public boolean insert(UsuarioArquivo usuarioArquivo) {
+	public boolean insert(ArquivoUsuario usuarioArquivo) {
 		
 		String sql = "insert into arquivo_Usuario (fk_Arquivo, fk_Usuario, tipoEnvio) values (?,?,?)"; 
 		
@@ -42,11 +42,11 @@ public class UsuarioArquivoDAO {
 	}
 	
 	/**
-	 * Realiza atualização dos dados da UsuarioArquivo no banco de dados
+	 * Realiza atualizaï¿½ï¿½o dos dados da UsuarioArquivo no banco de dados
 	 * @param usuarioArquivo
 	 * @return
 	 */
-	public boolean update(UsuarioArquivo usuarioArquivo) {
+	public boolean update(ArquivoUsuario usuarioArquivo) {
 		
 		String sql = "Update arquivo_Usuario set tipoEnvio = ? where id_arquivo_Usuario = ?"; 
 		
@@ -69,7 +69,7 @@ public class UsuarioArquivoDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela UsuarioArquivo
+	 * Realiza a exclusï¿½o dos dados de uma linha da tabela UsuarioArquivo
 	 * @param idUsuarioArquivo
 	 * @return
 	 */
@@ -96,13 +96,13 @@ public class UsuarioArquivoDAO {
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Mï¿½todo de busca de todas as informaï¿½ï¿½es de uma linha
 	 * da tabela UsuarioArquivo do banco de dados
 	 * @param idUsuarioArquivo
 	 * @return
 	 */
-	public UsuarioArquivo buscarPorId(int idUsuarioArquivo) {
-		UsuarioArquivo usuarioArquivo = new UsuarioArquivo(); 
+	public ArquivoUsuario buscarPorId(int idUsuarioArquivo) {
+		ArquivoUsuario usuarioArquivo = new ArquivoUsuario(); 
 		
 		String sql = "select * from arquivo_usuario where idUsuarioArquivo = ?"; 
 		
@@ -149,9 +149,9 @@ public class UsuarioArquivoDAO {
 	 * Retorna todos os dados listados da tabela Sala do banco de dados 
 	 * @return
 	 */
-	public List<UsuarioArquivo> buscarTodos() {
+	public List<ArquivoUsuario> buscarTodos() {
 		
-		List<UsuarioArquivo> lista = new ArrayList<UsuarioArquivo>(); 
+		List<ArquivoUsuario> lista = new ArrayList<ArquivoUsuario>(); 
 		
 		String sql = "select * from arquivo_usuario"; 
 		
@@ -162,7 +162,7 @@ public class UsuarioArquivoDAO {
 			comandoSql.close(); 
 			
 			while (resultSet.next()) {
-				UsuarioArquivo usuarioArquivo = new UsuarioArquivo(); 
+				ArquivoUsuario usuarioArquivo = new ArquivoUsuario(); 
 				
 				usuarioArquivo.setIdUsuarioArquivo(resultSet.getInt(1));
 				

@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.ProfessorDisciplina;
+import entidade.UsuarioDisciplina;
 import entidade.Sala;
-import entidade.TurmaProfessorDisciplina;
+import entidade.TurmaUsuarioDisciplina;
 
 public class TurmaProfessorDisciplinaDAO {
 	
@@ -20,7 +20,7 @@ public class TurmaProfessorDisciplinaDAO {
 	 * @param turmaProfessorDisciplina
 	 * @return
 	 */
-	public boolean insert(TurmaProfessorDisciplina turmaProfessorDisciplina) {
+	public boolean insert(TurmaUsuarioDisciplina turmaProfessorDisciplina) {
 		
 		String sql = "insert into usuario_Disciplina_Turma (fk_usuario_Disciplina, fk_Turma) values (?,?)"; 
 		
@@ -43,7 +43,7 @@ public class TurmaProfessorDisciplinaDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela TurmaProfessorDisciplina
+	 * Realiza a exclusï¿½o dos dados de uma linha da tabela TurmaProfessorDisciplina
 	 * @param idTurmaProfessorDisciplina
 	 * @return
 	 */
@@ -70,13 +70,13 @@ public class TurmaProfessorDisciplinaDAO {
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Mï¿½todo de busca de todas as informaï¿½ï¿½es de uma linha
 	 * da tabela TurmaProfessorDisciplina do banco de dados
 	 * @param idSalaPersonalizada
 	 * @return
 	 */
-	public TurmaProfessorDisciplina buscarPorId(int idTurmaProfessorDisciplina) {
-		TurmaProfessorDisciplina turmaProfessorDisciplina = new TurmaProfessorDisciplina(); 
+	public TurmaUsuarioDisciplina buscarPorId(int idTurmaProfessorDisciplina) {
+		TurmaUsuarioDisciplina turmaProfessorDisciplina = new TurmaUsuarioDisciplina(); 
 		
 		String sql = "select * from sala where idSala = ?"; 
 		
@@ -121,9 +121,9 @@ public class TurmaProfessorDisciplinaDAO {
 	 * Retorna todos os dados listados da tabela Sala do banco de dados 
 	 * @return
 	 */
-	public List<TurmaProfessorDisciplina> buscarTodos() {
+	public List<TurmaUsuarioDisciplina> buscarTodos() {
 		
-		List<TurmaProfessorDisciplina> lista = new ArrayList<TurmaProfessorDisciplina>(); 
+		List<TurmaUsuarioDisciplina> lista = new ArrayList<TurmaUsuarioDisciplina>(); 
 		
 		String sql = "select * from usuario_Disciplina_Turma"; 
 		
@@ -134,7 +134,7 @@ public class TurmaProfessorDisciplinaDAO {
 			comandoSql.close(); 
 			
 			while (resultSet.next()) {
-				TurmaProfessorDisciplina turmaProfessorDisciplina = new TurmaProfessorDisciplina(); 
+				TurmaUsuarioDisciplina turmaProfessorDisciplina = new TurmaUsuarioDisciplina(); 
 				turmaProfessorDisciplina.setIdTurmaProfessorDisciplina(resultSet.getInt(1));
 
 				/**
