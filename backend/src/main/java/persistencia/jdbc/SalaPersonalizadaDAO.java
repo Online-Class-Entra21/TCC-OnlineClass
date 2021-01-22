@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.Sala;
 import entidade.SalaPersonalizada;
 
 public class SalaPersonalizadaDAO {
@@ -18,6 +17,7 @@ public class SalaPersonalizadaDAO {
 	 * Realiza o registro de uma Sala Personalizada no banco de dados
 	 * @param salaPersonalizada
 	 * @return
+	 * @author Breno
 	 */
 	public boolean insert(SalaPersonalizada salaPersonalizada) {
 		
@@ -27,7 +27,7 @@ public class SalaPersonalizadaDAO {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		     
 			comandoSql.setInt(1, salaPersonalizada.getDono());
-			comandoSql.setInt(2, salaPersonalizada.getSala().getIdSala());
+			comandoSql.setInt(2, salaPersonalizada.getFk_sala());
 			
 			comandoSql.execute(); 
 			
@@ -42,9 +42,10 @@ public class SalaPersonalizadaDAO {
 	}
 	
 	/**
-	 * Realiza atualização dos dados da Sala personalizada no banco de dados
+	 * Realiza atualizacao dos dados da Sala personalizada no banco de dados
 	 * @param salaPersonalizada
 	 * @return
+	 * @author Breno
 	 */
 	public boolean update(SalaPersonalizada salaPersonalizada) {
 		
@@ -54,7 +55,7 @@ public class SalaPersonalizadaDAO {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		    
 			comandoSql.setInt(1, salaPersonalizada.getDono());
-			comandoSql.setInt(2, salaPersonalizada.getSala().getIdSala());
+			comandoSql.setInt(2, salaPersonalizada.getFk_sala());
 			comandoSql.setInt(3, salaPersonalizada.getIdSalaPersonalizada());
 			
 			comandoSql.execute(); 
@@ -70,11 +71,11 @@ public class SalaPersonalizadaDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela Sala Personalizada
+	 * Realiza a exclusao dos dados de uma linha da tabela Sala Personalizada
 	 * @param idSalaPersonalizada
 	 * @return
 	 */
-	public boolean delete(int idSalaPersonalizada) {
+	public boolean deleteId(int idSalaPersonalizada) {
 		
 		String sql = "delete from salaPersonalizada where idSalaPersonalizada = ?"; 
 		
@@ -97,12 +98,12 @@ public class SalaPersonalizadaDAO {
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Metodo de busca de todas as informacoes de uma linha
 	 * da tabela Sala Personalizada do banco de dados
 	 * @param idSalaPersonalizada
 	 * @return
 	 */
-	public SalaPersonalizada buscarPorId(int idSalaPersonalizada) {
+	public SalaPersonalizada buscarId(int idSalaPersonalizada) {
 		SalaPersonalizada salaPersonalizada = new SalaPersonalizada(); 
 		
 		String sql = "select * from salaPersonalizada where idSalaPersonalizada = ?"; 
@@ -117,54 +118,42 @@ public class SalaPersonalizadaDAO {
 			if (resultSet.next()) {
 				salaPersonalizada.setIdSalaPersonalizada(resultSet.getInt(1));
 				salaPersonalizada.setDono(resultSet.getInt(2));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto sala
-				 * apartir do fk da sala
-				 */
-				SalaDAO salaDao = new SalaDAO();
-				Sala sala = salaDao.buscarPorId((resultSet.getInt(3)));
-				salaPersonalizada.setSala(sala);
+				salaPersonalizada.setFk_sala(resultSet.getInt(3));
 
-				comandoSql.close(); 
+				comandoSql.close();
 				return salaPersonalizada;
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		return null; 
+		}
+		return null;
 	}
-	
+
 	/**
-	 * Retorna todos os dados listados da tabela Sala Personalizada do banco de dados 
+	 * Retorna todos os dados listados da tabela Sala Personalizada do banco de
+	 * dados
+	 * 
 	 * @return
 	 */
 	public List<SalaPersonalizada> buscarTodos() {
-		
-		List<SalaPersonalizada> lista = new ArrayList<SalaPersonalizada>(); 
-		
-		String sql = "select * from salaPersonalizada"; 
-		
+
+		List<SalaPersonalizada> lista = new ArrayList<SalaPersonalizada>();
+
+		String sql = "select * from salaPersonalizada";
+
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			
+
 			ResultSet resultSet = comandoSql.executeQuery();
-			comandoSql.close(); 
-			
+			comandoSql.close();
+
 			while (resultSet.next()) {
-				SalaPersonalizada salaPersonalizada = new SalaPersonalizada(); 
+				SalaPersonalizada salaPersonalizada = new SalaPersonalizada();
 				salaPersonalizada.setIdSalaPersonalizada(resultSet.getInt(1));
 				salaPersonalizada.setDono(resultSet.getInt(2));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto sala
-				 * apartir do fk da sala
-				 */
-				SalaDAO salaDao = new SalaDAO();
-				Sala sala = salaDao.buscarPorId((resultSet.getInt(3)));
-				salaPersonalizada.setSala(sala);
+				salaPersonalizada.setFk_sala(resultSet.getInt(3));
 				
 				lista.add(salaPersonalizada); 
 			}

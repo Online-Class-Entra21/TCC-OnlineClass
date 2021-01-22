@@ -1,7 +1,6 @@
 package persistencia.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -13,6 +12,15 @@ public class RelatorioDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
+	/**
+	 * Metodo para inserir Relatorio no banco de dados.
+	 * 
+	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
+	 * 
+	 * @param <code>Relatorio</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */	
 	public boolean insert(Relatorio relatorio) {
 		
 		try {
@@ -23,7 +31,7 @@ public class RelatorioDAO {
 			comandoSql.setInt(2, relatorio.getDestinatario());
 			comandoSql.setString(3, relatorio.getTexto());
 			comandoSql.setString(4, relatorio.getTipoRelatorio());
-			comandoSql.setInt(5, relatorio.getRemetente());
+			comandoSql.setInt(5, relatorio.getFk_usuario());
 			comandoSql.execute();
 			
 			comandoSql.close();
@@ -37,6 +45,15 @@ public class RelatorioDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para atualizar um Relatorio no banco de dados.
+	 * 
+	 * O id do <code>Relatorio</code> deve ser o mesmo id que esta no banco de dados.
+	 * 
+	 * @param <code>Relatorio</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */ 	
 	public boolean update(Relatorio relatorio) {
 		
 		try {
@@ -47,7 +64,7 @@ public class RelatorioDAO {
 			comandoSql.setInt(2, relatorio.getDestinatario());
 			comandoSql.setString(3, relatorio.getTexto());
 			comandoSql.setString(4, relatorio.getTipoRelatorio());
-			comandoSql.setInt(5, relatorio.getRemetente());
+			comandoSql.setInt(5, relatorio.getFk_usuario());
 			comandoSql.execute();
 			
 			comandoSql.close();
@@ -61,7 +78,16 @@ public class RelatorioDAO {
 		return true;
 	}
 	
-	public boolean deleteID(int id) {
+	/**
+	 *  Metodo para deletar do banco de dados uma Relatorio
+	 *  <p>
+	 *  O <code>idRelatorio</code> deve ser igual ao id do banco de dados
+	 * 
+	 * @param <code>Relatorio</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */	
+	public boolean deleteId(int id) {
 		
 		try {
 			
@@ -81,6 +107,15 @@ public class RelatorioDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para selecionar <code>Relatorio</code> no banco de dados
+	 * <p>
+	 * O <code>idRelatorio</code> deve ser igual ao Relatorio que deseja selecionar
+	 * 
+	 * @param <code>idRelatorio<code>
+	 * @return Relatorio
+	 * @author Andre
+	 */	
 	public Relatorio buscarId(int id) {
 		Relatorio relatorio = new Relatorio();
 		try {
@@ -96,7 +131,7 @@ public class RelatorioDAO {
 				relatorio.setDestinatario(resultSet.getInt(3));
 				relatorio.setTexto(resultSet.getString(4));
 				relatorio.setTipoRelatorio(resultSet.getString(5));
-				relatorio.setRemetente(resultSet.getInt(6));
+				relatorio.setFk_usuario(resultSet.getInt(6));
 				return relatorio;
 			}
 			
@@ -110,6 +145,12 @@ public class RelatorioDAO {
 		return null;
 	}
 	
+	/**
+	 * Metodo para selecionar todos os <code>Relatorios</code> do banco de dados
+	 * 
+	 * @return <code>List</code>
+	 * @author Andre
+	 */	
 	public List<Relatorio> buscarTodos() {
 		List<Relatorio> lista = new ArrayList<Relatorio>();
 		try {
@@ -126,7 +167,7 @@ public class RelatorioDAO {
 				relatorio.setDestinatario(resultSet.getInt(3));
 				relatorio.setTexto(resultSet.getString(4));
 				relatorio.setTipoRelatorio(resultSet.getString(5));
-				relatorio.setRemetente(resultSet.getInt(6));
+				relatorio.setFk_usuario(resultSet.getInt(6));
 				lista.add(relatorio);
 			}
 			

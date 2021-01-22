@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.Endereco;
-import entidade.Escola;
 import entidade.Usuario;
 
 public class UsuarioDAO {
@@ -19,6 +17,7 @@ public class UsuarioDAO {
 	 * Realiza o registro de uma Usuario no banco de dados
 	 * @param usuario
 	 * @return
+	 * @author Breno
 	 */
 	public boolean insert(Usuario usuario) {
 		
@@ -40,35 +39,37 @@ public class UsuarioDAO {
 			comandoSql.setTime(9, usuario.getHorarioFinalExpediente());
 			comandoSql.setTime(10, usuario.getHorarioInicioExpediente());
 			comandoSql.setString(11, usuario.getFotoUsuario());
-			comandoSql.setInt(12, usuario.getEndereco().getIdEndereco());
-			comandoSql.setInt(13, usuario.getEscola().getIdEscola());
-			
-			comandoSql.execute(); 
-			
-			comandoSql.close(); 
-			
+			comandoSql.setInt(12, usuario.getFk_endereco());
+			comandoSql.setInt(13, usuario.getFk_escola());
+
+			comandoSql.execute();
+
+			comandoSql.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false; 
+			return false;
 		}
-		return true; 
+		return true;
 	}
-	
+
 	/**
-	 * Realiza atualiza��o dos dados da Usuario no banco de dados
+	 * Realiza atualizacao dos dados da Usuario no banco de dados
+	 * 
 	 * @param usuario
 	 * @return
+	 * @author Breno
 	 */
 	public boolean update(Usuario usuario) {
-		
+
 		String sql = "update usuario set nome = ?, sobrenome = ?, cpf = ?, telefone = ?, celular = ?, "
-				   + "tipoUsuario = ?, email = ?, senha = ?, horaFinalExpediente = ?, horaInicioExpediente = ?, "
-				   + "fotoUsuario = ?, fk_endereco = ?, fk_escola = ? where idUsuario = ?";  
-		
+				+ "tipoUsuario = ?, email = ?, senha = ?, horaFinalExpediente = ?, horaInicioExpediente = ?, "
+				+ "fotoUsuario = ?, fk_endereco = ?, fk_escola = ? where idUsuario = ?";
+
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-		    
+
 			comandoSql.setString(1, usuario.getNome());
 			comandoSql.setString(2, usuario.getSobrenome());
 			comandoSql.setString(3, usuario.getCpf());
@@ -80,8 +81,8 @@ public class UsuarioDAO {
 			comandoSql.setTime(9, usuario.getHorarioFinalExpediente());
 			comandoSql.setTime(10, usuario.getHorarioInicioExpediente());
 			comandoSql.setString(11, usuario.getFotoUsuario());
-			comandoSql.setInt(12, usuario.getEndereco().getIdEndereco());
-			comandoSql.setInt(13, usuario.getEscola().getIdEscola());
+			comandoSql.setInt(12, usuario.getFk_endereco());
+			comandoSql.setInt(13, usuario.getFk_escola());
 			comandoSql.setInt(14, usuario.getIdUsuario());
 			
 			comandoSql.execute(); 
@@ -101,7 +102,7 @@ public class UsuarioDAO {
 	 * @param idUsuario
 	 * @return
 	 */
-	public boolean delete(int idUsuario) {
+	public boolean deleteId(int idUsuario) {
 		
 		String sql = "delete from usuario where idUsuario = ?"; 
 		
@@ -128,6 +129,7 @@ public class UsuarioDAO {
 	 * da tabela Usuario do banco de dados
 	 * @param idUsuario
 	 * @return
+	 * @author Breno
 	 */
 	public Usuario buscarId(int idUsuario) {
 		Usuario usuario = new Usuario(); 
@@ -154,22 +156,8 @@ public class UsuarioDAO {
 				usuario.setHorarioFinalExpediente(resultSet.getTime(10));
 				usuario.setHorarioInicioExpediente(resultSet.getTime(11));
 				usuario.setFotoUsuario(resultSet.getString(12));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto endereco
-				 * apartir do fk da endereco
-				 */
-				EnderecoDAO enderecoDao = new EnderecoDAO();
-				Endereco endereco = enderecoDao.buscarId(resultSet.getInt(13));
-				usuario.setEndereco(endereco);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto escola
-				 * apartir do fk da escola
-				 */
-				EscolaDAO escolaDAO = new EscolaDAO();
-				Escola escola = escolaDAO.buscarId(resultSet.getInt(14));
-				usuario.setEscola(escola);
+				usuario.setFk_endereco(resultSet.getInt(13));
+				usuario.setFk_escola(resultSet.getInt(14));
 				
 				comandoSql.close(); 
 				return usuario;
@@ -185,6 +173,7 @@ public class UsuarioDAO {
 	/**
 	 * Retorna todos os dados listados da tabela Usuario do banco de dados 
 	 * @return
+	 * @author Breno
 	 */
 	public List<Usuario> buscarTodos() {
 		
@@ -212,22 +201,8 @@ public class UsuarioDAO {
 				usuario.setHorarioFinalExpediente(resultSet.getTime(10));
 				usuario.setHorarioInicioExpediente(resultSet.getTime(11));
 				usuario.setFotoUsuario(resultSet.getString(12));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto endereco
-				 * apartir do fk da endereco
-				 */
-				EnderecoDAO enderecoDao = new EnderecoDAO();
-				Endereco endereco = enderecoDao.buscarId(resultSet.getInt(13));
-				usuario.setEndereco(endereco);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto escola
-				 * apartir do fk da escola
-				 */
-				EscolaDAO escolaDAO = new EscolaDAO();
-				Escola escola = escolaDAO.buscarId(resultSet.getInt(14));
-				usuario.setEscola(escola);
+				usuario.setFk_endereco(resultSet.getInt(13));
+				usuario.setFk_escola(resultSet.getInt(14));
 				
 				lista.add(usuario); 
 			}
@@ -243,6 +218,7 @@ public class UsuarioDAO {
 	 * da tabela Usuario do banco de dados através do email
 	 * @param email
 	 * @return
+	 * @author Breno
 	 */
 	public Usuario buscarEmail(String email) {
 		Usuario usuario = new Usuario(); 
@@ -269,22 +245,8 @@ public class UsuarioDAO {
 				usuario.setHorarioFinalExpediente(resultSet.getTime(10));
 				usuario.setHorarioInicioExpediente(resultSet.getTime(11));
 				usuario.setFotoUsuario(resultSet.getString(12));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto endereco
-				 * apartir do fk da endereco
-				 */
-				EnderecoDAO enderecoDao = new EnderecoDAO();
-				Endereco endereco = enderecoDao.buscarId(resultSet.getInt(13));
-				usuario.setEndereco(endereco);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto escola
-				 * apartir do fk da escola
-				 */
-				EscolaDAO escolaDAO = new EscolaDAO();
-				Escola escola = escolaDAO.buscarId(resultSet.getInt(14));
-				usuario.setEscola(escola);
+				usuario.setFk_endereco(resultSet.getInt(13));
+				usuario.setFk_escola(resultSet.getInt(14));
 				
 				comandoSql.close(); 
 				return usuario;

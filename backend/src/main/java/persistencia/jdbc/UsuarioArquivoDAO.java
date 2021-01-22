@@ -17,6 +17,7 @@ public class UsuarioArquivoDAO {
 	 * Realiza o registro de uma UsuarioArquivo no banco de dados
 	 * @param usuarioArquivo
 	 * @return
+	 * @author Breno
 	 */
 	public boolean insert(ArquivoUsuario usuarioArquivo) {
 		
@@ -25,8 +26,8 @@ public class UsuarioArquivoDAO {
 		try {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		     
-			comandoSql.setInt(1, usuarioArquivo.getArquivo().getIdArquivo());
-			comandoSql.setInt(2, usuarioArquivo.getUsuario().getIdUsuario());
+			comandoSql.setInt(1, usuarioArquivo.getFk_arquivo());
+			comandoSql.setInt(2, usuarioArquivo.getFk_usuario());
 			comandoSql.setInt(3, usuarioArquivo.getTipoEnvio());
 			
 			comandoSql.execute(); 
@@ -42,9 +43,10 @@ public class UsuarioArquivoDAO {
 	}
 	
 	/**
-	 * Realiza atualiza��o dos dados da UsuarioArquivo no banco de dados
+	 * Realiza atualizacao dos dados da UsuarioArquivo no banco de dados
 	 * @param usuarioArquivo
 	 * @return
+	 * @author Breno
 	 */
 	public boolean update(ArquivoUsuario usuarioArquivo) {
 		
@@ -54,7 +56,7 @@ public class UsuarioArquivoDAO {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		    
 			comandoSql.setInt(1, usuarioArquivo.getTipoEnvio());
-			comandoSql.setInt(2, usuarioArquivo.getIdUsuarioArquivo());
+			comandoSql.setInt(2, usuarioArquivo.getIdArquivoUsuario());
 			
 			comandoSql.execute(); 
 			
@@ -69,11 +71,12 @@ public class UsuarioArquivoDAO {
 	}
 	
 	/**
-	 * Realiza a exclus�o dos dados de uma linha da tabela UsuarioArquivo
+	 * Realiza a exclusao dos dados de uma linha da tabela UsuarioArquivo
 	 * @param idUsuarioArquivo
 	 * @return
+	 * @author Breno
 	 */
-	public boolean delete(int idUsuarioArquivo) {
+	public boolean deleteId(int idUsuarioArquivo) {
 		
 		String sql = "delete from arquivo_Usuario where id_Arquivo_Usuario = ?"; 
 		
@@ -96,12 +99,13 @@ public class UsuarioArquivoDAO {
 	}
 	
 	/**
-	 * M�todo de busca de todas as informa��es de uma linha
+	 * Metodo de busca de todas as informacoes de uma linha
 	 * da tabela UsuarioArquivo do banco de dados
 	 * @param idUsuarioArquivo
 	 * @return
+	 * @author Breno
 	 */
-	public ArquivoUsuario buscarPorId(int idUsuarioArquivo) {
+	public ArquivoUsuario buscarId(int idUsuarioArquivo) {
 		ArquivoUsuario usuarioArquivo = new ArquivoUsuario(); 
 		
 		String sql = "select * from arquivo_usuario where idUsuarioArquivo = ?"; 
@@ -114,23 +118,9 @@ public class UsuarioArquivoDAO {
 			ResultSet resultSet = comandoSql.executeQuery();
 			
 			if (resultSet.next()) {
-				usuarioArquivo.setIdUsuarioArquivo(resultSet.getInt(1));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto arquivo
-				 * apartir do fk da arquivo
-				 */
-//				ArquivoDAO arquivoDao = new ArquivoDAO();
-//				Arquivo arquivo = arquivoDao.buscarPorId((resultSet.getInt(2)));
-//				usuarioArquivo.setArquivo(arquivo);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto usuario
-				 * apartir do fk da usuario
-				 */
-//				UsuarioDAO usuarioDAO = new UsuarioDAO();
-//				Usuario usuario = usuarioDAO.buscarPorId((resultSet.getInt(3)));
-//				usuarioArquivo.setUsuario(usuario);
+				usuarioArquivo.setIdArquivoUsuario(resultSet.getInt(1));
+				usuarioArquivo.setFk_arquivo(resultSet.getInt(2));
+				usuarioArquivo.setFk_usuario(resultSet.getInt(3));
 				
 				usuarioArquivo.setTipoEnvio(resultSet.getInt(4));
 				
@@ -148,6 +138,7 @@ public class UsuarioArquivoDAO {
 	/**
 	 * Retorna todos os dados listados da tabela Sala do banco de dados 
 	 * @return
+	 * @author Breno
 	 */
 	public List<ArquivoUsuario> buscarTodos() {
 		
@@ -164,23 +155,9 @@ public class UsuarioArquivoDAO {
 			while (resultSet.next()) {
 				ArquivoUsuario usuarioArquivo = new ArquivoUsuario(); 
 				
-				usuarioArquivo.setIdUsuarioArquivo(resultSet.getInt(1));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto arquivo
-				 * apartir do fk da arquivo
-				 */
-//				ArquivoDAO arquivoDao = new ArquivoDAO();
-//				Arquivo arquivo = arquivoDao.buscarPorId((resultSet.getInt(2)));
-//				usuarioArquivo.setArquivo(arquivo);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto usuario
-				 * apartir do fk da usuario
-				 */
-//				UsuarioDAO usuarioDAO = new UsuarioDAO();
-//				Usuario usuario = usuarioDAO.buscarPorId((resultSet.getInt(3)));
-//				usuarioArquivo.setUsuario(usuario);
+				usuarioArquivo.setIdArquivoUsuario(resultSet.getInt(1));
+				usuarioArquivo.setFk_arquivo(resultSet.getInt(2));
+				usuarioArquivo.setFk_usuario(resultSet.getInt(3));
 				
 				usuarioArquivo.setTipoEnvio(resultSet.getInt(4));
 				

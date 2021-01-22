@@ -13,6 +13,15 @@ public class PeriodoAvaliacaoDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
+	/**
+	 * Metodo para inserir PeriodoAvaliacao no banco de dados.
+	 * 
+	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
+	 * 
+	 * @param <code>PeriodoAvaliacao</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */
 	public boolean insert(PeriodoAvaliacao periodoAvaliacao) {
 		
 		try {
@@ -22,7 +31,7 @@ public class PeriodoAvaliacaoDAO {
 			comandoSql.setDate(1, (Date) periodoAvaliacao.getDataInicial());
 			comandoSql.setDate(2, (Date) periodoAvaliacao.getDataFinal());
 			comandoSql.setString(3, periodoAvaliacao.getDescricao());
-			comandoSql.setInt(4, periodoAvaliacao.getIdEscola());
+			comandoSql.setInt(4, periodoAvaliacao.getFk_escola());
 			comandoSql.execute();
 			
 			comandoSql.close();
@@ -35,6 +44,15 @@ public class PeriodoAvaliacaoDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para atualizar uma PeriodoAvaliacao no banco de dados.
+	 * 
+	 * O id do <code>PeriodoAvaliacao</code> deve ser o mesmo id que esta no banco de dados.
+	 * 
+	 * @param <code>PeriodoAvaliacao</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */ 	
 	public boolean update(PeriodoAvaliacao periodoAvaliacao) {
 		
 		try {
@@ -44,7 +62,7 @@ public class PeriodoAvaliacaoDAO {
 			comandoSql.setDate(1, (Date) periodoAvaliacao.getDataInicial());
 			comandoSql.setDate(2, (Date) periodoAvaliacao.getDataFinal());
 			comandoSql.setString(3, periodoAvaliacao.getDescricao());
-			comandoSql.setInt(4, periodoAvaliacao.getIdEscola());
+			comandoSql.setInt(4, periodoAvaliacao.getFk_escola());
 			comandoSql.setInt(5, periodoAvaliacao.getIdPeriodoAvaliacao());
 			comandoSql.execute();
 			
@@ -59,7 +77,16 @@ public class PeriodoAvaliacaoDAO {
 		return true;
 	}
 	
-	public boolean deleteID(int id) {
+	/**
+	 *  Metodo para deletar do banco de dados uma PeriodoAvaliacao
+	 *  <p>
+	 *  O <code>idPeriodoAvaliacao</code> deve ser igual ao id do banco de dados
+	 * 
+	 * @param <code>PeriodoAvaliacao</code>
+	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andre
+	 */	
+	public boolean deleteId(int id) {
 		
 		try {
 			
@@ -79,6 +106,15 @@ public class PeriodoAvaliacaoDAO {
 		return true;
 	}
 	
+	/**
+	 * Metodo para selecionar <code>PeriodoAvaliacao</code> no banco de dados
+	 * <p>
+	 * O <code>idPeriodoAvaliacao</code> deve ser igual ao PeriodoAvaliacao que deseja selecionar
+	 * 
+	 * @param <code>idPeriodoAvaliacao<code>
+	 * @return PeriodoAvaliacao
+	 * @author Andre
+	 */	
 	public PeriodoAvaliacao buscarId(int id) {
 		PeriodoAvaliacao periodoAvaliacao = new PeriodoAvaliacao();
 		try {
@@ -93,7 +129,7 @@ public class PeriodoAvaliacaoDAO {
 				periodoAvaliacao.setDataInicial(resultSet.getDate(2));
 				periodoAvaliacao.setDataFinal(resultSet.getDate(3));
 				periodoAvaliacao.setDescricao(resultSet.getString(4));
-				periodoAvaliacao.setIdEscola(resultSet.getInt(5));
+				periodoAvaliacao.setFk_escola(resultSet.getInt(5));
 				return periodoAvaliacao;
 			}
 			
@@ -107,6 +143,12 @@ public class PeriodoAvaliacaoDAO {
 		return null;
 	}
 	
+	/**
+	 * Metodo para selecionar todos os <code>PeriodoAvaliacaos</code> do banco de dados
+	 * 
+	 * @return <code>List</code>
+	 * @author Andre
+	 */	
 	public List<PeriodoAvaliacao> buscarTodos() {
 		List<PeriodoAvaliacao> lista = new ArrayList<PeriodoAvaliacao>();
 		try {
@@ -122,7 +164,7 @@ public class PeriodoAvaliacaoDAO {
 				periodoAvaliacao.setDataInicial(resultSet.getDate(2));
 				periodoAvaliacao.setDataFinal(resultSet.getDate(3));
 				periodoAvaliacao.setDescricao(resultSet.getString(4));
-				periodoAvaliacao.setIdEscola(resultSet.getInt(5));
+				periodoAvaliacao.setFk_escola(resultSet.getInt(5));
 				lista.add(periodoAvaliacao);
 			}
 			

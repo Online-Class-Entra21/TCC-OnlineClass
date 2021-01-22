@@ -14,11 +14,12 @@ public class AtividadeDAO {
 	
 	/**
 	 * Metodo para inserir atividade no banco de dados.
-	 * 
+	 * <p>
 	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
 	 * 
 	 * @param <code>Atividade</code>
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
 	 */
 	public boolean insert(Atividade atividade) {
 		String sql = "insert into atividade (descricao, inicioatividade, finalatividade, tipoatividade, pesonota, fk_usuario_disciplina) values (?, ?, ?, ?, ?, ?)";
@@ -46,12 +47,12 @@ public class AtividadeDAO {
 	
 	/**
 	 * Metodo para atualizar uma atividade no banco de dados.
-	 * 
+	 * <p>
 	 * O id da <code>Atividade</code> deve ser o mesmo id que esta no banco de dados.
 	 * 
 	 * @param atividade
-	 * @param turmaAtividade
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
 	 */ 
 	public boolean update(Atividade atividade) {
 		String sql = "update atividade set descricao = ?, inicioatividade = ?, finalatividade = ?, tipoatividade = ?, "
@@ -78,13 +79,14 @@ public class AtividadeDAO {
 	
 	/**
 	 *  Metodo para deletar do banco de dados uma atividade
-	 *  
+	 *  <p>
 	 *  O <code>idAtividade</code> deve ser igual ao id do banco de dados
 	 * 
 	 * @param idAtividade
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
 	 */
-	public boolean delete(int idAtividade) {
+	public boolean deleteId(int idAtividade) {
 		String sql = "delete from atividade where idatividade = ?";
 		
 		try {
@@ -103,11 +105,12 @@ public class AtividadeDAO {
 	
 	/**
 	 * Metodo para selecionar uma atividade do banco de dados
-	 * 
+	 * <p>
 	 * O <code>idAtividade</code> deve ser igual ao id do banco de dados
 	 * 
 	 * @param idAtividade
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 * @author Andrey
 	 */
 	public Atividade buscarId(int idAtividade) {
 		Atividade atividade = new Atividade();

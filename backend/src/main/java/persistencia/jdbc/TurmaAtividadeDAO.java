@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.Sala;
-import entidade.Turma;
 import entidade.TurmaAtividade;
 
 public class TurmaAtividadeDAO {
@@ -19,6 +17,7 @@ public class TurmaAtividadeDAO {
 	 * Realiza o registro de uma TurmaAtividade no banco de dados
 	 * @param turmaAtividade
 	 * @return
+	 * @author Breno
 	 */
 	public boolean insert(TurmaAtividade turmaAtividade) {
 		
@@ -28,8 +27,8 @@ public class TurmaAtividadeDAO {
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		     
 			comandoSql.setInt(1, turmaAtividade.getIdTurmaAtividade());
-			comandoSql.setInt(2, turmaAtividade.getTurma().getIdTurma());
-			comandoSql.setInt(3, turmaAtividade.getAtividade().getIdAtividade());
+			comandoSql.setInt(2, turmaAtividade.getFk_turma());
+			comandoSql.setInt(3, turmaAtividade.getFk_atividade());
 			
 			comandoSql.execute(); 
 			
@@ -44,11 +43,12 @@ public class TurmaAtividadeDAO {
 	}
 	
 	/**
-	 * Realiza a exclusão dos dados de uma linha da tabela TurmaAtividade
+	 * Realiza a exclusao dos dados de uma linha da tabela TurmaAtividade
 	 * @param idTurmaAtividade
 	 * @return
+	 * @author Breno
 	 */
-	public boolean delete(int idTurmaAtividade) {
+	public boolean deleteId(int idTurmaAtividade) {
 		
 		String sql = "delete from turma_Atividade where id_Turma_Atividade = ?"; 
 		
@@ -71,12 +71,13 @@ public class TurmaAtividadeDAO {
 	}
 	
 	/**
-	 * Método de busca de todas as informações de uma linha
+	 * Metodo de busca de todas as informacoes de uma linha
 	 * da tabela TurmaAtividade do banco de dados
 	 * @param idTurmaAtividade
 	 * @return
+	 * @author Breno
 	 */
-	public TurmaAtividade buscarPorId(int idTurmaAtividade) {
+	public TurmaAtividade buscarId(int idTurmaAtividade) {
 		TurmaAtividade turmaAtividade = new TurmaAtividade(); 
 		
 		String sql = "select * from turma_Atividade where id_Turma_Atividade = ?"; 
@@ -90,22 +91,8 @@ public class TurmaAtividadeDAO {
 			
 			if (resultSet.next()) {
 				turmaAtividade.setIdTurmaAtividade(resultSet.getInt(1));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto turma
-				 * apartir do fk da turma
-				 */
-//				TurmaDAO turmaDao = new TurmaDAO();
-//				Turma turma = turmaDao.buscarPorId((resultSet.getInt(2)));
-//				turmaAtividade.setTurma(turma);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto atividade
-				 * apartir do fk da atividade
-				 */
-//				AtividadeDAO atividade = new AtividadeDAO();
-//				Atividade atividade = atividadeDao.buscarPoId((resultSet.getInt(3)));
-//				turmaAtividade.setAtividade(atividade);
+				turmaAtividade.setFk_turma(resultSet.getInt(2));
+				turmaAtividade.setFk_atividade(resultSet.getInt(3));
 				
 				comandoSql.close(); 
 				return turmaAtividade;
@@ -137,22 +124,8 @@ public class TurmaAtividadeDAO {
 			while (resultSet.next()) {
 				TurmaAtividade turmaAtividade = new TurmaAtividade(); 
 				turmaAtividade.setIdTurmaAtividade(resultSet.getInt(1));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto turma
-				 * apartir do fk da turma
-				 */
-//				TurmaDAO turmaDao = new TurmaDAO();
-//				Turma turma = turmaDao.buscarPorId((resultSet.getInt(2)));
-//				turmaAtividade.setTurma(turma);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto atividade
-				 * apartir do fk da atividade
-				 */
-//				AtividadeDAO atividade = new AtividadeDAO();
-//				Atividade atividade = atividadeDao.buscarPoId((resultSet.getInt(3)));
-//				turmaAtividade.setAtividade(atividade);
+				turmaAtividade.setFk_turma(resultSet.getInt(2));
+				turmaAtividade.setFk_atividade(resultSet.getInt(3));
 				
  				lista.add(turmaAtividade); 
 			}

@@ -32,7 +32,6 @@ public class AlunoDAO {
 	 * 
 	 * 	 
 	 * @param aluno
-	 * @param turma
 	 * @return true caso seja bem sucedido o delete, e false e um erro caso ocorra falha
 	 * @author Andrey 
 	 */
@@ -107,7 +106,7 @@ public class AlunoDAO {
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
 	 * @author Andrey
 	 */
-	public boolean delete(int idAluno) {
+	public boolean deleteId(int idAluno) {
 		String sql = "delete from aluno where idaluno = ?";
 		
 		try {
@@ -126,7 +125,7 @@ public class AlunoDAO {
 	/**
 	 * Metodo para selecionar o aluno do banco de dados apartir do respectivo id
 	 * 
-	 * @param idAluno id do aluno que deseja selecionar
+	 * @param <code>idAluno</code> id do aluno que deseja selecionar
 	 * @return Aluno referente ao id de entrada
 	 * @author Andrey
 	 */

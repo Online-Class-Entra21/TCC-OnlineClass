@@ -60,7 +60,6 @@ public class usuarioController {
 	 */
 	@PostMapping(path = "api/usuario/inserir/{json}")
 	public boolean inserirUsuario(@PathVariable("json") String json) {
-		System.out.println(json);
 		Gson gson = new Gson();
 		
 		Usuario user = gson.fromJson(json.toString(), Usuario.class);
@@ -77,7 +76,7 @@ public class usuarioController {
 	@DeleteMapping(path = "/api/usuario/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		UsuarioDAO usuarioDao = new UsuarioDAO();
-		return usuarioDao.delete(codigo);
+		return usuarioDao.deleteId(codigo);
 	}
 	
 	
