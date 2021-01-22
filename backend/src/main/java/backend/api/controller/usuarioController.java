@@ -28,8 +28,8 @@ public class usuarioController {
 	
 	/**
 	 * Retorna o usuário que corresponde ao id indicado {GET}
-	 * @param codigo
-	 * @return
+	 * @param int codigo
+	 * @return String json
 	 */
 	@GetMapping(path = "/api/usuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -43,7 +43,7 @@ public class usuarioController {
 	
 	/**
 	 * Retorna a lista de usuarios registrados no sistema {GET}
-	 * @return
+	 * @return Usuario lista
 	 */
 	@GetMapping(path = "/api/usuarios")
 	public List<Usuario> consultar(){
@@ -55,30 +55,38 @@ public class usuarioController {
 	
 	/**
 	 * Insere uma novo usuário no banco de dados {POST}
-	 * @param json
-	 * @return
+	 * @param String json
 	 */
 	@PostMapping(path = "api/usuario/inserir/{json}")
 	public boolean inserirUsuario(@PathVariable("json") String json) {
 		Gson gson = new Gson();
-		
-		Usuario user = gson.fromJson(json.toString(), Usuario.class);
-		UsuarioDAO userDao = new UsuarioDAO();
-		userDao.insert(user);
-		return true;
+		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		usuarioDao.insert(usuario);
+	}
+	
+	/**
+	 * Metodo para alteração do usuario que corresponde ao codigo informado {PUT}
+	 * @param int codigo
+	 * @param String json
+	 */
+	@PutMapping(path = "api/usuario/alterar/{codigo}/{json}")
+	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		Gson gson = new Gson();
+		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		usuarioDao.update(usuario);
 	}
 	
 	/**
 	 * Método de exclusão do usuario que corresponde ao codigo informado {DELETE}
-	 * @param codigo
-	 * @return
+	 * @param int codigo
 	 */
 	@DeleteMapping(path = "/api/usuario/deletar/{codigo}")
-	public boolean deletar(@PathVariable("codigo") int codigo) {
+	public void deletar(@PathVariable("codigo") int codigo) {
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		return usuarioDao.deleteId(codigo);
 	}
-	
 	
 	//------------------------------------------------------------------
 	//Método Extras - Fora dos 5 principais 
@@ -86,11 +94,11 @@ public class usuarioController {
 	
 	/**
 	 * Retorna o usuário que corresponde ao email indicado {GET}
-	 * @param email
-	 * @return
+	 * @param String email
+	 * @return String json 
 	 */
 	@GetMapping(path = "/api/usuario/email/{email}")
-	public String consultarPorEmail(@PathVariable("email") String email) {
+	public String consultarEmail(@PathVariable("email") String email) {
 		Usuario usuario = new Usuario();
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		usuario = usuarioDao.buscarEmail(email);
@@ -101,8 +109,8 @@ public class usuarioController {
 	
 	/**
 	 * Verifica se o usuario existe no banco de dados  {GET}
-	 * @param email
-	 * @return
+	 * @param String email
+	 * @return boolean situacao de existencia do usuario
 	 */
 	@GetMapping(path = "api/verificar/{email}")
 	public boolean verificarEmail(@PathVariable("email") String email) {
@@ -117,8 +125,8 @@ public class usuarioController {
 	
 	/**
 	 * Envia um código de verificação via e-mail ao usuário {GET}
-	 * @param email
-	 * @return
+	 * @param String email
+	 * @return Strinf codigo
 	 */
 	@GetMapping(path = "/api/codigo/{email}")
 	public String codigo(@PathVariable("email") String email){
@@ -156,9 +164,8 @@ public class usuarioController {
 	
 	/**
 	 * Metodo para mudar a senha do usuario informado {PUT}
-	 * @param email
-	 * @param senha
-	 * @return 
+	 * @param String email
+	 * @param String senha
 	 */
 	@PutMapping(path = "/api/mudar/senha/{email}/{senha-digitada}")
 	public void mudarSenha(@PathVariable("email") String email, @PathVariable("senha-digitada") String senha) {
@@ -169,9 +176,4 @@ public class usuarioController {
 		usuarioDao.update(usuario);
 	}
 }
-
-
-
-
-
 
