@@ -17,7 +17,7 @@ import entidade.Escola;
  *
  */
 @RestController
-public class escolaController {
+public class EscolaController {
 	
 	/**
 	 * Retorna a escola que corresponde ao id indicado {GET}

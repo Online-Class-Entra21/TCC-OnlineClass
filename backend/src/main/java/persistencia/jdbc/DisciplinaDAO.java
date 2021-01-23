@@ -81,7 +81,7 @@ public class DisciplinaDAO {
 	 */
 	public Disciplina buscarId(int idDisciplina) throws SQLException {
 		Disciplina disciplina = new Disciplina();
-		String sql = "select * from Endereco where idendereco = ?";
+		String sql = "select * from Disciplina where idDisciplina = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, idDisciplina);
@@ -105,7 +105,7 @@ public class DisciplinaDAO {
 	public List<Disciplina> buscarTodos() throws SQLException {
 		Disciplina disciplina = new Disciplina();
 		List<Disciplina> lista = new ArrayList<Disciplina>();
-		String sql = "select * from Endereco";
+		String sql = "select * from Disciplina";
 		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		ResultSet resultSet = comandoSql.executeQuery();

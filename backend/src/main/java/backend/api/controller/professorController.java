@@ -17,7 +17,7 @@ import entidade.Professor;
  *
  */
 @RestController
-public class professorController {
+public class ProfessorController {
 	
 	/**
 	 * Retorna o professor que corresponde ao id indicado {GET}
