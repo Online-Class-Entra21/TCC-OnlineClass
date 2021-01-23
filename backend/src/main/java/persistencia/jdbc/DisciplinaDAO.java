@@ -54,103 +54,69 @@ public class DisciplinaDAO {
 	}
 	
 	/**
-	 *  Metodo para deletar do banco de dados uma Disciplina
+	 *  Metodo para deletar do banco de dados uma Disciplina.
 	 *  O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja deletar
 	 * @param int idDisciplina
-	 * @author Andre
+	 * @author André
+	 * @throws SQLException 
 	 */
-	public void deleteId(int idDsciplina) {
-		
+	public void deleteId(int idDsciplina) throws SQLException {
 		String sql = "delete from disciplina where iddisciplina = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setInt(1, idDsciplina);
+		comandoSql.execute();
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			
-			comandoSql.setInt(1, idDsciplina);
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
-		
-		return true;
+		comandoSql.close();
 	}
 	
 	/**
-	 * Metodo para selecionar <code>Disciplina</code> no banco de dados
-	 * <p>
-	 * O <code>idDisciplina</code> deve ser igual a Disciplina que deseja selecionar
-	 * 
-	 * @param <code>idDisciplina<code>
-	 * @return Disciplina
-	 * @author Andre
+	 * Metodo para selecionar <code>Disciplina</code> no banco de dados.
+	 * O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja buscar
+	 * @param int idDisciplina
+	 * @return Disciplina disciplina 
+	 * @author André
+	 * @throws SQLException 
 	 */
-	public Disciplina buscarId(int id) {
+	public Disciplina buscarId(int idDisciplina) throws SQLException {
 		Disciplina disciplina = new Disciplina();
-		
 		String sql = "select * from Endereco where idendereco = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			
-			comandoSql.setInt(1, id);
-			ResultSet resultSet = comandoSql.executeQuery();
-			
-			if (resultSet.next()) {
-				disciplina.setIdDisciplina(resultSet.getInt(1));
-				disciplina.setNome(resultSet.getString(2));
-				disciplina.setNumeroAulas(resultSet.getInt(3));
-				return disciplina;
-			}
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+		comandoSql.setInt(1, idDisciplina);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			disciplina.setIdDisciplina(resultSet.getInt(1));
+			disciplina.setNome(resultSet.getString(2));
+			disciplina.setNumeroAulas(resultSet.getInt(3));
 		}
-		
-		return null;
+		comandoSql.close();
+		return disciplina;
 	}
 	
 	/**
-	 * Metodo para selecionar todas as <code>Disciplinas</code> do banco de dados
-	 * 
-	 * @return <code>List</code>
+	 * Metodo para selecionar todas as discilina do banco de dados
+	 * @return lista de disciplinas resgistradas no banco 
 	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public List<Disciplina> buscarTodos() {
+	public List<Disciplina> buscarTodos() throws SQLException {
 		List<Disciplina> lista = new ArrayList<Disciplina>();
-		
 		String sql = "select * from Endereco";
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			
-			ResultSet resultSet = comandoSql.executeQuery();
-			comandoSql.close();
-			
-			while (resultSet.next()) {
-				Disciplina disciplina = new Disciplina();
-				disciplina.setIdDisciplina(resultSet.getInt(1));
-				disciplina.setNome(resultSet.getString(2));
-				disciplina.setNumeroAulas(resultSet.getInt(3));
-				lista.add(disciplina);
-			}
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
 		
+		while (resultSet.next()) {
+			Disciplina disciplina = new Disciplina();
+			disciplina.setIdDisciplina(resultSet.getInt(1));
+			disciplina.setNome(resultSet.getString(2));
+			disciplina.setNumeroAulas(resultSet.getInt(3));
+			
+			lista.add(disciplina);
+		}
+		comandoSql.close();
 		return lista;
 	}
 }
