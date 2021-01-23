@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.Aluno;
 import entidade.Arquivo;
-import persistencia.jdbc.AlunoDAO;
 import persistencia.jdbc.ArquivoDAO;
 
 /**

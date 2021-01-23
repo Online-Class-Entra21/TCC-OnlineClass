@@ -1,18 +1,12 @@
 package reunioes.api;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Properties;
 
-import com.microsoft.graph.logger.DefaultLogger;
-import com.microsoft.graph.logger.LoggerLevel;
 import com.microsoft.graph.models.extensions.IGraphServiceClient;
 import com.microsoft.graph.models.extensions.OnlineMeeting;
-import com.microsoft.graph.models.extensions.User;
 import com.microsoft.graph.requests.extensions.GraphServiceClient;
-import com.microsoft.graph.serializer.CalendarSerializer;
 
 /**
  * Classe para testes da api graph

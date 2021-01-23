@@ -1,7 +1,6 @@
 package backend.api.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 
 import entidade.Aluno;
-import entidade.Usuario;
 import persistencia.jdbc.AlunoDAO;
-import persistencia.jdbc.UsuarioDAO;
 
 /**
  * Metodo controller do aluno para consulta no banco de dados através da API Rest

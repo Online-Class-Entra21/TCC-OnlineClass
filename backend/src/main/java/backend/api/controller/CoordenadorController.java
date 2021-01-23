@@ -3,23 +3,11 @@ package backend.api.controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
-
-import entidade.Aluno;
-import entidade.Convite;
 import entidade.Coordenador;
-import entidade.Usuario;
-import persistencia.jdbc.AlunoDAO;
-import persistencia.jdbc.ConviteDAO;
 import persistencia.jdbc.CoordenadorDAO;
-import persistencia.jdbc.UsuarioDAO;
 
 /**
  * Metodo controller do coordenador para consulta no banco de dados através da API Rest

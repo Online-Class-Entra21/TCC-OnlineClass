@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.Chamada;
 import entidade.Convite;
-import persistencia.jdbc.ChamadaDAO;
 import persistencia.jdbc.ConviteDAO;
 
 /**
