@@ -25,12 +25,12 @@ public class UsuarioDisciplinaDAO {
 	 * @author Breno
 	 * @throws SQLException 
 	 */
-	public void insert(UsuarioDisciplina professorDisciplina) throws SQLException {
+	public void insert(UsuarioDisciplina usuarioDisciplina) throws SQLException {
 		String sql = "insert into usuario_disciplina (fk_usuario, fk_disciplina) values (?,?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setInt(1, professorDisciplina.getFk_usuario());
-		comandoSql.setInt(2, professorDisciplina.getFk_disciplina());
+		comandoSql.setInt(1, usuarioDisciplina.getFk_usuario());
+		comandoSql.setInt(2, usuarioDisciplina.getFk_disciplina());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -43,13 +43,13 @@ public class UsuarioDisciplinaDAO {
 	 * @author Breno
 	 * @throws SQLException 
 	 */ 
-	public void update(UsuarioDisciplina professorDisciplina) throws SQLException {
-		String sql = "update professordisciplina set fk_usuario = ?, fk_disciplina = ? where id_usuario_disciplina = ?";
+	public void update(UsuarioDisciplina usuarioDisciplina) throws SQLException {
+		String sql = "update usuario_Disciplina set fk_usuario = ?, fk_disciplina = ? where id_usuario_disciplina = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
-		comandoSql.setInt(1, professorDisciplina.getFk_usuario());
-		comandoSql.setInt(2, professorDisciplina.getFk_disciplina());
-		comandoSql.setInt(3, professorDisciplina.getIdUsuarioDisciplina());
+		comandoSql.setInt(1, usuarioDisciplina.getFk_usuario());
+		comandoSql.setInt(2, usuarioDisciplina.getFk_disciplina());
+		comandoSql.setInt(3, usuarioDisciplina.getIdUsuarioDisciplina());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -63,7 +63,7 @@ public class UsuarioDisciplinaDAO {
 	 * @throws SQLException 
 	 */	
 	public void deleteId(int idUsuarioDisciplina) throws SQLException {
-		String sql = "delete from usuario_disciplina where id_usuario_disciplina = ?";
+		String sql = "delete from usuario_Disciplina where id_usuario_disciplina = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, idUsuarioDisciplina);
@@ -81,20 +81,20 @@ public class UsuarioDisciplinaDAO {
 	 * @throws SQLException 
 	 */	
 	public UsuarioDisciplina buscarId(int id) throws SQLException {
-		UsuarioDisciplina professorDisciplina = new UsuarioDisciplina();
-		String sql = "select * from ProfessorDisciplina where id_usuario_disciplina = ?";
+		UsuarioDisciplina usuarioDisciplina = new UsuarioDisciplina();
+		String sql = "select * from usuario_Disciplina where id_usuario_disciplina = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
 		comandoSql.setInt(1, id);
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		if (resultSet.next()) {
-			professorDisciplina.setIdUsuarioDisciplina(resultSet.getInt(1));
-			professorDisciplina.setFk_usuario(resultSet.getInt(2));
-			professorDisciplina.setFk_disciplina(resultSet.getInt(3));
+			usuarioDisciplina.setIdUsuarioDisciplina(resultSet.getInt(1));
+			usuarioDisciplina.setFk_usuario(resultSet.getInt(2));
+			usuarioDisciplina.setFk_disciplina(resultSet.getInt(3));
 		}
 		comandoSql.close();
-		return professorDisciplina;
+		return usuarioDisciplina;
 	}
 	
 	/**
@@ -111,11 +111,11 @@ public class UsuarioDisciplinaDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
-			UsuarioDisciplina professorDisciplina = new UsuarioDisciplina();
-			professorDisciplina.setIdUsuarioDisciplina(resultSet.getInt(1));
-			professorDisciplina.setFk_usuario(resultSet.getInt(2));
-			professorDisciplina.setFk_disciplina(resultSet.getInt(3));
-			lista.add(professorDisciplina);
+			UsuarioDisciplina usuarioDisciplina = new UsuarioDisciplina();
+			usuarioDisciplina.setIdUsuarioDisciplina(resultSet.getInt(1));
+			usuarioDisciplina.setFk_usuario(resultSet.getInt(2));
+			usuarioDisciplina.setFk_disciplina(resultSet.getInt(3));
+			lista.add(usuarioDisciplina);
 		}
 		comandoSql.close();
 		return lista;
