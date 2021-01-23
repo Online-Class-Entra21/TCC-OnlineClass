@@ -99,7 +99,8 @@ public class TurmaAtividadeDAO {
 	
 	/**
 	 * Retorna todos os dados listados da tabela TurmaAtividade do banco de dados
-	 * @return lista de TurmasAtividades registradas no banco 
+	 * @return lista de TurmasAtividades registradas no banco
+	 * @author Breno 
 	 * @throws SQLException 
 	 */
 	public List<TurmaAtividade> buscarTodos() throws SQLException {
