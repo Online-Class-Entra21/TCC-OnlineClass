@@ -17,7 +17,7 @@ import entidade.PeriodoAvaliacao;
  *
  */
 @RestController
-public class periodoAvaliacaoController {
+public class PeriodoAvaliacaoController {
 	
 	/**
 	 * Retorna o periodoAvaliacao que corresponde ao id indicado {GET}

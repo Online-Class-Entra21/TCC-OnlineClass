@@ -17,7 +17,7 @@ import entidade.ReuniaoUsuario;
  *
  */
 @RestController
-public class reuniaoUsuarioController {
+public class ReuniaoUsuarioController {
 	
 	/**
 	 * Retorna a reuniaoUsuario que corresponde ao id indicado {GET}

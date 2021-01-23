@@ -17,7 +17,7 @@ import entidade.Relatorio;
  *
  */
 @RestController
-public class relatorioController {
+public class RelatorioController {
 	
 	/**
 	 * Retorna o relatorio que corresponde ao id indicado {GET}

@@ -17,7 +17,7 @@ import entidade.Resposta;
  *
  */
 @RestController
-public class respostaController {
+public class RespostaController {
 	
 	/**
 	 * Retorna a resposta que corresponde ao id indicado {GET}

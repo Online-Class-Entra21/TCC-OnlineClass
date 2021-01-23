@@ -33,7 +33,7 @@ public class usuarioController {
 	 */
 	@GetMapping(path = "/api/usuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		Usuario usuario = new Usuario();
+		Usuario usuario;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		usuario = usuarioDao.buscarId(codigo);
 		Gson gson = new Gson();
@@ -47,7 +47,7 @@ public class usuarioController {
 	 */
 	@GetMapping(path = "/api/usuarios")
 	public List<Usuario> consultar(){
-		List<Usuario> lista = new ArrayList<Usuario>();
+		List<Usuario> lista;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		lista = usuarioDao.buscarTodos();
 		return lista;
@@ -99,7 +99,7 @@ public class usuarioController {
 	 */
 	@GetMapping(path = "/api/usuario/email/{email}")
 	public String consultarEmail(@PathVariable("email") String email) {
-		Usuario usuario = new Usuario();
+		Usuario usuario;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		usuario = usuarioDao.buscarEmail(email);
 		Gson gson = new Gson();
@@ -114,7 +114,7 @@ public class usuarioController {
 	 */
 	@GetMapping(path = "api/verificar/{email}")
 	public boolean verificarEmail(@PathVariable("email") String email) {
-		Usuario usuario = new Usuario();
+		Usuario usuario;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		usuario = usuarioDao.buscarEmail(email);
 		if(usuario != null) {
@@ -127,6 +127,7 @@ public class usuarioController {
 	 * Envia um código de verificação via e-mail ao usuário {GET}
 	 * @param String email
 	 * @return Strinf codigo
+	 * @author Andre
 	 */
 	@GetMapping(path = "/api/codigo/{email}")
 	public String codigo(@PathVariable("email") String email){

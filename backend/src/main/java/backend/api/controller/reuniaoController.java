@@ -17,7 +17,7 @@ import entidade.Reuniao;
  *
  */
 @RestController
-public class reuniaoController {
+public class ReuniaoController {
 	
 	/**
 	 * Retorna a reuniao que corresponde ao id indicado {GET}
