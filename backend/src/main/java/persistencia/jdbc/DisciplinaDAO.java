@@ -3,91 +3,63 @@ package persistencia.jdbc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Disciplina;
 
+/**
+ * Metodo para consulta da disciplina no banco de dados
+ * @author Andrey
+ *
+ */
 public class DisciplinaDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir Disciplina no banco de dados.
-	 * 
-	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
-	 * 
-	 * @param <code>Disciplina</code>
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andre
+	 * Metodo para inserir Disciplina no banco de dados
+	 * @param Disciplina disciplina 
+	 * @author André
+	 * @throws SQLException 
 	 */
-	public boolean insert(Disciplina disciplina) {
-		
+	public void insert(Disciplina disciplina) throws SQLException {
 		String sql = "insert into disciplina (nome, numeroaulas) values (?,?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			
-			comandoSql.setString(1, disciplina.getNome());
-			comandoSql.setInt(2, disciplina.getNumeroAulas());
-			
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setString(1, disciplina.getNome());
+		comandoSql.setInt(2, disciplina.getNumeroAulas());
 		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
 	/**
 	 * Metodo para atualizar uma Disciplina no banco de dados.
-	 * 
-	 * O id da <code>Disciplina</code> deve ser o mesmo id que esta no banco de dados.
-	 * 
-	 * @param <code>Disciplina</code>
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andre
+	 * O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja atualizar
+	 * @param Disciplina disciplina 
+	 * @author André
+	 * @throws SQLException 
 	 */ 
-	public boolean update(Disciplina disciplina) {
-		
+	public void update(Disciplina disciplina) throws SQLException {
 		String sql = "update disciplina set nome = ?, numeroaulas = ? where iddisciplina = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			
-			comandoSql.setString(1, disciplina.getNome());
-			comandoSql.setInt(2, disciplina.getNumeroAulas());
-			comandoSql.setInt(3, disciplina.getIdDisciplina());
-			
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setString(1, disciplina.getNome());
+		comandoSql.setInt(2, disciplina.getNumeroAulas());
+		comandoSql.setInt(3, disciplina.getIdDisciplina());
 		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
 	/**
 	 *  Metodo para deletar do banco de dados uma Disciplina
-	 *  <p>
-	 *  O <code>idDisciplina</code> deve ser igual ao id do banco de dados
-	 * 
-	 * @param <code>Disciplina</code>
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
+	 *  O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja deletar
+	 * @param int idDisciplina
 	 * @author Andre
 	 */
-	public boolean deleteId(int id) {
+	public void deleteId(int idDsciplina) {
 		
 		String sql = "delete from disciplina where iddisciplina = ?";
 		
@@ -95,7 +67,7 @@ public class DisciplinaDAO {
 			
 			PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
-			comandoSql.setInt(1, id);
+			comandoSql.setInt(1, idDsciplina);
 			comandoSql.execute();
 			
 			comandoSql.close();

@@ -1,7 +1,5 @@
 package entidade;
 
-import persistencia.jdbc.RespostaDAO;
-
 /**
  * Classe contendo metodos e atributos para o aluno
  * Herda metodos e atributos da classe Usuario.
@@ -215,22 +213,19 @@ public class Aluno extends Usuario {
 	public void setFk_turma(int fk_turma) {
 		this.fk_turma = fk_turma;
 	}
-
 	
-	/**
-	 * Metodo para o envio de uma resposta de uma atividade
-	 * @param Resposta resposta
-	 */
-    public void mandarResposta(Resposta resposta) {
-        RespostaDAO respostaDao = new RespostaDAO();
-        respostaDao.insert(resposta);
-    }
-
     
     //Descomentar após correções do André - ClassesDAO
   	//-------------------------------------------------
- 
-    
+	
+//	/**
+//	 * Metodo para o envio de uma resposta de uma atividade
+//	 * @param Resposta resposta
+//	 */
+//    public void mandarResposta(Resposta resposta) {
+//        RespostaDAO respostaDao = new RespostaDAO();
+//        respostaDao.insert(resposta);
+//    }
 ////    public List<Resposta> verRespostasEnviadas(int idAtividade) {
 ////    	RespostaDAO respostaDao = new RespostaDAO();
 ////        List<Resposta> listaResposta = new ArrayList<Resposta>();
