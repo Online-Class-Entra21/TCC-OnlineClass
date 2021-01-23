@@ -9,6 +9,11 @@ import java.util.List;
 
 import entidade.SalaPersonalizada;
 
+/**
+ * Metodo para consulta da salaPersonalizada no banco de dados 
+ * @author Breno
+ *
+ */
 public class SalaPersonalizadaDAO {
 	
 	private Connection conexao = ConexaoFactory.getConnection();
