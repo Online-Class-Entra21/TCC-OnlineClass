@@ -47,7 +47,7 @@ public class RelatorioDAO {
 	 */ 	
 	public void update(Relatorio relatorio) throws SQLException {
 		String sql = "update relatorio set idrelatorio=?, titulo=?, destinatario=?, texto=?, "
-				   + "tiporelatorio=?, fk_usuario=? where idrelatorio = ?";
+				   + "tiporelatorio=?, fk_usuario=? where idrelatorio =?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, relatorio.getTitulo());

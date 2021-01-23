@@ -36,8 +36,8 @@ public class RespostaDAO {
 		comandoSql.setDate(4, (Date) resposta.getDataEntrega());
 		comandoSql.setInt(5, resposta.getFk_aluno());
 		comandoSql.setInt(6, resposta.getFk_atividade());
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -49,7 +49,7 @@ public class RespostaDAO {
 	 * @throws SQLException 
 	 */ 	
 	public void update(Resposta resposta) throws SQLException {
-		String sql = "update resposta set SET nota=?, comentarioatividade=?, correcaoatividade=?, dataentrega=?,"
+		String sql = "update resposta set nota=?, comentarioatividade=?, correcaoatividade=?, dataentrega=?,"
 				   + " fk_aluno=?, fk_atividade=? where idresposta = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 

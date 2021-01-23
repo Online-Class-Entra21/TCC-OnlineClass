@@ -20,7 +20,7 @@ public class ReuniaoDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir Reuniao no banco de dados
+	 * Metodo para inserir reuniao no banco de dados
 	 * @param Reuniao reuniao
 	 * @author Andrey
 	 * @throws SQLException 
@@ -42,14 +42,14 @@ public class ReuniaoDAO {
 	}
 	
 	/**
-	 * Metodo para atualizar uma Reuniao no banco de dados
+	 * Metodo para atualizar uma reuniao no banco de dados
 	 * O <code>idReuniao</code> deve ser igual ao da reuniao que deseja atualizar
 	 * @param Reuniao reuniao
 	 * @author Andrey
 	 * @throws SQLException 
 	 */ 	
 	public void update(Reuniao reuniao) throws SQLException {
-		String sql = "update reuniao set SET descricao=?, datainicio=?, dono=?, notamediaaula=?, fk_sala=?, "
+		String sql = "update reuniao set descricao=?, datainicio=?, dono=?, notamediaaula=?, fk_sala=?, "
 				   + "fk_usuario_disciplina_turma=? where idreuniao = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
@@ -92,7 +92,7 @@ public class ReuniaoDAO {
 	 */	
 	public Reuniao buscarId(int id) throws SQLException {
 		Reuniao reuniao = new Reuniao();
-		String sql = "select * from resposta where idreuniao = ?";
+		String sql = "select * from reuniao where idreuniao = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
 		comandoSql.setInt(1, id);		
