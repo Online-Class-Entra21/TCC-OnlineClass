@@ -23,7 +23,7 @@ import persistencia.jdbc.ChamadaDAO;
  *
  */
 @RestController
-public class ChamadaController {
+public class chamadaController {
 	
 	/**
 	 * Retorna a chamada que corresponde ao id indicado {GET}
@@ -32,19 +32,17 @@ public class ChamadaController {
 	 */
 	@GetMapping(path = "/api/chamada/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		Chamada chamada;
+		Chamada chamada = new Chamada();
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamada = chamadaDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(chamada);
-			return json;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}
-		
+		Gson gson = new Gson();
+		String json = gson.toJson(chamada);
+		return json;
 	}
 	
 	/**
@@ -70,17 +68,15 @@ public class ChamadaController {
 	 * @param String json
 	 */
 	@PostMapping(path = "api/chamada/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
+	public void inserir(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Chamada chamada = gson.fromJson(json.toString(), Chamada.class);
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamadaDao.insert(chamada);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 
@@ -90,17 +86,15 @@ public class ChamadaController {
 	 * @param String json
 	 */
 	@PutMapping(path = "api/chamada/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Chamada chamada = gson.fromJson(json.toString(), Chamada.class);
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamadaDao.update(chamada);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	
@@ -109,15 +103,13 @@ public class ChamadaController {
 	 * @param int codigo
 	 */
 	@DeleteMapping(path = "/api/chamada/deletar/{codigo}")
-	public boolean deletar(@PathVariable("codigo") int codigo) {
+	public void deletar(@PathVariable("codigo") int codigo) {
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamadaDao.deleteId(codigo);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	

@@ -12,33 +12,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.Aluno;
-import entidade.Convite;
-import entidade.Coordenador;
+import entidade.Diretor;
 import entidade.Usuario;
-import persistencia.jdbc.AlunoDAO;
-import persistencia.jdbc.ConviteDAO;
-import persistencia.jdbc.CoordenadorDAO;
+import persistencia.jdbc.DiretorDAO;
 import persistencia.jdbc.UsuarioDAO;
 
 /**
- * Metodo controller do coordenador para consulta no banco de dados através da API Rest
+ * Metodo controller do diretor para consulta no banco de dados através da API Rest
  * @author Breno
  *
  */
 @RestController
-public class CoordenadorController {
+public class DiretorController {
 	
 	/**
-	 * Retorna a lista de coordenadores registrados no sistema {GET}
-	 * @return lista de coordenadores registrados no banco
+	 * Retorna a lista de diretores registrados no sistema {GET}
+	 * @return lista de diretores registrados no banco
 	 */
-	@GetMapping(path = "/api/coordenadores")
-	public List<Coordenador> consultar(){
-		List<Coordenador> lista;
-		CoordenadorDAO coordenadorDao = new CoordenadorDAO();
+	@GetMapping(path = "/api/diretores")
+	public List<Diretor> consultar(){
+		List<Diretor> lista;
+		DiretorDAO diretorDao = new DiretorDAO();
 		try {
-			lista = coordenadorDao.buscarTodos();
+			lista = diretorDao.buscarTodos();
 			return lista;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

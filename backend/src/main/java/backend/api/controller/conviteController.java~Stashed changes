@@ -23,7 +23,7 @@ import persistencia.jdbc.ConviteDAO;
  *
  */
 @RestController
-public class ConviteController {
+public class conviteController {
 
 	/**
 	 * Retorna o convite que corresponde ao id indicado {GET}
@@ -32,19 +32,17 @@ public class ConviteController {
 	 */
 	@GetMapping(path = "/api/convite/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		Convite convite;
+		Convite convite = new Convite();
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			convite = conviteDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(convite);
-			return json;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}
-		
+		Gson gson = new Gson();
+		String json = gson.toJson(convite);
+		return json;
 	}
 	
 	/**
@@ -70,17 +68,15 @@ public class ConviteController {
 	 * @param String json
 	 */
 	@PostMapping(path = "api/convite/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
+	public void inserir(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Convite convite = gson.fromJson(json.toString(), Convite.class);
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			conviteDao.insert(convite);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 
@@ -90,17 +86,15 @@ public class ConviteController {
 	 * @param String json
 	 */
 	@PutMapping(path = "api/convite/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Convite convite = gson.fromJson(json.toString(), Convite.class);
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			conviteDao.update(convite);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	
@@ -109,15 +103,13 @@ public class ConviteController {
 	 * @param int codigo
 	 */
 	@DeleteMapping(path = "/api/convite/deletar/{codigo}")
-	public boolean deletar(@PathVariable("codigo") int codigo) {
+	public void deletar(@PathVariable("codigo") int codigo) {
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			conviteDao.deleteId(codigo);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	

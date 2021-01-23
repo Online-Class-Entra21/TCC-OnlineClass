@@ -23,7 +23,7 @@ import persistencia.jdbc.AtividadeDAO;
  *
  */
 @RestController
-public class AtividadeController {
+public class atividadeController {
 	
 	/**
 	 * Retorna a atividade que corresponde ao id indicado {GET}
@@ -32,19 +32,17 @@ public class AtividadeController {
 	 */
 	@GetMapping(path = "/api/atividade/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		Atividade atividade;
+		Atividade atividade = new Atividade();
 		AtividadeDAO atividadeDao = new AtividadeDAO();
 		try {
 			atividade = atividadeDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(atividade);
-			return json;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}
-		
+		Gson gson = new Gson();
+		String json = gson.toJson(atividade);
+		return json;
 	}
 	
 	/**
@@ -70,17 +68,15 @@ public class AtividadeController {
 	 * @param String json
 	 */
 	@PostMapping(path = "api/atividade/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
+	public void inserir(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Atividade atividade = gson.fromJson(json.toString(), Atividade.class);
 		AtividadeDAO atividadeDao = new AtividadeDAO();
 		try {
 			atividadeDao.insert(atividade);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 
@@ -90,17 +86,15 @@ public class AtividadeController {
 	 * @param String json
 	 */
 	@PutMapping(path = "api/atividade/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Atividade atividade = gson.fromJson(json.toString(), Atividade.class);
 		AtividadeDAO atividadeDao = new AtividadeDAO();
 		try {
 			atividadeDao.update(atividade);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	
@@ -109,15 +103,13 @@ public class AtividadeController {
 	 * @param int codigo
 	 */
 	@DeleteMapping(path = "/api/atividade/deletar/{codigo}")
-	public boolean deletar(@PathVariable("codigo") int codigo) {
+	public void deletar(@PathVariable("codigo") int codigo) {
 		AtividadeDAO atividadeDao = new AtividadeDAO();
 		try {
 			atividadeDao.deleteId(codigo);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	

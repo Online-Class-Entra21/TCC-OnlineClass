@@ -23,7 +23,7 @@ import persistencia.jdbc.ArquivoUsuarioDAO;
  *
  */
 @RestController
-public class ArquivoUsuarioController {
+public class arquivoUsuarioController {
 	
 	/**
 	 * Retorna o arquivoUsuario que corresponde ao id indicado {GET}
@@ -36,15 +36,13 @@ public class ArquivoUsuarioController {
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuario = arquivoUsuarioDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(arquivoUsuario);
-			return json;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}
-		
+		Gson gson = new Gson();
+		String json = gson.toJson(arquivoUsuario);
+		return json;
 	}
 	
 	/**
@@ -70,17 +68,15 @@ public class ArquivoUsuarioController {
 	 * @param String json
 	 */
 	@PostMapping(path = "api/aluno/arquivosUsuario/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
+	public void inserir(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		ArquivoUsuario arquivoUsuario = gson.fromJson(json.toString(), ArquivoUsuario.class);
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuarioDao.insert(arquivoUsuario);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 
@@ -90,17 +86,15 @@ public class ArquivoUsuarioController {
 	 * @param String json
 	 */
 	@PutMapping(path = "api/arquivoUsuario/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		Gson gson = new Gson();
 		ArquivoUsuario arquivoUsuario = gson.fromJson(json.toString(), ArquivoUsuario.class);
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuarioDao.update(arquivoUsuario);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	
@@ -109,15 +103,13 @@ public class ArquivoUsuarioController {
 	 * @param int codigo
 	 */
 	@DeleteMapping(path = "/api/arquivoUsuario/deletar/{codigo}")
-	public boolean deletar(@PathVariable("codigo") int codigo) {
+	public void deletar(@PathVariable("codigo") int codigo) {
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuarioDao.deleteId(codigo);
-			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
 		}
 	}
 	

@@ -3,15 +3,23 @@ package reunioes.api;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Properties;
+
+import com.microsoft.graph.logger.DefaultLogger;
+import com.microsoft.graph.logger.LoggerLevel;
+import com.microsoft.graph.models.extensions.IGraphServiceClient;
+import com.microsoft.graph.models.extensions.OnlineMeeting;
 import com.microsoft.graph.models.extensions.User;
+import com.microsoft.graph.requests.extensions.GraphServiceClient;
+import com.microsoft.graph.serializer.CalendarSerializer;
 
 /**
  * Classe para testes da api graph
  *
  */
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         System.out.println("Java Graph Tutorial");
         System.out.println();
         final Properties oAuthProperties = new Properties();
@@ -24,55 +32,16 @@ public class App {
 
         final String appId = oAuthProperties.getProperty("app.id");
         final String[] appScopes = oAuthProperties.getProperty("app.scopes").split(",");
-        
         Authentication.initialize(appId);
-        final String accessToken = Authentication.getUserAccessToken(appScopes);
-        
-        User user = Graph.getUser(accessToken);
-        System.out.println("Welcome " + user.displayName);
-        System.out.println("Time zone: " + user.mailboxSettings.timeZone);
-        System.out.println();
-        
-        Scanner input = new Scanner(System.in);
+        String acessToken = Authentication.getUserAccessToken(appScopes);
+        AuthProvider authProvider = new AuthProvider(acessToken);
+        // Build a Graph client
+        IGraphServiceClient graphClient = GraphServiceClient.builder().authenticationProvider(authProvider).buildClient();
+        OnlineMeeting onlineMeeting = new OnlineMeeting();
+        onlineMeeting.subject = "User Token Meeting";
 
-        int choice = -1;
-
-        while (choice != 0) {
-            System.out.println("Please choose one of the following options:");
-            System.out.println("0. Exit");
-            System.out.println("1. Display access token");
-            System.out.println("2. View this week's calendar");
-            System.out.println("3. Add an event");
-
-            try {
-                choice = input.nextInt();
-            } catch (InputMismatchException ex) {
-                // Skip over non-integer input
-            }
-
-            input.nextLine();
-
-            // Process user choice
-            switch(choice) {
-                case 0:
-                    // Exit the program
-                    System.out.println("Goodbye...");
-                    break;
-                case 1:
-                    // Display access token
-                	System.out.println("Access token: " + accessToken);
-                    break;
-                case 2:
-                    // List the calendar
-                    break;
-                case 3:
-                    // Create a new event
-                    break;
-                default:
-                    System.out.println("Invalid choice");
-            }
-        }
-
-        input.close();
+        graphClient.me().onlineMeetings()
+            .buildRequest()
+            .post(onlineMeeting);
     }
 }

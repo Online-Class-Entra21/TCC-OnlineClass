@@ -1,5 +1,7 @@
 package backend.api.controller;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.Administrador;
+import entidade.Usuario;
+import persistencia.jdbc.AdministradorDAO;
+import persistencia.jdbc.UsuarioDAO;
 
 /**
  * Metodo controller do administrador para consulta no banco de dados através da API Rest
@@ -15,7 +20,7 @@ import entidade.Administrador;
  *
  */
 @RestController
-public class administradorController {
+public class AdministradorController {
 	
 	/**
 	 * Retorna a lista de administradores registrados no sistema {GET}
@@ -23,7 +28,17 @@ public class administradorController {
 	 */
 	@GetMapping(path = "/api/administradores")
 	public List<Administrador> consultar(){
-		return null;
+		List<Administrador> lista;
+		AdministradorDAO administradorDao = new AdministradorDAO();
+		try {
+			lista = administradorDao.buscarTodos();
+			return lista;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 	//------------------------------------------------------------------
