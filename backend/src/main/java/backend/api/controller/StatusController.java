@@ -11,7 +11,7 @@ import entidade.Conexao;
  *
  */
 @RestController
-public class statusController {
+public class StatusController {
 	
 	/**
 	 * Metodo para verificar se a conexao com a API está tudo certo

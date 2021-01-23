@@ -9,59 +9,59 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import entidade.TurmaAtividade;
+import entidade.UsuarioSalaPersonalizada;
 
 /**
- * Metodo controller da turmaAtividade para consulta no banco de dados através da API Rest
+ * Metodo controller do usuarioSalaPersonalizada para consulta no banco de dados através da API Rest
  * @author Breno
  *
  */
 @RestController
-public class turmaAtividadeController {
+public class UsuarioSalaPersonalizadaController {
 	
 	/**
-	 * Retorna a turmaAtividade que corresponde ao id indicado {GET}
+	 * Retorna o usuarioSalaPersonalizada que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
 	 */
-	@GetMapping(path = "/api/turmaAtividade/{codigo}")
+	@GetMapping(path = "/api/usuarioSalaPersonalizada/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		return null;
 	}
 	
 	/**
-	 * Retorna a lista das turmasAtividades registrados no sistema {GET}
-	 * @return lista de turmasAtividades registradas no banco
+	 * Retorna a lista dos usuariosSalasPersonalizadas registrados no sistema {GET}
+	 * @return lista de usuariosSalasPersonalizadas registrados no banco
 	 */
-	@GetMapping(path = "/api/turmasAtividades")
-	public List<TurmaAtividade> consultar(){
+	@GetMapping(path = "/api/usuariosSalasPersonalizadas")
+	public List<UsuarioSalaPersonalizada> consultar(){
 		return null;
 	}
 	
 	/**
-	 * Insere uma nova turmaAtividade no banco de dados {POST}
+	 * Insere um novo usuarioSalaPersonalizada no banco de dados {POST}
 	 * @param String json
 	 */
-	@PostMapping(path = "api/turmaAtividade/inserir/{json}")
+	@PostMapping(path = "api/usuarioSalaPersonalizada/inserir/{json}")
 	public void inserir(@PathVariable("json") String json) {
 		//Completar com o código
 	}
 
 	/**
-	 * Metodo para alteração da turmaAtividade que corresponde ao codigo informado {PUT}
+	 * Metodo para alteração do usuarioSalaPersonalizada que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
 	 */
-	@PutMapping(path = "api/turmaAtividade/alterar/{codigo}/{json}")
+	@PutMapping(path = "api/usuarioSalaPersonalizada/alterar/{codigo}/{json}")
 	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		//Completar com o código
 	}
 	
 	/**
-	 * Método de exclusão da turmaAtividade que corresponde ao codigo informado {DELETE}
+	 * Método de exclusão do usuarioSalaPersonalizada que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
 	 */
-	@DeleteMapping(path = "/api/turmaAtividade/deletar/{codigo}")
+	@DeleteMapping(path = "/api/usuarioSalaPersonalizada/deletar/{codigo}")
 	public void deletar(@PathVariable("codigo") int codigo) {
 		//Completar com o código
 	}
