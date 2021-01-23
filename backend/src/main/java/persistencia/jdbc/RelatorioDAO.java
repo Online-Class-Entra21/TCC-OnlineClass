@@ -11,7 +11,7 @@ import entidade.Relatorio;
 
 /**
  * Metodo para consulta do relatorio no banco de dados 
- * @author André
+ * @author Andrey
  *
  */
 public class RelatorioDAO {
@@ -21,7 +21,7 @@ public class RelatorioDAO {
 	/**
 	 * Metodo para inserir relatorio no banco de dados
 	 * @param Relatorio relatorio 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public void insert(Relatorio relatorio) throws SQLException {
@@ -42,7 +42,7 @@ public class RelatorioDAO {
 	 * Metodo para atualizar um relatorio no banco de dados.
 	 * O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja atualizar
 	 * @param Relatorio relatorio 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */ 	
 	public void update(Relatorio relatorio) throws SQLException {
@@ -64,7 +64,7 @@ public class RelatorioDAO {
 	 *  Metodo para deletar do banco de dados uma relatorio.
 	 *  O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja deletar
 	 * @param int idRelatorio 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public void deleteId(int idRelatorio) throws SQLException {
@@ -82,7 +82,7 @@ public class RelatorioDAO {
 	 * O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja buscar
 	 * @param int idRelatorio
 	 * @return Relatorio relatorio 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public Relatorio buscarId(int idRelatorio) throws SQLException {
@@ -108,7 +108,7 @@ public class RelatorioDAO {
 	/**
 	 * Metodo para selecionar todos os relatorios do banco de dados
 	 * @return lista de relatorios registrados no banco
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public List<Relatorio> buscarTodos() throws SQLException {

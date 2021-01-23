@@ -12,7 +12,7 @@ import entidade.PeriodoAvaliacao;
 
 /**
  * Metodo para consulta do periodoAvaliacao no banco de dados 
- * @author André
+ * @author Andrey
  *
  */
 public class PeriodoAvaliacaoDAO {
@@ -22,7 +22,7 @@ public class PeriodoAvaliacaoDAO {
 	/**
 	 * Metodo para inserir periodoAvaliacao no banco de dados
 	 * @param PeriodoAvaliacao periodoAvaliacao
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	public void insert(PeriodoAvaliacao periodoAvaliacao) throws SQLException {
@@ -42,7 +42,7 @@ public class PeriodoAvaliacaoDAO {
 	 * Metodo para atualizar um periodoAvaliacao no banco de dados
 	 * O <code>idPeriodoAvaliacao</code> deve ser igual ao do periodoAvaliacao que deseja atualizar
 	 * @param PeriodoAvaliacao periodoAvaliacao
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */ 	
 	public void update(PeriodoAvaliacao periodoAvaliacao) throws SQLException {
@@ -64,7 +64,7 @@ public class PeriodoAvaliacaoDAO {
 	 *  Metodo para deletar do banco de dados um periodoAvaliacao
 	 *  O <code>idPeriodoAvaliacao</code> deve ser igual ao do periodoAvaliacao que deseja delete
 	 * @param int periodoAvaliacao
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public void deleteId(int idPeriodoAvaliacao) throws SQLException {
@@ -81,7 +81,7 @@ public class PeriodoAvaliacaoDAO {
 	 * Metodo para selecionar periodoAvaliacao no banco de dados
 	 * O <code>idPeriodoAvaliacao</code> deve ser igual ao do periodoAvaliacao que deseja buscar
 	 * @param int idPeriodoAvaliacao
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public PeriodoAvaliacao buscarId(int idPeriodoAvaliacao) throws SQLException {
@@ -106,7 +106,7 @@ public class PeriodoAvaliacaoDAO {
 	/**
 	 * Metodo para selecionar todos os periodosAvaliacaos do banco de dados
 	 * @return lista de periodosAvaliacoes registradas no banco 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public List<PeriodoAvaliacao> buscarTodos() throws SQLException {
