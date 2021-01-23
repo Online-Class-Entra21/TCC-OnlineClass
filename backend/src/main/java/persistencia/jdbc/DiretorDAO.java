@@ -10,7 +10,7 @@ import java.util.List;
 import entidade.Diretor;
 
 /**
- * Metodo para consulta do administrador no banco de dados 
+ * Metodo para consulta do diretor no banco de dados 
  * @author André 
  *
  */
@@ -19,8 +19,8 @@ public class DiretorDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para selecionar do banco de dados todos os coordenadores cadastrados
-	 * @return lista de coordenadores registrados no banco 
+	 * Metodo para selecionar do banco de dados todos os diretores cadastrados
+	 * @return lista de diretores registrados no banco 
 	 * @author André
 	 * @throws SQLException
 	 */

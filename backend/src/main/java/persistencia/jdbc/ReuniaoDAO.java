@@ -14,10 +14,7 @@ public class ReuniaoDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir Reuniao no banco de dados.
-	 * 
-	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
-	 * 
+	 * Metodo para inserir Reuniao no banco de dados
 	 * @param <code>Reuniao</code>
 	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
 	 * @author Andre
