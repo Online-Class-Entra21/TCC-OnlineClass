@@ -30,50 +30,87 @@
                     <br>
                     <input type="text" id="idNomeEscola" name="nmNomeEscola">
                     <br>
-                    <!--
-                    <label for="idIniAno">Inicio Ano Letivo</label>
-                    <br>
-                    <input type="date" id="idIniAno" name="nmIniAno">
-                    <br>
-                    <label for="idFimAno">Fim Ano Letivo</label>
-                    <br>
-                    <input type="date" id="idFimAno" name="nmFimAno">-->
                     <br><br>
-                    <button>Criar</button>
+                    <button id="btnCriar" onclick="criar()">Criar</button>
                 </fieldset>
             </div>
+            <div id="cadastra-diretor">
+                <fieldset id="criacao">
+                    <legend>Cadastro do Diretor</legend>
+                    <label for="idNomeDiretor">Nome do Diretor</label>
+                    <br>
+                    <input type="text" id="idNomeDiretor" name="">
+                    <br><br>
+                    <label for="idIniAno">Sobrenome do Diretor</label>
+                    <br>
+                    <input type="" id="" name="">
+                    <br><br>
+                    <label for="">CPF</label>
+                    <br>
+                    <input type="number" id="" name="">
+                    <br><br>
+                    <label for="">Telefone</label>
+                    <br>
+                    <input type="number" id="" name="">
+                    <br><br>
+                    <label for="">Celular</label>
+                    <br>
+                    <input type="number" id="" name="">
+                    <br><br>
+                    <label for="">E-mail</label>
+                    <br>
+                    <input type="type" id="" name="">
+                    <br><br>
+                </fieldset>
+            </div>
+
+                <div id="endereco">
+                    <fieldset id="criacao" >
+                        <legend>Endereço</legend>
+
+                        <label for="">Estado</label>
+                        <br>
+                        <input type="" id="" name="">
+                        <br><br>
+                        <label for="">Cidade</label>
+                        <br>
+                        <input type="" id="" name="">
+                        <br><br>
+                        <label for="">Bairro</label>
+                        <br>
+                        <input type="" id="" name="">
+                        <br><br>
+                        <label for="">Rua</label>
+                        <br>
+                        <input type="" id="" name="">
+                        <br><br>
+                        <label for="">Número</label>
+                        <br>
+                        <input type="" id="" name="">
+                        <br><br>
+                        <label for="">CEP</label>
+                        <br>
+                        <input type="" id="" name="">
+                        <br><br>
+                        <button id="btnCadastro" onclick="cadastrar()">Cadastrar</button>
+                    </fieldset>
+                </div>
+            
+
             <div id="registro-escola-diretor">
-                <table>
-                    <tr  class="alternado" style="width:800px">
-                        <th>Nome Escolar</th>
-                        <th>Nome Diretor</th>
-                    </tr>
+                <table id="escolas-diretores">
+                    <thead>
+                        <tr class="alternado" style="width:800px">
+                            <th>Nome Escolar</th>
+                            <th>Nome Diretor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="andre">
 
-                    <tr>
-                        <td>Escola Jefferson</td>
-                        <td>Diretor Alfredo</td>
-                    </tr>
-
-                    <tr>
-                        <td>Escola Predo II</td>
-                        <td>Diretor Predrinho</td>
-                    </tr>
-
-                    <tr>
-                        <td>Escola CEDUP</td>
-                        <td>Diretora Deise</td>
-                    </tr>
-
-                    <tr>
-                        <td>Escola Castelo</td>
-                        <td>Diretor Alberto</td>
-                    </tr>
-
-                    <tr>
-                        <td>Escola Menino Jesus</td>
-                        <td>Diretora Daniela</td>
-                    </tr>
+                    </tbody>
                 </table>
+
+
             </div>
         </main>
 
@@ -82,5 +119,44 @@
         </footer>
 
 
+        <script>
+            var numLinhas = 0;
+
+            document.getElementById('btnCadastro').disabled = true;
+
+            function criar(){
+                numLinhas++;
+                var linha = document.createElement("tr");
+                var coluna = document.createElement("td");
+
+                var input = $("#idNomeEscola")[0].value;
+                console.log(input);
+                
+                coluna.append(
+                    input
+                )
+                linha.append(coluna)
+                linha.id = "linha"+numLinhas
+
+                document.getElementById('btnCadastro').disabled = false;
+                document.getElementById('btnCriar').disabled = true;
+
+                document.getElementById('andre').append(linha)
+
+            }
+
+
+            function cadastrar(){
+                var coluna = document.createElement("td")
+                var input = $("#idNomeDiretor")[0].value;
+                coluna.append(input)
+
+                document.getElementById('btnCadastro').disabled = true;
+                document.getElementById('btnCriar').disabled = false;
+                document.getElementById('linha'+numLinhas).append(coluna)               
+            }
+
+
+        </script>
     </body>
 </html>

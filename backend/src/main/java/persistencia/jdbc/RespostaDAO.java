@@ -12,7 +12,7 @@ import entidade.Resposta;
 
 /**
  * Metodo para consulta da resposta no banco de dados 
- * @author André
+ * @author Andrey
  *
  */
 public class RespostaDAO {
@@ -22,7 +22,7 @@ public class RespostaDAO {
 	/**
 	 * Metodo para inserir resposta no banco de dados
 	 * @param Resposta resposta 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public void insert(Resposta resposta) throws SQLException {
@@ -36,8 +36,8 @@ public class RespostaDAO {
 		comandoSql.setDate(4, (Date) resposta.getDataEntrega());
 		comandoSql.setInt(5, resposta.getFk_aluno());
 		comandoSql.setInt(6, resposta.getFk_atividade());
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -45,11 +45,11 @@ public class RespostaDAO {
 	 * Metodo para atualizar uma resposta no banco de dados.
 	 * O <code>idResposta</code> deve ser igual ao do resposta que deseja atualizar
 	 * @param Resposta resposta
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */ 	
 	public void update(Resposta resposta) throws SQLException {
-		String sql = "update resposta set SET nota=?, comentarioatividade=?, correcaoatividade=?, dataentrega=?,"
+		String sql = "update resposta set nota=?, comentarioatividade=?, correcaoatividade=?, dataentrega=?,"
 				   + " fk_aluno=?, fk_atividade=? where idresposta = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
@@ -69,7 +69,7 @@ public class RespostaDAO {
 	 *  Metodo para deletar do banco de dados uma resposta.
 	 *  O <code>idResposta</code> deve ser igual ao do resposta que deseja deletar
 	 * @param int idResposta
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public void deleteId(int idResposta) throws SQLException {
@@ -87,7 +87,7 @@ public class RespostaDAO {
 	 * O <code>idResposta</code> deve ser igual ao do resposta que deseja buscar
 	 * @param int idResposta
 	 * @return Resposta resposta
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public Resposta buscarId(int id) throws SQLException {
@@ -114,7 +114,7 @@ public class RespostaDAO {
 	/**
 	 * Metodo para selecionar todas as respostas do banco de dados
 	 * @return lista de respostas registradas no banco
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public List<Resposta> buscarTodos() throws SQLException {

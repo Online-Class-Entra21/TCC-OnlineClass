@@ -11,7 +11,7 @@ import entidade.Disciplina;
 
 /**
  * Metodo para consulta da disciplina no banco de dados
- * @author André
+ * @author Andrey
  *
  */
 public class DisciplinaDAO {
@@ -21,7 +21,7 @@ public class DisciplinaDAO {
 	/**
 	 * Metodo para inserir disciplina no banco de dados
 	 * @param Disciplina disciplina 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	public void insert(Disciplina disciplina) throws SQLException {
@@ -39,7 +39,7 @@ public class DisciplinaDAO {
 	 * Metodo para atualizar uma disciplina no banco de dados.
 	 * O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja atualizar
 	 * @param Disciplina disciplina 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */ 
 	public void update(Disciplina disciplina) throws SQLException {
@@ -58,7 +58,7 @@ public class DisciplinaDAO {
 	 *  Metodo para deletar do banco de dados uma disciplina.
 	 *  O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja deletar
 	 * @param int idDisciplina
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	public void deleteId(int idDisciplina) throws SQLException {
@@ -76,7 +76,7 @@ public class DisciplinaDAO {
 	 * O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja buscar
 	 * @param int idDisciplina
 	 * @return Disciplina disciplina 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	public Disciplina buscarId(int idDisciplina) throws SQLException {
@@ -99,7 +99,7 @@ public class DisciplinaDAO {
 	/**
 	 * Metodo para selecionar todas as discilina do banco de dados
 	 * @return lista de disciplinas resgistradas no banco 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	public List<Disciplina> buscarTodos() throws SQLException {

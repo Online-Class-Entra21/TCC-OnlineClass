@@ -11,7 +11,7 @@ import entidade.Endereco;
 
 /**
  * Metodo para consulta do endereco no banco de dados 
- * @author André
+ * @author Andrey
  *
  */
 public class EnderecoDAO {
@@ -21,7 +21,7 @@ public class EnderecoDAO {
 	/**
 	 * Metodo para inserir endereco no banco de dados
 	 * @param Endereco endereco
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	public void insert(Endereco endereco) throws SQLException {
@@ -42,7 +42,7 @@ public class EnderecoDAO {
 	/**
 	 * Metodo para atualizar um endereco no banco de dados.
 	 * O <code>idEndereco</code> deve ser igual ao do endereco que deseja atualizar
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */ 	
 	public void update(Endereco endereco) throws SQLException {
@@ -65,7 +65,7 @@ public class EnderecoDAO {
 	 *  Metodo para deletar do banco de dados uma endereco.
 	 *  O <code>idEndereco</code> deve ser igual ao do endereco que deseja deletar
 	 * @param int idEndereco
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	public void deleteId(int idEndereco) throws SQLException {
@@ -83,7 +83,7 @@ public class EnderecoDAO {
 	 * O <code>idEndereco</code> deve ser igual ao do endereco que deseja buscar
 	 * @param int idEndereco
 	 * @return Endereco endereco
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	public Endereco buscarId(int idEndereco) throws SQLException {
@@ -110,7 +110,7 @@ public class EnderecoDAO {
 	/**
 	 * Metodo para selecionar todos os enderecos do banco de dados
 	 * @return lista de enderecos registrados no banco 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	public List<Endereco> buscarTodos() throws SQLException {

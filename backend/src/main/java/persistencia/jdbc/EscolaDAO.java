@@ -12,7 +12,7 @@ import entidade.Escola;
 
 /**
  * Metodo para consulta da escola no banco de dados 
- * @author André
+ * @author Andrey
  *
  */
 public class EscolaDAO {
@@ -22,7 +22,7 @@ public class EscolaDAO {
 	/**
 	 * Metodo para inserir a escola no banco de dados
 	 * @param Escola escola 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public void insert(Escola escola) throws SQLException {
@@ -41,7 +41,7 @@ public class EscolaDAO {
 	 * Metodo para atualizar uma escola no banco de dados.
 	 * O <code>idEscola</code> deve ser igual ao do escola que deseja atualizar
 	 * @param Escola escola
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */ 	
 	public void update(Escola escola) throws SQLException {
@@ -61,7 +61,7 @@ public class EscolaDAO {
 	 *  Metodo para deletar do banco de dados uma Disciplina
 	 *  O <code>idEscola</code> deve ser igual ao do escola que deseja deletar
 	 * @param int idDisciplina
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public void deleteId(int idDisciplina) throws SQLException {
@@ -79,7 +79,7 @@ public class EscolaDAO {
 	 * O <code>idEscola</code> deve ser igual ao do escola que deseja buscar
 	 * @param int idChamada
 	 * @return Chamada chamada 
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public Escola buscarId(int idChamada) throws SQLException {
@@ -104,7 +104,7 @@ public class EscolaDAO {
 	/**
 	 * Metodo para selecionar todas as chamadas do banco de dados
 	 * @return lista de escolas resgistradas no banco
-	 * @author André
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public List<Escola> buscarTodos() throws SQLException {
