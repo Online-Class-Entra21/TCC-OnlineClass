@@ -1,6 +1,5 @@
 package backend.api.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -33,12 +32,17 @@ public class UsuarioController {
 	 */
 	@GetMapping(path = "/api/usuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		Usuario usuario;
-		UsuarioDAO usuarioDao = new UsuarioDAO();
-		usuario = usuarioDao.buscarId(codigo);
-		Gson gson = new Gson();
-		String json = gson.toJson(usuario);
-		return json;
+		try {
+			Usuario usuario;
+			UsuarioDAO usuarioDao = new UsuarioDAO();
+			usuario = usuarioDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(usuario);
+			return json;
+		}catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 	
 	/**
@@ -47,10 +51,15 @@ public class UsuarioController {
 	 */
 	@GetMapping(path = "/api/usuarios")
 	public List<Usuario> consultar(){
-		List<Usuario> lista;
-		UsuarioDAO usuarioDao = new UsuarioDAO();
-		lista = usuarioDao.buscarTodos();
-		return lista;
+		try {
+			List<Usuario> lista;
+			UsuarioDAO usuarioDao = new UsuarioDAO();
+			lista = usuarioDao.buscarTodos();
+			return lista;
+		}catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 	
 	/**

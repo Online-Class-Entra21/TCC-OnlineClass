@@ -11,7 +11,7 @@ import entidade.ArquivoUsuario;
 
 /**
  * Metodo para consulta do arquivoUsuario no banco de dados
- * @author Breno
+ * @author André
  *
  */
 public class ArquivoUsuarioDAO {
