@@ -40,7 +40,7 @@ public class AtividadeDAO {
 	
 	/**
 	 * Metodo para atualizar uma atividade no banco de dados.
-	 * O <code>idAtividade</code> deve ser igual ao do atividade que deseja atualizar
+	 * O <code>idAtividade</code> deve ser igual ao da atividade que deseja atualizar
 	 * @param Atividade atividade
 	 * @author Andrey
 	 * @throws SQLException 
@@ -64,7 +64,7 @@ public class AtividadeDAO {
 	
 	/**
 	 *  Metodo para deletar do banco de dados uma atividade.
-	 *  O <code>idAtividade</code> deve ser igual ao do atividade que deseja deletar
+	 *  O <code>idAtividade</code> deve ser igual ao da atividade que deseja deletar
 	 * @param int idAtividade
 	 * @author Andrey
 	 * @throws SQLException 
@@ -81,7 +81,7 @@ public class AtividadeDAO {
 	
 	/**
 	 * Metodo para selecionar uma atividade do banco de dados.
-	 * O <code>idAtividade</code> deve ser igual ao do atividade que deseja buscar
+	 * O <code>idAtividade</code> deve ser igual ao da atividade que deseja buscar
 	 * @param int idAtividade
 	 * @author Andrey
 	 * @throws SQLException 

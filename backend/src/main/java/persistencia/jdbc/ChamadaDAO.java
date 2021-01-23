@@ -37,7 +37,7 @@ public class ChamadaDAO {
 	
 	/**
 	 * Metodo para atualizar chamada no banco de dados.
-	 * O <code>idChamada</code> deve ser igual ao do chamada que deseja atualizar
+	 * O <code>idChamada</code> deve ser igual ao da chamada que deseja atualizar
 	 * @param Chmada chamada
 	 * @author Andrey
 	 * @throws SQLException 
@@ -57,7 +57,7 @@ public class ChamadaDAO {
 	
 	/**
 	 * Metodo para deletar chamada do banco de dados.
-	 * O <code>idAtividade</code> deve ser igual ao do chamada que deseja deletar
+	 * O <code>idAtividade</code> deve ser igual ao da chamada que deseja deletar
 	 * @param int idChamada
 	 * @author Andrey
 	 * @throws SQLException 
@@ -74,7 +74,7 @@ public class ChamadaDAO {
 	
 	/**
 	 * Metodo para selecionar chamada no banco de dados.
-	 * O <code>idAtividade</code> deve ser igual ao do chamada que deseja buscar
+	 * O <code>idAtividade</code> deve ser igual ao da chamada que deseja buscar
 	 * @param int idChamada
 	 * @return Chamada chamada 
 	 * @author Andrey

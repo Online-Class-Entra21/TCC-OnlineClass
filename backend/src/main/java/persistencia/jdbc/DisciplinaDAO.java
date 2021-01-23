@@ -11,7 +11,7 @@ import entidade.Disciplina;
 
 /**
  * Metodo para consulta da disciplina no banco de dados
- * @author Andrey
+ * @author André
  *
  */
 public class DisciplinaDAO {
@@ -98,7 +98,7 @@ public class DisciplinaDAO {
 	/**
 	 * Metodo para selecionar todas as discilina do banco de dados
 	 * @return lista de disciplinas resgistradas no banco 
-	 * @author Andre
+	 * @author André
 	 * @throws SQLException 
 	 */
 	public List<Disciplina> buscarTodos() throws SQLException {
