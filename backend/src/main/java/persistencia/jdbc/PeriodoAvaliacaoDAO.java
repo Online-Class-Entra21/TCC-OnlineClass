@@ -33,8 +33,8 @@ public class PeriodoAvaliacaoDAO {
 		comandoSql.setDate(2, (Date) periodoAvaliacao.getDataFinal());
 		comandoSql.setString(3, periodoAvaliacao.getDescricao());
 		comandoSql.setInt(4, periodoAvaliacao.getFk_escola());
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -55,8 +55,8 @@ public class PeriodoAvaliacaoDAO {
 		comandoSql.setString(3, periodoAvaliacao.getDescricao());
 		comandoSql.setInt(4, periodoAvaliacao.getFk_escola());
 		comandoSql.setInt(5, periodoAvaliacao.getIdPeriodoAvaliacao());
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -72,8 +72,8 @@ public class PeriodoAvaliacaoDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, idPeriodoAvaliacao);
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -110,15 +110,14 @@ public class PeriodoAvaliacaoDAO {
 	 * @throws SQLException 
 	 */	
 	public List<PeriodoAvaliacao> buscarTodos() throws SQLException {
+		PeriodoAvaliacao periodoAvaliacao = new PeriodoAvaliacao();
 		List<PeriodoAvaliacao> lista = new ArrayList<PeriodoAvaliacao>();
 		String sql = "select * from Escola";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		ResultSet resultSet = comandoSql.executeQuery();
-		comandoSql.close();
 		
 		while (resultSet.next()) {
-			PeriodoAvaliacao periodoAvaliacao = new PeriodoAvaliacao();
 			periodoAvaliacao.setIdPeriodoAvaliacao(resultSet.getInt(1));
 			periodoAvaliacao.setDataInicial(resultSet.getDate(2));
 			periodoAvaliacao.setDataFinal(resultSet.getDate(3));
@@ -126,6 +125,7 @@ public class PeriodoAvaliacaoDAO {
 			periodoAvaliacao.setFk_escola(resultSet.getInt(5));
 			lista.add(periodoAvaliacao);
 		}	
+		comandoSql.close();
 		return lista;
 	}
 }

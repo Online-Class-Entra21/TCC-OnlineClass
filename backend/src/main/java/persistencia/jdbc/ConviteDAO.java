@@ -98,7 +98,6 @@ private Connection conexao = ConexaoFactory.getConnection();
 			convite.setSalaConvite(resultSet.getInt(3));
 			convite.setSituacaoConvite(resultSet.getBoolean(4));
 			convite.setFk_usuario(resultSet.getInt(5));
-		
 		}
 		comandoSql.close();
 		return convite;

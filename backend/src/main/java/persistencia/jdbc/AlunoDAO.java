@@ -80,8 +80,8 @@ public class AlunoDAO {
 	 */
 	public void deleteId(int idAluno) throws SQLException {
 		String sql = "delete from aluno where idaluno = ?";
-		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
 		comandoSql.setInt(1, idAluno);
 		
 		comandoSql.execute();
@@ -99,8 +99,8 @@ public class AlunoDAO {
 	public Aluno buscarId(int idAluno) throws SQLException {
 		Aluno aluno = new Aluno();
 		String sql = "select * from aluno where idaluno = ?";
-		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
 		comandoSql.setInt(1, idAluno);
 		ResultSet resultSet = comandoSql.executeQuery();
 		

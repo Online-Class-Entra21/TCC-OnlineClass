@@ -34,8 +34,8 @@ public class EnderecoDAO {
 		comandoSql.setString(4, endereco.getRua());
 		comandoSql.setInt(5, endereco.getNumero());
 		comandoSql.setString(6, endereco.getCep());
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 
@@ -56,8 +56,8 @@ public class EnderecoDAO {
 		comandoSql.setInt(5, endereco.getNumero());
 		comandoSql.setString(6, endereco.getCep());
 		comandoSql.setInt(7, endereco.getIdEndereco());
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -73,8 +73,8 @@ public class EnderecoDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
 		comandoSql.setInt(1, idEndereco);
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -114,6 +114,7 @@ public class EnderecoDAO {
 	 * @throws SQLException 
 	 */
 	public List<Endereco> buscarTodos() throws SQLException {
+		Endereco endereco = new Endereco();
 		List<Endereco> lista = new ArrayList<Endereco>();
 		String sql = "select * from Endereco";
 		
@@ -121,7 +122,6 @@ public class EnderecoDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 
 		while (resultSet.next()) {
-			Endereco endereco = new Endereco();
 			endereco.setIdEndereco(resultSet.getInt(1));
 			endereco.setEstado(resultSet.getString(2));
 			endereco.setCidade(resultSet.getString(3));

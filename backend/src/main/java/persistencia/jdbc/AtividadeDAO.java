@@ -15,6 +15,7 @@ import entidade.Atividade;
  *
  */
 public class AtividadeDAO {
+	
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**

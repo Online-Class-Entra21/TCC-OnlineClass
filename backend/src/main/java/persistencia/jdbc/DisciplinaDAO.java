@@ -15,6 +15,7 @@ import entidade.Disciplina;
  *
  */
 public class DisciplinaDAO {
+	
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
@@ -65,8 +66,8 @@ public class DisciplinaDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
 		comandoSql.setInt(1, idDisciplina);
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -102,6 +103,7 @@ public class DisciplinaDAO {
 	 * @throws SQLException 
 	 */
 	public List<Disciplina> buscarTodos() throws SQLException {
+		Disciplina disciplina = new Disciplina();
 		List<Disciplina> lista = new ArrayList<Disciplina>();
 		String sql = "select * from Endereco";
 		
@@ -109,7 +111,6 @@ public class DisciplinaDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
-			Disciplina disciplina = new Disciplina();
 			disciplina.setIdDisciplina(resultSet.getInt(1));
 			disciplina.setNome(resultSet.getString(2));
 			disciplina.setNumeroAulas(resultSet.getInt(3));

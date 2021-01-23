@@ -67,10 +67,9 @@ public class ArquivoDAO {
 	 * @throws SQLException 
 	 */
 	public void deleteId(int idArquivo) throws SQLException {
-		
 		String sql = "delete from arquivo where idarquivo = ?";
-		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
 		comandoSql.setInt(1, idArquivo);
 		
 		comandoSql.execute();
@@ -88,11 +87,11 @@ public class ArquivoDAO {
 	public Arquivo buscarId(int idArquivo) throws SQLException {
 		Arquivo arquivo = new Arquivo();
 		String sql = "select * from arquivo where idarquivo = ?";
-		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
 		comandoSql.setInt(1, idArquivo);
-			
 		ResultSet resultSet = comandoSql.executeQuery();
+		
 		if (resultSet.next()) {
 			arquivo.setIdArquivo(resultSet.getInt(1));
 			arquivo.setExtensao(resultSet.getString(2));

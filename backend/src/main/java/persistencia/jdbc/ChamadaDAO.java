@@ -15,6 +15,7 @@ import entidade.Chamada;
  *
  */
 public class ChamadaDAO {
+	
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
