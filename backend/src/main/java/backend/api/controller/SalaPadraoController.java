@@ -65,8 +65,4 @@ public class SalaPadraoController {
 	public void deletar(@PathVariable("codigo") int codigo) {
 		//Completar com o código
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }

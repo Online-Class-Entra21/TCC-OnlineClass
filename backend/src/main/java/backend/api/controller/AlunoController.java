@@ -17,7 +17,7 @@ import persistencia.jdbc.AlunoDAO;
 
 /**
  * Metodo controller do aluno para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andrey
  *
  */
 @RestController
@@ -27,6 +27,7 @@ public class AlunoController {
 	 * Retorna o aluno que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
+	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	@GetMapping(path = "/api/aluno/{codigo}")

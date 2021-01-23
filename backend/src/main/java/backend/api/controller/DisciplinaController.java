@@ -19,7 +19,7 @@ import persistencia.jdbc.DisciplinaDAO;
  * Metodo controller da disciplina para consulta no banco de dados através da
  * API Rest
  * 
- * @author Breno
+ * @author Andre
  *
  */
 @RestController
@@ -34,16 +34,16 @@ public class DisciplinaController {
 	 */
 	@GetMapping(path = "/api/disciplina/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		DisciplinaDAO disDao = new DisciplinaDAO();
-		Disciplina dis;
+		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
+		Disciplina disciplina;
 		try {
-			dis = disDao.buscarId(codigo);
+			disciplina = disciplinaDao.buscarId(codigo);
 		} catch (SQLException e) {
-			dis = null;
+			disciplina = null;
 			e.printStackTrace();
 		}
 		Gson gson = new Gson();
-		String json = gson.toJson(dis);
+		String json = gson.toJson(disciplina);
 		return json;
 	}
 
@@ -71,6 +71,7 @@ public class DisciplinaController {
 	 * 
 	 * @param String json
 	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/disciplina/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -92,6 +93,7 @@ public class DisciplinaController {
 	 * @param int codigo
 	 * @param String json
 	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/disciplina/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -111,6 +113,7 @@ public class DisciplinaController {
 	 * Método de exclusão da disciplina que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
 	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/disciplina/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
@@ -123,8 +126,4 @@ public class DisciplinaController {
 		}
 		return true;
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }

@@ -11,7 +11,7 @@ import persistencia.jdbc.AdministradorDAO;
 
 /**
  * Metodo controller do administrador para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andrey
  *
  */
 @RestController
@@ -19,7 +19,8 @@ public class AdministradorController {
 	
 	/**
 	 * Retorna a lista de administradores registrados no sistema {GET}
-	 * @return lista de administradores registrados no banco 
+	 * @return lista de administradores registrados no banco
+	 * @author Andrey 
 	 */
 	@GetMapping(path = "/api/administradores")
 	public List<Administrador> consultar(){
@@ -33,10 +34,9 @@ public class AdministradorController {
 			e.printStackTrace();
 			return null;
 		}
-		
 	}
 	
 	//------------------------------------------------------------------
-	//Método Extras - Fora dos 3 principais 
+	//Método Extras - Fora do principal 
 	//------------------------------------------------------------------
 }

@@ -11,7 +11,7 @@ import persistencia.jdbc.DiretorDAO;
 
 /**
  * Metodo controller do diretor para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andrey
  *
  */
 @RestController
@@ -20,6 +20,7 @@ public class DiretorController {
 	/**
 	 * Retorna a lista de diretores registrados no sistema {GET}
 	 * @return lista de diretores registrados no banco
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/diretores")
 	public List<Diretor> consultar(){
@@ -36,6 +37,6 @@ public class DiretorController {
 	}
 	
 	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
+	//Método Extras - Fora do principal
 	//------------------------------------------------------------------
 }

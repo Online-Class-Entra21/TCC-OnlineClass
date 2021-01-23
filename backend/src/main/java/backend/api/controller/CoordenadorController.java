@@ -11,7 +11,7 @@ import persistencia.jdbc.CoordenadorDAO;
 
 /**
  * Metodo controller do coordenador para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andrey
  *
  */
 @RestController
@@ -20,6 +20,7 @@ public class CoordenadorController {
 	/**
 	 * Retorna a lista de coordenadores registrados no sistema {GET}
 	 * @return lista de coordenadores registrados no banco
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/coordenadores")
 	public List<Coordenador> consultar(){

@@ -17,7 +17,7 @@ import persistencia.jdbc.ArquivoUsuarioDAO;
 
 /**
  * Metodo controller do arquivoUsuario para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andrey
  *
  */
 @RestController
@@ -27,6 +27,7 @@ public class ArquivoUsuarioController {
 	 * Retorna o arquivoUsuario que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/arquivoUsuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -47,7 +48,8 @@ public class ArquivoUsuarioController {
 	
 	/**
 	 * Retorna a lista de arquivosUsuarios registrados no sistema {GET}
-	 * @return lista de arquivosUsuarios registrados no banco 
+	 * @return lista de arquivosUsuarios registrados no banco
+	 * @author Andrey 
 	 */
 	@GetMapping(path = "/api/arquivosUsuarios")
 	public List<ArquivoUsuario> consultar(){
@@ -66,6 +68,8 @@ public class ArquivoUsuarioController {
 	/**
 	 * Insere uma novo arquivosUsuario no banco de dados {POST}
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@PostMapping(path = "api/aluno/arquivosUsuario/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -86,6 +90,8 @@ public class ArquivoUsuarioController {
 	 * Metodo para alteração do arquivoUsuario que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@PutMapping(path = "api/arquivoUsuario/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -105,6 +111,8 @@ public class ArquivoUsuarioController {
 	/**
 	 * Método de exclusão do arquivoUsuario que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@DeleteMapping(path = "/api/arquivoUsuario/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
@@ -118,8 +126,4 @@ public class ArquivoUsuarioController {
 			return false;
 		}
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }

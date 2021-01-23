@@ -27,6 +27,7 @@ public class EnderecoController {
 	 * @param int codigo
 	 * @return String json
 	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@GetMapping(path = "/api/endereco/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -47,6 +48,7 @@ public class EnderecoController {
 	 * Insere um novo endereco no banco de dados {POST}
 	 * @param String json
 	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/endereco/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -66,6 +68,8 @@ public class EnderecoController {
 	 * Metodo para alteração do endereco que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/endereco/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
@@ -84,6 +88,8 @@ public class EnderecoController {
 	/**
 	 * Método de exclusão do endereco que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/endereco/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
@@ -96,8 +102,4 @@ public class EnderecoController {
 		}
 		return true;
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }

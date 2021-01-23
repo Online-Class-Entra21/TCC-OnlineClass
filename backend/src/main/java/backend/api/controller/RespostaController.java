@@ -13,7 +13,7 @@ import entidade.Resposta;
 
 /**
  * Metodo controller do resposta para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andre
  *
  */
 @RestController
@@ -65,8 +65,4 @@ public class RespostaController {
 	public void deletar(@PathVariable("codigo") int codigo) {
 		//Completar com o código
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }
