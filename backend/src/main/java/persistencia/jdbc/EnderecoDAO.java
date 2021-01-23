@@ -19,7 +19,7 @@ public class EnderecoDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir Endereco no banco de dados
+	 * Metodo para inserir endereco no banco de dados
 	 * @param Endereco endereco
 	 * @author André
 	 * @throws SQLException 
@@ -40,7 +40,7 @@ public class EnderecoDAO {
 	}
 
 	/**
-	 * Metodo para atualizar uma Endereco no banco de dados.
+	 * Metodo para atualizar um endereco no banco de dados.
 	 * O <code>idEndereco</code> deve ser igual ao do endereco que deseja atualizar
 	 * @author André
 	 * @throws SQLException 
@@ -62,7 +62,7 @@ public class EnderecoDAO {
 	}
 	
 	/**
-	 *  Metodo para deletar do banco de dados uma Endereco.
+	 *  Metodo para deletar do banco de dados uma endereco.
 	 *  O <code>idEndereco</code> deve ser igual ao do endereco que deseja deletar
 	 * @param int idEndereco
 	 * @author André

@@ -72,8 +72,7 @@ public class ArquivoUsuarioDAO {
 	}
 	
 	/**
-	 * Metodo de busca de todas as informacoes de uma linha
-	 * da tabela UsuarioArquivo do banco de dados.
+	 * Metodo para buscar arquivoUsuario no banco de dados.  
 	 * O <code>idArquivoUsuario</code> deve ser igual ao do arquivoUsuario que deseja deletar
 	 * @param int idUsuarioArquivo
 	 * @return ArquivoUsuario arquivoUsuario
@@ -99,7 +98,7 @@ public class ArquivoUsuarioDAO {
 	}
 	
 	/**
-	 * Retorna todos os dados listados da tabela Sala do banco de dados 
+	 * Retorna todos os dados listados da tabela arquivoUsuario do banco de dados 
 	 * @return lista de arquivosUsuarios resgistrados no banco
 	 * @author Breno
 	 * @throws SQLException 

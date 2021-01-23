@@ -18,31 +18,12 @@ import entidade.Administrador;
 public class administradorController {
 	
 	/**
-	 * Retorna o administrador que corresponde ao id indicado {GET}
-	 * @param int codigo
-	 * @return String json
-	 */
-	@GetMapping(path = "/api/administrador/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
-		return null;
-	}
-	
-	/**
 	 * Retorna a lista de administradores registrados no sistema {GET}
 	 * @return lista de administradores registrados no banco 
 	 */
 	@GetMapping(path = "/api/administradores")
 	public List<Administrador> consultar(){
 		return null;
-	}
-
-	/**
-	 * Metodo para alteração das informações do usuario administrador {PUT}
-	 * @param int codigo
-	 */
-	@PutMapping(path = "api/administrador/alterar/{codigo}")
-	public void alterar(@PathVariable("codigo") int codigo) {
-		//Completar com o código
 	}
 	
 	//------------------------------------------------------------------

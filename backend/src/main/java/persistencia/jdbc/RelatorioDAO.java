@@ -33,8 +33,8 @@ public class RelatorioDAO {
 		comandoSql.setString(3, relatorio.getTexto());
 		comandoSql.setString(4, relatorio.getTipoRelatorio());
 		comandoSql.setInt(5, relatorio.getFk_usuario());
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -55,42 +55,42 @@ public class RelatorioDAO {
 		comandoSql.setString(3, relatorio.getTexto());
 		comandoSql.setString(4, relatorio.getTipoRelatorio());
 		comandoSql.setInt(5, relatorio.getFk_usuario());
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
 	/**
 	 *  Metodo para deletar do banco de dados uma relatorio.
 	 *  O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja deletar
-	 * @param Relatorio relatorio 
+	 * @param int idRelatorio 
 	 * @author André
 	 * @throws SQLException 
 	 */	
-	public void deleteId(int id) throws SQLException {
+	public void deleteId(int idRelatorio) throws SQLException {
 		String sql = "delete from relatorio where idrelatorio = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setInt(1, id);
-		comandoSql.execute();
+		comandoSql.setInt(1, idRelatorio);
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
 	/**
-	 * Metodo para selecionar <code>Relatorio</code> no banco de dados.
+	 * Metodo para selecionar relatorio no banco de dados.
 	 * O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja buscar
 	 * @param int idRelatorio
 	 * @return Relatorio relatorio 
 	 * @author André
 	 * @throws SQLException 
 	 */	
-	public Relatorio buscarId(int id) throws SQLException {
+	public Relatorio buscarId(int idRelatorio) throws SQLException {
 		Relatorio relatorio = new Relatorio();
 		String sql = "select * from relatorio where idescola = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setInt(1, id);
+		comandoSql.setInt(1, idRelatorio);
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		if (resultSet.next()) {
@@ -108,10 +108,11 @@ public class RelatorioDAO {
 	/**
 	 * Metodo para selecionar todos os relatorios do banco de dados
 	 * @return lista de relatorios registrados no banco
-	 * @author Andre
+	 * @author André
 	 * @throws SQLException 
 	 */	
 	public List<Relatorio> buscarTodos() throws SQLException {
+		Relatorio relatorio = new Relatorio();
 		List<Relatorio> lista = new ArrayList<Relatorio>();
 	    String sql = "select * from Escola";
 	    
@@ -119,7 +120,6 @@ public class RelatorioDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
-			Relatorio relatorio = new Relatorio();
 			relatorio.setIdRelatorio (resultSet.getInt(1));
 			relatorio.setTitulo(resultSet.getString(2));
 			relatorio.setDestinatario(resultSet.getInt(3));

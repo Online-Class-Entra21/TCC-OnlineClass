@@ -15,12 +15,9 @@ public class RespostaDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir Resposta no banco de dados.
-	 * 
-	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
-	 * 
-	 * @param <code>Resposta</code>
-	 * @author Andre
+	 * Metodo para inserir resposta no banco de dados
+	 * @param Resposta resposta 
+	 * @author André
 	 * @throws SQLException 
 	 */	
 	public void insert(Resposta resposta) throws SQLException {

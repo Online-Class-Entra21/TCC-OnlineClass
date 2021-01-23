@@ -19,7 +19,7 @@ public class DisciplinaDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir Disciplina no banco de dados
+	 * Metodo para inserir disciplina no banco de dados
 	 * @param Disciplina disciplina 
 	 * @author André
 	 * @throws SQLException 
@@ -36,7 +36,7 @@ public class DisciplinaDAO {
 	}
 	
 	/**
-	 * Metodo para atualizar uma Disciplina no banco de dados.
+	 * Metodo para atualizar uma disciplina no banco de dados.
 	 * O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja atualizar
 	 * @param Disciplina disciplina 
 	 * @author André
@@ -55,7 +55,7 @@ public class DisciplinaDAO {
 	}
 	
 	/**
-	 *  Metodo para deletar do banco de dados uma Disciplina.
+	 *  Metodo para deletar do banco de dados uma disciplina.
 	 *  O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja deletar
 	 * @param int idDisciplina
 	 * @author André
@@ -72,7 +72,7 @@ public class DisciplinaDAO {
 	}
 	
 	/**
-	 * Metodo para selecionar <code>Disciplina</code> no banco de dados.
+	 * Metodo para selecionar disciplina no banco de dados.
 	 * O <code>idDisciplina</code> deve ser igual ao do disciplina que deseja buscar
 	 * @param int idDisciplina
 	 * @return Disciplina disciplina 
