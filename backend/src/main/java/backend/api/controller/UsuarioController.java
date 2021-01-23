@@ -70,8 +70,8 @@ public class UsuarioController {
 	 * @param int codigo
 	 * @param String json
 	 */
-	@PutMapping(path = "api/usuario/alterar/{codigo}/{json}")
-	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "api/usuario/alterar/{json}")
+	public void alterar(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
 		UsuarioDAO usuarioDao = new UsuarioDAO();
