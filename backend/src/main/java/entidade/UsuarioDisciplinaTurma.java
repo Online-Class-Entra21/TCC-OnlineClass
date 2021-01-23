@@ -6,45 +6,45 @@ package entidade;
  * @see Turma
  * @author Breno 
  */
-public class TurmaUsuarioDisciplina {
+public class UsuarioDisciplinaTurma {
 	
-    private int idTurmaUsuarioDisciplina;
+    private int idUsuarioDisciplinaTurma;
     private int fk_turma;
     private int fk_usuariorDisciplina;
     
     /**
      * Construtor padrao
      */
-    public TurmaUsuarioDisciplina() {
+    public UsuarioDisciplinaTurma() {
     	//Nenhum atributo inicializado
     }
     
     /**
      * Metodo construtor que preenche todos os atributos da classe 
-     * @param idTurmaUsuarioDisciplina
+     * @param idUsuarioDisciplinaTurma
      * @param fk_turma
      * @param fk_usuariorDisciplina
      */
-	public TurmaUsuarioDisciplina(int idTurmaUsuarioDisciplina, int fk_turma, int fk_usuariorDisciplina) {
-		setIdTurmaUsuarioDisciplina(idTurmaUsuarioDisciplina);
+	public UsuarioDisciplinaTurma(int idUsuarioDisciplinaTurma, int fk_turma, int fk_usuariorDisciplina) {
+		setIdUsuarioDisciplinaTurma(idUsuarioDisciplinaTurma);
 		setFk_turma(fk_turma);
 		setFk_usuariorDisciplina(fk_usuariorDisciplina);
 	}
 
 	/** 
-	 * Metodo para retorno do ID TurmaUsuarioDisciplina
-     * @return int idTurmaUsuarioDisciplina 
+	 * Metodo para retorno do ID usuarioDisciplinaTurma
+     * @return int idUsuarioDisciplinaTurma
      */
-    public int getIdTurmaUsuarioDisciplina() {
-        return idTurmaUsuarioDisciplina;
+    public int getIdUsuarioDisciplinaTurma() {
+        return idUsuarioDisciplinaTurma;
     }
 
     /**
-     * Metodo de insercao do id da turmaUsuarioDisciplina
-     * @param int idTurmaUsuarioDisciplina
+     * Metodo de insercao do id da usuarioDisciplinaTurma
+     * @param int idUsuarioDisciplinaTurma
      */
-    public void setIdTurmaUsuarioDisciplina(int idTurmaUsuarioDisciplina) {
-		this.idTurmaUsuarioDisciplina = idTurmaUsuarioDisciplina;
+    public void setIdUsuarioDisciplinaTurma(int idUsuarioDisciplinaTurma) {
+		this.idUsuarioDisciplinaTurma = idUsuarioDisciplinaTurma;
 	}
 
     /**
