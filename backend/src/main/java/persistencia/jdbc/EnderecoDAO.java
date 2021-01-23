@@ -34,7 +34,6 @@ public class EnderecoDAO {
 		comandoSql.setString(4, endereco.getRua());
 		comandoSql.setInt(5, endereco.getNumero());
 		comandoSql.setString(6, endereco.getCep());
-		comandoSql.setInt(7, endereco.getIdEndereco());
 		comandoSql.execute();
 		
 		comandoSql.close();
@@ -56,6 +55,7 @@ public class EnderecoDAO {
 		comandoSql.setString(4, endereco.getRua());
 		comandoSql.setInt(5, endereco.getNumero());
 		comandoSql.setString(6, endereco.getCep());
+		comandoSql.setInt(7, endereco.getIdEndereco());
 		comandoSql.execute();
 		
 		comandoSql.close();
@@ -64,15 +64,15 @@ public class EnderecoDAO {
 	/**
 	 *  Metodo para deletar do banco de dados uma Endereco.
 	 *  O <code>idEndereco</code> deve ser igual ao do endereco que deseja deletar
-	 * @param Endereco endereco
+	 * @param int idEndereco
 	 * @author André
 	 * @throws SQLException 
 	 */
-	public void deleteId(int id) throws SQLException {
+	public void deleteId(int idEndereco) throws SQLException {
 		String sql = "delete from endereco where idescola = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
-		comandoSql.setInt(1, id);
+		comandoSql.setInt(1, idEndereco);
 		comandoSql.execute();
 		
 		comandoSql.close();

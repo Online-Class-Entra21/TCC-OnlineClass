@@ -60,11 +60,11 @@ public class DisciplinaDAO {
 	 * @author André
 	 * @throws SQLException 
 	 */
-	public void deleteId(int idDsciplina) throws SQLException {
+	public void deleteId(int idDisciplina) throws SQLException {
 		String sql = "delete from disciplina where iddisciplina = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
-		comandoSql.setInt(1, idDsciplina);
+		comandoSql.setInt(1, idDisciplina);
 		comandoSql.execute();
 		
 		comandoSql.close();

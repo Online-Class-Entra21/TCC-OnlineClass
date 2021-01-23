@@ -9,22 +9,24 @@ import java.util.List;
 
 import entidade.Relatorio;
 
+/**
+ * Metodo para consulta do relatorio no banco de dados 
+ * @author André
+ *
+ */
 public class RelatorioDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir Relatorio no banco de dados.
-	 * 
-	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
-	 * 
-	 * @param <code>Relatorio</code>
-	 * @author Andre
+	 * Metodo para inserir relatorio no banco de dados
+	 * @param Relatorio relatorio 
+	 * @author André
 	 * @throws SQLException 
 	 */	
 	public void insert(Relatorio relatorio) throws SQLException {
-		
-		PreparedStatement comandoSql = conexao.prepareStatement("insert into relatorio (titulo, destinatario, texto, tiporelatorio, fk_usuario) values (?, ?, ?, ?, ?, ?)");
+		String sql = "insert into relatorio (titulo, destinatario, texto, tiporelatorio, fk_usuario) values (?, ?, ?, ?, ?, ?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, relatorio.getTitulo());
 		comandoSql.setInt(2, relatorio.getDestinatario());
@@ -34,22 +36,19 @@ public class RelatorioDAO {
 		comandoSql.execute();
 		
 		comandoSql.close();
-
-		
 	}
 	
 	/**
-	 * Metodo para atualizar um Relatorio no banco de dados.
-	 * 
-	 * O id do <code>Relatorio</code> deve ser o mesmo id que esta no banco de dados.
-	 * 
-	 * @param <code>Relatorio</code>
-	 * @author Andre
+	 * Metodo para atualizar um relatorio no banco de dados.
+	 * O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja atualizar
+	 * @param Relatorio relatorio 
+	 * @author André
 	 * @throws SQLException 
 	 */ 	
 	public void update(Relatorio relatorio) throws SQLException {
-		
-		PreparedStatement comandoSql = conexao.prepareStatement("update relatorio set idrelatorio=?, titulo=?, destinatario=?, texto=?, tiporelatorio=?, fk_usuario=? where idrelatorio = ?");
+		String sql = "update relatorio set idrelatorio=?, titulo=?, destinatario=?, texto=?, "
+				   + "tiporelatorio=?, fk_usuario=? where idrelatorio = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, relatorio.getTitulo());
 		comandoSql.setInt(2, relatorio.getDestinatario());
@@ -59,21 +58,18 @@ public class RelatorioDAO {
 		comandoSql.execute();
 		
 		comandoSql.close();
-
 	}
 	
 	/**
-	 *  Metodo para deletar do banco de dados uma Relatorio
-	 *  <p>
-	 *  O <code>idRelatorio</code> deve ser igual ao id do banco de dados
-	 * 
-	 * @param <code>Relatorio</code>
-	 * @author Andre
+	 *  Metodo para deletar do banco de dados uma relatorio.
+	 *  O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja deletar
+	 * @param Relatorio relatorio 
+	 * @author André
 	 * @throws SQLException 
 	 */	
 	public void deleteId(int id) throws SQLException {
-		
-		PreparedStatement comandoSql = conexao.prepareStatement("delete from relatorio where idrelatorio = ?");
+		String sql = "delete from relatorio where idrelatorio = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, id);
 		comandoSql.execute();
@@ -82,19 +78,17 @@ public class RelatorioDAO {
 	}
 	
 	/**
-	 * Metodo para selecionar <code>Relatorio</code> no banco de dados
-	 * <p>
-	 * O <code>idRelatorio</code> deve ser igual ao Relatorio que deseja selecionar
-	 * 
-	 * @param <code>idRelatorio<code>
-	 * @return Relatorio
-	 * @author Andre
+	 * Metodo para selecionar <code>Relatorio</code> no banco de dados.
+	 * O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja buscar
+	 * @param int idRelatorio
+	 * @return Relatorio relatorio 
+	 * @author André
 	 * @throws SQLException 
 	 */	
 	public Relatorio buscarId(int id) throws SQLException {
 		Relatorio relatorio = new Relatorio();
-		
-		PreparedStatement comandoSql = conexao.prepareStatement("select * from relatorio where idescola = ?");
+		String sql = "select * from relatorio where idescola = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, id);
 		ResultSet resultSet = comandoSql.executeQuery();
@@ -106,28 +100,23 @@ public class RelatorioDAO {
 			relatorio.setTexto(resultSet.getString(4));
 			relatorio.setTipoRelatorio(resultSet.getString(5));
 			relatorio.setFk_usuario(resultSet.getInt(6));
-			return relatorio;
 		}
-		
 		comandoSql.close();
-			
-		return null;
+		return relatorio;
 	}
 	
 	/**
-	 * Metodo para selecionar todos os <code>Relatorios</code> do banco de dados
-	 * 
-	 * @return <code>List</code>
+	 * Metodo para selecionar todos os relatorios do banco de dados
+	 * @return lista de relatorios registrados no banco
 	 * @author Andre
 	 * @throws SQLException 
 	 */	
 	public List<Relatorio> buscarTodos() throws SQLException {
 		List<Relatorio> lista = new ArrayList<Relatorio>();
-	
-		PreparedStatement comandoSql = conexao.prepareStatement("select * from Escola");
-		
+	    String sql = "select * from Escola";
+	    
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		ResultSet resultSet = comandoSql.executeQuery();
-		comandoSql.close();
 		
 		while (resultSet.next()) {
 			Relatorio relatorio = new Relatorio();
@@ -139,8 +128,7 @@ public class RelatorioDAO {
 			relatorio.setFk_usuario(resultSet.getInt(6));
 			lista.add(relatorio);
 		}
-
+		comandoSql.close();
 		return lista;
 	}
-	
 }

@@ -45,7 +45,8 @@ private Connection conexao = ConexaoFactory.getConnection();
 	 * @throws SQLException 
 	 */ 
 	public void update(Convite convite) throws SQLException {
-		String sql = "update convite set destinatario = ?, salaconvite = ?, situacaoconvite = ?, fk_usuario = ? where idconvite = ?";
+		String sql = "update convite set destinatario = ?, salaconvite = ?, situacaoconvite = ?, fk_usuario = ? "
+				   + "where idconvite = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, convite.getDestinatario());

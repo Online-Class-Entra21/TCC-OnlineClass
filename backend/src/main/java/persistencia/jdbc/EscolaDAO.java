@@ -4,180 +4,125 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Escola;
 
+/**
+ * Metodo para consulta da escola no banco de dados 
+ * @author André
+ *
+ */
 public class EscolaDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir Disciplina no banco de dados.
-	 * 
-	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
-	 * 
-	 * @param <code>Disciplina</code>
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andre
+	 * Metodo para inserir a escola no banco de dados
+	 * @param Escola escola 
+	 * @author André
+	 * @throws SQLException 
 	 */	
-	public boolean insert(Escola escola) {
+	public void insert(Escola escola) throws SQLException {
+		String sql = "insert into escola (nome, datainicioletivo, datafinalletivo) values (?,?,?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("insert into escola (nome, datainicioletivo, datafinalletivo) values (?,?,?)");
-			
-			comandoSql.setString(1, escola.getNome());
-			comandoSql.setDate(2, (Date) escola.getDataInicioLetivo());
-			comandoSql.setDate(3, (Date) escola.getDataFinalLetivo());
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setString(1, escola.getNome());
+		comandoSql.setDate(2, (Date) escola.getDataInicioLetivo());
+		comandoSql.setDate(3, (Date) escola.getDataFinalLetivo());
+		comandoSql.execute();
 		
-		return true;
+		comandoSql.close();
 	}
 	
 	/**
-	 * Metodo para atualizar uma Disciplina no banco de dados.
-	 * 
-	 * O id da <code>Disciplina</code> deve ser o mesmo id que esta no banco de dados.
-	 * 
-	 * @param Disciplina
-	 * @param turmaDisciplina
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andre
+	 * Metodo para atualizar uma escola no banco de dados.
+	 * O <code>idEscola</code> deve ser igual ao do escola que deseja atualizar
+	 * @param Escola escola
+	 * @author André
+	 * @throws SQLException 
 	 */ 	
-	public boolean update(Escola escola) {
+	public void update(Escola escola) throws SQLException {
+		String sql = "update escola set nome = ?, datainicioletivo = ?, datafinalletivo = ? where idescola = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("update escola set nome = ?, datainicioletivo = ?, datafinalletivo = ? where idescola = ?");
-			
-			comandoSql.setString(1, escola.getNome());
-			comandoSql.setDate(2, (Date) escola.getDataInicioLetivo());
-			comandoSql.setDate(3, (Date) escola.getDataFinalLetivo());
-			comandoSql.setInt(4, escola.getIdEscola());
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setString(1, escola.getNome());
+		comandoSql.setDate(2, (Date) escola.getDataInicioLetivo());
+		comandoSql.setDate(3, (Date) escola.getDataFinalLetivo());
+		comandoSql.setInt(4, escola.getIdEscola());
+		comandoSql.execute();
 		
-		return true;
+		comandoSql.close();
 	}
 	
 	/**
 	 *  Metodo para deletar do banco de dados uma Disciplina
-	 *  <p>
-	 *  O <code>idDisciplina</code> deve ser igual ao id do banco de dados
-	 * 
-	 * @param idDisciplina
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andre
+	 *  O <code>idEscola</code> deve ser igual ao do escola que deseja deletar
+	 * @param int idDisciplina
+	 * @author André
+	 * @throws SQLException 
 	 */	
-	public boolean deleteId(int id) {
+	public void deleteId(int idDisciplina) throws SQLException {
+		String sql = "delete from escola where idescola = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("delete from escola where idescola = ?");
-			
-			comandoSql.setInt(1, id);
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setInt(1, idDisciplina);
+		comandoSql.execute();
 		
-		return true;
+		comandoSql.close();
 	}
 	
 	/**
 	 * Metodo para selecionar chamada no banco de dados
-	 * <p>
-	 * O idChamada deve ser igual a chamada que seseja selecionar
-	 * 
-	 * @param idChamada
-	 * @return Chamada
-	 * @author Andre
+	 * O <code>idEscola</code> deve ser igual ao do escola que deseja buscar
+	 * @param int idChamada
+	 * @return Chamada chamada 
+	 * @author André
+	 * @throws SQLException 
 	 */	
-	public Escola buscarId(int id) {
+	public Escola buscarId(int idChamada) throws SQLException {
 		Escola escola = new Escola();
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("select * from Escola where idescola = ?");
-			
-			comandoSql.setInt(1, id);
-			ResultSet resultSet = comandoSql.executeQuery();
-			
-			if (resultSet.next()) {
-				escola.setIdEscola(resultSet.getInt(1));
-				escola.setNome(resultSet.getString(2));
-				escola.setDataInicioLeitvo(resultSet.getDate(3));
-				escola.setDataFinalLetivo(resultSet.getDate(4));
-				return escola;
-			}
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		String sql = "select * from Escola where idescola = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		return null;
+		comandoSql.setInt(1, idChamada);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			escola.setIdEscola(resultSet.getInt(1));
+			escola.setNome(resultSet.getString(2));
+			escola.setDataInicioLeitvo(resultSet.getDate(3));
+			escola.setDataFinalLetivo(resultSet.getDate(4));
+			
+		}
+		comandoSql.close();
+		return escola;
 	}
 	
 	/**
 	 * Metodo para selecionar todas as chamadas do banco de dados
-	 * 
-	 * @return List
-	 * @author Andre
+	 * @return lista de escolas resgistradas no banco
+	 * @author André
+	 * @throws SQLException 
 	 */	
-	public List<Escola> buscarTodos() {
+	public List<Escola> buscarTodos() throws SQLException {
 		List<Escola> lista = new ArrayList<Escola>();
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("select * from Escola");
-			
-			ResultSet resultSet = comandoSql.executeQuery();
-			comandoSql.close();
-			
-			while (resultSet.next()) {
-				Escola escola = new Escola();
-				escola.setIdEscola(resultSet.getInt(1));
-				escola.setNome(resultSet.getString(2));
-				escola.setDataInicioLeitvo(resultSet.getDate(3));
-				escola.setDataFinalLetivo(resultSet.getDate(4));
-				lista.add(escola);
-			}
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		String sql = "select * from Escola";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Escola escola = new Escola();
+			escola.setIdEscola(resultSet.getInt(1));
+			escola.setNome(resultSet.getString(2));
+			escola.setDataInicioLeitvo(resultSet.getDate(3));
+			escola.setDataFinalLetivo(resultSet.getDate(4));
+			lista.add(escola);
+		}
+		comandoSql.close();
 		return lista;
 	}
-	
-	
-	
-	
-	
-	
 }

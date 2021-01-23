@@ -10,22 +10,24 @@ import java.util.List;
 
 import entidade.PeriodoAvaliacao;
 
+/**
+ * Metodo para consulta do periodoAvaliacao no banco de dados 
+ * @author André
+ *
+ */
 public class PeriodoAvaliacaoDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir PeriodoAvaliacao no banco de dados.
-	 * 
-	 * O id sera gerado pelo banco de dados ou seja sera diferente do objeto.
-	 * 
-	 * @param <code>PeriodoAvaliacao</code>
-	 * @author Andre
+	 * Metodo para inserir periodoAvaliacao no banco de dados
+	 * @param PeriodoAvaliacao periodoAvaliacao
+	 * @author André
 	 * @throws SQLException 
 	 */
 	public void insert(PeriodoAvaliacao periodoAvaliacao) throws SQLException {
-			
-		PreparedStatement comandoSql = conexao.prepareStatement("insert into periodoavaliacao (datainicial, datafinal, descricao, fk_escola) values (?,?,?,?)");
+		String sql = "insert into periodoavaliacao (datainicial, datafinal, descricao, fk_escola) values (?,?,?,?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setDate(1, (Date) periodoAvaliacao.getDataInicial());
 		comandoSql.setDate(2, (Date) periodoAvaliacao.getDataFinal());
@@ -37,17 +39,16 @@ public class PeriodoAvaliacaoDAO {
 	}
 	
 	/**
-	 * Metodo para atualizar uma PeriodoAvaliacao no banco de dados.
-	 * 
-	 * O id do <code>PeriodoAvaliacao</code> deve ser o mesmo id que esta no banco de dados.
-	 * 
-	 * @param <code>PeriodoAvaliacao</code>
-	 * @author Andre
+	 * Metodo para atualizar um periodoAvaliacao no banco de dados
+	 * O <code>idPeriodoAvaliacao</code> deve ser igual ao do periodoAvaliacao que deseja atualizar
+	 * @param PeriodoAvaliacao periodoAvaliacao
+	 * @author André
 	 * @throws SQLException 
 	 */ 	
 	public void update(PeriodoAvaliacao periodoAvaliacao) throws SQLException {
-		
-		PreparedStatement comandoSql = conexao.prepareStatement("update periodoavaliacao set datainicial = ?, datafinal = ?, descricao = ?, fk_escola = ?  where idperiodoavaliacao = ?");
+		String sql = "update periodoavaliacao set datainicial = ?, datafinal = ?, descricao = ?, fk_escola = ?  "
+				   + "where idperiodoavaliacao = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setDate(1, (Date) periodoAvaliacao.getDataInicial());
 		comandoSql.setDate(2, (Date) periodoAvaliacao.getDataFinal());
@@ -57,44 +58,38 @@ public class PeriodoAvaliacaoDAO {
 		comandoSql.execute();
 		
 		comandoSql.close();
-
 	}
 	
 	/**
-	 *  Metodo para deletar do banco de dados uma PeriodoAvaliacao
-	 *  <p>
-	 *  O <code>idPeriodoAvaliacao</code> deve ser igual ao id do banco de dados
-	 * 
-	 * @param <code>PeriodoAvaliacao</code>
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andre
+	 *  Metodo para deletar do banco de dados um periodoAvaliacao
+	 *  O <code>idPeriodoAvaliacao</code> deve ser igual ao do periodoAvaliacao que deseja delete
+	 * @param int periodoAvaliacao
+	 * @author André
 	 * @throws SQLException 
 	 */	
-	public void deleteId(int id) throws SQLException {
+	public void deleteId(int idPeriodoAvaliacao) throws SQLException {
+		String sql = "delete from periodoavaliacao where idescola = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-			PreparedStatement comandoSql = conexao.prepareStatement("delete from periodoavaliacao where idescola = ?");
-			
-			comandoSql.setInt(1, id);
-			comandoSql.execute();
-			
-			comandoSql.close();
+		comandoSql.setInt(1, idPeriodoAvaliacao);
+		comandoSql.execute();
+		
+		comandoSql.close();
 	}
 	
 	/**
-	 * Metodo para selecionar <code>PeriodoAvaliacao</code> no banco de dados
-	 * <p>
-	 * O <code>idPeriodoAvaliacao</code> deve ser igual ao PeriodoAvaliacao que deseja selecionar
-	 * 
-	 * @param <code>idPeriodoAvaliacao<code>
-	 * @author Andre
+	 * Metodo para selecionar periodoAvaliacao no banco de dados
+	 * O <code>idPeriodoAvaliacao</code> deve ser igual ao do periodoAvaliacao que deseja buscar
+	 * @param int idPeriodoAvaliacao
+	 * @author André
 	 * @throws SQLException 
 	 */	
-	public PeriodoAvaliacao buscarId(int id) throws SQLException {
+	public PeriodoAvaliacao buscarId(int idPeriodoAvaliacao) throws SQLException {
 		PeriodoAvaliacao periodoAvaliacao = new PeriodoAvaliacao();
-
-		PreparedStatement comandoSql = conexao.prepareStatement("select * from Escola where idperiodoavaliacao = ?");
+		String sql = "select * from Escola where idperiodoavaliacao = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setInt(1, id);
+		comandoSql.setInt(1, idPeriodoAvaliacao);
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		if (resultSet.next()) {
@@ -103,25 +98,21 @@ public class PeriodoAvaliacaoDAO {
 			periodoAvaliacao.setDataFinal(resultSet.getDate(3));
 			periodoAvaliacao.setDescricao(resultSet.getString(4));
 			periodoAvaliacao.setFk_escola(resultSet.getInt(5));
-			return periodoAvaliacao;
 		}
-		
 		comandoSql.close();
-		
-		return null;
+		return periodoAvaliacao;
 	}
 	
 	/**
-	 * Metodo para selecionar todos os <code>PeriodoAvaliacaos</code> do banco de dados
-	 * 
-	 * @return <code>List</code>
-	 * @author Andre
+	 * Metodo para selecionar todos os periodosAvaliacaos do banco de dados
+	 * @return lista de periodosAvaliacoes registradas no banco 
+	 * @author André
 	 * @throws SQLException 
 	 */	
 	public List<PeriodoAvaliacao> buscarTodos() throws SQLException {
 		List<PeriodoAvaliacao> lista = new ArrayList<PeriodoAvaliacao>();
-		
-		PreparedStatement comandoSql = conexao.prepareStatement("select * from Escola");
+		String sql = "select * from Escola";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		ResultSet resultSet = comandoSql.executeQuery();
 		comandoSql.close();
@@ -134,9 +125,7 @@ public class PeriodoAvaliacaoDAO {
 			periodoAvaliacao.setDescricao(resultSet.getString(4));
 			periodoAvaliacao.setFk_escola(resultSet.getInt(5));
 			lista.add(periodoAvaliacao);
-		}
-			
+		}	
 		return lista;
 	}
-	
 }
