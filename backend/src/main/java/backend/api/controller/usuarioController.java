@@ -24,7 +24,7 @@ import persistencia.jdbc.UsuarioDAO;
  *
  */
 @RestController
-public class usuarioController {
+public class UsuarioController {
 	
 	/**
 	 * Retorna o usuário que corresponde ao id indicado {GET}

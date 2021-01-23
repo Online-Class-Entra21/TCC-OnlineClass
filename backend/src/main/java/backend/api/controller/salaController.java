@@ -17,7 +17,7 @@ import entidade.Sala;
  *
  */
 @RestController
-public class salaController {
+public class SalaController {
 	
 	/**
 	 * Retorna a sala que corresponde ao id indicado {GET}

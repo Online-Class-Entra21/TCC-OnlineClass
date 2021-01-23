@@ -17,7 +17,7 @@ import entidade.SalaPersonalizada;
  *
  */
 @RestController
-public class salaPersonalizadaController {
+public class SalaPersonalizadaController {
 	
 	/**
 	 * Retorna a salaPersonalizada que corresponde ao id indicado {GET}

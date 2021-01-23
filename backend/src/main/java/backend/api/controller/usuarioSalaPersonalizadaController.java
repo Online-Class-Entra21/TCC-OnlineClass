@@ -17,7 +17,7 @@ import entidade.UsuarioSalaPersonalizada;
  *
  */
 @RestController
-public class usuarioSalaPersonalizadaController {
+public class UsuarioSalaPersonalizadaController {
 	
 	/**
 	 * Retorna o usuarioSalaPersonalizada que corresponde ao id indicado {GET}

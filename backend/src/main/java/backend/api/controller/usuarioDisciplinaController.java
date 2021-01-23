@@ -17,7 +17,7 @@ import entidade.UsuarioDisciplina;
  *
  */
 @RestController
-public class usuarioDisciplinaController {
+public class UsuarioDisciplinaController {
 	
 	/**
 	 * Retorna o usuarioDisciplina que corresponde ao id indicado {GET}

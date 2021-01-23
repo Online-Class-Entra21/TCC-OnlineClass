@@ -17,7 +17,7 @@ import entidade.TurmaAtividade;
  *
  */
 @RestController
-public class turmaAtividadeController {
+public class TurmaAtividadeController {
 	
 	/**
 	 * Retorna a turmaAtividade que corresponde ao id indicado {GET}
