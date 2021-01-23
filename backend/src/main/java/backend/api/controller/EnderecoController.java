@@ -33,33 +33,15 @@ public class EnderecoController {
 	public String consultar(@PathVariable("codigo") int codigo) {
 		EnderecoDAO enderecoDao = new EnderecoDAO();
 		Endereco endereco;
-		// try {
+		try {
 			endereco = enderecoDao.buscarId(codigo);
-		// } catch (SQLException e) {
-		// 	endereco = null;
-		// 	e.printStackTrace();
-		// }
+		} catch (SQLException e) {
+			endereco = null;
+			e.printStackTrace();
+		}
 		Gson gson = new Gson();
 		String json = gson.toJson(endereco);
 		return json;
-	}
-	
-	/**
-	 * Retorna a lista de enderecos registrados no sistema {GET}
-	 * @return lista de enderecos registrados no banco
-	 * @author Andre
-	 */
-	@GetMapping(path = "/api/enderecos")
-	public List<Endereco> consultar2(){
-		List<Endereco> lista;
-		EnderecoDAO enderecoDao = new EnderecoDAO();
-		try {
-			lista = enderecoDao.buscarTodos();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return lista;
 	}
 	
 	/**
@@ -86,10 +68,18 @@ public class EnderecoController {
 	 * @param int codigo
 	 * @param String json
 	 */
-	@PutMapping(path = "api/endereco/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "api/endereco/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
 		Gson gson = new Gson();
-		Endereco endereco = gson.fromJson(json, )
+		Endereco endereco = gson.fromJson(json, Endereco.class);
+		EnderecoDAO enderecoDAO = new EnderecoDAO();
+		try {
+			enderecoDAO.update(endereco);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
 	}
 	
 	/**
