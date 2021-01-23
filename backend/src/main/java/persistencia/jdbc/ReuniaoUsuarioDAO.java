@@ -40,7 +40,7 @@ public class ReuniaoUsuarioDAO {
 	}
 	
 	/**
-	 * Metodo para atualizar uma reuniaoUsuario no banco de dados
+	 * Metodo para atualizar uma reuniaoUsuario no banco de dados.
 	 * O <code>idReuniao</code> deve ser igual ao da reuniao que deseja atualizar
 	 * @param ReuniaoUsuario reuniaoUsuario
 	 * @author Breno
@@ -63,7 +63,7 @@ public class ReuniaoUsuarioDAO {
 	}
 	
 	/**
-	 * Metodo para deletar do banco de dados uma reuniaoUsuario
+	 * Metodo para deletar do banco de dados uma reuniaoUsuario.
 	 * O <code>idReuniaoUsuario</code> deve ser igual ao da reuniaoUsuario que deseja deletar
 	 * @param int idReuniaoUsuario
 	 * @author Breno
@@ -80,7 +80,7 @@ public class ReuniaoUsuarioDAO {
 	}
 	
 	/**
-	 * Metodo para selecionar reuniaoUsuario no banco de dados
+	 * Metodo para selecionar reuniaoUsuario no banco de dados.
 	 * O <code>idReuniaoUsuario</code> deve ser igual ao da reuniaoUsuario que deseja buscar
 	 * @param int idReuniaoUsuario
 	 * @return ReuniaoUsuario reuniaoUsuario
