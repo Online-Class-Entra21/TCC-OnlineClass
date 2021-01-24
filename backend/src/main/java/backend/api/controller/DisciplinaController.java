@@ -18,7 +18,6 @@ import persistencia.jdbc.DisciplinaDAO;
 /**
  * Metodo controller da disciplina para consulta no banco de dados através da
  * API Rest
- * 
  * @author Andre
  *
  */
@@ -27,7 +26,6 @@ public class DisciplinaController {
 
 	/**
 	 * Retorna o disciplina que corresponde ao id indicado {GET}
-	 * 
 	 * @param int codigo
 	 * @return String json
 	 * @author Andre
@@ -49,7 +47,6 @@ public class DisciplinaController {
 
 	/**
 	 * Retorna a lista de disciplinas registrados no sistema {GET}
-	 * 
 	 * @return lista de disciplinas registrados no banco
 	 * @author Andre
 	 */
@@ -68,7 +65,6 @@ public class DisciplinaController {
 
 	/**
 	 * Insere uma nova disciplina no banco de dados {POST}
-	 * 
 	 * @param String json
 	 * @author Andre
 	 * @return boolean situacao da operacao

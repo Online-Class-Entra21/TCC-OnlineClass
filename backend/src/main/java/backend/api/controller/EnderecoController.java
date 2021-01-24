@@ -47,7 +47,6 @@ public class EnderecoController {
 	
 	/**
 	 * Retorna a lista de enderecos registrados no sistema {GET}
-	 * 
 	 * @return lista de enderecos registrados no banco
 	 * @author Andre
 	 */

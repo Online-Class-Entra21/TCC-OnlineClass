@@ -27,7 +27,7 @@ public class PeriodoAvaliacaoController {
 	 * Retorna o periodoAvaliacao que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
-	 * @author André
+	 * @author Andre
 	 */
 	@GetMapping(path = "/api/periodoAvaliacao/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -47,7 +47,7 @@ public class PeriodoAvaliacaoController {
 	/**
 	 * Retorna a lista dos periodosAvaliacoes registrados no sistema {GET}
 	 * @return lista de periodosAvaliacoes registrados no banco
-	 * @author André
+	 * @author Andre
 	 */
 	@GetMapping(path = "/api/periodosAvaliacoes")
 	public List<PeriodoAvaliacao> consultar(){
@@ -65,7 +65,7 @@ public class PeriodoAvaliacaoController {
 	/**
 	 * Insere um novo periodoAvaliacao no banco de dados {POST}
 	 * @param String json
-	 * @author André
+	 * @author Andre
 	 */
 	@PostMapping(path = "api/periodoAvaliacao/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -84,6 +84,7 @@ public class PeriodoAvaliacaoController {
 	/**
 	 * Metodo para alteração do periodoAvaliacao que corresponde ao codigo informado {PUT}
 	 * @param int codigo
+	 * @author Andre
 	 * @param String json
 	 */
 	@PutMapping(path = "api/periodoAvaliacao/alterar/{codigo}/{json}")
@@ -103,7 +104,7 @@ public class PeriodoAvaliacaoController {
 	/**
 	 * Método de exclusão do periodoAvaliacao que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
-	 * @author André
+	 * @author Andre
 	 */
 	@DeleteMapping(path = "/api/periodoAvaliacao/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {

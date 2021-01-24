@@ -93,8 +93,8 @@ public class ChamadaController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/chamada/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "api/chamada/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Chamada chamada = gson.fromJson(json.toString(), Chamada.class);
 		ChamadaDAO chamadaDao = new ChamadaDAO();

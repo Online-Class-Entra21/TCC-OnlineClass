@@ -93,8 +93,8 @@ public class ArquivoController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/arquivo/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "api/arquivo/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Arquivo arquivo = gson.fromJson(json.toString(), Arquivo.class);
 		ArquivoDAO arquivoDao = new ArquivoDAO();

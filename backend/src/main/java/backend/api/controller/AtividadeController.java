@@ -93,8 +93,8 @@ public class AtividadeController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/atividade/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "api/atividade/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Atividade atividade = gson.fromJson(json.toString(), Atividade.class);
 		AtividadeDAO atividadeDao = new AtividadeDAO();

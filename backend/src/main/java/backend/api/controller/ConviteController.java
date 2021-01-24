@@ -93,8 +93,8 @@ public class ConviteController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/convite/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "api/convite/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Convite convite = gson.fromJson(json.toString(), Convite.class);
 		ConviteDAO conviteDao = new ConviteDAO();
