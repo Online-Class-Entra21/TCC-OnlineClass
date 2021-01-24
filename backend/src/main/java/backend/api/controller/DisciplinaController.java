@@ -117,9 +117,9 @@ public class DisciplinaController {
 	 */
 	@DeleteMapping(path = "/api/disciplina/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
-		DisciplinaDAO disDao = new DisciplinaDAO();
+		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		try {
-			disDao.deleteId(codigo);
+			disciplinaDao.deleteId(codigo);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;

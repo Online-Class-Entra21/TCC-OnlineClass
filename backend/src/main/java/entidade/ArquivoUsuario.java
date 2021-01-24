@@ -4,7 +4,7 @@ package entidade;
  * Classe contendo metodos e atributos para a ligacao do Usuario ao Arquivo enviado ou recebido
  * @see Usuario
  * @see Arquivo
- * @author André 
+ * @author Andre
  */
 public class ArquivoUsuario {
 	

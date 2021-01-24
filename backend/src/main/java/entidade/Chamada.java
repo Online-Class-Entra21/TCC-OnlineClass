@@ -3,7 +3,7 @@ package entidade;
 /**
  * Classe contendo metodos e atributos para realizar 
  * a chamada dos alunos na reuniao
- * @author André 
+ * @author Andre 
  */
 public class Chamada {
 	

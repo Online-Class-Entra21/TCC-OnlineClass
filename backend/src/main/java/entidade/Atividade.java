@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Classe contendo metodos e atributos para a criacao de atividades.
  * As atividades sao em formato de arquivo e podem ser criadas pelo Professor
- * @author André  
+ * @author Andre 
  */
 public class Atividade {
 	

@@ -11,7 +11,7 @@ import entidade.Atividade;
 
 /**
  * Metodo para consulta da atividade no banco de dados
- * @author André
+ * @author Andre
  *
  */
 public class AtividadeDAO {
@@ -21,7 +21,7 @@ public class AtividadeDAO {
 	/**
 	 * Metodo para inserir atividade no banco de dados
 	 * @param Atividade atividade
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void insert(Atividade atividade) throws SQLException {
@@ -43,7 +43,7 @@ public class AtividadeDAO {
 	 * Metodo para atualizar uma atividade no banco de dados.
 	 * O <code>idAtividade</code> deve ser igual ao da atividade que deseja atualizar
 	 * @param Atividade atividade
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */ 
 	public void update(Atividade atividade) throws SQLException {
@@ -67,7 +67,7 @@ public class AtividadeDAO {
 	 *  Metodo para deletar do banco de dados uma atividade.
 	 *  O <code>idAtividade</code> deve ser igual ao da atividade que deseja deletar
 	 * @param int idAtividade
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void deleteId(int idAtividade) throws SQLException {
@@ -84,7 +84,7 @@ public class AtividadeDAO {
 	 * Metodo para selecionar uma atividade do banco de dados.
 	 * O <code>idAtividade</code> deve ser igual ao da atividade que deseja buscar
 	 * @param int idAtividade
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public Atividade buscarId(int idAtividade) throws SQLException {
@@ -110,7 +110,7 @@ public class AtividadeDAO {
 	
 	/**
 	 * Metodo para selecionar todas as atividades do banco de dados
-	 * @author André
+	 * @author Andre
 	 * @return lista de atividades resgistradas no banco 
 	 * @throws SQLException 
 	 */

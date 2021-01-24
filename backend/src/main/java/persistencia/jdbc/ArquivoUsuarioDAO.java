@@ -11,7 +11,7 @@ import entidade.ArquivoUsuario;
 
 /**
  * Metodo para consulta do arquivoUsuario no banco de dados
- * @author André
+ * @author Andre
  *
  */
 public class ArquivoUsuarioDAO {
@@ -21,7 +21,7 @@ public class ArquivoUsuarioDAO {
 	/**
 	 * Realiza o registro de um arquivoUsuario no banco de dados
 	 * @param ArquivoUsuario arquivoUsuario
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void insert(ArquivoUsuario arquivoUsuario) throws SQLException { 
@@ -40,7 +40,7 @@ public class ArquivoUsuarioDAO {
 	 * Realiza atualizacao dos dados da arquivoUsuario no banco de dados.
 	 * O <code>idArquivoUsuario</code> deve ser igual ao do arquivoUsuario que deseja atualizar
 	 * @param ArquivoUsuario arquivoUsuario
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void update(ArquivoUsuario arquivoUsuario) throws SQLException {
@@ -58,7 +58,7 @@ public class ArquivoUsuarioDAO {
 	 * Realiza a exclusao dos dados de uma linha da tabela arquivoUsuario.
 	 * O <code>idArquivoUsuario</code> deve ser igual ao do arquivoUsuario que deseja deletar
 	 * @param idUsuarioArquivo
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void deleteId(int idArquivoUsuario) throws SQLException {
@@ -76,7 +76,7 @@ public class ArquivoUsuarioDAO {
 	 * O <code>idArquivoUsuario</code> deve ser igual ao do arquivoUsuario que deseja deletar
 	 * @param int idUsuarioArquivo
 	 * @return ArquivoUsuario arquivoUsuario
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public ArquivoUsuario buscarId(int idUsuarioArquivo) throws SQLException {
@@ -100,7 +100,7 @@ public class ArquivoUsuarioDAO {
 	/**
 	 * Retorna todos os dados listados da tabela arquivoUsuario do banco de dados 
 	 * @return lista de arquivosUsuarios resgistrados no banco
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public List<ArquivoUsuario> buscarTodos() throws SQLException {

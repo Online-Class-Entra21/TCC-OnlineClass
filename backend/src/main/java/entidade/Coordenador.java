@@ -6,7 +6,7 @@ import java.sql.Time;
  * Classe contendo mwtodos e atributos para o coordenador.
  * Herda metodos e atributos da classe Usuario
  * @see Usuario
- * @author André 
+ * @author Andre
  */
 public class Coordenador extends Usuario {
 	

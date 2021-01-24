@@ -4,7 +4,7 @@ package entidade;
  * Classe contendo metodos e atributos para o aluno
  * Herda metodos e atributos da classe Usuario.
  * @see Usuario
- * @author André 
+ * @author Andre
  */
 public class Aluno extends Usuario {
     

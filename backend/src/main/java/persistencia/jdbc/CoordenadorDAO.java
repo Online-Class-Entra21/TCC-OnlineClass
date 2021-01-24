@@ -11,7 +11,7 @@ import entidade.Coordenador;
 
 /**
  * Metodo para consulta do administrador no banco de dados 
- * @author André 
+ * @author Andre 
  *
  */
 public class CoordenadorDAO {
@@ -21,7 +21,7 @@ public class CoordenadorDAO {
 	/**
 	 * Metodo para selecionar do banco de dados todos os coordenadores cadastrados
 	 * @return lista de coordenadores registrados no banco 
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException
 	 */
 	public List<Coordenador> buscarTodos() throws SQLException {

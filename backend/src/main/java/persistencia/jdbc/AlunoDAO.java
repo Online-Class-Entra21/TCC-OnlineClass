@@ -11,7 +11,7 @@ import entidade.Aluno;
 
 /**
  * Metodo para consulta do aluno no banco de dados 
- * @author André
+ * @author Andre
  *
  */
 public class AlunoDAO {
@@ -21,7 +21,7 @@ public class AlunoDAO {
 	/**
 	 * Metodo para inserir um aluno no banco de dados
 	 * @param Aluno aluno
-	 * @author André 
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void insert(Aluno aluno) throws SQLException {
@@ -47,7 +47,7 @@ public class AlunoDAO {
 	 * Metodo para Atualizar aluno no banco de dados.
 	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja atualizar
 	 * @param Aluno aluno
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	
@@ -75,7 +75,7 @@ public class AlunoDAO {
 	 * Deleta o aluno do respectivo id do banco de dados.
 	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja deletar
 	 * @param int idAluno
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void deleteId(int idAluno) throws SQLException {
@@ -93,7 +93,7 @@ public class AlunoDAO {
 	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja buscar
 	 * @param int idAluno
 	 * @return Aluno aluno
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public Aluno buscarId(int idAluno) throws SQLException {
@@ -122,7 +122,7 @@ public class AlunoDAO {
 	
 	/**
 	 * Metodo para selecionar do banco de dados todos os alunos cadastrados
-	 * @author André
+	 * @author Andre
 	 * @return lista de alunos registrados no banco 
 	 * @throws SQLException
 	 */
