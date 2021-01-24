@@ -30,6 +30,7 @@ public class UsuarioController {
 	 * Retorna o usuário que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
+	 * @author André
 	 */
 	@GetMapping(path = "/api/usuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -50,6 +51,7 @@ public class UsuarioController {
 	/**
 	 * Retorna a lista de usuarios registrados no sistema {GET}
 	 * @return lista de usuarios registrados no banco
+	 * @author André
 	 */
 	@GetMapping(path = "/api/usuarios")
 	public List<Usuario> consultar(){
@@ -67,6 +69,7 @@ public class UsuarioController {
 	/**
 	 * Insere uma novo usuário no banco de dados {POST}
 	 * @param String json
+	 * @author André
 	 */
 	@PostMapping(path = "api/usuario/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -86,6 +89,7 @@ public class UsuarioController {
 	 * Metodo para alteração do usuario que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @author André
 	 */
 	@PutMapping(path = "api/usuario/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
@@ -104,6 +108,7 @@ public class UsuarioController {
 	/**
 	 * Método de exclusão do usuario que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @author André
 	 */
 	@DeleteMapping(path = "/api/usuario/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
@@ -125,6 +130,7 @@ public class UsuarioController {
 	 * Retorna o usuário que corresponde ao email indicado {GET}
 	 * @param String email
 	 * @return String json 
+	 * @author André
 	 */
 	@GetMapping(path = "/api/usuario/email/{email}")
 	public String consultarEmail(@PathVariable("email") String email) {
@@ -145,6 +151,7 @@ public class UsuarioController {
 	 * Verifica se o usuario existe no banco de dados  {GET}
 	 * @param String email
 	 * @return boolean situacao de existencia do usuario
+	 * @author André
 	 */
 	@GetMapping(path = "api/verificar/{email}")
 	public boolean verificarEmail(@PathVariable("email") String email) {
@@ -167,6 +174,7 @@ public class UsuarioController {
 	 * @param String email
 	 * @return Strinf codigo
 	 * @author Andre
+	 * @author André
 	 */
 	@GetMapping(path = "/api/codigo/{email}")
 	public String codigo(@PathVariable("email") String email){
@@ -206,6 +214,7 @@ public class UsuarioController {
 	 * Metodo para mudar a senha do usuario informado {PUT}
 	 * @param String email
 	 * @param String senha
+	 * @author André
 	 */
 	@PutMapping(path = "/api/mudar/senha/{email}/{senha-digitada}")
 	public boolean mudarSenha(@PathVariable("email") String email, @PathVariable("senha-digitada") String senha) {
