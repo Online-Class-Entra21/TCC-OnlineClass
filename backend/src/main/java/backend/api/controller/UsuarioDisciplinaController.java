@@ -27,7 +27,7 @@ public class UsuarioDisciplinaController {
 	 * Retorna o usuarioDisciplina que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/usuarioDisciplina/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -47,7 +47,7 @@ public class UsuarioDisciplinaController {
 	/**
 	 * Retorna a lista dos usuariosDisciplinas registrados no sistema {GET}
 	 * @return lista de usuariosDisciplinas registrados no banco
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/usuariosDisciplinas")
 	public List<UsuarioDisciplina> consultar(){
@@ -65,7 +65,8 @@ public class UsuarioDisciplinaController {
 	/**
 	 * Insere um novo usuarioDisciplina no banco de dados {POST}
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/usuarioDisciplina/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -85,7 +86,8 @@ public class UsuarioDisciplinaController {
 	 * Metodo para alteração do usuarioDisciplina que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/usuarioDisciplina/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -104,7 +106,8 @@ public class UsuarioDisciplinaController {
 	/**
 	 * Método de exclusão do usuarioDisciplina que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/usuarioDisciplina/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {

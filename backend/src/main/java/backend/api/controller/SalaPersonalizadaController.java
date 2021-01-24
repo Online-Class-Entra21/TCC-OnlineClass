@@ -18,8 +18,7 @@ import persistencia.jdbc.SalaPersonalizadaDAO;
 /**
  * Metodo controller da salaPersonalizada para consulta no banco de dados através da API Rest
  * @author Breno
- *
- * @author André
+ * 
  */
 @RestController
 public class SalaPersonalizadaController {
@@ -28,7 +27,7 @@ public class SalaPersonalizadaController {
 	 * Retorna a salaPersonalizada que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/salaPersonalizada/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -48,7 +47,7 @@ public class SalaPersonalizadaController {
 	/**
 	 * Retorna a lista das salasPersonalizadas registrados no sistema {GET}
 	 * @return lista de salasPersonalizadas registradas no banco
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/salasPersonalizadas")
 	public List<SalaPersonalizada> consultar(){
@@ -66,7 +65,8 @@ public class SalaPersonalizadaController {
 	/**
 	 * Insere uma nova salaPersonalizada no banco de dados {POST}
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/salaPersonalizada/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -86,7 +86,8 @@ public class SalaPersonalizadaController {
 	 * Metodo para alteração da salaPersonalizada que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/salaPersonalizada/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -105,7 +106,8 @@ public class SalaPersonalizadaController {
 	/**
 	 * Método de exclusão da salaPersonalizada que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/salaPersonalizada/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {

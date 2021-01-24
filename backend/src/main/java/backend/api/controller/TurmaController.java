@@ -27,7 +27,7 @@ public class TurmaController {
 	 * Retorna a turma que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/turma/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -47,7 +47,7 @@ public class TurmaController {
 	/**
 	 * Retorna a lista das turmas registrados no sistema {GET}
 	 * @return lista de turmas registradas no banco
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/turmas")
 	public List<Turma> consultar(){
@@ -65,7 +65,8 @@ public class TurmaController {
 	/**
 	 * Insere uma nova turma no banco de dados {POST}
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/turma/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -85,7 +86,8 @@ public class TurmaController {
 	 * Metodo para alteração da turma que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/turma/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -104,7 +106,8 @@ public class TurmaController {
 	/**
 	 * Método de exclusão da turma que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/turma/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {

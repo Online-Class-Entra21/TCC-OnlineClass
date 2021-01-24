@@ -27,7 +27,7 @@ public class ReuniaoUsuarioController {
 	 * Retorna a reuniaoUsuario que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
-	 * @author André
+	 * @author Andre
 	 */
 	@GetMapping(path = "/api/reuniaoUsuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -47,7 +47,7 @@ public class ReuniaoUsuarioController {
 	/**
 	 * Retorna a lista das reunioesUsuarios registrados no sistema {GET}
 	 * @return lista de reunioesUsuarios registradas no banco
-	 * @author André
+	 * @author Andre
 	 */
 	@GetMapping(path = "/api/reunioesUsuarios")
 	public List<ReuniaoUsuario> consultar(){
@@ -65,7 +65,8 @@ public class ReuniaoUsuarioController {
 	/**
 	 * Insere uma nova reuniaoUsuario no banco de dados {POST}
 	 * @param String json
-	 * @author André
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/reuniaoUsuario/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -85,7 +86,8 @@ public class ReuniaoUsuarioController {
 	 * Metodo para alteração da reuniaoUsuario que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
-	 * @author André
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/reuniaoUsuario/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -104,7 +106,8 @@ public class ReuniaoUsuarioController {
 	/**
 	 * Método de exclusão da reuniaoUsuario que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
-	 * @author André
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/reuniaoUsuario/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {

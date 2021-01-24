@@ -27,7 +27,7 @@ public class TurmaAtividadeController {
 	 * Retorna a turmaAtividade que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/turmaAtividade/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -47,7 +47,7 @@ public class TurmaAtividadeController {
 	/**
 	 * Retorna a lista das turmasAtividades registrados no sistema {GET}
 	 * @return lista de turmasAtividades registradas no banco
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/turmasAtividades")
 	public List<TurmaAtividade> consultar(){
@@ -65,7 +65,8 @@ public class TurmaAtividadeController {
 	/**
 	 * Insere uma nova turmaAtividade no banco de dados {POST}
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/turmaAtividade/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -85,7 +86,8 @@ public class TurmaAtividadeController {
 	 * Metodo para alteração da turmaAtividade que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/turmaAtividade/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -104,7 +106,8 @@ public class TurmaAtividadeController {
 	/**
 	 * Método de exclusão da turmaAtividade que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/turmaAtividade/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {

@@ -18,8 +18,7 @@ import persistencia.jdbc.SalaDAO;
 /**
  * Metodo controller da sala para consulta no banco de dados através da API Rest
  * @author Breno
- *
- * @author André
+ * 
  */
 @RestController
 public class SalaController {
@@ -28,7 +27,7 @@ public class SalaController {
 	 * Retorna a sala que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/sala/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -48,7 +47,7 @@ public class SalaController {
 	/**
 	 * Retorna a lista das salas registrados no sistema {GET}
 	 * @return lista de salas registradas no banco
-	 * @author André
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/salas")
 	public List<Sala> consultar(){
@@ -66,7 +65,8 @@ public class SalaController {
 	/**
 	 * Insere uma nova sala no banco de dados {POST}
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/sala/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -86,7 +86,8 @@ public class SalaController {
 	 * Metodo para alteração da sala que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/sala/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -105,7 +106,8 @@ public class SalaController {
 	/**
 	 * Método de exclusão da sala que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
-	 * @author André
+	 * @author Breno
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/sala/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {

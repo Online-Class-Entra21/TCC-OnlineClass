@@ -26,6 +26,7 @@ public class RelatorioController {
 	/**
 	 * Retorna o relatorio que corresponde ao id indicado {GET}
 	 * @param int codigo
+	 * @author Andre
 	 * @return String json
 	 */
 	@GetMapping(path = "/api/relatorio/{codigo}")
@@ -45,6 +46,7 @@ public class RelatorioController {
 	
 	/**
 	 * Retorna a lista dos relatorios registrados no sistema {GET}
+	 * @author Andre
 	 * @return lista de relatorios registrados no banco
 	 */
 	@GetMapping(path = "/api/relatorios")
@@ -62,6 +64,8 @@ public class RelatorioController {
 	
 	/**
 	 * Insere um novo relatorio no banco de dados {POST}
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 * @param String json
 	 */
 	@PostMapping(path = "api/relatorio/inserir/{json}")
@@ -82,6 +86,8 @@ public class RelatorioController {
 	 * Metodo para alteração do relatorio que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/relatorio/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -100,6 +106,8 @@ public class RelatorioController {
 	/**
 	 * Método de exclusão do relatorio que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/relatorio/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {

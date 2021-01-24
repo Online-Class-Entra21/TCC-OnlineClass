@@ -27,7 +27,7 @@ public class RespostaController {
 	 * Retorna a resposta que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
-	 * @author André
+	 * @author Andre
 	 */
 	@GetMapping(path = "/api/resposta/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -47,7 +47,7 @@ public class RespostaController {
 	/**
 	 * Retorna a lista das respostas registrados no sistema {GET}
 	 * @return lista de respostas registrados no banco
-	 * @author André
+	 * @author Andre
 	 */
 	@GetMapping(path = "/api/respostas")
 	public List<Resposta> consultar(){
@@ -65,7 +65,8 @@ public class RespostaController {
 	/**
 	 * Insere uma nova resposta no banco de dados {POST}
 	 * @param String json
-	 * @author André
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/resposta/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -85,7 +86,8 @@ public class RespostaController {
 	 * Metodo para alteração da resposta que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
-	 * @author André
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/resposta/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -104,7 +106,8 @@ public class RespostaController {
 	/**
 	 * Método de exclusão da resposta que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
-	 * @author André
+	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/resposta/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {

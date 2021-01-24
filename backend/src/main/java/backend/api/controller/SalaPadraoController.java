@@ -23,6 +23,7 @@ public class SalaPadraoController {
 	 * Retorna a salaPadrao que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/salaPadrao/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -32,6 +33,7 @@ public class SalaPadraoController {
 	/**
 	 * Retorna a lista das salasPadroes registrados no sistema {GET}
 	 * @return lista de salasPadroes registradas no banco
+	 * @author Breno
 	 */
 	@GetMapping(path = "/api/salasPadroes")
 	public List<Sala> consultar(){
@@ -41,6 +43,7 @@ public class SalaPadraoController {
 	/**
 	 * Insere uma nova salaPadrao no banco de dados {POST}
 	 * @param String json
+	 * @author Breno
 	 */
 	@PostMapping(path = "api/salaPadrao/inserir/{json}")
 	public void inserir(@PathVariable("json") String json) {
@@ -51,6 +54,7 @@ public class SalaPadraoController {
 	 * Metodo para alteração da salaPadrao que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @author Breno
 	 */
 	@PutMapping(path = "api/salaPadrao/alterar/{codigo}/{json}")
 	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -60,6 +64,7 @@ public class SalaPadraoController {
 	/**
 	 * Método de exclusão da salaPadrao que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @author Breno
 	 */
 	@DeleteMapping(path = "/api/salaPadrao/deletar/{codigo}")
 	public void deletar(@PathVariable("codigo") int codigo) {

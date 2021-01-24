@@ -66,6 +66,7 @@ public class PeriodoAvaliacaoController {
 	 * Insere um novo periodoAvaliacao no banco de dados {POST}
 	 * @param String json
 	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@PostMapping(path = "api/periodoAvaliacao/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -86,6 +87,7 @@ public class PeriodoAvaliacaoController {
 	 * @param int codigo
 	 * @author Andre
 	 * @param String json
+	 * @return boolean situacao da operacao
 	 */
 	@PutMapping(path = "api/periodoAvaliacao/alterar/{codigo}/{json}")
 	public boolean  alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -105,6 +107,7 @@ public class PeriodoAvaliacaoController {
 	 * Método de exclusão do periodoAvaliacao que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
 	 * @author Andre
+	 * @return boolean situacao da operacao
 	 */
 	@DeleteMapping(path = "/api/periodoAvaliacao/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
