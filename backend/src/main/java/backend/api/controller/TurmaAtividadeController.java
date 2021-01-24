@@ -1,6 +1,9 @@
 package backend.api.controller;
 
+import java.sql.SQLException;
 import java.util.List;
+
+import com.google.gson.Gson;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.TurmaAtividade;
+import persistencia.jdbc.TurmaAtividadeDAO;
 
 /**
  * Metodo controller da turmaAtividade para consulta no banco de dados através da API Rest
@@ -23,46 +27,94 @@ public class TurmaAtividadeController {
 	 * Retorna a turmaAtividade que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
+	 * @author André
 	 */
 	@GetMapping(path = "/api/turmaAtividade/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		return null;
+		TurmaAtividadeDAO turmaAtividadeDao = new TurmaAtividadeDAO();
+		TurmaAtividade turmaAtividade;
+		try {
+			turmaAtividade = turmaAtividadeDao.buscarId(codigo);
+		} catch (SQLException e) {
+			turmaAtividade = null;
+			e.printStackTrace();
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(turmaAtividade);
+		return json;
 	}
 	
 	/**
 	 * Retorna a lista das turmasAtividades registrados no sistema {GET}
 	 * @return lista de turmasAtividades registradas no banco
+	 * @author André
 	 */
 	@GetMapping(path = "/api/turmasAtividades")
 	public List<TurmaAtividade> consultar(){
-		return null;
+		List<TurmaAtividade> lista;
+		TurmaAtividadeDAO turmaAtividadeDao = new TurmaAtividadeDAO();
+		try {
+			lista = turmaAtividadeDao.buscarTodos();
+		} catch (SQLException e) {
+			lista = null;
+			e.printStackTrace();
+		}
+		return lista;
 	}
 	
 	/**
 	 * Insere uma nova turmaAtividade no banco de dados {POST}
 	 * @param String json
+	 * @author André
 	 */
 	@PostMapping(path = "api/turmaAtividade/inserir/{json}")
-	public void inserir(@PathVariable("json") String json) {
-		//Completar com o código
+	public boolean inserir(@PathVariable("json") String json) {
+		Gson gson = new Gson();
+		TurmaAtividade turmaAtividade = gson.fromJson(json, TurmaAtividade.class);
+		TurmaAtividadeDAO turmaAtividadeDAO = new TurmaAtividadeDAO();
+		try {
+			turmaAtividadeDAO.insert(turmaAtividade);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	/**
 	 * Metodo para alteração da turmaAtividade que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @author André
 	 */
 	@PutMapping(path = "api/turmaAtividade/alterar/{codigo}/{json}")
-	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		//Completar com o código
+	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		Gson gson = new Gson();
+		TurmaAtividade turmaAtividade = gson.fromJson(json, TurmaAtividade.class);
+		TurmaAtividadeDAO turmaAtividadeDAO = new TurmaAtividadeDAO();
+		try {
+			turmaAtividadeDAO.update(turmaAtividade);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	/**
 	 * Método de exclusão da turmaAtividade que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @author André
 	 */
 	@DeleteMapping(path = "/api/turmaAtividade/deletar/{codigo}")
-	public void deletar(@PathVariable("codigo") int codigo) {
-		//Completar com o código
+	public boolean deletar(@PathVariable("codigo") int codigo) {
+		TurmaAtividadeDAO turmaAtividadeDAO = new TurmaAtividadeDAO();
+		try {
+			turmaAtividadeDAO.deleteId(codigo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }
