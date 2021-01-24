@@ -41,24 +41,4 @@ public class Professor extends Usuario {
 		super(idUsuario, nome, sobrenome, cpf, telefone, celular, 4, email, senha, horarioInicioExpediente,
 				horarioFinalExpediente, fotoUsuario, fk_endereco, fk_escola);
 	}
-
-    
-	//Descomentar após correções do André - ClassesDAO
-  	//-------------------------------------------------
-    
-    
-//    /** M�todo para visualizar as disciplinas do professor.
-//     * @param - 
-//     * @return ProfessorDisciplina - Disciplinas do professor.
-//     */
-//    public ProfessorDisciplina verDisciplinas() {
-//        return null;
-//    }
-//
-//    /**
-//     * 
-//     */
-//    public void escolherDisciplinaGerenciar() {
-//        // TODO implement here
-//    }
 }

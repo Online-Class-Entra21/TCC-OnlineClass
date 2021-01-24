@@ -98,25 +98,4 @@ public class Escola {
     public void setDataFinalLetivo(Date dataFinalLetivo) {
         this.dataFinalLetivo = dataFinalLetivo;
     }
-    
-    
-    //Descomentar após correções do André - ClassesDAO
-  	//-------------------------------------------------
-    
-    
-//    /**
-//     * Metodo para buscar um periodo de avaliacao especifico
-//     * @param idPeriodoAvaliacao
-//     * @return PeriodoAvaliacao periodoAvaliacao
-//     */
-//    public PeriodoAvaliacao buscarPeriodo(int idPeriodoAvaliacao) {
-//        PeriodoAvaliacaoDa
-//    }
-//
-//    /** M�todo para adicionar um per�odo de avalia��o.
-//     * @param -
-//     */
-//    public void adicionarPeriodo() {
-//        // TODO implement here
-//    }
 }

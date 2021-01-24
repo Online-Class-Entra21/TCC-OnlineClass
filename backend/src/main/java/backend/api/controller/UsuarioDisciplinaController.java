@@ -120,8 +120,4 @@ public class UsuarioDisciplinaController {
 		}
 		return true;
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }
