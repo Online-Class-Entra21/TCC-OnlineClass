@@ -43,12 +43,12 @@ public class AlunoController {
 			// TODO Auto-generated catch block
 			return null;
 		}
-		
 	}
 	
 	/**
 	 * Retorna a lista de alunos registrados no sistema {GET}
 	 * @return lista de aluno registrados no banco 
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/alunos")
 	public List<Aluno> consultar(){
@@ -62,12 +62,13 @@ public class AlunoController {
 			e.printStackTrace();
 			return null;
 		}
-		
 	}
 	
 	/**
 	 * Insere uma novo aluno no banco de dados {POST}
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@PostMapping(path = "api/aluno/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -88,9 +89,11 @@ public class AlunoController {
 	 * Metodo para alteração do aluno que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
-	@PutMapping(path = "api/aluno/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "api/aluno/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
 		Gson gson = new Gson();
 		Aluno aluno = gson.fromJson(json.toString(), Aluno.class);
 		AlunoDAO alunoDao = new AlunoDAO();
@@ -107,6 +110,8 @@ public class AlunoController {
 	/**
 	 * Método de exclusão do aluno que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@DeleteMapping(path = "/api/aluno/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
