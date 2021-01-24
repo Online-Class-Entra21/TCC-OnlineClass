@@ -7,131 +7,117 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.TurmaUsuarioDisciplina;
+import entidade.UsuarioDisciplinaTurma;
 
+/**
+ * Metodo para consulta do usuarioDisciplinaTurma no banco de dados 
+ * @author Breno
+ *
+ */
 public class UsuarioDisciplinaTurmaDAO {
 	
 	private Connection conexao = ConexaoFactory.getConnection();
 
 	/**
-	 * Realiza o registro de uma TurmaUsuarioDisciplina no banco de dados
-	 * @param turmaUsuarioDisciplina
-	 * @return
+	 * Realiza o registro de uma usuarioDisciplinaTurma no banco de dados
+	 * @param UsuarioDisciplinaTurma usuarioDisciplinaTurma
 	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public boolean insert(TurmaUsuarioDisciplina turmaUsuarioDisciplina) {
-		
+	public void insert(UsuarioDisciplinaTurma usuarioDisciplinaTurma) throws SQLException {
 		String sql = "insert into usuario_Disciplina_Turma (fk_usuario_Disciplina, fk_Turma) values (?,?)"; 
-		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		     
-			comandoSql.setInt(1, turmaUsuarioDisciplina.getFk_usuariorDisciplina());
-			comandoSql.setInt(2, turmaUsuarioDisciplina.getFk_turma());
-			
-			comandoSql.execute(); 
-			
-			comandoSql.close(); 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false; 
-		}
-		return true; 
+		comandoSql.setInt(1, usuarioDisciplinaTurma.getFk_usuariorDisciplina());
+		comandoSql.setInt(2, usuarioDisciplinaTurma.getFk_turma());
+		
+		comandoSql.execute(); 
+		comandoSql.close(); 
 	}
 	
 	/**
-	 * Realiza a exclusao dos dados de uma linha da tabela TurmaUsuarioDisciplina
-	 * @param idTurmaUsuarioDisciplina
-	 * @return
+	 * Metodo para atualizar um usuarioDisciplinaTurma no banco de dados.
+	 * O <code>idUsuarioDisciplinaTurma</code> deve ser igual ao do usuarioDisciplinaTurma que deseja atualizar
+	 * @param UsuarioDisciplinaTurma usuarioDisciplinaTurma 
 	 * @author Breno
+	 * @throws SQLException 
+	 */ 
+	public void update(UsuarioDisciplinaTurma usuarioDisciplinaTurma) throws SQLException {
+		String sql = "update usuario_Disciplina_Turma set fk_usuario = ?, fk_disciplina = ? where id_usuario_Disciplina_Turma = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setInt(1, usuarioDisciplinaTurma.getFk_usuariorDisciplina());
+		comandoSql.setInt(2, usuarioDisciplinaTurma.getFk_turma());
+		comandoSql.setInt(3, usuarioDisciplinaTurma.getIdUsuarioDisciplinaTurma());
+		
+		comandoSql.execute();
+		comandoSql.close();
+	}
+	
+	/**
+	 * Realiza a exclusao dos dados de uma linha da tabela usuarioDisciplinaTurma.
+	 *  O <code>idUsuarioDisciplinaTurma</code> deve ser igual ao do usuarioDisciplinaTurma que deseja deletar
+	 * @param int idUsuarioDisciplinaTurma
+	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public boolean deleteId(int idTurmaUsuarioDisciplina) {
-		
+	public void deleteId(int idUsuarioDisciplinaTurma) throws SQLException {
 		String sql = "delete from usuario_Disciplina_Turma where idUsuario_Disciplina_Turma = ?"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setInt(1, idUsuarioDisciplinaTurma);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			
-			comandoSql.setInt(1, idTurmaUsuarioDisciplina);
-			
-			comandoSql.execute(); 
-			
-			comandoSql.close(); 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false; 
-		}
-		return true; 
+		comandoSql.execute(); 
+		comandoSql.close(); 
 	}
 	
 	/**
 	 * Metodo de busca de todas as informacoes de uma linha
-	 * da tabela TurmaUsuarioDisciplina do banco de dados
-	 * @param idSalaPersonalizada
-	 * @return
+	 * da tabela usuarioDisciplinaTurma do banco de dados.
+	 *  O <code>idTurmaUsuarioDisciplina</code> deve ser igual ao da usuarioDisciplinaTurma que deseja buscar
+	 * @param int idUsuarioDisciplinaTurma
 	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public TurmaUsuarioDisciplina buscarId(int idTurmaUsuarioDisciplina) {
-		TurmaUsuarioDisciplina turmaUsuarioDisciplina = new TurmaUsuarioDisciplina(); 
-		
+	public UsuarioDisciplinaTurma buscarId(int idUsuarioDisciplinaTurma) throws SQLException {
+		UsuarioDisciplinaTurma usuarioDisciplinaTurma = new UsuarioDisciplinaTurma(); 
 		String sql = "select * from sala where idSala = ?"; 
-		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
-			comandoSql.setInt(1, idTurmaUsuarioDisciplina);
+		comandoSql.setInt(1, idUsuarioDisciplinaTurma);
+		ResultSet resultSet = comandoSql.executeQuery();
 			
-			ResultSet resultSet = comandoSql.executeQuery();
-			
-			if (resultSet.next()) {
-				turmaUsuarioDisciplina.setIdTurmaUsuarioDisciplina(resultSet.getInt(1));
-				turmaUsuarioDisciplina.setFk_usuariorDisciplina(resultSet.getInt(2));
-				turmaUsuarioDisciplina.setFk_turma(resultSet.getInt(3));
-				
-				comandoSql.close(); 
-				return turmaUsuarioDisciplina;
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		return null; 
+		if (resultSet.next()) {
+			usuarioDisciplinaTurma.setIdUsuarioDisciplinaTurma(resultSet.getInt(1));
+			usuarioDisciplinaTurma.setFk_usuariorDisciplina(resultSet.getInt(2));
+			usuarioDisciplinaTurma.setFk_turma(resultSet.getInt(3));
+		}
+		comandoSql.close(); 
+		return usuarioDisciplinaTurma;
 	}
 	
 	/**
 	 * Retorna todos os dados listados da tabela Sala do banco de dados 
-	 * @return
+	 * @return lista de usuariosDisciplinasTurmas registradas no banco
 	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public List<TurmaUsuarioDisciplina> buscarTodos() {
-		
-		List<TurmaUsuarioDisciplina> lista = new ArrayList<TurmaUsuarioDisciplina>(); 
-		
+	public List<UsuarioDisciplinaTurma> buscarTodos() throws SQLException {
+		List<UsuarioDisciplinaTurma> lista = new ArrayList<UsuarioDisciplinaTurma>(); 
 		String sql = "select * from usuario_Disciplina_Turma"; 
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			UsuarioDisciplinaTurma usuarioDisciplinaTurma = new UsuarioDisciplinaTurma(); 
+			usuarioDisciplinaTurma.setIdUsuarioDisciplinaTurma(resultSet.getInt(1));
+			usuarioDisciplinaTurma.setFk_usuariorDisciplina(resultSet.getInt(2));
+			usuarioDisciplinaTurma.setFk_turma(resultSet.getInt(3));
 			
-			ResultSet resultSet = comandoSql.executeQuery();
-			comandoSql.close(); 
-			
-			while (resultSet.next()) {
-				TurmaUsuarioDisciplina turmaUsuarioDisciplina = new TurmaUsuarioDisciplina(); 
-				turmaUsuarioDisciplina.setIdTurmaUsuarioDisciplina(resultSet.getInt(1));
-				turmaUsuarioDisciplina.setFk_usuariorDisciplina(resultSet.getInt(2));
-				turmaUsuarioDisciplina.setFk_turma(resultSet.getInt(3));
-				lista.add(turmaUsuarioDisciplina); 
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			lista.add(usuarioDisciplinaTurma); 
 		}
+		comandoSql.close(); 
 		return lista;
 	}	
 }

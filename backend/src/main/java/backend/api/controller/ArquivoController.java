@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.Aluno;
 import entidade.Arquivo;
-import persistencia.jdbc.AlunoDAO;
 import persistencia.jdbc.ArquivoDAO;
 
 /**
  * Metodo controller do arquivo para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andrey
  *
  */
 @RestController
@@ -29,6 +27,7 @@ public class ArquivoController {
 	 * Retorna o arquivo que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/arquivo/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -50,6 +49,7 @@ public class ArquivoController {
 	/**
 	 * Retorna a lista de arquivos registrados no sistema {GET}
 	 * @return lista de arquivos registrados no banco 
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/arquivos")
 	public List<Arquivo> consultar(){
@@ -68,6 +68,8 @@ public class ArquivoController {
 	/**
 	 * Insere uma novo arquivo no banco de dados {POST}
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@PostMapping(path = "api/arquivo/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -88,6 +90,8 @@ public class ArquivoController {
 	 * Metodo para alteração do arquivo que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@PutMapping(path = "api/arquivo/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -107,6 +111,8 @@ public class ArquivoController {
 	/**
 	 * Método de exclusão do arquivo que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@DeleteMapping(path = "/api/arquivo/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
@@ -120,8 +126,4 @@ public class ArquivoController {
 			return false;
 		}
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }

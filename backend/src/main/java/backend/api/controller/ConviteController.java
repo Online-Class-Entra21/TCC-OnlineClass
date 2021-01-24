@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.Chamada;
 import entidade.Convite;
-import persistencia.jdbc.ChamadaDAO;
 import persistencia.jdbc.ConviteDAO;
 
 /**
  * Metodo controller do convite para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andrey
  *
  */
 @RestController
@@ -29,6 +27,7 @@ public class ConviteController {
 	 * Retorna o convite que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/convite/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -50,6 +49,7 @@ public class ConviteController {
 	/**
 	 * Retorna a lista de convites registrados no sistema {GET}
 	 * @return lista de convites registrados no banco
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/convites")
 	public List<Convite> consultar(){
@@ -68,6 +68,8 @@ public class ConviteController {
 	/**
 	 * Insere um novo convite no banco de dados {POST}
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@PostMapping(path = "api/convite/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -88,6 +90,8 @@ public class ConviteController {
 	 * Metodo para alteração do convite que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@PutMapping(path = "api/convite/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -107,6 +111,8 @@ public class ConviteController {
 	/**
 	 * Método de exclusão do convite que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@DeleteMapping(path = "/api/convite/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
@@ -120,8 +126,4 @@ public class ConviteController {
 			return false;
 		}
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }

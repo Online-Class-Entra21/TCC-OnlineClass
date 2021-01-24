@@ -12,7 +12,7 @@ import entidade.Arquivo;
 
 /**
  * Metodo para consulta do arquivo no banco de dados 
- * @author André
+ * @author Andre
  *
  */
 public class ArquivoDAO {
@@ -22,7 +22,7 @@ public class ArquivoDAO {
 	/**
 	 * Metodo para inserir um arquivo no banco de dados
 	 * @param Arquivo arquivo
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void insert(Arquivo arquivo) throws SQLException {
@@ -42,7 +42,7 @@ public class ArquivoDAO {
 	 * Metodo para atualizar os dados de um arquivo no banco de dados
 	 * O <code>idArquivo</code> deve ser igual ao do arquivo que deseja atualizar
 	 * @param Arquivo arquivo
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void update(Arquivo arquivo) throws SQLException {
@@ -63,7 +63,7 @@ public class ArquivoDAO {
 	 * Metodo para deletar um arquivo do banco de dados
 	 * O <code>idArquivo</code> deve ser igual ao do arquivo que deseja deletar
 	 * @param int idArquivo
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void deleteId(int idArquivo) throws SQLException {
@@ -81,7 +81,7 @@ public class ArquivoDAO {
 	 * O <code>idArquivo</code> deve ser igual ao do arquivo que deseja buscar
 	 * @param int idArquivo
 	 * @return Arquivo arquivo
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public Arquivo buscarId(int idArquivo) throws SQLException {
@@ -106,7 +106,7 @@ public class ArquivoDAO {
 	/**
 	 * Metodo para selecionar todos os arquivos do banco de dados
 	 * @return lista de arquivos que estão no banco 
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public List<Arquivo> buscarTodos() throws SQLException {

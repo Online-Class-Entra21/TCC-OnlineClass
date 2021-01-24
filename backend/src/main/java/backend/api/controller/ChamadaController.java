@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.Atividade;
 import entidade.Chamada;
-import persistencia.jdbc.AtividadeDAO;
 import persistencia.jdbc.ChamadaDAO;
 
 /**
  * Metodo controller da chamada para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andrey
  *
  */
 @RestController
@@ -29,6 +27,7 @@ public class ChamadaController {
 	 * Retorna a chamada que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/chamada/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
@@ -50,6 +49,7 @@ public class ChamadaController {
 	/**
 	 * Retorna a lista de chamadas registrados no sistema {GET}
 	 * @return lista de chamadas registradas no banco
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/chamadas")
 	public List<Chamada> consultar(){
@@ -68,6 +68,8 @@ public class ChamadaController {
 	/**
 	 * Insere uma nova chamada no banco de dados {POST}
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@PostMapping(path = "api/chamada/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
@@ -88,6 +90,8 @@ public class ChamadaController {
 	 * Metodo para alteração da chamada que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@PutMapping(path = "api/chamada/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
@@ -107,6 +111,8 @@ public class ChamadaController {
 	/**
 	 * Método de exclusão da chamada que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
+	 * @return boolean situacao da operacao
+	 * @author Andrey
 	 */
 	@DeleteMapping(path = "/api/chamada/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
@@ -120,8 +126,4 @@ public class ChamadaController {
 			return false;
 		}
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }

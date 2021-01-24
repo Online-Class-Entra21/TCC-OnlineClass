@@ -11,7 +11,7 @@ import entidade.Administrador;
 
 /**
  * Metodo para consulta do administrador no banco de dados 
- * @author André 
+ * @author Andre
  *
  */
 public class AdministradorDAO {
@@ -21,7 +21,7 @@ public class AdministradorDAO {
 	/**
 	 * Metodo para selecionar do banco de dados todos os administradores cadastrados
 	 * @return lista de administradores registrados no banco 
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException
 	 */
 	public List<Administrador> buscarTodos() throws SQLException {

@@ -11,7 +11,7 @@ import entidade.Convite;
 
 /**
  * Metodo para consulta do convite no banco de dados
- * @author André
+ * @author Andre
  *
  */
 public class ConviteDAO {
@@ -21,7 +21,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 	/**
 	 * Metodo para inserir convite no banco de dados
 	 * @param Convite convite
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void insert(Convite convite) throws SQLException {
@@ -41,7 +41,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 	 * Metodo para atualizar um convite no banco de dados.
 	 * O <code>idConvite</code> deve ser igual ao do convite que deseja atualizar
 	 * @param Convite convite
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */ 
 	public void update(Convite convite) throws SQLException {
@@ -63,7 +63,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 	 *  Metodo para deletar do banco de dados um convite.
 	 *  O <code>idConvite</code> deve ser igual ao do convite que deseja deletar 
 	 * @param int idConvite
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void deleteId(int idConvite) throws SQLException {
@@ -81,7 +81,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 	 * O <code>idConvite</code> deve ser igual ao do convite que deseja buscar
 	 * @param int idChamada
 	 * @return Chamada chamada 
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public Convite buscarId(int idConvite) throws SQLException {
@@ -105,7 +105,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 	/**
 	 * Metodo para selecionar todos os convites do banco de dados
 	 * @return lista de convites registrados no banco 
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public List<Convite> buscarTodos() throws SQLException {

@@ -17,7 +17,7 @@ import persistencia.jdbc.RelatorioDAO;
 
 /**
  * Metodo controller do relatorio para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andre
  *
  */
 @RestController
@@ -112,8 +112,4 @@ public class RelatorioController {
 		}
 		return true;
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }

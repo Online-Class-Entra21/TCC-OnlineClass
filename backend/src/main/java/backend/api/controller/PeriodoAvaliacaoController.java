@@ -17,7 +17,7 @@ import persistencia.jdbc.PeriodoAvaliacaoDAO;
 
 /**
  * Metodo controller do periodoAvaliacao para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andre
  *
  */
 @RestController
@@ -116,8 +116,4 @@ public class PeriodoAvaliacaoController {
 		}
 		return true;	
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
 }

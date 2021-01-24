@@ -11,7 +11,7 @@ import entidade.Chamada;
 
 /**
  * Metodo para consulta da chamada no banco de dados
- * @author André
+ * @author Andre
  *
  */
 public class ChamadaDAO {
@@ -21,7 +21,7 @@ public class ChamadaDAO {
 	/**
 	 * Metodo para inserir chamada no banco de dados
 	 * @param Chamada chamada
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void insert(Chamada chamada) throws SQLException {
@@ -40,7 +40,7 @@ public class ChamadaDAO {
 	 * Metodo para atualizar chamada no banco de dados.
 	 * O <code>idChamada</code> deve ser igual ao da chamada que deseja atualizar
 	 * @param Chmada chamada
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void update(Chamada chamada) throws SQLException {
@@ -60,7 +60,7 @@ public class ChamadaDAO {
 	 * Metodo para deletar chamada do banco de dados.
 	 * O <code>idAtividade</code> deve ser igual ao da chamada que deseja deletar
 	 * @param int idChamada
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public void deleteId(int idChamada) throws SQLException {
@@ -78,7 +78,7 @@ public class ChamadaDAO {
 	 * O <code>idAtividade</code> deve ser igual ao da chamada que deseja buscar
 	 * @param int idChamada
 	 * @return Chamada chamada 
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public Chamada buscarId(int idChamada) throws SQLException {
@@ -102,7 +102,7 @@ public class ChamadaDAO {
 	/**
 	 * Metodo para selecionar todas as chamadas do banco de dados
 	 * @return lista de todas as chamadas registradas no banco
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException 
 	 */
 	public List<Chamada> buscarTodos() throws SQLException {

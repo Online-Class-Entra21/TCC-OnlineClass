@@ -11,7 +11,7 @@ import entidade.Diretor;
 
 /**
  * Metodo para consulta do diretor no banco de dados 
- * @author André 
+ * @author Andre
  *
  */
 public class DiretorDAO {
@@ -21,7 +21,7 @@ public class DiretorDAO {
 	/**
 	 * Metodo para selecionar do banco de dados todos os diretores cadastrados
 	 * @return lista de diretores registrados no banco 
-	 * @author André
+	 * @author Andre
 	 * @throws SQLException
 	 */
 	public List<Diretor> buscarTodos() throws SQLException {

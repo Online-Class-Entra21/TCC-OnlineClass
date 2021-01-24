@@ -6,7 +6,7 @@ import java.sql.Time;
  * Classe contendo metodos e atributos para o administrador.
  * Herda metodos e atributos da classe Usuario
  * @see Usuario
- * @author André
+ * @author Andre
  */
 public class Administrador extends Usuario {
 	

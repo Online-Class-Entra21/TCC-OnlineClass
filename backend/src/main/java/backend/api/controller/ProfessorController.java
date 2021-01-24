@@ -11,7 +11,7 @@ import persistencia.jdbc.ProfessorDAO;
 
 /**
  * Metodo controller do professor para consulta no banco de dados através da API Rest
- * @author Breno
+ * @author Andre
  *
  */
 @RestController

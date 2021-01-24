@@ -9,59 +9,59 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import entidade.Turma;
+import entidade.UsuarioDisciplinaTurma;
 
 /**
- * Metodo controller da turma para consulta no banco de dados através da API Rest
+ * Metodo controller do usuarioDisciplinaTurma para consulta no banco de dados através da API Rest
  * @author Breno
  *
  */
 @RestController
-public class TurmaController {
+public class UsuarioDisciplinaTurmaController {
 	
 	/**
-	 * Retorna a turma que corresponde ao id indicado {GET}
+	 * Retorna o usuarioDisciplinaTurma que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
 	 */
-	@GetMapping(path = "/api/turma/{codigo}")
+	@GetMapping(path = "/api/usuarioDisciplinaTurma/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		return null;
 	}
 	
 	/**
-	 * Retorna a lista das turmas registrados no sistema {GET}
-	 * @return lista de turmas registradas no banco
+	 * Retorna a lista dos usuarioDisciplinaTurma registrados no sistema {GET}
+	 * @return lista de usuariosDisciplinasTurmas registradas no banco
 	 */
-	@GetMapping(path = "/api/turmas")
-	public List<Turma> consultar(){
+	@GetMapping(path = "/api/turmasUsuariosDisciplinas")
+	public List<UsuarioDisciplinaTurma> consultar(){
 		return null;
 	}
 	
 	/**
-	 * Insere uma nova turma no banco de dados {POST}
+	 * Insere um novo usuarioDisciplinaTurma no banco de dados {POST}
 	 * @param String json
 	 */
-	@PostMapping(path = "api/turma/inserir/{json}")
+	@PostMapping(path = "api/usuarioDisciplinaTurma/inserir/{json}")
 	public void inserir(@PathVariable("json") String json) {
 		//Completar com o código
 	}
 
 	/**
-	 * Metodo para alteração da turma que corresponde ao codigo informado {PUT}
+	 * Metodo para alteração do usuarioDisciplinaTurma que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @param String json
 	 */
-	@PutMapping(path = "api/turma/alterar/{codigo}/{json}")
+	@PutMapping(path = "api/usuarioDisciplinaTurma/alterar/{codigo}/{json}")
 	public void alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		//Completar com o código
 	}
 	
 	/**
-	 * Método de exclusão da turma que corresponde ao codigo informado {DELETE}
+	 * Método de exclusão do usuarioDisciplinaTurma que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
 	 */
-	@DeleteMapping(path = "/api/turma/deletar/{codigo}")
+	@DeleteMapping(path = "/api/usuarioDisciplinaTurma/deletar/{codigo}")
 	public void deletar(@PathVariable("codigo") int codigo) {
 		//Completar com o código
 	}
