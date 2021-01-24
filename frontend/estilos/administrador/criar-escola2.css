@@ -1,0 +1,70 @@
+fieldset {
+    background-color: #eeeeee;
+}
+
+legend {
+    background-color: gray;
+    color: white;
+    padding: 1% 2%;
+}
+
+div{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    width: 100%;
+    height: auto;
+    font-family: cursive;
+}
+
+td {
+    padding: 30px;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+th {
+    text-transform: uppercase;
+    border-left: 1px solid #111;
+    border-right: 1px solid #111;
+    padding: 30px;
+    text-align: left;
+    font-size: 80%;
+    letter-spacing: 0.1em;
+    background: gray;
+}
+
+button{
+    background: white;
+}
+button:hover {
+    background: black;
+    color: white;
+}
+
+#btnCriar{
+    margin-left: 35%;
+}
+
+
+#registro-escola-diretor{
+    /* display: flex; */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    height: 602px;
+    border:solid 1px
+}
+
+#cria-escola {
+    
+    
+}
+#cadastra-diretor {
+}
+#endereco {
+    margin-left: 0%;
+}
