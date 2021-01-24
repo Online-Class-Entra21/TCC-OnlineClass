@@ -6,7 +6,7 @@ package entidade;
  * @see Usuario
  * @author André 
  */
-public class Aluno extends Usuario {
+public class Aluno {
     
 	private int idAluno;
     private int ra;

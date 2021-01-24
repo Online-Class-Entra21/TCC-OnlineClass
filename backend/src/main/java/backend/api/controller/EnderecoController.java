@@ -45,6 +45,25 @@ public class EnderecoController {
 	}
 	
 	/**
+	 * Retorna a lista de enderecos registrados no sistema {GET}
+	 * 
+	 * @return lista de enderecos registrados no banco
+	 * @author Andre
+	 */
+	@GetMapping(path = "/api/enderecos")
+	public List<Endereco> consultar() {
+		List<Endereco> lista;
+		EnderecoDAO enderecoDao = new EnderecoDAO();
+		try {
+			lista = enderecoDao.buscarTodos();
+		} catch (SQLException e) {
+			lista = null;
+			e.printStackTrace();
+		}
+		return lista;
+	}
+
+	/**
 	 * Insere um novo endereco no banco de dados {POST}
 	 * @param String json
 	 * @author Andre
@@ -79,7 +98,7 @@ public class EnderecoController {
 			e.printStackTrace();
 			return false;
 		}
-		return false;
+		return true;
 	}
 	
 	/**
