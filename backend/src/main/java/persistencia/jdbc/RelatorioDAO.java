@@ -112,7 +112,6 @@ public class RelatorioDAO {
 	 * @throws SQLException 
 	 */	
 	public List<Relatorio> buscarTodos() throws SQLException {
-		Relatorio relatorio = new Relatorio();
 		List<Relatorio> lista = new ArrayList<Relatorio>();
 	    String sql = "select * from Escola";
 	    
@@ -120,6 +119,7 @@ public class RelatorioDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Relatorio relatorio = new Relatorio();
 			relatorio.setIdRelatorio (resultSet.getInt(1));
 			relatorio.setTitulo(resultSet.getString(2));
 			relatorio.setDestinatario(resultSet.getInt(3));

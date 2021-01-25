@@ -20,7 +20,6 @@ public class SalaPadraoDAO {
 	 * @throws SQLException 
 	 */
 	public List<SalaPadrao> buscarTodos() throws SQLException {
-		SalaPadrao sala = new SalaPadrao(); 
 		List<SalaPadrao> lista = new ArrayList<SalaPadrao>(); 
 		String sql = "select * from sala where tipoSala = false"; 
 
@@ -28,6 +27,7 @@ public class SalaPadraoDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			SalaPadrao sala = new SalaPadrao(); 
 			sala.setIdSala(resultSet.getInt(1));
 			sala.setNome(resultSet.getString(2));
 			sala.setDescricao(resultSet.getString(3));

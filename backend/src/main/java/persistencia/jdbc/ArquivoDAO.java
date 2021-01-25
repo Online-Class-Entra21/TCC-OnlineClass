@@ -109,8 +109,7 @@ public class ArquivoDAO {
 	 * @author Andre
 	 * @throws SQLException 
 	 */
-	public List<Arquivo> buscarTodos() throws SQLException {
-		Arquivo arquivo = new Arquivo(); 
+	public List<Arquivo> buscarTodos() throws SQLException { 
 		List<Arquivo> lista =  new ArrayList<Arquivo>();
 		String sql = "select * from arquivo";
 
@@ -118,6 +117,7 @@ public class ArquivoDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Arquivo arquivo = new Arquivo();
 			arquivo.setIdArquivo(resultSet.getInt(1));
 			arquivo.setExtensao(resultSet.getString(2));
 			arquivo.setDataEnvio(resultSet.getDate(3));

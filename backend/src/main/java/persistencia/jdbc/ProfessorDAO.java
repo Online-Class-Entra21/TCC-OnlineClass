@@ -25,7 +25,6 @@ public class ProfessorDAO {
 	 * @throws SQLException
 	 */
 	public List<Professor> buscarTodos() throws SQLException {
-		Professor professor = new Professor();
 		List<Professor> lista =  new ArrayList<Professor>();
 		String sql = "select * from usuario where tipoUsuario = 4";
 		
@@ -33,6 +32,7 @@ public class ProfessorDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Professor professor = new Professor();
 			professor.setIdUsuario(resultSet.getInt(1));
 			professor.setNome(resultSet.getString(2));
 			professor.setSobrenome(resultSet.getString(3));

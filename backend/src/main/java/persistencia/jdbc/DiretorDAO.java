@@ -25,7 +25,6 @@ public class DiretorDAO {
 	 * @throws SQLException
 	 */
 	public List<Diretor> buscarTodos() throws SQLException {
-		Diretor diretor = new Diretor();
 		List<Diretor> lista =  new ArrayList<Diretor>();
 		String sql = "select * from usuario where tipoUsuario = 2";
 		
@@ -33,6 +32,7 @@ public class DiretorDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Diretor diretor = new Diretor();
 			diretor.setIdUsuario(resultSet.getInt(1));
 			diretor.setNome(resultSet.getString(2));
 			diretor.setSobrenome(resultSet.getString(3));

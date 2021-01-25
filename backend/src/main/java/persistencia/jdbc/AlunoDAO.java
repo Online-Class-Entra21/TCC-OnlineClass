@@ -127,7 +127,6 @@ public class AlunoDAO {
 	 * @throws SQLException
 	 */
 	public List<Aluno> buscarTodos() throws SQLException {
-		Aluno aluno = new Aluno();
 		List<Aluno> lista =  new ArrayList<Aluno>();
 		String sql = "select * from aluno";
 		
@@ -135,6 +134,7 @@ public class AlunoDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Aluno aluno = new Aluno();
 			aluno.setIdAluno(resultSet.getInt(1));
 			aluno.setRa(resultSet.getInt(2));
 			aluno.setMatricula(resultSet.getInt(3));

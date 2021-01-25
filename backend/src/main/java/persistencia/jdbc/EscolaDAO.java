@@ -108,7 +108,6 @@ public class EscolaDAO {
 	 * @throws SQLException 
 	 */	
 	public List<Escola> buscarTodos() throws SQLException {
-		Escola escola = new Escola();
 		List<Escola> lista = new ArrayList<Escola>();
 		String sql = "select * from Escola";
 		
@@ -116,6 +115,7 @@ public class EscolaDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Escola escola = new Escola();
 			escola.setIdEscola(resultSet.getInt(1));
 			escola.setNome(resultSet.getString(2));
 			escola.setDataInicioLeitvo(resultSet.getDate(3));

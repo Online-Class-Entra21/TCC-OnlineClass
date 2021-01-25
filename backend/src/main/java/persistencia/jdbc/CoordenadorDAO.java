@@ -25,7 +25,6 @@ public class CoordenadorDAO {
 	 * @throws SQLException
 	 */
 	public List<Coordenador> buscarTodos() throws SQLException {
-		Coordenador coordenador = new Coordenador();
 		List<Coordenador> lista =  new ArrayList<Coordenador>();
 		String sql = "select * from usuario where tipoUsuario = 3";
 		
@@ -33,6 +32,7 @@ public class CoordenadorDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Coordenador coordenador = new Coordenador();
 			coordenador.setIdUsuario(resultSet.getInt(1));
 			coordenador.setNome(resultSet.getString(2));
 			coordenador.setSobrenome(resultSet.getString(3));

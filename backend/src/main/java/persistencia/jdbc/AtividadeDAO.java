@@ -115,7 +115,6 @@ public class AtividadeDAO {
 	 * @throws SQLException 
 	 */
 	public List<Atividade> buscarTodos() throws SQLException {
-		Atividade atividade = new Atividade();
 		List<Atividade> lista =  new ArrayList<Atividade>();
 		String sql = "select * from atividade";
 		
@@ -123,6 +122,7 @@ public class AtividadeDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Atividade atividade = new Atividade();
 			atividade.setIdAtividade(resultSet.getInt(1));
 			atividade.setDescricao(resultSet.getString(2));
 			atividade.setInicioAtividade(resultSet.getDate(3));

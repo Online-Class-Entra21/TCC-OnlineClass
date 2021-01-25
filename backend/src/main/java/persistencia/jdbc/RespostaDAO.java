@@ -118,13 +118,13 @@ public class RespostaDAO {
 	 * @throws SQLException 
 	 */	
 	public List<Resposta> buscarTodos() throws SQLException {
-		Resposta resposta = new Resposta();
 		List<Resposta> lista = new ArrayList<Resposta>();
 		PreparedStatement comandoSql = conexao.prepareStatement("select * from Resposta");
 		
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Resposta resposta = new Resposta();
 			resposta.setIdResposta(resultSet.getInt(1));
 			resposta.setNota(resultSet.getDouble(2));
 			resposta.setComentarioAtividade(resultSet.getString(3));

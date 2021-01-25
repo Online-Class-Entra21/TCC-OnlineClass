@@ -101,7 +101,6 @@ public class SalaPersonalizadaDAO {
 	 * @throws SQLException 
 	 */
 	public List<SalaPersonalizada> buscarTodos() throws SQLException {
-		SalaPersonalizada salaPersonalizada = new SalaPersonalizada();
 		List<SalaPersonalizada> lista = new ArrayList<SalaPersonalizada>();
 		String sql = "select * from salaPersonalizada";
 		
@@ -109,6 +108,7 @@ public class SalaPersonalizadaDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 
 		while (resultSet.next()) {
+			SalaPersonalizada salaPersonalizada = new SalaPersonalizada();
 			salaPersonalizada.setIdSalaPersonalizada(resultSet.getInt(1));
 			salaPersonalizada.setDono(resultSet.getInt(2));
 			salaPersonalizada.setFk_sala(resultSet.getInt(3));
