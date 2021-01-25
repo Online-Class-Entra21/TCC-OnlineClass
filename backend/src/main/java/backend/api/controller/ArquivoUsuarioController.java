@@ -39,7 +39,6 @@ public class ArquivoUsuarioController {
 			String json = gson.toJson(arquivoUsuario);
 			return json;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -59,7 +58,6 @@ public class ArquivoUsuarioController {
 			lista = arquivoUsuarioDao.buscarTodos();
 			return lista;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -80,7 +78,6 @@ public class ArquivoUsuarioController {
 			arquivoUsuarioDao.insert(arquivoUsuario);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -102,7 +99,6 @@ public class ArquivoUsuarioController {
 			arquivoUsuarioDao.update(arquivoUsuario);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -121,7 +117,6 @@ public class ArquivoUsuarioController {
 			arquivoUsuarioDao.deleteId(codigo);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}

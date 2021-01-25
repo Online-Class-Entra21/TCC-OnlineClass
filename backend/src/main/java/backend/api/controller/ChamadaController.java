@@ -39,7 +39,6 @@ public class ChamadaController {
 			String json = gson.toJson(chamada);
 			return json;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -59,7 +58,6 @@ public class ChamadaController {
 			lista = chamadaDao.buscarTodos();
 			return lista;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -80,7 +78,6 @@ public class ChamadaController {
 			chamadaDao.insert(chamada);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -102,7 +99,6 @@ public class ChamadaController {
 			chamadaDao.update(chamada);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -121,7 +117,6 @@ public class ChamadaController {
 			chamadaDao.deleteId(codigo);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}

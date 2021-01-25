@@ -40,7 +40,7 @@ public class AlunoController {
 			String json = gson.toJson(aluno);
 			return json;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -58,7 +58,6 @@ public class AlunoController {
 			lista = alunoDao.buscarTodos();
 			return lista;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -79,7 +78,6 @@ public class AlunoController {
 			alunoDao.insert(aluno);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -101,7 +99,6 @@ public class AlunoController {
 			alunoDao.update(aluno);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -120,7 +117,6 @@ public class AlunoController {
 			alunoDao.deleteId(codigo);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}

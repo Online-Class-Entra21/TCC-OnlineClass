@@ -39,7 +39,6 @@ public class ArquivoController {
 			String json = gson.toJson(arquivo);
 			return json;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -59,7 +58,6 @@ public class ArquivoController {
 			lista = arquivoDao.buscarTodos();
 			return lista;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -80,7 +78,6 @@ public class ArquivoController {
 			arquivoDao.insert(arquivo);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -102,7 +99,6 @@ public class ArquivoController {
 			arquivoDao.update(arquivo);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -121,7 +117,6 @@ public class ArquivoController {
 			arquivoDao.deleteId(codigo);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}

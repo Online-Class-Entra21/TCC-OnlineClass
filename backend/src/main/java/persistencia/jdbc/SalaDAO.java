@@ -107,7 +107,7 @@ public class SalaDAO {
 	}
 	
 	/**
-	 * Retorna todos os dados listados da tabela Sala do banco de dados 
+	 * Retorna todos os dados listados da tabela sala do banco de dados 
 	 * @return lista das salas resgistradas no banco
 	 * @author Breno
 	 * @throws SQLException 
@@ -121,7 +121,6 @@ public class SalaDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
-			
 			sala.setIdSala(resultSet.getInt(1));
 			sala.setNome(resultSet.getString(2));
 			sala.setDescricao(resultSet.getString(3));

@@ -39,7 +39,6 @@ public class AtividadeController {
 			String json = gson.toJson(atividade);
 			return json;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -59,7 +58,6 @@ public class AtividadeController {
 			lista = atividadeDao.buscarTodos();
 			return lista;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -80,7 +78,6 @@ public class AtividadeController {
 			atividadeDao.insert(atividade);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -102,7 +99,6 @@ public class AtividadeController {
 			atividadeDao.update(atividade);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -121,7 +117,6 @@ public class AtividadeController {
 			atividadeDao.deleteId(codigo);
 			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}

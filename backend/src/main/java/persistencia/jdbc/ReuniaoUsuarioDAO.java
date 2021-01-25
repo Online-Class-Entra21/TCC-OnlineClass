@@ -11,7 +11,7 @@ import entidade.ReuniaoUsuario;
 
 /**
  * Metodo para consulta da reuniaoUsuario no banco de dados 
- * @author Breno
+ * @author Andrey
  *
  */
 public class ReuniaoUsuarioDAO {
@@ -21,7 +21,7 @@ public class ReuniaoUsuarioDAO {
 	/**
 	 * Metodo para inserir reuniaoUsuario no banco de dados
 	 * @param ReuniaoUsuario reuniaoUsuario
-	 * @author Breno
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public void insert(ReuniaoUsuario reuniaoUsuario) throws SQLException {
@@ -43,7 +43,7 @@ public class ReuniaoUsuarioDAO {
 	 * Metodo para atualizar uma reuniaoUsuario no banco de dados.
 	 * O <code>idReuniao</code> deve ser igual ao da reuniao que deseja atualizar
 	 * @param ReuniaoUsuario reuniaoUsuario
-	 * @author Breno
+	 * @author Andrey
 	 * @throws SQLException 
 	 */ 	
 	public void update(ReuniaoUsuario reuniaoUsuario) throws SQLException {
@@ -66,7 +66,7 @@ public class ReuniaoUsuarioDAO {
 	 * Metodo para deletar do banco de dados uma reuniaoUsuario.
 	 * O <code>idReuniaoUsuario</code> deve ser igual ao da reuniaoUsuario que deseja deletar
 	 * @param int idReuniaoUsuario
-	 * @author Breno
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public void deleteId(int idReuniaoUsuario) throws SQLException {
@@ -84,7 +84,7 @@ public class ReuniaoUsuarioDAO {
 	 * O <code>idReuniaoUsuario</code> deve ser igual ao da reuniaoUsuario que deseja buscar
 	 * @param int idReuniaoUsuario
 	 * @return ReuniaoUsuario reuniaoUsuario
-	 * @author Breno
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public ReuniaoUsuario buscarId(int idReuniaoUsuario) throws SQLException {
@@ -110,7 +110,7 @@ public class ReuniaoUsuarioDAO {
 	/**
 	 * Metodo para selecionar todas as reunioesUsuarios do banco de dados
 	 * @return lista de reunioesUsuarios resgistradas no banco 
-	 * @author Breno
+	 * @author Andrey
 	 * @throws SQLException 
 	 */	
 	public List<ReuniaoUsuario> buscarTodos() throws SQLException {
