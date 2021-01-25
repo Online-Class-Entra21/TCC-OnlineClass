@@ -37,18 +37,24 @@ public class DiretorController {
 			return null;
 		}
 	}
+	
+	/**
+	 * Retorna o diretor que comanda o a escola com o fk informado atrvés dos parametros {GET}
+	 * @param codigo
+	 * @return String json 
+	 */
 	@GetMapping(path = "/api/diretor/escola/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo){
 		Diretor diretor;
 		DiretorDAO diretorDao = new DiretorDAO();
 		try {
-			diretor = diretorDao.buscarEscola(codigo);
+			diretor = diretorDao.buscarDiretorEscola(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(diretor);
+			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		Gson gson = new Gson();
-		return gson.toJson(diretor);
-		
 	}
 }
