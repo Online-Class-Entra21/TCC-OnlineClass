@@ -53,7 +53,14 @@ public class DiretorDAO {
 		comandoSql.close();
 		return lista;
 	}
-	public Diretor buscarEscola(int fk_escola) throws SQLException {
+	
+	/**
+	 * Método para retorno do diretor que comenda a escola ao qual o fk foi informado 
+	 * @param int fk_escola
+	 * @return Andre
+	 * @throws SQLException
+	 */
+	public Diretor buscarDiretorEscola(int fk_escola) throws SQLException {
 		String sql = "select * from usuario where tipoUsuario = 2 and fk_escola = ?";
 		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
