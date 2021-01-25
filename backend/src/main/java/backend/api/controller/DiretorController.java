@@ -49,12 +49,12 @@ public class DiretorController {
 		DiretorDAO diretorDao = new DiretorDAO();
 		try {
 			diretor = diretorDao.buscarDiretorEscola(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(diretor);
-			return json;
 		} catch (SQLException e) {
+			diretor = null;
 			e.printStackTrace();
-			return null;
 		}
+		Gson gson = new Gson();
+		String json = gson.toJson(diretor);
+		return json;
 	}
 }

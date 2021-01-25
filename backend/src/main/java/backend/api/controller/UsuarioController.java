@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import entidade.GerarRelatorio;
 import entidade.Usuario;
 import persistencia.jdbc.UsuarioDAO;
 
@@ -25,7 +26,7 @@ import persistencia.jdbc.UsuarioDAO;
  */
 @RestController
 public class UsuarioController {
-	
+
 	/**
 	 * Retorna o usuário que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -37,11 +38,13 @@ public class UsuarioController {
 		Usuario usuario;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
+			int numero = 7/0;
+			System.out.println(numero);
 			usuario = usuarioDao.buscarId(codigo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			usuario = null;
-			e.printStackTrace();
+			GerarRelatorio relatorio = new GerarRelatorio();
+			relatorio.relatorioErro(e);
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(usuario);
