@@ -33,9 +33,11 @@
                         
                     </tbody>
                 </table>
-                <img src="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="">
             </div>
         </fieldset>
+        <div id="divIMG">
+            <img src="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" id="loadingIMG" alt="carregando" style="height: 25vh;">
+        </div>
     </main>
 
     <script>
@@ -47,26 +49,31 @@
         listaEscolas();
         console.log("carregando");
         async function listaEscolas(){
-            var resposta = await usarApi("GET", "http://192.168.25.112:8080/api/escolas");
+            var resposta = await usarApi("GET", "http://localhost:8080/api/escolas");
             console.log(resposta)
             var escolas = JSON.parse(resposta);
-            
-            escolas.forEach(async element => {
+
+            for (let i = 0; i < escolas.length; i++) {
+                
                 var linha = document.createElement("tr");
                 var coluna = document.createElement("td");
                 var coluna2 = document.createElement("td");
-                var input = element.nome;
+                var input = escolas[i].nome;
                 
                 coluna.append(input);
                 linha.append(coluna);
                 
                 
-                var diretor = await usarApi("GET","http://192.168.25.112:8080/api/diretor/escola/"+element.idEscola);
+                var diretor = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
                 diretor = JSON.parse(diretor);
                 coluna2.append(diretor.nome);
                 linha.append(coluna2);
                 document.getElementById('tbLista').append(linha)
-            });
+            }
+
+            var removeEl = document.getElementById("loadingIMG");
+            var divPai = document.getElementById("divIMG");
+            divPai.removeChild(removeEl);
         }
 
         function usarApi(method, url) {
