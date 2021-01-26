@@ -57,15 +57,25 @@ Config. das div do cabecalho
 }
 
 /*
+Config. da div que mostra o menu 
+*/
+#mostrar{
+    width: 1%;
+    height: 100%;
+    position: absolute;
+}
+
+/*
 Config. do menu 
 */
 #menu{
     width: 42vh;
     height: 100%;
     background-color: rgb(24, 21, 21);
-    border-right: 2px solid;
+    border-right: 1px solid;
     border-color: white;
     position: absolute;
+    display: none;
 }
 
 /*
@@ -75,7 +85,7 @@ Config. do titulo de administrador
     align-items: center;
     display: flex;
     justify-content: center;
-    margin-top: 6%;
+    margin-top: 10%;
     margin-bottom: 17%;
     color: white;
 }
