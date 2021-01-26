@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-
-import entidade.GerarRelatorio;
 import entidade.Usuario;
 import persistencia.jdbc.UsuarioDAO;
 
@@ -38,13 +36,10 @@ public class UsuarioController {
 		Usuario usuario;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
-			int numero = 7/0;
-			System.out.println(numero);
 			usuario = usuarioDao.buscarId(codigo);
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			usuario = null;
-			GerarRelatorio relatorio = new GerarRelatorio();
-			relatorio.relatorioErro(e);
+			e.printStackTrace();
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(usuario);
