@@ -33,8 +33,6 @@ public class ArquivoUsuarioController {
 	 */
 	@GetMapping(path = "/api/arquivoUsuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		LOGGER.info("Requisição de Arquivo codigo {} Iniciada",codigo);
-		
 		ArquivoUsuario arquivoUsuario = new ArquivoUsuario();
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
