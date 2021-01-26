@@ -62,6 +62,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
+    color:chartreuse;
 }
 .img-opcoes{
     width: 9%;
@@ -204,10 +205,16 @@ Config. Dados do usuario
     font-size: 2.5vh;
     margin-right: 4%;
 }
-
 #idImgCadastro{
     width: 10%;
     height: 10%;
+}
+
+/*
+Config. da div do botão de saida 
+*/
+#sair{
+    margin-top: 90%;
 }
 
 
