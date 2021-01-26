@@ -110,7 +110,6 @@ public class PeriodoAvaliacaoDAO {
 	 * @throws SQLException 
 	 */	
 	public List<PeriodoAvaliacao> buscarTodos() throws SQLException {
-		PeriodoAvaliacao periodoAvaliacao = new PeriodoAvaliacao();
 		List<PeriodoAvaliacao> lista = new ArrayList<PeriodoAvaliacao>();
 		String sql = "select * from Escola";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
@@ -118,6 +117,7 @@ public class PeriodoAvaliacaoDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			PeriodoAvaliacao periodoAvaliacao = new PeriodoAvaliacao();
 			periodoAvaliacao.setIdPeriodoAvaliacao(resultSet.getInt(1));
 			periodoAvaliacao.setDataInicial(resultSet.getDate(2));
 			periodoAvaliacao.setDataFinal(resultSet.getDate(3));

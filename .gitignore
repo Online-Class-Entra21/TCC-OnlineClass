@@ -351,3 +351,7 @@ MigrationBackup/
 
 # Configuração da workSpace do VS Code
 .vscode/
+
+# Logs da aplicação
+.backend/logs/
+.logs

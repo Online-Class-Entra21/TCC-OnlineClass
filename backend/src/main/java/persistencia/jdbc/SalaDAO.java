@@ -113,7 +113,6 @@ public class SalaDAO {
 	 * @throws SQLException 
 	 */
 	public List<Sala> buscarTodos() throws SQLException {
-		Sala sala = new Sala(); 
 		List<Sala> lista = new ArrayList<Sala>(); 
 		String sql = "select * from sala"; 
 
@@ -121,6 +120,7 @@ public class SalaDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Sala sala = new Sala(); 
 			sala.setIdSala(resultSet.getInt(1));
 			sala.setNome(resultSet.getString(2));
 			sala.setDescricao(resultSet.getString(3));

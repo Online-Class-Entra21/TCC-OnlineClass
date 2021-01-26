@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +23,7 @@ import persistencia.jdbc.ReuniaoDAO;
  */
 @RestController
 public class ReuniaoController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna a reuniao que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -37,6 +39,7 @@ public class ReuniaoController {
 		} catch (SQLException e) {
 			reuniao = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Reuniao Mal Sucedida - Reuniao {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(reuniao);
@@ -57,6 +60,7 @@ public class ReuniaoController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Reuniao Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -76,6 +80,7 @@ public class ReuniaoController {
 			reuniaoDAO.insert(reuniao);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Reuniao Mal Sucedida - Reuniao {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -97,6 +102,7 @@ public class ReuniaoController {
 			reuniaoDAO.update(reuniao);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Reuniao Mal Sucedida - Reuniao {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -115,6 +121,7 @@ public class ReuniaoController {
 			reuniaoDAO.deleteId(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar Reuniao Mal Sucedida - Reuniao {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;

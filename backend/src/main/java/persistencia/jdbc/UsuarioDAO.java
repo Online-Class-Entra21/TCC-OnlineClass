@@ -141,7 +141,6 @@ public class UsuarioDAO {
 	 * @throws SQLException 
 	 */
 	public List<Usuario> buscarTodos() throws SQLException {
-		Usuario usuario = new Usuario(); 
 		List<Usuario> lista = new ArrayList<Usuario>(); 
 		String sql = "select * from usuario"; 
 		
@@ -149,6 +148,7 @@ public class UsuarioDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 			
 		while (resultSet.next()) {
+			Usuario usuario = new Usuario(); 
 			usuario.setIdUsuario(resultSet.getInt(1));
 			usuario.setNome(resultSet.getString(2));
 			usuario.setSobrenome(resultSet.getString(3));

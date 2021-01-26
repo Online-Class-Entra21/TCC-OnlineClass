@@ -3,6 +3,8 @@ package backend.api.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,8 +23,8 @@ import persistencia.jdbc.AtividadeDAO;
  *
  */
 @RestController
-public class AtividadeController {
-	
+public class AtividadeController {	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna a atividade que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -40,6 +42,7 @@ public class AtividadeController {
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Atividade Mal Sucedida - Atividade {} - erro - {}",codigo,e.toString());
 			return null;
 		}
 		
@@ -59,6 +62,7 @@ public class AtividadeController {
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todas Atividade Mal Sucedida - erro - {}",e.toString());
 			return null;
 		}
 	}
@@ -79,10 +83,11 @@ public class AtividadeController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Atividade Mal Sucedida - Atividade {} - erro - {}",json,e.toString());
 			return false;
 		}
 	}
-
+	
 	/**
 	 * Metodo para alteração da atividade que corresponde ao codigo informado {PUT}
 	 * @param int codigo
@@ -100,6 +105,7 @@ public class AtividadeController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Atividade Mal Sucedida - Atividade {} - erro - {}",json,e.toString());
 			return false;
 		}
 	}
@@ -118,6 +124,7 @@ public class AtividadeController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Atividade Mal Sucedida - Atividade {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 	}

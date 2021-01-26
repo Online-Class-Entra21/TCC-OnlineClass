@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.UsuarioDisciplinaTurmaDAO;
  */
 @RestController
 public class UsuarioDisciplinaTurmaController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o usuarioDisciplinaTurma que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -38,6 +40,7 @@ public class UsuarioDisciplinaTurmaController {
 		} catch (SQLException e) {
 			usuarioDisciplinaTurma = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar UsuarioDisciplinaTurma Mal Sucedida - UsuarioDisciplinaTurma {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(usuarioDisciplinaTurma);
@@ -58,6 +61,7 @@ public class UsuarioDisciplinaTurmaController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos UsuarioDisciplinaTurma Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -77,6 +81,7 @@ public class UsuarioDisciplinaTurmaController {
 			usuarioDisciplinaTurmaDAO.insert(usuarioDisciplinaTurma);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir UsuarioDisciplinaTurma Mal Sucedida - UsuarioDisciplinaTurma {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -98,6 +103,7 @@ public class UsuarioDisciplinaTurmaController {
 			usuarioDisciplinaTurmaDAO.update(usuarioDisciplinaTurma);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar UsuarioDisciplinaTurma Mal Sucedida - UsuarioDisciplinaTurma {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -116,6 +122,7 @@ public class UsuarioDisciplinaTurmaController {
 			usuarioDisciplinaTurmaDAO.deleteId(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar UsuarioDisciplinaTurma Mal Sucedida - UsuarioDisciplinaTurma {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;

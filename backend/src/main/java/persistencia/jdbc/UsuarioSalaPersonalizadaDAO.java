@@ -104,7 +104,6 @@ public class UsuarioSalaPersonalizadaDAO {
 	 * @throws SQLException 
 	 */
 	public List<UsuarioSalaPersonalizada> buscarTodos() throws SQLException {
-		UsuarioSalaPersonalizada usuarioSalaPersonalizada = new UsuarioSalaPersonalizada();
 		List<UsuarioSalaPersonalizada> lista = new ArrayList<UsuarioSalaPersonalizada>(); 
 		String sql = "select * from sala"; 
 		
@@ -112,6 +111,7 @@ public class UsuarioSalaPersonalizadaDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 			
 		while (resultSet.next()) {
+			UsuarioSalaPersonalizada usuarioSalaPersonalizada = new UsuarioSalaPersonalizada();
 			usuarioSalaPersonalizada.setIdUsuarioSalaPersonalizada(resultSet.getInt(1));
 			usuarioSalaPersonalizada.setFk_usuario(resultSet.getInt(2));
 			usuarioSalaPersonalizada.setFk_salaPersonalizada(resultSet.getInt(3));

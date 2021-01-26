@@ -103,7 +103,6 @@ public class DisciplinaDAO {
 	 * @throws SQLException 
 	 */
 	public List<Disciplina> buscarTodos() throws SQLException {
-		Disciplina disciplina = new Disciplina();
 		List<Disciplina> lista = new ArrayList<Disciplina>();
 		String sql = "select * from Disciplina";
 		
@@ -111,6 +110,7 @@ public class DisciplinaDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Disciplina disciplina = new Disciplina();
 			disciplina.setIdDisciplina(resultSet.getInt(1));
 			disciplina.setNome(resultSet.getString(2));
 			disciplina.setNumeroAulas(resultSet.getInt(3));

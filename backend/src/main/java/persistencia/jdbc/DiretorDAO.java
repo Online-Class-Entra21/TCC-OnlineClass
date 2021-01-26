@@ -25,7 +25,6 @@ public class DiretorDAO {
 	 * @throws SQLException
 	 */
 	public List<Diretor> buscarTodos() throws SQLException {
-		Diretor diretor = new Diretor();
 		List<Diretor> lista =  new ArrayList<Diretor>();
 		String sql = "select * from usuario where tipoUsuario = 2";
 		
@@ -33,6 +32,7 @@ public class DiretorDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Diretor diretor = new Diretor();
 			diretor.setIdUsuario(resultSet.getInt(1));
 			diretor.setNome(resultSet.getString(2));
 			diretor.setSobrenome(resultSet.getString(3));
@@ -52,6 +52,42 @@ public class DiretorDAO {
 		}
 		comandoSql.close();
 		return lista;
+	}
+	
+	/**
+	 * Método para retorno do diretor que comenda a escola ao qual o fk foi informado 
+	 * @param int fk_escola
+	 * @return Andre
+	 * @throws SQLException
+	 */
+	public Diretor buscarDiretorEscola(int fk_escola) throws SQLException {
+		String sql = "select * from usuario where tipoUsuario = 2 and fk_escola = ?";
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, fk_escola);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			Diretor diretor = new Diretor();
+			diretor.setIdUsuario(resultSet.getInt(1));
+			diretor.setNome(resultSet.getString(2));
+			diretor.setSobrenome(resultSet.getString(3));
+			diretor.setCpf(resultSet.getString(4));
+			diretor.setTelefone(resultSet.getString(5));
+			diretor.setCelular(resultSet.getString(6));
+			diretor.setTipoUsuario(resultSet.getInt(7));
+			diretor.setEmail(resultSet.getString(8));
+			diretor.setSenha(resultSet.getString(9));
+			diretor.setHorarioFinalExpediente(resultSet.getTime(10));
+			diretor.setHorarioInicioExpediente(resultSet.getTime(11));
+			diretor.setFotoUsuario(resultSet.getString(12));
+			diretor.setFk_endereco(resultSet.getInt(13));
+			diretor.setFk_escola(resultSet.getInt(14));
+			
+			return diretor;
+		}
+		comandoSql.close();
+		return null;
 	}
 }
 

@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.RelatorioDAO;
  */
 @RestController
 public class RelatorioController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o relatorio que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -38,6 +40,7 @@ public class RelatorioController {
 		} catch (SQLException e) {
 			relatorio = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Relatorio Mal Sucedida - Relatorio {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(relatorio);
@@ -58,6 +61,7 @@ public class RelatorioController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Relatorio Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -77,6 +81,7 @@ public class RelatorioController {
 			relatorioDAO.insert(relatorio);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Relatorio Mal Sucedida - Relatorio {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -98,6 +103,7 @@ public class RelatorioController {
 			relatorioDAO.update(relatorio);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Relatorio Mal Sucedida - Relatorio {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;	
@@ -116,6 +122,7 @@ public class RelatorioController {
 			relatorioDAO.deleteId(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar Relatorio Mal Sucedida - Relatorio {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;

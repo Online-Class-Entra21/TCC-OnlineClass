@@ -1,44 +1,63 @@
-#criar-escola {
-    width: 350px;
-    height: 450px;
-    background: #343a40;
-    border-radius: 30px;
-    box-shadow: 3px 3px 4px black;
-    float: left;
-    margin: 40px;
-    margin-top: 100px;
+/*
+Config. para todos os elementos 
+*/
+{
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-#cadastro-diretor {
-    width: 350px;
-    height: 450px;
-    background: #343a40;
-    border-radius: 30px;
-    box-shadow: 3px 3px 4px black;
-    float: left;
-    margin: 40px;
-    margin-top: 100px;
+/*
+Config. padrao da barra 
+*/
+body, html{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
-p a {
+header{
+    height: 10%;
+    width: auto;
+    background-color: #000000;
+    z-index: 0;
+}
+
+p  {
+  font-size: 2em;
+  font-family: cursive;
+  color: white;  
+}
+
+a {
     text-decoration: none;
-    color: #ffffff;
-    text-align: center;
-    text-transform: uppercase;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 26px;
-    transition: 1s;
+    color: white;
+    font-size: 3em;
     display: block;
-    padding: 0 2em;
-    margin-top: 200px;
+    margin: 10%;
 }
 
-p a:hover {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 24px
+
+#tipoUsuario{
+    color: white;
+    font-size: 100%;
 }
 
-#navegacao {
-    padding: 1.5%;
+#tipoUsuario{
+    float: right;
+}
+
+#cartoes {
+    background: #141414;
+    width: 17%;
+    height: 40vh;
+    margin: 5%;
+    margin-bottom: -5%;
+    text-align: center;
+    border-radius: 7% 24%;
+}
+
+img {
+    width: 70%;
+    border-radius: 100%;
 }

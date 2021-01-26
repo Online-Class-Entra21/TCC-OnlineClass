@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"  href="/frontend/estilos/coordenador/estilo-coordenador-Alunos.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>coordenador</title>
+    </head>
+
+    <body>
+        <header>
+			<div class="topo">
+				.
+			</div>
+		</header>
+		<main>
+        
+        <input type="checkbox" id="check">
+        <label id= "icone" for="check"><img src="/frontend/imagens/lista.png"></label>
+     
+        <div class="barra">
+            <nav>
+                <a href="coordenador.html"><div class="link">Início</div></a>
+                <br><br><br>
+                <a href="coordenadorT.html"><div class="link">Turmas</div></a>
+                <a href="coordenadorP.html"><div class="link">Professores</div></a>
+                <a href="coordenadorA.html"><div class="link">Alunos</div></a>
+                <a href="coordenadorS.html"><div class="link">Salas</div></a>
+           
+                <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br>
+           
+                <a href=""><div class="link">Sair</div></a>
+            </nav>
+        </div>
+
+
+    </div>
+    <input type="checkbox" id="check2">
+    <label id= "icone2" for="check2"><img src="/frontend/imagens/atualizar.png"></label>
+    <div class="alterar">
+    <div id="fAltera">
+        <form>
+            <div class="form-group">
+                <h2 id="TForm">Atualizar Turma</h2>
+                <label for="txtCodigo">Código</label>
+                <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+            </div>
+            <div class="form-group">
+                <label for="txtTurma">Turma</label>
+                <input type="text" class="form-control" id="txtTurma" aria-describedby="emailHelp" placeholder="Turma">
+            </div>
+            <div class="form-group">
+                <label for="txtTurno">Turno</label>
+                <input type="text" class="form-control" id="txtTurno" placeholder="Turno">
+            </div>
+            <div class="form-group">
+                <label for="txtNumAlu">Número de Alunos</label>
+                <input type="number" class="form-control" id="txtNumAlu" placeholder="Quantidade de alunos">
+            </div>
+            <button type="button" class="btnAlt btn-primary btn-lg" id="btnAlt"
+            onclick="altPessoa(txtTurma.value, txtTurno.value, txtNumAlu.value)">
+        Atualizar
+        </div>
+    </div>
+
+            <input type="checkbox" id="check3">
+            <label id= "icone3" for="check3"><img src="/frontend/imagens/mais.png"></label>
+
+        </form>
+        <div class="animCad">
+            <div id="fPessoas">
+            <form>
+                <h2 id="TForm">Cadastro de Turmas</h2>
+                <div class="form-group">
+                    <label for="txtCodigo">Código</label>
+                    <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="txtTurma">Turma</label>
+                    <input type="text" class="form-control" id="txtTurma" aria-describedby="emailHelp" placeholder="Turma">
+                </div>
+                <div class="form-group">
+                    <label for="txtTurno">Turno</label>
+                    <input type="text" class="form-control" id="txtTurno" placeholder="Turno">
+                </div>
+                <div class="form-group">
+                    <label for="txtNumAlu">Número de Alunos</label>
+                    <input type="number" class="form-control" id="txtNumAlu" placeholder="Quantidade de alunos">
+                </div>
+                <button type="button" class="btnCad btn-primary btn-lg"
+                onclick="cadTurma(txtTurma.value, txtTurno.value, txtNumAlu.value)">
+            Cadastrar
+        </button>
+               
+            </div>
+            </button>
+                </div>  
+
+                <input type="checkbox" id="check4">
+                <label id= "icone4" for="check4"><img src="/frontend/imagens/lixeira.png"></label>
+                <div class="animDel">
+                <div id="fDel">
+                    <form>
+                        <div class="form-group">
+                            <h2 id="TForm">Excluir Turma</h2>
+                            <label for="txtCodigo">Código</label>
+                            <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTurma">Turma</label>
+                            <input type="text" class="form-control" id="txtTurma" aria-describedby="emailHelp" placeholder="Turma">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTurno">Turno</label>
+                            <input type="text" class="form-control" id="txtTurno" placeholder="Turno">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtNumAlu">Número de Alunos</label>
+                            <input type="number" class="form-control" id="txtNumAlu" placeholder="Quantidade de alunos">
+                        </div>
+                       <button type="button" class="btnAlt btn-primary btn-lg"
+                            onclick="delRegistro()">Excluir
+                    </div>
+                </div>
+
+
+
+
+
+                
+
+    <div class="maxTb">
+    <div id="dGridPessoas">
+
+        <table id="tbPessoas" class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Turma</th>
+                    <th scope="col">Turno</th>
+                    <th scope="col">Número de Alunos</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+</body>
+
+</html>
+	</main>
+
+    <script src="/frontend/scripts/coordendor/jsCoordenadorAlunos.js"></script>
+    </body>
+  
+</html>
+
+

@@ -3,6 +3,8 @@ package backend.api.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.AlunoDAO;
  */
 @RestController
 public class AlunoController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o aluno que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -32,15 +34,18 @@ public class AlunoController {
 	 */
 	@GetMapping(path = "/api/aluno/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Aluno codigo {} iniciada", codigo);
 		Aluno aluno;
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			aluno = alunoDao.buscarId(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(aluno);
+			LOGGER.info("Requisição Aluno codigo {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição Aluno codigo {} mal sucedida erro : {}",codigo,e.toString());
 			return null;
 		}
 	}
@@ -52,13 +57,16 @@ public class AlunoController {
 	 */
 	@GetMapping(path = "/api/alunos")
 	public List<Aluno> consultar(){
+		LOGGER.info("Requisição Lista de todos os Alunos");
 		List<Aluno> lista;
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
-			lista = alunoDao.buscarTodos();
-			return lista;
+		LOGGER.info("Requisição Lista de todos os Alunos Bem Sucedida");
+		lista = alunoDao.buscarTodos();
+		return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição Lista de todos os Alunos Mal Sucedida erro : {}", e.toString());
 			return null;
 		}
 	}
@@ -71,14 +79,17 @@ public class AlunoController {
 	 */
 	@PostMapping(path = "api/aluno/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Aluno - {}",json);
 		Gson gson = new Gson();
 		Aluno aluno = gson.fromJson(json.toString(), Aluno.class);
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			alunoDao.insert(aluno);
+			LOGGER.info("Requisição Inserir Aluno - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição Inserir Aluno - {} - Mal Sucedida erro : {}",json,e.toString());
 			return false;
 		}
 	}
@@ -92,14 +103,17 @@ public class AlunoController {
 	 */
 	@PutMapping(path = "api/aluno/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Aluno - {}",json);
 		Gson gson = new Gson();
 		Aluno aluno = gson.fromJson(json.toString(), Aluno.class);
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			alunoDao.update(aluno);
+			LOGGER.info("Requisição Atualizar Aluno - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição Atualizar Aluno - {} - Mal Sucedida {}",json,e.toString());
 			return false;
 		}
 	}
@@ -112,12 +126,15 @@ public class AlunoController {
 	 */
 	@DeleteMapping(path = "/api/aluno/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Aluno id - {}",codigo);
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			alunoDao.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Aluno id - {} - Bem Sucedida",codigo);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar Aluno id - {} - Mal Sucedida",codigo);
 			return false;
 		}
 	}

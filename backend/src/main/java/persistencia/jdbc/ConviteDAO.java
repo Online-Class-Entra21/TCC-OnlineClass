@@ -109,7 +109,6 @@ private Connection conexao = ConexaoFactory.getConnection();
 	 * @throws SQLException 
 	 */
 	public List<Convite> buscarTodos() throws SQLException {
-		Convite convite = new Convite();
 		List<Convite> lista =  new ArrayList<Convite>();
 		String sql = "select * from convite";
 
@@ -117,6 +116,7 @@ private Connection conexao = ConexaoFactory.getConnection();
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Convite convite = new Convite();
 			convite.setIdConvite(resultSet.getInt(1));
 			convite.setDestinatario(resultSet.getInt(2));
 			convite.setSalaConvite(resultSet.getInt(3));

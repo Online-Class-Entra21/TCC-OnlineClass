@@ -114,7 +114,6 @@ public class EnderecoDAO {
 	 * @throws SQLException 
 	 */
 	public List<Endereco> buscarTodos() throws SQLException {
-		Endereco endereco = new Endereco();
 		List<Endereco> lista = new ArrayList<Endereco>();
 		String sql = "select * from Endereco";
 		
@@ -122,6 +121,7 @@ public class EnderecoDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 
 		while (resultSet.next()) {
+			Endereco endereco = new Endereco();
 			endereco.setIdEndereco(resultSet.getInt(1));
 			endereco.setEstado(resultSet.getString(2));
 			endereco.setCidade(resultSet.getString(3));

@@ -104,7 +104,6 @@ public class ArquivoUsuarioDAO {
 	 * @throws SQLException 
 	 */
 	public List<ArquivoUsuario> buscarTodos() throws SQLException {
-		ArquivoUsuario arquivoUsuario = new ArquivoUsuario(); 
 		List<ArquivoUsuario> lista = new ArrayList<ArquivoUsuario>(); 
 		String sql = "select * from arquivo_usuario"; 
 
@@ -112,6 +111,7 @@ public class ArquivoUsuarioDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		 
 		while (resultSet.next()) {
+			ArquivoUsuario arquivoUsuario = new ArquivoUsuario(); 
 			arquivoUsuario.setIdArquivoUsuario(resultSet.getInt(1));
 			arquivoUsuario.setFk_arquivo(resultSet.getInt(2));
 			arquivoUsuario.setFk_usuario(resultSet.getInt(3));

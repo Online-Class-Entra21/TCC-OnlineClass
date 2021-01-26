@@ -118,7 +118,6 @@ public class ReuniaoDAO {
 	 * @throws SQLException 
 	 */	
 	public List<Reuniao> buscarTodos() throws SQLException {
-		Reuniao reuniao = new Reuniao();
 		List<Reuniao> lista = new ArrayList<Reuniao>();
 		String sql = "select * from reuniao";
 		
@@ -126,7 +125,7 @@ public class ReuniaoDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
-			
+			Reuniao reuniao = new Reuniao();
 			reuniao.setIdReuniao(resultSet.getInt(1));
 			reuniao.setDescricao(resultSet.getString(2));
 			reuniao.setDataInicio(resultSet.getDate(3));

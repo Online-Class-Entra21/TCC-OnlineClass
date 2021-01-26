@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"  href="/frontend/estilos/coordenador/estilo-coordenador-Turmas.css">
+        <title>coordenador</title>
+    </head>
+
+    <body>
+        <header>
+			<div class="topo">
+				.
+			</div>
+		</header>
+		<main>
+
+          
+        
+            <div id="menu-topo">
+                <input type="checkbox" id="check">
+                <label id= "icone" for="check"><img src="/frontend/imagens/lista.png"></label>
+             
+                <div class="barra">
+                    <nav>
+                        <a href="coordenador.html"><div class="link">Início</div></a>
+                        <br><br><br>
+                        <a href="coordenadorT.html"><div class="link">Turmas</div></a>
+                        <a href="coordenadorP.html"><div class="link">Professores</div></a>
+                        <a href="coordenadorA.html"><div class="link">Alunos</div></a>
+                        <a href="coordenadorS.html"><div class="link">Salas</div></a>
+                   
+                        <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br>
+                   
+                        <a href=""><div class="link">Sair</div></a>
+                    </nav>
+                </div>
+
+                <input type="checkbox" id="check2">
+            <label id= "icone2" for="check2"><img src="/frontend/imagens/add-reminder.png"></label>
+            
+                <div id="dfPessoas" >
+                    <form name="fPessoa">
+                        <label >Turma</label><br>
+                        <input type="text" name="txtTurma"><br><br>
+                        <label >Turno</label><br>
+                        <input type="text" name="txtTurno"><br><br>
+                        <label >Numero de Alunos</label><br>
+                        <input type="text" name="txtNumAlunos"><br><br>
+                        <input type="button" id="idBotAdd" value="Cadastrar Turma" onclick="cadTurma(txtTurma.value, txtTurno.value, txtNumAlunos.value)"/><br>
+                    </form>
+        
+                    </div>
+                
+            </div>
+                <br><br>
+
+                <div class="max">
+                <div id="dtPessoas">
+                            <table id="tbPessoas"  class="tg">
+                                <thead>
+                                    <tr>
+                                        <th id="codTur" class="contTb">Cod Turma</th>
+                                        <th id="codTrm" class="contTb">Turma</th>
+                                        <th id="codTrn" class="contTb">Turno</th>
+                                        <th id="codNumA" class="contTb">Numero de alunos</th>
+                                      </tr>
+                                  </thead>
+        
+                            </table>
+                           
+                           
+                </div>
+            </div>
+       
+	</main>
+
+    <script src="/frontend/scripts/coordendor/jsCoordenadorTurma.js"></script>
+
+    </body>
+  
+</html>
+
+

@@ -114,7 +114,6 @@ public class TurmaDAO {
 	 * @throws SQLException 
 	 */
 	public List<Turma> buscarTodos() throws SQLException {
-		Turma turma = new Turma(); 
 		List<Turma> lista = new ArrayList<Turma>(); 
 		String sql = "select * from turma"; 
 			
@@ -122,6 +121,7 @@ public class TurmaDAO {
 		ResultSet resultSet = comandoSql.executeQuery(); 
 			
 		while (resultSet.next()) {
+			Turma turma = new Turma(); 
 			turma.setIdTurma(resultSet.getInt(1));
 			turma.setAno(resultSet.getString(2));
 			turma.setQtdAluno(resultSet.getInt(3));

@@ -114,7 +114,6 @@ public class ReuniaoUsuarioDAO {
 	 * @throws SQLException 
 	 */	
 	public List<ReuniaoUsuario> buscarTodos() throws SQLException {
-		ReuniaoUsuario reuniaoUsuario = new ReuniaoUsuario();
 		List<ReuniaoUsuario> lista = new ArrayList<ReuniaoUsuario>();
 		String sql = "select * from reuniaoUsuario";
 		
@@ -122,7 +121,7 @@ public class ReuniaoUsuarioDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
-			
+			ReuniaoUsuario reuniaoUsuario = new ReuniaoUsuario();
 			reuniaoUsuario.setIdReuniaoUsuario(resultSet.getInt(1));
 			reuniaoUsuario.setFk_reuniao(resultSet.getInt(2));
 			reuniaoUsuario.setFk_usuario(resultSet.getInt(3));

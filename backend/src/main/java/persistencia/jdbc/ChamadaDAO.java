@@ -106,7 +106,6 @@ public class ChamadaDAO {
 	 * @throws SQLException 
 	 */
 	public List<Chamada> buscarTodos() throws SQLException {
-		Chamada chamada = new Chamada();
 		List<Chamada> lista =  new ArrayList<Chamada>();
 		String sql = "select * from chamada";
 		
@@ -114,6 +113,7 @@ public class ChamadaDAO {
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
+			Chamada chamada = new Chamada();
 			chamada.setIdChamada(resultSet.getInt(1));
 			chamada.setSituacao(resultSet.getBoolean(2));
 			chamada.setFk_aluno(resultSet.getInt(3));
