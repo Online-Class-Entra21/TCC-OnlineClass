@@ -1,0 +1,244 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+/* INICIO ID # */
+
+#check{
+    display: none;
+}
+#check:checked ~ .barra{
+    transform: translateX(300px);
+
+}
+#check:checked ~ .barra nav a .link{
+    opacity: 1;
+    margin-top: 0;
+    transition-delay: .2s;
+    
+}
+
+#icone{
+    cursor: pointer;
+    padding: 15px;
+    position: absolute;
+    z-index: 1;
+    display: block;
+   position: fixed;
+   
+}
+
+#conteudo {
+    text-align: center;
+    font-size: 25px;
+    
+}
+
+#check2{
+    display: none;
+   
+}
+#check2:checked ~ #dfPessoas{
+    transform: translateY(1100px);
+}
+#check2:checked ~  #dfPessoa #icone2 {
+    opacity: 1;
+    margin-top: 0;
+    transition-delay: .2s;
+}
+#icone2{
+    cursor: pointer;
+    padding: 15px;
+    position: absolute;
+    z-index: 3;
+    margin-top: 5%;
+    margin-left: 30%;
+   display: block;
+   position: fixed;
+  
+}
+
+
+
+#dfPessoas{
+    
+    margin-top: 1%px;
+    font: 14px Verdana;
+    padding-left: 3% ;
+    background-color: #ccc;
+    height: auto;
+    width: 40%;
+    position: absolute;
+    transition: all .2s linear;
+    left: 40%;
+   border: 2px solid black;
+   z-index: 2;
+   top: -1000px;
+}
+#dtPessoas{
+    font: 14px Verdana;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse; /* CSS2 */
+    background-color: white;
+    table-layout: fixed;
+    
+    
+}
+#codTur{ width: 10%;}
+#codTrn{ width: 30%;}
+#codTrm{ width: 30%;}
+#codNumA{ width: 20%;}
+
+
+.tg {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .contTb{border-color:inherit;text-align:center;vertical-align:top;width: 29%}
+
+
+/* FIM ID */
+
+
+/* INICIO CLASSE */
+.max{
+    margin-top: 10%;
+    margin-left: 35%;
+    width: 40%;
+    background: gray;
+    height: 450px;
+    padding: 2%;
+    border:1px solid;
+    position: absolute;
+    overflow: auto;
+    font-family: Arial;
+    display: block;
+   position: fixed;
+}
+.barra {
+    background-color: #630c13;
+    height: 100%;
+    width: 300px;
+    position: absolute;
+    transition: all .2s linear;
+    left: -300px;
+    display: block;
+   position: fixed;
+   border: 2px solid black;
+}
+
+.link{
+    background-color: #630c13;
+    padding: 20px;
+    font-family: Arial;
+    font-size: 12pt;
+    transition: all .2s linear;
+    color: #f4f4f9;
+    border-bottom: 2px solid #630c13;
+    opacity: 0;
+    margin-top: 200px;
+}
+
+.link:hover{
+    background-color: #050542;
+}
+
+
+.content{
+    
+    max-width: 400px;
+    max-height: 600px;
+    min-width: 220px;
+    margin-left: 84%;
+    background: #646464;
+    height: 450px;
+    padding: 2%;
+    border:1px solid;
+    position: absolute;
+    transition: all .2s linear;
+    top: -530px;
+    overflow: auto;
+    font-family: Arial;
+    display: block;
+   position: fixed;
+  
+   
+}
+.content h2{
+    text-align: center;
+    color: white;
+}
+
+
+ .topo{
+     background-color: #630c13;
+     min-width: 100%;
+     min-height: 10%;
+     position: absolute;
+     display: block;
+ }
+ 
+/* FIM CLASSE */
+
+
+/* INICIO TAG */
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+nav{ 
+    width: 100%;
+    position: absolute;
+    top: 60px;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+
+
+input[type=text]{
+    width: 80%;
+    height: 30px;
+    margin-bottom: 10px;
+}
+input[type=button]{
+    border: none;
+    width: 17%;
+    float: right;
+    height: 35px;
+}
+button:hover, input[type=button]:hover{
+    background: #ccc;
+}
+
+button, input[type=button]{ cursor: pointer; }
+
+button{
+    float: right;
+    width: 25px;
+    padding: 5px;
+}
+ul{
+    list-style-type: none;
+    padding: 10px;
+    height: 320px;
+    background: #fff;
+    overflow-y: auto;
+}
+li{
+    height: 40px;
+    margin: 15px 0 15px 0;
+    border-bottom: 1px solid;
+
+
+}
+
+
+/* FIM TAG */
