@@ -12,7 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class BackendApplication {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger(BackendApplication.class);  
+	
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 		LOGGER.info("Iniciado com sucesso");

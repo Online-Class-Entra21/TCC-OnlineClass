@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-
 import entidade.Usuario;
 import persistencia.jdbc.UsuarioDAO;
 
@@ -40,7 +39,7 @@ public class UsuarioController {
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			usuario = usuarioDao.buscarId(codigo);
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			usuario = null;
 			LOGGER.error("Requisição para Consultar Usuario Mal Sucedida - Usuario {} - erro - {}",codigo,e.toString());
 		}
