@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.SalaDAO;
  */
 @RestController
 public class SalaController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna a sala que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -38,6 +40,7 @@ public class SalaController {
 		} catch (SQLException e) {
 			sala = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Sala Mal Sucedida - Sala {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(sala);
@@ -58,6 +61,7 @@ public class SalaController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Sala Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -77,6 +81,7 @@ public class SalaController {
 			salaDAO.insert(sala);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Sala Mal Sucedida - Sala {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -98,6 +103,7 @@ public class SalaController {
 			salaDAO.update(sala);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Sala Mal Sucedida - Sala {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -116,6 +122,7 @@ public class SalaController {
 			salaDAO.deleteId(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar Sala Mal Sucedida - Sala {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;

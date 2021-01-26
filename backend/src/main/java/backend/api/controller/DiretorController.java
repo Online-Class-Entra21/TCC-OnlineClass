@@ -3,6 +3,8 @@ package backend.api.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +21,7 @@ import persistencia.jdbc.DiretorDAO;
  */
 @RestController
 public class DiretorController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna a lista de diretores registrados no sistema {GET}
 	 * @return lista de diretores registrados no banco
@@ -34,6 +36,7 @@ public class DiretorController {
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Diretor Mal Sucedida - erro - {}",e.toString());
 			return null;
 		}
 	}
@@ -52,6 +55,7 @@ public class DiretorController {
 		} catch (SQLException e) {
 			diretor = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Diretor Mal Sucedida - Diretor {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(diretor);

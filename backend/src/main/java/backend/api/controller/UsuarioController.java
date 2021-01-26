@@ -6,6 +6,8 @@ import java.util.Random;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.SimpleEmail;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.GerarRelatorio;
 import entidade.Usuario;
 import persistencia.jdbc.UsuarioDAO;
 
@@ -26,7 +27,7 @@ import persistencia.jdbc.UsuarioDAO;
  */
 @RestController
 public class UsuarioController {
-
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o usuário que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -38,13 +39,10 @@ public class UsuarioController {
 		Usuario usuario;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
-			int numero = 7/0;
-			System.out.println(numero);
 			usuario = usuarioDao.buscarId(codigo);
 		} catch (Exception e) {
 			usuario = null;
-			GerarRelatorio relatorio = new GerarRelatorio();
-			relatorio.relatorioErro(e);
+			LOGGER.error("Requisição para Consultar Usuario Mal Sucedida - Usuario {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(usuario);
@@ -65,6 +63,7 @@ public class UsuarioController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Usuario Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -84,6 +83,7 @@ public class UsuarioController {
 			usuarioDao.insert(usuario);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -105,6 +105,7 @@ public class UsuarioController {
 			usuarioDao.update(usuario);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -123,6 +124,7 @@ public class UsuarioController {
 			usuarioDao.deleteId(codigo);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar Usuario Mal Sucedida - Usuario {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;
@@ -146,6 +148,7 @@ public class UsuarioController {
 			usuario = usuarioDao.buscarEmail(email);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Usuario por Email Mal Sucedida - Email do Usuario {} - erro - {}",email,e.toString());
 			usuario = null;
 		}
 		Gson gson = new Gson();

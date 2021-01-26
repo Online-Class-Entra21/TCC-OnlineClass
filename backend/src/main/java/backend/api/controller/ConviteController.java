@@ -3,6 +3,8 @@ package backend.api.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.ConviteDAO;
  */
 @RestController
 public class ConviteController {
-
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o convite que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -40,6 +42,7 @@ public class ConviteController {
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Convite Mal Sucedida - Convite {} - erro - {}",codigo,e.toString());
 			return null;
 		}
 		
@@ -59,6 +62,7 @@ public class ConviteController {
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Convite Mal Sucedida - erro - {}",e.toString());
 			return null;
 		}
 	}
@@ -79,6 +83,7 @@ public class ConviteController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Convite Mal Sucedida - Convite {} - erro - {}",json,e.toString());
 			return false;
 		}
 	}
@@ -100,6 +105,7 @@ public class ConviteController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Convite Mal Sucedida - Convite {} - erro - {}",json,e.toString());
 			return false;
 		}
 	}
@@ -118,6 +124,7 @@ public class ConviteController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar Convite Mal Sucedida - Convite {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 	}

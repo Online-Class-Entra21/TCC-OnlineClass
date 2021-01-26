@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.SalaPersonalizadaDAO;
  */
 @RestController
 public class SalaPersonalizadaController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna a salaPersonalizada que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -38,6 +40,7 @@ public class SalaPersonalizadaController {
 		} catch (SQLException e) {
 			salaPersonalizada = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar SalaPersonalizada Mal Sucedida - SalaPersonalizada {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(salaPersonalizada);
@@ -58,6 +61,7 @@ public class SalaPersonalizadaController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos SalaPersonalizada Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -77,6 +81,7 @@ public class SalaPersonalizadaController {
 			salaPersonalizadaDAO.insert(salaPersonalizada);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir SalaPersonalizada Mal Sucedida - SalaPersonalizada {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -98,6 +103,7 @@ public class SalaPersonalizadaController {
 			salaPersonalizadaDAO.update(salaPersonalizada);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar SalaPersonalizada Mal Sucedida - SalaPersonalizada {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -116,6 +122,7 @@ public class SalaPersonalizadaController {
 			salaPersonalizadaDAO.deleteId(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar SalaPersonalizada Mal Sucedida - SalaPersonalizada {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;
