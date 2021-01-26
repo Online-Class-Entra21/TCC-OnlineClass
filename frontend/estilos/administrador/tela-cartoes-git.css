@@ -1,7 +1,7 @@
 /*
 Config. para todos os elementos 
 */
-{
+*{
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -24,15 +24,15 @@ header{
 }
 
 p  {
-  font-size: 2em;
+  font-size: 5vh;
   font-family: cursive;
+  margin: 4%;
   color: white;  
 }
 
 a {
     text-decoration: none;
     color: white;
-    font-size: 3em;
     display: block;
     margin: 10%;
 }
@@ -49,10 +49,9 @@ a {
 
 #cartoes {
     background: #141414;
-    width: 17%;
-    height: 40vh;
-    margin: 5%;
-    margin-bottom: -5%;
+    width: 40vh;
+    height: 52vh;
+    margin: 3%;
     text-align: center;
     border-radius: 7% 24%;
 }
