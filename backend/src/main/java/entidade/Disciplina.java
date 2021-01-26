@@ -2,7 +2,7 @@ package entidade;
 
 /**
  * Classe contendo metodos e atributos para a disciplina
- * @author André 
+ * @author Andrey 
  */
 public class Disciplina {
 	

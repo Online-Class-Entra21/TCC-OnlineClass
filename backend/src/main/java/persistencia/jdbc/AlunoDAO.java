@@ -1,13 +1,5 @@
 package persistencia.jdbc;
 
-/*
- * nota para o pessoal do back, 
- * insert  = 100%
- * update  = 100%
- * delete  = 100%
- * javadoc = 80% < precisa de revisão
- */
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,10 +9,9 @@ import java.util.List;
 
 import entidade.Aluno;
 
-
 /**
- * 
- * @author Andrey
+ * Metodo para consulta do aluno no banco de dados 
+ * @author Andre
  *
  */
 public class AlunoDAO {
@@ -28,176 +19,136 @@ public class AlunoDAO {
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para Inseri um aluno no banco de dados.
-	 * 
-	 * 	 
-	 * @param aluno
-	 * @param turma
-	 * @return true caso seja bem sucedido o delete, e false e um erro caso ocorra falha
-	 * @author Andrey 
+	 * Metodo para inserir um aluno no banco de dados
+	 * @param Aluno aluno
+	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public boolean insert(Aluno aluno) {
-		
+	public void insert(Aluno aluno) throws SQLException {
 		String sql = "insert into aluno (ra, matricula, deficiencia, nomemae, nomepai, nomeresponsavel, "
 				   + "situacaoanoletivo, fk_usuario, fk_turma) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, aluno.getRa());
-			comandoSql.setInt(2, aluno.getMatricula());
-			comandoSql.setBoolean(3, aluno.getDeficiencia());
-			comandoSql.setString(4, aluno.getNomeMae());
-			comandoSql.setString(5, aluno.getNomePai());
-			comandoSql.setString(6, aluno.getNomeResponsavel());
-			comandoSql.setBoolean(7, aluno.getSituacaoAnoLetivo());
-			comandoSql.setInt(8, aluno.getIdUsuario());
-			comandoSql.setInt(9, aluno.getFk_turma());
-			
-			comandoSql.execute();
-			comandoSql.close();
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return false;
-		}
+		comandoSql.setInt(1, aluno.getRa());
+		comandoSql.setInt(2, aluno.getMatricula());
+		comandoSql.setBoolean(3, aluno.getDeficiencia());
+		comandoSql.setString(4, aluno.getNomeMae());
+		comandoSql.setString(5, aluno.getNomePai());
+		comandoSql.setString(6, aluno.getNomeResponsavel());
+		comandoSql.setBoolean(7, aluno.getSituacaoAnoLetivo());
+		comandoSql.setInt(8, aluno.getFk_usuario());
+		comandoSql.setInt(9, aluno.getFk_turma());
 		
-		return true;	
+		comandoSql.execute();
+		comandoSql.close();	
 	}
 	
 	/**
-	 * Metodo para Atualiza o banco de dados.
-	 * 
-	 * Nota: o idAluno do Aluno deve ser o id que deseja atualizar no banco 
-	 * 
-	 * @param aluno
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andrey
+	 * Metodo para Atualizar aluno no banco de dados.
+	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja atualizar
+	 * @param Aluno aluno
+	 * @author Andre
+	 * @throws SQLException 
 	 */
 	
-	public boolean update(Aluno aluno) {
+	public void update(Aluno aluno) throws SQLException {
 		String sql = "update aluno set ra = ?, matricula = ?, deficiencia = ?, nomemae = ?, nomepai = ?, nomeresponsavel = ?,"
 				+ "situacaoanoletivo = ?, fk_usuario = ?, fk_turma = ? where idaluno = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, aluno.getRa());
-			comandoSql.setInt(2, aluno.getMatricula());
-			comandoSql.setBoolean(3, aluno.getDeficiencia());
-			comandoSql.setString(4, aluno.getNomeMae());
-			comandoSql.setString(5, aluno.getNomePai());
-			comandoSql.setString(6, aluno.getNomeResponsavel());
-			comandoSql.setBoolean(7, aluno.getSituacaoAnoLetivo());
-			comandoSql.setInt(8, aluno.getFk_usuario());
-			comandoSql.setInt(9, aluno.getFk_turma());
-			comandoSql.setInt(10, aluno.getIdAluno());
-			
-			comandoSql.execute();
-			comandoSql.close();
-	
-		} catch (SQLException e) {
-			return false;
-		}
-		return true;
+		comandoSql.setInt(1, aluno.getRa());
+		comandoSql.setInt(2, aluno.getMatricula());
+		comandoSql.setBoolean(3, aluno.getDeficiencia());
+		comandoSql.setString(4, aluno.getNomeMae());
+		comandoSql.setString(5, aluno.getNomePai());
+		comandoSql.setString(6, aluno.getNomeResponsavel());
+		comandoSql.setBoolean(7, aluno.getSituacaoAnoLetivo());
+		comandoSql.setInt(8, aluno.getFk_usuario());
+		comandoSql.setInt(9, aluno.getFk_turma());
+		comandoSql.setInt(10, aluno.getIdAluno());
+		
+		comandoSql.execute();
+		comandoSql.close();
 	}
+	
 	/**
-	 * Deleta o aluno do respectivo ID do banco de dados
-	 * 
-	 * @param <code>idAluno</code>
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andrey
+	 * Deleta o aluno do respectivo id do banco de dados.
+	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja deletar
+	 * @param int idAluno
+	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public boolean delete(int idAluno) {
+	public void deleteId(int idAluno) throws SQLException {
 		String sql = "delete from aluno where idaluno = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, idAluno);
-			
-			comandoSql.execute();
-			comandoSql.close();
+		comandoSql.setInt(1, idAluno);
 		
-		} catch (SQLException e) {
-			return false;
-		}
-		
-		return true;
-	}
-	/**
-	 * Metodo para selecionar o aluno do banco de dados apartir do respectivo id
-	 * 
-	 * @param idAluno id do aluno que deseja selecionar
-	 * @return Aluno referente ao id de entrada
-	 * @author Andrey
-	 */
-	public Aluno buscarId(int idAluno) {
-		Aluno aluno = new Aluno();
-		
-		String sql = "select * from aluno where idaluno = ?";
-		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, idAluno);
-			
-			ResultSet resultSet = comandoSql.executeQuery();
-			if (resultSet.next()) {
-				aluno.setIdAluno(resultSet.getInt(1));
-				aluno.setRa(resultSet.getInt(2));
-				aluno.setMatricula(resultSet.getInt(3));
-				aluno.setDeficiencia(resultSet.getBoolean(4));
-				aluno.setNomeMae(resultSet.getString(5));
-				aluno.setNomePai(resultSet.getString(6));
-				aluno.setNomeResponsavel(resultSet.getString(7));
-				aluno.setSituacaoAnoLetivo(resultSet.getBoolean(8));
-				aluno.setFk_usuario(resultSet.getInt(9));						
-				aluno.setFk_turma(resultSet.getInt(10));
-			}
-			comandoSql.close();
-			return aluno;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return null;
-		}
-		
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
 	/**
-	 * Metodo para Selecionar do banco de dados todos os alunos cadastrados nele
-	 *  
-	 * @return Lista de objetos Aluno com todos os alunos do banco de dados
-	 * @author Andrey
+	 * Metodo para selecionar o aluno do banco de dados apartir do respectivo id.
+	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja buscar
+	 * @param int idAluno
+	 * @return Aluno aluno
+	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public List<Aluno> buscarTodos() {
+	public Aluno buscarId(int idAluno) throws SQLException {
 		Aluno aluno = new Aluno();
-		List<Aluno> lista =  new ArrayList<Aluno>();
+		String sql = "select * from aluno where idaluno = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
+		comandoSql.setInt(1, idAluno);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			aluno.setIdAluno(resultSet.getInt(1));
+			aluno.setRa(resultSet.getInt(2));
+			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setDeficiencia(resultSet.getBoolean(4));
+			aluno.setNomeMae(resultSet.getString(5));
+			aluno.setNomePai(resultSet.getString(6));
+			aluno.setNomeResponsavel(resultSet.getString(7));
+			aluno.setSituacaoAnoLetivo(resultSet.getBoolean(8));
+			aluno.setFk_usuario(resultSet.getInt(9));						
+			aluno.setFk_turma(resultSet.getInt(10));
+		}
+		comandoSql.close();
+		return aluno;
+	}
+	
+	/**
+	 * Metodo para selecionar do banco de dados todos os alunos cadastrados
+	 * @author Andre
+	 * @return lista de alunos registrados no banco 
+	 * @throws SQLException
+	 */
+	public List<Aluno> buscarTodos() throws SQLException {
+		List<Aluno> lista =  new ArrayList<Aluno>();
 		String sql = "select * from aluno";
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Aluno aluno = new Aluno();
+			aluno.setIdAluno(resultSet.getInt(1));
+			aluno.setRa(resultSet.getInt(2));
+			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setDeficiencia(resultSet.getBoolean(4));
+			aluno.setNomeMae(resultSet.getString(5));
+			aluno.setNomePai(resultSet.getString(6));
+			aluno.setNomeResponsavel(resultSet.getString(7));
+			aluno.setSituacaoAnoLetivo(resultSet.getBoolean(8));
+			aluno.setFk_usuario(resultSet.getInt(9));
+			aluno.setFk_turma(resultSet.getInt(10));
 			
-			ResultSet resultSet = comandoSql.executeQuery();
-			while (resultSet.next()) {
-				aluno.setIdAluno(resultSet.getInt(1));
-				aluno.setRa(resultSet.getInt(2));
-				aluno.setMatricula(resultSet.getInt(3));
-				aluno.setDeficiencia(resultSet.getBoolean(4));
-				aluno.setNomeMae(resultSet.getString(5));
-				aluno.setNomePai(resultSet.getString(6));
-				aluno.setNomeResponsavel(resultSet.getString(7));
-				aluno.setSituacaoAnoLetivo(resultSet.getBoolean(8));
-				aluno.setFk_escola(resultSet.getInt(9));
-				aluno.setFk_turma(resultSet.getInt(10));
-				
 			lista.add(aluno);
-			}
-			comandoSql.close();
-			return lista;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return null;
 		}
+		comandoSql.close();
+		return lista;
 	}
-	
 }

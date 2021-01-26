@@ -7,293 +7,206 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.Endereco;
-import entidade.Escola;
 import entidade.Usuario;
 
+/**
+ * Metodo para consulta do usuario no banco de dados 
+ * @author Breno
+ *
+ */
 public class UsuarioDAO {
 	
 	private Connection conexao = ConexaoFactory.getConnection();
 
 	/**
-	 * Realiza o registro de uma Usuario no banco de dados
-	 * @param usuario
-	 * @return
+	 * Realiza o registro de um usuario no banco de dados
+	 * @param Usuario usuario
+	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public boolean insert(Usuario usuario) {
-		
+	public void insert(Usuario usuario) throws SQLException {
 		String sql = "insert into usuario (nome, sobrenome, cpf, telefone, celular, tipoUsuario, email, "
 				   + "senha, horaFinalExpediente, horaInicioExpediente, fotoUsuario, fk_endereco, "
 				   + "fk_escola) values (?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
-		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		     
-			comandoSql.setString(1, usuario.getNome());
-			comandoSql.setString(2, usuario.getSobrenome());
-			comandoSql.setString(3, usuario.getCpf());
-			comandoSql.setString(4, usuario.getTelefone());
-			comandoSql.setString(5, usuario.getCelular());
-			comandoSql.setInt(6, usuario.getTipoUsuario());
-			comandoSql.setString(7, usuario.getEmail());
-			comandoSql.setString(8, usuario.getSenha());
-			comandoSql.setTime(9, usuario.getHorarioFinalExpediente());
-			comandoSql.setTime(10, usuario.getHorarioInicioExpediente());
-			comandoSql.setString(11, usuario.getFotoUsuario());
-			comandoSql.setInt(12, usuario.getEndereco().getIdEndereco());
-			comandoSql.setInt(13, usuario.getEscola().getIdEscola());
-			
-			comandoSql.execute(); 
-			
-			comandoSql.close(); 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false; 
-		}
-		return true; 
+		comandoSql.setString(1, usuario.getNome());
+		comandoSql.setString(2, usuario.getSobrenome());
+		comandoSql.setString(3, usuario.getCpf());
+		comandoSql.setString(4, usuario.getTelefone());
+		comandoSql.setString(5, usuario.getCelular());
+		comandoSql.setInt(6, usuario.getTipoUsuario());
+		comandoSql.setString(7, usuario.getEmail());
+		comandoSql.setString(8, usuario.getSenha());
+		comandoSql.setTime(9, usuario.getHorarioFinalExpediente());
+		comandoSql.setTime(10, usuario.getHorarioInicioExpediente());
+		comandoSql.setString(11, usuario.getFotoUsuario());
+		comandoSql.setInt(12, usuario.getFk_endereco());
+		comandoSql.setInt(13, usuario.getFk_escola());
+
+		comandoSql.execute();
+		comandoSql.close();
 	}
-	
+
 	/**
-	 * Realiza atualiza��o dos dados da Usuario no banco de dados
-	 * @param usuario
-	 * @return
+	 * Realiza atualizacao dos dados da usuario no banco de dados.
+	 * O <code>idUsuario</code> deve ser igual ao da usuario que deseja atualizar
+	 * @param Usuario usuario
+	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public boolean update(Usuario usuario) {
-		
+	public void update(Usuario usuario) throws SQLException {
 		String sql = "update usuario set nome = ?, sobrenome = ?, cpf = ?, telefone = ?, celular = ?, "
-				   + "tipoUsuario = ?, email = ?, senha = ?, horaFinalExpediente = ?, horaInicioExpediente = ?, "
-				   + "fotoUsuario = ?, fk_endereco = ?, fk_escola = ? where idUsuario = ?";  
+				+ "tipoUsuario = ?, email = ?, senha = ?, horaFinalExpediente = ?, horaInicioExpediente = ?, "
+				+ "fotoUsuario = ?, fk_endereco = ?, fk_escola = ? where idUsuario = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+
+		comandoSql.setString(1, usuario.getNome());
+		comandoSql.setString(2, usuario.getSobrenome());
+		comandoSql.setString(3, usuario.getCpf());
+		comandoSql.setString(4, usuario.getTelefone());
+		comandoSql.setString(5, usuario.getCelular());
+		comandoSql.setInt(6, usuario.getTipoUsuario());
+		comandoSql.setString(7, usuario.getEmail());
+		comandoSql.setString(8, usuario.getSenha());
+		comandoSql.setTime(9, usuario.getHorarioFinalExpediente());
+		comandoSql.setTime(10, usuario.getHorarioInicioExpediente());
+		comandoSql.setString(11, usuario.getFotoUsuario());
+		comandoSql.setInt(12, usuario.getFk_endereco());
+		comandoSql.setInt(13, usuario.getFk_escola());
+		comandoSql.setInt(14, usuario.getIdUsuario());
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-		    
-			comandoSql.setString(1, usuario.getNome());
-			comandoSql.setString(2, usuario.getSobrenome());
-			comandoSql.setString(3, usuario.getCpf());
-			comandoSql.setString(4, usuario.getTelefone());
-			comandoSql.setString(5, usuario.getCelular());
-			comandoSql.setInt(6, usuario.getTipoUsuario());
-			comandoSql.setString(7, usuario.getEmail());
-			comandoSql.setString(8, usuario.getSenha());
-			comandoSql.setTime(9, usuario.getHorarioFinalExpediente());
-			comandoSql.setTime(10, usuario.getHorarioInicioExpediente());
-			comandoSql.setString(11, usuario.getFotoUsuario());
-			comandoSql.setInt(12, usuario.getEndereco().getIdEndereco());
-			comandoSql.setInt(13, usuario.getEscola().getIdEscola());
-			comandoSql.setInt(14, usuario.getIdUsuario());
-			
-			comandoSql.execute(); 
-			
-			comandoSql.close(); 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false; 
-		}
-		return true; 
+		comandoSql.execute(); 
+		comandoSql.close(); 
 	}
 	
 	/**
-	 * Realiza a exclus�o dos dados de uma linha da tabela Usuario
-	 * @param idUsuario
-	 * @return
+	 * Realiza a exclusao dos dados de uma linha da tabela usuario.
+	 * O <code>idUsuario</code> deve ser igual ao da usuario que deseja deletar
+	 * @param int idUsuario
+	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public boolean delete(int idUsuario) {
-		
+	public void deleteId(int idUsuario) throws SQLException {
 		String sql = "delete from usuario where idUsuario = ?"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setInt(1, idUsuario);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			
-			comandoSql.setInt(1, idUsuario);
-			
-			comandoSql.execute(); 
-			
-			comandoSql.close(); 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false; 
-		}
-		return true; 
+		comandoSql.execute(); 
+		comandoSql.close(); 
 	}
 	
 	/**
 	 * Metodo de busca de todas as informacoes de uma linha
-	 * da tabela Usuario do banco de dados
+	 * da tabela Usuario do banco de dados.
+	 * O <code>idUsuario</code> deve ser igual ao da usuario que deseja buscar
 	 * @param idUsuario
-	 * @return
+	 * @return Usuario usuario 
+	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public Usuario buscarId(int idUsuario) {
+	public Usuario buscarId(int idUsuario) throws SQLException {
 		Usuario usuario = new Usuario(); 
-		
 		String sql = "select * from usuario where idUsuario = ?"; 
-		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
-			comandoSql.setInt(1, idUsuario);
+		comandoSql.setInt(1, idUsuario);
+		ResultSet resultSet = comandoSql.executeQuery();
 			
-			ResultSet resultSet = comandoSql.executeQuery();
-			
-			if (resultSet.next()) {
-				usuario.setIdUsuario(resultSet.getInt(1));
-				usuario.setNome(resultSet.getString(2));
-				usuario.setSobrenome(resultSet.getString(3));
-				usuario.setCpf(resultSet.getString(4));
-				usuario.setTelefone(resultSet.getString(5));
-				usuario.setCelular(resultSet.getString(6));
-				usuario.setTipoUsuario(resultSet.getInt(7));
-				usuario.setEmail(resultSet.getString(8));
-				usuario.setSenha(resultSet.getString(9));
-				usuario.setHorarioFinalExpediente(resultSet.getTime(10));
-				usuario.setHorarioInicioExpediente(resultSet.getTime(11));
-				usuario.setFotoUsuario(resultSet.getString(12));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto endereco
-				 * apartir do fk da endereco
-				 */
-				EnderecoDAO enderecoDao = new EnderecoDAO();
-				Endereco endereco = enderecoDao.buscarId(resultSet.getInt(13));
-				usuario.setEndereco(endereco);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto escola
-				 * apartir do fk da escola
-				 */
-				EscolaDAO escolaDAO = new EscolaDAO();
-				Escola escola = escolaDAO.buscarId(resultSet.getInt(14));
-				usuario.setEscola(escola);
-				
-				comandoSql.close(); 
-				return usuario;
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		return null; 
+		if (resultSet.next()) {
+			usuario.setIdUsuario(resultSet.getInt(1));
+			usuario.setNome(resultSet.getString(2));
+			usuario.setSobrenome(resultSet.getString(3));
+			usuario.setCpf(resultSet.getString(4));
+			usuario.setTelefone(resultSet.getString(5));
+			usuario.setCelular(resultSet.getString(6));
+			usuario.setTipoUsuario(resultSet.getInt(7));
+			usuario.setEmail(resultSet.getString(8));
+			usuario.setSenha(resultSet.getString(9));
+			usuario.setHorarioFinalExpediente(resultSet.getTime(10));
+			usuario.setHorarioInicioExpediente(resultSet.getTime(11));
+			usuario.setFotoUsuario(resultSet.getString(12));
+			usuario.setFk_endereco(resultSet.getInt(13));
+			usuario.setFk_escola(resultSet.getInt(14));
+		}
+		comandoSql.close(); 
+		return usuario;
 	}
 	
 	/**
 	 * Retorna todos os dados listados da tabela Usuario do banco de dados 
-	 * @return
+	 * @return lista de usuarios registrados no banco 
+	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public List<Usuario> buscarTodos() {
-		
+	public List<Usuario> buscarTodos() throws SQLException {
 		List<Usuario> lista = new ArrayList<Usuario>(); 
-		
 		String sql = "select * from usuario"; 
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
 			
-			ResultSet resultSet = comandoSql.executeQuery();
-			comandoSql.close(); 
+		while (resultSet.next()) {
+			Usuario usuario = new Usuario(); 
+			usuario.setIdUsuario(resultSet.getInt(1));
+			usuario.setNome(resultSet.getString(2));
+			usuario.setSobrenome(resultSet.getString(3));
+			usuario.setCpf(resultSet.getString(4));
+			usuario.setTelefone(resultSet.getString(5));
+			usuario.setCelular(resultSet.getString(6));
+			usuario.setTipoUsuario(resultSet.getInt(7));
+			usuario.setEmail(resultSet.getString(8));
+			usuario.setSenha(resultSet.getString(9));
+			usuario.setHorarioFinalExpediente(resultSet.getTime(10));
+			usuario.setHorarioInicioExpediente(resultSet.getTime(11));
+			usuario.setFotoUsuario(resultSet.getString(12));
+			usuario.setFk_endereco(resultSet.getInt(13));
+			usuario.setFk_escola(resultSet.getInt(14));
 			
-			while (resultSet.next()) {
-				Usuario usuario = new Usuario(); 
-				usuario.setIdUsuario(resultSet.getInt(1));
-				usuario.setNome(resultSet.getString(2));
-				usuario.setSobrenome(resultSet.getString(3));
-				usuario.setCpf(resultSet.getString(4));
-				usuario.setTelefone(resultSet.getString(5));
-				usuario.setCelular(resultSet.getString(6));
-				usuario.setTipoUsuario(resultSet.getInt(7));
-				usuario.setEmail(resultSet.getString(8));
-				usuario.setSenha(resultSet.getString(9));
-				usuario.setHorarioFinalExpediente(resultSet.getTime(10));
-				usuario.setHorarioInicioExpediente(resultSet.getTime(11));
-				usuario.setFotoUsuario(resultSet.getString(12));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto endereco
-				 * apartir do fk da endereco
-				 */
-				EnderecoDAO enderecoDao = new EnderecoDAO();
-				Endereco endereco = enderecoDao.buscarId(resultSet.getInt(13));
-				usuario.setEndereco(endereco);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto escola
-				 * apartir do fk da escola
-				 */
-				EscolaDAO escolaDAO = new EscolaDAO();
-				Escola escola = escolaDAO.buscarId(resultSet.getInt(14));
-				usuario.setEscola(escola);
-				
-				lista.add(usuario); 
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			lista.add(usuario); 
 		}
+		comandoSql.close(); 
 		return lista;
-	}	
+	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Metodo de busca de todas as informacoes de uma linha
 	 * da tabela Usuario do banco de dados através do email
-	 * @param email
-	 * @return
+	 * @param String email
+	 * @return Usuario usuario
+	 * @author Breno
+	 * @throws SQLException 
 	 */
-	public Usuario buscarEmail(String email) {
+	public Usuario buscarEmail(String email) throws SQLException {
 		Usuario usuario = new Usuario(); 
-		
 		String sql = "select * from usuario where email = ?"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setString(1, email);
+		ResultSet resultSet = comandoSql.executeQuery();
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			
-			comandoSql.setString(1, email);
-			
-			ResultSet resultSet = comandoSql.executeQuery();
-			
-			if (resultSet.next()) {
-				usuario.setIdUsuario(resultSet.getInt(1));
-				usuario.setNome(resultSet.getString(2));
-				usuario.setSobrenome(resultSet.getString(3));
-				usuario.setCpf(resultSet.getString(4));
-				usuario.setTelefone(resultSet.getString(5));
-				usuario.setCelular(resultSet.getString(6));
-				usuario.setTipoUsuario(resultSet.getInt(7));
-				usuario.setEmail(resultSet.getString(8));
-				usuario.setSenha(resultSet.getString(9));
-				usuario.setHorarioFinalExpediente(resultSet.getTime(10));
-				usuario.setHorarioInicioExpediente(resultSet.getTime(11));
-				usuario.setFotoUsuario(resultSet.getString(12));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto endereco
-				 * apartir do fk da endereco
-				 */
-				EnderecoDAO enderecoDao = new EnderecoDAO();
-				Endereco endereco = enderecoDao.buscarId(resultSet.getInt(13));
-				usuario.setEndereco(endereco);
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto escola
-				 * apartir do fk da escola
-				 */
-				EscolaDAO escolaDAO = new EscolaDAO();
-				Escola escola = escolaDAO.buscarId(resultSet.getInt(14));
-				usuario.setEscola(escola);
-				
-				comandoSql.close(); 
-				return usuario;
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		return null; 
+		if (resultSet.next()) {
+			usuario.setIdUsuario(resultSet.getInt(1));
+			usuario.setNome(resultSet.getString(2));
+			usuario.setSobrenome(resultSet.getString(3));
+			usuario.setCpf(resultSet.getString(4));
+			usuario.setTelefone(resultSet.getString(5));
+			usuario.setCelular(resultSet.getString(6));
+			usuario.setTipoUsuario(resultSet.getInt(7));
+			usuario.setEmail(resultSet.getString(8));
+			usuario.setSenha(resultSet.getString(9));
+			usuario.setHorarioFinalExpediente(resultSet.getTime(10));
+			usuario.setHorarioInicioExpediente(resultSet.getTime(11));
+			usuario.setFotoUsuario(resultSet.getString(12));
+			usuario.setFk_endereco(resultSet.getInt(13));
+			usuario.setFk_escola(resultSet.getInt(14));
+		}
+		comandoSql.close(); 
+		return usuario;
 	}
 }

@@ -3,14 +3,17 @@ package persistencia.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Estabelece a conexão com o banco de dados 
+ * @author Breno
+ *
+ */
 public class ConexaoFactory {
 	
 	private static Connection conexao = null;
 	
 	public static Connection getConnection() {
-		
 		try {
-			
 			Class.forName("org.postgresql.Driver");
 			
 			if (conexao == null) {
@@ -22,5 +25,4 @@ public class ConexaoFactory {
 		}
 		return null;
 	}
-
 }

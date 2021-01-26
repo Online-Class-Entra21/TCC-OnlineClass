@@ -2,7 +2,7 @@ package entidade;
 
 /**
  * Classe contendo metodos e atributos para a criacao de convites de acesso as reunioes
- * @author André 
+ * @author Andre
  */
 public class Convite {
 	

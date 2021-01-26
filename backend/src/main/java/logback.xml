@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>out.log</file>
+		<encoder>
+			<pattern>
+				%d{HH:mm:ss.SSS} %-5level %logger - %msg%n
+			</pattern>
+		</encoder>
+
+	</appender>
+	<logger lever="debug" name="backend.api.controller">
+		
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger lever="debug" name="backend.api">
+		
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger lever="debug" name="persistencia">
+
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger lever="debug" name="entidade">
+
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger lever="debug" name="reunioes">
+
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<root level="debug">
+	</root>
+</configuration>

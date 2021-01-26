@@ -7,140 +7,125 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.Aluno;
 import entidade.Convite;
-import entidade.Turma;
-import entidade.Usuario;
 
+/**
+ * Metodo para consulta do convite no banco de dados
+ * @author Andre
+ *
+ */
 public class ConviteDAO {
+	
 private Connection conexao = ConexaoFactory.getConnection();
+
+	/**
+	 * Metodo para inserir convite no banco de dados
+	 * @param Convite convite
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public void insert(Convite convite) throws SQLException {
+		String sql = "insert into convite (destinatario, salaconvite, situacaoconvite, fk_usuario) values (?, ?, ?, ?)";
+
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, convite.getDestinatario());
+		comandoSql.setInt(2, convite.getSalaConvite());
+		comandoSql.setBoolean(3, convite.getSituacaoConvite());
+		comandoSql.setInt(4, convite.getFk_usuario());
+		
+		comandoSql.execute();
+		comandoSql.close();	
+	}
 	
 	/**
+	 * Metodo para atualizar um convite no banco de dados.
+	 * O <code>idConvite</code> deve ser igual ao do convite que deseja atualizar
+	 * @param Convite convite
+	 * @author Andre
+	 * @throws SQLException 
+	 */ 
+	public void update(Convite convite) throws SQLException {
+		String sql = "update convite set destinatario = ?, salaconvite = ?, situacaoconvite = ?, fk_usuario = ? "
+				   + "where idconvite = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, convite.getDestinatario());
+		comandoSql.setInt(2, convite.getSalaConvite());
+		comandoSql.setBoolean(3, convite.getSituacaoConvite());
+		comandoSql.setInt(4, convite.getFk_usuario());
+		comandoSql.setInt(5, convite.getIdConvite());
+		
+		comandoSql.execute();
+		comandoSql.close();
+	}
+	
+	/**
+	 *  Metodo para deletar do banco de dados um convite.
+	 *  O <code>idConvite</code> deve ser igual ao do convite que deseja deletar 
+	 * @param int idConvite
+	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public boolean insert(Convite convite) {
-		String sql = "insert into convite (destinatario, salaconvite, situacaoconvite, fk_usuario) values (?, ?, ?, ?)";
-		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, convite.getDestinatario());
-			comandoSql.setInt(2, convite.getSalaConvite());
-			comandoSql.setBoolean(3, convite.getSituacaoConvite());
-			comandoSql.setInt(4, convite.getFk_usuario());
-			
-			comandoSql.execute();
-			comandoSql.close();
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return false;
-		}
-		
-		return true;	
-	}
-	
-	public boolean update(Convite convite, Usuario usuario) {
-		String sql = "update convite set destinatario = ?, salaconvite = ?, situacaoconvite = ?, fk_usuario = ? where idconvite = ?";
-		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, convite.getDestinatario());
-			comandoSql.setInt(2, convite.getSalaConvite());
-			comandoSql.setBoolean(3, convite.getSituacaoConvite());
-			comandoSql.setInt(4, usuario.getIdUsuario());
-			comandoSql.setInt(5, convite.getIdConvite());
-			
-			comandoSql.execute();
-			comandoSql.close();
-	
-		} catch (SQLException e) {
-			return false;
-		}
-		return true;
-	}
-	
-	public boolean delete(int idConvite) {
+	public void deleteId(int idConvite) throws SQLException {
 		String sql = "delete from convite where idconvite = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, idConvite);
-			
-			comandoSql.execute();
-			comandoSql.close();
+		comandoSql.setInt(1, idConvite);
 		
-		} catch (SQLException e) {
-			return false;
-		}
-		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
-	 
-	public Convite buscarId(int idConvite) {
+
+	/**
+	 * Metodo para selecionar convite no banco de dados
+	 * O <code>idConvite</code> deve ser igual ao do convite que deseja buscar
+	 * @param int idChamada
+	 * @return Chamada chamada 
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public Convite buscarId(int idConvite) throws SQLException {
 		Convite convite =  new Convite();
-		
 		String sql = "select * from convite where idconvite = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, idConvite);
-			
-			ResultSet resultSet = comandoSql.executeQuery();
-			if (resultSet.next()) {
-				convite.setIdConvite(resultSet.getInt(1));
-				convite.setDestinatario(resultSet.getInt(2));
-				convite.setSalaConvite(resultSet.getInt(3));
-				convite.setSituacaoConvite(resultSet.getBoolean(4));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto usuario
-				 * apartir do fk do usuario
-				 */
-				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				Usuario usuario = usuarioDAO.buscarId(resultSet.getInt(5));
-				convite.setRemetente(usuario.getIdUsuario());
-			
-			}
-			comandoSql.close();
-			return convite;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return null;
+		comandoSql.setInt(1, idConvite);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			convite.setIdConvite(resultSet.getInt(1));
+			convite.setDestinatario(resultSet.getInt(2));
+			convite.setSalaConvite(resultSet.getInt(3));
+			convite.setSituacaoConvite(resultSet.getBoolean(4));
+			convite.setFk_usuario(resultSet.getInt(5));
 		}
-		
+		comandoSql.close();
+		return convite;
 	}
-	public List<Convite> buscarTodos() {
-		Convite convite = new Convite();
+	/**
+	 * Metodo para selecionar todos os convites do banco de dados
+	 * @return lista de convites registrados no banco 
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public List<Convite> buscarTodos() throws SQLException {
 		List<Convite> lista =  new ArrayList<Convite>();
-		
 		String sql = "select * from convite";
+
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			ResultSet resultSet = comandoSql.executeQuery();
-			
-			while (resultSet.next()) {
-				convite.setIdConvite(resultSet.getInt(1));
-				convite.setDestinatario(resultSet.getInt(2));
-				convite.setSalaConvite(resultSet.getInt(3));
-				convite.setSituacaoConvite(resultSet.getBoolean(4));
-				
-				/**
-				 * Realiza a consulta por id para criar o objeto usuario
-				 * apartir do fk do usuario
-				 */
-				UsuarioDAO usuarioDAO = new UsuarioDAO();
-				Usuario usuario = usuarioDAO.buscarId(resultSet.getInt(5));
-				convite.setRemetente(usuario.getIdUsuario());
+		while (resultSet.next()) {
+			Convite convite = new Convite();
+			convite.setIdConvite(resultSet.getInt(1));
+			convite.setDestinatario(resultSet.getInt(2));
+			convite.setSalaConvite(resultSet.getInt(3));
+			convite.setSituacaoConvite(resultSet.getBoolean(4));
+			convite.setFk_usuario(resultSet.getInt(5));
 
 			lista.add(convite);
-			}
-			comandoSql.close();
-			return lista;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return null;
 		}
+		comandoSql.close();
+		return lista;
 	}
 }

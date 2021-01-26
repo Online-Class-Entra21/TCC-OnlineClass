@@ -4,145 +4,138 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Reuniao;
 
+/**
+ * Metodo para consulta da reuniao no banco de dados 
+ * @author Andrey
+ *
+ */
 public class ReuniaoDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
-	public boolean insert(Reuniao reuniao) {
+	/**
+	 * Metodo para inserir reuniao no banco de dados
+	 * @param Reuniao reuniao
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public void insert(Reuniao reuniao) throws SQLException {
+		String sql = "insert into reuniao (descricao, datainicio, dono, notamediaaula, fk_sala, "
+				   + "fk_usuario_disciplina_turma) values (?, ?, ?, ?, ?, ?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setString(1, reuniao.getDescricao());
+		comandoSql.setDate(2, (Date) reuniao.getDataInicio());
+		comandoSql.setInt(3, reuniao.getDono());
+		comandoSql.setDouble(4, reuniao.getNotaMediaAula());
+		comandoSql.setInt(5, reuniao.getFk_sala());
+		comandoSql.setInt(6, reuniao.getFk_usuarioDisciplina());
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("insert into reuniao (descricao, datainicio, dono, notamediaaula, fk_sala, fk_usuario_disciplina_turma) values (?, ?, ?, ?, ?, ?)");
-			
-			comandoSql.setString(1, reuniao.getDescricao());
-			comandoSql.setDate(2, (Date) reuniao.getDataInicioReuniao());
-			comandoSql.setInt(3, reuniao.getDono());
-			comandoSql.setDouble(4, reuniao.getNotaMediaAula());
-			comandoSql.setInt(5, reuniao.getSala().getIdSala());
-			comandoSql.setInt(6, reuniao.getTurmaProfessorDisciplina().getIdTurmaProfessorDisciplina());
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
-		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
-	public boolean update(Reuniao reuniao) {
-		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("update reuniao set SET descricao=?, datainicio=?, dono=?, notamediaaula=?, fk_sala=?, fk_usuario_disciplina_turma=? where idreuniao = ?");
+	/**
+	 * Metodo para atualizar uma reuniao no banco de dados.
+	 * O <code>idReuniao</code> deve ser igual ao da reuniao que deseja atualizar
+	 * @param Reuniao reuniao
+	 * @author Andrey
+	 * @throws SQLException 
+	 */ 	
+	public void update(Reuniao reuniao) throws SQLException {
+		String sql = "update reuniao set descricao=?, datainicio=?, dono=?, notamediaaula=?, fk_sala=?, "
+				   + "fk_usuario_disciplina_turma=? where idreuniao = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
-			comandoSql.setString(1, reuniao.getDescricao());
-			comandoSql.setDate(2, (Date) reuniao.getDataInicioReuniao());
-			comandoSql.setInt(3, reuniao.getDono());
-			comandoSql.setDouble(4, reuniao.getNotaMediaAula());
-			comandoSql.setInt(5, reuniao.getSala().getIdSala());
-			comandoSql.setInt(6, reuniao.getTurmaProfessorDisciplina().getIdTurmaProfessorDisciplina());
-			comandoSql.setInt(7, reuniao.getIdReuniao());
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setString(1, reuniao.getDescricao());
+		comandoSql.setDate(2, (Date) reuniao.getDataInicio());
+		comandoSql.setInt(3, reuniao.getDono());
+		comandoSql.setDouble(4, reuniao.getNotaMediaAula());
+		comandoSql.setInt(5, reuniao.getFk_sala());
+		comandoSql.setInt(6, reuniao.getFk_usuarioDisciplina());
+		comandoSql.setInt(7, reuniao.getIdReuniao());
 		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
-	public boolean deleteID(int id) {
+	/**
+	 * Metodo para deletar do banco de dados uma reuniao.
+	 * O <code>idReuniao</code> deve ser igual ao da reuniao que deseja deletar
+	 * @param int idReuniao
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public void deleteId(int idReuniao) throws SQLException {
+		String sql = "delete from reuniao where idReuniao = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("delete from reuniao where idReuniao = ?");
-			
-			comandoSql.setInt(1, id);
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setInt(1, idReuniao);
 		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
-	public Reuniao buscarId(int id) {
+	/**
+	 * Metodo para selecionar reuniao no banco de dados.
+	 * O <code>idReuniao</code> deve ser igual ao da reuniao que deseja buscar
+	 * @param int idReuniao
+	 * @return Reuniao reuniao
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public Reuniao buscarId(int id) throws SQLException {
 		Reuniao reuniao = new Reuniao();
-		try {
+		String sql = "select * from reuniao where idreuniao = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
-			PreparedStatement comandoSql = conexao.prepareStatement("select * from resposta where idreuniao = ?");
+		comandoSql.setInt(1, id);		
+		ResultSet resultSet = comandoSql.executeQuery();
 			
-			comandoSql.setInt(1, id);
-						
-			ResultSet resultSet = comandoSql.executeQuery();
-			
-			if (resultSet.next()) {
-				reuniao.setIdReuniao(resultSet.getInt(1));
-				reuniao.setDescricao(resultSet.getString(2));
-				reuniao.setDataInicioReuniao(resultSet.getDate(3));
-				reuniao.setDono(resultSet.getInt(4));
-				reuniao.setNotaMediaAula(resultSet.getDouble(5));
-				reuniao.setSala(new SalaDAO().buscarPorId(resultSet.getInt(6)));
-				reuniao.setTurmaProfessorDisciplina(new TurmaProfessorDisciplinaDAO().buscarPorId(resultSet.getInt(7)));
-				return reuniao;
-			}
-			
-			comandoSql.close();
-		
-		}catch(Exception e){
-			e.printStackTrace();
+		if (resultSet.next()) {
+			reuniao.setIdReuniao(resultSet.getInt(1));
+			reuniao.setDescricao(resultSet.getString(2));
+			reuniao.setDataInicio(resultSet.getDate(3));
+			reuniao.setDono(resultSet.getInt(4));
+			reuniao.setNotaMediaAula(resultSet.getDouble(5));
+			reuniao.setFk_sala(resultSet.getInt(6));
+			reuniao.setFk_usuarioDisciplina(resultSet.getInt(7));
 		}
-		
-		return null;
+		comandoSql.close();
+		return reuniao;
 	}
 	
-	public List<Reuniao> buscarTodos() {
+	/**
+	 * Metodo para selecionar todas as reunioes do banco de dados
+	 * @return lista de reunioes resgistradas no banco 
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public List<Reuniao> buscarTodos() throws SQLException {
 		List<Reuniao> lista = new ArrayList<Reuniao>();
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("select * from reuniao");
-			
-			ResultSet resultSet = comandoSql.executeQuery();
-			comandoSql.close();
-			
-			while (resultSet.next()) {
-				Reuniao reuniao = new Reuniao();
-				reuniao.setIdReuniao(resultSet.getInt(1));
-				reuniao.setDescricao(resultSet.getString(2));
-				reuniao.setDataInicioReuniao(resultSet.getDate(3));
-				reuniao.setDono(resultSet.getInt(4));
-				reuniao.setNotaMediaAula(resultSet.getDouble(5));
-				reuniao.setSala(new SalaDAO().buscarPorId(resultSet.getInt(6)));
-				reuniao.setTurmaProfessorDisciplina(new TurmaProfessorDisciplinaDAO().buscarPorId(resultSet.getInt(7)));
-				lista.add(reuniao);
-			}
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		String sql = "select * from reuniao";
 		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Reuniao reuniao = new Reuniao();
+			reuniao.setIdReuniao(resultSet.getInt(1));
+			reuniao.setDescricao(resultSet.getString(2));
+			reuniao.setDataInicio(resultSet.getDate(3));
+			reuniao.setDono(resultSet.getInt(4));
+			reuniao.setNotaMediaAula(resultSet.getDouble(5));
+			reuniao.setFk_sala(resultSet.getInt(6));
+			reuniao.setFk_usuarioDisciplina(resultSet.getInt(7));
+			lista.add(reuniao);
+		}
+		comandoSql.close();
 		return lista;
 	}
-	
-	
 }

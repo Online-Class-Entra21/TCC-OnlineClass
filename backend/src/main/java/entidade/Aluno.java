@@ -1,14 +1,12 @@
 package entidade;
 
-import persistencia.jdbc.RespostaDAO;
-
 /**
  * Classe contendo metodos e atributos para o aluno
  * Herda metodos e atributos da classe Usuario.
  * @see Usuario
- * @author André 
+ * @author Andre
  */
-public class Aluno extends Usuario {
+public class Aluno {
     
 	private int idAluno;
     private int ra;
@@ -215,77 +213,4 @@ public class Aluno extends Usuario {
 	public void setFk_turma(int fk_turma) {
 		this.fk_turma = fk_turma;
 	}
-
-	
-	/**
-	 * Metodo para o envio de uma resposta de uma atividade
-	 * @param Resposta resposta
-	 */
-    public void mandarResposta(Resposta resposta) {
-        RespostaDAO respostaDao = new RespostaDAO();
-        respostaDao.insert(resposta);
-    }
-
-    
-    //Descomentar após correções do André - ClassesDAO
-  	//-------------------------------------------------
- 
-    
-////    public List<Resposta> verRespostasEnviadas(int idAtividade) {
-////    	RespostaDAO respostaDao = new RespostaDAO();
-////        List<Resposta> listaResposta = new ArrayList<Resposta>();
-////    	for (Resposta resposta : listaResposta) {
-////			respostaDao.
-////		}
-////    }
-//
-//    /**
-//     * Metodo para visualizar uma resposta enviada especafica, a partir do banco de dados
-//     * @param int idResposta
-//     * @return Resposta resposta 
-//     */
-//    public Resposta buscarRespostaEnviada(int idResposta) {
-//    	RespostaDAO respostaDao = new RespostaDAO();
-//        Resposta resposta = respostaDao.buscarId(idResposta);
-//        return resposta;
-//    }
-//
-//    /**
-//     * Metodo para a remocao de uma resposta
-//     * @param int idResposta
-//     */
-//    public void removerResposta(int idResposta) {
-//    	RespostaDAO respostaDao = new RespostaDAO();
-//    	respostaDao.deleteID(idResposta);
-//    }
-//
-////    public Atividade verAtividadesRecebidas() {
-////    	AtividadeDAO atividadeDao = new AtividadeDAO();
-////    	List<Atividade> listaAtividade = new ArrayList<Atividade>();
-////    	for (Atividade atividade : listaAtividade) {
-////			atividadeDao.
-////		}
-////    }
-//
-//    /**
-//     * Metodo para visualizar uma atividade recebida especafica, a partir do banco de dados
-//     * @param int idAtividade
-//     * @return Atividade atividade
-//     */
-//    public Atividade pesquisarAtividadeRecebida(int idAtividade) {
-//        AtividadeDAO atividadeDao = new AtividadeDAO();
-//        Atividade atividade = atividadeDao.buscarId(idAtividade);
-//        return atividade;
-//    }
-//
-//    /**
-//     * Metodo para retorno de uma nota em especifico  
-//     * @param int idResposta
-//     * @return double nota
-//     */
-//    public double verNotas(int idResposta) {
-//    	RespostaDAO respostaDao = new RespostaDAO();
-//    	Resposta resposta = respostaDao.buscarId(idResposta);
-//    	return resposta.getNota();
-//    }
 }

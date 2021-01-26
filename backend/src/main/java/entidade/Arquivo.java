@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Classe contendo metodos e atributos para a criacao e uso de arquivos
- * @author André 
+ * @author Andre
  */
 public class Arquivo {
 	

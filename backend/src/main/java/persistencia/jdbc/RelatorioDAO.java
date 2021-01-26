@@ -1,142 +1,134 @@
 package persistencia.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Relatorio;
 
+/**
+ * Metodo para consulta do relatorio no banco de dados 
+ * @author Andrey
+ *
+ */
 public class RelatorioDAO {
 
 	private Connection conexao = ConexaoFactory.getConnection();
 	
-	public boolean insert(Relatorio relatorio) {
+	/**
+	 * Metodo para inserir relatorio no banco de dados
+	 * @param Relatorio relatorio 
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public void insert(Relatorio relatorio) throws SQLException {
+		String sql = "insert into relatorio (titulo, destinatario, texto, tiporelatorio, fk_usuario) values (?, ?, ?, ?, ?, ?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("insert into relatorio (titulo, destinatario, texto, tiporelatorio, fk_usuario) values (?, ?, ?, ?, ?, ?)");
-			
-			comandoSql.setString(1, relatorio.getTitulo());
-			comandoSql.setInt(2, relatorio.getDestinatario());
-			comandoSql.setString(3, relatorio.getTexto());
-			comandoSql.setString(4, relatorio.getTipoRelatorio());
-			comandoSql.setInt(5, relatorio.getRemetente());
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setString(1, relatorio.getTitulo());
+		comandoSql.setInt(2, relatorio.getDestinatario());
+		comandoSql.setString(3, relatorio.getTexto());
+		comandoSql.setString(4, relatorio.getTipoRelatorio());
+		comandoSql.setInt(5, relatorio.getFk_usuario());
 		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
-	public boolean update(Relatorio relatorio) {
+	/**
+	 * Metodo para atualizar um relatorio no banco de dados.
+	 * O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja atualizar
+	 * @param Relatorio relatorio 
+	 * @author Andrey
+	 * @throws SQLException 
+	 */ 	
+	public void update(Relatorio relatorio) throws SQLException {
+		String sql = "update relatorio set idrelatorio=?, titulo=?, destinatario=?, texto=?, "
+				   + "tiporelatorio=?, fk_usuario=? where idrelatorio =?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("update relatorio set idrelatorio=?, titulo=?, destinatario=?, texto=?, tiporelatorio=?, fk_usuario=? where idrelatorio = ?");
-			
-			comandoSql.setString(1, relatorio.getTitulo());
-			comandoSql.setInt(2, relatorio.getDestinatario());
-			comandoSql.setString(3, relatorio.getTexto());
-			comandoSql.setString(4, relatorio.getTipoRelatorio());
-			comandoSql.setInt(5, relatorio.getRemetente());
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setString(1, relatorio.getTitulo());
+		comandoSql.setInt(2, relatorio.getDestinatario());
+		comandoSql.setString(3, relatorio.getTexto());
+		comandoSql.setString(4, relatorio.getTipoRelatorio());
+		comandoSql.setInt(5, relatorio.getFk_usuario());
 		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
-	public boolean deleteID(int id) {
+	/**
+	 *  Metodo para deletar do banco de dados uma relatorio.
+	 *  O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja deletar
+	 * @param int idRelatorio 
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public void deleteId(int idRelatorio) throws SQLException {
+		String sql = "delete from relatorio where idrelatorio = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("delete from relatorio where idrelatorio = ?");
-			
-			comandoSql.setInt(1, id);
-			comandoSql.execute();
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
+		comandoSql.setInt(1, idRelatorio);
 		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
-	public Relatorio buscarId(int id) {
+	/**
+	 * Metodo para selecionar relatorio no banco de dados.
+	 * O <code>idRelatorio</code> deve ser igual ao do relatorio que deseja buscar
+	 * @param int idRelatorio
+	 * @return Relatorio relatorio 
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public Relatorio buscarId(int idRelatorio) throws SQLException {
 		Relatorio relatorio = new Relatorio();
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("select * from relatorio where idescola = ?");
-			
-			comandoSql.setInt(1, id);
-			ResultSet resultSet = comandoSql.executeQuery();
-			
-			if (resultSet.next()) {
-				relatorio.setIdRelatorio (resultSet.getInt(1));
-				relatorio.setTitulo(resultSet.getString(2));
-				relatorio.setDestinatario(resultSet.getInt(3));
-				relatorio.setTexto(resultSet.getString(4));
-				relatorio.setTipoRelatorio(resultSet.getString(5));
-				relatorio.setRemetente(resultSet.getInt(6));
-				return relatorio;
-			}
-			
-			comandoSql.close();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+		String sql = "select * from relatorio where idescola = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		return null;
+		comandoSql.setInt(1, idRelatorio);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			relatorio.setIdRelatorio (resultSet.getInt(1));
+			relatorio.setTitulo(resultSet.getString(2));
+			relatorio.setDestinatario(resultSet.getInt(3));
+			relatorio.setTexto(resultSet.getString(4));
+			relatorio.setTipoRelatorio(resultSet.getString(5));
+			relatorio.setFk_usuario(resultSet.getInt(6));
+		}
+		comandoSql.close();
+		return relatorio;
 	}
 	
-	public List<Relatorio> buscarTodos() {
+	/**
+	 * Metodo para selecionar todos os relatorios do banco de dados
+	 * @return lista de relatorios registrados no banco
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public List<Relatorio> buscarTodos() throws SQLException {
 		List<Relatorio> lista = new ArrayList<Relatorio>();
-		try {
-			
-			PreparedStatement comandoSql = conexao.prepareStatement("select * from Escola");
-			
-			ResultSet resultSet = comandoSql.executeQuery();
-			comandoSql.close();
-			
-			while (resultSet.next()) {
-				Relatorio relatorio = new Relatorio();
-				relatorio.setIdRelatorio (resultSet.getInt(1));
-				relatorio.setTitulo(resultSet.getString(2));
-				relatorio.setDestinatario(resultSet.getInt(3));
-				relatorio.setTexto(resultSet.getString(4));
-				relatorio.setTipoRelatorio(resultSet.getString(5));
-				relatorio.setRemetente(resultSet.getInt(6));
-				lista.add(relatorio);
-			}
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+	    String sql = "select * from Escola";
+	    
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
 		
+		while (resultSet.next()) {
+			Relatorio relatorio = new Relatorio();
+			relatorio.setIdRelatorio (resultSet.getInt(1));
+			relatorio.setTitulo(resultSet.getString(2));
+			relatorio.setDestinatario(resultSet.getInt(3));
+			relatorio.setTexto(resultSet.getString(4));
+			relatorio.setTipoRelatorio(resultSet.getString(5));
+			relatorio.setFk_usuario(resultSet.getInt(6));
+			lista.add(relatorio);
+		}
+		comandoSql.close();
 		return lista;
 	}
-	
 }

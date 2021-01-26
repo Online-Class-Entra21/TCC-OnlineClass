@@ -9,158 +9,119 @@ import java.util.List;
 
 import entidade.Chamada;
 
+/**
+ * Metodo para consulta da chamada no banco de dados
+ * @author Andre
+ *
+ */
 public class ChamadaDAO {
+	
 	private Connection conexao = ConexaoFactory.getConnection();
 	
 	/**
-	 * Metodo para inserir chamamada no banco de dados.
-	 * <p>
-	 * O idChamada sera gerado pelo banco de dados.
-	 * 
-	 * @param chamada
-	 * @param aluno
-	 * @param reuniao
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andrey
+	 * Metodo para inserir chamada no banco de dados
+	 * @param Chamada chamada
+	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public boolean insert(Chamada chamada) {
+	public void insert(Chamada chamada) throws SQLException {
 		String sql = "insert into chamada (situacao, fk_aluno, fk_reuniao) values (?, ?, ?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setBoolean(1, chamada.getSituacao());
-			comandoSql.setInt(2, chamada.getFk_aluno());
-			comandoSql.setInt(3, chamada.getFk_reuniao());
-			
-			comandoSql.execute();
-			comandoSql.close();
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return false;
-		}
+		comandoSql.setBoolean(1, chamada.getSituacao());
+		comandoSql.setInt(2, chamada.getFk_aluno());
+		comandoSql.setInt(3, chamada.getFk_reuniao());
 		
-		return true;	
+		comandoSql.execute();
+		comandoSql.close();	
 	}
+	
 	/**
-	 * Metodo para atualizar chamado no banco de dados
-	 * <p>
-	 * O idChamada deve ser igual ao id da chamada que se deseja atualizar
-	 * 
-	 * @param chamada
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andrey
+	 * Metodo para atualizar chamada no banco de dados.
+	 * O <code>idChamada</code> deve ser igual ao da chamada que deseja atualizar
+	 * @param Chmada chamada
+	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public boolean update(Chamada chamada) {
+	public void update(Chamada chamada) throws SQLException {
 		String sql = "update chamada set situacao = ?, fk_aluno = ?, fk_reuniao = ? where idchamada = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setBoolean(1, chamada.getSituacao());
-			comandoSql.setInt(2, chamada.getFk_aluno());
-			comandoSql.setInt(3, chamada.getFk_reuniao());
-			comandoSql.setInt(4, chamada.getIdChamada());
-			
-			comandoSql.execute();
-			comandoSql.close();
-	
-		} catch (SQLException e) {
-			return false;
-		}
-		return true;
+		comandoSql.setBoolean(1, chamada.getSituacao());
+		comandoSql.setInt(2, chamada.getFk_aluno());
+		comandoSql.setInt(3, chamada.getFk_reuniao());
+		comandoSql.setInt(4, chamada.getIdChamada());
+		
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
 	/**
-	 * Metodo para deletar chamada do banco de dados
-	 * 
-	 * o id deve ser igual ao id do banco de dados
-	 * 
-	 * @param idChamada
-	 * @return <code>true</code> caso seja bem sucedido o delete; <code>false</code> e um erro caso ocorra falha
-	 * @author Andrey
+	 * Metodo para deletar chamada do banco de dados.
+	 * O <code>idAtividade</code> deve ser igual ao da chamada que deseja deletar
+	 * @param int idChamada
+	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public boolean delete(int idChamada) {
+	public void deleteId(int idChamada) throws SQLException {
 		String sql = "delete from chamada where idchamada = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, idChamada);
-			
-			comandoSql.execute();
-			comandoSql.close();
+		comandoSql.setInt(1, idChamada);
 		
-		} catch (SQLException e) {
-			return false;
-		}
-		
-		return true;
+		comandoSql.execute();
+		comandoSql.close();
 	}
 	
 	/**
-	 * Metodo para selecionar chamada no banco de dados
-	 * <p>
-	 * O idChamada deve ser igual a chamada que seseja selecionar
-	 * 
-	 * @param idChamada
-	 * @return Chamada
-	 * @author Andrey
+	 * Metodo para selecionar chamada no banco de dados.
+	 * O <code>idAtividade</code> deve ser igual ao da chamada que deseja buscar
+	 * @param int idChamada
+	 * @return Chamada chamada 
+	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public Chamada buscarId(int idChamada) {
+	public Chamada buscarId(int idChamada) throws SQLException {
 		Chamada chamada = new Chamada();
-		
 		String sql = "select * from chamada where idchamada = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			comandoSql.setInt(1, idChamada);
-			
-			ResultSet resultSet = comandoSql.executeQuery();
-			if (resultSet.next()) {
-				chamada.setIdChamada(resultSet.getInt(1));
-				chamada.setSituacao(resultSet.getBoolean(2));
-				chamada.setFk_aluno(resultSet.getInt(3));
-				chamada.setFk_reuniao(resultSet.getInt(3));
-			}
-			comandoSql.close();
-			return chamada;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return null;
+		comandoSql.setInt(1, idChamada);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			chamada.setIdChamada(resultSet.getInt(1));
+			chamada.setSituacao(resultSet.getBoolean(2));
+			chamada.setFk_aluno(resultSet.getInt(3));
+			chamada.setFk_reuniao(resultSet.getInt(3));
 		}
-		
+		comandoSql.close();
+		return chamada;	
 	}
 
 	/**
 	 * Metodo para selecionar todas as chamadas do banco de dados
-	 * 
-	 * @return List
-	 * @author Andrey
+	 * @return lista de todas as chamadas registradas no banco
+	 * @author Andre
+	 * @throws SQLException 
 	 */
-	public List<Chamada> buscarTodos() {
-		Chamada chamada = new Chamada();
+	public List<Chamada> buscarTodos() throws SQLException {
 		List<Chamada> lista =  new ArrayList<Chamada>();
-		
 		String sql = "select * from chamada";
 		
-		try {
-			PreparedStatement comandoSql = conexao.prepareStatement(sql);
-			ResultSet resultSet = comandoSql.executeQuery();
-			
-			while (resultSet.next()) {
-				chamada.setIdChamada(resultSet.getInt(1));
-				chamada.setSituacao(resultSet.getBoolean(2));
-				chamada.setFk_aluno(resultSet.getInt(3));
-				chamada.setFk_reuniao(resultSet.getInt(3));
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Chamada chamada = new Chamada();
+			chamada.setIdChamada(resultSet.getInt(1));
+			chamada.setSituacao(resultSet.getBoolean(2));
+			chamada.setFk_aluno(resultSet.getInt(3));
+			chamada.setFk_reuniao(resultSet.getInt(3));
 
 			lista.add(chamada);
-			}
-			comandoSql.close();
-			return lista;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			return null;
 		}
+		comandoSql.close();
+		return lista;
 	}
 }
