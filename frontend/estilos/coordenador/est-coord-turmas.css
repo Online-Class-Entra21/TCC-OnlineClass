@@ -9,7 +9,7 @@
     display: none;
 }
 #check:checked ~ .barra{
-    transform: translateX(300px);
+    transform: translateX(230%);
 
 }
 #check:checked ~ .barra nav a .link{
@@ -21,9 +21,9 @@
 
 #icone{
     cursor: pointer;
-    padding: 15px;
+    padding: 1%;
     position: absolute;
-    z-index: 1;
+    z-index: 9999;
     display: block;
    position: fixed;
    
@@ -31,7 +31,7 @@
 
 #conteudo {
     text-align: center;
-    font-size: 25px;
+    font-size: 1em;
     
 }
 
@@ -39,206 +39,224 @@
     display: none;
    
 }
-#check2:checked ~ #dfPessoas{
-    transform: translateY(1100px);
+#check2:checked ~ .alterar{
+    transform: translateY(225%);
 }
-#check2:checked ~  #dfPessoa #icone2 {
+#check2:checked ~ .alterar ul li #icone2 {
     opacity: 1;
-    margin-top: 0;
-    transition-delay: .2s;
+    
 }
 #icone2{
     cursor: pointer;
-    padding: 15px;
+    margin-top: 8%;
     position: absolute;
-    z-index: 3;
-    margin-top: 5%;
-    margin-left: 30%;
+    z-index: 1;
+    margin-left: 60%;
+   display: block;
+   position: fixed;
+  
+}
+#check3{
+    display: none;
+   
+}
+#check3:checked ~ .animCad{
+    transform: translateY(225%);
+}
+#check3:checked ~ .animCad ul li #icone3 {
+    opacity: 1;
+    
+}
+#icone3{
+    cursor: pointer;
+    margin-top: 8%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 63%;
    display: block;
    position: fixed;
   
 }
 
-
-
-#dfPessoas{
-    
-    margin-top: 1%px;
-    font: 14px Verdana;
-    padding-left: 3% ;
-    background-color: #ccc;
-    height: auto;
-    width: 40%;
-    position: absolute;
-    transition: all .2s linear;
-    left: 40%;
-   border: 2px solid black;
-   z-index: 2;
-   top: -1000px;
-}
-#dtPessoas{
-    font: 14px Verdana;
-    width: 100%;
+#tbPessoas {
+    font: 1em Verdana;
     text-align: center;
-    border-collapse: collapse; /* CSS2 */
-    background-color: white;
-    table-layout: fixed;
-    
+    margin-top: 25%;
+}
+
+#dGridPessoas {
+    width: 100%;
+    margin-left: 5%;
     
 }
-#codTur{ width: 10%;}
-#codTrn{ width: 30%;}
-#codTrm{ width: 30%;}
-#codNumA{ width: 20%;}
+#fPessoas {
+    width: 500%;
+    margin-left: 30%;
+    margin-top: 3%;
+}
+#fAltera{
+    width: 500%;
+    margin-left: 30%;
+    margin-top: 3%;
 
+}
+#TForm{
+   text-align: center;
+}
 
-.tg {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .contTb{border-color:inherit;text-align:center;vertical-align:top;width: 29%}
-
-
+#idBtn{
+    margin-left: 5%;
+}
+#aviso{
+    margin: 50% 25%;
+    color: gray;
+    position: absolute;
+}
 /* FIM ID */
 
 
 /* INICIO CLASSE */
-.max{
-    margin-top: 10%;
-    margin-left: 35%;
-    width: 40%;
-    background: gray;
-    height: 450px;
-    padding: 2%;
-    border:1px solid;
-    position: absolute;
-    overflow: auto;
-    font-family: Arial;
-    display: block;
-   position: fixed;
+
+.botao{
+    padding-left: 20%;
 }
-.barra {
-    background-color: #630c13;
-    height: 100%;
-    width: 300px;
+.botaoCad{
+    padding-left: 40%;
+}
+.maxTb{
+    margin-top: -5%;
+    width: 50%;
+    max-height: 90%;
+    background: white;
     position: absolute;
     transition: all .2s linear;
-    left: -300px;
+    overflow: auto;
+    font-family: Arial;
+   overflow-x: hidden;
+}
+.barra {
+    background-color: lightgray;
+    height: 100%;
+    width: 15%;
+    position: absolute;
+    transition: all .2s linear;
+    right: 120%;
     display: block;
    position: fixed;
-   border: 2px solid black;
+   border: 0.1em solid black;
+   border-top: none;
+   border-bottom: none;
+   text-decoration: none;
+   z-index: 999;
 }
 
 .link{
-    background-color: #630c13;
-    padding: 20px;
+    background-color:lightgray;
+    padding: 1em;
     font-family: Arial;
     font-size: 12pt;
     transition: all .2s linear;
-    color: #f4f4f9;
-    border-bottom: 2px solid #630c13;
+    color: black;
     opacity: 0;
     margin-top: 200px;
+    text-decoration: none;
+
 }
 
 .link:hover{
-    background-color: #050542;
+    background-color: silver;
+    text-decoration: none;
 }
 
+.animCad{
 
-.content{
-    
-    max-width: 400px;
-    max-height: 600px;
-    min-width: 220px;
-    margin-left: 84%;
-    background: #646464;
-    height: 450px;
-    padding: 2%;
-    border:1px solid;
-    position: absolute;
-    transition: all .2s linear;
-    top: -530px;
-    overflow: auto;
-    font-family: Arial;
-    display: block;
-   position: fixed;
-  
-   
-}
+    height: 55%;
+     width: 30%;
+     margin-left: 65%;
+    background-color: lightgray;
+     border:1px solid;
+     transition: all .2s linear;
+     top: -100%;
+     font-family: Arial;
+    position: fixed;
+    overflow: hidden;
+     padding-right: 25%;
+     padding-top: 3%;
+     color: black;
+
+ }
+ 
+ .alterar{
+
+        height: 55%;
+         width: 30%;
+         margin-left: 65%;
+         background-color: lightgray;
+         border:1px solid;
+         transition: all .2s linear;
+         top: -100%;
+         font-family: Arial;
+        position: fixed;
+        overflow: hidden;
+         padding-right: 25%;
+         padding-top: 3%;
+         color: black;
+ }
 .content h2{
     text-align: center;
     color: white;
 }
-
-
  .topo{
-     background-color: #630c13;
+     background-color: lightgray;
      min-width: 100%;
      min-height: 10%;
-     position: absolute;
-     display: block;
+     position: fixed;
+     color: lightgray;
+     z-index: 10;
  }
- 
+ .busca{
+     margin: 20% 80%;
+     max-width: 10%;
+     position: absolute;
+     
+ }
 /* FIM CLASSE */
 
 
 /* INICIO TAG */
 
 body {
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 nav{ 
     width: 100%;
     position: absolute;
-    top: 60px;
+    top: 6em;
 }
 
 nav a {
     text-decoration: none;
 }
 
-
-
 input[type=text]{
     width: 80%;
-    height: 30px;
+    height: 2em;
     margin-bottom: 10px;
 }
 input[type=button]{
     border: none;
-    width: 17%;
+    width: 10%;
     float: right;
-    height: 35px;
-}
-button:hover, input[type=button]:hover{
-    background: #ccc;
+    height: 1em;
 }
 
-button, input[type=button]{ cursor: pointer; }
-
-button{
-    float: right;
-    width: 25px;
-    padding: 5px;
+tr:hover {
+    cursor: pointer;
+    background-color: lightblue;
 }
-ul{
-    list-style-type: none;
-    padding: 10px;
-    height: 320px;
-    background: #fff;
-    overflow-y: auto;
-}
-li{
-    height: 40px;
-    margin: 15px 0 15px 0;
-    border-bottom: 1px solid;
 
 
-}
 
 
 /* FIM TAG */
