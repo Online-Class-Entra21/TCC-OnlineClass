@@ -17,31 +17,31 @@
 		</encoder>
 
 	</appender>
-	<logger lever="warn" name="backend.api.controller">
+	<logger lever="debug" name="backend.api.controller">
 		
 		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger lever="warn" name="backend.api">
+	<logger lever="debug" name="backend.api">
 		
 		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger lever="warn" name="persistencia">
+	<logger lever="debug" name="persistencia">
 
 		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger lever="warn" name="entidade">
+	<logger lever="debug" name="entidade">
 
 		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<logger lever="warn" name="reunioes">
+	<logger lever="debug" name="reunioes">
 
 		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</logger>
-	<root level="warn">
+	<root level="debug">
 	</root>
 </configuration>
