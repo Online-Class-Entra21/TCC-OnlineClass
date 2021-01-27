@@ -15,8 +15,8 @@ function cadTurma(turma, turno, numAlu) {
     cellTurma.innerHTML = turma;
     cellTurno.innerHTML = turno;
     cellNumAlu.innerHTML = numAlu;
-
     preencheCamposForm();
+    
 
 }
 
@@ -26,7 +26,7 @@ function altPessoa(turma, turno, numAlu) {
     cadturmas.rows[index].cells[1].innerHTML = turma;
     cadturmas.rows[index].cells[2].innerHTML = turno;
     cadturmas.rows[index].cells[3].innerHTML = numAlu;
-    preencheCamposForm();
+   
 
 }
 
@@ -47,6 +47,7 @@ function preencheCamposForm() {
     }
 }
 
+
 function delRegistro() {
 
     for(var i = 0; i < cadturmas.rows.length; i++) 
@@ -57,5 +58,4 @@ function delRegistro() {
             return;
         }
     }
-   onclick =preencheCamposForm();
 }
