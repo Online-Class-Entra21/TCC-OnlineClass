@@ -24,7 +24,9 @@ import persistencia.jdbc.TurmaAtividadeDAO;
  */
 @RestController
 public class TurmaAtividadeController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a turmaAtividade que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class TurmaAtividadeController {
 	 */
 	@GetMapping(path = "/api/turmaAtividade/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição TurmaAtividade codigo {} iniciada", codigo);
 		TurmaAtividadeDAO turmaAtividadeDao = new TurmaAtividadeDAO();
 		TurmaAtividade turmaAtividade;
 		try {
 			turmaAtividade = turmaAtividadeDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(turmaAtividade);
+			LOGGER.info("Requisição TurmaAtividade codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			turmaAtividade = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar TurmaAtividade Mal Sucedida - TurmaAtividade {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(turmaAtividade);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class TurmaAtividadeController {
 	 */
 	@GetMapping(path = "/api/turmasAtividades")
 	public List<TurmaAtividade> consultar(){
+		LOGGER.info("Requisição List<TurmaAtividade>");
 		List<TurmaAtividade> lista;
 		TurmaAtividadeDAO turmaAtividadeDao = new TurmaAtividadeDAO();
 		try {
 			lista = turmaAtividadeDao.buscarTodos();
+			LOGGER.info("Requisição List<TurmaAtividade> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos TurmaAtividade Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class TurmaAtividadeController {
 	 */
 	@PostMapping(path = "api/turmaAtividade/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir TurmaAtividade - {}",json);
 		Gson gson = new Gson();
 		TurmaAtividade turmaAtividade = gson.fromJson(json, TurmaAtividade.class);
 		TurmaAtividadeDAO turmaAtividadeDAO = new TurmaAtividadeDAO();
 		try {
 			turmaAtividadeDAO.insert(turmaAtividade);
+			LOGGER.info("Requisição Inserir TurmaAtividade - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir TurmaAtividade Mal Sucedida - TurmaAtividade {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class TurmaAtividadeController {
 	 */
 	@PutMapping(path = "api/turmaAtividade/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar TurmaAtividade - {}",json);
 		Gson gson = new Gson();
 		TurmaAtividade turmaAtividade = gson.fromJson(json, TurmaAtividade.class);
 		TurmaAtividadeDAO turmaAtividadeDAO = new TurmaAtividadeDAO();
 		try {
 			turmaAtividadeDAO.update(turmaAtividade);
+			LOGGER.info("Requisição Atualizar TurmaAtividade - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar TurmaAtividade Mal Sucedida - TurmaAtividade {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class TurmaAtividadeController {
 	 */
 	@DeleteMapping(path = "/api/turmaAtividade/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar TurmaAtividade id - {}",codigo);
 		TurmaAtividadeDAO turmaAtividadeDAO = new TurmaAtividadeDAO();
 		try {
 			turmaAtividadeDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar TurmaAtividade id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar TurmaAtividade Mal Sucedida - TurmaAtividade {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

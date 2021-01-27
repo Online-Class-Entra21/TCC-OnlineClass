@@ -24,7 +24,9 @@ import persistencia.jdbc.SalaDAO;
  */
 @RestController
 public class SalaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a sala que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class SalaController {
 	 */
 	@GetMapping(path = "/api/sala/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Sala codigo {} iniciada", codigo);
 		SalaDAO salaDao = new SalaDAO();
 		Sala sala;
 		try {
 			sala = salaDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(sala);
+			LOGGER.info("Requisição Sala codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			sala = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Sala Mal Sucedida - Sala {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(sala);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class SalaController {
 	 */
 	@GetMapping(path = "/api/salas")
 	public List<Sala> consultar(){
+		LOGGER.info("Requisição List<Sala>");
 		List<Sala> lista;
 		SalaDAO salaDao = new SalaDAO();
 		try {
 			lista = salaDao.buscarTodos();
+			LOGGER.info("Requisição List<Sala> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Sala Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class SalaController {
 	 */
 	@PostMapping(path = "api/sala/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Sala - {}",json);
 		Gson gson = new Gson();
 		Sala sala = gson.fromJson(json, Sala.class);
 		SalaDAO salaDAO = new SalaDAO();
 		try {
 			salaDAO.insert(sala);
+			LOGGER.info("Requisição Inserir Sala - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Sala Mal Sucedida - Sala {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class SalaController {
 	 */
 	@PutMapping(path = "api/sala/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Sala - {}",json);
 		Gson gson = new Gson();
 		Sala sala = gson.fromJson(json, Sala.class);
 		SalaDAO salaDAO = new SalaDAO();
 		try {
 			salaDAO.update(sala);
+			LOGGER.info("Requisição Atualizar Sala - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Sala Mal Sucedida - Sala {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class SalaController {
 	 */
 	@DeleteMapping(path = "/api/sala/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Sala id - {}",codigo);
 		SalaDAO salaDAO = new SalaDAO();
 		try {
 			salaDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Sala id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Sala Mal Sucedida - Sala {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

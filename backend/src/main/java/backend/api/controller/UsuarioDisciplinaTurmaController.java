@@ -24,7 +24,9 @@ import persistencia.jdbc.UsuarioDisciplinaTurmaDAO;
  */
 @RestController
 public class UsuarioDisciplinaTurmaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o usuarioDisciplinaTurma que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class UsuarioDisciplinaTurmaController {
 	 */
 	@GetMapping(path = "/api/usuarioDisciplinaTurma/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição UsuarioDisciplinaTurma codigo {} iniciada", codigo);
 		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDao = new UsuarioDisciplinaTurmaDAO();
 		UsuarioDisciplinaTurma usuarioDisciplinaTurma;
 		try {
 			usuarioDisciplinaTurma = usuarioDisciplinaTurmaDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(usuarioDisciplinaTurma);
+			LOGGER.info("Requisição UsuarioDisciplinaTurma codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			usuarioDisciplinaTurma = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar UsuarioDisciplinaTurma Mal Sucedida - UsuarioDisciplinaTurma {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(usuarioDisciplinaTurma);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class UsuarioDisciplinaTurmaController {
 	 */
 	@GetMapping(path = "/api/turmasUsuariosDisciplinas")
 	public List<UsuarioDisciplinaTurma> consultar(){
+		LOGGER.info("Requisição List<UsuarioDisciplinaTurma>");
 		List<UsuarioDisciplinaTurma> lista;
 		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDao = new UsuarioDisciplinaTurmaDAO();
 		try {
 			lista = usuarioDisciplinaTurmaDao.buscarTodos();
+			LOGGER.info("Requisição List<UsuarioDisciplinaTurma> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos UsuarioDisciplinaTurma Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class UsuarioDisciplinaTurmaController {
 	 */
 	@PostMapping(path = "api/usuarioDisciplinaTurma/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir UsuarioDisciplinaTurma - {}",json);
 		Gson gson = new Gson();
 		UsuarioDisciplinaTurma usuarioDisciplinaTurma = gson.fromJson(json, UsuarioDisciplinaTurma.class);
 		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDAO = new UsuarioDisciplinaTurmaDAO();
 		try {
 			usuarioDisciplinaTurmaDAO.insert(usuarioDisciplinaTurma);
+			LOGGER.info("Requisição Inserir UsuarioDisciplinaTurma - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir UsuarioDisciplinaTurma Mal Sucedida - UsuarioDisciplinaTurma {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class UsuarioDisciplinaTurmaController {
 	 */
 	@PutMapping(path = "api/usuarioDisciplinaTurma/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar UsuarioDisciplinaTurma - {}",json);
 		Gson gson = new Gson();
 		UsuarioDisciplinaTurma usuarioDisciplinaTurma = gson.fromJson(json, UsuarioDisciplinaTurma.class);
 		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDAO = new UsuarioDisciplinaTurmaDAO();
 		try {
 			usuarioDisciplinaTurmaDAO.update(usuarioDisciplinaTurma);
+			LOGGER.info("Requisição Atualizar UsuarioDisciplinaTurma - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar UsuarioDisciplinaTurma Mal Sucedida - UsuarioDisciplinaTurma {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class UsuarioDisciplinaTurmaController {
 	 */
 	@DeleteMapping(path = "/api/usuarioDisciplinaTurma/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar UsuarioDisciplinaTurma id - {}",codigo);
 		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDAO = new UsuarioDisciplinaTurmaDAO();
 		try {
 			usuarioDisciplinaTurmaDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar UsuarioDisciplinaTurma id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar UsuarioDisciplinaTurma Mal Sucedida - UsuarioDisciplinaTurma {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }
