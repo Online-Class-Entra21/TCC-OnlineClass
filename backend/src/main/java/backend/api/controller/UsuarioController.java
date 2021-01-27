@@ -26,7 +26,9 @@ import persistencia.jdbc.UsuarioDAO;
  */
 @RestController
 public class UsuarioController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o usuário que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -35,17 +37,20 @@ public class UsuarioController {
 	 */
 	@GetMapping(path = "/api/usuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Usuario codigo {} iniciada", codigo);
 		Usuario usuario;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			usuario = usuarioDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(usuario);
+			LOGGER.info("Requisição Usuario codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			usuario = null;
+			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Usuario Mal Sucedida - Usuario {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(usuario);
-		return json;
 	}
 	
 	/**
@@ -55,16 +60,18 @@ public class UsuarioController {
 	 */
 	@GetMapping(path = "/api/usuarios")
 	public List<Usuario> consultar(){
+		LOGGER.info("Requisição List<Usuario>");
 		List<Usuario> lista;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			lista = usuarioDao.buscarTodos();
+			LOGGER.info("Requisição List<Usuario> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Usuario Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -75,17 +82,19 @@ public class UsuarioController {
 	 */
 	@PostMapping(path = "api/usuario/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Usuario - {}",json);
 		Gson gson = new Gson();
 		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			usuarioDao.insert(usuario);
+			LOGGER.info("Requisição Inserir Usuario - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -97,17 +106,19 @@ public class UsuarioController {
 	 */
 	@PutMapping(path = "api/usuario/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Usuario - {}",json);
 		Gson gson = new Gson();
 		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			usuarioDao.update(usuario);
+			LOGGER.info("Requisição Atualizar Usuario - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -118,15 +129,17 @@ public class UsuarioController {
 	 */
 	@DeleteMapping(path = "/api/usuario/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Usuario id - {}",codigo);
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			usuarioDao.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Usuario id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Usuario Mal Sucedida - Usuario {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	//------------------------------------------------------------------
@@ -141,18 +154,20 @@ public class UsuarioController {
 	 */
 	@GetMapping(path = "/api/usuario/email/{email}")
 	public String consultarEmail(@PathVariable("email") String email) {
+		LOGGER.info("Requisição Usuario email - {}",email);
 		Usuario usuario;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			usuario = usuarioDao.buscarEmail(email);
+			Gson gson = new Gson();
+			String json = gson.toJson(usuario);
+			LOGGER.info("Requisição Usuario email - {} - Bem Sucedida",email);
+			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Usuario por Email Mal Sucedida - Email do Usuario {} - erro - {}",email,e.toString());
-			usuario = null;
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(usuario);
-		return json;
 	}
 	
 	/**
@@ -164,6 +179,7 @@ public class UsuarioController {
 	 */
 	@GetMapping(path = "api/verificar/{email}")
 	public boolean verificarEmail(@PathVariable("email") String email) {
+		LOGGER.info("Requisição de verificação Usuario por email - {}",email);
 		Usuario usuario;
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
@@ -171,8 +187,10 @@ public class UsuarioController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			usuario = null;
+			LOGGER.error("Requisição de verificação Usuario por Email Mal Sucedida - Email do Usuario {} - erro - {}",email,e.toString());
 		}
 		if(usuario != null) {
+			LOGGER.info("Requisição de verificação Usuario por email - {} - Bem Sucedida",email);
 			return true;
 		}
 		return false;
@@ -186,6 +204,7 @@ public class UsuarioController {
 	 */
 	@GetMapping(path = "/api/codigo/{email}")
 	public String codigo(@PathVariable("email") String email){
+		LOGGER.info("Requisição de código de recuperação de senha por email - {}",email);
 		String codigo = "";
 		
 		int digitos[] = new int[6];
@@ -210,12 +229,13 @@ public class UsuarioController {
 			emailCon.setMsg("Seu codigo de Verificação é '"+codigo+"' use esse codigo para alterar sua senha no site");
 			emailCon.addTo(email);
 			emailCon.send();
-			
+			LOGGER.info("Requisição de código de recuperação de senha por email - {} - Bem Sucedida",email);
+			return codigo;
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição de código de recuperação de senha por email Mal Sucedida - Email do Usuario {} - erro - {}",email,e.toString());
+			return null;
 		}
-		
-		return codigo;
 	}
 	
 	/**
@@ -227,22 +247,26 @@ public class UsuarioController {
 	 */
 	@PutMapping(path = "/api/mudar/senha/{email}/{senha-digitada}")
 	public boolean mudarSenha(@PathVariable("email") String email, @PathVariable("senha-digitada") String senha) {
+		LOGGER.info("Requisição de mudança de senha email - {} - senha - {}",email,senha);
 		Usuario usuario = new Usuario();
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			usuario = usuarioDao.buscarEmail(email);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.info("Requisição de mudança de senha email Mal Sucedida - Email do Usuario {} - senha {} - erro - {}",email,senha,e.toString());
 			return false;
 		}
 		usuario.setSenha(senha);
 		try {
 			usuarioDao.update(usuario);
+			LOGGER.info("Requisição de mudança de senha email - Bem Sucedida - Email do Usuario {} - senha {}",email,senha);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.info("Requisição de mudança de senha email Mal Sucedida - Email do Usuario {} - senha {} - erro - {}",email,senha,e.toString());
 			return false;
 		}
-		return true;
 	}
 }
 

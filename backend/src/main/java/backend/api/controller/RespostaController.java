@@ -24,7 +24,9 @@ import persistencia.jdbc.RespostaDAO;
  */
 @RestController
 public class RespostaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a resposta que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class RespostaController {
 	 */
 	@GetMapping(path = "/api/resposta/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Resposta codigo {} iniciada", codigo);
 		RespostaDAO respostaDao = new RespostaDAO();
 		Resposta resposta;
 		try {
 			resposta = respostaDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(resposta);
+			LOGGER.info("Requisição Resposta codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			resposta = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Resposta Mal Sucedida - Resposta {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(resposta);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class RespostaController {
 	 */
 	@GetMapping(path = "/api/respostas")
 	public List<Resposta> consultar(){
+		LOGGER.info("Requisição List<Resposta>");
 		List<Resposta> lista;
 		RespostaDAO respostaDao = new RespostaDAO();
 		try {
 			lista = respostaDao.buscarTodos();
+			LOGGER.info("Requisição List<Resposta> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Resposta Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class RespostaController {
 	 */
 	@PostMapping(path = "api/resposta/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Resposta - {}",json);
 		Gson gson = new Gson();
 		Resposta resposta = gson.fromJson(json, Resposta.class);
 		RespostaDAO respostaDAO = new RespostaDAO();
 		try {
 			respostaDAO.insert(resposta);
+			LOGGER.info("Requisição Inserir Resposta - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Resposta Mal Sucedida - Resposta {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class RespostaController {
 	 */
 	@PutMapping(path = "api/resposta/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Resposta - {}",json);
 		Gson gson = new Gson();
 		Resposta resposta = gson.fromJson(json, Resposta.class);
 		RespostaDAO respostaDAO = new RespostaDAO();
 		try {
 			respostaDAO.update(resposta);
+			LOGGER.info("Requisição Atualizar Resposta - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Resposta Mal Sucedida - Resposta {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class RespostaController {
 	 */
 	@DeleteMapping(path = "/api/resposta/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Resposta id - {}",codigo);
 		RespostaDAO respostaDAO = new RespostaDAO();
 		try {
 			respostaDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Resposta id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Resposta Mal Sucedida - Resposta {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

@@ -24,7 +24,9 @@ import persistencia.jdbc.UsuarioDisciplinaDAO;
  */
 @RestController
 public class UsuarioDisciplinaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o usuarioDisciplina que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class UsuarioDisciplinaController {
 	 */
 	@GetMapping(path = "/api/usuarioDisciplina/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição UsuarioDisciplina codigo {} iniciada", codigo);
 		UsuarioDisciplinaDAO usuarioDisciplinaDao = new UsuarioDisciplinaDAO();
 		UsuarioDisciplina usuarioDisciplina;
 		try {
 			usuarioDisciplina = usuarioDisciplinaDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(usuarioDisciplina);
+			LOGGER.info("Requisição UsuarioDisciplina codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			usuarioDisciplina = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar UsuarioDisciplina Mal Sucedida - UsuarioDisciplina {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(usuarioDisciplina);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class UsuarioDisciplinaController {
 	 */
 	@GetMapping(path = "/api/usuariosDisciplinas")
 	public List<UsuarioDisciplina> consultar(){
+		LOGGER.info("Requisição List<UsuarioDisciplina>");
 		List<UsuarioDisciplina> lista;
 		UsuarioDisciplinaDAO usuarioDisciplinaDao = new UsuarioDisciplinaDAO();
 		try {
 			lista = usuarioDisciplinaDao.buscarTodos();
+			LOGGER.info("Requisição List<UsuarioDisciplina> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos UsuarioDisciplina Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class UsuarioDisciplinaController {
 	 */
 	@PostMapping(path = "api/usuarioDisciplina/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
 		Gson gson = new Gson();
 		UsuarioDisciplina usuarioDisciplina = gson.fromJson(json, UsuarioDisciplina.class);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
 		try {
 			usuarioDisciplinaDAO.insert(usuarioDisciplina);
+			LOGGER.info("Requisição Inserir UsuarioDisciplina - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir UsuarioDisciplina Mal Sucedida - UsuarioDisciplina {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class UsuarioDisciplinaController {
 	 */
 	@PutMapping(path = "api/usuarioDisciplina/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar UsuarioDisciplina - {}",json);
 		Gson gson = new Gson();
 		UsuarioDisciplina usuarioDisciplina = gson.fromJson(json, UsuarioDisciplina.class);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
 		try {
 			usuarioDisciplinaDAO.update(usuarioDisciplina);
+			LOGGER.info("Requisição Atualizar UsuarioDisciplina - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar UsuarioDisciplina Mal Sucedida - UsuarioDisciplina {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class UsuarioDisciplinaController {
 	 */
 	@DeleteMapping(path = "/api/usuarioDisciplina/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar UsuarioDisciplina id - {}",codigo);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
 		try {
 			usuarioDisciplinaDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar UsuarioDisciplina id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar UsuarioDisciplina Mal Sucedida - UsuarioDisciplina {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

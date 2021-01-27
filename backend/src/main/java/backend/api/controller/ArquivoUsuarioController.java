@@ -105,13 +105,13 @@ public class ArquivoUsuarioController {
 	 */
 	@PutMapping(path = "api/arquivoUsuario/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição ArquivoUsuario Arquivo - {}",json);
+		LOGGER.info("Requisição Atualizar ArquivoUsuario - {}",json);
 		Gson gson = new Gson();
 		ArquivoUsuario arquivoUsuario = gson.fromJson(json.toString(), ArquivoUsuario.class);
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuarioDao.update(arquivoUsuario);
-			LOGGER.info("Requisição ArquivoUsuario Arquivo - {} - Bem Sucedida",json);
+			LOGGER.info("Requisição Atualizar ArquivoUsuario - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

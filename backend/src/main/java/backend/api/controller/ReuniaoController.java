@@ -23,7 +23,9 @@ import persistencia.jdbc.ReuniaoDAO;
  */
 @RestController
 public class ReuniaoController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a reuniao que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -32,18 +34,20 @@ public class ReuniaoController {
 	 */
 	@GetMapping(path = "/api/reuniao/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Reuniao codigo {} iniciada", codigo);
 		ReuniaoDAO reuniaoDao = new ReuniaoDAO();
 		Reuniao reuniao;
 		try {
 			reuniao = reuniaoDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(reuniao);
+			LOGGER.info("Requisição Reuniao codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			reuniao = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Reuniao Mal Sucedida - Reuniao {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(reuniao);
-		return json;
 	}
 	
 	/**
@@ -53,16 +57,18 @@ public class ReuniaoController {
 	 */
 	@GetMapping(path = "/api/reunioes")
 	public List<Reuniao> consultar(){
+		LOGGER.info("Requisição List<Reuniao>");
 		List<Reuniao> lista;
 		ReuniaoDAO reuniaoDao = new ReuniaoDAO();
 		try {
 			lista = reuniaoDao.buscarTodos();
+			LOGGER.info("Requisição List<Reuniao> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Reuniao Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -73,17 +79,19 @@ public class ReuniaoController {
 	 */
 	@PostMapping(path = "api/reuniao/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Reuniao - {}",json);
 		Gson gson = new Gson();
 		Reuniao reuniao = gson.fromJson(json, Reuniao.class);
 		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
 		try {
 			reuniaoDAO.insert(reuniao);
+			LOGGER.info("Requisição Inserir Reuniao - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Reuniao Mal Sucedida - Reuniao {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -95,17 +103,19 @@ public class ReuniaoController {
 	 */
 	@PutMapping(path = "api/reuniao/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Reuniao - {}",json);
 		Gson gson = new Gson();
 		Reuniao reuniao = gson.fromJson(json, Reuniao.class);
 		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
 		try {
 			reuniaoDAO.update(reuniao);
+			LOGGER.info("Requisição Atualizar Reuniao - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Reuniao Mal Sucedida - Reuniao {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -116,14 +126,16 @@ public class ReuniaoController {
 	 */
 	@DeleteMapping(path = "/api/reuniao/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Reuniao id - {}",codigo);
 		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
 		try {
 			reuniaoDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Reuniao id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Reuniao Mal Sucedida - Reuniao {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

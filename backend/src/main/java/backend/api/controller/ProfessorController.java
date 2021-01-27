@@ -18,22 +18,26 @@ import persistencia.jdbc.ProfessorDAO;
  */
 @RestController
 public class ProfessorController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a lista dos professores registrados no sistema {GET}
 	 * @return lista de professores registrados no banco
 	 */
 	@GetMapping(path = "/api/professores")
 	public List<Professor> consultar(){
+		LOGGER.info("Requisição List<Professor>");
 		List<Professor> lista;
 		ProfessorDAO professorDao = new ProfessorDAO();
 		try {
 			lista = professorDao.buscarTodos();
+			LOGGER.info("Requisição List<Professor> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Professor Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 }

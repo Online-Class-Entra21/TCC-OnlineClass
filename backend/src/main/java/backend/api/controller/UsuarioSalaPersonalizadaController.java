@@ -24,7 +24,9 @@ import persistencia.jdbc.UsuarioSalaPersonalizadaDAO;
  */
 @RestController
 public class UsuarioSalaPersonalizadaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o usuarioSalaPersonalizada que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class UsuarioSalaPersonalizadaController {
 	 */
 	@GetMapping(path = "/api/usuarioSalaPersonalizada/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Arquivo codigo {} iniciada", codigo);
 		UsuarioSalaPersonalizadaDAO usuarioSalaPersonalizadaDao = new UsuarioSalaPersonalizadaDAO();
 		UsuarioSalaPersonalizada usuarioSalaPersonalizada;
 		try {
 			usuarioSalaPersonalizada = usuarioSalaPersonalizadaDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(usuarioSalaPersonalizada);
+			LOGGER.info("Requisição Arquivo codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			usuarioSalaPersonalizada = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar UsuarioSalaPersonalizada Mal Sucedida - UsuarioSalaPersonalizada {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(usuarioSalaPersonalizada);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class UsuarioSalaPersonalizadaController {
 	 */
 	@GetMapping(path = "/api/usuariosSalasPersonalizadas")
 	public List<UsuarioSalaPersonalizada> consultar(){
+		LOGGER.info("Requisição List<Arquivo>");
 		List<UsuarioSalaPersonalizada> lista;
 		UsuarioSalaPersonalizadaDAO usuarioSalaPersonalizadaDao = new UsuarioSalaPersonalizadaDAO();
 		try {
 			lista = usuarioSalaPersonalizadaDao.buscarTodos();
+			LOGGER.info("Requisição List<Arquivo> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos UsuarioSalaPersonalizada Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class UsuarioSalaPersonalizadaController {
 	 */
 	@PostMapping(path = "api/usuarioSalaPersonalizada/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir UsuarioSalaPersonalizada - {}",json);
 		Gson gson = new Gson();
 		UsuarioSalaPersonalizada usuarioSalaPersonalizada = gson.fromJson(json, UsuarioSalaPersonalizada.class);
 		UsuarioSalaPersonalizadaDAO usuarioSalaPersonalizadaDAO = new UsuarioSalaPersonalizadaDAO();
 		try {
 			usuarioSalaPersonalizadaDAO.insert(usuarioSalaPersonalizada);
+			LOGGER.info("Requisição Inserir UsuarioSalaPersonalizada - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir UsuarioSalaPersonalizada Mal Sucedida - UsuarioSalaPersonalizada {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class UsuarioSalaPersonalizadaController {
 	 */
 	@PutMapping(path = "api/usuarioSalaPersonalizada/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar UsuarioSalaPersonalizada - {}",json);
 		Gson gson = new Gson();
 		UsuarioSalaPersonalizada usuarioSalaPersonalizada = gson.fromJson(json, UsuarioSalaPersonalizada.class);
 		UsuarioSalaPersonalizadaDAO usuarioSalaPersonalizadaDAO = new UsuarioSalaPersonalizadaDAO();
 		try {
 			usuarioSalaPersonalizadaDAO.update(usuarioSalaPersonalizada);
+			LOGGER.info("Requisição Atualizar UsuarioSalaPersonalizada - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar UsuarioSalaPersonalizada Mal Sucedida - UsuarioSalaPersonalizada {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class UsuarioSalaPersonalizadaController {
 	 */
 	@DeleteMapping(path = "/api/usuarioSalaPersonalizada/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar UsuarioSalaPersonalizada id - {}",codigo);
 		UsuarioSalaPersonalizadaDAO usuarioSalaPersonalizadaDAO = new UsuarioSalaPersonalizadaDAO();
 		try {
 			usuarioSalaPersonalizadaDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar UsuarioSalaPersonalizada id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar UsuarioSalaPersonalizada Mal Sucedida - UsuarioSalaPersonalizada {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

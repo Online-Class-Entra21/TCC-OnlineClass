@@ -18,7 +18,9 @@ import persistencia.jdbc.CoordenadorDAO;
  */
 @RestController
 public class CoordenadorController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a lista de coordenadores registrados no sistema {GET}
 	 * @return lista de coordenadores registrados no banco
@@ -26,10 +28,12 @@ public class CoordenadorController {
 	 */
 	@GetMapping(path = "/api/coordenadores")
 	public List<Coordenador> consultar(){
+		LOGGER.info("Requisição List<Coordenador>");
 		List<Coordenador> lista;
 		CoordenadorDAO coordenadorDao = new CoordenadorDAO();
 		try {
 			lista = coordenadorDao.buscarTodos();
+			LOGGER.info("Requisição List<Coordenador> bem sucedida");
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();

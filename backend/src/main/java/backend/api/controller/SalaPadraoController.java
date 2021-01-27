@@ -18,7 +18,9 @@ import persistencia.jdbc.SalaPadraoDAO;
  */
 @RestController
 public class SalaPadraoController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a lista das salasPadroes registrados no sistema {GET}
 	 * @return lista de salasPadroes registradas no banco
@@ -26,15 +28,17 @@ public class SalaPadraoController {
 	 */
 	@GetMapping(path = "/api/salasPadroes")
 	public List<SalaPadrao> consultar(){
+		LOGGER.info("Requisição List<SalaPadrao>");
 		List<SalaPadrao> lista;
 		SalaPadraoDAO salaPadraoDao = new SalaPadraoDAO();
 		try {
 			lista = salaPadraoDao.buscarTodos();
+			LOGGER.info("Requisição List<SalaPadrao> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos SalaPadrao Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 }
