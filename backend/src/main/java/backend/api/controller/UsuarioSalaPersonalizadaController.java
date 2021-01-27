@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.UsuarioSalaPersonalizadaDAO;
  */
 @RestController
 public class UsuarioSalaPersonalizadaController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o usuarioSalaPersonalizada que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -38,6 +40,7 @@ public class UsuarioSalaPersonalizadaController {
 		} catch (SQLException e) {
 			usuarioSalaPersonalizada = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar UsuarioSalaPersonalizada Mal Sucedida - UsuarioSalaPersonalizada {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(usuarioSalaPersonalizada);
@@ -58,6 +61,7 @@ public class UsuarioSalaPersonalizadaController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos UsuarioSalaPersonalizada Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -77,6 +81,7 @@ public class UsuarioSalaPersonalizadaController {
 			usuarioSalaPersonalizadaDAO.insert(usuarioSalaPersonalizada);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir UsuarioSalaPersonalizada Mal Sucedida - UsuarioSalaPersonalizada {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -98,6 +103,7 @@ public class UsuarioSalaPersonalizadaController {
 			usuarioSalaPersonalizadaDAO.update(usuarioSalaPersonalizada);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar UsuarioSalaPersonalizada Mal Sucedida - UsuarioSalaPersonalizada {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -116,6 +122,7 @@ public class UsuarioSalaPersonalizadaController {
 			usuarioSalaPersonalizadaDAO.deleteId(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar UsuarioSalaPersonalizada Mal Sucedida - UsuarioSalaPersonalizada {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;

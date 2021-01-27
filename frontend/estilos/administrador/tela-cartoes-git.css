@@ -1,0 +1,62 @@
+/*
+Config. para todos os elementos 
+*/
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+Config. padrao da barra 
+*/
+body, html{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+header{
+    height: 10%;
+    width: auto;
+    background-color: #000000;
+    z-index: 0;
+}
+
+p  {
+  font-size: 5vh;
+  font-family: cursive;
+  margin: 4%;
+  color: white;  
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    margin: 10%;
+}
+
+
+#tipoUsuario{
+    color: white;
+    font-size: 100%;
+}
+
+#tipoUsuario{
+    float: right;
+}
+
+#cartoes {
+    background: #141414;
+    width: 40vh;
+    height: 52vh;
+    margin: 3%;
+    text-align: center;
+    border-radius: 7% 24%;
+}
+
+img {
+    width: 70%;
+    border-radius: 100%;
+}

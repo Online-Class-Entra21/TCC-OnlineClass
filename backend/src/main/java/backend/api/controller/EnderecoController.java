@@ -3,6 +3,8 @@ package backend.api.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.EnderecoDAO;
  */
 @RestController
 public class EnderecoController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o endereco que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -39,6 +41,7 @@ public class EnderecoController {
 		} catch (SQLException e) {
 			endereco = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Endereco Mal Sucedida - Endereco {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(endereco);
@@ -59,6 +62,7 @@ public class EnderecoController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Endereco Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -78,6 +82,7 @@ public class EnderecoController {
 			enderecoDAO.insert(endereco);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Endereco Mal Sucedida - Endereco {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -99,6 +104,7 @@ public class EnderecoController {
 			enderecoDAO.update(endereco);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Endereco Mal Sucedida - Endereco {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -117,6 +123,7 @@ public class EnderecoController {
 			enderecoDAO.deleteId(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar Endereco Mal Sucedida - Endereco {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;

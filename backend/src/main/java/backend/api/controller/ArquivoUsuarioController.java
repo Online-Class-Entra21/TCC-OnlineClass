@@ -24,7 +24,7 @@ import persistencia.jdbc.ArquivoUsuarioDAO;
  */
 @RestController
 public class ArquivoUsuarioController {
-	public static final Logger LOGGER = LoggerFactory.getLogger(ArquivoUsuarioController.class);  
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");  
 	/**
 	 * Retorna o arquivoUsuario que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,7 +33,6 @@ public class ArquivoUsuarioController {
 	 */
 	@GetMapping(path = "/api/arquivoUsuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		LOGGER.info("Requisição de Arquivo codigo {} Iniciada",codigo);
 		ArquivoUsuario arquivoUsuario = new ArquivoUsuario();
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
@@ -44,7 +43,7 @@ public class ArquivoUsuarioController {
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			LOGGER.error("Requisição de Arquivo codigo {} Mal sucedida {}",codigo,e.toString());
+			LOGGER.error("Requisição de Consultar ArquivoUsuario Mal sucedida - ArquivoUsuario {} - erro - {}",codigo,e.toString());
 			return null;
 		}
 		
@@ -64,6 +63,7 @@ public class ArquivoUsuarioController {
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Todos ArquivoUsuario Mal Sucedida - erro - {}",e.toString());
 			return null;
 		}
 	}
@@ -84,6 +84,7 @@ public class ArquivoUsuarioController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir ArquivoUsuario Mal Sucedida - Arquivo {} - erro - {}",json,e.toString());
 			return false;
 		}
 	}
@@ -105,6 +106,7 @@ public class ArquivoUsuarioController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar ArquivoUsuario Mal Sucedida - Arquivo {} - erro - {}",json,e.toString());
 			return false;
 		}
 	}
@@ -123,6 +125,7 @@ public class ArquivoUsuarioController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar ArquivoUsuario Mal Sucedida - Arquivo {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 	}

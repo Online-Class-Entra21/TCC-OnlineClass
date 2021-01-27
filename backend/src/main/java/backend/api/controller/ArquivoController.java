@@ -3,6 +3,8 @@ package backend.api.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.ArquivoDAO;
  */
 @RestController
 public class ArquivoController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o arquivo que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -40,6 +42,7 @@ public class ArquivoController {
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Arquivo Mal Sucedida - Arquivo {} - erro - {}",codigo,e.toString());
 			return null;
 		}
 		
@@ -59,6 +62,7 @@ public class ArquivoController {
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Listar todos Arquivos Mal Sucedida erro - {}",e.toString());
 			return null;
 		}
 	}
@@ -79,6 +83,7 @@ public class ArquivoController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Arquivo Mal Sucedida - Arquivo {} - erro - {}",json,e.toString());
 			return false;
 		}
 	}
@@ -100,6 +105,7 @@ public class ArquivoController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Arquivo Mal Sucedida - Arquivo {} - erro - {}",json,e.toString());
 			return false;
 		}
 	}
@@ -118,6 +124,7 @@ public class ArquivoController {
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar Arquivo Mal Sucedida - Arquivo {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 	}

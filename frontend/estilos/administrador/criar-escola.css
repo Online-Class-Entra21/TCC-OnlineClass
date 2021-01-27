@@ -1,7 +1,8 @@
-#navegacao {
-    padding: 1.5%;
+main{
+    margin: 5%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
-
 fieldset {
     background-color: #eeeeee;
 }
@@ -10,62 +11,19 @@ legend {
     background-color: gray;
     color: white;
     padding: 1% 2%;
-  }
-  
-input {
-    margin: 5px;
-}
-#cria-escola {
-    display: flex;
-    margin: 1%;
-    margin-left: 42.5%;
-}
-#criacao-escola {
-    width: 120%;
-    height: 100%;
-    margin: 2%;
-    text-align: center;
-    font-family: cursive;
-}
-#criacao {
-    width: 120%;
-    height: auto;
-    margin: 2%;
-    text-align: center;
-    font-family: cursive;
 }
 
-
-#cadastra-diretor {
-    display: flex;
-    margin: 10px;
-    margin-left: 7.5%;
-
-}
-#endereco {
-    display: flex;
-    margin: 10px;
-    margin-left: 36px;
-}
-button{
-    background: white;
-    width: 40%;
-}
-button:hover {
-    background: black;
-    color: white;
+div{
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#registro-escola-diretor{
-    display: flex;
-    margin: 1%;
-    margin-top: -31.9%;
-    margin-left: 5%;
-    overflow: auto; 
-    width: 30%;
-    height: 250px; 
-    border:solid 1px
+img{
+    display: table;
+    margin-left: auto;
+    /* margin-right: auto; */
 }
+
 table {
     width: 100%;
     height: auto;
@@ -89,16 +47,3 @@ th {
     letter-spacing: 0.1em;
     background: gray;
 }
-.alternado {
-    background-color: #efefef;
-}
-
-tr {
-    background: #eeeeee;
-}
-
-tr:hover {
-    background-color: #c3e6e5;
-}
-
-

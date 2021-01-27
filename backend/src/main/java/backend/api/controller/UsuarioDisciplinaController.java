@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ import persistencia.jdbc.UsuarioDisciplinaDAO;
  */
 @RestController
 public class UsuarioDisciplinaController {
-	
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o usuarioDisciplina que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -38,6 +40,7 @@ public class UsuarioDisciplinaController {
 		} catch (SQLException e) {
 			usuarioDisciplina = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar UsuarioDisciplina Mal Sucedida - UsuarioDisciplina {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(usuarioDisciplina);
@@ -58,6 +61,7 @@ public class UsuarioDisciplinaController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos UsuarioDisciplina Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -77,6 +81,7 @@ public class UsuarioDisciplinaController {
 			usuarioDisciplinaDAO.insert(usuarioDisciplina);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir UsuarioDisciplina Mal Sucedida - UsuarioDisciplina {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -98,6 +103,7 @@ public class UsuarioDisciplinaController {
 			usuarioDisciplinaDAO.update(usuarioDisciplina);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar UsuarioDisciplina Mal Sucedida - UsuarioDisciplina {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -116,6 +122,7 @@ public class UsuarioDisciplinaController {
 			usuarioDisciplinaDAO.deleteId(codigo);
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar UsuarioDisciplina Mal Sucedida - UsuarioDisciplina {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;

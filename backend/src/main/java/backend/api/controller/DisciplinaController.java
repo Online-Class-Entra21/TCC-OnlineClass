@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,7 @@ import persistencia.jdbc.DisciplinaDAO;
  */
 @RestController
 public class DisciplinaController {
-
+	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
 	/**
 	 * Retorna o disciplina que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -39,6 +41,7 @@ public class DisciplinaController {
 		} catch (SQLException e) {
 			disciplina = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Disciplina Mal Sucedida - Disciplina {} - erro - {}",codigo,e.toString());
 		}
 		Gson gson = new Gson();
 		String json = gson.toJson(disciplina);
@@ -59,6 +62,7 @@ public class DisciplinaController {
 		} catch (SQLException e) {
 			lista = null;
 			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Disciplina Mal Sucedida - erro - {}",e.toString());
 		}
 		return lista;
 	}
@@ -79,6 +83,7 @@ public class DisciplinaController {
 			disciplinaDao.insert(disciplina);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Disciplina Mal Sucedida - Disciplina {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -100,6 +105,7 @@ public class DisciplinaController {
 			disciplinaDao.update(disciplina);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Disciplina Mal Sucedida - Disciplina {} - erro - {}",json,e.toString());
 			return false;
 		}
 		return true;
@@ -118,6 +124,7 @@ public class DisciplinaController {
 			disciplinaDao.deleteId(codigo);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar Disciplina Mal Sucedida - Disciplina {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 		return true;
