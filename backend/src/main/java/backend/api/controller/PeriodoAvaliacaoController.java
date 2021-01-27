@@ -35,14 +35,14 @@ public class PeriodoAvaliacaoController {
 	 */
 	@GetMapping(path = "/api/periodoAvaliacao/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
-		LOGGER.info("Requisição Arquivo codigo {} iniciada", codigo);
+		LOGGER.info("Requisição PeriodoAvaliacao codigo {} iniciada", codigo);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDao = new PeriodoAvaliacaoDAO();
 		PeriodoAvaliacao periodoAvaliacao;
 		try {
 			periodoAvaliacao = periodoAvaliacaoDao.buscarId(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(periodoAvaliacao);
-			LOGGER.info("Requisição Arquivo codigo {} bem sucedida",codigo);
+			LOGGER.info("Requisição PeriodoAvaliacao codigo {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -127,11 +127,11 @@ public class PeriodoAvaliacaoController {
 	 */
 	@DeleteMapping(path = "/api/periodoAvaliacao/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
-		LOGGER.info("Requisição para Deletar Arquivo id - {}",codigo);
+		LOGGER.info("Requisição para Deletar PeriodoAvaliacao id - {}",codigo);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDAO = new PeriodoAvaliacaoDAO();
 		try {
 			periodoAvaliacaoDAO.deleteId(codigo);
-			LOGGER.info("Requisição para Deletar Arquivo id - {} - Bem Sucedida",codigo);
+			LOGGER.info("Requisição para Deletar PeriodoAvaliacao id - {} - Bem Sucedida",codigo);
 			return true;	
 		} catch (Exception e) {
 			e.printStackTrace();

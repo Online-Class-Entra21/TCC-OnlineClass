@@ -59,12 +59,12 @@ public class EnderecoController {
 	 */
 	@GetMapping(path = "/api/enderecos")
 	public List<Endereco> consultar() {
-		LOGGER.info("Requisição List<Arquivo>");
+		LOGGER.info("Requisição List<Endereco>");
 		List<Endereco> lista;
 		EnderecoDAO enderecoDao = new EnderecoDAO();
 		try {
 			lista = enderecoDao.buscarTodos();
-			LOGGER.info("Requisição List<Arquivo> bem sucedida");
+			LOGGER.info("Requisição List<Endereco> bem sucedida");
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();

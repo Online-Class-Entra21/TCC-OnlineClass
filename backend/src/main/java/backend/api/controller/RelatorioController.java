@@ -127,11 +127,11 @@ public class RelatorioController {
 	 */
 	@DeleteMapping(path = "/api/relatorio/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
-		LOGGER.info("Requisição para Deletar Arquivo id - {}",codigo);
+		LOGGER.info("Requisição para Deletar Relatorio id - {}",codigo);
 		RelatorioDAO relatorioDAO = new RelatorioDAO();
 		try {
 			relatorioDAO.deleteId(codigo);
-			LOGGER.info("Requisição para Deletar Arquivo id - {} - Bem Sucedida",codigo);
+			LOGGER.info("Requisição para Deletar Relatorio id - {} - Bem Sucedida",codigo);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
