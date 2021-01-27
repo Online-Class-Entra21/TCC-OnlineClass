@@ -24,7 +24,9 @@ import persistencia.jdbc.TurmaDAO;
  */
 @RestController
 public class TurmaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a turma que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class TurmaController {
 	 */
 	@GetMapping(path = "/api/turma/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Turma codigo {} iniciada", codigo);
 		TurmaDAO turmaDao = new TurmaDAO();
 		Turma turma;
 		try {
 			turma = turmaDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(turma);
+			LOGGER.info("Requisição Turma codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			turma = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Turma Mal Sucedida - Turma {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(turma);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class TurmaController {
 	 */
 	@GetMapping(path = "/api/turmas")
 	public List<Turma> consultar(){
+		LOGGER.info("Requisição List<Turma>");
 		List<Turma> lista;
 		TurmaDAO turmaDao = new TurmaDAO();
 		try {
 			lista = turmaDao.buscarTodos();
+			LOGGER.info("Requisição List<Turma> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Turma Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class TurmaController {
 	 */
 	@PostMapping(path = "api/turma/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Turma - {}",json);
 		Gson gson = new Gson();
 		Turma turma = gson.fromJson(json, Turma.class);
 		TurmaDAO turmaDAO = new TurmaDAO();
 		try {
 			turmaDAO.insert(turma);
+			LOGGER.info("Requisição Inserir Turma - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Turma Mal Sucedida - Turma {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class TurmaController {
 	 */
 	@PutMapping(path = "api/turma/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Turma - {}",json);
 		Gson gson = new Gson();
 		Turma turma = gson.fromJson(json, Turma.class);
 		TurmaDAO turmaDAO = new TurmaDAO();
 		try {
 			turmaDAO.update(turma);
+			LOGGER.info("Requisição Atualizar Turma - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Turma Mal Sucedida - Turma {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,15 +127,16 @@ public class TurmaController {
 	 */
 	@DeleteMapping(path = "/api/turma/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Turma id - {}",codigo);
 		TurmaDAO turmaDAO = new TurmaDAO();
 		try {
 			turmaDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Turma id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Turma Mal Sucedida - Turma {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
-
 	}
 }

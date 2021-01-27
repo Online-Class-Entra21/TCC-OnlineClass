@@ -24,7 +24,9 @@ import persistencia.jdbc.SalaPersonalizadaDAO;
  */
 @RestController
 public class SalaPersonalizadaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a salaPersonalizada que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class SalaPersonalizadaController {
 	 */
 	@GetMapping(path = "/api/salaPersonalizada/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição SalaPersonalizada codigo {} iniciada", codigo);
 		SalaPersonalizadaDAO salaPersonalizadaDao = new SalaPersonalizadaDAO();
 		SalaPersonalizada salaPersonalizada;
 		try {
 			salaPersonalizada = salaPersonalizadaDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(salaPersonalizada);
+			LOGGER.info("Requisição SalaPersonalizada codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			salaPersonalizada = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar SalaPersonalizada Mal Sucedida - SalaPersonalizada {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(salaPersonalizada);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class SalaPersonalizadaController {
 	 */
 	@GetMapping(path = "/api/salasPersonalizadas")
 	public List<SalaPersonalizada> consultar(){
+		LOGGER.info("Requisição List<SalaPersonalizada>");
 		List<SalaPersonalizada> lista;
 		SalaPersonalizadaDAO salaPersonalizadaDao = new SalaPersonalizadaDAO();
 		try {
 			lista = salaPersonalizadaDao.buscarTodos();
+			LOGGER.info("Requisição List<SalaPersonalizada> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos SalaPersonalizada Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class SalaPersonalizadaController {
 	 */
 	@PostMapping(path = "api/salaPersonalizada/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir SalaPersonalizada - {}",json);
 		Gson gson = new Gson();
 		SalaPersonalizada salaPersonalizada = gson.fromJson(json, SalaPersonalizada.class);
 		SalaPersonalizadaDAO salaPersonalizadaDAO = new SalaPersonalizadaDAO();
 		try {
 			salaPersonalizadaDAO.insert(salaPersonalizada);
+			LOGGER.info("Requisição Inserir SalaPersonalizada - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir SalaPersonalizada Mal Sucedida - SalaPersonalizada {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class SalaPersonalizadaController {
 	 */
 	@PutMapping(path = "api/salaPersonalizada/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar SalaPersonalizada - {}",json);
 		Gson gson = new Gson();
 		SalaPersonalizada salaPersonalizada = gson.fromJson(json, SalaPersonalizada.class);
 		SalaPersonalizadaDAO salaPersonalizadaDAO = new SalaPersonalizadaDAO();
 		try {
 			salaPersonalizadaDAO.update(salaPersonalizada);
+			LOGGER.info("Requisição Atualizar SalaPersonalizada - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar SalaPersonalizada Mal Sucedida - SalaPersonalizada {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class SalaPersonalizadaController {
 	 */
 	@DeleteMapping(path = "/api/salaPersonalizada/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar SalaPersonalizada id - {}",codigo);
 		SalaPersonalizadaDAO salaPersonalizadaDAO = new SalaPersonalizadaDAO();
 		try {
 			salaPersonalizadaDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar SalaPersonalizada id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar SalaPersonalizada Mal Sucedida - SalaPersonalizada {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

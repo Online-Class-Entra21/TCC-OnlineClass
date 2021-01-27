@@ -24,7 +24,9 @@ import persistencia.jdbc.ReuniaoUsuarioDAO;
  */
 @RestController
 public class ReuniaoUsuarioController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a reuniaoUsuario que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class ReuniaoUsuarioController {
 	 */
 	@GetMapping(path = "/api/reuniaoUsuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição ReuniaoUsuario codigo {} iniciada", codigo);
 		ReuniaoUsuarioDAO reuniaoUsuarioDao = new ReuniaoUsuarioDAO();
 		ReuniaoUsuario reuniaoUsuario;
 		try {
 			reuniaoUsuario = reuniaoUsuarioDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(reuniaoUsuario);
+			LOGGER.info("Requisição ReuniaoUsuario codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			reuniaoUsuario = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar ReuniaoUsuario Mal Sucedida - ReuniaoUsuario {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(reuniaoUsuario);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class ReuniaoUsuarioController {
 	 */
 	@GetMapping(path = "/api/reunioesUsuarios")
 	public List<ReuniaoUsuario> consultar(){
+		LOGGER.info("Requisição List<ReuniaoUsuario>");
 		List<ReuniaoUsuario> lista;
 		ReuniaoUsuarioDAO reuniaoUsuarioDao = new ReuniaoUsuarioDAO();
 		try {
 			lista = reuniaoUsuarioDao.buscarTodos();
+			LOGGER.info("Requisição List<ReuniaoUsuario> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos ReuniaoUsuario Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class ReuniaoUsuarioController {
 	 */
 	@PostMapping(path = "api/reuniaoUsuario/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir ReuniaoUsuario - {}",json);
 		Gson gson = new Gson();
 		ReuniaoUsuario reuniaoUsuario = gson.fromJson(json, ReuniaoUsuario.class);
 		ReuniaoUsuarioDAO reuniaoUsuarioDAO = new ReuniaoUsuarioDAO();
 		try {
 			reuniaoUsuarioDAO.insert(reuniaoUsuario);
+			LOGGER.info("Requisição Inserir ReuniaoUsuario - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir ReuniaoUsuario Mal Sucedida - ReuniaoUsuario {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class ReuniaoUsuarioController {
 	 */
 	@PutMapping(path = "api/reuniaoUsuario/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar ReuniaoUsuario - {}",json);
 		Gson gson = new Gson();
 		ReuniaoUsuario reuniaoUsuario = gson.fromJson(json, ReuniaoUsuario.class);
 		ReuniaoUsuarioDAO reuniaoUsuarioDAO = new ReuniaoUsuarioDAO();
 		try {
 			reuniaoUsuarioDAO.update(reuniaoUsuario);
+			LOGGER.info("Requisição Atualizar ReuniaoUsuario - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar ReuniaoUsuario Mal Sucedida - ReuniaoUsuario {} - erro - {}",json,e.toString());
 			return false;
-		}
-		return true;	
+		}	
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class ReuniaoUsuarioController {
 	 */
 	@DeleteMapping(path = "/api/reuniaoUsuario/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar ReuniaoUsuario id - {}",codigo);
 		ReuniaoUsuarioDAO reuniaoUsuarioDAO = new ReuniaoUsuarioDAO();
 		try {
 			reuniaoUsuarioDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar ReuniaoUsuario id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar ReuniaoUsuario Mal Sucedida - ReuniaoUsuario {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }
