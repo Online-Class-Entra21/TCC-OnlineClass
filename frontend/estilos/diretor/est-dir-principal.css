@@ -133,6 +133,7 @@ Config. do menu
 Config. do titulo de diretor 
 */
 #menu-titulo{
+    cursor: default;
     align-items: center;
     display: flex;
     margin-left: 0;
