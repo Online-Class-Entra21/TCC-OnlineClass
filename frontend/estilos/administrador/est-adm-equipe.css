@@ -16,48 +16,253 @@ body, html{
     border: 0;
 }
 
+/*
+Config. do header
+*/
 header{
+    z-index: 1;
+    position: fixed;
     height: 10%;
-    width: auto;
-    background-color: #000000;
-    z-index: 0;
+    width: 100%;
 }
 
-p  {
-  font-size: 5vh;
-  font-family: cursive;
-  margin: 4%;
-  color: white;  
+/*
+Config. das ancoras 
+*/
+a{
+   text-decoration: none;
+   margin-left: 3%;
+   color: white;
+   display: block;
 }
 
-a {
+/* 
+link que ainda não foi visitado 
+*/
+a:link {
+    color: white;
+}
+
+/* 
+link que foi visitado 
+*/
+a:visited {
+     color: white;
+}
+
+/*
+Config. dos textos na tela - paragrafos 
+*/
+p {
+    font-size: 5vh;
+    font-family: cursive;
+    margin: 4%;
+    color: white;  
+}
+
+/*
+Config figures opcoes e img opcoes
+*/
+.figure-opcoes{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+.figure-opcoes a:hover{
+    list-style: none;
     text-decoration: none;
-    color: white;
-    display: block;
-    margin: 10%;
+    color:chartreuse;
+}
+.img-opcoes{
+    width: 9%;
+    height: auto;
+    margin-left: 7%;
+    margin-right: 3%;
+    list-style: none;
+    text-decoration: none;
 }
 
-
-#tipoUsuario{
-    color: white;
-    font-size: 100%;
+/*
+Config. das opcoes do menu 
+*/
+.opcoes{
+    width: 100%;
+    height: 8%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
 }
 
-#tipoUsuario{
-    float: right;
+/*
+Config. das imagens dos ADMs 
+*/
+.imagens{
+    width: 70%;
+    border-radius: 100%;
 }
 
-#cartoes {
+/*
+Config. dos cartoes dos ADMs
+*/
+.cartoes {
     cursor: default;
     background: #141414;
     width: 40vh;
     height: 52vh;
-    margin: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
     text-align: center;
     border-radius: 7% 24%;
 }
 
-img {
-    width: 70%;
-    border-radius: 100%;
+/*
+Config. dos cartoes de cima
+*/
+.conf-card{
+    margin-top: 8%;
 }
+
+.ancoras-card{
+    margin: 10%;
+}
+
+/*
+Config. de nav - cabecalho
+*/
+#cabecalho{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(24, 21, 21);
+}
+
+/*
+Config. das div do cabecalho
+*/
+#lado-esquerdo{
+    float: left;
+    width: 30%;
+    height: 100%;
+}
+#lado-direito{
+    float: right;
+    width: 70%;
+    height: 100%;
+}
+
+/*
+Config. da div que mostra o menu 
+*/
+#mostrar{
+    width: 1%;
+    height: 100%;
+    position: absolute;
+}
+
+/*
+Config. do menu 
+*/
+#menu{
+    z-index: 2;
+    width: 42vh;
+    height: 100%;
+    background-color: rgb(24, 21, 21);
+    border-right: 1px solid;
+    border-color: white;
+    position: absolute;
+    display: none;
+}
+
+/*
+Config. do titulo de administrador 
+*/
+#menu-titulo{
+    cursor: default;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 10%;
+    margin-bottom: 17%;
+    color: white;
+}
+
+/*
+Config. div do menu
+*/
+#botao-menu{
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-left: 7%;
+}
+
+/*
+Config. do botao do menu 
+*/
+#figure-menu{
+    width: 8vh;
+    margin: 0;
+    height: auto;
+}
+#idImgMenu{
+    width: 55%;
+    height: auto;
+}
+
+/*
+Config. da div da barra no lado direito
+*/
+#lado-direito{
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0;
+}
+
+/*
+Config. img-perfil
+*/
+#figure-perfil{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0%;
+    margin-right: 2%;
+    float: right;
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 4%;
+}
+#idFotoPerfil{
+    width: 8vh;
+    height: auto;
+}
+
+/*
+Config. Dados do usuario 
+*/
+#idNomeUsuario{
+    color: white;
+    float: left;
+    margin: 0;
+    font-size: 2.5vh;
+    margin-right: 4%;
+}
+#idImgCadastro{
+    width: 10%;
+    height: 10%;
+}
+
+/*
+Config. da div do botão de saida 
+*/
+#sair{
+    margin-top: 90%;
+}
+
