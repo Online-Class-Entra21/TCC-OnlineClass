@@ -24,7 +24,9 @@ import persistencia.jdbc.EnderecoDAO;
  */
 @RestController
 public class EnderecoController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o endereco que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -34,18 +36,20 @@ public class EnderecoController {
 	 */
 	@GetMapping(path = "/api/endereco/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Endereco codigo {} iniciada", codigo);
 		EnderecoDAO enderecoDao = new EnderecoDAO();
 		Endereco endereco;
 		try {
 			endereco = enderecoDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(endereco);
+			LOGGER.info("Requisição Endereco codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			endereco = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Endereco Mal Sucedida - Endereco {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(endereco);
-		return json;
 	}
 	
 	/**
@@ -55,16 +59,18 @@ public class EnderecoController {
 	 */
 	@GetMapping(path = "/api/enderecos")
 	public List<Endereco> consultar() {
+		LOGGER.info("Requisição List<Arquivo>");
 		List<Endereco> lista;
 		EnderecoDAO enderecoDao = new EnderecoDAO();
 		try {
 			lista = enderecoDao.buscarTodos();
+			LOGGER.info("Requisição List<Arquivo> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Endereco Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 
 	/**
@@ -75,17 +81,19 @@ public class EnderecoController {
 	 */
 	@PostMapping(path = "api/endereco/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Endereco - {}",json);
 		Gson gson = new Gson();
 		Endereco endereco = gson.fromJson(json, Endereco.class);
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		try {
 			enderecoDAO.insert(endereco);
+			LOGGER.info("Requisição Inserir Endereco - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Endereco Mal Sucedida - Endereco {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -97,17 +105,19 @@ public class EnderecoController {
 	 */
 	@PutMapping(path = "api/endereco/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Endereco - {}",json);
 		Gson gson = new Gson();
 		Endereco endereco = gson.fromJson(json, Endereco.class);
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		try {
 			enderecoDAO.update(endereco);
+			LOGGER.info("Requisição Atualizar Endereco - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Endereco Mal Sucedida - Endereco {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -118,14 +128,16 @@ public class EnderecoController {
 	 */
 	@DeleteMapping(path = "/api/endereco/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Endereco id - {}",codigo);
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		try {
 			enderecoDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Endereco id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Endereco Mal Sucedida - Endereco {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

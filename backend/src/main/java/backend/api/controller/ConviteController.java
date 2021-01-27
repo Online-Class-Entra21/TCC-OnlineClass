@@ -24,7 +24,9 @@ import persistencia.jdbc.ConviteDAO;
  */
 @RestController
 public class ConviteController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o convite que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,12 +35,14 @@ public class ConviteController {
 	 */
 	@GetMapping(path = "/api/convite/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Convite codigo {} iniciada", codigo);
 		Convite convite;
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			convite = conviteDao.buscarId(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(convite);
+			LOGGER.info("Requisição Convite codigo {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,10 +59,12 @@ public class ConviteController {
 	 */
 	@GetMapping(path = "/api/convites")
 	public List<Convite> consultar(){
+		LOGGER.info("Requisição List<Convite>");
 		List<Convite> lista;
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			lista = conviteDao.buscarTodos();
+			LOGGER.info("Requisição List<Convite> bem sucedida");
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,11 +81,13 @@ public class ConviteController {
 	 */
 	@PostMapping(path = "api/convite/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Convite - {}",json);
 		Gson gson = new Gson();
 		Convite convite = gson.fromJson(json.toString(), Convite.class);
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			conviteDao.insert(convite);
+			LOGGER.info("Requisição Inserir Convite - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,11 +105,13 @@ public class ConviteController {
 	 */
 	@PutMapping(path = "api/convite/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Convite - {}",json);
 		Gson gson = new Gson();
 		Convite convite = gson.fromJson(json.toString(), Convite.class);
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			conviteDao.update(convite);
+			LOGGER.info("Requisição Atualizar Convite - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,9 +128,11 @@ public class ConviteController {
 	 */
 	@DeleteMapping(path = "/api/convite/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Convite id - {}",codigo);
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			conviteDao.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Convite id - {} - Bem Sucedida",codigo);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

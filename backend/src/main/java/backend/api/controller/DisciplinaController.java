@@ -25,7 +25,9 @@ import persistencia.jdbc.DisciplinaDAO;
  */
 @RestController
 public class DisciplinaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o disciplina que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -34,18 +36,20 @@ public class DisciplinaController {
 	 */
 	@GetMapping(path = "/api/disciplina/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Disciplina codigo {} iniciada", codigo);
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		Disciplina disciplina;
 		try {
 			disciplina = disciplinaDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(disciplina);
+			LOGGER.info("Requisição Disciplina codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			disciplina = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Disciplina Mal Sucedida - Disciplina {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(disciplina);
-		return json;
 	}
 
 	/**
@@ -55,16 +59,18 @@ public class DisciplinaController {
 	 */
 	@GetMapping(path = "/api/disciplinas")
 	public List<Disciplina> consultar() {
+		LOGGER.info("Requisição List<Disciplina>");
 		List<Disciplina> lista;
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		try {
 			lista = disciplinaDao.buscarTodos();
+			LOGGER.info("Requisição List<Arquivo> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Disciplina Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 
 	/**
@@ -75,18 +81,20 @@ public class DisciplinaController {
 	 */
 	@PostMapping(path = "api/disciplina/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Disciplina - {}",json);
 		Gson gson = new Gson();
 		System.err.println(json);
 		Disciplina disciplina = gson.fromJson(json, Disciplina.class);
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		try {
 			disciplinaDao.insert(disciplina);
+			LOGGER.info("Requisição Inserir Disciplina - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Disciplina Mal Sucedida - Disciplina {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -98,17 +106,19 @@ public class DisciplinaController {
 	 */
 	@PutMapping(path = "api/disciplina/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Disciplina Arquivo - {}",json);
 		Gson gson = new Gson();
 		Disciplina disciplina = gson.fromJson(json, Disciplina.class);
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		try {
 			disciplinaDao.update(disciplina);
+			LOGGER.info("Requisição Disciplina Arquivo - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Disciplina Mal Sucedida - Disciplina {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -119,14 +129,16 @@ public class DisciplinaController {
 	 */
 	@DeleteMapping(path = "/api/disciplina/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Arquivo id - {}",codigo);
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		try {
 			disciplinaDao.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Arquivo id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Disciplina Mal Sucedida - Disciplina {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

@@ -24,7 +24,9 @@ import persistencia.jdbc.PeriodoAvaliacaoDAO;
  */
 @RestController
 public class PeriodoAvaliacaoController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o periodoAvaliacao que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class PeriodoAvaliacaoController {
 	 */
 	@GetMapping(path = "/api/periodoAvaliacao/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Arquivo codigo {} iniciada", codigo);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDao = new PeriodoAvaliacaoDAO();
 		PeriodoAvaliacao periodoAvaliacao;
 		try {
 			periodoAvaliacao = periodoAvaliacaoDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(periodoAvaliacao);
+			LOGGER.info("Requisição Arquivo codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			periodoAvaliacao = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar PeriodoAvaliacao Mal Sucedida - PeriodoAvaliacao {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(periodoAvaliacao);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class PeriodoAvaliacaoController {
 	 */
 	@GetMapping(path = "/api/periodosAvaliacoes")
 	public List<PeriodoAvaliacao> consultar(){
+		LOGGER.info("Requisição List<PeriodoAvaliacao>");
 		List<PeriodoAvaliacao> lista;
 		PeriodoAvaliacaoDAO periodoAvaliacaoDao = new PeriodoAvaliacaoDAO();
 		try {
 			lista = periodoAvaliacaoDao.buscarTodos();
+			LOGGER.info("Requisição List<PeriodoAvaliacao> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos PeriodoAvaliacao Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class PeriodoAvaliacaoController {
 	 */
 	@PostMapping(path = "api/periodoAvaliacao/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir PeriodoAvaliacao - {}",json);
 		Gson gson = new Gson();
 		PeriodoAvaliacao periodoAvaliacao = gson.fromJson(json, PeriodoAvaliacao.class);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDAO = new PeriodoAvaliacaoDAO();
 		try {
 			periodoAvaliacaoDAO.insert(periodoAvaliacao);
+			LOGGER.info("Requisição Inserir PeriodoAvaliacao - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir PeriodoAvaliacao Mal Sucedida - PeriodoAvaliacao {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class PeriodoAvaliacaoController {
 	 */
 	@PutMapping(path = "api/periodoAvaliacao/alterar/{codigo}/{json}")
 	public boolean  alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar PeriodoAvaliacao - {}",json);
 		Gson gson = new Gson();
 		PeriodoAvaliacao periodoAvaliacao = gson.fromJson(json, PeriodoAvaliacao.class);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDAO = new PeriodoAvaliacaoDAO();
 		try {
 			periodoAvaliacaoDAO.update(periodoAvaliacao);
+			LOGGER.info("Requisição Atualizar PeriodoAvaliacao - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar PeriodoAvaliacao Mal Sucedida - PeriodoAvaliacao {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class PeriodoAvaliacaoController {
 	 */
 	@DeleteMapping(path = "/api/periodoAvaliacao/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Arquivo id - {}",codigo);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDAO = new PeriodoAvaliacaoDAO();
 		try {
 			periodoAvaliacaoDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Arquivo id - {} - Bem Sucedida",codigo);
+			return true;	
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar PeriodoAvaliacao Mal Sucedida - PeriodoAvaliacao {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;	
 	}
 }

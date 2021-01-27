@@ -24,7 +24,9 @@ import persistencia.jdbc.RelatorioDAO;
  */
 @RestController
 public class RelatorioController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o relatorio que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,18 +35,20 @@ public class RelatorioController {
 	 */
 	@GetMapping(path = "/api/relatorio/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Relatorio codigo {} iniciada", codigo);
 		RelatorioDAO relatorioDao = new RelatorioDAO();
 		Relatorio relatorio;
 		try {
 			relatorio = relatorioDao.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(relatorio);
+			LOGGER.info("Requisição Relatorio codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			relatorio = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Relatorio Mal Sucedida - Relatorio {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(relatorio);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class RelatorioController {
 	 */
 	@GetMapping(path = "/api/relatorios")
 	public List<Relatorio> consultar(){
+		LOGGER.info("Requisição List<Relatorio>");
 		List<Relatorio> lista;
 		RelatorioDAO relatorioDao = new RelatorioDAO();
 		try {
 			lista = relatorioDao.buscarTodos();
+			LOGGER.info("Requisição List<Relatorio> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Relatorio Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class RelatorioController {
 	 */
 	@PostMapping(path = "api/relatorio/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Relatorio - {}",json);
 		Gson gson = new Gson();
 		Relatorio relatorio = gson.fromJson(json, Relatorio.class);
 		RelatorioDAO relatorioDAO = new RelatorioDAO();
 		try {
 			relatorioDAO.insert(relatorio);
+			LOGGER.info("Requisição Inserir Relatorio - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Relatorio Mal Sucedida - Relatorio {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class RelatorioController {
 	 */
 	@PutMapping(path = "api/relatorio/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Relatorio - {}",json);
 		Gson gson = new Gson();
 		Relatorio relatorio = gson.fromJson(json, Relatorio.class);
 		RelatorioDAO relatorioDAO = new RelatorioDAO();
 		try {
 			relatorioDAO.update(relatorio);
+			LOGGER.info("Requisição Atualizar Relatorio - {} - Bem Sucedida",json);
+			return true;	
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Relatorio Mal Sucedida - Relatorio {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;	
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class RelatorioController {
 	 */
 	@DeleteMapping(path = "/api/relatorio/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Arquivo id - {}",codigo);
 		RelatorioDAO relatorioDAO = new RelatorioDAO();
 		try {
 			relatorioDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Arquivo id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Relatorio Mal Sucedida - Relatorio {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }

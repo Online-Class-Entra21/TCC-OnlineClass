@@ -24,7 +24,9 @@ import persistencia.jdbc.ChamadaDAO;
  */
 @RestController
 public class ChamadaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a chamada que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,12 +35,14 @@ public class ChamadaController {
 	 */
 	@GetMapping(path = "/api/chamada/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Chamada codigo {} iniciada", codigo);
 		Chamada chamada;
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamada = chamadaDao.buscarId(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(chamada);
+			LOGGER.info("Requisição Chamada codigo {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,10 +59,12 @@ public class ChamadaController {
 	 */
 	@GetMapping(path = "/api/chamadas")
 	public List<Chamada> consultar(){
+		LOGGER.info("Requisição List<Chamada>");
 		List<Chamada> lista;
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			lista = chamadaDao.buscarTodos();
+			LOGGER.info("Requisição List<Chamada> bem sucedida");
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,11 +81,13 @@ public class ChamadaController {
 	 */
 	@PostMapping(path = "api/chamada/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Chamada - {}",json);
 		Gson gson = new Gson();
 		Chamada chamada = gson.fromJson(json.toString(), Chamada.class);
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamadaDao.insert(chamada);
+			LOGGER.info("Requisição Inserir Chamada - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,11 +105,13 @@ public class ChamadaController {
 	 */
 	@PutMapping(path = "api/chamada/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Chamada - {}",json);
 		Gson gson = new Gson();
 		Chamada chamada = gson.fromJson(json.toString(), Chamada.class);
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamadaDao.update(chamada);
+			LOGGER.info("Requisição Atualizar Chamada - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,9 +128,11 @@ public class ChamadaController {
 	 */
 	@DeleteMapping(path = "/api/chamada/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Chamada id - {}",codigo);
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamadaDao.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Chamada id - {} - Bem Sucedida",codigo);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

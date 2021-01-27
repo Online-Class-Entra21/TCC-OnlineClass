@@ -25,7 +25,9 @@ import persistencia.jdbc.EscolaDAO;
  */
 @RestController
 public class EscolaController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a escola que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -34,18 +36,20 @@ public class EscolaController {
 	 */
 	@GetMapping(path = "/api/escola/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Escola codigo {} iniciada", codigo);
 		EscolaDAO escolaDAO = new EscolaDAO();
 		Escola escola;
 		try {
 			escola = escolaDAO.buscarId(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(escola);
+			LOGGER.info("Requisição Escola codigo {} bem sucedida",codigo);
+			return json;
 		} catch (SQLException e) {
-			escola = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Escola Mal Sucedida - Escola {} - erro - {}",codigo,e.toString());
+			return null;
 		}
-		Gson gson = new Gson();
-		String json = gson.toJson(escola);
-		return json;
 	}
 	
 	/**
@@ -54,16 +58,18 @@ public class EscolaController {
 	 */
 	@GetMapping(path = "/api/escolas")
 	public List<Escola> consultar(){
+		LOGGER.info("Requisição List<Escola>");
 		List<Escola> lista;
 		EscolaDAO escolaDao = new EscolaDAO();
 		try {
 			lista = escolaDao.buscarTodos();
+			LOGGER.info("Requisição List<Escola> bem sucedida");
+			return lista;
 		} catch (SQLException e) {
-			lista = null;
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Escola Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
-		return lista;
 	}
 	
 	/**
@@ -74,17 +80,19 @@ public class EscolaController {
 	 */
 	@PostMapping(path = "api/escola/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Escola - {}",json);
 		Gson gson = new Gson();
 		Escola escola = gson.fromJson(json, Escola.class);
 		EscolaDAO escolaDAO = new EscolaDAO();
 		try {
 			escolaDAO.insert(escola);
+			LOGGER.info("Requisição Inserir Escola - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Escola Mal Sucedida - Escola {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 
 	/**
@@ -96,17 +104,19 @@ public class EscolaController {
 	 */
 	@PutMapping(path = "api/escola/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Escola - {}",json);
 		Gson gson = new Gson();
 		Escola escola = gson.fromJson(json, Escola.class);
 		EscolaDAO escolaDAO = new EscolaDAO();
 		try {
 			escolaDAO.update(escola);
+			LOGGER.info("Requisição Atualizar Escola - {} - Bem Sucedida",json);
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Escola Mal Sucedida - Escola {} - erro - {}",json,e.toString());
 			return false;
 		}
-		return true;
 	}
 	
 	/**
@@ -117,14 +127,16 @@ public class EscolaController {
 	 */
 	@DeleteMapping(path = "/api/escola/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Escola id - {}",codigo);
 		EscolaDAO escolaDAO = new EscolaDAO();
 		try {
 			escolaDAO.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Escola id - {} - Bem Sucedida",codigo);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Escola Mal Sucedida - Escola {} - erro - {}",codigo,e.toString());
 			return false;
 		}
-		return true;
 	}
 }
