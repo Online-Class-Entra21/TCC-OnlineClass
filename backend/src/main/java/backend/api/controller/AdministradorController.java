@@ -18,7 +18,9 @@ import persistencia.jdbc.AdministradorDAO;
  */
 @RestController
 public class AdministradorController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger(AdministradorController.class);
+	
 	/**
 	 * Retorna a lista de administradores registrados no sistema {GET}
 	 * @return lista de administradores registrados no banco

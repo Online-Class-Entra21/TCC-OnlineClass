@@ -24,7 +24,9 @@ import persistencia.jdbc.ArquivoDAO;
  */
 @RestController
 public class ArquivoController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o arquivo que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,12 +35,14 @@ public class ArquivoController {
 	 */
 	@GetMapping(path = "/api/arquivo/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Arquivo codigo {} iniciada", codigo);
 		Arquivo arquivo;
 		ArquivoDAO arquivoDao = new ArquivoDAO();
 		try {
 			arquivo = arquivoDao.buscarId(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(arquivo);
+			LOGGER.info("Requisição Arquivo codigo {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,10 +59,12 @@ public class ArquivoController {
 	 */
 	@GetMapping(path = "/api/arquivos")
 	public List<Arquivo> consultar(){
+		LOGGER.info("Requisição List<Arquivo>");
 		List<Arquivo> lista;
 		ArquivoDAO arquivoDao = new ArquivoDAO();
 		try {
 			lista = arquivoDao.buscarTodos();
+			LOGGER.info("Requisição List<Arquivo> bem sucedida");
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,11 +81,13 @@ public class ArquivoController {
 	 */
 	@PostMapping(path = "api/arquivo/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Arquivo - {}",json);
 		Gson gson = new Gson();
 		Arquivo arquivo = gson.fromJson(json.toString(), Arquivo.class);
 		ArquivoDAO arquivoDao = new ArquivoDAO();
 		try {
 			arquivoDao.insert(arquivo);
+			LOGGER.info("Requisição Inserir Arquivo - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,11 +105,13 @@ public class ArquivoController {
 	 */
 	@PutMapping(path = "api/arquivo/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Arquivo - {}",json);
 		Gson gson = new Gson();
 		Arquivo arquivo = gson.fromJson(json.toString(), Arquivo.class);
 		ArquivoDAO arquivoDao = new ArquivoDAO();
 		try {
 			arquivoDao.update(arquivo);
+			LOGGER.info("Requisição Atualizar Arquivo - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,9 +128,11 @@ public class ArquivoController {
 	 */
 	@DeleteMapping(path = "/api/arquivo/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Arquivo id - {}",codigo);
 		ArquivoDAO arquivoDao = new ArquivoDAO();
 		try {
 			arquivoDao.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Arquivo id - {} - Bem Sucedida",codigo);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

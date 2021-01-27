@@ -24,7 +24,9 @@ import persistencia.jdbc.ArquivoUsuarioDAO;
  */
 @RestController
 public class ArquivoUsuarioController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");  
+	
 	/**
 	 * Retorna o arquivoUsuario que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,13 +35,14 @@ public class ArquivoUsuarioController {
 	 */
 	@GetMapping(path = "/api/arquivoUsuario/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição ArquivoUsuario codigo {} iniciada", codigo);
 		ArquivoUsuario arquivoUsuario = new ArquivoUsuario();
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuario = arquivoUsuarioDao.buscarId(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(arquivoUsuario);
-			LOGGER.info("Requisição de Arquivo Bem sucedida");
+			LOGGER.info("Requisição ArquivoUsuario codigo {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -56,10 +59,12 @@ public class ArquivoUsuarioController {
 	 */
 	@GetMapping(path = "/api/arquivosUsuarios")
 	public List<ArquivoUsuario> consultar(){
+		LOGGER.info("Requisição List<ArquivoUsuario>");
 		List<ArquivoUsuario> lista;
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			lista = arquivoUsuarioDao.buscarTodos();
+			LOGGER.info("Requisição List<ArquivoUsuario> bem sucedida");
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,11 +81,13 @@ public class ArquivoUsuarioController {
 	 */
 	@PostMapping(path = "api/aluno/arquivosUsuario/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir ArquivoUsuario - {}",json);
 		Gson gson = new Gson();
 		ArquivoUsuario arquivoUsuario = gson.fromJson(json.toString(), ArquivoUsuario.class);
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuarioDao.insert(arquivoUsuario);
+			LOGGER.info("Requisição Inserir ArquivoUsuario - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,11 +105,13 @@ public class ArquivoUsuarioController {
 	 */
 	@PutMapping(path = "api/arquivoUsuario/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição ArquivoUsuario Arquivo - {}",json);
 		Gson gson = new Gson();
 		ArquivoUsuario arquivoUsuario = gson.fromJson(json.toString(), ArquivoUsuario.class);
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuarioDao.update(arquivoUsuario);
+			LOGGER.info("Requisição ArquivoUsuario Arquivo - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -119,9 +128,11 @@ public class ArquivoUsuarioController {
 	 */
 	@DeleteMapping(path = "/api/arquivoUsuario/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar ArquivoUsuario id - {}",codigo);
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuarioDao.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar ArquivoUsuario id - {} - Bem Sucedida",codigo);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

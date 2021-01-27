@@ -24,7 +24,9 @@ import persistencia.jdbc.AlunoDAO;
  */
 @RestController
 public class AlunoController {
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna o aluno que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -57,11 +59,11 @@ public class AlunoController {
 	 */
 	@GetMapping(path = "/api/alunos")
 	public List<Aluno> consultar(){
-		LOGGER.info("Requisição Lista de todos os Alunos");
+		LOGGER.info("Requisição List<Aluno>");
 		List<Aluno> lista;
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
-		LOGGER.info("Requisição Lista de todos os Alunos Bem Sucedida");
+		LOGGER.info("Requisição List<Aluno> Bem Sucedida");
 		lista = alunoDao.buscarTodos();
 		return lista;
 		} catch (SQLException e) {
