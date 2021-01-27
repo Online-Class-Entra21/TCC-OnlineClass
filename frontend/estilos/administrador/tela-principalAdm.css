@@ -136,6 +136,7 @@ Config. do titulo de administrador
     align-items: center;
     display: flex;
     justify-content: center;
+    margin-left: 0;
     margin-top: 10%;
     margin-bottom: 17%;
     color: white;
