@@ -29,19 +29,19 @@ function logar(email, senha) {
                     //Redireciona para a pagina correspondente ao tipo do usuário 
                     switch (json.tipoUsuario) {
                         case 1:
-                            location.href = "/frontend/paginas/administrador/tela-principal.html"
+                            location.href = "/frontend/paginas/administrador/adm-principal.html"
                             break;
                         case 2:
-                            location.href = "/frontend/paginas/diretor/tela-principal.html"
+                            location.href = "/frontend/paginas/diretor/dir-principal.html"
                             break;
                         case 3:
-                            location.href = "/frontend/paginas/coordenador/tela-principal.html"
+                            location.href = "/frontend/paginas/coordenador/coord-principal.html"
                             break;
                         case 4:
-                            location.href = "/frontend/paginas/professor/tela-principal.html"
+                            location.href = "/frontend/paginas/professor/prof-principal.html"
                             break;
                         case 5:
-                            location.href = "/frontend/paginas/aluno/aluno.html"
+                            location.href = "/frontend/paginas/aluno/aluno-principal.html"
                             break;
                     }
                 } else {
@@ -60,5 +60,5 @@ function logar(email, senha) {
 
 //Abre uma nova guia para digitar o email de recuperação 
 function mudarSenha() {
-    novaJanela = window.open ("/frontend/paginas/login/recuperacao.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
+    novaJanela = window.open ("/frontend/paginas/login/login-recuperacao.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
 }

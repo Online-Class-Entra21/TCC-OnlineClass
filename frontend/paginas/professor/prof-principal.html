@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"  href="/frontend/estilos/coordenador/estilo-coordenador-Principal.css">
-        <title>coordenador</title>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet"  href="/frontend/estilos/professor/est-prof-principal.css">
+        <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
+        <title> Professor - Online Class </title>
     </head>
 
     <body>
-        <header>
+		<header>
 			<div class="topo">
 				.
 			</div>
 		</header>
+	
 		<main>
-        
+
+			<div id="menu-topo">
         <input type="checkbox" id="check">
         <label id= "icone" for="check"><img src="/frontend/imagens/lista.png"></label>
      
         <div class="barra">
             <nav>
-                <a href="coordenador.html"><div class="link">Início</div></a>
+                <a href="/frontend/paginas/professor/prof-principal.html"><div class="link">Início</div></a>
                 <br><br><br>
-                <a href="coordenadorT.html"><div class="link">Turmas</div></a>
-                <a href="coordenadorP.html"><div class="link">Professores</div></a>
-                <a href="coordenadorA.html"><div class="link">Alunos</div></a>
-                <a href="coordenadorS.html"><div class="link">Salas</div></a>
+				<a href="/frontend/paginas/professor/prof-relatorio.html"><div class="link">Gerar relatório</div></a>
+                <a href="/frontend/paginas/professor/prof-aula.html"><div class="link">Marcar aula</div></a>
+                <a href="/frontend/paginas/professor/prof-atividade.html"><div class="link">Postar atividade avaliativa</div></a>
+                <a href="/frontend/paginas/professor/prof-nota.html"><div class="link">Postar nota</div></a>
            
-                <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br>
+				<br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br>
            
                 <a href=""><div class="link">Sair</div></a>
             </nav>
         </div>
-
+    
         <input type="checkbox" id="check2">
             <label id= "icone2" for="check2"><img src="/frontend/imagens/add-reminder.png"></label>
         <div class='content'>
-           
-
+        
 			<div class="row">
 					
 					<div class="col-12">
@@ -62,15 +64,10 @@
 					
 						<label>Lembretes</label>
 						<ul id="myList">	
-
 						</ul>
-
-
 					</div>
-
 				</div>
 			</div>
-
 	</div>
 
 
@@ -130,10 +127,36 @@
 	
 </script>
 
+
+
+<input type="checkbox" id="check3">
+        <label id= "icone3" for="check3"><img src="/frontend/imagens/horario.png"></label>
+     
+        <div class="calendario">
+		  
+			<div class="cal">
+            Segunda
+			</div>
+
+			<div class="cal2">
+			Terça
+			</div>
+
+			<div class="cal3">
+			Quarta
+			</div>
+
+		 <div class="cal4">
+		   Quinta
+			</div>
+			<div class="cal5">
+				Sexta
+				 </div>
+        </div>
+	</div>
+	
 	</main>
 
-    </body>
-  
+</body>
+	
 </html>
-
-
