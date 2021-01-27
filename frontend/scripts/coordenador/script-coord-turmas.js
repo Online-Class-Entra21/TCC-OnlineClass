@@ -59,34 +59,3 @@ function delRegistro() {
         }
     }
 }
-
-
-function pesquisar(){
-
-    cadTurma;
-
-    t = ""
-    for(i in cadTurma){
-        t += "<li>"+"txtTurma"[i]+"</li>"
-        cadTurma[i] = cadTurma[i].toLowerCase()
-    }
-     
-    lista.innerHTML = t
-
-    pesquisar.onkeyup=function(e){
-        t=this.value
-
-        r = new RegExp(t, 'g')
-
-        for(i in cadTurma){
-            if(cadTurma[i].match(r))
-            lista.children[i].removeAtribute("style")
-            
-            else
-            lista.children[i].style.display ="none"
-        }
-       
-    }
-
-
-}
