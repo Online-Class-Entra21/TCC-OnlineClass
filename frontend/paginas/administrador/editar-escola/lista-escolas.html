@@ -35,8 +35,7 @@
                 </table>
             </div>
         </fieldset>
-        <div id="divIMG">
-            <img src="https://media2.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" id="loadingIMG" alt="carregando" style="height: 25vh;">
+        <div id="idLoad" class="loader">
         </div>
     </main>
 
@@ -53,27 +52,25 @@
             console.log(resposta)
             var escolas = JSON.parse(resposta);
 
-            for (let i = 0; i < escolas.length; i++) {
-                
-                var linha = document.createElement("tr");
-                var coluna = document.createElement("td");
-                var coluna2 = document.createElement("td");
-                var input = escolas[i].nome;
-                
-                coluna.append(input);
-                linha.append(coluna);
-                
-                
-                var diretor = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
-                diretor = JSON.parse(diretor);
-                coluna2.append(diretor.nome);
-                linha.append(coluna2);
-                document.getElementById('tbLista').append(linha)
-            }
-
-            var removeEl = document.getElementById("loadingIMG");
-            var divPai = document.getElementById("divIMG");
-            divPai.removeChild(removeEl);
+            setTimeout(async function() {
+                for (let i = 0; i < escolas.length; i++) {
+                    var linha = document.createElement("tr");
+                    var coluna = document.createElement("td");
+                    var coluna2 = document.createElement("td");
+                    var input = escolas[i].nome;
+                    
+                    coluna.append(input);
+                    linha.append(coluna);
+                    
+                    
+                    var diretor = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
+                    diretor = JSON.parse(diretor);
+                    coluna2.append(diretor.nome);
+                    linha.append(coluna2);
+                    document.getElementById('tbLista').append(linha)
+                }
+                document.getElementById("idLoad").style.display = "none";
+            }, 3000)
         }
 
         function usarApi(method, url) {

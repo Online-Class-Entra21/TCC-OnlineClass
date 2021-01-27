@@ -13,11 +13,6 @@ legend {
     padding: 1% 2%;
 }
 
-div{
-    margin-left: auto;
-    margin-right: auto;
-}
-
 img{
     display: table;
     margin-left: auto;
@@ -47,3 +42,18 @@ th {
     letter-spacing: 0.1em;
     background: gray;
 }
+
+.loader {
+    border: 1.5vh solid #c0aea4; /* Light grey */
+    border-top: 1.5vh solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 6vh;
+    height: 6vh;
+    animation: spin 2s linear infinite;
+    margin-left: auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
