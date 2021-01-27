@@ -24,7 +24,9 @@ import persistencia.jdbc.AtividadeDAO;
  */
 @RestController
 public class AtividadeController {	
+	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
+	
 	/**
 	 * Retorna a atividade que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -33,12 +35,14 @@ public class AtividadeController {
 	 */
 	@GetMapping(path = "/api/atividade/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Atividade codigo {} iniciada", codigo);
 		Atividade atividade;
 		AtividadeDAO atividadeDao = new AtividadeDAO();
 		try {
 			atividade = atividadeDao.buscarId(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(atividade);
+			LOGGER.info("Requisição Atividade codigo {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,10 +59,12 @@ public class AtividadeController {
 	 */
 	@GetMapping(path = "/api/atividades")
 	public List<Atividade> consultar(){
+		LOGGER.info("Requisição List<Atividade>");
 		List<Atividade> lista;
 		AtividadeDAO atividadeDao = new AtividadeDAO();
 		try {
 			lista = atividadeDao.buscarTodos();
+			LOGGER.info("Requisição List<Atividade> bem sucedida");
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,11 +81,13 @@ public class AtividadeController {
 	 */
 	@PostMapping(path = "api/atividade/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Atividade - {}",json);
 		Gson gson = new Gson();
 		Atividade atividade = gson.fromJson(json.toString(), Atividade.class);
 		AtividadeDAO atividadeDao = new AtividadeDAO();
 		try {
 			atividadeDao.insert(atividade);
+			LOGGER.info("Requisição Inserir Atividade - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -97,11 +105,13 @@ public class AtividadeController {
 	 */
 	@PutMapping(path = "api/atividade/alterar/{json}")
 	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Atividade - {}",json);
 		Gson gson = new Gson();
 		Atividade atividade = gson.fromJson(json.toString(), Atividade.class);
 		AtividadeDAO atividadeDao = new AtividadeDAO();
 		try {
 			atividadeDao.update(atividade);
+			LOGGER.info("Requisição Atualizar Atividade - {} - Bem Sucedida",json);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,9 +128,11 @@ public class AtividadeController {
 	 */
 	@DeleteMapping(path = "/api/atividade/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição para Deletar Atividade id - {}",codigo);
 		AtividadeDAO atividadeDao = new AtividadeDAO();
 		try {
 			atividadeDao.deleteId(codigo);
+			LOGGER.info("Requisição para Deletar Atividade id - {} - Bem Sucedida",codigo);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
