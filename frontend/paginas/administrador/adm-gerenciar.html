@@ -38,63 +38,6 @@
         <div id="idLoad" class="loader">
         </div>
     </main>
-
-    <script>
-
-
-        listaEscolas();
-        console.log("carregando");
-        async function listaEscolas(){
-            var resposta = await usarApi("GET", "http://localhost:8080/api/escolas");
-            console.log(resposta)
-            var escolas = JSON.parse(resposta);
-
-            setTimeout(async function() {
-                for (let i = 0; i < escolas.length; i++) {
-                    var linha = document.createElement("tr");
-                    var coluna = document.createElement("td");
-                    var coluna2 = document.createElement("td");
-                    var input = escolas[i].nome;
-                    
-                    coluna.append(input);
-                    linha.append(coluna);
-                    
-                    
-                    var diretor = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
-                    diretor = JSON.parse(diretor);
-                    coluna2.append(diretor.nome);
-                    linha.append(coluna2);
-                    document.getElementById('tbLista').append(linha)
-                }
-                document.getElementById("idLoad").style.display = "none";
-            }, 3000)
-        }
-
-        function usarApi(method, url) {
-            return new Promise(function (resolve, reject) {
-                let xhr = new XMLHttpRequest();
-                xhr.open(method, url);
-                xhr.onload = function () {
-                    if (this.status >= 200 && this.status < 300) {
-                        resolve(xhr.response);
-                    } else {
-                        reject({
-                            status: this.status,
-                            statusText: xhr.statusText
-                        });
-                    }
-                };
-                xhr.onerror = function () {
-                    reject({
-                        status: this.status,
-                        statusText: xhr.statusText
-                    });
-                };
-                xhr.send();
-            });
-        }
-
-    </script>
-    
+    <script src="/frontend/scripts/administrador/script-adm-gerenciar.js"></script>
 </body>
 </html>

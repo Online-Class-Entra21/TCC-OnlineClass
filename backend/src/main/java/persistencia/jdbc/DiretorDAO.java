@@ -89,5 +89,23 @@ public class DiretorDAO {
 		comandoSql.close();
 		return null;
 	}
+	
+	/**
+	 * Método para atualizar a escola comandada pelo diretor
+	 * @param int fk_escola
+	 * @param int idUsuario
+	 * @author Andrey
+	 */
+	public void atualizarEscola(int fk_escola, int idUsuario) throws SQLException {
+		String sql = "update usuario set fk_escola = ? where idUsuario = ? and tipoUsuario = 2";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, fk_escola);
+		comandoSql.setInt(2, idUsuario);
+		
+		comandoSql.execute();
+		comandoSql.close();
+	}
+	
+
 }
 
