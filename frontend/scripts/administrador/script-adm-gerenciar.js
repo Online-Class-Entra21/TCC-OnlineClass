@@ -89,47 +89,48 @@ async function listaEscolas(){
     }
 }
 
-//Método para edição da escola  
-async function editarEscola(idEscola) {
-    //var escolaEscolhida = document.getElementById("Subtituir pelo id da escola recebido ao selecionar qual escola será editada")
-    //var diretorAtual = document.getElementById("Subtituir pelo id do diretor recebido ao selecionar qual escola será editada")
+//-----------Alterar------------
 
-    //Edita a escola
-    var alterarEscola = {
-        //"idEscola": escolaEscolhida.idEscola,
-        //"nome": input nome,
-        //"dataInicioLetivo": input dataInicio,
-        //"dataFinalLetivo": input dataFinal
-    }
-    var escolaJson = JSON.stringify(alterarEscola);
-    console.log(escolaJson);
-    var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/"+escolaEscolhida.idEscola+"/"+escolaJson)
+// //Método para edição da escola  
+// async function editarEscola(idEscola) {
+//     //var escolaEscolhida = document.getElementById("Subtituir pelo id da escola recebido ao selecionar qual escola será editada")
+//     //var diretorAtual = document.getElementById("Subtituir pelo id do diretor recebido ao selecionar qual escola será editada")
 
-    //Traz todos os diretores que podem ser adicionados à escola e popula eles em uma Drop Down list(Select)
-    //Atualizar os id's conforme necessitado pela página
-    var resposta = await usarApi("GET", "http://localhost:8080/api/diretores");
-    console.log(resposta);
-    var diretores = JSON.parse(resposta);
+//     //Edita a escola
+//     var alterarEscola = {
+//         //"idEscola": escolaEscolhida.idEscola,
+//         //"nome": input nome,
+//         //"dataInicioLetivo": input dataInicio,
+//         //"dataFinalLetivo": input dataFinal
+//     }
+//     var escolaJson = JSON.stringify(alterarEscola);
+//     console.log(escolaJson);
+//     var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/"+escolaEscolhida.idEscola+"/"+escolaJson)
 
-    var selectDiretoresDisponiveis = document.getElementById("idSelectDiretores");
-    for (let index = 0; index < diretores.length; index++) {
-        var option = document.createElement("option");;
-        option.textContent = diretores[index].nome;
-        //A opção selecionada retornará o ID do diretor
-        option.value = diretores[index].idUsuario;
+//     //Traz todos os diretores que podem ser adicionados à escola e popula eles em uma Drop Down list(Select)
+//     //Atualizar os id's conforme necessitado pela página
+//     var resposta = await usarApi("GET", "http://localhost:8080/api/diretores");
+//     console.log(resposta);
+//     var diretores = JSON.parse(resposta);
+
+//     var selectDiretoresDisponiveis = document.getElementById("idSelectDiretores");
+//     for (let index = 0; index < diretores.length; index++) {
+//         var option = document.createElement("option");;
+//         option.textContent = diretores[index].nome;
+//         //A opção selecionada retornará o ID do diretor
+//         option.value = diretores[index].idUsuario;
         
-        selectDiretoresDisponiveis.appendChild(option);
-    }
+//         selectDiretoresDisponiveis.appendChild(option);
+//     }
 
     
-    //Remove o atual diretor deletando-o do banco de dados e atualiza o novo diretor da escola
-    var idDiretorNovo = selectDiretoresDisponiveis.value;
-    if (diretorAtual.idUsuario != idDiretorNovo) {
-        updateDiretor(idEscola, diretorAtual.idUsuario, idDiretorNovo);
-    }
+//     //Remove o atual diretor deletando-o do banco de dados e atualiza o novo diretor da escola
+//     var idDiretorNovo = selectDiretoresDisponiveis.value;
+//     if (diretorAtual.idUsuario != idDiretorNovo) {
+//         updateDiretor(idEscola, diretorAtual.idUsuario, idDiretorNovo);
+//     }
     
-}
-
+// }
 
 //---------Alterar----------
 // /*

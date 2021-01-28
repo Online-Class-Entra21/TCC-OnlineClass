@@ -16,4 +16,12 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
+var id = usuarioDados.getIdUsuario;
+
+carregarDadosUsuario(id)
+
+function carregarDadosUsuario(idUsuario){
+    console.log(idUsuario)
+}
+
 
