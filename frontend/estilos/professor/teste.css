@@ -20,8 +20,6 @@ body, html{
 Config. do header
 */
 header{
-    z-index: 1;
-    position: fixed;
     height: 10%;
     width: 100%;
 }
@@ -33,7 +31,6 @@ a{
    text-decoration: none;
    margin-left: 3%;
    color: white;
-   display: block;
 }
 
 /* 
@@ -50,15 +47,6 @@ a:visited {
      color: white;
 }
 
-/*
-Config. dos textos na tela - paragrafos 
-*/
-p {
-    font-size: 5vh;
-    font-family: cursive;
-    margin: 4%;
-    color: white;  
-}
 
 /*
 Config figures opcoes e img opcoes
@@ -74,7 +62,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:chartreuse;
+    color:lightblue;
 }
 .img-opcoes{
     width: 9%;
@@ -97,40 +85,12 @@ Config. das opcoes do menu
 }
 
 /*
-Config. das imagens dos ADMs 
-*/
-.imagens{
-    width: 70%;
-    border-radius: 100%;
-}
-
-/*
-Config. dos cartoes dos ADMs
-*/
-.cartoes {
-    cursor: default;
-    background: #141414;
-    width: 40vh;
-    height: 52vh;
-    margin-top: 20vh;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    text-align: center;
-    border-radius: 7% 24%;
-}
-
-.ancoras-card{
-    margin: 10%;
-}
-
-/*
 Config. de nav - cabecalho
 */
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color: rgb(24, 21, 21);
+    background-color:#2e2e2e;
 }
 
 /*
@@ -160,25 +120,24 @@ Config. da div que mostra o menu
 Config. do menu 
 */
 #menu{
-    position: fixed;
-    z-index: 2;
     width: 42vh;
     height: 100%;
-    background-color: rgb(24, 21, 21);
+    background-color: #2e2e2e;
     border-right: 1px solid;
     border-color: white;
+    position: absolute;
     display: none;
 }
 
 /*
-Config. do titulo de administrador 
+Config. do titulo de diretor 
 */
 #menu-titulo{
     cursor: default;
     align-items: center;
     display: flex;
-    justify-content: center;
     margin-left: 0;
+    justify-content: center;
     margin-top: 10%;
     margin-bottom: 17%;
     color: white;
@@ -259,4 +218,5 @@ Config. da div do botão de saida
 #sair{
     margin-top: 90%;
 }
+
 

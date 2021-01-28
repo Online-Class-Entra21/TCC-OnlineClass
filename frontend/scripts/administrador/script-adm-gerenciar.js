@@ -1,3 +1,22 @@
+//Evento de abertura do menu 
+document.getElementById("mostrar").addEventListener("mouseover", function(){
+    abrirMenu();
+})
+document.getElementById("idImgMenu").addEventListener("mouseover", function(){
+    abrirMenu();
+})
+
+//Abertura do menu
+function abrirMenu(){
+    document.getElementById("menu").style.display = "block";
+}
+
+//Evento de fechamento do menu 
+document.getElementById("menu").addEventListener("mouseleave", function(){
+    document.getElementById("menu").style.display = "none";
+})
+
+
 //Método para chamada da api
 function usarApi(method, url) {
     return new Promise(function (resolve, reject) {
@@ -23,10 +42,6 @@ function usarApi(method, url) {
     });
 }
 
-var btnEditar = document.getElementById("btnEditar");
-btnEditar.addEventListener("click", function() {
-    editarEscola();
-})
 
 //Método para retornar um array de escolas cadastradas no banco de dados e populá-las em uma tabela
 listaEscolas();
@@ -92,8 +107,7 @@ async function editarEscola(idEscola) {
     
     //Remove o atual diretor deletando-o do banco de dados e atualiza o novo diretor da escola
     var idDiretorNovo = selectDiretoresDisponiveis.value;
-    if (diretorAtual.idUsuario === idDiretorNovo) {
-    } else {
+    if (diretorAtual.idUsuario != idDiretorNovo) {
         updateDiretor(idEscola, diretorAtual.idUsuario, idDiretorNovo);
     }
     
@@ -109,8 +123,3 @@ function updateDiretor(idEscola, idDiretorAtual, idDiretorNovo) {
     //Atualiza para o novo diretor da escola
     var updateDiretor = await usarApi("PUT", "http://localhost:8080/api/diretor/escola/alterar/"+idEscola+"/"+idDiretorNovo)
 }
-
-
-
-
-
