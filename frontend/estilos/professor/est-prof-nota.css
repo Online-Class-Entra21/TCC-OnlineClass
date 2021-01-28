@@ -1,37 +1,9 @@
 *{
-    margin: 0;
-    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
     
 }
 /* INICIO ID # */
-#check{
-    display: none;
-}
-#check:checked ~ .barra{
-    transform: translateX(300px);
 
-}
-#check:checked ~ .barra nav a .link{
-    opacity: 1;
-    margin-top: 0;
-    transition-delay: .2s;
-    
-}
-#icone{
-    cursor: pointer;
-    padding: 15px;
-    position: absolute;
-    z-index: 1;
-    display: block;
-   position: fixed;
-   
-}
-
-#conteudo {
-    text-align: center;
-    font-size: 25px;
-    
-}
 
 #check2{
     display: none;
@@ -48,40 +20,7 @@
 
 
 /* FIM ID */
-.barra {
-    background-color: #630c13;
-    height: 100%;
-    width: 300px;
-    position: absolute;
-    transition: all .2s linear;
-    left: -300px;
-    display: block;
-   position: fixed;
-   border: 2px solid black;
-}
 
-.link{
-    background-color: #630c13;
-    padding: 20px;
-    font-family: Arial;
-    font-size: 12pt;
-    transition: all .2s linear;
-    color: #f4f4f9;
-    border-bottom: 2px solid #630c13;
-    opacity: 0;
-    margin-top: 200px;
-}
-
-.link:hover{
-    background-color: #050542;
-}
-
-.topo{
-    background-color: #630c13;
-    min-width: 100%;
-    min-height: 10%;
-    position: fixed;
-}
 .marcar:hover {
     background: #050542;
     border: solid #050542 1px;
@@ -101,7 +40,7 @@
     width: 100px;
     font-size: 20px;
     font-weight: 100;
-    background-color: #630c13;
+    background-color: gray;
     -webkit-box-shadow: 1px 1px 20px 0 #000000;
     -moz-box-shadow: 1px 1px 20px 0 #000000;
     box-shadow: 1px 1px 20px 0 #000000;
@@ -110,7 +49,7 @@
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    margin-right: 45%;
+    margin-left: 50%;
     margin-top: 3%;
  }
 .cont {
@@ -123,7 +62,8 @@
     color: black;
     text-align: center;
     margin-left: 70%;
-   
+    margin-bottom: 2%;
+    
 }
 .contTipo {
     font-family: Arial, Helvetica, sans-serif;
@@ -131,14 +71,10 @@
     text-align: center;
     margin-left: 70%;
     border: none;
+    
+    
 }
-.contTipo2 {
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-    text-align: center;
-    border: none;
-    margin-right: 70%;
-}
+
 .cont2 {
     min-width: 15%;
     min-height: 10%;
@@ -148,29 +84,32 @@
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     text-align: center;
-   margin-right: 70%;
+   margin-left: 10%;
+   margin-bottom: 1%;
    
+}
+.contTipo2 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    text-align: center;
+    margin-left: 10%;
+    border: none;
+
+    
 }
 
 .descricao{
-    min-width: 95%;
-    min-height: 250px;
-    max-width: 95%;
-    max-height: 250px;
+    min-width: 85%;
+    min-height: 300px;
+    max-width: 85%;
+    max-height: 300px;
     padding-left: 1%;
     padding-top: 1%;
     margin-top: 2%;
+    margin-left: 10%;
 }
-.postar-nota{
-    
-    margin-top: -12%;
-  
-}
-.logo{
-    padding-right: 10%;
-    padding-top: 7%;
-  display: inline-block;
-}
+
+
 
 
 /* INICIO CLASSE */
@@ -183,53 +122,221 @@ body {
     
     overflow: hidden;
 }
-nav{ 
+/*
+Config. padrao da barra 
+*/
+body, html{
+    height: 100%;
     width: 100%;
-    position: absolute;
-    top: 60px;
+    padding: 0;
+    margin: 0;
+    border: 0;
 }
 
-nav a {
+/*
+Config. do header
+*/
+header{
+    height: 10%;
+    width: 100%;
+}
+
+/*
+Config. das ancoras 
+*/
+a{
+   text-decoration: none;
+   margin-left: 3%;
+   color: white;
+}
+
+/* 
+link que ainda não foi visitado 
+*/
+a:link {
+    color: white;
+}
+
+/* 
+link que foi visitado 
+*/
+a:visited {
+     color: white;
+}
+
+
+/*
+Config figures opcoes e img opcoes
+*/
+.figure-opcoes{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+.figure-opcoes a:hover{
+    list-style: none;
+    text-decoration: none;
+    color:lightblue;
+}
+.img-opcoes{
+    width: 9%;
+    height: auto;
+    margin-left: 7%;
+    margin-right: 3%;
+    list-style: none;
     text-decoration: none;
 }
 
-
-
-input[type=text]{
-    width: 80%;
-    height: 30px;
-    margin-bottom: 10px;
+/*
+Config. das opcoes do menu 
+*/
+.opcoes{
+    width: 100%;
+    height: 8%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
 }
-input[type=button]{
-    border: none;
-    width: 17%;
+
+/*
+Config. de nav - cabecalho
+*/
+#cabecalho{
+    height: 100%;
+    width: 100%;
+    background-color:#2e2e2e;
+}
+
+/*
+Config. das div do cabecalho
+*/
+#lado-esquerdo{
+    float: left;
+    width: 30%;
+    height: 100%;
+}
+#lado-direito{
     float: right;
-    height: 35px;
-}
-button:hover, input[type=button]:hover{
-    background: #ccc;
+    width: 70%;
+    height: 100%;
 }
 
-button, input[type=button]{ cursor: pointer; }
+/*
+Config. da div que mostra o menu 
+*/
+#mostrar{
+    width: 1%;
+    height: 100%;
+    position: absolute;
+}
 
-button{
+/*
+Config. do menu 
+*/
+#menu{
+    width: 42vh;
+    height: 100%;
+    background-color: #2e2e2e;
+    border-right: 1px solid;
+    border-color: white;
+    position: absolute;
+    display: none;
+}
+
+/*
+Config. do titulo de diretor 
+*/
+#menu-titulo{
+    cursor: default;
+    align-items: center;
+    display: flex;
+    margin-left: 0;
+    justify-content: center;
+    margin-top: 10%;
+    margin-bottom: 17%;
+    color: white;
+}
+
+/*
+Config. div do menu
+*/
+#botao-menu{
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-left: 7%;
+}
+
+/*
+Config. do botao do menu 
+*/
+#figure-menu{
+    width: 8vh;
+    margin: 0;
+    height: auto;
+}
+#idImgMenu{
+    width: 55%;
+    height: auto;
+}
+
+/*
+Config. da div da barra no lado direito
+*/
+#lado-direito{
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0;
+}
+
+/*
+Config. img-perfil
+*/
+#figure-perfil{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0%;
+    margin-right: 2%;
     float: right;
-    width: 25px;
-    padding: 5px;
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 4%;
 }
-ul{
-    list-style-type: none;
-    padding: 10px;
-    height: 320px;
-    background: #fff;
-    overflow-y: auto;
+#idFotoPerfil{
+    width: 8vh;
+    height: auto;
 }
-li{
-    height: 40px;
-    margin: 15px 0 15px 0;
-    border-bottom: 1px solid;
+
+/*
+Config. Dados do usuario 
+*/
+#idNomeUsuario{
+    color: white;
+    float: left;
+    margin: 0;
+    font-size: 2.5vh;
+    margin-right: 4%;
+}
+#idImgCadastro{
+    width: 10%;
+    height: 10%;
+}
+
+/*
+Config. da div do botão de saida 
+*/
+#sair{
+    margin-top: 80%;
+}
 
 
-}
+
 
 /* FIM TAG */

@@ -5,38 +5,76 @@
 
         <link rel="stylesheet"  href="/frontend/estilos/professor/est-prof-aula.css">
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
-        <title> Professor - Online Class aaaa</title>
+        <title> Marcar Aulas</title>
     </head>
 
     <body>
-        <div class="topo">
-            .
+        <div id="mostrar"></div>
+    <div id="menu">
+        <div id="menu-titulo">
+            <h4 id="idMenuTitulo">Professor</h4>
         </div>
-        <input type="checkbox" id="check">
-        <label id= "icone" for="check"><img src="/frontend/imagens/lista.png"></label>
+        <section id="Atividade" class="opcoes">
+            <figure class="figure-opcoes">
+                <img src="/frontend/imagens/icone-cadastro-escola.png" alt="Atividade" title="Atividade" class="img-opcoes">
+                <a href="/frontend/paginas/professor/prof-atividade.html">Postar Atividade</a>
+            </figure>
+        </section>
+        <section id="Aula" class="opcoes">
+            <figure class="figure-opcoes">
+                <img src="/frontend/imagens/editar.png" alt="Aula" title="Aula" class="img-opcoes">
+                <a href="/frontend/paginas/professor/prof-aula.html">Marcar Aula</a>
+            </figure>
+        </section>
+        <section id="Nota" class="opcoes">
+            <figure class="figure-opcoes">
+                <img src="/frontend/imagens/team.png" alt="Nota" title="Nota" class="img-opcoes">
+                <a href="/frontend/paginas/professor/prof-nota.html">Postar Nota</a>
+            </figure>
+        </section>
+        <section id="Relatorio" class="opcoes">
+            <figure class="figure-opcoes">
+                <img src="/frontend/imagens/team.png" alt="Relatorio" title="Relatorio" class="img-opcoes">
+                <a href="/frontend/paginas/professor/prof-relatorio.html">Relatórios</a>
+            </figure>
+        </section>
+        <section id="tela-principal" class="opcoes">
+            <figure class="figure-opcoes">
+                <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
+                <a href="/frontend/paginas/professor/prof-principal.html">Tela Principal</a>
+            </figure>
+        </section>
+        <section id="sair" class="opcoes">
+            <figure class="figure-opcoes">
+                <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
+                <a id="ancoraSair" href="">Sair</a>
+            </figure>
+        </section>
+    </div>
+    <header>
+        <nav id="cabecalho">
+            <div id="lado-esquerdo">
+                <div id="botao-menu">
+                    <figure id="figure-menu">
+                        <img id="idImgMenu" src="/frontend/imagens/botao-menu.png" alt="Menu" title="Menu" name="menu">
+                    </figure>
+                </div>
+            </div>
+            <div id="lado-direito">
+                <figure id="figure-perfil">
+                    <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil" title="Foto de Perfil">
+                    <label id="idNomeUsuario" for="foto-perfil" name="nome-usuario" title="Nome">Nome</label>
+                </figure>
+            </div>
+        </nav>
+    </header>
      
-        <div class="barra">
-            <nav>
-                <a href="/frontend/paginas/professor/prof-principal.html"><div class="link">Início</div></a>
-                <br><br><br>
-				<a href="/frontend/paginas/professor/prof-relatorio.html"><div class="link">Gerar relatório</div></a>
-                <a href="/frontend/paginas/professor/prof-aula.html"><div class="link">Marcar aula</div></a>
-                <a href="/frontend/paginas/professor/prof-atividade.html"><div class="link">Postar atividade avaliativa</div></a>
-                <a href="/frontend/paginas/professor/prof-nota.html"><div class="link">Postar nota</div></a>
-           
-				<br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br>
-           
-                <a href=""><div class="link">Sair</div></a>
-            </nav>
-        </div>
-
         <main>
             
            
             <div id="conteudo">
                 
-                <img class="logo" src="/frontend/imagens/Logo-OnlineClass.png" alt="">
-                
+            
                 <form class="marcar-aula">
                   
                     <label class="aulaTipo" for="idTitle">Titulo </label><br>
@@ -55,7 +93,7 @@
                     <label class="arq" for="idFile"></label>
                     <input class="arq" type="file" name="nmFile" id="idFile">
 
-                    <textarea name="mensagem" class="descricao">Insira um breve resumo sobre a aula...</textarea>
+                    <textarea name="mensagem" class="descricao" placeholder="Insira um breve resumo sobre a aula..."></textarea>
                     <br>
                     
                     <button class="marcar" onclick="alert('Aula marcada')">ENVIAR</button>
@@ -67,5 +105,6 @@
               
             </div>
         </main>
+        <script src="/frontend/scripts/professor/script-prof-aula.js"></script>
     </body>
 </html>
