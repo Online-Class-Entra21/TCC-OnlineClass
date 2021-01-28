@@ -96,4 +96,48 @@ public class DiretorController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Método para remover a escola sob comando do diretor {PUT}
+	 * @param int id codigo escola
+	 * @param int id codigo diretor
+	 * @author Andrey
+	 * @return boolean situacao da operacao
+	 */
+	@PutMapping(path = "api/diretor/escola/remover/{codigoDiretor}")
+	public boolean removerEscola(@PathVariable("codigoDiretor") int codigoDiretor) {
+		LOGGER.info("Requisição Remover Usuario.fk_escola - Remover fk.escola:{}",codigoDiretor);
+		DiretorDAO diretorDao = new DiretorDAO();
+		try {
+			diretorDao.removerEscola(codigoDiretor);
+			LOGGER.info("Requisição Remover Usuario.fk_escola - Remover fk.escola:{} - Bem Sucedida",codigoDiretor);
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			LOGGER.error("Requisição para Remover Usuario.fk_escola Mal Sucedida - fk.escola{} - erro - {}",codigoDiretor,e.toString());
+			return false;
+		}
+	}
+	
+	/**
+	 * Retorna a lista de diretores registrados no sistema que não possuem uma escola registrada {GET}
+	 * @return lista de diretores sem escola registrados no banco
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/diretores/disponiveis")
+	public List<Diretor> consultarDiretoresDisponiveis(){
+		LOGGER.info("Requisição List<Diretor> sem Escolas");
+		List<Diretor> lista;
+		DiretorDAO diretorDao = new DiretorDAO();
+		try {
+			lista = diretorDao.buscarDiretoresDisponiveis();
+			LOGGER.info("Requisição List<Diretor> sem Escolas bem sucedida");
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Diretores sem Escolas Mal Sucedida - erro - {}",e.toString());
+			return null;
+		}
+	}
 }
