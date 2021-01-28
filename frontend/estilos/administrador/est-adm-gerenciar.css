@@ -27,6 +27,22 @@ header{
 }
 
 /*
+Config. do main
+*/
+main{
+    height: 90%;
+    width: 100%;
+}
+
+/*
+Config. do footer
+*/
+footer{
+    height: 10%;
+    width: 100%;
+}
+
+/*
 Config. das ancoras 
 */
 a{
@@ -220,4 +236,70 @@ Config. da div do botão de saida
 */
 #sair{
     margin-top: 90%;
+}
+
+/*
+Config. do fieldset
+*/
+fieldset {
+    background-color: #eeeeee;
+}
+
+/*
+Config. das legendas 
+*/
+legend {
+    background-color: gray;
+    color: white;
+    padding: 1% 2%;
+}
+
+/*
+Config da tabela
+*/
+table {
+    width: 50%;
+    height: auto;
+    font-family: cursive;
+}
+
+/*
+Config. das colunas 
+*/
+td {
+    padding: 30px;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+}
+
+/*
+Config. das linhas 
+*/
+th {
+    text-transform: uppercase;
+    border-left: 1px solid #111;
+    border-right: 1px solid #111;
+    padding: 30px;
+    text-align: left;
+    font-size: 80%;
+    letter-spacing: 0.1em;
+    background: gray;
+}
+
+/*
+Config. spin de carregamento 
+*/
+.loader {
+    border: 1.5vh solid #c0aea4; /* Light grey */
+    border-top: 1.5vh solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 6vh;
+    height: 6vh;
+    animation: spin 2s linear infinite;
+    margin-left: 2%;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
