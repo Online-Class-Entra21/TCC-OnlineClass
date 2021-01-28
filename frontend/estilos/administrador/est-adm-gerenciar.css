@@ -239,10 +239,41 @@ Config. da div do botão de saida
 }
 
 /*
+Config. do conteudo do centro
+*/
+#corpo{
+    width: 100%;
+    height: 100%;
+}
+
+/*
+Config. da div de separação de cima
+*/
+#cima{
+    height: 20%;
+    width: 100%;
+}
+
+/*
+Config. da div da tabela 
+*/
+#tab{
+    height: 75%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/*
 Config. do fieldset
 */
 fieldset {
     background-color: #eeeeee;
+    max-height: 95%;
+    width: 80%;
+    margin-top: 20%;
+    overflow-y: scroll;
 }
 
 /*
@@ -258,8 +289,8 @@ legend {
 Config da tabela
 */
 table {
-    width: 50%;
-    height: auto;
+    width: 100%;
+    height: 100%;
     font-family: cursive;
 }
 
@@ -267,10 +298,9 @@ table {
 Config. das colunas 
 */
 td {
-    padding: 30px;
-    border-left: 1px solid #999;
-    border-right: 1px solid #999;
-    border-bottom: 1px solid #999;
+    padding: 2.5vh;
+    border: 1px solid #999;
+    font-size: 70%;
 }
 
 /*
@@ -278,11 +308,10 @@ Config. das linhas
 */
 th {
     text-transform: uppercase;
-    border-left: 1px solid #111;
-    border-right: 1px solid #111;
-    padding: 30px;
+    border: 1px solid #111;
+    padding: 3.5vh;
     text-align: left;
-    font-size: 80%;
+    font-size: 70%;
     letter-spacing: 0.1em;
     background: gray;
 }
