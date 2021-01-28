@@ -7,12 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
 import entidade.Diretor;
+import entidade.Usuario;
 import persistencia.jdbc.DiretorDAO;
+import persistencia.jdbc.UsuarioDAO;
 
 /**
  * Metodo controller do diretor para consulta no banco de dados através da API Rest
@@ -69,6 +72,28 @@ public class DiretorController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Diretor Mal Sucedida - Diretor {} - erro - {}",codigo,e.toString());
 			return null;
+		}
+	}
+	
+	/**
+	 * Metodo para alteração da escola comandada pelo diretor {PUT}
+	 * @param int codigo escola
+	 * @param int codigo diretor
+	 * @author Andrey
+	 * @return boolean situacao da operacao
+	 */
+	@PutMapping(path = "api/diretor/escola/alterar/{codigoEscola}/{codigoDiretor}")
+	public boolean alterar(@PathVariable("codigoEscola") int codigoEscola, @PathVariable("codigoDiretor") int codigoDiretor) {
+		LOGGER.info("Requisição Atualizar Usuario.fk_escola - Novo fk.escola:{}",codigoEscola);
+		DiretorDAO diretorDao = new DiretorDAO();
+		try {
+			diretorDao.atualizarEscola(codigoEscola, codigoDiretor);
+			LOGGER.info("Requisição Atualizar Usuario.fk_escola - Novo fk.escola:{} - Bem Sucedida",codigoEscola);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Usuario.fk_escola Mal Sucedida - fk.escola{} - erro - {}",codigoEscola,e.toString());
+			return false;
 		}
 	}
 }
