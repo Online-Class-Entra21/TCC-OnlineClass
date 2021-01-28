@@ -103,6 +103,76 @@ Config. das opcoes do menu
 }
 
 /*
+Config. do fieldset
+*/
+fieldset {
+    background-color: #eeeeee;
+    max-height: 95%;
+    width: 80%;
+    min-height: 95%;
+    margin-top: 20%;
+    overflow-y: scroll;
+}
+
+/*
+Config. das legendas 
+*/
+legend {
+    background-color: gray;
+    color: white;
+    padding: 1% 2%;
+}
+
+/*
+Config da tabela
+*/
+table {
+    width: 100%;
+    height: 100%;
+    font-family: cursive;
+}
+
+/*
+Config. das colunas 
+*/
+td {
+    padding: 2.5vh;
+    border: 1px solid #999;
+    font-size: 70%;
+}
+
+/*
+Config. das linhas 
+*/
+th {
+    text-transform: uppercase;
+    border: 1px solid #111;
+    padding: 3.5vh;
+    text-align: left;
+    font-size: 70%;
+    letter-spacing: 0.1em;
+    background: gray;
+}
+
+/*
+Config. spin de carregamento 
+*/
+.loader {
+    border: 1.5vh solid #c0aea4; /* Light grey */
+    border-top: 1.5vh solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 6vh;
+    height: 6vh;
+    animation: spin 2s linear infinite;
+    margin-left: 2%;
+    display: none;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*
 Config. de nav - cabecalho
 */
 #cabecalho{
@@ -266,69 +336,10 @@ Config. da div da tabela
 }
 
 /*
-Config. do fieldset
+Config. da mensagem de erro
 */
-fieldset {
-    background-color: #eeeeee;
-    max-height: 95%;
-    width: 80%;
-    margin-top: 20%;
-    overflow-y: scroll;
-}
-
-/*
-Config. das legendas 
-*/
-legend {
-    background-color: gray;
-    color: white;
-    padding: 1% 2%;
-}
-
-/*
-Config da tabela
-*/
-table {
-    width: 100%;
-    height: 100%;
-    font-family: cursive;
-}
-
-/*
-Config. das colunas 
-*/
-td {
-    padding: 2.5vh;
-    border: 1px solid #999;
-    font-size: 70%;
-}
-
-/*
-Config. das linhas 
-*/
-th {
-    text-transform: uppercase;
-    border: 1px solid #111;
-    padding: 3.5vh;
-    text-align: left;
-    font-size: 70%;
-    letter-spacing: 0.1em;
-    background: gray;
-}
-
-/*
-Config. spin de carregamento 
-*/
-.loader {
-    border: 1.5vh solid #c0aea4; /* Light grey */
-    border-top: 1.5vh solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 6vh;
-    height: 6vh;
-    animation: spin 2s linear infinite;
-    margin-left: 2%;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+#idErro{
+    margin-left: 4%;
+    color: black;
+    display: none;
 }

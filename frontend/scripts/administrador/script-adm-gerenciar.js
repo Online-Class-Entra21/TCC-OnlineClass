@@ -16,8 +16,7 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
-
-//Método para chamada da api
+//Método para chamada da API - requisição de lista de escolas 
 function usarApi(method, url) {
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
@@ -26,6 +25,9 @@ function usarApi(method, url) {
             if (this.status >= 200 && this.status < 300) {
                 resolve(xhr.response);
             } else {
+                document.getElementById("idLoad").style.display = "none";
+                document.getElementById("idErro").textContent = "Sem Conexão com a Base de Dados - Erro (0001)";
+                document.getElementById("idErro").style.display = "block";
                 reject({
                     status: this.status,
                     statusText: xhr.statusText
@@ -33,6 +35,9 @@ function usarApi(method, url) {
             }
         };
         xhr.onerror = function () {
+            document.getElementById("idLoad").style.display = "none";
+            document.getElementById("idErro").textContent = "Sem Conexão com a Base de Dados - Erro (0001)";
+            document.getElementById("idErro").style.display = "block";
             reject({
                 status: this.status,
                 statusText: xhr.statusText
@@ -42,16 +47,21 @@ function usarApi(method, url) {
     });
 }
 
-
 //Método para retornar um array de escolas cadastradas no banco de dados e populá-las em uma tabela
 listaEscolas();
-console.log("carregando");
 async function listaEscolas(){
+    //Inicia o loading 
+    document.getElementById("idLoad").style.display = "block";
+    //Faz a buscar na API
     var resposta = await usarApi("GET", "http://localhost:8080/api/escolas");
-    console.log(resposta)
     var escolas = JSON.parse(resposta);
-    
-    setTimeout(async function() {
+
+    //Verifica se tem alguma escola no banco de dados
+    if(escolas == null){
+        document.getElementById("idLoad").style.display = "none";
+        document.getElementById("idErro").textContent = "Nenhuma Escola Cadastrada no Sistema";
+        document.getElementById("idErro").style.display = "block";
+    }else{
         for (let i = 0; i < escolas.length; i++) {
             var linha = document.createElement("tr");
             var coluna = document.createElement("td");
@@ -60,16 +70,23 @@ async function listaEscolas(){
                     
             coluna.append(input);
             linha.append(coluna);
-                    
-  
+    
             var diretor = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
             diretor = JSON.parse(diretor);
-            coluna2.append(diretor.nome);
+
+            //Verifica se a escola tem um diretor 
+            if(diretor == null){
+                coluna2.append("Nenhum");
+            }else{
+                coluna2.append(diretor.nome);
+            }
+
             linha.append(coluna2);
             document.getElementById('tbLista').append(linha)
         }
+        //Termina o loading de carregamento 
         document.getElementById("idLoad").style.display = "none";
-    }, 3000)
+    }
 }
 
 //Método para edição da escola  
@@ -113,13 +130,15 @@ async function editarEscola(idEscola) {
     
 }
 
-/*
-Método para remover o atual diretor de uma escola, deletando-o da tabela usuario no banco de dados e atribuindo um novo diretor à escola em seguida
-*/
-function updateDiretor(idEscola, idDiretorAtual, idDiretorNovo) {
-    //Deleta o atual diretor no banco de dados
-    var deletarUsuario = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/"+idDiretorAtual);
 
-    //Atualiza para o novo diretor da escola
-    var updateDiretor = await usarApi("PUT", "http://localhost:8080/api/diretor/escola/alterar/"+idEscola+"/"+idDiretorNovo)
-}
+//---------Alterar----------
+// /*
+// Método para remover o atual diretor de uma escola, deletando-o da tabela usuario no banco de dados e atribuindo um novo diretor à escola em seguida
+// */
+// function updateDiretor(idEscola, idDiretorAtual, idDiretorNovo) {
+//     //Deleta o atual diretor no banco de dados
+//     var deletarUsuario = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/"+idDiretorAtual);
+
+//     //Atualiza para o novo diretor da escola
+//     var updateDiretor = await usarApi("PUT", "http://localhost:8080/api/diretor/escola/alterar/"+idEscola+"/"+idDiretorNovo)
+// }
