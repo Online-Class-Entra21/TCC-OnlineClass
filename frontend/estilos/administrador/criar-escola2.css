@@ -21,8 +21,9 @@ div{
 
 table {
     width: 100%;
-    height: auto;
+    height: 100px;
     font-family: cursive;
+    overflow-x: scroll;
 }
 
 td {
@@ -59,6 +60,7 @@ button:hover {
 #registro-escola-diretor{
     /* display: flex; */
     margin-left: auto;
+<<<<<<< Updated upstream:frontend/estilos/administrador/criar-escola2.css
     margin-right: auto;
     overflow: auto;
     height: 602px;
@@ -74,3 +76,16 @@ button:hover {
 #endereco {
     margin-left: 0%;
 }
+=======
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  #registro-escola-diretor{
+    height:400px;
+    overflow-x: scroll;
+  }
+>>>>>>> Stashed changes:frontend/estilos/administrador/est-adm-gerenciar.css

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Chamada</title>
+    <style>
+        *{
+            height: 100%;
+
+        }
+        main{
+            height: 100%;
+        }
+        iframe{
+            height: 100%;
+            width: 100%;
+        }
+        div{
+            margin: 10px;
+            height: 600px;
+            border: solid;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="divMain">
+
+        </div>
+    </main>
+    <script src='http://tcconlineclass.tk/external_api.js'></script>
+    <script src="http://tcconlineclass.tk/interface_config.js"></script>
+    <script>
+        console.log("script carregado");
+            
+            console.log("teste");
+            // const domain = 'tcconlineclass.tk';
+            // const options = {
+            //     roomName: 'JitsiMeetAPIExample',
+            //     width: 700,
+            //     height: 700,
+            //     parentNode: document.querySelector('#meet')
+            // };
+            var divMain = document.querySelector('#divMain');
+            var domain = "tcconlineclass.tk";
+            var options = {
+                roomName: 'SalaTurma10',
+                parentNode: divMain,
+                configOverwrite: {
+                    startWithAudioMuted: true,
+                    startWithVideoMuted: true
+                },
+                userInfo: {
+                    avatarUrl: "https://cdn.discordapp.com/attachments/778739288958435339/804328763491483656/Breno_40.jpg",
+                    email: 'email@jitsiexamplemail.com',
+                    displayName: 'André Luís Ovidio2'
+                }
+            };
+            var api = new JitsiMeetExternalAPI(domain, options);
+    </script>
+            
+</body>
+</html>
