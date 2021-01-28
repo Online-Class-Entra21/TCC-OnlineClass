@@ -1,59 +1,223 @@
-main{
-    margin: 5%;
-    margin-left: 20%;
-    margin-right: 20%;
-}
-fieldset {
-    background-color: #eeeeee;
+/*
+Config. para todos os elementos 
+*/
+*{
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-legend {
-    background-color: gray;
-    color: white;
-    padding: 1% 2%;
-}
-
-img{
-    display: table;
-    margin-left: auto;
-    /* margin-right: auto; */
-}
-
-table {
+/*
+Config. padrao da barra 
+*/
+body, html{
+    height: 100%;
     width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+/*
+Config. do header
+*/
+header{
+    z-index: 1;
+    position: fixed;
+    height: 10%;
+    width: 100%;
+}
+
+/*
+Config. das ancoras 
+*/
+a{
+   text-decoration: none;
+   margin-left: 3%;
+   color: white;
+}
+
+/* 
+link que ainda não foi visitado 
+*/
+a:link {
+    color: white;
+}
+
+/* 
+link que foi visitado 
+*/
+a:visited {
+     color: white;
+}
+
+
+/*
+Config figures opcoes e img opcoes
+*/
+.figure-opcoes{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+.figure-opcoes a:hover{
+    list-style: none;
+    text-decoration: none;
+    color:chartreuse;
+}
+.img-opcoes{
+    width: 9%;
     height: auto;
-    font-family: cursive;
+    margin-left: 7%;
+    margin-right: 3%;
+    list-style: none;
+    text-decoration: none;
 }
 
-td {
-    padding: 30px;
-    border-left: 1px solid #999;
-    border-right: 1px solid #999;
-    border-bottom: 1px solid #999;
+/*
+Config. das opcoes do menu 
+*/
+.opcoes{
+    width: 100%;
+    height: 8%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
 }
 
-th {
-    text-transform: uppercase;
-    border-left: 1px solid #111;
-    border-right: 1px solid #111;
-    padding: 30px;
-    text-align: left;
-    font-size: 80%;
-    letter-spacing: 0.1em;
-    background: gray;
+/*
+Config. de nav - cabecalho
+*/
+#cabecalho{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(24, 21, 21);
 }
 
-.loader {
-    border: 1.5vh solid #c0aea4; /* Light grey */
-    border-top: 1.5vh solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 6vh;
-    height: 6vh;
-    animation: spin 2s linear infinite;
-    margin-left: auto;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+/*
+Config. das div do cabecalho
+*/
+#lado-esquerdo{
+    float: left;
+    width: 30%;
+    height: 100%;
+}
+#lado-direito{
+    float: right;
+    width: 70%;
+    height: 100%;
+}
+
+/*
+Config. da div que mostra o menu 
+*/
+#mostrar{
+    width: 1%;
+    height: 100%;
+    position: absolute;
+}
+
+/*
+Config. do menu 
+*/
+#menu{
+    position: fixed;
+    z-index: 2;
+    width: 42vh;
+    height: 100%;
+    background-color: rgb(24, 21, 21);
+    border-right: 1px solid;
+    border-color: white;
+    display: none;
+}
+
+/*
+Config. do titulo de administrador 
+*/
+#menu-titulo{
+    cursor: default;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 10%;
+    margin-bottom: 17%;
+    color: white;
+}
+
+/*
+Config. div do menu
+*/
+#botao-menu{
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-left: 7%;
+}
+
+/*
+Config. do botao do menu 
+*/
+#figure-menu{
+    width: 8vh;
+    margin: 0;
+    height: auto;
+}
+#idImgMenu{
+    width: 55%;
+    height: auto;
+}
+
+/*
+Config. da div da barra no lado direito
+*/
+#lado-direito{
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0;
+}
+
+/*
+Config. img-perfil
+*/
+#figure-perfil{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0%;
+    margin-right: 2%;
+    float: right;
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 4%;
+}
+#idFotoPerfil{
+    width: 8vh;
+    height: auto;
+}
+
+/*
+Config. Dados do usuario 
+*/
+#idNomeUsuario{
+    color: white;
+    float: left;
+    margin: 0;
+    font-size: 2.5vh;
+    margin-right: 4%;
+}
+#idImgCadastro{
+    width: 10%;
+    height: 10%;
+}
+
+/*
+Config. da div do botão de saida 
+*/
+#sair{
+    margin-top: 90%;
+}
