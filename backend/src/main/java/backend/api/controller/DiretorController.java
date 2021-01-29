@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 
 import entidade.Diretor;
-import entidade.Usuario;
 import persistencia.jdbc.DiretorDAO;
-import persistencia.jdbc.UsuarioDAO;
 
 /**
  * Metodo controller do diretor para consulta no banco de dados através da API Rest
@@ -56,6 +54,7 @@ public class DiretorController {
 	 * Retorna o diretor que comanda o a escola com o fk informado atrvés dos parametros {GET}
 	 * @param codigo
 	 * @return String json 
+	 * @author Andrey
 	 */
 	@GetMapping(path = "/api/diretor/escola/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo){
@@ -138,6 +137,27 @@ public class DiretorController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Diretores sem Escolas Mal Sucedida - erro - {}",e.toString());
 			return null;
+		}
+	}
+	
+	/**
+	 * Metodo para consulta da quantidade de diretores no sistema 
+	 * @return int qtdDiretores
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/diretores/quantidade")
+	public int buscarQuantidade() {
+		LOGGER.info("Requisição quantidade de diretores");
+		int qtdDiretores;
+		DiretorDAO diretorDao = new DiretorDAO();
+		try {
+			qtdDiretores = diretorDao.buscarQuantidadeDiretores();
+			LOGGER.info("Requisição quantidade de diretores bem sucedida");
+			return qtdDiretores;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar da quantidade de diretores Mal Sucedida - erro - {}",e.toString());
+			return 0;
 		}
 	}
 }

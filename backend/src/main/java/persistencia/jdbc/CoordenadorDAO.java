@@ -53,4 +53,28 @@ public class CoordenadorDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Metodo para retorno da quantidade de coordenadores no banco de dados
+	 * @return int qtdCoordenadores
+	 * @author Breno
+	 * @throws SQLException
+	 */
+	public int buscarQuantidadeCoordenadores() throws SQLException {
+		int qtdCoordenadores = 0;
+		String sql = "select count(idUsuario) from usuario where tipoUsuario = 3";
+
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			qtdCoordenadores = (resultSet.getInt(1));
+		}
+		comandoSql.close();
+		return qtdCoordenadores;
+	}
 }

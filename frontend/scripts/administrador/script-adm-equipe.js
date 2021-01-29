@@ -20,8 +20,8 @@ if(idUsuario != null){
 
     xhr.send();
 }else{
-    alert('Sessão expirada - Erro (0002)')
-    window.location = "/frontend/index.html";
+    // alert('Sessão expirada - Erro (0002)')
+    // window.location = "/frontend/index.html";
 }
 
 //Evento de abertura do menu 

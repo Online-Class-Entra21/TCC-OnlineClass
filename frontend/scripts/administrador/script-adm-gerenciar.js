@@ -20,8 +20,8 @@ if(idUsuario != null){
 
     xhr.send();
 }else{
-    alert('Sessão expirada - Erro (0002)')
-    window.location = "/frontend/index.html";
+    // alert('Sessão expirada - Erro (0002)')
+    // window.location = "/frontend/index.html";
 }
 
 //Evento de abertura do menu 
@@ -88,7 +88,11 @@ async function listaEscolas(){
         document.getElementById("idErro").textContent = "Nenhuma Escola Cadastrada no Sistema";
         document.getElementById("idErro").style.display = "block";
     }else{
+        var escolasIndex = []
         for (let i = 0; i < escolas.length; i++) {
+
+            escolasIndex.push(escolas[i]);
+
             var linha = document.createElement("tr");
             var coluna = document.createElement("td");
             coluna.classList.add("colunaEscola");
@@ -113,16 +117,16 @@ async function listaEscolas(){
         }
         //Termina o loading de carregamento 
         document.getElementById("idLoad").style.display = "none";
-
-        //Retorna o valor da linha da escola clicada
-        $( ".colunaEscola" ).click(function() {
-            sessionStorage.setItem('nomeEscolaSelecionada', $(this).text())
-        });
     }
+    //Retorna o valor da linha da escola clicada
+    $( ".colunaEscola" ).click(function() { 
+        console.log(escolasIndex)
+        var escolaEscolhida = escolasIndex[$(this).index()].idEscola
+        console.log(escolaEscolhida);
+        sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida) 
+    });
 }
 
-
-   
 /* Métodos para teste
 
 alterarBotão();

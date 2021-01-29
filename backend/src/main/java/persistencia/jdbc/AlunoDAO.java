@@ -151,4 +151,28 @@ public class AlunoDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+
+	/**
+	 * Metodo para retorno da quantidade de alunos no banco de dados
+	 * @return int qtdAlunos
+	 * @author Breno
+	 * @throws SQLException
+	 */
+	public int buscarQuantidadeAlunos() throws SQLException {
+		int qtdAlunos = 0;
+		String sql = "select count(idUsuario) from usuario where tipoUsuario = 5";
+
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			qtdAlunos = (resultSet.getInt(1));
+		}
+		comandoSql.close();
+		return qtdAlunos;
+	}
 }

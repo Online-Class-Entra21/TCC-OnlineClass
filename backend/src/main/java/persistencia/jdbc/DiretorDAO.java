@@ -159,6 +159,29 @@ public class DiretorDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 
+	/**
+	 * Metodo para retorno da quantidade de diretores no banco de dados
+	 * @return int qtdDiretores
+	 * @author Breno
+	 * @throws SQLException
+	 */
+	public int buscarQuantidadeDiretores() throws SQLException {
+		int qtdDiretores = 0;
+		String sql = "select count(idUsuario) from usuario where tipoUsuario = 2";
+
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			qtdDiretores = (resultSet.getInt(1));
+		}
+		comandoSql.close();
+		return qtdDiretores;
+	}
 }
 

@@ -1,5 +1,5 @@
 //Encerra a sessão 
-sessionStorage.setItem("idUsuario", 0);
+//sessionStorage.setItem("idUsuario", 0);
 
 //Verifica as informações e loga no sistema 
 function logar(email, senha) {
