@@ -30,6 +30,7 @@
         </div>
     </main>
     <script src='http://tcconlineclass.tk/external_api.js'></script>
+    <script src="http://tcconlineclass.tk/config.js"></script>
     <script src="http://tcconlineclass.tk/interface_config.js"></script>
     <script>
         console.log("script carregado");
@@ -52,12 +53,17 @@
                     startWithVideoMuted: true
                 },
                 userInfo: {
-                    avatarUrl: "https://cdn.discordapp.com/attachments/778739288958435339/804328763491483656/Breno_40.jpg",
-                    email: 'email@jitsiexamplemail.com',
+                    email: 'andreovidio55@gmail.com',
                     displayName: 'André Luís Ovidio2'
                 }
             };
             var api = new JitsiMeetExternalAPI(domain, options);
+            setTimeout(function(){
+                var participante = api.getParticipantsInfo();
+                
+                console.log(participante)
+                console.log(api.getAvatarURL(participante.participantId))
+            },3000)
     </script>
             
 </body>
