@@ -94,15 +94,6 @@ Config. das opcoes do menu
 }
 
 /*
-Config. das divs de informacao
-*/
-.informacoes{
-    height: 19vh;
-    width: 100%;
-    margin-top: 2.3vh;
-}
-
-/*
 Config. de nav - cabecalho
 */
 #cabecalho{
@@ -236,62 +227,4 @@ Config. da div do botão de saida
 */
 #sair{
     margin-top: 90%;
-}
-
-/*
-Config. da img de bem vindo
-*/
-#img-bemVindo{
-    float: left;
-    width: 50%;
-    height: 90%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin-top: 10vh;
-}
-
-/*
-Config. da div das info dos usuarios 
-*/
-#info{
-    float: right;
-    width: 50%;
-    height: 100%;
-}
-
-/*
-Config. da imagem de bem vindo 
-*/
-#imagem{
-    width: 50%;
-    height: 50%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-#img-bv{
-    width: 40vh;
-    height: auto;
-}
-
-/*
-Config. da diva da data atual 
-*/
-#dataAtual{
-    width: 100%;
-    height: 3vh;
-    margin-top: 10vh;
-}
-
-.titulo-info{
-    margin-bottom: 3%;
-}
-
-.titulo{
-   font-size: 5vh;
-}
-
-label{
-    font-size: 3vh;
 }

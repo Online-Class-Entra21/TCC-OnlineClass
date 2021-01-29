@@ -19,6 +19,10 @@ if(idUsuario != 0 && idUsuario != null){
         }
     xhr.send();
 
+    //Pega a data atual do sistema 
+    now = new Date();
+    document.getElementById("dataAtual").textContent = now.getDate()+"/"+now.getMonth()+1+"/"+now.getFullYear();
+
     //Busca a quantidade de diretores 
     var xhr2 = new XMLHttpRequest(); 
 
@@ -29,10 +33,6 @@ if(idUsuario != 0 && idUsuario != null){
             var qtdDiretores = JSON.parse(resposta2);
             document.getElementById("qtdDiretores").textContent = "Quantidade Atual: "+qtdDiretores;
         })
-        xhr2.onerror = function () {
-            alert('Sem Conexão com a Base de Dados - Erro (0001)')
-            window.location = "/frontend/index.html";
-        }
 
     xhr2.send();
 
@@ -46,10 +46,6 @@ if(idUsuario != 0 && idUsuario != null){
             var qtdCoordenadores = JSON.parse(resposta3);
             document.getElementById("qtdCoordenadores").textContent = "Quantidade Atual: "+qtdCoordenadores;
         })
-        xhr3.onerror = function () {
-            alert('Sem Conexão com a Base de Dados - Erro (0001)')
-            window.location = "/frontend/index.html";
-        }
 
     xhr3.send();
 
@@ -63,10 +59,6 @@ if(idUsuario != 0 && idUsuario != null){
             var qtdProfessores = JSON.parse(resposta4);
             document.getElementById("qtdProfessores").textContent = "Quantidade Atual: "+qtdProfessores;
         })
-        xhr4.onerror = function () {
-            alert('Sem Conexão com a Base de Dados - Erro (0001)')
-            window.location = "/frontend/index.html";
-        }
 
     xhr4.send();
 
@@ -80,10 +72,6 @@ if(idUsuario != 0 && idUsuario != null){
             var qtdAlunos = JSON.parse(resposta5);
             document.getElementById("qtdAlunos").textContent = "Quantidade Atual: "+qtdAlunos;
         })
-        xhr5.onerror = function () {
-            alert('Sem Conexão com a Base de Dados - Erro (0001)')
-            window.location = "/frontend/index.html";
-        }
 
     xhr5.send();
 }else{
@@ -108,8 +96,5 @@ function abrirMenu(){
 document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
-
-
-
 
 
