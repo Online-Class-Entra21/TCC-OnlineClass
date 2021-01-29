@@ -13,10 +13,7 @@ if(idUsuario != 0 && idUsuario != null){
             dadosUsuario = JSON.parse(resposta);
             document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
         })
-        xhr.onerror = function () {
-            alert('Sem Conexão com a Base de Dados - Erro (0001)')
-            window.location = "/frontend/index.html";
-        }
+
     xhr.send();
 
     //Pega a data atual do sistema 
