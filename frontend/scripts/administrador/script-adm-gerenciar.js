@@ -94,6 +94,7 @@ async function listaEscolas(){
             escolasIndex.push(escolas[i]);
 
             var linha = document.createElement("tr");
+            linha.classList.add("LinhaEscolas")
             var coluna = document.createElement("td");
             coluna.classList.add("colunaEscola");
             var coluna2 = document.createElement("td");
@@ -119,11 +120,11 @@ async function listaEscolas(){
         document.getElementById("idLoad").style.display = "none";
     }
     //Retorna o valor da linha da escola clicada
-    $( ".colunaEscola" ).click(function() { 
+    $( ".LinhaEscolas" ).click(function() { 
         console.log(escolasIndex)
         var escolaEscolhida = escolasIndex[$(this).index()].idEscola
-        console.log(escolaEscolhida);
-        sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida) 
+        sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
+        location.href = "/frontend/paginas/administrador/teste-adm-editar.html"
     });
 }
 
