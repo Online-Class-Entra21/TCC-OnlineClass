@@ -12,11 +12,15 @@ if(idUsuario != null){
             var resposta = xhr.responseText; 
             dadosUsuario = JSON.parse(resposta);
             document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
-        });
+        })
+        xhr.onerror = function () {
+            alert('Sem Conexão com a Base de Dados - Erro (0001)')
+            window.location = "/frontend/index.html";
+        }
 
     xhr.send();
 }else{
-    alert('Sem Conexão com a Base de Dados - Erro (0001)')
+    alert('Sessão expirada - Erro (0002)')
     window.location = "/frontend/index.html";
 }
 
