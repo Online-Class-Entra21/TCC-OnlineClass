@@ -1,3 +1,6 @@
+//Encerra a sessão 
+//sessionStorage.setItem("idUsuario", 0);
+
 //Verifica as informações e loga no sistema 
 function logar(email, senha) {
     $('#input-email').css('border', 'none')
@@ -24,8 +27,8 @@ function logar(email, senha) {
                 if (json.senha == senha) {
 
                     //Persistencia de dados para as próximas páginas - ID
-                    usuarioDados = new usuarioDados(json.idUsuario);
-
+                    sessionStorage.setItem("idUsuario", json.idUsuario);
+                    
                     //Redireciona para a pagina correspondente ao tipo do usuário 
                     switch (json.tipoUsuario) {
                         case 1:

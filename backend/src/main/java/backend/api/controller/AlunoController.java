@@ -140,4 +140,29 @@ public class AlunoController {
 			return false;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora do principal
+	//------------------------------------------------------------------
+			
+	/**
+	 * Metodo para consulta da quantidade de alunos no sistema 
+	 * @return int qtdAlunos
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/alunos/quantidade")
+	public int buscarQuantidade() {
+		LOGGER.info("Requisição quantidade de alunos");
+		int qtdAlunos;
+		AlunoDAO alunoDao = new AlunoDAO();
+		try {
+			qtdAlunos = alunoDao.buscarQuantidadeAlunos();
+			LOGGER.info("Requisição quantidade de alunos bem sucedida");
+			return qtdAlunos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar da quantidade de alunos Mal Sucedida - erro - {}",e.toString());
+			return 0;
+		}
+	}
 }

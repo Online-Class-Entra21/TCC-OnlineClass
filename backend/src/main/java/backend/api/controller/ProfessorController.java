@@ -40,4 +40,29 @@ public class ProfessorController {
 			return null;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora do principal
+	//------------------------------------------------------------------
+	
+	/**
+	 * Metodo para consulta da quantidade de professores no sistema 
+	 * @return int qtdProfessores
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/professores/quantidade")
+	public int buscarQuantidade() {
+		LOGGER.info("Requisição quantidade de professores");
+		int qtdProfessores;
+		ProfessorDAO professorDao = new ProfessorDAO();
+		try {
+			qtdProfessores = professorDao.buscarQuantidadeProfessores();
+			LOGGER.info("Requisição quantidade de professores bem sucedida");
+			return qtdProfessores;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar da quantidade de professores Mal Sucedida - erro - {}",e.toString());
+			return 0;
+		}
+	}
 }

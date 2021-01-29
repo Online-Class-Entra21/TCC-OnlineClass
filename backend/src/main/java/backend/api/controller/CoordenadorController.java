@@ -41,4 +41,29 @@ public class CoordenadorController {
 			return null;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora do principal
+	//------------------------------------------------------------------
+		
+	/**
+	 * Metodo para consulta da quantidade de coordenadores no sistema 
+	 * @return int qtdCoordenadores
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/coordenadores/quantidade")
+	public int buscarQuantidade() {
+		LOGGER.info("Requisição quantidade de coordenadores");
+		int qtdCoordenadores;
+		CoordenadorDAO coordenadorDao = new CoordenadorDAO();
+		try {
+			qtdCoordenadores = coordenadorDao.buscarQuantidadeCoordenadores();
+			LOGGER.info("Requisição quantidade de coordenadores bem sucedida");
+			return qtdCoordenadores;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar da quantidade de coordenadores Mal Sucedida - erro - {}",e.toString());
+			return 0;
+		}
+	}
 }

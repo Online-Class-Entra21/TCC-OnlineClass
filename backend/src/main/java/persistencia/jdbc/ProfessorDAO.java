@@ -53,4 +53,28 @@ public class ProfessorDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+		
+	/**
+	 * Metodo para retorno da quantidade de professores no banco de dados
+	 * @return int qtdProfessores
+	 * @author Breno
+	 * @throws SQLException
+	 */
+	public int buscarQuantidadeProfessores() throws SQLException {
+		int qtdProfessores = 0;
+		String sql = "select count(idUsuario) from usuario where tipoUsuario = 4";
+
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			qtdProfessores = (resultSet.getInt(1));
+		}
+		comandoSql.close();
+		return qtdProfessores;
+	}
 }

@@ -1,3 +1,29 @@
+// Pegando id do usuário que logou 
+var idUsuario = sessionStorage.getItem("idUsuario");
+
+//Verifica se o cep é válido 
+if(idUsuario != null){
+    //Busca dos dados do usuário
+    var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosUsuario = JSON.parse(resposta);
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+        })
+        xhr.onerror = function () {
+            alert('Sem Conexão com a Base de Dados - Erro (0001)')
+            window.location = "/frontend/index.html";
+        }
+
+    xhr.send();
+}else{
+    // alert('Sessão expirada - Erro (0002)')
+    // window.location = "/frontend/index.html";
+}
+
 //Evento de abertura do menu 
 document.getElementById("mostrar").addEventListener("mouseover", function(){
     abrirMenu();
@@ -62,15 +88,20 @@ async function listaEscolas(){
         document.getElementById("idErro").textContent = "Nenhuma Escola Cadastrada no Sistema";
         document.getElementById("idErro").style.display = "block";
     }else{
+        var escolasIndex = []
         for (let i = 0; i < escolas.length; i++) {
+
+            escolasIndex.push(escolas[i]);
+
             var linha = document.createElement("tr");
             var coluna = document.createElement("td");
+            coluna.classList.add("colunaEscola");
             var coluna2 = document.createElement("td");
             var input = escolas[i].nome;
                     
             coluna.append(input);
             linha.append(coluna);
-    
+            
             var diretor = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
             diretor = JSON.parse(diretor);
 
@@ -87,7 +118,47 @@ async function listaEscolas(){
         //Termina o loading de carregamento 
         document.getElementById("idLoad").style.display = "none";
     }
+    //Retorna o valor da linha da escola clicada
+    $( ".colunaEscola" ).click(function() { 
+        console.log(escolasIndex)
+        var escolaEscolhida = escolasIndex[$(this).index()].idEscola
+        console.log(escolaEscolhida);
+        sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida) 
+    });
 }
+
+/* Métodos para teste
+
+alterarBotão();
+carregarSelect();
+function alterarBotão() {
+    var btn = document.getElementById("btnConverter")
+    if()
+    btn.textContent="Remover Diretor"
+}
+var diretorDisp = document.getElementById("idDiretor")
+async function carregarDiretor(idEscola) {
+    var diretorTeste = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+idEscola);
+    var diretorTeste2 = JSON.parse(diretorTeste)
+    diretorDisp.value = diretorTeste2.nome;
+}
+async function carregarSelect() {
+    var resposta = await usarApi("GET", "http://localhost:8080/api/diretores");
+    console.log(resposta);
+     var diretores = JSON.parse(resposta);
+
+     var selectDiretoresDisponiveis = document.getElementById("SelectDiretor");
+     for (let index = 0; index < diretores.length; index++) {
+         var option = document.createElement("option");;
+         option.textContent = diretores[index].nome;
+         //A opção selecionada retornará o ID do diretor
+         option.value = diretores[index].idUsuario;
+        
+         selectDiretoresDisponiveis.appendChild(option);
+     }
+}
+*/
+
 
 //-----------Alterar------------
 
