@@ -65,12 +65,13 @@ async function listaEscolas(){
         for (let i = 0; i < escolas.length; i++) {
             var linha = document.createElement("tr");
             var coluna = document.createElement("td");
+            coluna.classList.add("colunaEscola");
             var coluna2 = document.createElement("td");
             var input = escolas[i].nome;
                     
             coluna.append(input);
             linha.append(coluna);
-    
+            
             var diretor = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
             diretor = JSON.parse(diretor);
 
@@ -86,8 +87,48 @@ async function listaEscolas(){
         }
         //Termina o loading de carregamento 
         document.getElementById("idLoad").style.display = "none";
+
+        //Retorna o valor da linha da escola clicada
+        $( ".colunaEscola" ).click(function() {
+            sessionStorage.setItem('nomeEscolaSelecionada', $(this).text())
+        });
     }
 }
+
+
+   
+/* Métodos para teste
+
+alterarBotão();
+carregarSelect();
+function alterarBotão() {
+    var btn = document.getElementById("btnConverter")
+    if()
+    btn.textContent="Remover Diretor"
+}
+var diretorDisp = document.getElementById("idDiretor")
+async function carregarDiretor(idEscola) {
+    var diretorTeste = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+idEscola);
+    var diretorTeste2 = JSON.parse(diretorTeste)
+    diretorDisp.value = diretorTeste2.nome;
+}
+async function carregarSelect() {
+    var resposta = await usarApi("GET", "http://localhost:8080/api/diretores");
+    console.log(resposta);
+     var diretores = JSON.parse(resposta);
+
+     var selectDiretoresDisponiveis = document.getElementById("SelectDiretor");
+     for (let index = 0; index < diretores.length; index++) {
+         var option = document.createElement("option");;
+         option.textContent = diretores[index].nome;
+         //A opção selecionada retornará o ID do diretor
+         option.value = diretores[index].idUsuario;
+        
+         selectDiretoresDisponiveis.appendChild(option);
+     }
+}
+*/
+
 
 //-----------Alterar------------
 
