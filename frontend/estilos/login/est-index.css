@@ -44,7 +44,16 @@ Parte principal
 */
 main {
     height: 55%;
-    width: auto;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/*
+Config. do form 
+*/
+form{
     align-items: center;
     display: flex;
     justify-content: center;
@@ -81,8 +90,8 @@ Logo do Online Class
 Caixa de login 
 */
 #caixa-login {
-    width: 50vh;
-    height: auto;
+    width: 49vh;
+    height: 52vh;
     background-color: #ffffff4d;
     border-radius: 3vh;
     text-align: center; 
@@ -135,7 +144,6 @@ Botão de esquecimento da senha
 #botao-esqueceu{
     cursor: pointer;
     color: #630c13;
-    margin-bottom: 6%;
 }
 
 #texto-esqueceu{

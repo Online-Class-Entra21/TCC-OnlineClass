@@ -139,6 +139,7 @@ td {
     padding: 2.5vh;
     border: 1px solid #999;
     font-size: 70%;
+    cursor: pointer;
 }
 
 /*
@@ -152,6 +153,7 @@ th {
     font-size: 70%;
     letter-spacing: 0.1em;
     background: gray;
+    cursor: default;
 }
 
 /*

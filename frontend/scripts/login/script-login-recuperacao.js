@@ -58,6 +58,7 @@ function verificarCodigo(codigo, senha, senhaRepetida){
     if(salvarCodigo.getCodigo() != 0){
         //Verifica se o código é igual ao enviado 
         if(codigo == salvarCodigo.getCodigo()){
+            $('#caixa-login').css('height','44vh')
             $('#input-codigo').css('display','none')
             $('#input-senha').css('display','inline')
             $('#input-senha-repetida').css('display','inline')
