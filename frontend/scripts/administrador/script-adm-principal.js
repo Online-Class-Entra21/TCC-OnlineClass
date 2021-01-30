@@ -1,6 +1,10 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
 
+var img = document.querySelector("#idFotoPerfil");
+img.setAttribute('src', '/frontend/imagens-usuarios/OnlineClass-imagens-000001-01.png');
+img.style.borderRadius = "80%";
+
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
