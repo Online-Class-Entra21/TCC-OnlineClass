@@ -1,3 +1,5 @@
+/*
+
 //Método para chamada da api
 function usarApi(method, url) {
     return new Promise(function (resolve, reject) {
@@ -28,9 +30,20 @@ function usarApi(method, url) {
         xhr.send();
     });
 }
-
 //Retorna o id da escola a ser editada
 var idEscola = sessionStorage.getItem('idEscolaSelecionada')
+var diretorSelect = null;
+//Método para retornar o id do diretor selecionado no select
+$(".SDiretor").change(function(){
+    diretorSelect = $(this).children("option:selected").val();
+    alert("Select Diretor: " + diretorSelect)
+}); 
+
+//Chama o método editarEscola ao clicar no botão confirmar
+$("#btnEditar").click(function() {
+    editarEscola(idEscola);
+})
+
 
 carregarCampos(idEscola);
 carregarSelect();
@@ -61,7 +74,7 @@ async function carregarCampos(idEscola) {
 
             
 }
-  
+    
 //Método para carregar o select com os diretores que não tenham uma escola cadastrada
 async function carregarSelect() {
     var resposta = await usarApi("GET", "http://localhost:8080/api/diretores/disponiveis");
@@ -77,64 +90,48 @@ async function carregarSelect() {
         selectDiretoresDisponiveis.appendChild(option);
         }
 }
-
-
-
-
 /*
-//-----------Alterar------------
-
- //Método para edição da escola  
- async function editarEscola(idEscola) {
-     var escolaEscolhida = document.getElementById("Subtituir pelo id da escola recebido ao selecionar qual escola será editada")
-     var diretorAtual = document.getElementById("Subtituir pelo id do diretor recebido ao selecionar qual escola será editada")
-
-     //Edita a escola
-     var alterarEscola = {
-         "idEscola": escolaEscolhida.idEscola,
-         "nome": input nome,
-         "dataInicioLetivo": input dataInicio,
-         "dataFinalLetivo": input dataFinal
-     }
-     var escolaJson = JSON.stringify(alterarEscola);
-     console.log(escolaJson);
-     var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/"+escolaEscolhida.idEscola+"/"+escolaJson)
-
-     //Traz todos os diretores que podem ser adicionados à escola e popula eles em uma Drop Down list(Select)
-     //Atualizar os id's conforme necessitado pela página
-     var resposta = await usarApi("GET", "http://localhost:8080/api/diretores");
-     console.log(resposta);
-     var diretores = JSON.parse(resposta);
-
-     var selectDiretoresDisponiveis = document.getElementById("idSelectDiretores");
-     for (let index = 0; index < diretores.length; index++) {
-         var option = document.createElement("option");;
-         option.textContent = diretores[index].nome;
-//         //A opção selecionada retornará o ID do diretor
-         option.value = diretores[index].idUsuario;
-        
-         selectDiretoresDisponiveis.appendChild(option);
-     }
-
+//Método para edição da escola  
+async function editarEscola(idEscola) {
+    var resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscola);
+    var diretorAtual = JSON.parse(resposta);
     
-     //Remove o atual diretor deletando-o do banco de dados e atualiza o novo diretor da escola
-     var idDiretorNovo = selectDiretoresDisponiveis.value;
-     if (diretorAtual.idUsuario != idDiretorNovo) {
-         updateDiretor(idEscola, diretorAtual.idUsuario, idDiretorNovo);
-     }
+    if (document.getElementById('idNome').value != '') {
+        //Edita os Campos da escola
+        var alterarEscola = {
+            idEscola: idEscola,
+            nome: document.getElementById('idNome').value,
+            dataInicioLetivo: document.getElementById('idDataInic').value,
+            dataFinalLetivo: document.getElementById('idDataFim').value
+        }
+        var escolaJson = JSON.stringify(alterarEscola);
+        console.log(escolaJson);
+        var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/"+escolaEscolhida.idEscola+"/"+escolaJson)
+        if (updateEscola == false) {
+            alert("Erro, Solicitação de edição mal sucedida");
+            break;
+        }
+        //Edita o Diretor
+        if (diretorAtual.fk_escola != diretorSelect) {
+            updateDiretor(idEscola, diretorAtual.idUsuario, diretorSelect)
+        }
+       
+    } else {
+        alert("Informe o nome!")
+    }
     
- }
-
-//---------Alterar----------
- /*
- Método para remover o atual diretor de uma escola, deletando-o da tabela usuario no banco de dados e atribuindo um novo diretor à escola em seguida
- */
+}   
+*/
 /*
- function updateDiretor(idEscola, idDiretorAtual, idDiretorNovo) {
-     //Deleta o atual diretor no banco de dados
-     var deletarUsuario = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/"+idDiretorAtual);
-
-     //Atualiza para o novo diretor da escola
-     var updateDiretor = await usarApi("PUT", "http://localhost:8080/api/diretor/escola/alterar/"+idEscola+"/"+idDiretorNovo)
- }
- */
+//Método para alterar o diretor
+async function updateDiretor(idEscola, idDiretorAtual, idDiretorNovo) {
+    //Altera o atual diretor no banco de dados
+    var removerDiretor = await usarApi("PUT", "http://localhost:8080/api/diretor/escola/remover/" + idDiretorAtual);
+    //Atualiza para o novo diretor da escola
+    var alterarDiretor = await usarApi("PUT", "http://localhost:8080/api/diretor/escola/alterar/"+idEscola+"/"+idDiretorNovo)
+    if (removerDiretor == false || alterarDiretor == false) {
+        alert("Erro, Solicitação de edição de diretor mal sucedida");
+        break;
+    }
+}
+*/
