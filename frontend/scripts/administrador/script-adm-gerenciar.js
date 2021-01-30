@@ -123,18 +123,3 @@ async function listaEscolas(){
         location.href = "/frontend/paginas/administrador/teste-adm-editar.html"
     });
 }
-<<<<<<< HEAD
-=======
-
-//---------Alterar----------
-// /*
-// Método para remover o atual diretor de uma escola, deletando-o da tabela usuario no banco de dados e atribuindo um novo diretor à escola em seguida
-// */
-// function updateDiretor(idEscola, idDiretorAtual, idDiretorNovo) {
-//     //Deleta o atual diretor no banco de dados
-//     var deletarUsuario = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/"+idDiretorAtual);
-
-//     //Atualiza para o novo diretor da escola
-//     var updateDiretor = await usarApi("PUT", "http://localhost:8080/api/diretor/escola/alterar/"+idEscola+"/"+idDiretorNovo)
-// }
->>>>>>> b9d8df404f95fcb8be7d84c33c0c8f57b37e4a62
