@@ -1,10 +1,6 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
 
-var img = document.querySelector("#idFotoPerfil");
-img.setAttribute('src', '/frontend/imagens-usuarios/OnlineClass-imagens-000001-01.png');
-img.style.borderRadius = "80%";
-
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
@@ -15,7 +11,12 @@ if(idUsuario != 0 && idUsuario != null){
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
             dadosUsuario = JSON.parse(resposta);
+            //Adiciona o nome 
             document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            //Adiciona a foto de perfil do usuario
+            var img = document.querySelector("#idFotoPerfil");
+            img.setAttribute('src', dadosUsuario.fotoUsuario);
+            img.style.borderRadius = "80%";
         })
 
     xhr.send();
