@@ -1,3 +1,4 @@
+//Método para chamada da api
 function usarApi(method, url) {
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
@@ -28,10 +29,13 @@ function usarApi(method, url) {
     });
 }
 
+//Retorna o id da escola a ser editada
 var idEscola = sessionStorage.getItem('idEscolaSelecionada')
+
 carregarCampos(idEscola);
 carregarSelect();
-        
+     
+//Método para carregar os campos com os atuais dados da escola 
 async function carregarCampos(idEscola) {
     var resposta = await usarApi("GET", "http://localhost:8080/api/escola/" + idEscola)
     var escola = JSON.parse(resposta)
@@ -40,11 +44,15 @@ async function carregarCampos(idEscola) {
     document.getElementById('idID').value = escola.idEscola;
     document.getElementById('idNome').value = escola.nome;
     //document.getElementById('idDataInic').textContent = escola.dataInicioLetivo;
+    //document.getElementById('idDataFim').textContent = escola.dataFinalLetivo;
 
     resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscola)
     var diretor = JSON.parse(resposta);
     var btnDiretor = document.getElementById('btnDiretor');
+
+    //Se a escola não possuir um diretor, Torna visivel o Select com os diretores disponíveis. Caso houver diretor, Torna visível o botão "Remover diretor"
     if (diretor.fk_escola == null) {
+        document.getElementById('idDiretor').value = "Nenhum";
         document.getElementById('SelectDiretor').hidden = false;
     } else {
         btnDiretor.hidden = false;
@@ -53,7 +61,8 @@ async function carregarCampos(idEscola) {
 
             
 }
-        
+  
+//Método para carregar o select com os diretores que não tenham uma escola cadastrada
 async function carregarSelect() {
     var resposta = await usarApi("GET", "http://localhost:8080/api/diretores/disponiveis");
     var diretores = JSON.parse(resposta);
