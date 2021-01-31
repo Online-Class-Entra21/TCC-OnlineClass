@@ -43,3 +43,13 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
+//Evento de click no botao professor
+document.getElementById("idProf").addEventListener("click",function(){
+    location = "/frontend/paginas/diretor/dir-profissionais-professor.html";
+})
+
+//Evento de click no botao coordenador
+document.getElementById("idCoord").addEventListener("click",function(){
+    location = "/frontend/paginas/diretor/dir-profissionais-coordenador.html";
+})
+
