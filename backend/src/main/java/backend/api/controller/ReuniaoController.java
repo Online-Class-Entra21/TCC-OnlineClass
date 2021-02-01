@@ -138,4 +138,29 @@ public class ReuniaoController {
 			return false;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Retorna a lista das reunioes registrados no sistema onde o dono é o id informado {GET}
+	 * @return lista de reunioes registradas no banco
+	 * @author Andre
+	 */
+	@GetMapping(path = "/api/reunioes/{codigo}")
+	public List<Reuniao> consultarId(@PathVariable("codigo") int codigo){
+		LOGGER.info("Requisição List<Reuniao> codigo dono - {}",codigo);
+		List<Reuniao> lista;
+		ReuniaoDAO reuniaoDao = new ReuniaoDAO();
+		try {
+			lista = reuniaoDao.buscarTodos(codigo);
+			LOGGER.info("Requisição List<Reuniao> - codidigo dono - {} - bem sucedida",codigo);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Reuniao Mal Sucedida - erro - {} - codigo dono - {}",e.toString(),codigo);
+			return null;
+		}
+	}
 }

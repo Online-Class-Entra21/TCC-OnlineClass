@@ -1,3 +1,7 @@
+/**************************
+Config. do menu padrao
+***************************/
+
 /*
 Config. para todos os elementos 
 */
@@ -56,137 +60,6 @@ a:visited {
 }
 
 /*
-Config. do fieldset
-*/
-fieldset{
-    background-color: #ffffff;
-    overflow-y: scroll;
-}
-
-/*
-Config da tabela
-*/
-.tabela {
-    font-family: cursive;
-    border: none;
-    width: 100%;
-    max-height: 100%;
-}
-
-/*
-Config. dos fieldsets especificos
-*/
-#fieldset-lista-historico{
-    width: 90%;
-    height: 95%;
-    max-height: 95%;
-    min-height: 95%;
-}
-#fieldset-lista-programacao{
-    width: 90%;
-    height: 90%;
-    max-height: 90%;
-    min-height: 90%;
-}
-#fieldset-lista-relatorios{
-    width: 90%;
-    height: 90%;
-    max-height: 90%;
-    min-height: 90%;
-}
-
-/*
-Config. das td de historico de reunioes 
-*/
-.td-lista{
-    padding: 2.2vh;
-    font-size: 100%;
-    cursor: default;
-    border: none;
-}
-
-/*
-Config. das figures das imagens do historico
-*/
-.foto-usuario{
-    width: 10%;
-    height: 100%;
-    margin: 0;
-}
-
-/*
-Config. da div de dados da reuniao 
-*/
-.dados{
-    margin: 0;
-    align-items: center;
-    justify-content: center;
-}
-
-/*
-Config. das labels 
-*/
-.nome{
-    margin: 0;
-    font-size: 2.5vh;
-}
-.data{
-    margin: 0;
-    font-size: 2.5vh;
-}
-
-/*
-Config. das imagens do historico 
-*/
-.img-usuario{
-    width: 7vh;
-    height: auto;
-    border-radius: 100%;
-}
-
-/*
-Config. das div  
-*/
-.div-conteudos{
-    width: 65vh;
-    height: 95%;
-    float: left;
-    border: none;
-    margin-left: 1%;
-    margin-right: 1%;
-    margin-top: 1%;
-    background-color: rgb(87, 16, 16);
-    border-radius: 4vh;
-}
-
-/*
-Config. do cabecalho das divs
-*/
-.cab-divs{
-    width: 100%;
-    height: 10%;
-}
-
-/*
-Config. das divs de conteudo parte principal 
-*/
-.corpo-divs{
-    width: 100%;
-    height: 85%;
-    margin-top: 3%;
-}
-
-/*
-Config. dos titulos 
-*/
-.titulo{
-    font-size: 3vh;
-    margin-top: 5%;
-    margin-left: 10%;
-    color: white;
-}
-
-/*
 Config figures opcoes e img opcoes
 */
 .figure-opcoes{
@@ -220,37 +93,6 @@ Config. das opcoes do menu
     align-items: center;
     display: flex;
     flex-direction: row;
-}
-
-/*
-Config. das linhas 
-*/
-.linha{
-    border-bottom: 1px solid black;
-}
-
-/*
-Config. das imagens do cab 
-*/
-.img-cab{
-    width: 4vh;
-    height: auto;
-    margin-bottom: 2%;
-    margin-left: 5%;
-}
-
-/*
-Config. das divs internas 
-*/
-.div-tabela{
-    width: 100%;
-    height: 90%;
-    display: flex;
-    justify-content: center;
-}
-.div-botao{
-    display: flex;
-    justify-content: center;
 }
 
 /*
@@ -389,6 +231,172 @@ Config. da div do botão de saida
     margin-top: 35%;
 }
 
+/**************************
+Config. das alteracoes especificas
+***************************/
+
+/*
+Config. do fieldset
+*/
+fieldset{
+    background-color: #ffffff;
+    overflow-y: scroll;
+}
+
+/*
+Config. das div de conteudo
+*/
+.div-conteudos{
+    width: 65vh;
+    height: 95%;
+    float: left;
+    border: none;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 1%;
+    background-color: rgb(87, 16, 16);
+    border-radius: 4vh;
+}
+
+/*
+Config. do cabecalho das divs
+*/
+.cab-divs{
+    width: 100%;
+    height: 10%;
+}
+
+/*
+Config. das divs de conteudo parte principal 
+*/
+.corpo-divs{
+    width: 100%;
+    height: 85%;
+    margin-top: 3%;
+}
+
+/*
+Config. das divs internas 
+*/
+.div-tabela{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+}
+.div-botao{
+    display: flex;
+    justify-content: center;
+}
+
+/*
+Config da tabela
+*/
+.tabela {
+    font-family: cursive;
+    border: none;
+    width: 100%;
+    max-height: 100%;
+}
+
+/*
+Config. das figures das imagens do historico
+*/
+.foto-usuario{
+    width: 10%;
+    height: 100%;
+    margin: 0;
+}
+
+/*
+Config. das linhas 
+*/
+.linha{
+    border-bottom: 1px solid black;
+}
+
+/*
+Config. das td de historico de reunioes 
+*/
+.td-lista{
+    padding: 2.2vh;
+    font-size: 100%;
+    cursor: default;
+    border: none;
+}
+
+/*
+Config. da div de dados da reuniao 
+*/
+.dados{
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+/*
+Config. das labels 
+*/
+.nome{
+    margin: 0;
+    font-size: 2.5vh;
+}
+.data{
+    margin: 0;
+    font-size: 2.5vh;
+}
+
+/*
+Config. das imagens do historico 
+*/
+.img-usuario{
+    width: 7vh;
+    height: auto;
+    border-radius: 100%;
+}
+
+/*
+Config. dos titulos 
+*/
+.titulo{
+    font-size: 3vh;
+    margin-top: 5%;
+    margin-left: 10%;
+    color: white;
+}
+
+/*
+Config. das imagens do cab 
+*/
+.img-cab{
+    width: 4vh;
+    height: auto;
+    margin-bottom: 2%;
+    margin-left: 5%;
+}
+
+/*
+Config. dos fieldsets especificos
+*/
+#fieldset-lista-historico{
+    width: 90%;
+    height: 95%;
+    max-height: 95%;
+    min-height: 95%;
+}
+#fieldset-lista-programacao{
+    width: 90%;
+    height: 90%;
+    max-height: 90%;
+    min-height: 90%;
+}
+#fieldset-lista-relatorios{
+    width: 90%;
+    height: 90%;
+    max-height: 90%;
+    min-height: 90%;
+}
+
 /*
 Config. do centro 
 */
@@ -420,4 +428,5 @@ Config. dos botoes de criacao
     border: none;
     padding: 1.5%;
 }
+
 

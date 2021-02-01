@@ -1,3 +1,7 @@
+/**************************
+Config. do menu padrao
+***************************/
+
 /*
 Config. para todos os elementos 
 */
@@ -27,20 +31,13 @@ header{
 }
 
 /*
-Config. do main
-*/
-main{
-    width: 100%;
-    height: 100%;
-}
-
-/*
 Config. das ancoras 
 */
 a{
    text-decoration: none;
    margin-left: 3%;
    color: white;
+   display: block;
 }
 
 /* 
@@ -91,16 +88,6 @@ Config. das opcoes do menu
     align-items: center;
     display: flex;
     flex-direction: row;
-}
-
-/*
-Config. do fieldset
-*/
-fieldset{
-    margin: 2%;
-    border-radius: 3%;
-    width: 40vh;
-    height: 17vh;
 }
 
 /*
@@ -237,6 +224,20 @@ Config. da div do botão de saida
 */
 #sair{
     margin-top: 90%;
+}
+
+/**************************
+Config. das alteracoes especificas
+***************************/
+
+/*
+Config. do fieldset
+*/
+fieldset{
+    margin: 2%;
+    border-radius: 3%;
+    width: 40vh;
+    height: 17vh;
 }
 
 /*
