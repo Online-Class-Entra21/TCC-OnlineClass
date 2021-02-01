@@ -97,7 +97,7 @@ config. calendario
    
 }
 #check3:checked ~ .calendario{
-    transform: translateY(275%);
+    transform: translateY(220%);
 }
 
 #icone3{
@@ -113,12 +113,12 @@ config. calendario
    
 }
 .calendario {
-    background-color: #646464;
-    height: 40%;
-    width: 940px;
+    background-color: #00bd13;
+    height: 50%;
+    width: 65%;
     position: absolute;
     transition: all .2s linear;
-    margin-left: 25%;
+    margin-left: 20%;
     top: -100%;
     display: block;
    position: fixed;
@@ -131,49 +131,43 @@ config. calendario
     width: 19%;
    height: 75% ;
    text-align: center;
-   margin-top: 70px;
+   margin-top: 6%;
    display: inline-block;
    margin-left: 1.5%;
   
 }
 .cal2{
-   
-    background-color:  white;
+   background-color:  white;
     width: 19%;
    height: 75% ;
    text-align: center;
-   margin-top: 70px;
-   display: inline-block;
-    
+   margin-top: 6%;
+   display: inline-block;   
  }
  .cal3 {
-    
     background-color:  white;
     width: 19%;
    height: 75% ;
    text-align: center;
-   margin-top: 70px;
-   display: inline-block;
-   
+   margin-top: 6%;
+   display: inline-block;   
  }
  .cal4 {
-    
     background-color:  white;
     width: 19%;
    height: 75% ;
    text-align: center;
-   margin-top: 70px;
-   display: inline-block;
+   margin-top: 6%;
+   display: inline-block;   
    
  }
  .cal5 {
-    
     background-color:  white;
     width: 19%;
    height: 75% ;
    text-align: center;
-   margin-top: 70px;
-   display: inline-block;
+   margin-top: 6%;
+   display: inline-block;   
    
  }
 
@@ -234,7 +228,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:lightblue;
+    color:#00bd13;
 }
 .img-opcoes{
     width: 11%;
@@ -262,7 +256,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#2e2e2e;
+    background-color:black;
 }
 
 /*
@@ -294,7 +288,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #2e2e2e;
+    background-color: black;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
@@ -383,7 +377,6 @@ Config. Dados do usuario
     width: 10%;
     height: 10%;
 }
-
 /*
 Config. da div do botão de saida 
 */
