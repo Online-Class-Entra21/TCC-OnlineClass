@@ -1,3 +1,4 @@
+//Classe para salvar o codigo de verificacao temporariamente 
 function salvarCodigo(cod, eml){
 
     var codigo = cod;
