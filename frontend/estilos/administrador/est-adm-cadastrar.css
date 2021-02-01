@@ -1,0 +1,353 @@
+/*
+Config. para todos os elementos 
+*/
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+Config. padrao da barra 
+*/
+body, html{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+/*
+Config. do header
+*/
+header{
+    z-index: 1;
+    position: fixed;
+    height: 10%;
+    width: 100%;
+}
+
+form {
+    margin-top: 10%;
+    padding: 1%;
+    float: left;
+}
+
+
+
+/*
+Config. das ancoras 
+*/
+a{
+   text-decoration: none;
+   margin-left: 3%;
+   color: white;
+}
+
+/* 
+link que ainda não foi visitado 
+*/
+a:link {
+    color: white;
+}
+
+/* 
+link que foi visitado 
+*/
+a:visited {
+     color: white;
+}
+
+
+/*
+Config figures opcoes e img opcoes
+*/
+.figure-opcoes{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+.figure-opcoes a:hover{
+    list-style: none;
+    text-decoration: none;
+    color:chartreuse;
+}
+.img-opcoes{
+    width: 9%;
+    height: auto;
+    margin-left: 7%;
+    margin-right: 3%;
+    list-style: none;
+    text-decoration: none;
+}
+
+/*
+Config. das opcoes do menu 
+*/
+.opcoes{
+    width: 100%;
+    height: 8%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+section {
+    margin: 3%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+button {
+    width: 20vh;
+    margin: 5%;
+    margin-right: 3%;
+    padding: 1%;
+    background: white;
+}
+
+button:hover {
+    background: black;
+    color: white;
+}
+
+#escola {
+    width: 40%;
+    float: left;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+/*
+Config. do fieldset
+*/
+fieldset {
+    background-color: #eeeeee;
+}
+
+/*
+Config. das legendas 
+*/
+legend {
+    background-color: gray;
+    color: white;
+    padding: 1% 2%;
+    font-family: cursive;
+}
+
+input {
+    background: #ffffff;
+    width: 170px;
+}
+
+select {
+    background: #ffffff;
+}
+
+
+label {
+    margin: 4%;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+
+/*
+Config. de nav - cabecalho
+*/
+#cabecalho{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(24, 21, 21);
+}
+
+/*
+Config. das div do cabecalho
+*/
+#lado-esquerdo{
+    float: left;
+    width: 30%;
+    height: 100%;
+}
+#lado-direito{
+    float: right;
+    width: 70%;
+    height: 100%;
+}
+
+/*
+Config. da div que mostra o menu 
+*/
+#mostrar{
+    width: 1%;
+    height: 100%;
+    position: absolute;
+}
+
+/*
+Config. do menu 
+*/
+#menu{
+    position: fixed;
+    z-index: 2;
+    width: 42vh;
+    height: 100%;
+    background-color: rgb(24, 21, 21);
+    border-right: 1px solid;
+    border-color: white;
+    display: none;
+}
+
+/*
+Config. do titulo de administrador 
+*/
+#menu-titulo{
+    cursor: default;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 10%;
+    margin-bottom: 17%;
+    color: white;
+}
+
+/*
+Config. div do menu
+*/
+#botao-menu{
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-left: 7%;
+}
+
+/*
+Config. do botao do menu 
+*/
+#figure-menu{
+    width: 8vh;
+    margin: 0;
+    height: auto;
+}
+#idImgMenu{
+    width: 55%;
+    height: auto;
+}
+
+/*
+Config. da div da barra no lado direito
+*/
+#lado-direito{
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 0;
+}
+
+/*
+Config. img-perfil
+*/
+#figure-perfil{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0%;
+    margin-right: 2%;
+    float: right;
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 4%;
+}
+#idFotoPerfil{
+    width: 8vh;
+    height: auto;
+}
+
+
+/*
+Config. img-perfil
+*/
+#figure-perfil{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0%;
+    margin-right: 2%;
+    float: right;
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-right: 4%;
+}
+#idFotoPerfil{
+    width: 8vh;
+    height: auto;
+}
+
+/*
+Config. Dados do usuario 
+*/
+#idNomeUsuario{
+    color: white;
+    float: left;
+    margin: 0;
+    font-size: 2.5vh;
+    margin-right: 4%;
+}
+#idImgCadastro{
+    width: 10%;
+    height: 10%;
+}
+
+/*
+Config. da div do botão de saida 
+*/
+#sair{
+    margin-top: 90%;
+}
+
+/*
+Config. do conteudo do centro
+*/
+#corpo{
+    width: 100%;
+    height: 100%;
+}
+
+/*
+Config. da div de separação de cima
+*/
+#cima{
+    height: 20%;
+    width: 100%;
+}
+
+/*
+Config. da div da tabela 
+*/
+#tab{
+    height: 75%;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/*
+Config. da mensagem de erro
+*/
+#idErro{
+    margin-left: 4%;
+    color: black;
+    display: none;
+}
+
+
