@@ -17,32 +17,40 @@ if(idUsuario != 0 && idUsuario != null){
             var img = document.querySelector("#idFotoPerfil");
             img.setAttribute('src', dadosUsuario.fotoUsuario);
             img.style.borderRadius = "80%";
+            carregarListas();
         })
 
     xhr.send();
 
-    //Busca dos reunioes passadas do usuário
-    var xhr2 = new XMLHttpRequest(); 
+    function carregarListas(){
+        //Busca dos reunioes passadas do usuário
+        var xhr2 = new XMLHttpRequest(); 
 
         xhr2.open("GET", "http://localhost:8080/api/reunioes/"+idUsuario);
 
         xhr2.addEventListener("load", function(){
             var resposta2 = xhr2.responseText; 
             dadosReuniao = JSON.parse(resposta2);
-            now = new Date();
 
-            reunioes = []
+            //Ordena o vetor de reunioes pela data
+            
+            reunioes = [];
             for (let i = 0; i < dadosReuniao.length; i++) {
-                
+
                 reunioes.push(dadosReuniao[i]);
 
+                //Pega a data da reuniao para comparacao
+                var str = reunioes[i].dataInicio;
+                var dataReuniao = new Date(str.split('/').reverse().join('/'));
+                var dataAtual = new Date();
+
                 //Verifica em qual lista vai 
-                if(true){
-                    //Pega a lista - tabela 
-                    var lista = document.getElementById("lista-historico");
-                }else{
+                if(dataReuniao > dataAtual){
                     //Pega a lista - tabela 
                     var lista = document.getElementById("lista-programacao");
+                }else{
+                    //Pega a lista - tabela 
+                    var lista = document.getElementById("lista-historico");
                 }
 
                 //Cria uma nova linha 
@@ -103,6 +111,8 @@ if(idUsuario != 0 && idUsuario != null){
         })
 
     xhr2.send();
+    }
+    
 
     // //Busca dos reunioes futuras do usuário
     // var xhr = new XMLHttpRequest(); 

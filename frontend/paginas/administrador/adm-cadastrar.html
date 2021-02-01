@@ -65,43 +65,41 @@
             </nav>
         </header>
         <!-- Conteudo do corpo do programa -->
+        <!-- Conteudo do corpo do programa -->
         <main id="container" class="nav justify-content-center">
-            <form action="" method="GET">
-                <!-- DADOS PESSOAIS-->
-                <fieldset>
-                    <legend>Dados Pessoais</legend>
-                    <table cellspacing="10">
+            <form action="" class="nav justify-content-center">
+                <!-- Dados pessoais -->
+                <div id="dados">
+                    <h5 class="titulo">Dados Pessoais</h5>
+                    <table class="tabela">
+                        <!-- Nome -->
                         <tr>
                             <td>
                                 <label for="nome">Nome: </label>
                             </td>
-                            <td align="left">
+                            <td>
                                 <input type="text" name="email">
                             </td>
+                        </tr>
+                        <!-- Sobrenome -->
+                        <tr>
                             <td>
                                 <label for="sobrenome">Sobrenome: </label>
                             </td>
-                            <td align="left">
+                            <td>
                                 <input type="text" name="sobrenome">
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <label>Nascimento: </label>
-                            </td>
-                            <td align="left">
-                                <input type="date" name="mes" size="2" maxlength="2" value="mm">
-                            </td>
-                        </tr>
-
+                        <!-- Celular -->
                         <tr>
                             <td>
                                 <label>Celular:</label>
                             </td>
-                            <td align="left">
+                            <td>
                                 <input type="text" max="16" maxlength="16" placeholder="(00) 9 1234-5678">     
                             </td>
                         </tr>
+                        <!-- Telefone -->
                         <tr>
                             <td>
                                 <label>Telefone:</label>
@@ -111,20 +109,13 @@
                             </td>
                         </tr>
                     </table>
-                </fieldset>
-
-                <br>
-
-
-                <!-- DADOS DE LOGIN -->
-                <fieldset>
-                    <legend>Dados de Login</legend>
-                    <table cellspacing="10">
+                    <table class="tabela">
+                        <h5 id="titulo-dados" class="titulo">Dados de Login</h5>
                         <tr>
                             <td>
                                 <label for="email">E-mail: </label>
                             </td>
-                            <td align="left">
+                            <td>
                                 <input type="email" name="email">
                             </td>
                         </tr>
@@ -134,14 +125,13 @@
                             </td>
                             <td>
                                 <input type="file" name="imagem">
-
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <label for="pass">Senha: </label>
                             </td>
-                            <td align="left">
+                            <td>
                                 <input type="password" name="pass">
                             </td>
                         </tr>
@@ -149,22 +139,18 @@
                             <td>
                                 <label for="passconfirm">Confirme a senha: </label>
                             </td>
-                            <td align="left">
+                            <td>
                                 <input type="password" name="passconfirm">
                             </td>
                         </tr>
                     </table>
-                </fieldset>
-                <br>
+                </div>
                 <div class="nav justify-content-center">
                     <button type="submit">Cadastrar</button>
                     <button type="reset">Limpar</button>
                 </div>
             </form>
         </main>
-        <footer>
-
-        </footer>
-        <script src="/frontend/scripts/administrador/script-adm-cadastrar.js"></script>
+    <script src="/frontend/scripts/administrador/script-adm-cadastrar.js"></script>
     </body>
 </html>
