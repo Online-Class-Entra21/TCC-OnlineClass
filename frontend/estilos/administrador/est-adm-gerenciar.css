@@ -31,13 +31,28 @@ header{
 }
 
 /*
+Config. do main
+*/
+main{
+    height: 90%;
+    width: 100%;
+}
+
+/*
+Config. do footer
+*/
+footer{
+    height: 10%;
+    width: 100%;
+}
+
+/*
 Config. das ancoras 
 */
 a{
    text-decoration: none;
    margin-left: 3%;
    color: white;
-   display: block;
 }
 
 /* 
@@ -231,14 +246,6 @@ Config. das alteracoes especificas
 ***************************/
 
 /*
-Config. do footer
-*/
-footer{
-    height: 10%;
-    width: 100%;
-}
-
-/*
 Config. do fieldset
 */
 fieldset {
@@ -302,7 +309,7 @@ th {
 /*
 Config. spin de carregamento 
 */
-.loader{
+.loader {
     border: 1.5vh solid #c0aea4; /* Light grey */
     border-top: 1.5vh solid #3498db; /* Blue */
     border-radius: 50%;
