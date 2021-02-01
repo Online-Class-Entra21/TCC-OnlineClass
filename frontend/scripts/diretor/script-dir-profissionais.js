@@ -1,8 +1,8 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
 
-//Verifica se o cep é válido 
-if(idUsuario != null){
+//Verifica se o idUsuario é válido 
+if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
@@ -43,4 +43,13 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
+//Evento de click no botao professor
+document.getElementById("idProf").addEventListener("click",function(){
+    location = "/frontend/paginas/diretor/dir-profissionais-professor.html";
+})
+
+//Evento de click no botao coordenador
+document.getElementById("idCoord").addEventListener("click",function(){
+    location = "/frontend/paginas/diretor/dir-profissionais-coordenador.html";
+})
 

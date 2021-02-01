@@ -138,4 +138,38 @@ public class ReuniaoDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Metodo para selecionar todas as reunioes do banco de dados
+	 * @return lista de reunioes resgistradas no banco 
+	 * @param int codigoDono
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public List<Reuniao> buscarTodos(int codigoDono) throws SQLException {
+		List<Reuniao> lista = new ArrayList<Reuniao>();
+		String sql = "select * from reuniao where dono = ?";
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Reuniao reuniao = new Reuniao();
+			reuniao.setIdReuniao(resultSet.getInt(1));
+			reuniao.setDescricao(resultSet.getString(2));
+			reuniao.setDataInicio(resultSet.getDate(3));
+			reuniao.setDono(resultSet.getInt(4));
+			reuniao.setNotaMediaAula(resultSet.getDouble(5));
+			reuniao.setFk_sala(resultSet.getInt(6));
+			reuniao.setFk_usuarioDisciplina(resultSet.getInt(7));
+			comandoSql.setInt(1, codigoDono);
+			lista.add(reuniao);
+		}
+		comandoSql.close();
+		return lista;
+	}
 }

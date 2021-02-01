@@ -6,8 +6,8 @@
         <link rel="sortcut icon" href="/frontend/imagens/Logo-OnlineClass.png" type="image/x-icon"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--CSS-->
-        <link rel="stylesheet" href="/frontend/estilos/administrador/est-adm-principal.css">
         <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/frontend/estilos/administrador/est-adm-principal.css">
         <title>Tela Principal - Administrador</title>
     </head>
     <body>
@@ -68,47 +68,43 @@
         </header>
         <!-- Conteudo do corpo do programa -->
         <main>
+            <div id="separacao">
+
+            </div>
+            <div id="dataAtual">
+                <label for="dataAtual" id="data" title="Data Atual" name="data"></label>
+            </div>
             <div id="img-bemVindo">
                 <figure id="imagem">
                     <img src="/frontend/imagens/bem-vindo-adm.png" alt="Bem Vindo" title="Bem Vindo" id="img-bv">
                 </figure>
             </div>
-            <div id="info">
-                <div id="dataAtual">
-                    <label for="dataAtual" id="data" title="Data Atual" name="data"></label>
-                </div>
-                <div class="informacoes" id="info-diretores">
-                    <div class="titulo-info">
-                        <h3 class="titulo">Diretores</h3>
-                    </div>
+            <!-- Informacoes do sistema -->
+            <div id="principal" class="nav justify-content-center">
+                <fieldset class="informacoes border p-2">
+                    <legend class="w-auto">Diretores</legend>
                     <div class="result">
                         <label for="info-diretores" id="qtdDiretores" title="Quantidade de Diretores" name="qtdDiretores">Quantidade Atual: 0</label>
                     </div>
-                </div>
-                <div class="informacoes" id="info-coordenadores">
-                    <div class="titulo-info">
-                        <h3 class="titulo">Coordenadores</h3>
-                    </div>
+                </fieldset>
+                <fieldset class="informacoes border p-2">
+                    <legend class="w-auto">Coordenadores</legend>
                     <div class="result">
                         <label for="info-coordenadores" id="qtdCoordenadores" title="Quantidade de Coordenadores" name="qtdCoordenadores">Quantidade Atual: 0</label>
                     </div>
-                </div>
-                <div class="informacoes" id="info-professores">
-                    <div class="titulo-info">
-                        <h3 class="titulo">Professores</h3>
-                    </div>
+                </fieldset>
+                <fieldset class="informacoes border p-2">
+                    <legend class="w-auto">Professores</legend>
                     <div class="result">
                         <label for="info-professores" id="qtdProfessores" title="Quantidade de Professores" name="qtdProfesssores">Quantidade Atual: 0</label>
                     </div>
-                </div>
-                <div class="informacoes" id="info-alunos">
-                    <div class="titulo-info">
-                        <h3 class="titulo">Alunos</h3>
-                    </div>
+                </fieldset>
+                <fieldset class="informacoes border p-2">
+                    <legend class="w-auto">Alunos</legend>
                     <div class="result">
                         <label for="info-alunos" id="qtdAlunos" title="Quantidade de Alunos" name="qtdAlunos">Quantidade Atual: 0</label>
                     </div>
-                </div>
+                </fieldset>
             </div>
         </main>
     </body>

@@ -1,3 +1,7 @@
+/**************************
+Config. do menu padrao
+***************************/
+
 /*
 Config. para todos os elementos 
 */
@@ -51,16 +55,6 @@ a:visited {
 }
 
 /*
-Config. dos textos na tela - paragrafos 
-*/
-p {
-    font-size: 5vh;
-    font-family: cursive;
-    margin: 4%;
-    color: white;  
-}
-
-/*
 Config figures opcoes e img opcoes
 */
 .figure-opcoes{
@@ -94,34 +88,6 @@ Config. das opcoes do menu
     align-items: center;
     display: flex;
     flex-direction: row;
-}
-
-/*
-Config. das imagens dos ADMs 
-*/
-.imagens{
-    width: 70%;
-    border-radius: 100%;
-}
-
-/*
-Config. dos cartoes dos ADMs
-*/
-.cartoes {
-    cursor: default;
-    background: #141414;
-    width: 40vh;
-    height: 52vh;
-    margin-top: 20vh;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    text-align: center;
-    border-radius: 7% 24%;
-}
-
-.ancoras-card{
-    margin: 10%;
 }
 
 /*
@@ -258,5 +224,50 @@ Config. da div do botão de saida
 */
 #sair{
     margin-top: 90%;
+}
+
+/**************************
+Config. das alteracoes especificas
+***************************/
+
+/*
+Config. dos textos na tela - paragrafos 
+*/
+p {
+    font-size: 5vh;
+    font-family: cursive;
+    margin: 4%;
+    color: white;  
+}
+
+/*
+Config. das imagens dos ADMs 
+*/
+.imagens{
+    width: 70%;
+    border-radius: 100%;
+}
+
+/*
+Config. dos cartoes dos ADMs
+*/
+.cartoes {
+    cursor: default;
+    background: #141414;
+    width: 40vh;
+    height: 52vh;
+    margin-top: 20vh;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+    border-radius: 7% 24%;
+}
+
+/*
+Config. dos links dos cartoes 
+*/
+.ancoras-card{
+    margin: 10%;
 }
 

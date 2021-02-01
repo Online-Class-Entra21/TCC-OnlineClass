@@ -5,7 +5,7 @@
         <meta charset="urf-8">
         <title> Online Class </title>
         <!-- Icone da página -->
-        <link rel="sortcut icon" href="/frontend/imagens/Logo-OnlineClass.png" type="image/x-icon" />;
+        <link rel="sortcut icon" href="/frontend/imagens/Logo-OnlineClass.png" type="image/x-icon" />
         <!-- Chamada do Bootstrap -->
         <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <!-- Chamada do CSS -->
@@ -23,33 +23,35 @@
 
         <!-- Corpo do Site -->
         <main>
-            <!-- Caixa de login -->
-            <div id="caixa-login">
-                <!-- Imagem de login -->
-                <figure id="img-container">
-                    <img id="usuario-login" src="/frontend/imagens/perfil.png" class="mx-auto d-block" title="Usuário">
-                </figure>
+            <form action="" autocomplete="off">
+                <!-- Caixa de login -->
+                <div id="caixa-login">
+                    <!-- Imagem de login -->
+                    <figure id="img-container">
+                        <img id="usuario-login" src="/frontend/imagens/perfil.png" class="mx-auto d-block" title="Usuário">
+                    </figure>
 
-                <!-- Inserção do email -->
-                <div class="nav justify-content-center">
-                    <input type="email" name="email" id="input-email" class="inputs" placeholder="Digite seu e-mail" title="E-mail">
-                </div>
+                    <!-- Inserção do email -->
+                    <div class="nav justify-content-center">
+                        <input type="email" name="email" id="input-email" class="inputs" placeholder="Digite seu e-mail" title="E-mail">
+                    </div>
 
-                <!-- Inserção de senha -->
-                <div class="nav justify-content-center">
-                    <input type="password" name="senha" id="input-senha" class="inputs" placeholder="Digite sua senha" title="Senha">
-                </div>
+                    <!-- Inserção de senha -->
+                    <div class="nav justify-content-center">
+                        <input type="password" name="senha" id="input-senha" class="inputs" placeholder="Digite sua senha" title="Senha">
+                    </div>
 
-                <!-- Botão de login-->
-                <div class="nav justify-content-center">
-                    <input id="input-login" type="submit" value="Entrar" class="submit" onclick="logar($('#input-email').val(), $('#input-senha').val())" title="Logar">
-                </div>
+                    <!-- Botão de login-->
+                    <div class="nav justify-content-center">
+                        <input id="input-login" type="button" value="Entrar" class="submit" onclick="logar($('#input-email').val(), $('#input-senha').val())" title="Logar">
+                    </div>
 
-                <!-- Botão de esquceu a senha -->
-                <div id="botao-esqueceu">
-                    <h5 id="texto-esqueceu" onclick="mudarSenha()" title="Recuperação de senha">Esqueceu sua senha?</h5>
+                    <!-- Botão de esquceu a senha -->
+                    <div id="botao-esqueceu">
+                        <h5 id="texto-esqueceu" onclick="mudarSenha()" title="Recuperação de senha">Esqueceu sua senha?</h5>
+                    </div>
                 </div>
-            </div>
+            </form>
         </main>
     </body>
     <!-- Scripts JS -->

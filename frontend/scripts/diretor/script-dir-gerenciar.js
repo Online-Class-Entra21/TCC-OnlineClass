@@ -1,8 +1,8 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
 
-//Verifica se o cep é válido 
-if(idUsuario != null){
+//Verifica se o idUsuario é válido 
+if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
@@ -20,6 +20,7 @@ if(idUsuario != null){
         })
 
     xhr.send();
+    
 }else{
     // alert('Sessão expirada - Erro (0002)')
     // window.location = "/frontend/index.html";
@@ -42,5 +43,3 @@ function abrirMenu(){
 document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
-
-
