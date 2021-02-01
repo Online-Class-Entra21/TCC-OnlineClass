@@ -155,6 +155,7 @@ public class ReuniaoDAO {
 		String sql = "select * from reuniao where dono = ?";
 		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, codigoDono);
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
@@ -166,7 +167,6 @@ public class ReuniaoDAO {
 			reuniao.setNotaMediaAula(resultSet.getDouble(5));
 			reuniao.setFk_sala(resultSet.getInt(6));
 			reuniao.setFk_usuarioDisciplina(resultSet.getInt(7));
-			comandoSql.setInt(1, codigoDono);
 			lista.add(reuniao);
 		}
 		comandoSql.close();
