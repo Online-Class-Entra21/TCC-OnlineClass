@@ -143,6 +143,13 @@ td {
 }
 
 /*
+Config. das linhas do cab
+*/
+tr{
+    width:1600px;
+}
+
+/*
 Config. das linhas 
 */
 th {
