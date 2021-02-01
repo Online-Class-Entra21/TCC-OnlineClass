@@ -1,11 +1,170 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Aqui
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/frontend/estilos/administrador/est-adm-cadastrar.css">
+        <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
+
+        <title> Cadastro Escola - OnlineClass</title>
+    </head>
+    <body>
+        <div id="mostrar"></div>
+        <div id="menu">
+            <!--Menu lateral-->
+            <div id="menu-titulo">
+                <h4 id="idMenuTitulo">Administrador</h4>
+            </div>
+            <section id="cadastrar" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/conhecimento.png" alt="Cadastro" title="Cadastro" class="img-opcoes">
+                    <a href="/frontend/paginas/administrador/adm-cadastrar.html">Cadastrar Escola</a>
+                </figure>
+            </section>
+            <section id="gerenciar" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/editar.png" alt="Gerenciar" title="Gerenciar" class="img-opcoes">
+                    <a href="/frontend/paginas/administrador/adm-gerenciar.html">Gerenciar Escolas</a>
+                </figure>
+            </section>
+            <section id="equipe" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/team.png" alt="Equipe" title="Equipe" class="img-opcoes">
+                    <a href="/frontend/paginas/administrador/adm-equipe.html">Equipe OnlineClass</a>
+                </figure>
+            </section>
+            <section id="tela-principal" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
+                    <a href="/frontend/paginas/administrador/adm-principal.html">Tela Principal</a>
+                </figure>
+            </section>
+            <section id="sair" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
+                    <a id="ancoraSair" href="/frontend/index.html">Sair</a>
+                </figure>
+            </section>
+        </div>
+        <header>
+            <!--Cabecalho-->
+            <nav id="cabecalho">
+                <div id="lado-esquerdo">
+                    <div id="botao-menu">
+                        <figure id="figure-menu">
+                            <img id="idImgMenu" src="/frontend/imagens/botao-menu.png" alt="Menu" title="Menu" name="menu">
+                        </figure>
+                    </div>
+                </div>
+                <div id="lado-direito">
+                    <figure id="figure-perfil">
+                        <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil" title="Foto de Perfil">
+                        <label id="idNomeUsuario" for="foto-perfil" name="nome-usuario" title="Nome">Nome</label>
+                    </figure>
+                </div>
+            </nav>
+        </header>
+        <!-- Conteudo do corpo do programa -->
+        <main id="container" class="nav justify-content-center">
+            <form action="" method="GET">
+                <!-- DADOS PESSOAIS-->
+                <fieldset>
+                    <legend>Dados Pessoais</legend>
+                    <table cellspacing="10">
+                        <tr>
+                            <td>
+                                <label for="nome">Nome: </label>
+                            </td>
+                            <td align="left">
+                                <input type="text" name="email">
+                            </td>
+                            <td>
+                                <label for="sobrenome">Sobrenome: </label>
+                            </td>
+                            <td align="left">
+                                <input type="text" name="sobrenome">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Nascimento: </label>
+                            </td>
+                            <td align="left">
+                                <input type="date" name="mes" size="2" maxlength="2" value="mm">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label>Celular:</label>
+                            </td>
+                            <td align="left">
+                                <input type="text" max="16" maxlength="16" placeholder="(00) 9 1234-5678">     
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Telefone:</label>
+                            </td>
+                            <td>
+                                <input type="text" max="8" maxlength="8" placeholder="1234-5678">
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+                <br>
+
+
+                <!-- DADOS DE LOGIN -->
+                <fieldset>
+                    <legend>Dados de Login</legend>
+                    <table cellspacing="10">
+                        <tr>
+                            <td>
+                                <label for="email">E-mail: </label>
+                            </td>
+                            <td align="left">
+                                <input type="email" name="email">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="imagem">Imagem de perfil:</label>
+                            </td>
+                            <td>
+                                <input type="file" name="imagem">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="pass">Senha: </label>
+                            </td>
+                            <td align="left">
+                                <input type="password" name="pass">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="passconfirm">Confirme a senha: </label>
+                            </td>
+                            <td align="left">
+                                <input type="password" name="passconfirm">
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <br>
+                <div class="nav justify-content-center">
+                    <button type="submit">Cadastrar</button>
+                    <button type="reset">Limpar</button>
+                </div>
+            </form>
+        </main>
+        <footer>
+
+        </footer>
+        <script src="/frontend/scripts/administrador/script-adm-cadastrar.js"></script>
+    </body>
 </html>
