@@ -255,6 +255,9 @@ form{
     justify-content: center;
 }
 
+/*
+Condifg. das divs de conteudo 
+*/
 #dados{
     border: 2px solid black;
     border-radius: 3vh;
@@ -262,12 +265,14 @@ form{
     float: left;
     padding: 2%;
 }
-
 #dadosLogin{
     width: 70vh;
     height: 50vh;
 }
 
+/*
+Config. do titulo de dados de login 
+*/
 #titulo-dados{
     margin-top: 4%;
 }
@@ -293,5 +298,12 @@ Config. das tabelas
     align-items: center;
     display: flex;
     justify-content: center;
+}
+
+/*
+Config. dos botoes do form 
+*/
+#botoes{
+    margin-top: 5%;
 }
 
