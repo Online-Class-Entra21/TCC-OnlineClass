@@ -21,20 +21,20 @@ body, html{
 }
 
 /*
+Config. do main
+*/
+main{
+    width: 100%;
+    height: 100%;
+}
+
+/*
 Config. do header
 */
 header{
     z-index: 1;
     position: fixed;
     height: 10%;
-    width: 100%;
-}
-
-/*
-Config. do main
-*/
-main{
-    height: 100%;
     width: 100%;
 }
 
@@ -246,13 +246,64 @@ Config. das alteracoes especificas
 ***************************/
 
 /*
-Config. do formulario
+Config. do form
 */
 form{
-    height: 100%;
     width: 100%;
+    height: 105%;
+}
+
+/*
+Config. da coluna da linha 
+*/
+td{
+    font-size: 100%;
+    margin-left: 2%;
+}
+
+/*
+Config. das linhas 
+*/
+tr{
     align-items: center;
-    justify-content: center;
+    display: flex;
+}
+
+/*
+COnfig. dos inputs 
+*/
+input{
+    width: 100%;
+    height: 100%;
+}
+
+/*
+Config. dos botoes 
+*/
+.but{
+    margin: 2%;
+    color: white;
+    background-color: black;
+    border-radius: 2vh;
+    padding: 1%;
+}
+.but:hover{
+    border: 2px solid chartreuse;
+}
+
+/*
+Config. dos titulos 
+*/
+.titulo{
+    margin-bottom:  3%;
+    font-weight: bolder
+}
+
+/*
+Config. do titulo de dados de login 
+*/
+.titulo-dados{
+    margin-top: 3%;
 }
 
 /*
@@ -260,50 +311,78 @@ Condifg. das divs de conteudo
 */
 #dados{
     border: 2px solid black;
-    border-radius: 3vh;
-    margin-left: 2%;
+    border-radius: 2vh;
     float: left;
     padding: 2%;
-}
-#dadosLogin{
-    width: 70vh;
-    height: 50vh;
-}
-
-/*
-Config. do titulo de dados de login 
-*/
-#titulo-dados{
-    margin-top: 4%;
-}
-
-/*
-Config. dos titulos 
-*/
-.titulo{
-    margin-bottom: 4%;
-}
-
-/*
-Config. da coluna da linha 
-*/
-td{
-    font-size: 2.5vh;
-}
-
-/*
-Config. das tabelas 
-*/
-.tabela{
-    align-items: center;
-    display: flex;
-    justify-content: center;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 100vh;
+    height: 88%;
 }
 
 /*
 Config. dos botoes do form 
 */
 #botoes{
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
+/*
+Config. da selecao de imagem 
+*/
+#imagemInput{
+   opacity: 0;
+   position: absolute;
+   z-index: -1;
+   width: 2%;
+   height: 2%;
+}
+
+/*
+Config. div de separacao
+*/
+#cab{
+    height: 10%;
+    width: 100%;
+}
+
+/*
+Config. de tamanho das tabelas
+*/
+#tab-escola{
+    width: 100%;
+}
+#tab-dados{
+    width: 100%;
+}
+#tab-login{
+    width: 100%;
+}
+
+/*
+Config. das divs 
+*/
+#escola-div{
+    width: 100%;
+    height: 15%;
+}
+#dados-div{
+    width: 100%;
+    height: 35%;
+}
+#login-div{
+    width: 100%;
+    height: 35%;
+}
+#botoes{
+    width: 100%;
+    height: 8%;
+}
+
+/*
+Config. de inputs classe
+*/
+.input{
+    width: 50%;
+}

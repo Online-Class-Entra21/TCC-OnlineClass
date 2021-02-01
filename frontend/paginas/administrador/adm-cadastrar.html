@@ -2,10 +2,11 @@
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8">
+        <link rel="sortcut icon" href="/frontend/imagens/Logo-OnlineClass.png" type="image/x-icon"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS -->
         <link rel="stylesheet" href="/frontend/estilos/administrador/est-adm-cadastrar.css">
         <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
-
         <title> Cadastro Escola - OnlineClass</title>
     </head>
     <body>
@@ -65,88 +66,106 @@
             </nav>
         </header>
         <!-- Conteudo do corpo do programa -->
-        <!-- Conteudo do corpo do programa -->
         <main id="container" class="nav justify-content-center">
+            <div id="cab"></div>
             <form action="" class="nav justify-content-center">
                 <!-- Dados pessoais -->
                 <div id="dados">
-                    <h5 class="titulo">Dados Pessoais</h5>
-                    <table class="tabela">
-                        <!-- Nome -->
-                        <tr>
-                            <td>
-                                <label for="nome">Nome: </label>
-                            </td>
-                            <td>
-                                <input type="text" name="email">
-                            </td>
-                        </tr>
-                        <!-- Sobrenome -->
-                        <tr>
-                            <td>
-                                <label for="sobrenome">Sobrenome: </label>
-                            </td>
-                            <td>
-                                <input type="text" name="sobrenome">
-                            </td>
-                        </tr>
-                        <!-- Celular -->
-                        <tr>
-                            <td>
-                                <label>Celular:</label>
-                            </td>
-                            <td>
-                                <input type="text" max="16" maxlength="16" placeholder="(00) 9 1234-5678">     
-                            </td>
-                        </tr>
-                        <!-- Telefone -->
-                        <tr>
-                            <td>
-                                <label>Telefone:</label>
-                            </td>
-                            <td>
-                                <input type="text" max="8" maxlength="8" placeholder="1234-5678">
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="tabela">
-                        <h5 id="titulo-dados" class="titulo">Dados de Login</h5>
-                        <tr>
-                            <td>
-                                <label for="email">E-mail: </label>
-                            </td>
-                            <td>
-                                <input type="email" name="email">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="imagem">Imagem de perfil:</label>
-                            </td>
-                            <td>
-                                <input type="file" name="imagem">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="pass">Senha: </label>
-                            </td>
-                            <td>
-                                <input type="password" name="pass">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="passconfirm">Confirme a senha: </label>
-                            </td>
-                            <td>
-                                <input type="password" name="passconfirm">
-                            </td>
-                        </tr>
-                    </table>
+                    <div id="escola-div">
+                        <table id="tab-escola" class="tabela">
+                            <h5 id="titulo-dados" class="titulo">Dados da Escola</h5>
+                            <tr>
+                                <td>
+                                    <label for="nomeEscola">Nome: </label>
+                                </td>
+                                <td class="input">
+                                    <input type="text" name="nomeEscola">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="dados-div">
+                        <table id="tab-dados" class="tabela">
+                            <h5 class="titulo-dados titulo">Dados do Diretor</h5>
+                            <!-- Nome -->
+                            <tr>
+                                <td>
+                                    <label for="nome">Nome: </label>
+                                </td>
+                                <td class="input">
+                                    <input type="text" name="email">
+                                </td>
+                            </tr>
+                            <!-- Sobrenome -->
+                            <tr>
+                                <td>
+                                    <label for="sobrenome">Sobrenome: </label>
+                                </td>
+                                <td class="input">
+                                    <input type="text" name="sobrenome">
+                                </td>
+                            </tr>
+                            <!-- Celular -->
+                            <tr>
+                                <td>
+                                    <label>Celular:</label>
+                                </td>
+                                <td class="input">
+                                    <input type="text" max="16" maxlength="16" placeholder="(00) 9 1234-5678">     
+                                </td>
+                            </tr>
+                            <!-- Telefone -->
+                            <tr>
+                                <td>
+                                    <label>Telefone:</label>
+                                </td>
+                                <td class="input">
+                                    <input type="text" max="8" maxlength="8" placeholder="1234-5678">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="login-div">
+                        <table id="tab-login" class="tabela">
+                            <h5 class="titulo-dados titulo">Login do Diretor</h5>
+                            <tr>
+                                <td>
+                                    <label for="email">E-mail: </label>
+                                </td>
+                                <td class="input">
+                                    <input type="email" name="email">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="imagem">Imagem de perfil:</label>
+                                </td>
+                                <td>
+                                    <label for="imagemInput">Click aqui!</label>
+                                    <input id="imagemInput" type="file" name="imagem">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="pass">Senha: </label>
+                                </td>
+                                <td class="input">
+                                    <input type="password" name="pass">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="passconfirm">Confirme a senha: </label>
+                                </td>
+                                <td class="input">
+                                    <input type="password" name="passconfirm">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                     <div id="botoes" class="nav justify-content-center">
-                        <button type="submit">Cadastrar</button>
-                        <button type="reset">Limpar</button>
+                        <button class="but" type="submit">Cadastrar</button>
+                        <button class="but" type="reset">Limpar</button>
                     </div>
                 </div>
             </form>
