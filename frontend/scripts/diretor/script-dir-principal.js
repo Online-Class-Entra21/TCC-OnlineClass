@@ -29,14 +29,21 @@ if(idUsuario != 0 && idUsuario != null){
         xhr2.addEventListener("load", function(){
             var resposta2 = xhr2.responseText; 
             dadosReuniao = JSON.parse(resposta2);
+            now = new Date();
 
             reunioes = []
             for (let i = 0; i < dadosReuniao.length; i++) {
                 
                 reunioes.push(dadosReuniao[i]);
 
-                //Pega a lista - tabela 
-                var lista = document.getElementById("lista-historico");
+                //Verifica em qual lista vai 
+                if(true){
+                    //Pega a lista - tabela 
+                    var lista = document.getElementById("lista-historico");
+                }else{
+                    //Pega a lista - tabela 
+                    var lista = document.getElementById("lista-programacao");
+                }
 
                 //Cria uma nova linha 
                 var linha = document.createElement("tr");
