@@ -431,12 +431,14 @@ Config. dos botoes de criacao
     font-size: 110%;
     border: none;
     padding: 5%;
+    text-decoration: none;
 }
 #criarReunioes{
     border-radius: 3vh;
     font-size: 110%;
     border: none;
     padding: 5%;
+    text-decoration: none;
 }
 
 
