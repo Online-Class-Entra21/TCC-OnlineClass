@@ -91,7 +91,7 @@
                         <b><label class="titulo" for="historico" name="historico" title="Histórico">Histórico de Reuniões</label></b>
                         <img class="img-cab" src="/frontend/imagens/historia.png" alt="Histórico" name="historico" title="Histórico">
                     </div>
-                    <div class="corpo-divs">
+                    <div id="div-historico" class="corpo-divs">
                         <fieldset id="fieldset-lista-historico">
                             <table class="tabela" id="lista-historico">
                                 <tbody id="tbLista-historico">
@@ -119,25 +119,30 @@
                         <img class="img-cab" src="/frontend/imagens/video-chamada.png" alt="Reunioes" name="reunioes" title="Reuniões">
                     </div>
                     <div class="corpo-divs">
-                        <fieldset id="fieldset-lista-programacao">
-                            <table class="tabela" id="lista-programacao">
-                                <tbody id="tbLista-programacao">
-                                    <tr class="linha">
-                                        <td class="td-lista foto-usuario">
-                                            <img class="img-usuario" src="/frontend/imagens/perfil.png" alt="Foto Usuario" title="Foto do Usuário">
-                                        </td>
-                                        <td class="td-lista dados">
-                                            <div class="div-nome">
-                                                <label class="nome" name="nome" title="Nome">Nome</label>
-                                            </div>
-                                            <div class="div-data">
-                                                <label class="data" name="data" title="Data">Data</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </fieldset>
+                        <div class="div-tabela">
+                            <fieldset id="fieldset-lista-programacao">
+                                <table class="tabela" id="lista-programacao">
+                                    <tbody id="tbLista-programacao">
+                                        <tr class="linha">
+                                            <td class="td-lista foto-usuario">
+                                                <img class="img-usuario" src="/frontend/imagens/perfil.png" alt="Foto Usuario" title="Foto do Usuário">
+                                            </td>
+                                            <td class="td-lista dados">
+                                                <div class="div-nome">
+                                                    <label class="nome" name="nome" title="Nome">Nome</label>
+                                                </div>
+                                                <div class="div-data">
+                                                    <label class="data" name="data" title="Data">Data</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <div class="div-botao">
+                            <input id="criarReunioes" value="Criar Reunião" type="button" name="criarReunioes" title="Criar Reunião">
+                        </div>
                     </div>
                 </div>
                 <div id="relatorios" class="div-conteudos">
@@ -146,25 +151,30 @@
                         <img class="img-cab" src="/frontend/imagens/rolagem.png" alt="Relatórios" name="relatorios" title="Relatórios">
                     </div>
                     <div class="corpo-divs">
-                        <fieldset id="fieldset-lista-relatorios">
-                            <table class="tabela" id="lista-relatorios">
-                                <tbody id="tbLista-relatorio">
-                                    <tr class="linha">
-                                        <td class="td-lista foto-usuario">
-                                            <img class="img-usuario" src="/frontend/imagens/perfil.png" alt="Foto Usuario" title="Foto do Usuário">
-                                        </td>
-                                        <td class="td-lista dados">
-                                            <div class="div-nome">
-                                                <label class="nome" name="nome" title="Nome">Nome</label>
-                                            </div>
-                                            <div class="div-data">
-                                                <label class="data" name="data" title="Data">Data</label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </fieldset>
+                        <div class="div-tabela">
+                            <fieldset id="fieldset-lista-relatorios">
+                                <table class="tabela" id="lista-relatorios">
+                                    <tbody id="tbLista-relatorio">
+                                        <tr class="linha">
+                                            <td class="td-lista foto-usuario">
+                                                <img class="img-usuario" src="/frontend/imagens/perfil.png" alt="Foto Usuario" title="Foto do Usuário">
+                                            </td>
+                                            <td class="td-lista dados">
+                                                <div class="div-nome">
+                                                    <label class="nome" name="nome" title="Nome">Nome</label>
+                                                </div>
+                                                <div class="div-data">
+                                                    <label class="data" name="data" title="Data">Data</label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <div class="div-botao">
+                            <input id="criarRelatorios" value="Criar Relatório" type="button" name="criarRelatorios" title="Criar Relatórios">
+                        </div>
                     </div>
                 </div>
             </div>
