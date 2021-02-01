@@ -84,8 +84,58 @@
                 </div>
             </nav>
         </header>
-    </body>
-    <!-- JS - Script -->
+
+        <main>
+
+            <!--Formulario de edição de gerenciamento de escola-->
+            <form class="ger-escola">
+
+         <div> 
+              <label for="idEditEscola">Escola</label>
+              <br>
+              <input type="text" id="idEditEscola">
+        </div>
+        <div>
+            <label for="idAnoLetivo">Data de inicio do ano letivo</label>
+            <br>
+            <input type="date" id="idAnoLetivo">
+        </div>       
+        <div>
+            <label for="idAnoLetivo">Data de fim de ano letivo</label>
+            <br>
+            <input type="date" id="idAnoLetivo">
+            <br>
+            <input type="button" value="Salvar" onclick="alert('Salvo com sucesso')">
+        </div>       
+               
+
+            </form>
+
+
+             <!--Formulario de edição de gerenciamento de escola-->
+             <form class="ger-sem">
+
+               <div>
+                   <label for="idAnoLetivo">Data de inicio do semestre</label>
+                   <br>
+                   <input type="date" id="idAnoLetivo">
+               </div>       
+               <div>
+                   <label for="idAnoLetivo">Data de fim do semestre</label>
+                   <br>
+                   <input type="date" id="idAnoLetivo">
+                   <br>
+                   <textarea name="mensagem" class="descricao" placeholder="Observação..."></textarea>
+                   <br> 
+                   <input type="button" value="Salvar" onclick="alert('Salvo com sucesso')">
+               </div>       
+                   </form>
+
+
+        </main>
+
+          <!-- JS - Script -->
     <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
     <script src="/frontend/scripts/diretor/script-dir-gerenciar.js"></script>
+    </body>
 </html>

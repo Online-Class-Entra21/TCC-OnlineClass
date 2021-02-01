@@ -231,6 +231,39 @@ Config. da div do botão de saida
     margin-top: 35%;
 }
 
+.ger-escola{
+    display: inline-block;
+    margin: 5% 25%;
+    text-align: center;
+}
+#idAnoLetivo{
+    margin-bottom: 10%;
+}
+#idEditEscola{
+    margin-bottom: 10%;
+}
+.btnEnviar{
+    margin-top: 10%;
+}
+
+.ger-sem{
+    display: inline-block;
+    position: absolute;
+    margin: 5%;
+    text-align: center;
+}
+.descricao{
+    min-width: 200%;
+    min-height: 200px;
+    max-width: 200%;
+    max-height: 200px;
+    padding-left: 1%;
+    padding-top: 1%;
+    margin-top: 2%;
+    margin-left: -40%;
+
+}
+
 /**************************
 Config. das alteracoes especificas
 ***************************/
