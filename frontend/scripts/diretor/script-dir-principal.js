@@ -187,6 +187,27 @@ if(idUsuario != 0 && idUsuario != null){
             //Adiciona a linha na lista - tabela 
             lista.append(linha);
         }
+        carregarRelatorios();
+    }
+
+    //Busca os relatorios no banco 
+    function carregarRelatorios(){
+        //Busca dos reunioes passadas do usuário
+        var xhr2 = new XMLHttpRequest(); 
+
+        xhr2.open("GET", "http://localhost:8080/api/reunioes/"+idUsuario);
+
+        xhr2.addEventListener("load", function(){
+            var resposta2 = xhr2.responseText; 
+            dadosReuniao = JSON.parse(resposta2);
+
+            var reunioes = [];
+            for (let i = 0; i < dadosReuniao.length; i++) {
+                reunioes.push(dadosReuniao[i]);
+            }
+            carregarListasTipo2(reunioes)
+        })
+        xhr2.send();
     }
 
 }else{

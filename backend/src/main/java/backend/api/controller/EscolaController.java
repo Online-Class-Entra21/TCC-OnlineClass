@@ -163,6 +163,10 @@ public class EscolaController {
 		}
 	}
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
 	/**
 	 * Retorna a escola que corresponde ao nome indicado {GET}
 	 * @param int nome

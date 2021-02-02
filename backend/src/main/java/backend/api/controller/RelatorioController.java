@@ -139,4 +139,31 @@ public class RelatorioController {
 			return false;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Retorna a lista dos relatorios registrados no sistema onde 
+	 * o fk_usuario é igual ao codigo informado {GET}
+	 * @param int fk_usuario
+	 * @author Breno
+	 * @return lista de relatorios registrados no banco onde fk_usuario é igual ao codigo
+	 */
+	@GetMapping(path = "/api/relatorios/{codigo}")
+	public List<Relatorio> consultarFk(@PathVariable("codigo") int fk_usuario){
+		LOGGER.info("Requisição List<Relatorio>");
+		List<Relatorio> lista;
+		RelatorioDAO relatorioDao = new RelatorioDAO();
+		try {
+			lista = relatorioDao.buscarTodosFk(fk_usuario);
+			LOGGER.info("Requisição List<Relatorio> bem sucedida");
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Relatorio Mal Sucedida - erro - {}",e.toString());
+			return null;
+		}
+	}
 }
