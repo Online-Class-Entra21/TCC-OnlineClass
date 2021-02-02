@@ -32,12 +32,28 @@ if(idUsuario != 0 && idUsuario != null){
             var resposta2 = xhr2.responseText; 
             dadosReuniao = JSON.parse(resposta2);
 
-            //Ordena o vetor de reunioes pela data
-            
             reunioes = [];
             for (let i = 0; i < dadosReuniao.length; i++) {
-
                 reunioes.push(dadosReuniao[i]);
+            }
+
+            for (let i = 0; i < dadosReuniao.length-1; i++) {
+                var str2 = reunioes[i].dataInicio;
+                var dataReuniao2 = new Date(str2.split('/').reverse().join('/'));
+
+                var str3 = reunioes[i+1].dataInicio;
+                var dataReuniao3 = new Date(str3.split('/').reverse().join('/'));
+
+                console.log(dataReuniao2)
+                if(dataReuniao2 > dataReuniao3){
+                    var elemento = reunioes[i];
+                    reunioes[i] = reunioes[i+1];
+                    reunioes[i+1] = elemento;
+                }
+            }
+            console.log(reunioes)
+            
+            for (let i = 0; i < dadosReuniao.length; i++) {
 
                 //Pega a data da reuniao para comparacao
                 var str = reunioes[i].dataInicio;

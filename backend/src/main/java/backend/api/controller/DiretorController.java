@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -158,6 +159,29 @@ public class DiretorController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar da quantidade de diretores Mal Sucedida - erro - {}",e.toString());
 			return 0;
+		}
+	}
+	
+	/**
+	 * Insere uma novo usuário diretor no banco de dados {POST}
+	 * @param String json
+	 * @author Breno
+	 * @return boolean situacao da operacao
+	 */
+	@PostMapping(path = "api/diretor/inserir/{json}")
+	public boolean inserir(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Usuario - {}",json);
+		Gson gson = new Gson();
+		Diretor diretor = gson.fromJson(json.toString(), Diretor.class);
+		DiretorDAO diretorDao = new DiretorDAO();
+		try {
+			diretorDao.insert(diretor);
+			LOGGER.info("Requisição Inserir Usuario - {} - Bem Sucedida",json);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
+			return false;
 		}
 	}
 }

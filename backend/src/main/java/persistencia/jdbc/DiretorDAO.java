@@ -183,5 +183,28 @@ public class DiretorDAO {
 		comandoSql.close();
 		return qtdDiretores;
 	}
+	
+	/**
+	 * Realiza o registro de um usuario diretor no banco de dados
+	 * @param Diretor diretor
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public void insert(Diretor diretor) throws SQLException {
+		String sql = "insert into usuario (nome, sobrenome, telefone, celular, email, "
+				   + "senha) values (?,?,?,?,?,?)"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		     
+		comandoSql.setString(1, diretor.getNome());
+		comandoSql.setString(2, diretor.getSobrenome());
+		comandoSql.setString(3, diretor.getTelefone());
+		comandoSql.setString(4, diretor.getCelular());
+		comandoSql.setString(5, diretor.getEmail());
+		comandoSql.setString(6, diretor.getSenha());
+
+		comandoSql.execute();
+		comandoSql.close();
+	}
+
 }
 
