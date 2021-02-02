@@ -51,7 +51,7 @@ if(idUsuario != 0 && idUsuario != null){
         xhr2.addEventListener("load", function(){
             var resposta2 = xhr2.responseText; 
             dadosReuniao = JSON.parse(resposta2);
-
+           
             for (var i = 0; i < dadosReuniao.length; i++) {
                 var passou = false;
                 for (let j = 0; j < reunioes.length; j++) {
@@ -81,7 +81,6 @@ if(idUsuario != 0 && idUsuario != null){
                     }
                 }    
             }
-            console.log(reunioes)
             mostrar(reunioes)
         })
         xhr2.send();

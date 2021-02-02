@@ -242,8 +242,8 @@ Config. das alteracoes especificas
 
 fieldset {
     border-radius: 3%;
-    width: 70vh;
-    height: 67vh;
+    width: 100vh;
+    height: 75vh;
     margin: 0;
 }
 
@@ -259,7 +259,7 @@ section {
 }
 
 .tabelaEditavel {
-    width:100%
+    width:100%;
     text-align: center;
 }
 
@@ -276,15 +276,10 @@ section {
     text-align: center;
 }
 
-.marginT {
-    margin-left: 150px;
+#imagemInput{
+    opacity: 0;
 }
 
-#teste {
-    font-size: 1em;
-}
-
-/* 
 #visualizacao{
     width: 3vh;
     height: auto;
@@ -322,6 +317,6 @@ section {
     align-items: center;
 }
 #img_preview{
-    border-radius: 100%;
+    border-radius: 50%;
     margin-top: 10%;
-} */
+} 
