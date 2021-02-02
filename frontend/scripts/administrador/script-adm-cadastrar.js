@@ -76,6 +76,7 @@ function usarApi(method, url) {
 //Métodos onclick dos botões cadastrar e limpar
 var btnCadastrar =  document.getElementById('btnCadastrar');
 btnCadastrar.addEventListener("click", function() {
+    alert("Entrou btnClick")
     cadastrar();
 })
 var btnLimpar = document.getElementById('btnLimpar');
@@ -85,6 +86,8 @@ btnLimpar.addEventListener("click", function() {
 
 //Método para cadastrar
 async function cadastrar() {
+    alert("Entrou cadastrar()")
+    var escola = document.getElementById('inputEscola').value;
     var nome = document.getElementById('inputNome').value;
     var sobrenome = document.getElementById('inputSobrenome').value;
     //var cpf = document.getElementById('inputCpf').value;
@@ -93,11 +96,11 @@ async function cadastrar() {
     var email = document.getElementById('inputEmail').value;
     var senha = document.getElementById('inputSenha').value;
     var confirmarSenha = document.getElementById('inputConfirmSenha').value;
-    var fotoUsuario = document.getElementById('inputFotoUsuario').value;
+    //var fotoUsuario = document.getElementById('inputFotoUsuario').value;
    
 
     //Verifica se todos os campos estão preenchidos
-    if (nome != '' && sobrenome != ''  && telefone != '' && celular != '' && email != '' && senha != '' && confirmarSenha != '' && fotoUsuario != '') {  
+    if (nome != '' && sobrenome != ''  && telefone != '' && celular != '' && email != '' && senha != '' && confirmarSenha != '' && escola != '') {  
         //Valida a senha
         if (senha != confirmarSenha) {
             alert("As senhas não coincidem!")
@@ -112,17 +115,24 @@ async function cadastrar() {
                 tipoUsuario: 2,
                 email: email,
                 senha: senha,
-                fotoUsuario: fotoUsuario
+                //fotoUsuario: fotoUsuario
+            }
+            var inserirEscola = {
+                nome: escola
             }
 
             //Converte para JSON
             var usuarioJson = JSON.stringify(inserirUsuario);
-        
+            var escolaJson = JSON.stringify(inserirEscola);
+
             //Chama a api para cadastrar o usuário
             var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/" + usuarioJson);
-            if (insertUsuario == false) {
+            //var insertEscola = await usarApi("POST", "http://localhost:8080/api/escola/inserir/nome/" + escolaJson);
+            if (insertUsuario == false || insertEscola == false) {
                 alert("Ocorreu um erro no cadastro do diretor!")
-                break;
+                //break;
+            } else {
+                alert("Cadastrado com sucesso");
             }
         }
     } else {

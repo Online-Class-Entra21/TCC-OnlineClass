@@ -79,7 +79,7 @@
                                     <label for="nomeEscola">Nome: </label>
                                 </td>
                                 <td class="input">
-                                    <input type="text" name="nomeEscola">
+                                    <input type="text" name="nomeEscola" id="inputEscola">
                                 </td>
                             </tr>
                         </table>
@@ -93,7 +93,7 @@
                                     <label for="nome">Nome: </label>
                                 </td>
                                 <td class="input">
-                                    <input type="text" name="email">
+                                    <input type="text" name="email" id="inputNome">
                                 </td>
                             </tr>
                             <!-- Sobrenome -->
@@ -102,7 +102,7 @@
                                     <label for="sobrenome">Sobrenome: </label>
                                 </td>
                                 <td class="input">
-                                    <input type="text" name="sobrenome">
+                                    <input type="text" name="sobrenome" id="inputSobrenome">
                                 </td>
                             </tr>
                             <!-- Celular -->
@@ -111,7 +111,7 @@
                                     <label>Celular:</label>
                                 </td>
                                 <td class="input">
-                                    <input type="text" max="16" maxlength="16" placeholder="(00) 9 1234-5678">     
+                                    <input type="text" max="16" maxlength="16" placeholder="(00) 9 1234-5678" id="inputCelular">     
                                 </td>
                             </tr>
                             <!-- Telefone -->
@@ -120,7 +120,7 @@
                                     <label>Telefone:</label>
                                 </td>
                                 <td class="input">
-                                    <input type="text" max="8" maxlength="8" placeholder="1234-5678">
+                                    <input type="text" max="8" maxlength="8" placeholder="1234-5678" id="inputTelefone">
                                 </td>
                             </tr>
                         </table>
@@ -133,7 +133,7 @@
                                     <label for="email">E-mail: </label>
                                 </td>
                                 <td class="input">
-                                    <input type="email" name="email">
+                                    <input type="email" name="email" id="inputEmail">
                                 </td>
                             </tr>
                             <tr>
@@ -142,7 +142,7 @@
                                 </td>
                                 <td>
                                     <label for="imagemInput">Click aqui!</label>
-                                    <input id="imagemInput" type="file" name="imagem">
+                                    <input id="imagemInput" type="file" name="imagem" id="inputFotoUsuario">
                                 </td>
                             </tr>
                             <tr>
@@ -150,7 +150,7 @@
                                     <label for="pass">Senha: </label>
                                 </td>
                                 <td class="input">
-                                    <input type="password" name="pass">
+                                    <input type="password" name="pass" id="inputSenha">
                                 </td>
                             </tr>
                             <tr>
@@ -158,14 +158,14 @@
                                     <label for="passconfirm">Confirme a senha: </label>
                                 </td>
                                 <td class="input">
-                                    <input type="password" name="passconfirm">
+                                    <input type="password" name="passconfirm" id="inputConfirmSenha">
                                 </td>
                             </tr>
                         </table>
                     </div>
                     <div id="botoes" class="nav justify-content-center">
-                        <button class="but" type="submit">Cadastrar</button>
-                        <button class="but" type="reset">Limpar</button>
+                        <button class="but" type="button" id="btnCadastrar">Cadastrar</button>
+                        <button class="but" type="reset" id="btnLimpar">Limpar</button>
                     </div>
                 </div>
             </form>

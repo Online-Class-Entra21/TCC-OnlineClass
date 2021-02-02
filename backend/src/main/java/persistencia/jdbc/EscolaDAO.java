@@ -126,4 +126,23 @@ public class EscolaDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	/**
+	 * Metodo para inserir a escola no banco de dados só com o nome
+	 * @param Escola escola 
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public void insertNome(Escola escola) throws SQLException {
+		String sql = "insert into escola (nome) values (?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setString(1, escola.getNome());
+		
+		comandoSql.execute();
+		
+		comandoSql.close();
+	}
+	
+	
 }
