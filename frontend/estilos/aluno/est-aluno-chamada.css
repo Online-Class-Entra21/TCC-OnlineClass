@@ -1,0 +1,30 @@
+html{
+    height: 95%;
+}
+body{
+    height: 100%;
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+div{
+    border: solid;
+    margin-bottom: 10px;
+}
+ul{
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+#divJitsi{
+    height: 90%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#divParticipantes{
+    margin-left: auto;
+    margin-right: auto;
+}

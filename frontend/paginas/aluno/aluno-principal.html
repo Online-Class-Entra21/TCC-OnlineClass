@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
@@ -10,41 +11,96 @@
     </head>
 
     <body>
+        <!-- Menu latral -->
+        <div id="mostrar"></div>
+        <div id="menu">
+            <div id="menu-titulo">
+                <h4 id="idMenuTitulo">Aluno</h4>
+            </div>
+            <section id="perfil" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/dir-perfil.png" alt="Perfil" title="Perfil" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-perfil.html">Perfil</a>
+                </figure>
+            </section>
+            <section id="calendario" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/portfolio.png" alt="Calendario" title="Calendário" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-calendario.html">Calendário</a>
+                </figure>
+            </section>
+            <section id="notas" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/turmas.png" alt="Notas" title="Notas" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-notas.html">Notas</a>
+                </figure>
+            </section>
+            <section id="atividades" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/relatorio.png" alt="Atividades" title="Atividades" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-atividades.html">Atividades</a>
+                </figure>
+            </section>
+            <section id="aulas" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/videoconferencia.png" alt="Aulas" title="Aulas" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-aula.html">Aulas</a>
+                </figure>
+            </section>
+            <section id="tela-principal" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-principal.html">Tela Principal</a>
+                </figure>
+            </section>
+            <section id="sair" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
+                    <a id="ancoraSair" href="/frontend/index.html">Sair</a>
+                </figure>
+            </section>
+        </div>
+        <!-- Cabecalho -->
         <header>
-
-            <nav class="navbar navbar-expand-sm bg-primary navbar-dark nav justify-content-end">
-                
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Nome Aluno</a>
-                    </li>
-                    <li class="nav-item active" id="">
-                        <img src="/frontend/imagens/perfil.png" width="35%"> 
-                    </li>
-                </ul>
+            <nav id="cabecalho">
+                <div id="lado-esquerdo">
+                    <div id="botao-menu">
+                        <figure id="figure-menu">
+                            <img id="idImgMenu" src="/frontend/imagens/botao-menu.png" alt="Menu" title="Menu" name="menu">
+                        </figure>
+                    </div>
+                </div>
+                <div id="lado-direito">
+                    <figure id="figure-perfil">
+                        <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil"
+                            title="Foto de Perfil">
+                        <label id="idNomeUsuario" for="foto-perfil" name="nome-usuario" title="Nome">Nome</label>
+                    </figure>
+                </div>
             </nav>
         </header>
 
 
-        <main> <!-- Inicio center-->
+        <main>
+            <!-- Inicio center-->
             <section>
                 <div>
-                    <h1>Online Class</h1>    
+                    <h1>Online Class</h1>
                 </div>
             </section>
             <section>
                 <div>
                     <table class="nav justify-content-center">
-                        
+
                         <tr>
                             <td>Matemática</td>
                             <td>Atividade<br>23/05</td>
                             <td>Atividade em Dupla<br>Assunto:Matrizes</td>
                         </tr>
-                        <tr class="alternado">                     
-                                <td><a href="/frontend/paginas/aluno/perfil.html">Português</a></td>
-                                <td>Prova<br>31/05</td>
-                                <td>Prova Individual<br>Assunto:Semantica</td>
+                        <tr class="alternado">
+                            <td>Português</td>
+                            <td>Prova<br>31/05</td>
+                            <td>Prova Individual<br>Assunto:Semantica</td>
                         </tr>
                         <tr>
                             <td>História</td>
@@ -61,51 +117,16 @@
                             <td>Prova<br>19/06</td>
                             <td>Trabalho em Grupos de 5<br>Assunto:Revolução Francesa</td>
                         </tr>
-                        <tr class="alternado">
-                            <td>Educação Física</td>
-                            <td>Atividade<br>02/07</td>
-                        </tr>
-                        <tr>
-                            <td>Biologia</td>
-                            <td>Atividade<br>03/07</td>
-                        </tr>
-                        <tr class="alternado">
-                            <td>Geografia</td>
-                            <td>Prova<br>17/07</td>
-                        </tr>
-                        <tr>
-                            <td>Inglês</td>
-                            <td>Trabalho<br>22/07</td>
-                        </tr>
                     </table>
                 </div>
             </section>
         </main> <!-- Fim center-->
 
+        <scrip>
 
+        </scrip>
 
-        <div id="menu-lateral"> <!-- Inicio menu-lateral -->
-            <div id="menu"> <!-- Inicio menu -->
-
-                <h3 class="link-titulo"> Aluno </h3>
-                    <ul>
-                        <li><a href="perfil.html">Perfil</a></li>
-                        <li><a href="atividades.html">Atividades</a></li>
-                        <li><a href="#">Calendário</a></li>
-                        <li><a href="#">Aula</a></li>
-                        <li><a href="#">Notas</a></li>
-                        <li><a href="#">Menu Principal</a></li>
-                        <li><a href="/frontend/paginas/login/login.html">Sair</a></li>
-                    </ul>
-
-            </div> <!-- Fim menu-->
-        </div> <!-- Fim menu-lateral -->
-
-
-       <scrip>
-        
-       </scrip> 
-
-
+    <script src="/frontend/scripts/aluno/script-aluno-principal.js"></script>
     </body>
+
 </html>

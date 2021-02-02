@@ -139,4 +139,52 @@ public class EscolaController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Insere uma nova escola no banco de dados só com o nome {POST}
+	 * @param String json
+	 * @author Andrey
+	 * @return boolean situacao da operacao
+	 */
+	@PostMapping(path = "api/escola/inserir/nome/{json}")
+	public boolean inserirNome(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Nome Escola - {}",json);
+		Gson gson = new Gson();
+		Escola escola = gson.fromJson(json, Escola.class);
+		EscolaDAO escolaDAO = new EscolaDAO();
+		try {
+			escolaDAO.insertNome(escola);
+			LOGGER.info("Requisição Inserir Nome Escola - {} - Bem Sucedida",json);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Nome Escola Mal Sucedida - Escola {} - erro - {}",json,e.toString());
+			return false;
+		}
+	}
+	
+	/**
+	 * Retorna a escola que corresponde ao nome indicado {GET}
+	 * @param int nome
+	 * @return String json
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/escola/nome/{nome}")
+	public String consultarNome(@PathVariable("nome") String nome) {
+		LOGGER.info("Requisição Escola Nome {} iniciada", nome);
+		EscolaDAO escolaDAO = new EscolaDAO();
+		Escola escola;
+		try {
+			escola = escolaDAO.buscarNome(nome);
+			Gson gson = new Gson();
+			String json = gson.toJson(escola);
+			LOGGER.info("Requisição Escola nome {} bem sucedida",nome);
+			return json;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Escola Mal Sucedida - Escola {} - erro - {}",nome,e.toString());
+			return null;
+		}
+	}
+
 }
