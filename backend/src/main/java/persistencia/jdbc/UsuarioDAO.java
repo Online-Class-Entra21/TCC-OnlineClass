@@ -209,4 +209,34 @@ public class UsuarioDAO {
 		comandoSql.close(); 
 		return usuario;
 	}
+	
+	/**
+	 * Realiza o registro de um usuario no banco de dados com campos limitados
+	 * @param Usuario usuario
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public void insertDiretor(Usuario usuario) throws SQLException {
+		String sql = "insert into usuario (nome, sobrenome, telefone, celular, tipoUsuario, email, "
+				   + "senha, fk_escola) values (?,?,?,?,?,?,?,?)"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		     
+		comandoSql.setString(1, usuario.getNome());
+		comandoSql.setString(2, usuario.getSobrenome());
+		//comandoSql.setString(3, usuario.getCpf());
+		comandoSql.setString(3, usuario.getTelefone());
+		comandoSql.setString(4, usuario.getCelular());
+		comandoSql.setInt(5, usuario.getTipoUsuario());
+		comandoSql.setString(6, usuario.getEmail());
+		comandoSql.setString(7, usuario.getSenha());
+		//comandoSql.setTime(9, usuario.getHorarioFinalExpediente());
+		//comandoSql.setTime(10, usuario.getHorarioInicioExpediente());
+		//comandoSql.setString(11, usuario.getFotoUsuario());
+		//comandoSql.setInt(9, usuario.getFk_endereco());
+		comandoSql.setInt(8, usuario.getFk_escola());
+
+		comandoSql.execute();
+		comandoSql.close();
+	}
+
 }

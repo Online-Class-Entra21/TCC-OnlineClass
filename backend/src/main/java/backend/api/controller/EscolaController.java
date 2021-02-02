@@ -162,5 +162,29 @@ public class EscolaController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Retorna a escola que corresponde ao nome indicado {GET}
+	 * @param int nome
+	 * @return String json
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/escola/nome/{nome}")
+	public String consultarNome(@PathVariable("nome") String nome) {
+		LOGGER.info("Requisição Escola Nome {} iniciada", nome);
+		EscolaDAO escolaDAO = new EscolaDAO();
+		Escola escola;
+		try {
+			escola = escolaDAO.buscarNome(nome);
+			Gson gson = new Gson();
+			String json = gson.toJson(escola);
+			LOGGER.info("Requisição Escola nome {} bem sucedida",nome);
+			return json;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar Escola Mal Sucedida - Escola {} - erro - {}",nome,e.toString());
+			return null;
+		}
+	}
 
 }

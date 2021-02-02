@@ -144,5 +144,32 @@ public class EscolaDAO {
 		comandoSql.close();
 	}
 	
+	/**
+	 * Metodo para selecionar chamada no banco de dados
+	 * O <code>nome</code> deve ser igual ao do escola que deseja buscar
+	 * @param String nome
+	 * @return Chamada chamada 
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public Escola buscarNome(String nome) throws SQLException {
+		Escola escola = new Escola();
+		String sql = "select * from Escola where nome = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setString(1, nome);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			escola.setIdEscola(resultSet.getInt(1));
+			escola.setNome(resultSet.getString(2));
+			escola.setDataInicioLeitvo(resultSet.getDate(3));
+			escola.setDataFinalLetivo(resultSet.getDate(4));
+			
+		}
+		comandoSql.close();
+		return escola;
+	}
+	
 	
 }
