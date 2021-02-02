@@ -166,4 +166,33 @@ public class RelatorioDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	/**
+	 * Metodo para selecionar todos os relatorios do banco de dados onde fk_usuario é igual ao codigo
+	 * @return lista de relatorios registrados no banco onde destina é igual ao codigo
+	 * @param int destinatario
+	 * @author Breno
+	 * @throws SQLException 
+	 */	
+	public List<Relatorio> buscarTodosDestinatario(int destinatario) throws SQLException {
+		List<Relatorio> lista = new ArrayList<Relatorio>();
+	    String sql = "select * from relatorio where destinatario = ?";
+	    
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, destinatario);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Relatorio relatorio = new Relatorio();
+			relatorio.setIdRelatorio (resultSet.getInt(1));
+			relatorio.setTitulo(resultSet.getString(2));
+			relatorio.setDestinatario(resultSet.getInt(3));
+			relatorio.setTexto(resultSet.getString(4));
+			relatorio.setFk_usuario(resultSet.getInt(5));
+			relatorio.setDataRelatorio(resultSet.getDate(6));
+			lista.add(relatorio);
+		}
+		comandoSql.close();
+		return lista;
+	}
 }
