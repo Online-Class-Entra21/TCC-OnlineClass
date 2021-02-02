@@ -1,6 +1,7 @@
 package persistencia.jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,13 +26,13 @@ public class RelatorioDAO {
 	 * @throws SQLException 
 	 */	
 	public void insert(Relatorio relatorio) throws SQLException {
-		String sql = "insert into relatorio (titulo, destinatario, texto, tiporelatorio, fk_usuario) values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into relatorio (titulo, destinatario, texto, dataRelatorio, fk_usuario) values (?, ?, ?, ?, ?, ?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, relatorio.getTitulo());
 		comandoSql.setInt(2, relatorio.getDestinatario());
 		comandoSql.setString(3, relatorio.getTexto());
-		comandoSql.setString(4, relatorio.getTipoRelatorio());
+		comandoSql.setDate(4, (Date) relatorio.getDataRelatorio());
 		comandoSql.setInt(5, relatorio.getFk_usuario());
 		
 		comandoSql.execute();
@@ -47,14 +48,15 @@ public class RelatorioDAO {
 	 */ 	
 	public void update(Relatorio relatorio) throws SQLException {
 		String sql = "update relatorio set idrelatorio=?, titulo=?, destinatario=?, texto=?, "
-				   + "tiporelatorio=?, fk_usuario=? where idrelatorio =?";
+				   + "datarelatorio=?, fk_usuario=? where idrelatorio =?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, relatorio.getTitulo());
 		comandoSql.setInt(2, relatorio.getDestinatario());
 		comandoSql.setString(3, relatorio.getTexto());
-		comandoSql.setString(4, relatorio.getTipoRelatorio());
+		comandoSql.setDate(4, (Date) relatorio.getDataRelatorio());
 		comandoSql.setInt(5, relatorio.getFk_usuario());
+		comandoSql.setInt(6, relatorio.getIdRelatorio());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -87,7 +89,7 @@ public class RelatorioDAO {
 	 */	
 	public Relatorio buscarId(int idRelatorio) throws SQLException {
 		Relatorio relatorio = new Relatorio();
-		String sql = "select * from relatorio where idescola = ?";
+		String sql = "select * from relatorio where idRelatorio = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, idRelatorio);
@@ -98,8 +100,8 @@ public class RelatorioDAO {
 			relatorio.setTitulo(resultSet.getString(2));
 			relatorio.setDestinatario(resultSet.getInt(3));
 			relatorio.setTexto(resultSet.getString(4));
-			relatorio.setTipoRelatorio(resultSet.getString(5));
-			relatorio.setFk_usuario(resultSet.getInt(6));
+			relatorio.setFk_usuario(resultSet.getInt(5));
+			relatorio.setDataRelatorio(resultSet.getDate(6));
 		}
 		comandoSql.close();
 		return relatorio;
@@ -113,7 +115,7 @@ public class RelatorioDAO {
 	 */	
 	public List<Relatorio> buscarTodos() throws SQLException {
 		List<Relatorio> lista = new ArrayList<Relatorio>();
-	    String sql = "select * from Escola";
+	    String sql = "select * from relatorio";
 	    
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		ResultSet resultSet = comandoSql.executeQuery();
@@ -124,8 +126,8 @@ public class RelatorioDAO {
 			relatorio.setTitulo(resultSet.getString(2));
 			relatorio.setDestinatario(resultSet.getInt(3));
 			relatorio.setTexto(resultSet.getString(4));
-			relatorio.setTipoRelatorio(resultSet.getString(5));
-			relatorio.setFk_usuario(resultSet.getInt(6));
+			relatorio.setFk_usuario(resultSet.getInt(5));
+			relatorio.setDataRelatorio(resultSet.getDate(6));
 			lista.add(relatorio);
 		}
 		comandoSql.close();
@@ -145,7 +147,7 @@ public class RelatorioDAO {
 	 */	
 	public List<Relatorio> buscarTodosFk(int fk_usuario) throws SQLException {
 		List<Relatorio> lista = new ArrayList<Relatorio>();
-	    String sql = "select * from Escola where fk_usuario = ?";
+	    String sql = "select * from relatorio where fk_usuario = ?";
 	    
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		comandoSql.setInt(1, fk_usuario);
@@ -157,8 +159,8 @@ public class RelatorioDAO {
 			relatorio.setTitulo(resultSet.getString(2));
 			relatorio.setDestinatario(resultSet.getInt(3));
 			relatorio.setTexto(resultSet.getString(4));
-			relatorio.setTipoRelatorio(resultSet.getString(5));
-			relatorio.setFk_usuario(resultSet.getInt(6));
+			relatorio.setFk_usuario(resultSet.getInt(5));
+			relatorio.setDataRelatorio(resultSet.getDate(6));
 			lista.add(relatorio);
 		}
 		comandoSql.close();

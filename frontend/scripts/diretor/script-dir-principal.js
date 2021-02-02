@@ -195,17 +195,17 @@ if(idUsuario != 0 && idUsuario != null){
         //Busca dos reunioes passadas do usuário
         var xhr2 = new XMLHttpRequest(); 
 
-        xhr2.open("GET", "http://localhost:8080/api/reunioes/"+idUsuario);
+        xhr2.open("GET", "http://localhost:8080/api/relatorios/"+idUsuario);
 
         xhr2.addEventListener("load", function(){
             var resposta2 = xhr2.responseText; 
             dadosReuniao = JSON.parse(resposta2);
 
-            var reunioes = [];
+            var relatorios = [];
             for (let i = 0; i < dadosReuniao.length; i++) {
-                reunioes.push(dadosReuniao[i]);
+                relatorios.push(dadosReuniao[i]);
             }
-            carregarListasTipo2(reunioes)
+            console.log(relatorios)
         })
         xhr2.send();
     }

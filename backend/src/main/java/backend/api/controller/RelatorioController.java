@@ -151,8 +151,8 @@ public class RelatorioController {
 	 * @author Breno
 	 * @return lista de relatorios registrados no banco onde fk_usuario é igual ao codigo
 	 */
-	@GetMapping(path = "/api/relatorios/{codigo}")
-	public List<Relatorio> consultarFk(@PathVariable("codigo") int fk_usuario){
+	@GetMapping(path = "/api/relatorios/{fk_usuario}")
+	public List<Relatorio> consultarFk(@PathVariable("fk_usuario") int fk_usuario){
 		LOGGER.info("Requisição List<Relatorio>");
 		List<Relatorio> lista;
 		RelatorioDAO relatorioDao = new RelatorioDAO();
