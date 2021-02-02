@@ -1,4 +1,4 @@
-/*
+var escolaEscolhida = sessionStorage.getItem('idEscolaSelecionada');
 
 //Método para chamada da api
 function usarApi(method, url) {
@@ -9,9 +9,9 @@ function usarApi(method, url) {
             if (this.status >= 200 && this.status < 300) {
                 resolve(xhr.response);
             } else {
-                document.getElementById("idLoad").style.display = "none";
-                document.getElementById("idErro").textContent = "Sem Conexão com a Base de Dados - Erro (0001)";
-                document.getElementById("idErro").style.display = "block";
+                //document.getElementById("idLoad").style.display = "none";
+                //document.getElementById("idErro").textContent = "Sem Conexão com a Base de Dados - Erro (0001)";
+                //document.getElementById("idErro").style.display = "block";
                 reject({
                     status: this.status,
                     statusText: xhr.statusText
@@ -36,7 +36,6 @@ var diretorSelect = null;
 //Método para retornar o id do diretor selecionado no select
 $(".SDiretor").change(function(){
     diretorSelect = $(this).children("option:selected").val();
-    alert("Select Diretor: " + diretorSelect)
 }); 
 
 //Chama o método editarEscola ao clicar no botão confirmar
@@ -90,11 +89,11 @@ async function carregarSelect() {
         selectDiretoresDisponiveis.appendChild(option);
         }
 }
-/*
+
 //Método para edição da escola  
 async function editarEscola(idEscola) {
-    var resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscola);
-    var diretorAtual = JSON.parse(resposta);
+    //var resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscola);
+    //var diretorAtual = JSON.parse(resposta);
     
     if (document.getElementById('idNome').value != '') {
         //Edita os Campos da escola
@@ -109,20 +108,21 @@ async function editarEscola(idEscola) {
         var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/"+escolaEscolhida.idEscola+"/"+escolaJson)
         if (updateEscola == false) {
             alert("Erro, Solicitação de edição mal sucedida");
-            break;
+            
         }
+        /*
         //Edita o Diretor
         if (diretorAtual.fk_escola != diretorSelect) {
             updateDiretor(idEscola, diretorAtual.idUsuario, diretorSelect)
         }
-       
+       */
     } else {
         alert("Informe o nome!")
     }
     
 }   
-*/
-/*
+
+
 //Método para alterar o diretor
 async function updateDiretor(idEscola, idDiretorAtual, idDiretorNovo) {
     //Altera o atual diretor no banco de dados
@@ -131,7 +131,6 @@ async function updateDiretor(idEscola, idDiretorAtual, idDiretorNovo) {
     var alterarDiretor = await usarApi("PUT", "http://localhost:8080/api/diretor/escola/alterar/"+idEscola+"/"+idDiretorNovo)
     if (removerDiretor == false || alterarDiretor == false) {
         alert("Erro, Solicitação de edição de diretor mal sucedida");
-        break;
     }
 }
-*/
+
