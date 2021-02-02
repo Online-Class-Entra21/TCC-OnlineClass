@@ -283,3 +283,45 @@ section {
 #teste {
     font-size: 1em;
 }
+
+/* 
+#visualizacao{
+    width: 3vh;
+    height: auto;
+    cursor: pointer;
+}
+#label-input{
+    font-size: 90%;
+    margin-left: 1%;
+    margin-right: 1%;
+    font-weight: bolder;
+}
+
+#visul-img{
+    position: fixed;
+    width: 45vh;
+    height: 45vh;
+    margin-top: 10%;
+    background-color: rgba(0, 0, 0, 0.863);
+    border-radius: 3vh;
+}
+#img{
+    margin-top: 3%;
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 50%;
+}
+#botoes-img{
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#img_preview{
+    border-radius: 100%;
+    margin-top: 10%;
+} */

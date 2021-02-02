@@ -155,11 +155,32 @@ public class ReuniaoController {
 		ReuniaoDAO reuniaoDao = new ReuniaoDAO();
 		try {
 			lista = reuniaoDao.buscarTodos(codigo);
-			LOGGER.info("Requisição List<Reuniao> - codidigo dono - {} - bem sucedida",codigo);
+			LOGGER.info("Requisição List<Reuniao> - codigo dono - {} - bem sucedida",codigo);
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Reuniao Mal Sucedida - erro - {} - codigo dono - {}",e.toString(),codigo);
+			return null;
+		}
+	}
+	
+	/**
+	 * Retorna a lista das reunioes registrados no sistema onde o dono é o id informado {GET}
+	 * @return lista de reunioes registradas no banco
+	 * @author Andre
+	 */
+	@GetMapping(path = "/api/reunioes/participantes/{codigo}")
+	public List<Reuniao> consultarPerticipanteId(@PathVariable("codigo") int codigo){
+		LOGGER.info("Requisição List<Reuniao> codigo participante - {}",codigo);
+		List<Reuniao> lista;
+		ReuniaoDAO reuniaoDao = new ReuniaoDAO();
+		try {
+			lista = reuniaoDao.buscarTodosParticipantes(codigo);
+			LOGGER.info("Requisição List<Reuniao> - codigo participante - {} - bem sucedida",codigo);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Reuniao Mal Sucedida - erro - {} - codigo participante - {}",e.toString(),codigo);
 			return null;
 		}
 	}

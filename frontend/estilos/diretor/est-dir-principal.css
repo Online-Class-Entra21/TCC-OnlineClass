@@ -377,15 +377,6 @@ Config. das imagens do cab
 }
 
 /*
-Config. das ancoras dos botoes de criacao
-*/
-.ancorasDados{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
-
-/*
 Config. dos fieldsets especificos
 */
 #fieldset-lista-historico{
@@ -430,15 +421,16 @@ Config. dos botoes de criacao
     border-radius: 3vh;
     font-size: 110%;
     border: none;
-    padding: 5%;
+    padding: 2%;
     text-decoration: none;
 }
 #criarReunioes{
     border-radius: 3vh;
     font-size: 110%;
     border: none;
-    padding: 5%;
+    padding: 2%;
     text-decoration: none;
 }
+
 
 

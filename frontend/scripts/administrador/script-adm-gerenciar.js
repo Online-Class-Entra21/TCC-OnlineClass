@@ -128,3 +128,4 @@ async function listaEscolas(){
         location.href = "/frontend/paginas/administrador/teste-adm-editar.html"
     });
 }
+
