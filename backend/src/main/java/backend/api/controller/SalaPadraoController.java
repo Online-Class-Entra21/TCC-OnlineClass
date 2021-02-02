@@ -15,6 +15,7 @@ import entidade.Aluno;
 import entidade.Sala;
 import entidade.SalaPadrao;
 import entidade.Turma;
+import entidade.Usuario;
 import persistencia.jdbc.AlunoDAO;
 import persistencia.jdbc.SalaDAO;
 import persistencia.jdbc.SalaPadraoDAO;
@@ -67,4 +68,29 @@ public class SalaPadraoController {
 		}
 		return null;
 	}
+	
+//	/**
+//	 * Retorna a lista das salasPadroes registrados no sistema {GET}
+//	 * @return lista de salasPadroes registradas no banco
+//	 * @author Breno
+//	 */
+//	@GetMapping(path = "/api/salasPadroes/participantes/{codigo}")
+//	public List<Usuario> consultarIdSala(@PathVariable("codigo") int codigo){
+//		LOGGER.info("Requisição List<Usuario>");
+//		List<Usuario> lista;
+//		try {
+//			AlunoDAO alunoDAO = new AlunoDAO();
+//			
+//			List<Aluno> alunoList = 
+//			
+//			
+//			
+//			LOGGER.info("Requisição List<Usuario> bem sucedida");
+//			return lista;
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			LOGGER.error("Requisição para Consultar todos Usuario da Sala {} Mal Sucedida - erro - {}",codigo,e.toString());
+//			return null;
+//		}
+//	}
 }

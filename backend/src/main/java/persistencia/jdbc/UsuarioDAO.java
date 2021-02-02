@@ -239,4 +239,41 @@ public class UsuarioDAO {
 		comandoSql.close();
 	}
 
+	/**
+	 * Metodo de busca de todas as informacoes de uma linha
+	 * da tabela Usuario do banco de dados.
+	 * O <code>fk_aluno</code> deve ser igual ao do usuario que deseja buscar
+	 * @param fk_aluno
+	 * @return Usuario usuario 
+	 * @author André
+	 * @throws SQLException 
+	 */
+	public Usuario buscarIdAluno(int fk_aluno) throws SQLException {
+		Usuario usuario = new Usuario(); 
+		String sql = "select * from usuario where fk_aluno = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+
+		comandoSql.setInt(1, fk_aluno);
+		ResultSet resultSet = comandoSql.executeQuery();
+			
+		if (resultSet.next()) {
+			usuario.setIdUsuario(resultSet.getInt(1));
+			usuario.setNome(resultSet.getString(2));
+			usuario.setSobrenome(resultSet.getString(3));
+			usuario.setCpf(resultSet.getString(4));
+			usuario.setTelefone(resultSet.getString(5));
+			usuario.setCelular(resultSet.getString(6));
+			usuario.setTipoUsuario(resultSet.getInt(7));
+			usuario.setEmail(resultSet.getString(8));
+			usuario.setSenha(resultSet.getString(9));
+			usuario.setHorarioFinalExpediente(resultSet.getTime(10));
+			usuario.setHorarioInicioExpediente(resultSet.getTime(11));
+			usuario.setFotoUsuario(resultSet.getString(12));
+			usuario.setFk_endereco(resultSet.getInt(13));
+			usuario.setFk_escola(resultSet.getInt(14));
+		}
+		comandoSql.close(); 
+		return usuario;
+	}
+	
 }

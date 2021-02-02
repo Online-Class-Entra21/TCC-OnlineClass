@@ -133,4 +133,35 @@ public class TurmaDAO {
 		comandoSql.close();
 		return lista;
 	}	
+	
+	
+	/**
+	 * Metodo de busca de todas as informacoes de uma linha
+	 * da tabela Turma do banco de dados.
+	 * O <code>fk_sala</code> deve ser igual ao da turma que deseja buscar
+	 * @param int fk_sala
+	 * @return Turma turma 
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public Turma buscarIdSala(int fk_sala) throws SQLException {
+		Turma turma = new Turma(); 
+		String sql = "select * from turma where fk_sala = ?"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setInt(1, fk_sala);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			turma.setIdTurma(resultSet.getInt(1));
+			turma.setAno(resultSet.getString(2));
+			turma.setQtdAluno(resultSet.getInt(3));
+			turma.setHorarioInicioAula(resultSet.getTime(4));
+			turma.setHorarioFinalAula(resultSet.getTime(5));
+			turma.setFk_sala(resultSet.getInt(6));
+		}
+		comandoSql.close(); 
+		return turma;
+	}
+	
 }
