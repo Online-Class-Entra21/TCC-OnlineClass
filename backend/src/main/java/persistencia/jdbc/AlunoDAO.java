@@ -155,7 +155,7 @@ public class AlunoDAO {
 	//------------------------------------------------------------------
 	//Método Extras - Fora dos 5 principais 
 	//------------------------------------------------------------------
-
+	
 	/**
 	 * Metodo para retorno da quantidade de alunos no banco de dados
 	 * @return int qtdAlunos
@@ -165,7 +165,7 @@ public class AlunoDAO {
 	public int buscarQuantidadeAlunos() throws SQLException {
 		int qtdAlunos = 0;
 		String sql = "select count(idUsuario) from usuario where tipoUsuario = 5";
-
+		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		ResultSet resultSet = comandoSql.executeQuery();
 		
@@ -174,5 +174,36 @@ public class AlunoDAO {
 		}
 		comandoSql.close();
 		return qtdAlunos;
+	}
+	/**
+	 * Metodo para selecionar o aluno do banco de dados apartir do id do usuario.
+	 * O <code>fk_Usuario</code> deve ser igual ao do aluno que deseja buscar
+	 * @param int fk_Usuario
+	 * @return Aluno aluno
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public Aluno buscarIdUsuario(int fk_Usuario) throws SQLException {
+		Aluno aluno = new Aluno();
+		String sql = "select * from aluno where fk_usuario = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, fk_Usuario);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			aluno.setIdAluno(resultSet.getInt(1));
+			aluno.setRa(resultSet.getInt(2));
+			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setDeficiencia(resultSet.getBoolean(4));
+			aluno.setNomeMae(resultSet.getString(5));
+			aluno.setNomePai(resultSet.getString(6));
+			aluno.setNomeResponsavel(resultSet.getString(7));
+			aluno.setSituacaoAnoLetivo(resultSet.getBoolean(8));
+			aluno.setFk_usuario(resultSet.getInt(9));						
+			aluno.setFk_turma(resultSet.getInt(10));
+		}
+		comandoSql.close();
+		return aluno;
 	}
 }
