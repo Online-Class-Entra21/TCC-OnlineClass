@@ -1,6 +1,7 @@
 package backend.api.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import backend.api.controller.DTO.UsuarioDTO;
 import entidade.Aluno;
 import entidade.Sala;
 import entidade.SalaPadrao;
@@ -19,6 +21,7 @@ import persistencia.jdbc.AlunoDAO;
 import persistencia.jdbc.SalaDAO;
 import persistencia.jdbc.SalaPadraoDAO;
 import persistencia.jdbc.TurmaDAO;
+import persistencia.jdbc.UsuarioDAO;
 
 /**
  * Metodo controller da salaPadrao para consulta no banco de dados através da API Rest
@@ -68,28 +71,30 @@ public class SalaPadraoController {
 		return null;
 	}
 	
-//	/**
-//	 * Retorna a lista das salasPadroes registrados no sistema {GET}
-//	 * @return lista de salasPadroes registradas no banco
-//	 * @author Breno
-//	 */
-//	@GetMapping(path = "/api/salasPadroes/participantes/{codigo}")
-//	public List<Usuario> consultarIdSala(@PathVariable("codigo") int codigo){
-//		LOGGER.info("Requisição List<Usuario>");
-//		List<Usuario> lista;
-//		try {
-//			AlunoDAO alunoDAO = new AlunoDAO();
-//			
-//			List<Aluno> alunoList = 
-//			
-//			
-//			
-//			LOGGER.info("Requisição List<Usuario> bem sucedida");
-//			return lista;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			LOGGER.error("Requisição para Consultar todos Usuario da Sala {} Mal Sucedida - erro - {}",codigo,e.toString());
-//			return null;
-//		}
-//	}
+	/**
+	 * Retorna a lista das salasPadroes registrados no sistema {GET}
+	 * @return lista de salasPadroes registradas no banco
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/salasPadroes/participantes/{codigo}")
+	public List<UsuarioDTO> consultarIdSala(@PathVariable("codigo") int codigo){
+		LOGGER.info("Requisição List<Usuario>");
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		try {
+			AlunoDAO alunoDAO = new AlunoDAO();
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			List<Aluno> alunos = alunoDAO.buscarTodosIdSala(codigo);
+			for (Aluno aluno : alunos) {
+				usuarios.add(usuarioDAO.buscarId(aluno.getFk_usuario()));
+			}
+			List<UsuarioDTO> usuarioDTOs;
+			usuarioDTOs = UsuarioDTO.converter(usuarios);
+			LOGGER.info("Requisição List<Usuario> bem sucedida");
+			return usuarioDTOs;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Usuario da Sala {} Mal Sucedida - erro - {}",codigo,e.toString());
+			return null;
+		}
+	}
 }
