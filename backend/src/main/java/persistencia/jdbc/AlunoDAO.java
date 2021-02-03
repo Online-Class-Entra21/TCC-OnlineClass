@@ -218,7 +218,7 @@ public class AlunoDAO {
 		List<Aluno> lista = new ArrayList<Aluno>();
 		TurmaDAO turmaDao = new TurmaDAO();
 		Turma turma = turmaDao.buscarIdSala(idSala);
-		String sql = "select * from aluno where idturma = ?";
+		String sql = "select * from aluno where fk_turma = ?";
 		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		comandoSql.setInt(1, turma.getIdTurma());

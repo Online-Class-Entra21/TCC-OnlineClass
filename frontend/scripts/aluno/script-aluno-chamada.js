@@ -1,5 +1,9 @@
+var idUsuario = sessionStorage.getItem("idUsuario");
+console.log(idUsuario)
+var listaalunos;
+getListaParticipante();
 jitsiSize();
-// entraChamada();
+entraChamada();
 $(window).resize(function(){
     jitsiSize();
 });
@@ -7,10 +11,11 @@ var usuario;
 var sala;
 var api;
 async function entraChamada() {
-    usuario = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/"+2));
-    sala = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/turma/"+2));
+    usuario = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/"+idUsuario));
+    sala = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/usuario/"+idUsuario));
     console.log(usuario);
-    var domain = "jitsi.0nlineclass.tk";
+    var nome = usuario.nome+" "+usuario.sobrenome
+    var domain = "classeonline.tk";
     var options = {
         roomName: sala.link,
         parentNode: divJitsi,
@@ -21,25 +26,73 @@ async function entraChamada() {
         userInfo: {
             participantId: usuario.idUsuario,
             email: usuario.email,
-            displayName: usuario.nome
+            displayName: nome
         }
+
     };
     api = new JitsiMeetExternalAPI(domain, options);
     api.addListener("displayNameChange",function() {
-        api.executeCommand("displayName",usuario.nome)
-        api.executeCommand("formattedDisplayName",usuario.nome)
-        
+        api.executeCommand("displayName",nome);
         usuarioOnline();
     });
     api.addListener("emailChange",function(){
-        api.executeCommand("email",usuario.email)
+        api.executeCommand("email","usuario.email")
+    });
+    api.addListener("participantJoined",function(){
+        usuarioOnline();
     });
 }
 
+
+
+
+
 function usuarioOnline() {
     var participantes = api.getParticipantsInfo();
-    console.log(participantes);
+    participantes.forEach(element => {
+        console.log(listaalunos);
+        listaalunos.forEach(element2 => {
+            if (element.displayName==element2.nomecompleto) {
+                console.log("on");
+                document.getElementById(element2.nomecompleto).className = 'online';
+            }else{
+                console.log("off");
+            }
+            
+        });
+        
+    });
 }
+
+async function getListaParticipante() {
+    var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/participantes/1"));
+    usuarios.sort(function(a,b) {
+        return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
+    });
+    usuarios.forEach(element => {
+        var li = $("<li></li>").text(element.nome).attr('id',element.nomecompleto);
+        $("#listaAlunos").append(li);
+        
+    });
+    listaalunos = usuarios;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Método para chamada da API - requisição de lista de escolas 
