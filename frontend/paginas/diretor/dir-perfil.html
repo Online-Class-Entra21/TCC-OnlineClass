@@ -84,8 +84,8 @@
                 </div>
             </nav>
         </header>
-        <main>
-            <div id="visul-img">
+        <main class="nav justify-content-center">
+            <div id="visul-img" hidden>
                 <div id="img">
                     <img id="img_preview" src="" alt="Image Preview"/>
                 </div>
@@ -133,18 +133,18 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td id="imagem-add">
                                     <label for="imagem">Imagem de perfil:</label>
                                     <label id="label-input"  for="imagemInput" type="button" title="Adiciona Imagem">Adicionar imagem</label>
                                     <input id="imagemInput" type=file name="imagem">
-                                    <img id="visualizacao" src="/frontend/imagens/olho.png" alt="Visualizacao" nome="visualizacao" title="Visualizacao">
+                                    
+                                    <img onclick="abrirImg()" id="visualizacao" src="/frontend/imagens/olho.png" alt="Visualizacao" nome="visualizacao" title="Visualizacao">
                                 </td>
                             </tr> 
                         </table>
                     </fieldset>
                 </div>
             </section>
-
         </main>
 
 

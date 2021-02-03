@@ -242,7 +242,7 @@ Config. das alteracoes especificas
 
 fieldset {
     border-radius: 3%;
-    width: 100vh;
+    width: 70vh;
     height: 75vh;
     margin: 0;
 }
@@ -259,21 +259,21 @@ section {
 }
 
 .tabelaEditavel {
-    width:100%;
+    width:50%;
     text-align: center;
 }
 
 .tabelaEditavel .celulaEmEdicao {
     padding: 0;
-    width: 100%;
+    width: 50%;
     text-align: center;
 }
 
 .tabelaEditavel .celulaEmEdicao input[type=text]{
     width:50%;
     border:0;
-    background-color:#f8f8f8;
     text-align: center;
+    background-color:#f8f8f8;
 }
 
 #imagemInput{
@@ -320,3 +320,6 @@ section {
     border-radius: 50%;
     margin-top: 10%;
 } 
+tr {
+    
+}
