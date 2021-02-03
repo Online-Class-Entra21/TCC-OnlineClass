@@ -132,6 +132,7 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria uma nova linha 
             var linha = document.createElement("tr");
             linha.className = "linha";
+            linha.classList.add("colunaRen");
 
             //Cria uma nova coluna da linha - part 1 
             var coluna = document.createElement("td");
@@ -187,6 +188,12 @@ if(idUsuario != 0 && idUsuario != null){
             //Adiciona a linha na lista - tabela 
             lista.append(linha);
         }
+        $( ".colunaRen" ).click(function() { 
+            var idReuniao = reunioes[$(this).index()-1].idReuniao
+            
+            sessionStorage.setItem("idReuniao",idReuniao);
+            novaJanela = window.open ("/frontend/paginas/diretor/dir-relatorio-aberto.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2);
+        });
         carregarRelatoriosTipo1();
     }
 
@@ -316,6 +323,7 @@ if(idUsuario != 0 && idUsuario != null){
         $( ".colunaRel" ).click(function() { 
             var idRelatorio = relatorios[$(this).index()-1].idRelatorio
             sessionStorage.setItem("idRelatorio",idRelatorio);
+            novaJanela = window.open ("/frontend/paginas/diretor/dir-relatorio-aberto.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2);
         });
     }
 
