@@ -17,12 +17,12 @@ if(idUsuario != 0 && idUsuario != null){
             var img = document.querySelector("#idFotoPerfil");
             img.setAttribute('src', dadosUsuario.fotoUsuario);
             img.style.borderRadius = "80%";
-            carregarListas();
+            carregarListasTipo1();
         })
-
     xhr.send();
 
-    function carregarListas(){
+    //Reunioes com o dono sendo o usuario 
+    function carregarListasTipo1(){
         //Busca dos reunioes passadas do usuário
         var xhr2 = new XMLHttpRequest(); 
 
@@ -32,139 +32,292 @@ if(idUsuario != 0 && idUsuario != null){
             var resposta2 = xhr2.responseText; 
             dadosReuniao = JSON.parse(resposta2);
 
-            reunioes = [];
+            var reunioes = [];
             for (let i = 0; i < dadosReuniao.length; i++) {
                 reunioes.push(dadosReuniao[i]);
             }
+            carregarListasTipo2(reunioes)
+        })
+        xhr2.send();
+    }
 
-            for (let i = 0; i < dadosReuniao.length-1; i++) {
+    //Reunioes onde o usuario participou 
+    function carregarListasTipo2(reunioes){
+        //Busca dos reunioes passadas do usuário
+        var xhr2 = new XMLHttpRequest(); 
+
+        xhr2.open("GET", "http://localhost:8080/api/reunioes/participantes/"+idUsuario);
+
+        xhr2.addEventListener("load", function(){
+            var resposta2 = xhr2.responseText; 
+            dadosReuniao = JSON.parse(resposta2);
+           
+            for (var i = 0; i < dadosReuniao.length; i++) {
+                var passou = false;
+                for (let j = 0; j < reunioes.length; j++) {
+                    if(dadosReuniao[i].idReuniao == reunioes[j].idReuniao){
+                        passou = true;
+                    }
+                }
+                if(!passou){
+                    reunioes.push(dadosReuniao[i]);
+                }
+            }
+
+            //Ordena a tabela pela data 
+            for (var i = 0; i < reunioes.length; i++) {
+
                 var str2 = reunioes[i].dataInicio;
                 var dataReuniao2 = new Date(str2.split('/').reverse().join('/'));
-
-                var str3 = reunioes[i+1].dataInicio;
-                var dataReuniao3 = new Date(str3.split('/').reverse().join('/'));
-
-                console.log(dataReuniao2)
-                if(dataReuniao2 > dataReuniao3){
-                    var elemento = reunioes[i];
-                    reunioes[i] = reunioes[i+1];
-                    reunioes[i+1] = elemento;
-                }
-            }
-            console.log(reunioes)
-            
-            for (let i = 0; i < dadosReuniao.length; i++) {
-
-                //Pega a data da reuniao para comparacao
-                var str = reunioes[i].dataInicio;
-                var dataReuniao = new Date(str.split('/').reverse().join('/'));
-                var dataAtual = new Date();
-
-                //Verifica em qual lista vai 
-                if(dataReuniao > dataAtual){
-                    //Pega a lista - tabela 
-                    var lista = document.getElementById("lista-programacao");
-                }else{
-                    //Pega a lista - tabela 
-                    var lista = document.getElementById("lista-historico");
-                }
-
-                //Cria uma nova linha 
-                var linha = document.createElement("tr");
-                linha.className = "linha";
-
-                //Cria uma nova coluna da linha - part 1 
-                var coluna = document.createElement("td");
-                coluna.className = "td-lista foto-usuario";
-                
-                //Cria a imagem dentro da coluna 1
-                var img = document.createElement("img");
-                img.className = "img-usuario";
-                img.src= dadosUsuario.fotoUsuario;
-                img.alt="Foto Usuario";
-                img.title="Foto do Usuário";
-
-                //Cria uma nova coluna da linha - part 2
-                var coluna2 = document.createElement("td");
-                coluna2.className = "td-lista dados";
-
-                //Cria uma nova div dentro da coluna 2 
-                var div1 = document.createElement("div");
-                div1.className = "div-nome";
-
-                //Cria uma nova label dentro da div 1
-                var labelNome = document.createElement("label");
-                labelNome.className = "nome";
-                labelNome.name = "nome";
-                labelNome.title = "Nome";
-                labelNome.textContent = dadosUsuario.nome;
-                div1.append(labelNome);
-
-                //Cria uma nova div dentro da coluna 2 
-                var div2 = document.createElement("div");
-                div2.className = "div-data";
-
-                //Cria uma nova label dentro da div 1
-                var labelData = document.createElement("label");
-                labelData.className = "data";
-                labelData.name = "data";
-                labelData.title = "Data";
-                labelData.textContent = reunioes[i].dataInicio;
-                div2.append(labelData);
-
-                //Adiciona os conteudos nas colunas 
-                coluna.append(img)
-                coluna2.append(div1);
-                coluna2.append(div2);
-
-                //Adiciona as colunas na linha 
-                linha.append(coluna);
-                linha.append(coluna2);
-
-                //Adiciona a linha na lista - tabela 
-                lista.append(linha);
-            }
-        })
-
-    xhr2.send();
-    }
     
+                for(let j = 0; j < reunioes.length; j++){
+                    var str3 = reunioes[j].dataInicio;
+                    var dataReuniao3 = new Date(str3.split('/').reverse().join('/'));
+    
+                    if(dataReuniao2 > dataReuniao3){
+                        var elemento = reunioes[i];
+                        reunioes[i] = reunioes[j];
+                        reunioes[j] = elemento;
+                    }
+                }    
+            }
+            mostrar(reunioes)
+        })
+        xhr2.send();
+    }
 
-    // //Busca dos reunioes futuras do usuário
-    // var xhr = new XMLHttpRequest(); 
+    //Método para chamada da API 
+    function usarApi(method, url) {
+        return new Promise(function (resolve, reject) {
+            let xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+            xhr.onload = function () {
+                if (this.status >= 200 && this.status < 300) {
+                    resolve(xhr.response);
+                } else {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                }
+            };
+            xhr.onerror = function () {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            };
+            xhr.send();
+        });
+    }
 
-    //     xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+    //Mostra os resultados na tela 
+    async function mostrar(reunioes){
+        for (let i = 0; i < reunioes.length; i++) {
 
-    //     xhr.addEventListener("load", function(){
-    //         var resposta = xhr.responseText; 
-    //         dadosUsuario = JSON.parse(resposta);
-    //         //Adiciona o nome 
-    //         document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
-    //         //Adiciona a foto de perfil do usuario
-    //         var img = document.querySelector("#idFotoPerfil");
-    //         img.setAttribute('src', dadosUsuario.fotoUsuario);
-    //         img.style.borderRadius = "80%";
-    //     })
+            //Pega a data da reuniao para comparacao
+            var str = reunioes[i].dataInicio;
+            var dataReuniao = new Date(str.split('/').reverse().join('/'));
+            var dataAtual = new Date();
 
-    // xhr.send();
+            //Verifica em qual lista vai 
+            if(dataReuniao > dataAtual){
+                //Pega a lista - tabela 
+                var lista = document.getElementById("lista-programacao");
+            }else{
+                //Pega a lista - tabela 
+                var lista = document.getElementById("lista-historico");
+            }
 
-    // //Busca dos relatorios recebidos do usuário
-    // var xhr = new XMLHttpRequest(); 
+            //Cria uma nova linha 
+            var linha = document.createElement("tr");
+            linha.className = "linha";
 
-    //     xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+            //Cria uma nova coluna da linha - part 1 
+            var coluna = document.createElement("td");
+            coluna.className = "td-lista foto-usuario";
 
-    //     xhr.addEventListener("load", function(){
-    //         var resposta = xhr.responseText; 
-    //         dadosUsuario = JSON.parse(resposta);
-    //         //Adiciona o nome 
-    //         document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
-    //         //Adiciona a foto de perfil do usuario
-    //         var img = document.querySelector("#idFotoPerfil");
-    //         img.setAttribute('src', dadosUsuario.fotoUsuario);
-    //         img.style.borderRadius = "80%";
-    //     })
+            var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+reunioes[i].dono);
+            var usuario = JSON.parse(resposta);
+            
+            //Cria a imagem dentro da coluna 1
+            var img = document.createElement("img");
+            img.className = "img-usuario";
+            img.src = usuario.fotoUsuario;
+            img.alt="Foto Usuario";
+            img.title="Foto do Usuário";
 
-    // xhr.send();
+            //Cria uma nova coluna da linha - part 2
+            var coluna2 = document.createElement("td");
+            coluna2.className = "td-lista dados";
+
+            //Cria uma nova div dentro da coluna 2 
+            var div1 = document.createElement("div");
+            div1.className = "div-nome";
+
+            //Cria uma nova label dentro da div 1
+            var labelNome = document.createElement("label");
+            labelNome.className = "nome";
+            labelNome.name = "nome";
+            labelNome.title = "Nome";
+            labelNome.textContent = usuario.nome;
+            div1.append(labelNome);
+
+            //Cria uma nova div dentro da coluna 2 
+            var div2 = document.createElement("div");
+            div2.className = "div-data";
+
+            //Cria uma nova label dentro da div 1
+            var labelData = document.createElement("label");
+            labelData.className = "data";
+            labelData.name = "data";
+            labelData.title = "Data";
+            labelData.textContent = reunioes[i].dataInicio;
+            div2.append(labelData);
+
+            //Adiciona os conteudos nas colunas 
+            coluna.append(img)
+            coluna2.append(div1);
+            coluna2.append(div2);
+
+            //Adiciona as colunas na linha 
+            linha.append(coluna);
+            linha.append(coluna2);
+
+            //Adiciona a linha na lista - tabela 
+            lista.append(linha);
+        }
+        carregarRelatoriosTipo1();
+    }
+
+    //Busca os relatorios no banco enviados
+    function carregarRelatoriosTipo1(){
+        //Busca dos reunioes passadas do usuário
+        var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/relatorios/enviados/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosRelatorio = JSON.parse(resposta);
+
+            var relatorios = [];
+            for (let i = 0; i < dadosRelatorio.length; i++) {
+                relatorios.push(dadosRelatorio[i]);
+            }
+            carregarRelatoriosTipo2(relatorios);
+        })
+        xhr.send();
+    }
+
+    //Busca os relatorios no banco recebidos
+    function carregarRelatoriosTipo2(relatorios){
+        //Busca dos reunioes passadas do usuário
+        var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/relatorios/recebidos/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosRelatorio = JSON.parse(resposta);
+
+            for (let i = 0; i < dadosRelatorio.length; i++) {
+                relatorios.push(dadosRelatorio[i]);
+            }
+   
+            //Ordena a tabela pela data 
+            for (var i = 0; i < relatorios.length; i++) {
+
+                var str = relatorios[i].dataRelatorio;
+                var dataRelatorio = new Date(str.split('/').reverse().join('/'));
+    
+                for(let j = 0; j < relatorios.length; j++){
+                    var str2 = relatorios[j].dataRelatorio;
+                    var dataRelatorio2 = new Date(str2.split('/').reverse().join('/'));
+    
+                    if(dataRelatorio > dataRelatorio2){
+                        var elemento = relatorios[i];
+                        relatorios[i] = relatorios[j];
+                        relatorios[j] = elemento;
+                    }
+                }    
+            }
+            mostrarRelatorios(relatorios);
+        })
+        xhr.send();
+    }
+
+    //Mostra os resultados na tela 
+    async function mostrarRelatorios(relatorios){
+        for (let i = 0; i < relatorios.length; i++) {
+
+            //Pega a lista - tabela 
+            var lista = document.getElementById("lista-relatorios");
+
+            //Cria uma nova linha 
+            var linha = document.createElement("tr");
+            linha.className = "linha";
+            linha.classList.add("colunaRel");
+
+            //Cria uma nova coluna da linha - part 1 
+            var coluna = document.createElement("td");
+            coluna.className = "td-lista foto-usuario";
+
+            var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+relatorios[i].fk_usuario);
+            var usuario = JSON.parse(resposta);
+            
+            //Cria a imagem dentro da coluna 1
+            var img = document.createElement("img");
+            img.className = "img-usuario";
+            img.src = usuario.fotoUsuario;
+            img.alt="Foto Usuario";
+            img.title="Foto do Usuário";
+
+            //Cria uma nova coluna da linha - part 2
+            var coluna2 = document.createElement("td");
+            coluna2.className = "td-lista dados";
+
+            //Cria uma nova div dentro da coluna 2 
+            var div1 = document.createElement("div");
+            div1.className = "div-nome";
+
+            //Cria uma nova label dentro da div 1
+            var labelNome = document.createElement("label");
+            labelNome.className = "nome";
+            labelNome.name = "nome";
+            labelNome.title = "Nome";
+            labelNome.textContent = usuario.nome;
+            div1.append(labelNome);
+
+            //Cria uma nova div dentro da coluna 2 
+            var div2 = document.createElement("div");
+            div2.className = "div-data";
+
+            //Cria uma nova label dentro da div 1
+            var labelData = document.createElement("label");
+            labelData.className = "data";
+            labelData.name = "data";
+            labelData.title = "Data";
+            labelData.textContent = relatorios[i].dataRelatorio;
+            div2.append(labelData);
+
+            //Adiciona os conteudos nas colunas 
+            coluna.append(img)
+            coluna2.append(div1);
+            coluna2.append(div2);
+
+            //Adiciona as colunas na linha 
+            linha.append(coluna);
+            linha.append(coluna2);
+
+            //Adiciona a linha na lista - tabela 
+            lista.append(linha);
+        }
+        $( ".colunaRel" ).click(function() { 
+            var idRelatorio = relatorios[$(this).index()-1].idRelatorio
+            sessionStorage.setItem("idRelatorio",idRelatorio);
+        });
+    }
 
 }else{
     // alert('Sessão expirada - Erro (0002)')
@@ -189,8 +342,10 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
-// //Config. de nicio do programa
-// function configurarInicio(){
-    
-// }
-
+//Eventos de click nos botoes 
+document.getElementById("criarRelatorios").addEventListener("click", function(){
+    location = "/frontend/paginas/diretor/dir-relatorios.html";
+})
+document.getElementById("criarReunioes").addEventListener("click", function(){
+    location = "/frontend/paginas/diretor/dir-reunioes.html";
+})

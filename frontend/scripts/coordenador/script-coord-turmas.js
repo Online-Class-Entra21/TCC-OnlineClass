@@ -1,3 +1,23 @@
+//Evento de abertura do menu 
+document.getElementById("mostrar").addEventListener("mouseover", function(){
+    abrirMenu();
+})
+document.getElementById("idImgMenu").addEventListener("mouseover", function(){
+    abrirMenu();
+})
+
+//Abertura do menu
+function abrirMenu(){
+    document.getElementById("menu").style.display = "block";
+}
+
+//Evento de fechamento do menu 
+document.getElementById("menu").addEventListener("mouseleave", function(){
+    document.getElementById("menu").style.display = "none";
+})
+
+
+//Evento de Cadastro
 var cadturmas, index;
 
 function cadTurma(turma, turno, numAlu) {
@@ -19,7 +39,7 @@ function cadTurma(turma, turno, numAlu) {
     
 
 }
-
+//Evento de Alteração
 function altPessoa(turma, turno, numAlu) {
 
 
@@ -29,7 +49,7 @@ function altPessoa(turma, turno, numAlu) {
    
 
 }
-
+//Evento de preenchimento
 function preencheCamposForm() {
 
     for(var i = 0; i < cadturmas.rows.length; i++) 
@@ -47,7 +67,7 @@ function preencheCamposForm() {
     }
 }
 
-
+//Evento de delete
 function delRegistro() {
 
     for(var i = 0; i < cadturmas.rows.length; i++) 

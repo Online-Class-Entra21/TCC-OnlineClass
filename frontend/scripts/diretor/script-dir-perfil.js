@@ -44,17 +44,16 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
-
-//Especifico
+//Pega uma celula especifica na tabela 
 $(function () {
-    $("td").dblclick(function () {
-        var conteudoOriginal = $(this).text();
-        console.log($(this)[0].id);
-        if ($(this)[0].id!="teste") {
+    $(".inputs").dblclick(function () {
+        var conteudoOriginal = $(this).val();
+        
+        if ($(this)[0].className!="inputs") {
             
             $(this).addClass("celulaEmEdicao");
             $(this).html("<input type='text' value='" + conteudoOriginal + "' />");
-            $(this).children().first().focus();
+            $(this).children().first();
     
             $(this).children().first().keypress(function (e) {
                 if (e.which == 13) {
@@ -71,3 +70,63 @@ $(function () {
         }
     });
 });
+
+//Carregamento automático da foto do usuario 
+function ImagePreview(input)
+{
+    if (input.files && input.files[0])
+	{
+        var r = new FileReader();
+        r.onload = function(e)
+		{
+			$("#img_preview").show();
+            $("#img_preview").attr("src", e.target.result);
+        }
+        r.readAsDataURL(input.files[0]);
+    }
+}
+$().ready(function() {
+
+	hide_empty_image = false;
+	set_blank_to_empty_image = false;
+	set_image_border = true;
+
+	if (hide_empty_image)
+		$("#img_preview").hide();
+
+	if (set_blank_to_empty_image)
+		$("#img_preview").attr("src","data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=");
+
+	if (set_image_border)
+		$("#img_preview").css("border", "2px solid #ffffff");
+  
+    $("#img_preview").css("width", "80%");
+    $("#img_preview").css("height", "80%");
+
+	$("#imagemInput").change(function(){
+        ImagePreview(this);
+        url = URL.createObjectURL(event.target.files[0]);
+        $('#imagemInput').html($(this).val());
+        document.getElementById('botao-input').value = "Alterar Imagem";
+        document.getElementById('ok').textContent = "Ok";
+	});
+});
+
+//Eventos de abertura e fechamento do preview
+$("#visualizacao").click(function(){
+    if($("#imagemInput").val() != ""){
+        $("#visul-img").css("display", "inline");
+    }else{
+        alert("insira uma imagem primeiro!");
+    }
+})
+$("#idBotaoFechar").click(function(){
+    $("#visul-img").css("display", "none");
+})
+
+//Aciona o botao de carregamento de imagens 
+document.getElementById('botao-input').onclick = function () {
+    document.getElementById('imagemInput').click();
+};
+
+

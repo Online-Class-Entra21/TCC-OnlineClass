@@ -11,7 +11,12 @@ if(idUsuario != null){
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
             dadosUsuario = JSON.parse(resposta);
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+             //Adiciona o nome 
+             document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+             //Adiciona a foto de perfil do usuario
+             var img = document.querySelector("#idFotoPerfil");
+             img.setAttribute('src', dadosUsuario.fotoUsuario);
+             img.style.borderRadius = "80%";
         })
         xhr.onerror = function () {
             alert('Sem Conexão com a Base de Dados - Erro (0001)')
@@ -96,6 +101,43 @@ async function cadastrar() {
     var confirmarSenha = document.getElementById('inputConfirmSenha').value;
     //var fotoUsuario = document.getElementById('inputFotoUsuario').value;
    
+
+//     //Verifica se todos os campos estão preenchidos
+//     if (nome != '' && sobrenome != ''  && telefone != '' && celular != '' && email != '' && senha != '' && confirmarSenha != '' && fotoUsuario != '') {  
+//         //Valida a senha
+//         if (senha != confirmarSenha) {
+//             alert("As senhas não coincidem!")
+//         } else {
+
+//             //Cria o objeto com as informações a serem registradas no banco de dados
+//             var inserirUsuario = {
+//                 nome: nome,
+//                 sobrenome: sobrenome,
+//                 telefone: telefone,
+//                 celular: celular,
+//                 tipoUsuario: 2,
+//                 email: email,
+//                 senha: senha,
+//                 fotoUsuario: fotoUsuario
+//             }
+
+//             //Converte para JSON
+//             var usuarioJson = JSON.stringify(inserirUsuario);
+        
+//             //Chama a api para cadastrar o usuário
+//             var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/" + usuarioJson);
+//             if (insertUsuario == false) {
+//                 alert("Ocorreu um erro no cadastro do diretor!")
+//                 break;
+//             }
+//         }
+//     } else {
+//         alert("Preencha todos os campos!");
+//     }
+// }
+
+$("#telefone").mask("(00) 0000-0000");
+$("#celular").mask("(00) 00000-0000");
 
     //Verifica se todos os campos estão preenchidos
     if (nome != '' && sobrenome != ''  && telefone != '' && celular != '' && email != '' && senha != '' && confirmarSenha != '' && escola != '') {  

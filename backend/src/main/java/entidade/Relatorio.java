@@ -1,5 +1,7 @@
 package entidade;
 
+import java.util.*;
+
 /**
  * Classe contendo m�todos e atributos para o envio e criacao de relatorios pelo usuario
  * @see Usuario
@@ -11,7 +13,7 @@ public class Relatorio {
     private String titulo;
     private int destinatario;
     private String texto;
-    private String tipoRelatorio;
+    private Date dataRelatorio;
     private int fk_usuario;
 
     /**
@@ -31,14 +33,14 @@ public class Relatorio {
      * @param tipoRelatorio
      * @param fk_usuario
      */
-    public Relatorio(int idRelatorio, String titulo, int destinatario, String texto, String tipoRelatorio,
+    public Relatorio(int idRelatorio, String titulo, int destinatario, String texto, Date dataRelatorio,
 					 int fk_usuario) {
     	
 		setIdRelatorio(idRelatorio);
 		setTitulo(titulo);
 		setDestinatario(destinatario);
 		setTexto(texto);
-		setTipoRelatorio(tipoRelatorio);
+		setDataRelatorio(dataRelatorio);
 		setFk_usuario(fk_usuario);
 	}
 
@@ -108,19 +110,19 @@ public class Relatorio {
     }
 
     /** 
-     * Metodo para retorno do tipo de relatorio
-     * @return String tipoRelatorio
+     * Metodo para retorno da data do relatorio
+     * @return Date dataRelatorio
      */
-    public String getTipoRelatorio() {
-        return tipoRelatorio;
+    public Date getDataRelatorio() {
+        return dataRelatorio;
     }
 
     /**
-     * Metodo para insercao do tipo relatorio 
-     * @param String tipoRelatorio
+     * Metodo para insercao da data do relatorio
+     * @param Date tipoRelatorio
      */
-    public void setTipoRelatorio(String tipoRelatorio) {
-    	this.tipoRelatorio = tipoRelatorio;
+    public void setDataRelatorio(Date dataRelatorio) {
+    	this.dataRelatorio = dataRelatorio;
     }
 
     /**

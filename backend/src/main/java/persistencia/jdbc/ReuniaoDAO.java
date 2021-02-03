@@ -144,8 +144,8 @@ public class ReuniaoDAO {
 	//------------------------------------------------------------------
 	
 	/**
-	 * Metodo para selecionar todas as reunioes do banco de dados
-	 * @return lista de reunioes resgistradas no banco 
+	 * Metodo para selecionar todas as reunioes do banco de dados onde o dono e o do codigo informado
+	 * @return lista de reunioes resgistradas no banco onde o dono é ele
 	 * @param int codigoDono
 	 * @author Andrey
 	 * @throws SQLException 
@@ -167,6 +167,36 @@ public class ReuniaoDAO {
 			reuniao.setNotaMediaAula(resultSet.getDouble(5));
 			reuniao.setFk_sala(resultSet.getInt(6));
 			reuniao.setFk_usuarioDisciplina(resultSet.getInt(7));
+			lista.add(reuniao);
+		}
+		comandoSql.close();
+		return lista;
+	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Metodo para selecionar todas as reunioes do banco de dados onde o usuario participou 
+	 * @return lista de reunioes resgistradas no banco onde o usuario participou
+	 * @param int codigo
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public List<Reuniao> buscarTodosParticipantes(int codigo) throws SQLException {
+		List<Reuniao> lista = new ArrayList<Reuniao>();
+		String sql = "select * from reuniao_usuario where fk_usuario = ?";
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, codigo);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Reuniao reuniao = new Reuniao();
+			int idReuniao = (resultSet.getInt(3));
+			ReuniaoDAO reuniaoDao = new ReuniaoDAO();
+			reuniao = reuniaoDao.buscarId(idReuniao);
 			lista.add(reuniao);
 		}
 		comandoSql.close();

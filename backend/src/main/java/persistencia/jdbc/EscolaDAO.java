@@ -127,6 +127,10 @@ public class EscolaDAO {
 		return lista;
 	}
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
 	/**
 	 * Metodo para inserir a escola no banco de dados só com o nome
 	 * @param Escola escola 

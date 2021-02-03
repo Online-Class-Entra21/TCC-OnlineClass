@@ -3,43 +3,166 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="sortcut icon" href="/frontend/imagens/Logo-OnlineClass.png" type="image/x-icon"/>
         <link rel="stylesheet"  href="/frontend/estilos/coordenador/est-coord-professor.css">
-        <title>coordenador</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Controle de Professores</title>
     </head>
 
     <body>
-        <header>
-			<div class="topo">
-				.
-			</div>
-		</header>
-		<main>
-        
-        <input type="checkbox" id="check">
-        <label id= "icone" for="check"><img src="/frontend/imagens/lista.png"></label>
-     
-        <div class="barra">
-            <nav>
-                <a href="coordenador.html"><div class="link">Início</div></a>
-                <br><br><br>
-                <a href="coordenadorT.html"><div class="link">Turmas</div></a>
-                <a href="coordenadorP.html"><div class="link">Professores</div></a>
-                <a href="coordenadorA.html"><div class="link">Alunos</div></a>
-                <a href="coordenadorS.html"><div class="link">Salas</div></a>
-           
-                <br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br>
-           
-                <a href=""><div class="link">Sair</div></a>
-            </nav>
+        <div id="mostrar"></div>
+        <div id="menu">
+            <div id="menu-titulo">
+                <h4 id="idMenuTitulo">Coordenador</h4>
+            </div>
+            <section id="Alunos" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/graduado.png" alt="Alunos" title="Alunos" class="img-opcoes">
+                    <a href="/frontend/paginas/coordenador/coord-alunos.html">Controle de Alunos</a>
+                </figure>
+            </section>
+            <section id="Salas" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/sala-de-aula.png" alt="Salas" title="Salas" class="img-opcoes">
+                    <a href="/frontend/paginas/coordenador/coord-salas.html">Controle de Salas</a>
+                </figure>
+            </section>
+            <section id="Professores" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/professor.png" alt="Professores" title="Professores" class="img-opcoes">
+                    <a href="/frontend/paginas/coordenador/coord-professores.html">Controle de Professores</a>
+                </figure>
+            </section>
+            <section id="Turmas" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/turma.png" alt="Turmas" title="Turmas" class="img-opcoes">
+                    <a href="/frontend/paginas/coordenador/coord-turmas.html">Controle de Turmas</a>
+                </figure>
+            </section>
+            <section id="tela-principal" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
+                    <a href="/frontend/paginas/coordenador/coord-principal.html">Tela Principal</a>
+                </figure>
+            </section>
+            <section id="sair" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
+                    <a id="ancoraSair" href="/frontend/index.html">Sair</a>
+                </figure>
+            </section>
         </div>
+        <header>
+            <nav id="cabecalho">
+                <div id="lado-esquerdo">
+                    <div id="botao-menu">
+                        <figure id="figure-menu">
+                            <img id="idImgMenu" src="/frontend/imagens/botao-menu.png" alt="Menu" title="Menu" name="menu">
+                        </figure>
+                    </div>
+                </div>
+                <div id="lado-direito">
+                    <figure id="figure-perfil">
+                        <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil" title="Foto de Perfil">
+                        <label id="idNomeUsuario" for="foto-perfil" name="nome-usuario" title="Nome">Nome</label>
+                    </figure>
+                </div>
+            </nav>
+        </header>
+		<main>
 
 
-	</div>
+    </div>
+    <input type="checkbox" id="check2">
+    <label id= "icone2" for="check2"><img src="/frontend/imagens/atualizar.png"></label>
+    <div class="alterar">
+    <div id="fAltera">
+        <form>
+            <div class="form-group">
+                <h2 id="TForm">Atualizar / Deletar <br> Professores</h2>
+                <label for="txtCodigo">Código</label>
+                <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+            </div>
+            <div class="form-group">
+                <label for="txtNomProf">Nome</label>
+                <input type="text" class="form-control" id="txtNomProf" placeholder="Nome do Professor">
+            </div>
+            <div class="form-group">
+                <label for="txtDisciplina">Diciplina</label>
+                <input type="text" class="form-control" id="txtDisciplina" placeholder="Diciplina">
+            </div>
+            <div class="form-group">
+                <label for="txtTurmas">Número de Turma</label>
+                <input type="number" class="form-control" id="txtTurmas" aria-describedby="emailHelp" placeholder="Quantidade de Turmas">
+            </div>
+            <div class="botao">
+                <button type="button" class="btnAlt btn-primary btn-lg"
+                onclick="altPessoa(txtNomProf.value, txtDisciplina.value, txtTurmas.value)">
+            Atualizar
+                <button type="button" class="btnAlt btn-primary btn-lg" id="idBtn"
+            onclick="delRegistro()">Excluir
+        </div>
+    </div>
+    </div>
 
+            <input type="checkbox" id="check3">
+            <label id= "icone3" for="check3"><img src="/frontend/imagens/mais.png"></label>
+
+        </form>
+        <div class="animCad">
+            <div id="fPessoas">
+            <form>
+                <div class="form-group">
+                    <h2 id="TForm">Cadastrar Aluno</h2>
+                    <label for="txtCodigo">Código</label>
+                    <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="txtNomProf">Nome</label>
+                    <input type="text" class="form-control" id="txtNomProf" placeholder="Nome do Professor">
+                </div>
+                <div class="form-group">
+                    <label for="txtDisciplina">Diciplina</label>
+                    <input type="text" class="form-control" id="txtDisciplina" placeholder="Diciplina">
+                </div>
+                <div class="form-group">
+                    <label for="txtTurmas">Quantidade de Turma</label>
+                    <input type="number" class="form-control" id="txtTurmas" aria-describedby="emailHelp" placeholder="Quantidade de Turmas">
+                </div>
+                <div class="botaoCad">
+                    <button type="button" class="btnCad btn-primary btn-lg"
+                    onclick="cadProf(txtNomProf.value, txtDisciplina.value, txtTurmas.value)">
+                Cadastrar  
+            </div>
+            </div>
+                </div>  
+
+    <div class="maxTb">
+    <div id="dGridPessoas">
+
+        <table class="table" id="tbPessoas" class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Diciplina</th>
+                    <th scope="col">Quantidade de Turmas</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div id="aviso"><p>*Cuidado ao excluir algum cadastro, quando excluido os dados são perdidos permanentemente*</p></div>
+
+
+</body>
+
+</html>
 	</main>
 
+    <script src="/frontend/scripts/coordenador/script-coord-professores.js"></script>
     </body>
   
 </html>
-
-
