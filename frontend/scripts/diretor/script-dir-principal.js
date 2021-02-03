@@ -262,7 +262,6 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria uma nova coluna da linha - part 1 
             var coluna = document.createElement("td");
             coluna.className = "td-lista foto-usuario";
-            coluna.classList.add("colunaRel");
 
             var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+relatorios[i].fk_usuario);
             var usuario = JSON.parse(resposta);
@@ -277,7 +276,6 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria uma nova coluna da linha - part 2
             var coluna2 = document.createElement("td");
             coluna2.className = "td-lista dados";
-            coluna2.classList.add("colunaRel");
 
             //Cria uma nova div dentro da coluna 2 
             var div1 = document.createElement("div");
@@ -315,6 +313,10 @@ if(idUsuario != 0 && idUsuario != null){
             //Adiciona a linha na lista - tabela 
             lista.append(linha);
         }
+        $( ".colunaRel" ).click(function() { 
+            var idRelatorio = relatorios[$(this).index()-1].idRelatorio
+            console.log(idRelatorio);
+        });
     }
 
 }else{
@@ -347,10 +349,3 @@ document.getElementById("criarRelatorios").addEventListener("click", function(){
 document.getElementById("criarReunioes").addEventListener("click", function(){
     location = "/frontend/paginas/diretor/dir-reunioes.html";
 })
-
-$( ".colunaRel" ).click(function() { 
-    console.log(escolasIndex)
-    var escolaEscolhida = escolasIndex[$(this).index()].idEscola
-    sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
-    location.href = "/frontend/paginas/administrador/teste-adm-editar.html"
-});

@@ -124,8 +124,7 @@ async function listaEscolas(){
     $( ".LinhaEscolas" ).click(function() { 
         console.log(escolasIndex)
         var escolaEscolhida = escolasIndex[$(this).index()].idEscola
-        sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
-        location.href = "/frontend/paginas/administrador/teste-adm-editar.html"
+        console.log(escolaEscolhida)
     });
 }
 
