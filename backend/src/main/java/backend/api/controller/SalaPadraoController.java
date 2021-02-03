@@ -17,6 +17,7 @@ import entidade.Aluno;
 import entidade.Sala;
 import entidade.SalaPadrao;
 import entidade.Turma;
+import entidade.Usuario;
 import persistencia.jdbc.AlunoDAO;
 import persistencia.jdbc.SalaDAO;
 import persistencia.jdbc.SalaPadraoDAO;
