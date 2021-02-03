@@ -187,7 +187,64 @@ if(idUsuario != 0 && idUsuario != null){
             //Adiciona a linha na lista - tabela 
             lista.append(linha);
         }
-        carregarRelatorios();
+        carregarRelatoriosTipo1();
+    }
+
+    //Busca os relatorios no banco enviados
+    function carregarRelatoriosTipo1(){
+        //Busca dos reunioes passadas do usuário
+        var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/relatorios/enviados/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosRelatorio = JSON.parse(resposta);
+
+            var relatorios = [];
+            for (let i = 0; i < dadosRelatorio.length; i++) {
+                relatorios.push(dadosRelatorio[i]);
+            }
+            carregarRelatoriosTipo2(relatorios);
+        })
+        xhr.send();
+    }
+
+    //Busca os relatorios no banco recebidos
+    function carregarRelatoriosTipo2(relatorios){
+        //Busca dos reunioes passadas do usuário
+        var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/relatorios/recebidos/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosRelatorio = JSON.parse(resposta);
+
+            for (let i = 0; i < dadosRelatorio.length; i++) {
+                relatorios.push(dadosRelatorio[i]);
+            }
+   
+            //Ordena a tabela pela data 
+            for (var i = 0; i < relatorios.length; i++) {
+
+                var str = relatorios[i].dataRelatorio;
+                var dataRelatorio = new Date(str.split('/').reverse().join('/'));
+    
+                for(let j = 0; j < relatorios.length; j++){
+                    var str2 = relatorios[j].dataRelatorio;
+                    var dataRelatorio2 = new Date(str2.split('/').reverse().join('/'));
+    
+                    if(dataRelatorio > dataRelatorio2){
+                        var elemento = relatorios[i];
+                        relatorios[i] = relatorios[j];
+                        relatorios[j] = elemento;
+                    }
+                }    
+            }
+            mostrarRelatorios(relatorios);
+        })
+        xhr.send();
     }
 
     //Mostra os resultados na tela 
@@ -200,12 +257,14 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria uma nova linha 
             var linha = document.createElement("tr");
             linha.className = "linha";
+            linha.classList.add("colunaRel");
 
             //Cria uma nova coluna da linha - part 1 
             var coluna = document.createElement("td");
             coluna.className = "td-lista foto-usuario";
+            coluna.classList.add("colunaRel");
 
-            var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+relatorios[i].destinatario);
+            var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+relatorios[i].fk_usuario);
             var usuario = JSON.parse(resposta);
             
             //Cria a imagem dentro da coluna 1
@@ -218,6 +277,7 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria uma nova coluna da linha - part 2
             var coluna2 = document.createElement("td");
             coluna2.className = "td-lista dados";
+            coluna2.classList.add("colunaRel");
 
             //Cria uma nova div dentro da coluna 2 
             var div1 = document.createElement("div");
@@ -240,7 +300,7 @@ if(idUsuario != 0 && idUsuario != null){
             labelData.className = "data";
             labelData.name = "data";
             labelData.title = "Data";
-            labelData.textContent = relatorios[i].dataInicio;
+            labelData.textContent = relatorios[i].dataRelatorio;
             div2.append(labelData);
 
             //Adiciona os conteudos nas colunas 
@@ -255,45 +315,6 @@ if(idUsuario != 0 && idUsuario != null){
             //Adiciona a linha na lista - tabela 
             lista.append(linha);
         }
-        carregarRelatorios();
-    }
-
-    //Busca os relatorios no banco 
-    function carregarRelatorios(){
-        //Busca dos reunioes passadas do usuário
-        var xhr = new XMLHttpRequest(); 
-
-        xhr.open("GET", "http://localhost:8080/api/relatorios/recebidos/"+idUsuario);
-
-        xhr.addEventListener("load", function(){
-            var resposta = xhr.responseText; 
-            dadosRelatorio = JSON.parse(resposta);
-
-            var relatorios = [];
-            for (let i = 0; i < dadosRelatorio.length; i++) {
-                relatorios.push(dadosRelatorio[i]);
-            }
-            
-            //Ordena a tabela pela data 
-            for (var i = 0; i < relatorios.length; i++) {
-
-                var str = relatorios[i].dataRelatorio;
-                var dataRelatorio = new Date(str.split('/').reverse().join('/'));
-    
-                for(let j = 0; j < relatorios.length; j++){
-                    var str2 = relatorios[j].dataRelatorio;
-                    var dataRelatorio2 = new Date(str2.split('/').reverse().join('/'));
-    
-                    if(dataRelatorio > dataRelatorio2){
-                        var elemento = relatorios[i];
-                        relatorios[i] = relatorios[j];
-                        relatorios[j] = elemento;
-                    }
-                }    
-            }
-            mostrarRelatorios(relatorios);
-        })
-        xhr.send();
     }
 
 }else{
@@ -327,4 +348,9 @@ document.getElementById("criarReunioes").addEventListener("click", function(){
     location = "/frontend/paginas/diretor/dir-reunioes.html";
 })
 
-
+$( ".colunaRel" ).click(function() { 
+    console.log(escolasIndex)
+    var escolaEscolhida = escolasIndex[$(this).index()].idEscola
+    sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
+    location.href = "/frontend/paginas/administrador/teste-adm-editar.html"
+});

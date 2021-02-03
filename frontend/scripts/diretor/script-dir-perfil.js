@@ -44,12 +44,10 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
-
 //Especifico
 $(function () {
     $("td").dblclick(function () {
         var conteudoOriginal = $(this).text();
-        console.log($(this)[0].id);
         if ($(this)[0].id!="teste") {
             
             $(this).addClass("celulaEmEdicao");

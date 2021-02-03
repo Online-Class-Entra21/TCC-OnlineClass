@@ -174,7 +174,7 @@ public class RelatorioController {
 	 * @author Breno
 	 * @return lista de relatorios registrados no banco onde fk_usuario é igual ao codigo
 	 */
-	@GetMapping(path = "/api/relatorios/{destinatario}")
+	@GetMapping(path = "/api/relatorios/recebidos/{destinatario}")
 	public List<Relatorio> consultarDestinatario(@PathVariable("destinatario") int destinatario){
 		LOGGER.info("Requisição List<Relatorio>");
 		List<Relatorio> lista;
