@@ -315,7 +315,7 @@ if(idUsuario != 0 && idUsuario != null){
         }
         $( ".colunaRel" ).click(function() { 
             var idRelatorio = relatorios[$(this).index()-1].idRelatorio
-            console.log(idRelatorio);
+            sessionStorage.setItem("idRelatorio",idRelatorio);
         });
     }
 
