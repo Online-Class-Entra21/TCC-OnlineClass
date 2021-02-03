@@ -85,13 +85,12 @@
             </nav>
         </header>
         <main class="nav justify-content-center">
-            <div id="visul-img" hidden>
+            <div id="visul-img">
                 <div id="img">
                     <img id="img_preview" src="" alt="Image Preview"/>
                 </div>
                 <div id="botoes-img">
-                    <input type="button" value="botao-confirmar" title="Confirmar">
-                    <input type="button" value="botao-cancelar" title="Cancelar">
+                    <input id="idBotaoFechar" type="button" value="Fechar" title="Fechar">
                 </div>
             </div> 
             <section>
@@ -99,46 +98,46 @@
                     <fieldset class="border p-3">
                         <legend>Dados Pessoais</legend>
 
-                        <table class="tabelaEditavel">
+                        <table class="tabela">
                             <tr>
-                                <td id="teste">
+                                <td class="idColuna">
                                     <label>Escola: </label>
                                 </td>
-                                <td id="teste">
-                                    <input class="naoEditavel marginT" type="text" size="20" value="CEDUP" readonly>
+                                <td class="idColuna">
+                                    <input class="inputs" type="text" value="Escola" readonly>
                                 </td>
                             </tr>
                             <tr>
-                                <td id="teste">
+                                <td class="idColuna">
                                     <label>Nome: </label>
                                 </td>
                                 <td>
-                                    <input class="marginT naoEditavel" type="text" size="21" value="Ian" readonly>
+                                    <input id="idNome" class="inputs" type="text" value="Nome" readonly>
                                 </td>
                             </tr>
                             <tr>
-                                <td id="teste">
+                                <td class="idColuna">
                                     <label>Email: </label>
                                 </td>
                                 <td>
-                                    <input class="marginT naoEditavel" type="text" size="21" value="Ianzin@gmail.com" readonly>
+                                    <input class="inputs" type="text" value="email@gmail.com" readonly>
                                 </td>
                             </tr>
                             <tr>
-                                <td id="teste">
+                                <td class="idColuna">
                                     <label>Senha: </label>
                                 </td>
                                 <td>
-                                    <input class="marginT naoEditavel" type="password" size="20" value="teste123" readonly>
+                                    <input class="inputs" type="password" size="20" value="teste123" readonly>
                                 </td>
                             </tr>
                             <tr>
-                                <td id="imagem-add">
+                                <td class="idColuna" id="imagem-add">
                                     <label for="imagem">Imagem de perfil:</label>
-                                    <label id="label-input"  for="imagemInput" type="button" title="Adiciona Imagem">Adicionar imagem</label>
+                                    <input id="botao-input" value="Adicionar Imagem" type="button" title="Adiciona Imagem">
                                     <input id="imagemInput" type=file name="imagem">
-                                    
-                                    <img onclick="abrirImg()" id="visualizacao" src="/frontend/imagens/olho.png" alt="Visualizacao" nome="visualizacao" title="Visualizacao">
+                                    <label id="ok" for="ok" name="ok" title="Ok"></label>
+                                    <img id="visualizacao" src="/frontend/imagens/olho.png" alt="Visualizacao" nome="visualizacao" title="Visualizacao">
                                 </td>
                             </tr> 
                         </table>

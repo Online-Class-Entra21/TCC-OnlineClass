@@ -44,15 +44,16 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
-//Especifico
+//Pega uma celula especifica na tabela 
 $(function () {
-    $("td").dblclick(function () {
-        var conteudoOriginal = $(this).text();
-        if ($(this)[0].id!="teste") {
+    $(".inputs").dblclick(function () {
+        var conteudoOriginal = $(this).val();
+        
+        if ($(this)[0].className!="inputs") {
             
             $(this).addClass("celulaEmEdicao");
             $(this).html("<input type='text' value='" + conteudoOriginal + "' />");
-            $(this).children().first().focus();
+            $(this).children().first();
     
             $(this).children().first().keypress(function (e) {
                 if (e.which == 13) {
@@ -70,6 +71,7 @@ $(function () {
     });
 });
 
+//Carregamento automático da foto do usuario 
 function ImagePreview(input)
 {
     if (input.files && input.files[0])
@@ -83,7 +85,6 @@ function ImagePreview(input)
         r.readAsDataURL(input.files[0]);
     }
 }
-
 $().ready(function() {
 
 	hide_empty_image = false;
@@ -97,33 +98,35 @@ $().ready(function() {
 		$("#img_preview").attr("src","data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=");
 
 	if (set_image_border)
-		$("#img_preview").css("border", "1px solid #05bbcc");
+		$("#img_preview").css("border", "2px solid #ffffff");
   
     $("#img_preview").css("width", "80%");
     $("#img_preview").css("height", "80%");
 
 	$("#imagemInput").change(function(){
-		ImagePreview(this);
+        ImagePreview(this);
+        url = URL.createObjectURL(event.target.files[0]);
+        $('#imagemInput').html($(this).val());
+        document.getElementById('botao-input').value = "Alterar Imagem";
+        document.getElementById('ok').textContent = "Ok";
 	});
 });
 
-const imgs = document.getElementsByTagName('img');
-
-function abrirImg() {
-    for (var i = 0; i<imgs.length; i++) {
-        if(imgs[i].style.display == 'none' || imgs[i].style.display == '') {
-          imgs[i].style.display = 'inline-block';
-          break;
-        }
-      }
-}
-
-function apagar() {
-    for (var i = imgs.length - 1; i>=0; i--) {
-      if(imgs[i].style.display == 'inline-block') {
-        imgs[i].style.display = 'none';
-        break;
-      }
+//Eventos de abertura e fechamento do preview
+$("#visualizacao").click(function(){
+    if($("#imagemInput").val() != ""){
+        $("#visul-img").css("display", "inline");
+    }else{
+        alert("insira uma imagem primeiro!");
     }
-  }
-  
+})
+$("#idBotaoFechar").click(function(){
+    $("#visul-img").css("display", "none");
+})
+
+//Aciona o botao de carregamento de imagens 
+document.getElementById('botao-input').onclick = function () {
+    document.getElementById('imagemInput').click();
+};
+
+
