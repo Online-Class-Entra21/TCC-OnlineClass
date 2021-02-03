@@ -49,8 +49,8 @@ async function carregarCampos(idEscola) {
 
     document.getElementById('idID').value = escola.idEscola;
     document.getElementById('idNome').value = escola.nome;
-    //document.getElementById('idDataInic').textContent = escola.dataInicioLetivo;
-    //document.getElementById('idDataFim').textContent = escola.dataFinalLetivo;
+    document.getElementById('idDataInic').value = escola.dataInicioLetivo;
+    document.getElementById('idDataFim').value = escola.dataFinalLetivo;
 
     resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscola)
     var diretor = JSON.parse(resposta);
@@ -68,7 +68,6 @@ async function editarEscola(idEscola) {
     if (document.getElementById('idNome').value != '') {
         //Edita os Campos da escola
         var alterarEscola = {
-            idEscola: idEscola,
             nome: document.getElementById('idNome').value,
             dataInicioLetivo: document.getElementById('idDataInic').value,
             dataFinalLetivo: document.getElementById('idDataFim').value
@@ -85,4 +84,29 @@ async function editarEscola(idEscola) {
     } 
 }   
 
+//Método para deletar a escola
+async function excluirEscola(idEscola) {
+    var confirmar =  confirm("Tem certeza de que deseja excluir a escola "+ document.getElementById('idNome').value+"?")
+    if (confirmar==true) {
+        //Retorna o diretor
+        resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscola)
+
+        //Exclui o diretor
+        if (resposta != null) {
+            var diretor = JSON.parse(resposta);
+            var excluirDiretor = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/" + diretor.idUsuario);
+
+        }
+
+        //Exclui a escola
+        var excluirEscola = await usarApi("DELETE", "http://localhost:8080/api/escola/deletar/" + escolaEscolhida);
+
+        //Verificação
+        if (excluirDiretor == false || excluirEscola == false) {
+            alert("Ocorreu um erro ao excluir a instituição!")
+        }
+    }
+    
+
+}
 

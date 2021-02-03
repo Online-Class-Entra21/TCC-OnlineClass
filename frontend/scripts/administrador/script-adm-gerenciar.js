@@ -122,9 +122,7 @@ async function listaEscolas(){
     }
     //Retorna o valor da linha da escola clicada
     $( ".LinhaEscolas" ).click(function() { 
-        console.log(escolasIndex)
-        var escolaEscolhida = escolasIndex[$(this).index()].idEscola
-        console.log(escolaEscolhida)
+        var escolaEscolhida = escolasIndex[$(this).index()].idEscola;
     });
 }
 

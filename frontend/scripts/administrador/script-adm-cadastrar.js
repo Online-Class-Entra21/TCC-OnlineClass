@@ -81,12 +81,7 @@ function usarApi(method, url) {
 //Métodos onclick dos botões cadastrar e limpar
 var btnCadastrar =  document.getElementById('btnCadastrar');
 btnCadastrar.addEventListener("click", function() {
-    //alert("Entrou btnClick")
     cadastrar();
-})
-var btnLimpar = document.getElementById('btnLimpar');
-btnLimpar.addEventListener("click", function() {
-
 })
 
 //Método para cadastrar
@@ -99,43 +94,7 @@ async function cadastrar() {
     var email = document.getElementById('inputEmail').value;
     var senha = document.getElementById('inputSenha').value;
     var confirmarSenha = document.getElementById('inputConfirmSenha').value;
-    //var fotoUsuario = document.getElementById('inputFotoUsuario').value;
-   
-
-//     //Verifica se todos os campos estão preenchidos
-//     if (nome != '' && sobrenome != ''  && telefone != '' && celular != '' && email != '' && senha != '' && confirmarSenha != '' && fotoUsuario != '') {  
-//         //Valida a senha
-//         if (senha != confirmarSenha) {
-//             alert("As senhas não coincidem!")
-//         } else {
-
-//             //Cria o objeto com as informações a serem registradas no banco de dados
-//             var inserirUsuario = {
-//                 nome: nome,
-//                 sobrenome: sobrenome,
-//                 telefone: telefone,
-//                 celular: celular,
-//                 tipoUsuario: 2,
-//                 email: email,
-//                 senha: senha,
-//                 fotoUsuario: fotoUsuario
-//             }
-
-//             //Converte para JSON
-//             var usuarioJson = JSON.stringify(inserirUsuario);
-        
-//             //Chama a api para cadastrar o usuário
-//             var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/" + usuarioJson);
-//             if (insertUsuario == false) {
-//                 alert("Ocorreu um erro no cadastro do diretor!")
-//                 break;
-//             }
-//         }
-//     } else {
-//         alert("Preencha todos os campos!");
-//     }
-// }
-
+ 
 $("#telefone").mask("(00) 0000-0000");
 $("#celular").mask("(00) 00000-0000");
 
@@ -171,7 +130,6 @@ $("#celular").mask("(00) 00000-0000");
                 email: email,
                 senha: senha,
                 fk_escola: idEscolaNome.idEscola
-                //fotoUsuario: fotoUsuario
             }
             
             //Converte para JSON
