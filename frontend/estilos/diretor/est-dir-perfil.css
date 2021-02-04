@@ -292,14 +292,13 @@ Config. dos inputs
 Config. divs do form
 */
 #div-titulo{
-    padding: 3vh;
-    height: 4vh;
+    padding: 4%;
+    height: 18%;
     align-items: center;
     display: flex;
 }
 #div-tabela{
-    width: 50vh;
-    height: 45vh;
+    height: 82%;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -313,7 +312,7 @@ Config. dados pessoais div
     height: 60vh;
     border-radius: 3vh;
     border: 2px solid black;
-    padding: 2.5%;
+    padding: 1%;
     margin: 3%;
 }
 
@@ -402,8 +401,23 @@ Config. da linha de carregamento da imagem
 /*
 Config. do botao salvar 
 */
-#salvar{
-    margin-left: 2%;
-    margin-top: 3%;
+#tr-salvar{
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
-
+#salvar{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 1%;
+    border-radius: 2vh;
+    padding: 1.2%;
+    font-size: 2.5vh;
+}
+#botao-salvar{
+    border-radius: 1vh;
+}
+#botao-salvar:hover{
+    border: 2px solid black;
+}
