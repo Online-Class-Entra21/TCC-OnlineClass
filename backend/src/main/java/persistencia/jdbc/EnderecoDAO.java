@@ -25,7 +25,7 @@ public class EnderecoDAO {
 	 * @throws SQLException 
 	 */
 	public void insert(Endereco endereco) throws SQLException {
-		String sql = "insert into endereco (estado, cidade, bairro, rua, numero, cep) values (?,?,?,?,?,?).";
+		String sql = "insert into endereco (estado, cidade, bairro, rua, numero, cep) values (?,?,?,?,?,?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, endereco.getEstado());
