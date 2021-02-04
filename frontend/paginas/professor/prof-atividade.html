@@ -4,7 +4,7 @@
         <meta charset="utf-8">
 
         <link rel="stylesheet"  href="/frontend/estilos/professor/est-prof-atividade.css">
-        <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <title> Postagem de Atividades</title>
     </head>
 
@@ -72,17 +72,17 @@
         <main>
             
            
-            <div id="conteudo">
-                <form class="postar-atividade">
+            <div id="conteudo ">
+                <form class="postar-atividade ">
                   
-                    <label class="aulaTipo" for="idTitle">Titulo da atividade </label><br>
-                <input class="aula" type="text" id="idTitle" name="nmTitle">
-                    <br>
-                    <label class="aulaTipo" for="idDateTime">ㅤㅤEntrega </label><br>
-                <input class="aula" type="datetime-local" id="idDateTime" name="nmDateTitle">
-                    <br><br>
-                    <label class="aulaTipo" for="idTipo">Tipo de atividade</label><br>
-                    <select name="assunto" id="idTipo" class="aula">
+                    <label class="aulaTipo lead" for="idTitle">Titulo da atividade </label>
+                <input class="aula form-control" type="text" id="idTitle" name="nmTitle">
+                    
+                    <label class="aulaTipo lead pt-3" for="idDateTime">ㅤㅤEntrega </label>
+                <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
+        
+                    <label class="aulaTipo lead pt-3" for="idTipo">Tipo de atividade</label>
+                    <select name="assunto" id="idTipo" class="aula form-control">
                         <option>-Selecione o tipo</option>
                         <option>-Avaliação</option>
                         <option>-Atividade em grupo</option>
@@ -91,20 +91,27 @@
                         <option>-Outro</option>
                     </select>
                 
+                    <div class="custom-file">
+                        <label class="arq custom-file-label " for="idFile">Anexar Arquivo</label>
+                        <input class="arq custom-file-input" type="file" name="nmFile" id="idFile">
+                    </div>
                     
-                    <label class="arq" for="idFile"></label>
-                    <input class="arq" type="file" name="nmFile" id="idFile">
-                   
-                    <label class="arq" for="idFile"></label>
-                    <input class="arq" type="file" name="nmFile" id="idFile">
-                   
-                    <label class="arq" for="idFile"></label>
-                    <input class="arq" type="file" name="nmFile" id="idFile">
+                      
+                    <div class="custom-file">
+                        <label class="arq2 custom-file-label " for="idFile">Anexar Arquivo</label>
+                        <input class="arq2 custom-file-input" type="file" name="nmFile" id="idFile">
+                    </div>
+                    
+                    <div class="custom-file">
+                        <label class="arq3 custom-file-label " for="idFile">Anexar Arquivo</label>
+                        <input class="arq3 custom-file-input" type="file" name="nmFile" id="idFile">
+                    </div>
+                    
 
-                    <textarea name="mensagem" class="descricao" placeholder="Insira um breve resumo..."></textarea>
-                    <br>
+
+                    <textarea name="mensagem" class="descricao form-control" placeholder="Insira um breve resumo..."></textarea>
                     
-                    <button class="marcar" onclick="alert('Aula marcada')">ENVIAR</button>
+                    <button class=" marcar btn-secondary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
                     
                     
                     

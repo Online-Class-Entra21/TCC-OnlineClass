@@ -293,6 +293,7 @@ Config. do menu
     border-color: white;
     position: absolute;
     display: none;
+    z-index: 999;
 }
 
 /*

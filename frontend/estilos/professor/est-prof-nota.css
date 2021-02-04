@@ -41,60 +41,46 @@
     font-size: 20px;
     font-weight: 100;
     background-color: gray;
-    -webkit-box-shadow: 1px 1px 20px 0 #000000;
-    -moz-box-shadow: 1px 1px 20px 0 #000000;
-    box-shadow: 1px 1px 20px 0 #000000;
-    text-shadow: 1px 1px 20px #000000;
     border: solid #333333 1px;
     text-decoration: none;
-    display: inline-block;
     cursor: pointer;
     margin-left: 50%;
-    margin-top: 3%;
  }
 .cont {
-    min-width: 15%;
-    min-height: 10%;
     max-width: 15%;
-    max-height: 10%;
     border: 1px solid black;
     font-family: Arial, Helvetica, sans-serif;
-    color: black;
     text-align: center;
-    margin-left: 70%;
-    margin-bottom: 2%;
+    margin-left: 10%;
+    position: relative;
     
 }
 .contTipo {
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     text-align: center;
-    margin-left: 70%;
+    margin-left: 14%;
     border: none;
     
     
 }
 
 .cont2 {
-    min-width: 15%;
-    min-height: 10%;
     max-width: 15%;
-    max-height: 10%;
     border: 1px solid black;
     font-family: Arial, Helvetica, sans-serif;
-    color: black;
     text-align: center;
-   margin-left: 10%;
-   margin-bottom: 1%;
-   
+    margin-left: 70%;
+    position: relative;
+    
 }
 .contTipo2 {
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     text-align: center;
-    margin-left: 10%;
+    margin-left: 74%;
     border: none;
-
+    
     
 }
 
@@ -107,6 +93,7 @@
     padding-top: 1%;
     margin-top: 2%;
     margin-left: 10%;
+
 }
 
 
@@ -244,6 +231,7 @@ Config. do menu
     border-color: white;
     position: absolute;
     display: none;
+    z-index: 999;
 }
 
 /*
