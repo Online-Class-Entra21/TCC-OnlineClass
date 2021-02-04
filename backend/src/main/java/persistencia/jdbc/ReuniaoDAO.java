@@ -1,10 +1,10 @@
 package persistencia.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class ReuniaoDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
 		comandoSql.setString(1, reuniao.getDescricao());
-		comandoSql.setDate(2, (Date) reuniao.getDataInicio());
+		comandoSql.setTimestamp(2, (Timestamp) reuniao.getDataInicio());
 		comandoSql.setInt(3, reuniao.getDono());
 		comandoSql.setDouble(4, reuniao.getNotaMediaAula());
 		comandoSql.setInt(5, reuniao.getFk_sala());
@@ -54,7 +54,7 @@ public class ReuniaoDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
 		comandoSql.setString(1, reuniao.getDescricao());
-		comandoSql.setDate(2, (Date) reuniao.getDataInicio());
+		comandoSql.setTimestamp(2, (Timestamp) reuniao.getDataInicio());
 		comandoSql.setInt(3, reuniao.getDono());
 		comandoSql.setDouble(4, reuniao.getNotaMediaAula());
 		comandoSql.setInt(5, reuniao.getFk_sala());
@@ -101,7 +101,7 @@ public class ReuniaoDAO {
 		if (resultSet.next()) {
 			reuniao.setIdReuniao(resultSet.getInt(1));
 			reuniao.setDescricao(resultSet.getString(2));
-			reuniao.setDataInicio(resultSet.getDate(3));
+			reuniao.setDataInicio(resultSet.getTimestamp(3));
 			reuniao.setDono(resultSet.getInt(4));
 			reuniao.setNotaMediaAula(resultSet.getDouble(5));
 			reuniao.setFk_sala(resultSet.getInt(6));
@@ -128,7 +128,7 @@ public class ReuniaoDAO {
 			Reuniao reuniao = new Reuniao();
 			reuniao.setIdReuniao(resultSet.getInt(1));
 			reuniao.setDescricao(resultSet.getString(2));
-			reuniao.setDataInicio(resultSet.getDate(3));
+			reuniao.setDataInicio(resultSet.getTimestamp(3));
 			reuniao.setDono(resultSet.getInt(4));
 			reuniao.setNotaMediaAula(resultSet.getDouble(5));
 			reuniao.setFk_sala(resultSet.getInt(6));
@@ -162,7 +162,7 @@ public class ReuniaoDAO {
 			Reuniao reuniao = new Reuniao();
 			reuniao.setIdReuniao(resultSet.getInt(1));
 			reuniao.setDescricao(resultSet.getString(2));
-			reuniao.setDataInicio(resultSet.getDate(3));
+			reuniao.setDataInicio(resultSet.getTimestamp(3));
 			reuniao.setDono(resultSet.getInt(4));
 			reuniao.setNotaMediaAula(resultSet.getDouble(5));
 			reuniao.setFk_sala(resultSet.getInt(6));

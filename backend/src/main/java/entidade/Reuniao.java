@@ -1,6 +1,6 @@
 package entidade;
 
-import java.util.*;
+import java.sql.Timestamp;
 
 /**
  * Classe contendo metodos e atributos para a criacao de reunioes pelo Usuario
@@ -12,7 +12,7 @@ public class Reuniao {
 	
     private int idReuniao;
     private String descricao;
-    private Date dataInicio;
+    private Timestamp dataInicio;
     private int dono;
     private double notaMediaAula;
     private int fk_sala;
@@ -35,7 +35,7 @@ public class Reuniao {
      * @param fk_sala
      * @param fk_usuario_disciplina
      */
-    public Reuniao(int idReuniao, String descricao, Date dataInicio, int dono, double notaMediaAula, int fk_sala,
+    public Reuniao(int idReuniao, String descricao, Timestamp dataInicio, int dono, double notaMediaAula, int fk_sala,
 			int fk_usuario_disciplina) {
 
 		setIdReuniao(idReuniao);
@@ -81,17 +81,17 @@ public class Reuniao {
     
     /** 
      * Metodo para retorno da data de inicio da reuniao.
-     * @return Date dataInicio 
+     * @return Timestamp dataInicio 
      */
-    public Date getDataInicio() {
+    public Timestamp getDataInicio() {
 		return dataInicio;
 	}
 
     /**
      * Metodo para insercao do inicio da reuniao 
-     * @param Date dataInicio
+     * @param Timestamp dataInicio
      */
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(Timestamp dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 

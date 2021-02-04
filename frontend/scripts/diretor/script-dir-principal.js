@@ -112,6 +112,20 @@ if(idUsuario != 0 && idUsuario != null){
         });
     }
 
+    //Formata a data para exibição 
+    function dataFormatada(data){
+            dia      = data.getDate().toString(),
+            diaF     = (dia.length == 1) ? '0'+dia : dia,
+            mes      = (data.getMonth()+1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+            mesF     = (mes.length == 1) ? '0'+mes : mes,
+            anoF     = data.getFullYear(),
+            hora     = data.getHours().toString(),
+            horaF    = (hora.length == 1) ? '0'+hora: hora,
+            minutos  = data.getMinutes().toString();
+            minutosF = (minutos.length == 1) ? '0'+minutos: minutos;
+        return diaF+"/"+mesF+"/"+anoF+" - "+horaF+":"+minutosF;
+    }
+
     //Mostra os resultados na tela 
     async function mostrar(reunioes){
 
@@ -119,17 +133,17 @@ if(idUsuario != 0 && idUsuario != null){
 
             //Pega a data da reuniao para comparacao
             var str = reunioes[i].dataInicio;
-            var dataReuniao = new Date(str.getFullYear()+"-"+str.getMonth()+"-"+str.getDate());
-            var dataAtual = new Date();
+            var dataReuniao = new Date(str)
+            var dataAtual = new Date()
 
-            var resp = dataReuniao.compare(dataAtual)
-            alert(resp);
-
-            //Verifica em qual lista vai 
-            if(dataReuniao > dataAtual){
+            //Diminui os 10 min de flexibilidade da entrada - verificacao de entrada 
+            if(dataReuniao > dataAtual.setMinutes(dataAtual.getMinutes() - 10)){
                 var lista = document.getElementById("lista-programacao");
-            }else if(dataReuniao == dataAtual){
-                
+                //Verifica se a reuniao ainda está acontecendo 
+            }else if(dataReuniao > dataAtual.setMinutes(dataAtual.getMinutes() - 10) 
+                     && dataAtual <= dataReuniao.setHours(dataAtual.getHours() + 1)){
+                var lista = document.getElementById("lista-programacao");
+                //Se não vai para o histórico de reunioes 
             }else{
                 var lista = document.getElementById("lista-historico");
             }
@@ -179,7 +193,7 @@ if(idUsuario != 0 && idUsuario != null){
             labelData.className = "data";
             labelData.name = "data";
             labelData.title = "Data";
-            labelData.textContent = reunioes[i].dataInicio;
+            labelData.textContent = dataFormatada(dataReuniao);
             div2.append(labelData);
 
             //Adiciona os conteudos nas colunas 
@@ -209,25 +223,20 @@ if(idUsuario != 0 && idUsuario != null){
                 dadosReuniao = JSON.parse(resposta);
 
                 //Pega a data da reuniao para comparacao
-                var str = dadosReuniao.dataInicio;
-                var dataReuniao = new Date(str.split('/').reverse().join('/'));
-                var dataAtual = new Date();
+                var str = reunioes[i].dataInicio;
+                var dataReuniao = new Date(str)
+                var dataAtual = new Date()
 
-                // //Verifica em qual lista vai 
-                // if(dataReuniao > dataAtual){
-                //     alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + dataReuniao.getMonth()).slice(-2)+"/"
-                //           +dataReuniao.getFullYear()+" - "+dataReuniao.setHours()+":"+dataReuniao.setMinutes());
-                // }else if(dataReuniao == dataAtual){
-                //     if((dataReuniao.getHours() - dataAtual.getHours()) <= 1 && (dataReuniao.getHours() - dataAtual.getHours()) > -1){
-                //         alert("entrou")
-                //     }else{
-                //         alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + dataReuniao.getMonth()).slice(-2)+"/"
-                //           +dataReuniao.getFullYear()+" - "+dataReuniao.setHours()+":"+dataReuniao.setMinutes());
-                //     }
-                // }else{
-                //     alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + dataReuniao.getMonth()).slice(-2)+"/"
-                //           +dataReuniao.getFullYear()+" - "+dataReuniao.setHours()+":"+dataReuniao.setMinutes());
-                // }
+                //Diminui os 10 min de flexibilidade da entrada - verificacao de entrada 
+                if(dataReuniao > dataAtual.setMinutes(dataAtual.getMinutes() - 10)){
+                    alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + 
+                    dataReuniao.getMonth()).slice(-2)+"/"+dataReuniao.getFullYear()+" - "+
+                    dataReuniao.setHours()+":"+dataReuniao.setMinutes());
+                    //Verifica se a reuniao ainda está acontecendo 
+                }else if(dataReuniao > dataAtual.setMinutes(dataAtual.getMinutes() - 10) 
+                        && dataAtual <= dataReuniao.setHours(dataAtual.getHours() + 1)){
+                    alert('Entrou');
+                }
             })
             xhr.send();
         });
@@ -342,7 +351,12 @@ if(idUsuario != 0 && idUsuario != null){
             labelData.className = "data";
             labelData.name = "data";
             labelData.title = "Data";
-            labelData.textContent = relatorios[i].dataRelatorio;
+
+            //Pega a data do relatorio para convercao
+            var str = relatorios[i].dataRelatorio;
+            var dataRelatorio = new Date(str)
+
+            labelData.textContent = dataFormatada(dataRelatorio);
             div2.append(labelData);
 
             //Adiciona os conteudos nas colunas 
