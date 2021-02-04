@@ -23,7 +23,7 @@ if(idUsuario != 0 && idUsuario != null){
 
     //Pega a data atual do sistema 
     now = new Date();
-    document.getElementById("dataAtual").textContent = now.getDate()+"/"+(Number(now.getMonth())+Number(1))+"/"+now.getFullYear();
+    document.getElementById("dataAtual").textContent = ('0' + now.getDate()).slice(-2)+"/"+(Number(('0' + now.getMounth().slice(-2))+Number(1))+"/"+now.getFullYear();
 
     //Busca a quantidade de diretores 
     var xhr2 = new XMLHttpRequest(); 

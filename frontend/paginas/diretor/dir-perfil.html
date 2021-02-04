@@ -93,60 +93,65 @@
                     <input id="idBotaoFechar" type="button" value="Fechar" title="Fechar">
                 </div>
             </div> 
-            <section>
+            <div id="corpo">
                 <div id="dados-pessoais"  class="nav justify-content-center">
-                    <fieldset class="border p-3">
-                        <legend>Dados Pessoais</legend>
-
-                        <table class="tabela">
-                            <tr>
-                                <td class="idColuna">
-                                    <label>Escola: </label>
-                                </td>
-                                <td class="idColuna">
-                                    <input class="inputs" type="text" value="Escola" readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="idColuna">
-                                    <label>Nome: </label>
-                                </td>
-                                <td>
-                                    <input id="idNome" class="inputs" type="text" value="Nome" readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="idColuna">
-                                    <label>Email: </label>
-                                </td>
-                                <td>
-                                    <input class="inputs" type="text" value="email@gmail.com" readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="idColuna">
-                                    <label>Senha: </label>
-                                </td>
-                                <td>
-                                    <input class="inputs" type="password" size="20" value="teste123" readonly>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="idColuna" id="imagem-add">
-                                    <label for="imagem">Imagem de perfil:</label>
-                                    <input id="botao-input" value="Adicionar Imagem" type="button" title="Adiciona Imagem">
-                                    <input id="imagemInput" type=file name="imagem">
-                                    <label id="ok" for="ok" name="ok" title="Ok"></label>
-                                    <img id="visualizacao" src="/frontend/imagens/olho.png" alt="Visualizacao" nome="visualizacao" title="Visualizacao">
-                                </td>
-                            </tr> 
-                        </table>
-                    </fieldset>
+                    <form action="">
+                        <div id="div-titulo">
+                            <h4 id="idTitulo">Dados do Perfil</h4>
+                        </div>
+                        <div id="div-tabela">
+                            <table class="tabela">
+                                <tr>
+                                    <td class="ind">
+                                        <label>Escola: </label>
+                                    </td>
+                                    <td class="cont">
+                                        <input id="idEscola" class="inputs" type="text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ind">
+                                        <label>Nome: </label>
+                                    </td>
+                                    <td class="cont">
+                                        <input id="idNome" class="inputs" type="text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ind">
+                                        <label>Email: </label>
+                                    </td>
+                                    <td class="cont">
+                                        <input id="idEmail" class="inputs" type="text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="ind">
+                                        <label>Senha: </label>
+                                    </td>
+                                    <td class="cont">
+                                        <input id="idSenha" class="inputs" type="password">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td id="imagem-add">
+                                        <input id="botao-input" value="Adicionar Imagem" type="button" title="Adiciona Imagem">
+                                        <input id="imagemInput" type=file name="imagem">
+                                        <img id="visualizacao" src="/frontend/imagens/olho.png" alt="Visualizacao" nome="visualizacao" title="Visualizacao">
+                                        <label id="ok" for="visualizacao" name="ok" title="Ok"></label>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td id="salvar">
+                                        <input id="botao-salvar" value="Salvar" type="button" title="Salvar">
+                                    </td>
+                                </tr> 
+                            </table>
+                        </div>
+                    </form>
                 </div>
-            </section>
+            </div>
         </main>
-
-
         <!-- JS - Script -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
         <script src="/frontend/scripts/diretor/script-dir-perfil.js"></script>

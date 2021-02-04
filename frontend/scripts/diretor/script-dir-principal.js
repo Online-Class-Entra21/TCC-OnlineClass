@@ -3,6 +3,7 @@ var idUsuario = sessionStorage.getItem("idUsuario");
 
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
+
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
@@ -23,7 +24,7 @@ if(idUsuario != 0 && idUsuario != null){
 
     //Reunioes com o dono sendo o usuario 
     function carregarListasTipo1(){
-        //Busca dos reunioes passadas do usuário
+        
         var xhr2 = new XMLHttpRequest(); 
 
         xhr2.open("GET", "http://localhost:8080/api/reunioes/"+idUsuario);
@@ -41,9 +42,9 @@ if(idUsuario != 0 && idUsuario != null){
         xhr2.send();
     }
 
-    //Reunioes onde o usuario participou 
+    //Reunioes onde o usuario participa 
     function carregarListasTipo2(reunioes){
-        //Busca dos reunioes passadas do usuário
+
         var xhr2 = new XMLHttpRequest(); 
 
         xhr2.open("GET", "http://localhost:8080/api/reunioes/participantes/"+idUsuario);
@@ -86,7 +87,7 @@ if(idUsuario != 0 && idUsuario != null){
         xhr2.send();
     }
 
-    //Método para chamada da API 
+    //Método para chamada da API async
     function usarApi(method, url) {
         return new Promise(function (resolve, reject) {
             let xhr = new XMLHttpRequest();
@@ -113,19 +114,23 @@ if(idUsuario != 0 && idUsuario != null){
 
     //Mostra os resultados na tela 
     async function mostrar(reunioes){
+
         for (let i = 0; i < reunioes.length; i++) {
 
             //Pega a data da reuniao para comparacao
             var str = reunioes[i].dataInicio;
-            var dataReuniao = new Date(str.split('/').reverse().join('/'));
+            var dataReuniao = new Date(str.getFullYear()+"-"+str.getMonth()+"-"+str.getDate());
             var dataAtual = new Date();
+
+            var resp = dataReuniao.compare(dataAtual)
+            alert(resp);
 
             //Verifica em qual lista vai 
             if(dataReuniao > dataAtual){
-                //Pega a lista - tabela 
                 var lista = document.getElementById("lista-programacao");
+            }else if(dataReuniao == dataAtual){
+                
             }else{
-                //Pega a lista - tabela 
                 var lista = document.getElementById("lista-historico");
             }
 
@@ -138,6 +143,7 @@ if(idUsuario != 0 && idUsuario != null){
             var coluna = document.createElement("td");
             coluna.className = "td-lista foto-usuario";
 
+            //Busca os dados do usuario dono da reuniao
             var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+reunioes[i].dono);
             var usuario = JSON.parse(resposta);
             
@@ -188,11 +194,42 @@ if(idUsuario != 0 && idUsuario != null){
             //Adiciona a linha na lista - tabela 
             lista.append(linha);
         }
+
+        //Abrir reuniao marcada 
         $( ".colunaRen" ).click(function() { 
             var idReuniao = reunioes[$(this).index()-1].idReuniao
-            
-            sessionStorage.setItem("idReuniao",idReuniao);
-            novaJanela = window.open ("/frontend/paginas/diretor/dir-relatorio-aberto.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2);
+        
+            //Busca dos reunioes passadas do usuário
+            var xhr = new XMLHttpRequest(); 
+
+            xhr.open("GET", "http://localhost:8080/api/reuniao/"+idReuniao);
+
+            xhr.addEventListener("load", function(){
+                var resposta = xhr.responseText; 
+                dadosReuniao = JSON.parse(resposta);
+
+                //Pega a data da reuniao para comparacao
+                var str = dadosReuniao.dataInicio;
+                var dataReuniao = new Date(str.split('/').reverse().join('/'));
+                var dataAtual = new Date();
+
+                // //Verifica em qual lista vai 
+                // if(dataReuniao > dataAtual){
+                //     alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + dataReuniao.getMonth()).slice(-2)+"/"
+                //           +dataReuniao.getFullYear()+" - "+dataReuniao.setHours()+":"+dataReuniao.setMinutes());
+                // }else if(dataReuniao == dataAtual){
+                //     if((dataReuniao.getHours() - dataAtual.getHours()) <= 1 && (dataReuniao.getHours() - dataAtual.getHours()) > -1){
+                //         alert("entrou")
+                //     }else{
+                //         alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + dataReuniao.getMonth()).slice(-2)+"/"
+                //           +dataReuniao.getFullYear()+" - "+dataReuniao.setHours()+":"+dataReuniao.setMinutes());
+                //     }
+                // }else{
+                //     alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + dataReuniao.getMonth()).slice(-2)+"/"
+                //           +dataReuniao.getFullYear()+" - "+dataReuniao.setHours()+":"+dataReuniao.setMinutes());
+                // }
+            })
+            xhr.send();
         });
         carregarRelatoriosTipo1();
     }
@@ -320,6 +357,8 @@ if(idUsuario != 0 && idUsuario != null){
             //Adiciona a linha na lista - tabela 
             lista.append(linha);
         }
+        
+        //Abre o relatorio na tela 
         $( ".colunaRel" ).click(function() { 
             var idRelatorio = relatorios[$(this).index()-1].idRelatorio
             sessionStorage.setItem("idRelatorio",idRelatorio);

@@ -146,6 +146,7 @@ public class ReuniaoController {
 	/**
 	 * Retorna a lista das reunioes registrados no sistema onde o dono é o id informado {GET}
 	 * @return lista de reunioes registradas no banco
+	 * @param int codigo
 	 * @author Andre
 	 */
 	@GetMapping(path = "/api/reunioes/{codigo}")
@@ -165,8 +166,9 @@ public class ReuniaoController {
 	}
 	
 	/**
-	 * Retorna a lista das reunioes registrados no sistema onde o dono é o id informado {GET}
+	 * Retorna a lista das reunioes registrados no sistema onde o usuario irá participar {GET}
 	 * @return lista de reunioes registradas no banco
+	 * @param int codigo
 	 * @author Andre
 	 */
 	@GetMapping(path = "/api/reunioes/participantes/{codigo}")

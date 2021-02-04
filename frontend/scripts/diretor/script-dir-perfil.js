@@ -44,33 +44,6 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
-//Pega uma celula especifica na tabela 
-$(function () {
-    $(".inputs").dblclick(function () {
-        var conteudoOriginal = $(this).val();
-        
-        if ($(this)[0].className!="inputs") {
-            
-            $(this).addClass("celulaEmEdicao");
-            $(this).html("<input type='text' value='" + conteudoOriginal + "' />");
-            $(this).children().first();
-    
-            $(this).children().first().keypress(function (e) {
-                if (e.which == 13) {
-                    var novoConteudo = $(this).val();
-                    $(this).parent().text(novoConteudo);
-                    $(this).parent().removeClass("celulaEmEdicao");
-                }
-            });
-    
-        $(this).children().first().blur(function(){
-            $(this).parent().text(conteudoOriginal);
-            $(this).parent().removeClass("celulaEmEdicao");
-        });
-        }
-    });
-});
-
 //Carregamento automático da foto do usuario 
 function ImagePreview(input)
 {
