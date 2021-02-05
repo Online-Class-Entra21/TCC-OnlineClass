@@ -155,7 +155,9 @@ $("#botao-salvar").click(function(){
     }else{
         if (imagem!=undefined) {
             UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+            console.log("imagem inserida")
         }else{
+            console.log("informe uma imagem")
         }
         alterar(); 
     }
