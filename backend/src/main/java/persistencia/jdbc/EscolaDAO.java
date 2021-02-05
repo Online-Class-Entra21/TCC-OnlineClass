@@ -1,10 +1,10 @@
 package persistencia.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +30,8 @@ public class EscolaDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, escola.getNome());
-		comandoSql.setDate(2, (Date) escola.getDataInicioLetivo());
-		comandoSql.setDate(3, (Date) escola.getDataFinalLetivo());
+		comandoSql.setTimestamp(2, (Timestamp) escola.getDataInicioLetivo());
+		comandoSql.setTimestamp(3, (Timestamp) escola.getDataFinalLetivo());
 		comandoSql.execute();
 		
 		comandoSql.close();
@@ -49,8 +49,8 @@ public class EscolaDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, escola.getNome());
-		comandoSql.setDate(2, (Date) escola.getDataInicioLetivo());
-		comandoSql.setDate(3, (Date) escola.getDataFinalLetivo());
+		comandoSql.setTimestamp(2, (Timestamp) escola.getDataInicioLetivo());
+		comandoSql.setTimestamp(3, (Timestamp) escola.getDataFinalLetivo());
 		comandoSql.setInt(4, escola.getIdEscola());
 		comandoSql.execute();
 		
@@ -93,8 +93,8 @@ public class EscolaDAO {
 		if (resultSet.next()) {
 			escola.setIdEscola(resultSet.getInt(1));
 			escola.setNome(resultSet.getString(2));
-			escola.setDataInicioLeitvo(resultSet.getDate(3));
-			escola.setDataFinalLetivo(resultSet.getDate(4));
+			escola.setDataInicioLetivo(resultSet.getTimestamp(3));
+			escola.setDataFinalLetivo(resultSet.getTimestamp(4));
 			
 		}
 		comandoSql.close();
@@ -118,8 +118,8 @@ public class EscolaDAO {
 			Escola escola = new Escola();
 			escola.setIdEscola(resultSet.getInt(1));
 			escola.setNome(resultSet.getString(2));
-			escola.setDataInicioLeitvo(resultSet.getDate(3));
-			escola.setDataFinalLetivo(resultSet.getDate(4));
+			escola.setDataInicioLetivo(resultSet.getTimestamp(3));
+			escola.setDataFinalLetivo(resultSet.getTimestamp(4));
 			
 			lista.add(escola);
 		}
@@ -167,8 +167,8 @@ public class EscolaDAO {
 		if (resultSet.next()) {
 			escola.setIdEscola(resultSet.getInt(1));
 			escola.setNome(resultSet.getString(2));
-			escola.setDataInicioLeitvo(resultSet.getDate(3));
-			escola.setDataFinalLetivo(resultSet.getDate(4));
+			escola.setDataInicioLetivo(resultSet.getTimestamp(3));
+			escola.setDataFinalLetivo(resultSet.getTimestamp(4));
 			
 		}
 		comandoSql.close();
