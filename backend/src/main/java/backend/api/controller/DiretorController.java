@@ -168,7 +168,7 @@ public class DiretorController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/diretor/inserir/{json}")
+	@PostMapping(path = "/api/diretor/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Inserir Usuario - {}",json);
 		Gson gson = new Gson();
@@ -181,6 +181,30 @@ public class DiretorController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
+			return false;
+		}
+	}
+	
+	/**
+	 * Metodo para alteração do diretor que corresponde ao codigo informado {PUT}
+	 * @param int codigo
+	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Breno
+	 */
+	@PutMapping(path = "/api/diretor/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Diretor - {}",json);
+		Gson gson = new Gson();
+		Diretor diretor = gson.fromJson(json.toString(), Diretor.class);
+		DiretorDAO diretorDao = new DiretorDAO();
+		try {
+			diretorDao.update(diretor);
+			LOGGER.info("Requisição Atualizar Diretor - {} - Bem Sucedida",json);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Diretor Mal Sucedida - Diretor {} - erro - {}",json,e.toString());
 			return false;
 		}
 	}
