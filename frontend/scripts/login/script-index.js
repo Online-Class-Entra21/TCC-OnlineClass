@@ -28,7 +28,8 @@ function logar(email, senha) {
 
                     //Persistencia de dados para as próximas páginas - ID
                     sessionStorage.setItem("idUsuario", json.idUsuario);
-                    
+                    sessionStorage.setItem('escolaUsuario', json.fk_escola);
+
                     //Redireciona para a pagina correspondente ao tipo do usuário 
                     switch (json.tipoUsuario) {
                         case 1:
