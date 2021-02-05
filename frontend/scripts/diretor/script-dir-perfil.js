@@ -117,16 +117,17 @@ $().ready(function() {
     $("#img_preview").css("width", "80%");
     $("#img_preview").css("height", "80%");
 
-	$("#imagemInput").change(function(){
-        var imagem;
+	$("#imagemInput").change(function(e){
         ImagePreview(this);
         url = URL.createObjectURL(e.target.files[0]);
         $('#imagemInput').html($(this).val());
         document.getElementById('botao-input').value = "Alterar Imagem";
         document.getElementById('ok').textContent = "Ok";
         imagem = this.files;
+        console.log(imagem)
     });
 });
+var imagem;
 
 //Eventos de abertura e fechamento do preview
 $("#visualizacao").click(function(){
@@ -147,25 +148,50 @@ document.getElementById('botao-input').onclick = function () {
 
 //Salvamento das altercoes do perfil
 $("#botao-salvar").click(function(){
-
-    console.log(imagem)
-    if (imagem!=undefined) {
-        UploadFile(imagem,"http://localhost:8080/api/upload/2");
-    }else{
-        console.log("selecione uma imagem")
-    }
     
     //Verifica se os campos foram preenchidos 
     var form = $('#formulario');
     if(!form[0].checkValidity()) {
         $('<input type="submit">').hide().appendTo(form).click().remove();
+    }else{
+        if (imagem!=undefined) {
+            UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+            alterar(); 
+        }else{
+            console.log("selecione uma imagem")
+        }
     }
-    alterar();
 })
 
+//Método para chamada da API async
+function usarApi(method, url) {
+    return new Promise(function (resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onload = function () {
+            if (this.status >= 200 && this.status < 300) {
+                resolve(xhr.response);
+            } else {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = function () {
+            reject({
+                status: this.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send();
+    });
+}
+
 //Método de alteracao dos dados do diretor
-function alterar(){
-    var url = "http://localhost:8080/api/diretor/alterar";
+async function alterar(){
+
+    var url = "/api/diretor/alterar/";
 
     var perfil = {
         "nome": $("#idNome").val(),
@@ -177,19 +203,13 @@ function alterar(){
     }
 
     var json = JSON.stringify(perfil);
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("PUT", url+'/'+ perfil.idProd, true);
-    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
-    xhr.onload = function () {
-        var perfil = JSON.parse(xhr.responseText);
-        if (xhr.readyState == 4 && xhr.status == "200") {
-            console.table(perfil);
-        } else {
-            console.error(perfil);
-        }
+    var isCorreto =  await usarApi("PUT", url + json); 
+    
+    if(isCorreto){
+        alert('Inserido')
+    }else{
+        alert('Errado')
     }
-    xhr.send(json);            
 }
 
 function UploadFile(file,url){
@@ -197,7 +217,7 @@ function UploadFile(file,url){
     var xhr = new XMLHttpRequest();
     var fd = new FormData();
 
-    fd.append( "foto", files, files.name );
+    fd.append( "foto", files, files.name);
     xhr.open("POST", url, true);
 
     console.log(files.name); //imprime o nome certinho da imagem
