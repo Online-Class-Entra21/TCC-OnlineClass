@@ -364,6 +364,8 @@ if(idUsuario != 0 && idUsuario != null){
                 }else if((dataAtual >= (dataReuniao.setMinutes(dataReuniao.getMinutes() - 10))) 
                         && (dataAtual <= (dataReuniao.setHours(dataReuniao.getHours() + 1)))){
                     alert('Entrou');
+                    sessionStorage.setItem("idReuniao",idReuniao)
+                    location.href = "/frontend/paginas/diretor/dir-videochamada.html"
                 }
             })
             xhr.send();

@@ -93,7 +93,7 @@ $().ready(function() {
     $("#botao-salvar").click(function() {
         console.log(imagem)
         if (imagem!=undefined) {
-            UploadFile(imagem,"http://localhost:8080/api/upload/2");
+            UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
         }else{
             console.log("selecione uma imagem")
         }
