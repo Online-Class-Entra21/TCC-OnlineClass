@@ -71,18 +71,17 @@
     </header>
 
        <main>
-        <div id="conteudo">
+        <div class="principal mt-5 col-md-6" id="conteudo">
+    
+            <form class=" form-group">
+                <label class="lead pt-3" for="idNome">Nome</label><br>
+                <input class="form-control"  type="text" id="idNome" name="nmNome">
 
-                
-            <form class="relatorio form-group">
-                <label class="tipoRel lead pt-3" for="idNome">Nome</label><br>
-                <input class="infoRel form-control"  type="text" id="idNome" name="nmNome">
-
-                <label class="tipoRel lead" for="idDestinatario">Destinatário </label><br>
-                <input class="infoRel form-control"  type="email" id="idDestinatario" name="nmDestinatario">
+                <label class="lead" for="idDestinatario">Destinatário </label><br>
+                <input class="form-control"  type="email" id="idDestinatario" name="nmDestinatario">
                
-                <label class="tipoRel lead pt-3"  for="idAssunto">Assunto</label><br>
-                <select name="assunto" id="idAssunto" class="infoRel form-control">
+                <label class=" lead pt-3"  for="idAssunto">Assunto</label><br>
+                <select name="assunto" id="idAssunto" class=" form-control">
                     <option>-Selecione o assunto</option>
                     <option>-Relatar problema de sistema</option>
                     <option>-Relatar problema de aluno</option>
