@@ -92,8 +92,9 @@ async function cadastrar() {
     var cpf = document.getElementById('inputCpf').value;
     var horarioInicial = new Date(document.getElementById('inputHorarioInicial').valueAsDate);
     var horarioFinal = document.getElementById('inputHorarioFinal').valueAsDate;
-    var horarioInicialFormatado = horarioInicial.getHours()-3+":"+horarioInicial.getMinutes()+":00"
-    var horarioFinalFormatado = horarioFinal.getHours()-3+":"+horarioInicial.getMinutes()+":00"
+    //var horarioInicialFormatado = horarioInicial.toString().slice(16,24);
+    //var horarioFinalFormatado = horarioFinal.toString().slice(16,24);
+    
     
     //Dados Endereço
     var estado = $("#inputEstado :selected").val();
@@ -151,8 +152,8 @@ async function cadastrar() {
                 tipoUsuario: 3,
                 email: email,
                 senha: senha,
-                horarioFinalExpediente: horarioFinalFormatado,
-                horarioInicioExpediente: horarioInicialFormatado,
+                horarioFinalExpediente: horarioFinal,
+                horarioInicioExpediente: horarioInicial,
                 fotoUsuario: null,
                 fk_endereco: ultimoId + 1,
                 fk_escola: usuario
@@ -174,6 +175,7 @@ async function cadastrar() {
     } else {
         alert("Preencha todos os campos!");
     }
+    
 }
 
 

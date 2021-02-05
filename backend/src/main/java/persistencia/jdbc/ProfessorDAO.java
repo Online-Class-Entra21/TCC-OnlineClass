@@ -42,8 +42,8 @@ public class ProfessorDAO {
 			professor.setTipoUsuario(resultSet.getInt(7));
 			professor.setEmail(resultSet.getString(8));
 			professor.setSenha(resultSet.getString(9));
-			professor.setHorarioFinalExpediente(resultSet.getTime(10));
-			professor.setHorarioInicioExpediente(resultSet.getTime(11));
+			professor.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			professor.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			professor.setFotoUsuario(resultSet.getString(12));
 			professor.setFk_endereco(resultSet.getInt(13));
 			professor.setFk_escola(resultSet.getInt(14));

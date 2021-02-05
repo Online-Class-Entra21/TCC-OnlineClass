@@ -42,8 +42,8 @@ public class DiretorDAO {
 			diretor.setTipoUsuario(resultSet.getInt(7));
 			diretor.setEmail(resultSet.getString(8));
 			diretor.setSenha(resultSet.getString(9));
-			diretor.setHorarioFinalExpediente(resultSet.getTime(10));
-			diretor.setHorarioInicioExpediente(resultSet.getTime(11));
+			diretor.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			diretor.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			diretor.setFotoUsuario(resultSet.getString(12));
 			diretor.setFk_endereco(resultSet.getInt(13));
 			diretor.setFk_escola(resultSet.getInt(14));
@@ -78,8 +78,8 @@ public class DiretorDAO {
 			diretor.setTipoUsuario(resultSet.getInt(7));
 			diretor.setEmail(resultSet.getString(8));
 			diretor.setSenha(resultSet.getString(9));
-			diretor.setHorarioFinalExpediente(resultSet.getTime(10));
-			diretor.setHorarioInicioExpediente(resultSet.getTime(11));
+			diretor.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			diretor.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			diretor.setFotoUsuario(resultSet.getString(12));
 			diretor.setFk_endereco(resultSet.getInt(13));
 			diretor.setFk_escola(resultSet.getInt(14));
@@ -149,8 +149,8 @@ public class DiretorDAO {
 			diretor.setTipoUsuario(resultSet.getInt(7));
 			diretor.setEmail(resultSet.getString(8));
 			diretor.setSenha(resultSet.getString(9));
-			diretor.setHorarioFinalExpediente(resultSet.getTime(10));
-			diretor.setHorarioInicioExpediente(resultSet.getTime(11));
+			diretor.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			diretor.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			diretor.setFotoUsuario(resultSet.getString(12));
 			diretor.setFk_endereco(resultSet.getInt(13));
 			diretor.setFk_escola(resultSet.getInt(14));
