@@ -239,4 +239,23 @@ public class UsuarioDAO {
 		comandoSql.close();
 	}
 	
+	/**
+	 * Realiza atualizacao da foto do usuario no banco de dados.
+	 * O <code>idUsuario</code> deve ser igual ao da usuario que deseja atualizar
+	 * @param caminhoArquivo
+	 * @param idUsuario
+	 * @author André
+	 * @throws SQLException 
+	 */
+	public void updateFoto(String caminho, int idUsuario) throws SQLException {
+		String sql = "update usuario set fotoUsuario = ? where idUsuario = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+
+		comandoSql.setString(1, caminho);
+		comandoSql.setInt(2, idUsuario);
+		
+		comandoSql.execute(); 
+		comandoSql.close(); 
+	}
+	
 }

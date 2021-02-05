@@ -17,6 +17,11 @@
 		</encoder>
 
 	</appender>
+	<logger lever="debug" name="SalvarArquivos">
+		
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</logger>
 	<logger lever="debug" name="backend.api.controller">
 		
 		<appender-ref ref="FILE" />

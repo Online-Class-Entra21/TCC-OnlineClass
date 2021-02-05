@@ -117,13 +117,15 @@ $().ready(function() {
     $("#img_preview").css("width", "80%");
     $("#img_preview").css("height", "80%");
 
-	$("#imagemInput").change(function(e){
+	$("#imagemInput").change(function(){
+        var imagem;
         ImagePreview(this);
         url = URL.createObjectURL(e.target.files[0]);
         $('#imagemInput').html($(this).val());
         document.getElementById('botao-input').value = "Alterar Imagem";
         document.getElementById('ok').textContent = "Ok";
-	});
+        imagem = this.files;
+    });
 });
 
 //Eventos de abertura e fechamento do preview
@@ -146,6 +148,13 @@ document.getElementById('botao-input').onclick = function () {
 //Salvamento das altercoes do perfil
 $("#botao-salvar").click(function(){
 
+    console.log(imagem)
+    if (imagem!=undefined) {
+        UploadFile(imagem,"http://localhost:8080/api/upload/2");
+    }else{
+        console.log("selecione uma imagem")
+    }
+    
     //Verifica se os campos foram preenchidos 
     var form = $('#formulario');
     if(!form[0].checkValidity()) {
@@ -183,7 +192,18 @@ function alterar(){
     xhr.send(json);            
 }
 
+function UploadFile(file,url){
+    var files = file[0];
+    var xhr = new XMLHttpRequest();
+    var fd = new FormData();
 
+    fd.append( "foto", files, files.name );
+    xhr.open("POST", url, true);
+
+    console.log(files.name); //imprime o nome certinho da imagem
+
+    xhr.send(fd);
+}
 
 
 
