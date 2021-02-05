@@ -17,6 +17,7 @@ if(idUsuario != 0 && idUsuario != null){
             var img = document.querySelector("#idFotoPerfil");
             img.setAttribute('src', dadosUsuario.fotoUsuario);
             img.style.borderRadius = "80%";
+            carregarPerfil();
         })
 
     xhr.send();
@@ -25,6 +26,11 @@ if(idUsuario != 0 && idUsuario != null){
     // alert('Sessão expirada - Erro (0002)')
     // window.location = "/frontend/index.html";
 }
+
+//Carrga os dados do perfil do diretor
+function carregarPerfil(){
+    
+} 
 
 //Evento de abertura do menu 
 document.getElementById("mostrar").addEventListener("mouseover", function(){
@@ -123,4 +129,6 @@ function UploadFile(file,url){
 
     xhr.send(fd);
 }
+
+
 

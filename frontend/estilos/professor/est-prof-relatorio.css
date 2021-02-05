@@ -29,7 +29,7 @@
 
 /* INICIO CLASSE */
 
-.botao-relatorio:hover {
+.marcar:hover {
     background: #050542;
     border: solid #050542 1px;
     -webkit-border-radius: 20px;
@@ -37,7 +37,7 @@
     border-radius: 20px;
     text-decoration: none;
  }
- .botao-relatorio {
+ .marcar {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
@@ -49,88 +49,38 @@
     font-size: 20px;
     font-weight: 100;
     background-color: gray;
-    -webkit-box-shadow: 1px 1px 20px 0 #000000;
-    -moz-box-shadow: 1px 1px 20px 0 #000000;
-    box-shadow: 1px 1px 20px 0 #000000;
-    text-shadow: 1px 1px 20px #000000;
     border: solid #333333 1px;
     text-decoration: none;
-    display: inline-block;
     cursor: pointer;
-    margin-right: 5%;
-    margin-top: 5%;
  }
-.formulario {
-    min-width: 100px;
-    min-height: 25px;
-    max-width: 300px;
-    max-height: 25px;
-    border: 1px solid black;
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-    text-align: center;
-
-}
-.barra {
-    background-color: #630c13;
-    height: 100%;
-    width: 300px;
-    position: absolute;
-    transition: all .2s linear;
-    left: -300px;
-    display: block;
-   position: fixed;
-   border: 2px solid black;
-}
-
-.link{
-    background-color: #630c13;
-    padding: 20px;
-    font-family: Arial;
-    font-size: 12pt;
-    transition: all .2s linear;
-    color: #f4f4f9;
-    border-bottom: 2px solid #630c13;
-    opacity: 0;
-    margin-top: 200px;
-}
-
-.link:hover{
-    background-color: #050542;
-}
-
 .arq{
-    font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-top: 2%;
-    
+    margin-left: 10%;
+    margin-top: -10%;
+    width: 30%; 
+    cursor: pointer;
 }
-.topo{
-    background-color: #630c13;
-    min-width: 100%;
-    min-height: 10%;
-    position: fixed;
-}
+
 .mensagem{
-    min-width: 700px;
-    min-height: 340px;
-    max-width: 700px;
-    max-height: 340px;
+    min-width: 85%;
+    min-height: 300px;
+    max-width: 85%;
+    max-height: 300px;
     padding-left: 1%;
     padding-top: 1%;
+    margin-top: 2%;
+    margin-left: 10%;
+
 }
 .relatorio{
-   padding-top: 6%;
+   padding-top: 3%;
 }
 .infoRel{
-    min-width: 20%;
-    min-height: 15%;
     max-width: 20%;
-    max-height: 15%;
     border: 1px solid black;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     text-align: center;
+    margin-left: 40%;
     
 }
 
@@ -264,6 +214,7 @@ Config. do menu
     border-color: white;
     position: absolute;
     display: none;
+    z-index: 999;
 }
 
 /*

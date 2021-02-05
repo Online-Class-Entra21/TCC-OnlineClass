@@ -4,6 +4,7 @@
         <meta charset="utf-8">
 
         <link rel="stylesheet"  href="/frontend/estilos/professor/est-prof-aula.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
         <title> Marcar Aulas</title>
     </head>
@@ -75,28 +76,34 @@
             <div id="conteudo">
                 
             
-                <form class="marcar-aula">
+                <form class="marcar-aula custom-file">
                   
-                    <label class="aulaTipo" for="idTitle">Titulo </label><br>
-                <input class="aula" type="text" id="idTitle" name="nmTitle">
-                    <br>
-                    <br>
-                    <label class="aulaTipo" for="idDateTime">Data e Hora </label><br>
-                <input class="aula" type="datetime-local" id="idDateTime" name="nmDateTitle">
-                    <br>
-                    <label class="arq" for="idFile"></label>
-                    <input class="arq" type="file" name="nmFile" id="idFile">
-                   
-                    <label class="arq" for="idFile"></label>
-                    <input class="arq" type="file" name="nmFile" id="idFile">
-                   
-                    <label class="arq" for="idFile"></label>
-                    <input class="arq" type="file" name="nmFile" id="idFile">
+                    <label class="aulaTipo lead pt-3" for="idTitle">ㅤㅤTitulo </label>
+                <input class="aula form-control" type="text" id="idTitle" name="nmTitle">
 
-                    <textarea name="mensagem" class="descricao" placeholder="Insira um breve resumo sobre a aula..."></textarea>
-                    <br>
+                <label class="aulaTipo lead pt-3" for="idDateTime">Data e Hora </label>
+                <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
                     
-                    <button class="marcar" onclick="alert('Aula marcada')">ENVIAR</button>
+
+                    <div class="custom-file">
+                        <label class="arq custom-file-label " for="idFile">Anexar Arquivo</label>
+                        <input class="arq custom-file-input" type="file" name="nmFile" id="idFile">
+                    </div>
+                    
+                      
+                    <div class="custom-file">
+                        <label class="arq2 custom-file-label " for="idFile">Anexar Arquivo</label>
+                        <input class="arq2 custom-file-input" type="file" name="nmFile" id="idFile">
+                    </div>
+                    
+                    <div class="custom-file">
+                        <label class="arq3 custom-file-label " for="idFile">Anexar Arquivo</label>
+                        <input class="arq3 custom-file-input" type="file" name="nmFile" id="idFile">
+                    </div>
+
+                    <textarea name="mensagem" class="descricao form-control" placeholder="Insira um breve resumo sobre a aula..."></textarea>
+                    
+                    <button class="marcar btn-secondary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
                     
                     
                     

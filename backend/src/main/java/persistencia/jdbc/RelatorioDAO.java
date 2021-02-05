@@ -1,10 +1,10 @@
 package persistencia.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class RelatorioDAO {
 		comandoSql.setString(1, relatorio.getTitulo());
 		comandoSql.setInt(2, relatorio.getDestinatario());
 		comandoSql.setString(3, relatorio.getTexto());
-		comandoSql.setDate(4, (Date) relatorio.getDataRelatorio());
+		comandoSql.setTimestamp(4, (Timestamp) relatorio.getDataRelatorio());
 		comandoSql.setInt(5, relatorio.getFk_usuario());
 		
 		comandoSql.execute();
@@ -54,7 +54,7 @@ public class RelatorioDAO {
 		comandoSql.setString(1, relatorio.getTitulo());
 		comandoSql.setInt(2, relatorio.getDestinatario());
 		comandoSql.setString(3, relatorio.getTexto());
-		comandoSql.setDate(4, (Date) relatorio.getDataRelatorio());
+		comandoSql.setTimestamp(4, (Timestamp) relatorio.getDataRelatorio());
 		comandoSql.setInt(5, relatorio.getFk_usuario());
 		comandoSql.setInt(6, relatorio.getIdRelatorio());
 		
@@ -101,7 +101,7 @@ public class RelatorioDAO {
 			relatorio.setDestinatario(resultSet.getInt(3));
 			relatorio.setTexto(resultSet.getString(4));
 			relatorio.setFk_usuario(resultSet.getInt(5));
-			relatorio.setDataRelatorio(resultSet.getDate(6));
+			relatorio.setDataRelatorio(resultSet.getTimestamp(6));
 		}
 		comandoSql.close();
 		return relatorio;
@@ -127,7 +127,7 @@ public class RelatorioDAO {
 			relatorio.setDestinatario(resultSet.getInt(3));
 			relatorio.setTexto(resultSet.getString(4));
 			relatorio.setFk_usuario(resultSet.getInt(5));
-			relatorio.setDataRelatorio(resultSet.getDate(6));
+			relatorio.setDataRelatorio(resultSet.getTimestamp(6));
 			lista.add(relatorio);
 		}
 		comandoSql.close();
@@ -160,7 +160,7 @@ public class RelatorioDAO {
 			relatorio.setDestinatario(resultSet.getInt(3));
 			relatorio.setTexto(resultSet.getString(4));
 			relatorio.setFk_usuario(resultSet.getInt(5));
-			relatorio.setDataRelatorio(resultSet.getDate(6));
+			relatorio.setDataRelatorio(resultSet.getTimestamp(6));
 			lista.add(relatorio);
 		}
 		comandoSql.close();
@@ -189,7 +189,7 @@ public class RelatorioDAO {
 			relatorio.setDestinatario(resultSet.getInt(3));
 			relatorio.setTexto(resultSet.getString(4));
 			relatorio.setFk_usuario(resultSet.getInt(5));
-			relatorio.setDataRelatorio(resultSet.getDate(6));
+			relatorio.setDataRelatorio(resultSet.getTimestamp(6));
 			lista.add(relatorio);
 		}
 		comandoSql.close();

@@ -112,39 +112,86 @@ if(idUsuario != 0 && idUsuario != null){
         });
     }
 
-    //Mostra os resultados na tela 
-    async function mostrar(reunioes){
+    //Formata a data para exibição 
+    function dataFormatada(data){
+            dia      = data.getDate().toString(),
+            diaF     = (dia.length == 1) ? '0'+dia : dia,
+            mes      = (data.getMonth()+1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+            mesF     = (mes.length == 1) ? '0'+mes : mes,
+            anoF     = data.getFullYear(),
+            hora     = data.getHours().toString(),
+            horaF    = (hora.length == 1) ? '0'+hora: hora,
+            minutos  = data.getMinutes().toString();
+            minutosF = (minutos.length == 1) ? '0'+minutos: minutos;
+        return diaF+"/"+mesF+"/"+anoF+" - "+horaF+":"+minutosF;
+    }
 
+    //Mostra os resultados na tela 
+    function mostrar(reunioes){
+
+        var reunioesMarcadas = [];
+        var historico = [];
         for (let i = 0; i < reunioes.length; i++) {
 
             //Pega a data da reuniao para comparacao
             var str = reunioes[i].dataInicio;
-            var dataReuniao = new Date(str.getFullYear()+"-"+str.getMonth()+"-"+str.getDate());
-            var dataAtual = new Date();
+            var dataReuniao = new Date(str)
+            var dataAtual = new Date()
 
-            var resp = dataReuniao.compare(dataAtual)
-            alert(resp);
+            //Diminui os 10 min de flexibilidade da entrada - verificacao de entrada - reunioes futuras 
+            if((dataReuniao.setMinutes(dataReuniao.getMinutes() - 10)) > dataAtual){
+                reunioesMarcadas.push(reunioes[i]);
 
-            //Verifica em qual lista vai 
-            if(dataReuniao > dataAtual){
-                var lista = document.getElementById("lista-programacao");
-            }else if(dataReuniao == dataAtual){
-                
+                //Verifica se a reuniao ainda está acontecendo 
+            }else if((dataAtual >= (dataReuniao.setMinutes(dataReuniao.getMinutes() - 10))) 
+                    && (dataAtual <= (dataReuniao.setHours(dataReuniao.getHours() + 1)))){
+                reunioesMarcadas.push(reunioes[i]);
+
+                //Se não vai para o histórico de reunioes 
             }else{
-                var lista = document.getElementById("lista-historico");
+                historico.push(reunioes[i]);
             }
+        }
+        ordenarHistorico(historico);
+        ordenarReunioesMarcadas(reunioesMarcadas)
+        carregarRelatoriosTipo1();
+    }
+
+    //Ordenando e adicionando a tabela do histórico de reunioes 
+    async function ordenarHistorico(historico){
+
+        //Ordena a tabela pela data 
+        for (var i = 0; i < historico.length; i++) {
+
+            var str2 = historico[i].dataInicio;
+            var dataReuniao2 = new Date(str2.split('/').reverse().join('/'));
+
+            for(let j = 0; j < historico.length; j++){
+                var str3 = historico[j].dataInicio;
+                var dataReuniao3 = new Date(str3.split('/').reverse().join('/'));
+
+                if(dataReuniao2 > dataReuniao3){
+                    var elemento = historico[i];
+                    historico[i] = historico[j];
+                    historico[j] = elemento;
+                }
+            }    
+        }
+
+        for (let i = 0; i < historico.length; i++) {
+
+            var lista = document.getElementById("lista-historico");
 
             //Cria uma nova linha 
             var linha = document.createElement("tr");
             linha.className = "linha";
-            linha.classList.add("colunaRen");
 
             //Cria uma nova coluna da linha - part 1 
             var coluna = document.createElement("td");
             coluna.className = "td-lista foto-usuario";
 
             //Busca os dados do usuario dono da reuniao
-            var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+reunioes[i].dono);
+            var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+historico[i].dono);
             var usuario = JSON.parse(resposta);
             
             //Cria a imagem dentro da coluna 1
@@ -179,7 +226,11 @@ if(idUsuario != 0 && idUsuario != null){
             labelData.className = "data";
             labelData.name = "data";
             labelData.title = "Data";
-            labelData.textContent = reunioes[i].dataInicio;
+            
+            var str = historico[i].dataInicio;
+            var dataReuniao = new Date(str)
+
+            labelData.textContent = dataFormatada(dataReuniao);
             div2.append(labelData);
 
             //Adiciona os conteudos nas colunas 
@@ -194,10 +245,103 @@ if(idUsuario != 0 && idUsuario != null){
             //Adiciona a linha na lista - tabela 
             lista.append(linha);
         }
+    }
 
+    //Ordenando e adicionando a tabela de reunioes marcadas
+    async function ordenarReunioesMarcadas(reunioesMarcadas){
+
+        //Ordena a tabela pela data 
+        for (var i = 0; i < reunioesMarcadas.length; i++) {
+
+            var str2 = reunioesMarcadas[i].dataInicio;
+            var dataReuniao2 = new Date(str2.split('/').reverse().join('/'));
+
+            for(let j = 0; j < reunioesMarcadas.length; j++){
+                var str3 = reunioesMarcadas[j].dataInicio;
+                var dataReuniao3 = new Date(str3.split('/').reverse().join('/'));
+
+                if(dataReuniao2 < dataReuniao3){
+                    var elemento = reunioesMarcadas[i];
+                    reunioesMarcadas[i] = reunioesMarcadas[j];
+                    reunioesMarcadas[j] = elemento;
+                }
+            }    
+        }
+
+        for (let i = 0; i < reunioesMarcadas.length; i++) {
+
+            var lista = document.getElementById("lista-programacao");
+
+            //Cria uma nova linha 
+            var linha = document.createElement("tr");
+            linha.className = "linha";
+
+            //Verifica se a reuniao ainda vai acontecer 
+            linha.classList.add("colunaRen");
+
+            //Cria uma nova coluna da linha - part 1 
+            var coluna = document.createElement("td");
+            coluna.className = "td-lista foto-usuario";
+
+            //Busca os dados do usuario dono da reuniao
+            var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+reunioesMarcadas[i].dono);
+            var usuario = JSON.parse(resposta);
+            
+            //Cria a imagem dentro da coluna 1
+            var img = document.createElement("img");
+            img.className = "img-usuario";
+            img.src = usuario.fotoUsuario;
+            img.alt="Foto Usuario";
+            img.title="Foto do Usuário";
+
+            //Cria uma nova coluna da linha - part 2
+            var coluna2 = document.createElement("td");
+            coluna2.className = "td-lista dados";
+
+            //Cria uma nova div dentro da coluna 2 
+            var div1 = document.createElement("div");
+            div1.className = "div-nome";
+
+            //Cria uma nova label dentro da div 1
+            var labelNome = document.createElement("label");
+            labelNome.className = "nome";
+            labelNome.name = "nome";
+            labelNome.title = "Nome";
+            labelNome.textContent = usuario.nome;
+            div1.append(labelNome);
+
+            //Cria uma nova div dentro da coluna 2 
+            var div2 = document.createElement("div");
+            div2.className = "div-data";
+
+            //Cria uma nova label dentro da div 1
+            var labelData = document.createElement("label");
+            labelData.className = "data";
+            labelData.name = "data";
+            labelData.title = "Data";
+            
+            var str = reunioesMarcadas[i].dataInicio;
+            var dataReuniao = new Date(str)
+
+            labelData.textContent = dataFormatada(dataReuniao);
+            div2.append(labelData);
+
+            //Adiciona os conteudos nas colunas 
+            coluna.append(img)
+            coluna2.append(div1);
+            coluna2.append(div2);
+
+            //Adiciona as colunas na linha 
+            linha.append(coluna);
+            linha.append(coluna2);
+
+            //Adiciona a linha na lista - tabela 
+            lista.append(linha);
+        }
+        
         //Abrir reuniao marcada 
         $( ".colunaRen" ).click(function() { 
-            var idReuniao = reunioes[$(this).index()-1].idReuniao
+            var idReuniao = reunioesMarcadas[$(this).index()-1].idReuniao;
         
             //Busca dos reunioes passadas do usuário
             var xhr = new XMLHttpRequest(); 
@@ -210,28 +354,20 @@ if(idUsuario != 0 && idUsuario != null){
 
                 //Pega a data da reuniao para comparacao
                 var str = dadosReuniao.dataInicio;
-                var dataReuniao = new Date(str.split('/').reverse().join('/'));
-                var dataAtual = new Date();
+                var dataReuniao = new Date(str)
+                var dataAtual = new Date()
 
-                // //Verifica em qual lista vai 
-                // if(dataReuniao > dataAtual){
-                //     alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + dataReuniao.getMonth()).slice(-2)+"/"
-                //           +dataReuniao.getFullYear()+" - "+dataReuniao.setHours()+":"+dataReuniao.setMinutes());
-                // }else if(dataReuniao == dataAtual){
-                //     if((dataReuniao.getHours() - dataAtual.getHours()) <= 1 && (dataReuniao.getHours() - dataAtual.getHours()) > -1){
-                //         alert("entrou")
-                //     }else{
-                //         alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + dataReuniao.getMonth()).slice(-2)+"/"
-                //           +dataReuniao.getFullYear()+" - "+dataReuniao.setHours()+":"+dataReuniao.setMinutes());
-                //     }
-                // }else{
-                //     alert('Reunião marcada para: '+('0' + dataReuniao.getDate()).slice(-2)+"/"+('0' + dataReuniao.getMonth()).slice(-2)+"/"
-                //           +dataReuniao.getFullYear()+" - "+dataReuniao.setHours()+":"+dataReuniao.setMinutes());
-                // }
+                //Diminui os 10 min de flexibilidade da entrada - verificacao de entrada 
+                if(dataAtual < (dataReuniao.setMinutes(dataReuniao.getMinutes() - 10))){
+                    alert('Reunião marcada para: '+dataFormatada(dataReuniao)+'\nVocê poderá entrar 10 min antes');
+                    //Verifica se a reuniao ainda está acontecendo 
+                }else if((dataAtual >= (dataReuniao.setMinutes(dataReuniao.getMinutes() - 10))) 
+                        && (dataAtual <= (dataReuniao.setHours(dataReuniao.getHours() + 1)))){
+                    alert('Entrou');
+                }
             })
             xhr.send();
         });
-        carregarRelatoriosTipo1();
     }
 
     //Busca os relatorios no banco enviados
@@ -342,7 +478,12 @@ if(idUsuario != 0 && idUsuario != null){
             labelData.className = "data";
             labelData.name = "data";
             labelData.title = "Data";
-            labelData.textContent = relatorios[i].dataRelatorio;
+
+            //Pega a data do relatorio para convercao
+            var str = relatorios[i].dataRelatorio;
+            var dataRelatorio = new Date(str)
+
+            labelData.textContent = dataFormatada(dataRelatorio);
             div2.append(labelData);
 
             //Adiciona os conteudos nas colunas 

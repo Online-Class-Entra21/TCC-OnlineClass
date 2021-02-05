@@ -257,8 +257,9 @@ form {
 Config. das linhas 
 */
 tr{
-    margin: 3%;
+    margin: 2%;
     display: flex;
+    align-items: center;
 }
 
 /*
@@ -267,7 +268,6 @@ Config. da tabela
 .tabela{
     padding: 0;
     width: 100%;
-    text-align: center;
 }
 
 /*
@@ -285,23 +285,20 @@ Config. dos inputs
 */
 .inputs {
     width: 100%;
-    margin-left: 3%;
+    margin-left: 22%;
 }
 
 /*
 Config. divs do form
 */
 #div-titulo{
-    padding: 3vh;
-    height: 4vh;
+    padding: 4%;
+    height: 15%;
     align-items: center;
     display: flex;
 }
 #div-tabela{
-    width: 50vh;
-    height: 45vh;
-    align-items: center;
-    display: flex;
+    height: 85%;
     justify-content: center;
 }
 
@@ -309,11 +306,11 @@ Config. divs do form
 Config. dados pessoais div
 */
 #dados-pessoais {
-    width: 60vh;
-    height: 60vh;
+    width: 56vh;
+    height: 80vh;
     border-radius: 3vh;
     border: 2px solid black;
-    padding: 2.5%;
+    padding: 1%;
     margin: 3%;
 }
 
@@ -379,7 +376,6 @@ Config. da linha de carregamento da imagem
     height: 0;
 }
 #botao-input{
-    margin-left: 2%;
     margin-right: 2%;
     font-size: 90%;
 }
@@ -402,8 +398,23 @@ Config. da linha de carregamento da imagem
 /*
 Config. do botao salvar 
 */
-#salvar{
-    margin-left: 2%;
-    margin-top: 3%;
+#tr-salvar{
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
-
+#salvar{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 1%;
+    border-radius: 2vh;
+    padding: 1.2%;
+    font-size: 2.5vh;
+}
+#botao-salvar{
+    margin-top: 5%;
+}
+#botao-salvar:hover{
+    border: 2px solid black;
+}

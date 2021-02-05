@@ -268,14 +268,12 @@ Config. dos botoes
 */
 .but{
     margin: 1%;
-    color: white;
-    background-color: black;
     border-radius: 2vh;
     padding: 1.2%;
     font-size: 2vh;
 }
 .but:hover{
-    border: 2px solid chartreuse;
+    border: 2px solid black;
 }
 
 /*

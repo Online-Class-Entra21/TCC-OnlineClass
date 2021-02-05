@@ -1,6 +1,6 @@
 package entidade;
 
-import java.util.*;
+import java.sql.Timestamp;
 
 /**
  * Classe contendo m�todos e atributos para o envio e criacao de relatorios pelo usuario
@@ -13,7 +13,7 @@ public class Relatorio {
     private String titulo;
     private int destinatario;
     private String texto;
-    private Date dataRelatorio;
+    private Timestamp dataRelatorio;
     private int fk_usuario;
 
     /**
@@ -33,7 +33,7 @@ public class Relatorio {
      * @param tipoRelatorio
      * @param fk_usuario
      */
-    public Relatorio(int idRelatorio, String titulo, int destinatario, String texto, Date dataRelatorio,
+    public Relatorio(int idRelatorio, String titulo, int destinatario, String texto, Timestamp dataRelatorio,
 					 int fk_usuario) {
     	
 		setIdRelatorio(idRelatorio);
@@ -111,17 +111,17 @@ public class Relatorio {
 
     /** 
      * Metodo para retorno da data do relatorio
-     * @return Date dataRelatorio
+     * @return Timestamp dataRelatorio
      */
-    public Date getDataRelatorio() {
+    public Timestamp getDataRelatorio() {
         return dataRelatorio;
     }
 
     /**
      * Metodo para insercao da data do relatorio
-     * @param Date tipoRelatorio
+     * @param Timestamp tipoRelatorio
      */
-    public void setDataRelatorio(Date dataRelatorio) {
+    public void setDataRelatorio(Timestamp dataRelatorio) {
     	this.dataRelatorio = dataRelatorio;
     }
 

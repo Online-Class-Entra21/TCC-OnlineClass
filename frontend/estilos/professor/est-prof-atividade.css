@@ -41,15 +41,9 @@
     font-size: 20px;
     font-weight: 100;
     background-color: gray;
-    -webkit-box-shadow: 1px 1px 20px 0 #000000;
-    -moz-box-shadow: 1px 1px 20px 0 #000000;
-    box-shadow: 1px 1px 20px 0 #000000;
-    text-shadow: 1px 1px 20px #000000;
     border: solid #333333 1px;
     text-decoration: none;
-    display: inline-block;
     cursor: pointer;
-    margin-top: 3%;
     margin-left: 50%;
  }
 .aula {
@@ -74,10 +68,22 @@
     border: none;
 }
 .arq{
-    display: flex;
     margin-left: 10%;
-    margin-bottom: 00.5%;
-       
+    margin-top: -10%;
+    width: 30%; 
+    cursor: pointer;
+}
+.arq2{
+    margin-left: 10%;
+    margin-top: -7%;
+    width: 30%; 
+    cursor: pointer;
+}
+.arq3{
+    margin-left: 10%;
+    margin-top: -4%;
+    width: 30%; 
+    cursor: pointer;
 }
 .descricao{
     min-width: 85%;
@@ -85,13 +91,13 @@
     max-width: 85%;
     max-height: 300px;
     padding-left: 1%;
-    padding-top: 1%;
-    margin-top: 2%;
+    padding-top: 5%;
     margin-left: 10%;
 }
 .postar-atividade{
     
-    margin-top: 4%;
+    margin-top: 2%;
+
   
 }
 
@@ -227,6 +233,7 @@ Config. do menu
     border-color: white;
     position: absolute;
     display: none;
+    z-index: 999;
 }
 
 /*

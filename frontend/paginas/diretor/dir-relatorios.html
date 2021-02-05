@@ -84,6 +84,42 @@
                 </div>
             </nav>
         </header>
+
+        <main>
+            <div id="conteudo">
+    
+                    
+                <form class="relatorio form-group">
+                    <label class="tipoRel lead pt-3" for="idNome">Nome</label><br>
+                    <input class="infoRel form-control"  type="text" id="idNome" name="nmNome">
+    
+                    <label class="tipoRel lead" for="idDestinatario">Destinatário </label><br>
+                    <input class="infoRel form-control"  type="email" id="idDestinatario" name="nmDestinatario">
+                   
+                    <label class="tipoRel lead pt-3"  for="idAssunto">Assunto</label><br>
+                    <select name="assunto" id="idAssunto" class="infoRel form-control">
+                        <option>-Selecione o assunto</option>
+                        <option>-Relatar problema de sistema</option>
+                        <option>-Sugestão</option>
+                        <option>-Reclamaçôes</option>
+                        <option>-Outro</option>
+                    </select>
+       
+                    <textarea name="mensagem" class="mensagem form-control" placeholder="Escreva algo..."></textarea>
+    
+                    <label class="arq custom-file-label" for="idFile">Anexar arquivo</label>
+                    <input class="arq custom-file-input" type="file" name="nmFile" id="idFile">
+    
+                    <button class="marcar btn-secondary mt-3" onclick="alert('Mensagem enviada')">ENVIAR</button>
+                    
+                    
+                    
+                
+                </form>
+                </main>
+
+
+
     </body>
     <!-- JS - Script -->
     <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
