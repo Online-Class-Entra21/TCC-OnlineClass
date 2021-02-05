@@ -191,8 +191,6 @@ function usarApi(method, url) {
 //Método de alteracao dos dados do diretor
 async function alterar(){
 
-    
-
     var perfil = {
         nome: $("#idNome").val(),
         sobrenome: $("#idSobrenome").val(),
@@ -204,13 +202,12 @@ async function alterar(){
     }
 
     var json = JSON.stringify(perfil);
-    console.log(json)
     var isCorreto =  await usarApi("PUT", "http://localhost:8080/api/diretor/alterar/" + json); 
     
     if(isCorreto){
-        alert('Inserido')
+        alert('Alterações Salvas com sucesso!')
     }else{
-        alert('Errado')
+        alert('Erro ao cadastrar!')
     }
 }
 
