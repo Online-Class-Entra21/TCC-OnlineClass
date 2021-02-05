@@ -1,6 +1,9 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
 
+//Verifica se já tem foto do usuario 
+var isFotoExistente = false;
+
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
@@ -17,7 +20,27 @@ if(idUsuario != 0 && idUsuario != null){
             var img = document.querySelector("#idFotoPerfil");
             img.setAttribute('src', dadosUsuario.fotoUsuario);
             img.style.borderRadius = "80%";
-            carregarPerfil();
+
+            //Carrega os dados do perfil do diretor 
+            document.getElementById("idNome").value = dadosUsuario.nome;
+            document.getElementById("idSobrenome").value = dadosUsuario.sobrenome;
+            document.getElementById("idEmail").value = dadosUsuario.email;
+            document.getElementById("idSenha").value = dadosUsuario.senha;
+            document.getElementById("idTelefone").value = dadosUsuario.telefone;
+            document.getElementById("idCelular").value = dadosUsuario.celular;
+
+            //Puxando imagem
+            var caminhoImagem = dadosUsuario.fotoUsuario;
+
+            //Verifica se a imagem não é nula 
+            if(caminhoImagem != null){
+                $("#img_preview").show();
+                $("#img_preview").attr("src", caminhoImagem);
+                document.getElementById('botao-input').value = "Alterar Imagem";
+                document.getElementById('ok').textContent = "Ok"; 
+                isFotoExistente = true;
+            }
+            carregarDadosEscola(dadosUsuario.fk_escola);
         })
 
     xhr.send();
@@ -28,8 +51,20 @@ if(idUsuario != 0 && idUsuario != null){
 }
 
 //Carrga os dados do perfil do diretor
-function carregarPerfil(){
-    
+function carregarDadosEscola(fk_escola){
+
+    //Busca dos dados da escola 
+    var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/escola/"+fk_escola);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosEscola = JSON.parse(resposta);
+            document.getElementById('idEscola').textContent = dadosEscola.nome;
+        })
+
+    xhr.send();
 } 
 
 //Evento de abertura do menu 
@@ -82,9 +117,9 @@ $().ready(function() {
     $("#img_preview").css("width", "80%");
     $("#img_preview").css("height", "80%");
 
-	$("#imagemInput").change(function(){
+	$("#imagemInput").change(function(e){
         ImagePreview(this);
-        url = URL.createObjectURL(event.target.files[0]);
+        url = URL.createObjectURL(e.target.files[0]);
         $('#imagemInput').html($(this).val());
         document.getElementById('botao-input').value = "Alterar Imagem";
         document.getElementById('ok').textContent = "Ok";
@@ -93,7 +128,7 @@ $().ready(function() {
 
 //Eventos de abertura e fechamento do preview
 $("#visualizacao").click(function(){
-    if($("#imagemInput").val() != ""){
+    if($("#imagemInput").val() != "" || isFotoExistente){
         $("#visul-img").css("display", "inline");
     }else{
         alert("insira uma imagem primeiro!");
@@ -107,6 +142,47 @@ $("#idBotaoFechar").click(function(){
 document.getElementById('botao-input').onclick = function () {
     document.getElementById('imagemInput').click();
 };
+
+//Salvamento das altercoes do perfil
+$("#botao-salvar").click(function(){
+
+    //Verifica se os campos foram preenchidos 
+    var form = $('#formulario');
+    if(!form[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo(form).click().remove();
+    }
+    alterar();
+})
+
+//Método de alteracao dos dados do diretor
+function alterar(){
+    var url = "http://localhost:8080/api/diretor/alterar";
+
+    var perfil = {
+        "nome": $("#idNome").val(),
+        "sobrenome": $("#idSobrenome").val(),
+        "celular": $("#idCelular").val(),
+        "telefone": $("#idTelelfone").val(),
+        "email": $("#idEmail").val(),
+        "senha": $("#idSenha").val()
+    }
+
+    var json = JSON.stringify(perfil);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", url+'/'+ perfil.idProd, true);
+    xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+    xhr.onload = function () {
+        var perfil = JSON.parse(xhr.responseText);
+        if (xhr.readyState == 4 && xhr.status == "200") {
+            console.table(perfil);
+        } else {
+            console.error(perfil);
+        }
+    }
+    xhr.send(json);            
+}
+
 
 
 

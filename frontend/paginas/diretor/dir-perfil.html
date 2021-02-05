@@ -95,7 +95,7 @@
             </div> 
             <div id="corpo">
                 <div id="dados-pessoais"  class="nav justify-content-center">
-                    <form action="">
+                    <form id="formulario" action="">
                         <div id="div-titulo">
                             <h4 id="idTitulo">Dados do Perfil</h4>
                         </div>
@@ -103,10 +103,10 @@
                             <table class="tabela">
                                 <tr>
                                     <td class="ind">
-                                        <label>Escola: </label>
+                                        <label id="escola">Escola: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idEscola" class="inputs" type="text">
+                                        <label id="idEscola" class="inputs" for="escola"></label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -114,7 +114,7 @@
                                         <label>Nome: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idNome" class="inputs" type="text">
+                                        <input id="idNome" class="inputs" type="text" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -122,7 +122,7 @@
                                         <label>Sobrenome: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idSobrenome" class="inputs" type="password">
+                                        <input id="idSobrenome" class="inputs" type="text" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -130,7 +130,7 @@
                                         <label>Email: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idEmail" class="inputs" type="text">
+                                        <input id="idEmail" class="inputs" type="text" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -138,7 +138,7 @@
                                         <label>Senha: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idSenha" class="inputs" type="password">
+                                        <input id="idSenha" class="inputs" type="password" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -146,7 +146,7 @@
                                         <label>Celular: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idCelular" class="inputs" type="password">
+                                        <input id="idCelular" class="inputs" type="text" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -154,13 +154,13 @@
                                         <label>Telafone: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idTelefone" class="inputs" type="password">
+                                        <input id="idTelefone" class="inputs" type="text" required>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td id="imagem-add">
                                         <input id="botao-input" value="Adicionar Imagem" type="button" title="Adiciona Imagem">
-                                        <input id="imagemInput" type=file name="imagem">
+                                        <input id="imagemInput" type=file name="imagem" accept=".jpg, .jpeg, .png">
                                         <img id="visualizacao" src="/frontend/imagens/olho.png" alt="Visualizacao" nome="visualizacao" title="Visualizacao">
                                         <label id="ok" for="visualizacao" name="ok" title="Ok"></label>
                                     </td>

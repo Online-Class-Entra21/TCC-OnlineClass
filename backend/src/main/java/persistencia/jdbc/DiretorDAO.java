@@ -206,5 +206,27 @@ public class DiretorDAO {
 		comandoSql.close();
 	}
 
+	/**
+	 * Metodo para atualizar os dados de um perfil do diretor no banco de dados.
+	 * O <code>idDiretor</code> deve ser igual ao do diretor que deseja atualizar
+	 * @param Diretor diretor
+	 * @throws SQLException
+	 */
+	public void update(Diretor diretor) throws SQLException {
+		String sql = "update usuario (nome, sobrenome, telefone, celular, email, "
+				   + "senha) values (?,?,?,?,?,?) where idUsuario = ?"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		     
+		comandoSql.setString(1, diretor.getNome());
+		comandoSql.setString(2, diretor.getSobrenome());
+		comandoSql.setString(3, diretor.getTelefone());
+		comandoSql.setString(4, diretor.getCelular());
+		comandoSql.setString(5, diretor.getEmail());
+		comandoSql.setString(6, diretor.getSenha());
+		comandoSql.setInt(6, diretor.getIdUsuario());
+
+		comandoSql.execute();
+		comandoSql.close();
+	}
 }
 

@@ -286,6 +286,7 @@ Config. dos inputs
 .inputs {
     width: 100%;
     margin-left: 22%;
+    font-size: 85%;
 }
 
 /*
@@ -306,12 +307,12 @@ Config. divs do form
 Config. dados pessoais div
 */
 #dados-pessoais {
-    width: 56vh;
-    height: 80vh;
+    width: 58vh;
+    height: 83vh;
     border-radius: 3vh;
     border: 2px solid black;
-    padding: 1%;
-    margin: 3%;
+    padding: 1.5%;
+    margin: 2.5%;
 }
 
 /*
