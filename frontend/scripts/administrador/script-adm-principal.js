@@ -10,7 +10,7 @@ if(idUsuario != 0 && idUsuario != null){
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
-            dadosUsuario = JSON.parse(resposta);
+            var dadosUsuario = JSON.parse(resposta);
             //Adiciona o nome 
             document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
             //Adiciona a foto de perfil do usuario
@@ -22,8 +22,8 @@ if(idUsuario != 0 && idUsuario != null){
     xhr.send();
 
     //Pega a data atual do sistema 
-    now = new Date();
-    document.getElementById("dataAtual").textContent = ('0' + now.getDate()).slice(-2)+"/"+(Number(('0' + now.getMounth().slice(-2))+Number(1))+"/"+now.getFullYear();
+    var now = new Date();
+    document.getElementById("dataAtual").textContent = "";
 
     //Busca a quantidade de diretores 
     var xhr2 = new XMLHttpRequest(); 
