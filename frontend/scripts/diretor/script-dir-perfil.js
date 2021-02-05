@@ -124,7 +124,6 @@ $().ready(function() {
         document.getElementById('botao-input').value = "Alterar Imagem";
         document.getElementById('ok').textContent = "Ok";
         imagem = this.files;
-        console.log(imagem)
     });
 });
 var imagem;
@@ -156,10 +155,9 @@ $("#botao-salvar").click(function(){
     }else{
         if (imagem!=undefined) {
             UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
-            alterar(); 
         }else{
-            console.log("selecione uma imagem")
         }
+        alterar(); 
     }
 })
 
@@ -191,19 +189,21 @@ function usarApi(method, url) {
 //Método de alteracao dos dados do diretor
 async function alterar(){
 
-    var url = "/api/diretor/alterar/";
+    
 
     var perfil = {
-        "nome": $("#idNome").val(),
-        "sobrenome": $("#idSobrenome").val(),
-        "celular": $("#idCelular").val(),
-        "telefone": $("#idTelelfone").val(),
-        "email": $("#idEmail").val(),
-        "senha": $("#idSenha").val()
+        nome: $("#idNome").val(),
+        sobrenome: $("#idSobrenome").val(),
+        celular: $("#idCelular").val(),
+        telefone: $("#idTelefone").val(),
+        email: $("#idEmail").val(),
+        senha: $("#idSenha").val(),
+        idUsuario: idUsuario
     }
 
     var json = JSON.stringify(perfil);
-    var isCorreto =  await usarApi("PUT", url + json); 
+    console.log(json)
+    var isCorreto =  await usarApi("PUT", "http://localhost:8080/api/diretor/alterar/" + json); 
     
     if(isCorreto){
         alert('Inserido')
@@ -219,8 +219,6 @@ function UploadFile(file,url){
 
     fd.append( "foto", files, files.name);
     xhr.open("POST", url, true);
-
-    console.log(files.name); //imprime o nome certinho da imagem
 
     xhr.send(fd);
 }

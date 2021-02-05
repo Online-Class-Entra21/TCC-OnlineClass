@@ -213,18 +213,18 @@ public class DiretorDAO {
 	 * @throws SQLException
 	 */
 	public void update(Diretor diretor) throws SQLException {
-		String sql = "update usuario (nome, sobrenome, telefone, celular, email, "
-				   + "senha) values (?,?,?,?,?,?) where idUsuario = ?"; 
+		String sql = "update usuario set nome = ?, sobrenome = ?, telefone = ?, celular = ?, email = ?, "
+				   + "senha = ? where idUsuario = ?"; 
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
-		     
+		
 		comandoSql.setString(1, diretor.getNome());
 		comandoSql.setString(2, diretor.getSobrenome());
 		comandoSql.setString(3, diretor.getTelefone());
 		comandoSql.setString(4, diretor.getCelular());
 		comandoSql.setString(5, diretor.getEmail());
 		comandoSql.setString(6, diretor.getSenha());
-		comandoSql.setInt(6, diretor.getIdUsuario());
-
+		comandoSql.setInt(7, diretor.getIdUsuario());
+		System.out.println(comandoSql.toString());
 		comandoSql.execute();
 		comandoSql.close();
 	}
