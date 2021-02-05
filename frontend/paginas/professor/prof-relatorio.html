@@ -70,37 +70,35 @@
         </nav>
     </header>
 
-       <main>
-        <div class="principal mt-5 col-md-6" id="conteudo">
-    
-            <form class=" form-group">
-                <label class="lead pt-3" for="idNome">Nome</label><br>
-                <input class="form-control"  type="text" id="idNome" name="nmNome">
+    <main>
+        <div class="Principal container">
+            <div class="row">
 
-                <label class="lead" for="idDestinatario">Destinatário </label><br>
-                <input class="form-control"  type="email" id="idDestinatario" name="nmDestinatario">
-               
-                <label class=" lead pt-3"  for="idAssunto">Assunto</label><br>
-                <select name="assunto" id="idAssunto" class=" form-control">
+        <div class="postar col-md-4 col-xl-6">
+            <form class="relatorio form-group">
+                <label class="tipoRel lead pt-4" for="idNomReu">Nome</label><br>
+                <input class="tipoRel form-control"  type="text" id="idNomRel" name="nmReu">
+
+                <label class="tipoRel lead pt-3" for="idDestinatario">Destinatário</label><br>
+                <input class="tipoRel form-control"  type="email" id="idDestinatario" name="nmDestinatario">
+
+                <label class="tipoRel lead pt-3"  for="idAssuntoRel">Assunto</label><br>
+                <select name="tipoUser" id="idAssuntoRel" class="tipoRel form-control">
+                    <option>-Selecione o tipo de usuario</option>
                     <option>-Selecione o assunto</option>
                     <option>-Relatar problema de sistema</option>
-                    <option>-Relatar problema de aluno</option>
                     <option>-Sugestão</option>
                     <option>-Reclamaçôes</option>
                     <option>-Outro</option>
                 </select>
-   
-                <textarea name="mensagem" class="mensagem form-control" placeholder="Escreva algo..."></textarea>
 
-                <label class="arq custom-file-label" for="idFile">Anexar arquivo</label>
-                <input class="arq custom-file-input" type="file" name="nmFile" id="idFile">
-
-                <button class="marcar btn-secondary mt-3" onclick="alert('Mensagem enviada')">ENVIAR</button>
-                
-                
-                
-            
-            </form>
+                <textarea name="mensagem" class="mensagem form-control mt-5" placeholder="Escreva algo..."></textarea>
+                <div class="custom-file mt-3">
+                    <input class="custom-file-input " type="file" id="arquivo">
+                    <label class="custom-file-label">Selecione arquivo</label>
+                </div>
+            <input type="button" value="Enviar Relatório" class="btn btn-primary mt-4" onclick="alert('Relatório enviado')">
+    </div>
             </main>
             <script src="/frontend/scripts/professor/script-prof-relatrio.js"></script>
     </body>

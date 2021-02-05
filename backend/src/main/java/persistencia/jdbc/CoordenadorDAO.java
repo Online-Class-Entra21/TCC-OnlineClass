@@ -42,8 +42,8 @@ public class CoordenadorDAO {
 			coordenador.setTipoUsuario(resultSet.getInt(7));
 			coordenador.setEmail(resultSet.getString(8));
 			coordenador.setSenha(resultSet.getString(9));
-			coordenador.setHorarioFinalExpediente(resultSet.getTime(10));
-			coordenador.setHorarioInicioExpediente(resultSet.getTime(11));
+			coordenador.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			coordenador.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			coordenador.setFotoUsuario(resultSet.getString(12));
 			coordenador.setFk_endereco(resultSet.getInt(13));
 			coordenador.setFk_escola(resultSet.getInt(14));

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class UsuarioDAO {
 		comandoSql.setInt(6, usuario.getTipoUsuario());
 		comandoSql.setString(7, usuario.getEmail());
 		comandoSql.setString(8, usuario.getSenha());
-		comandoSql.setTime(9, usuario.getHorarioFinalExpediente());
-		comandoSql.setTime(10, usuario.getHorarioInicioExpediente());
+		comandoSql.setTimestamp(9, (Timestamp) usuario.getHorarioFinalExpediente());
+		comandoSql.setTimestamp(10, (Timestamp) usuario.getHorarioInicioExpediente());
 		comandoSql.setString(11, usuario.getFotoUsuario());
 		comandoSql.setInt(12, usuario.getFk_endereco());
 		comandoSql.setInt(13, usuario.getFk_escola());
@@ -69,8 +70,8 @@ public class UsuarioDAO {
 		comandoSql.setInt(6, usuario.getTipoUsuario());
 		comandoSql.setString(7, usuario.getEmail());
 		comandoSql.setString(8, usuario.getSenha());
-		comandoSql.setTime(9, usuario.getHorarioFinalExpediente());
-		comandoSql.setTime(10, usuario.getHorarioInicioExpediente());
+		comandoSql.setTimestamp(9, usuario.getHorarioFinalExpediente());
+		comandoSql.setTimestamp(10, usuario.getHorarioInicioExpediente());
 		comandoSql.setString(11, usuario.getFotoUsuario());
 		comandoSql.setInt(12, usuario.getFk_endereco());
 		comandoSql.setInt(13, usuario.getFk_escola());
@@ -124,8 +125,8 @@ public class UsuarioDAO {
 			usuario.setTipoUsuario(resultSet.getInt(7));
 			usuario.setEmail(resultSet.getString(8));
 			usuario.setSenha(resultSet.getString(9));
-			usuario.setHorarioFinalExpediente(resultSet.getTime(10));
-			usuario.setHorarioInicioExpediente(resultSet.getTime(11));
+			usuario.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			usuario.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			usuario.setFotoUsuario(resultSet.getString(12));
 			usuario.setFk_endereco(resultSet.getInt(13));
 			usuario.setFk_escola(resultSet.getInt(14));
@@ -158,8 +159,8 @@ public class UsuarioDAO {
 			usuario.setTipoUsuario(resultSet.getInt(7));
 			usuario.setEmail(resultSet.getString(8));
 			usuario.setSenha(resultSet.getString(9));
-			usuario.setHorarioFinalExpediente(resultSet.getTime(10));
-			usuario.setHorarioInicioExpediente(resultSet.getTime(11));
+			usuario.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			usuario.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			usuario.setFotoUsuario(resultSet.getString(12));
 			usuario.setFk_endereco(resultSet.getInt(13));
 			usuario.setFk_escola(resultSet.getInt(14));
@@ -200,8 +201,8 @@ public class UsuarioDAO {
 			usuario.setTipoUsuario(resultSet.getInt(7));
 			usuario.setEmail(resultSet.getString(8));
 			usuario.setSenha(resultSet.getString(9));
-			usuario.setHorarioFinalExpediente(resultSet.getTime(10));
-			usuario.setHorarioInicioExpediente(resultSet.getTime(11));
+			usuario.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			usuario.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			usuario.setFotoUsuario(resultSet.getString(12));
 			usuario.setFk_endereco(resultSet.getInt(13));
 			usuario.setFk_escola(resultSet.getInt(14));
