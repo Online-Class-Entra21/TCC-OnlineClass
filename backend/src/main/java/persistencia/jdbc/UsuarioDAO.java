@@ -229,7 +229,42 @@ public class UsuarioDAO {
 		comandoSql.execute(); 
 		comandoSql.close(); 
 	}
-	
-	
-	
+
+	/**
+	 * Retorna todos os dados listados da tabela Usuario do banco de dados onde a escola é igual a informada 
+	 * @return lista de usuarios registrados no banco onde a escola é igual a informada 
+	 * @param innt idEscola 
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public List<Usuario> buscarTodosEscola(int idEscola) throws SQLException {
+		List<Usuario> lista = new ArrayList<Usuario>(); 
+		String sql = "select * from usuario where fk_escola = ?"; 
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idEscola);
+		ResultSet resultSet = comandoSql.executeQuery();
+			
+		while (resultSet.next()) {
+			Usuario usuario = new Usuario(); 
+			usuario.setIdUsuario(resultSet.getInt(1));
+			usuario.setNome(resultSet.getString(2));
+			usuario.setSobrenome(resultSet.getString(3));
+			usuario.setCpf(resultSet.getString(4));
+			usuario.setTelefone(resultSet.getString(5));
+			usuario.setCelular(resultSet.getString(6));
+			usuario.setTipoUsuario(resultSet.getInt(7));
+			usuario.setEmail(resultSet.getString(8));
+			usuario.setSenha(resultSet.getString(9));
+			usuario.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			usuario.setHorarioInicioExpediente(resultSet.getTimestamp(11));
+			usuario.setFotoUsuario(resultSet.getString(12));
+			usuario.setFk_endereco(resultSet.getInt(13));
+			usuario.setFk_escola(resultSet.getInt(14));
+			
+			lista.add(usuario); 
+		}
+		comandoSql.close(); 
+		return lista;
+	}
 }

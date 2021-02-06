@@ -275,6 +275,7 @@ Config. dos botoes
     margin: 1%;
     padding: 1.2%;
     font-size: 2vh;
+    background-color: white;
 }
 .but:hover{
     border: 2px solid black;

@@ -13,10 +13,10 @@ if(idUsuario != 0 && idUsuario != null){
             var resposta = xhr.responseText; 
             var dadosUsuario = JSON.parse(resposta);
             //Adiciona o nome 
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
             //Adiciona a foto de perfil do usuario
             var img = document.querySelector("#idFotoPerfil");
-            img.setAttribute('src', dadosUsuario.fotoUsuario);
+            img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
             img.style.borderRadius = "80%";
         })
 

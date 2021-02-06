@@ -58,23 +58,6 @@ public class EscolaDAO {
 	}
 	
 	/**
-	 *  Metodo para deletar do banco de dados uma Disciplina
-	 *  O <code>idEscola</code> deve ser igual ao do escola que deseja deletar
-	 * @param int idDisciplina
-	 * @author Andrey
-	 * @throws SQLException 
-	 */	
-	public void deleteId(int idDisciplina) throws SQLException {
-		String sql = "delete from escola where idescola = ?";
-		PreparedStatement comandoSql = conexao.prepareStatement(sql);
-		
-		comandoSql.setInt(1, idDisciplina);
-		comandoSql.execute();
-		
-		comandoSql.close();
-	}
-	
-	/**
 	 * Metodo para selecionar chamada no banco de dados
 	 * O <code>idEscola</code> deve ser igual ao do escola que deseja buscar
 	 * @param int idChamada

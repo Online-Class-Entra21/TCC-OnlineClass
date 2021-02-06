@@ -8,7 +8,6 @@ import com.google.gson.Gson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -114,27 +113,6 @@ public class EscolaController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Escola Mal Sucedida - Escola {} - erro - {}",json,e.toString());
-			return false;
-		}
-	}
-	
-	/**
-	 * Método de exclusão da escola que corresponde ao codigo informado {DELETE}
-	 * @param int codigo
-	 * @author Andre
-	 * @return boolean situacao da operacao
-	 */
-	@DeleteMapping(path = "/api/escola/deletar/{codigo}")
-	public boolean deletar(@PathVariable("codigo") int codigo) {
-		LOGGER.info("Requisição para Deletar Escola id - {}",codigo);
-		EscolaDAO escolaDAO = new EscolaDAO();
-		try {
-			escolaDAO.deleteId(codigo);
-			LOGGER.info("Requisição para Deletar Escola id - {} - Bem Sucedida",codigo);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			LOGGER.error("Requisição para Deletar Escola Mal Sucedida - Escola {} - erro - {}",codigo,e.toString());
 			return false;
 		}
 	}
