@@ -1,6 +1,6 @@
 package entidade;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * Classe contendo metodos e atributos para o usuario do sistema.
@@ -23,8 +23,8 @@ public class Usuario {
     private int tipoUsuario;
     private String email;
     private String senha;
-    private Time horarioInicioExpediente;
-    private Time horarioFinalExpediente;
+    private Timestamp horarioInicioExpediente;
+    private Timestamp horarioFinalExpediente;
     private String fotoUsuario;
     private int fk_endereco;
     private int fk_escola;
@@ -54,7 +54,7 @@ public class Usuario {
      * @param fk_escola
      */
     public Usuario(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-				   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+				   int tipoUsuario, String email, String senha, Timestamp horarioInicioExpediente, Timestamp horarioFinalExpediente,
 				   String fotoUsuario, int fk_endereco, int fk_escola) {
     	
     	setIdUsuario(idUsuario);
@@ -90,7 +90,7 @@ public class Usuario {
      * @param endereco
      */
     public Usuario(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-			   	   int tipoUsuario, String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+			   	   int tipoUsuario, String email, String senha, Timestamp horarioInicioExpediente, Timestamp horarioFinalExpediente,
 			       String fotoUsuario, int fk_endereco) {
 	
 		setIdUsuario(idUsuario);
@@ -263,7 +263,7 @@ public class Usuario {
 	 * Metodo para retorno do horario inicial do expediente do usuario.
      * @return Time horarioInicioExpediente
      */
-    public Time getHorarioInicioExpediente() {
+    public Timestamp getHorarioInicioExpediente() {
         return horarioInicioExpediente;
     }
 
@@ -271,7 +271,7 @@ public class Usuario {
      * Metodo para insercao do horarioInicioExpediente do usuario
      * @param Time horarioInicioExpediente
      */
-    public void setHorarioInicioExpediente(Time horarioInicioExpediente) {
+    public void setHorarioInicioExpediente(Timestamp horarioInicioExpediente) {
 		this.horarioInicioExpediente = horarioInicioExpediente;
 	}
 
@@ -279,7 +279,7 @@ public class Usuario {
      * Metodo para retorno do horario final do expediente do usuario.
      * @return Time horarioFinalExpediente
      */
-    public Time getHorarioFinalExpediente() {
+    public Timestamp getHorarioFinalExpediente() {
         return horarioFinalExpediente;
     }
 
@@ -287,7 +287,7 @@ public class Usuario {
      * Metodo para insercao do horarioFinalExpediente do usuario 
      * @param Time horarioFinalExpediente
      */
-    public void setHorarioFinalExpediente(Time horarioFinalExpediente) {
+    public void setHorarioFinalExpediente(Timestamp horarioFinalExpediente) {
 		this.horarioFinalExpediente = horarioFinalExpediente;
 	}
     

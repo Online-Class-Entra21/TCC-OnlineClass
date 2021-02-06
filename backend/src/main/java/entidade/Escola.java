@@ -1,6 +1,6 @@
 package entidade;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Classe contendo metodos e atributos para as devidas funcoes da escola
@@ -10,8 +10,8 @@ public class Escola {
 	
     private int idEscola;
     private String nome;
-    private Date dataInicioLetivo;
-    private Date dataFinalLetivo;
+    private Timestamp dataInicioLetivo;
+    private Timestamp dataFinalLetivo;
 
     /**
      * Construtor padrao
@@ -27,10 +27,10 @@ public class Escola {
      * @param dataInicioLetivo
      * @param dataFinalLetivo
      */
-    public Escola(int idEscola, String nome, Date dataInicioLetivo, Date dataFinalLetivo) {
+    public Escola(int idEscola, String nome, Timestamp dataInicioLetivo, Timestamp dataFinalLetivo) {
 		setIdEscola(idEscola);
 		setNome(nome);
-		setDataInicioLeitvo(dataInicioLetivo);
+		setDataInicioLetivo(dataInicioLetivo);
 		setDataFinalLetivo(dataFinalLetivo);
 	}
 
@@ -68,34 +68,34 @@ public class Escola {
 
     /** 
      * Metodo para retorno da data de inicio do ano letivo
-     * @return Date dataInicioLetivo
+     * @return Timestamp dataInicioLetivo
      */
-    public Date getDataInicioLetivo() {
+    public Timestamp getDataInicioLetivo() {
         return dataInicioLetivo;
 
     }
 
     /**
      * Metodo para insercao da data de inicio do ano letivo 
-     * @param Date dataInicioLetivo
+     * @param Timestamp dataInicioLetivo
      */
-    public void setDataInicioLeitvo(Date dataInicioLetivo) {
+    public void setDataInicioLetivo(Timestamp dataInicioLetivo) {
     	this.dataInicioLetivo = dataInicioLetivo;
     }
 
     /** 
      * Metodo para retorno da data final do ano letivo
-     * @return Date dataFinalLetivo
+     * @return Timestamp dataFinalLetivo
      */
-    public Date getDataFinalLetivo() {
+    public Timestamp getDataFinalLetivo() {
         return dataFinalLetivo;
     }
 
     /**
      * Metodo para insercao da data final do ano letivo 
-     * @param Date dataFinalLetivo
+     * @param Timestamp dataFinalLetivo
      */
-    public void setDataFinalLetivo(Date dataFinalLetivo) {
+    public void setDataFinalLetivo(Timestamp dataFinalLetivo) {
         this.dataFinalLetivo = dataFinalLetivo;
     }
 }

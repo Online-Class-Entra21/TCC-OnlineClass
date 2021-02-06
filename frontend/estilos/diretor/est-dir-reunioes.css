@@ -9,6 +9,21 @@ Config. para todos os elementos
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.adicionar{
+    border-style: solid;
+    border-radius: 2%;
+    border-color:  rgb(87, 16, 16);
+    width: 50vh;
+}
+.marcar{
+    width: 50vh;
+}
+.Principal{
+    float: right;
+    align-items: center;
+    display: flex;
+}
+
 /*
 Config. padrao da barra 
 */
@@ -139,6 +154,7 @@ Config. do menu
     position: absolute;
     display: none;
     position: fixed;
+    z-index: 9999;
 }
 
 /*

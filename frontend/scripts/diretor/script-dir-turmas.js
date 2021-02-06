@@ -46,5 +46,5 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
 
 //Abre uma nova guia para vizualizar turmas e alunos 
 function verAlunos() {
-    novaJanela = window.open ("/frontend/paginas/diretor/dir-alunos-exib.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
+    novaJanela = window.open ("/frontend/paginas/diretor/dir-alunos-exibir.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
 }

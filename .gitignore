@@ -355,3 +355,4 @@ MigrationBackup/
 # Logs da aplicação
 .backend/logs/
 .logs
+/.metadata/

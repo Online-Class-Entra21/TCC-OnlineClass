@@ -42,8 +42,8 @@ public class AdministradorDAO {
 			administrador.setTipoUsuario(resultSet.getInt(7));
 			administrador.setEmail(resultSet.getString(8));
 			administrador.setSenha(resultSet.getString(9));
-			administrador.setHorarioFinalExpediente(resultSet.getTime(10));
-			administrador.setHorarioInicioExpediente(resultSet.getTime(11));
+			administrador.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			administrador.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			administrador.setFotoUsuario(resultSet.getString(12));
 			administrador.setFk_endereco(resultSet.getInt(13));
 			administrador.setFk_escola(resultSet.getInt(14));

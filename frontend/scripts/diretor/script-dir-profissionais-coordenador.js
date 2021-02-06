@@ -1,5 +1,6 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
+var usuario = sessionStorage.getItem("escolaUsuario");
 
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
@@ -69,9 +70,6 @@ function usarApi(method, url) {
     });
 }
 
-//Carrega o select
-carregarSelect();
-
 //Método para pegar a escola Escolhida
 var escolaEscolhida = $("#inputEscola").children("option:selected").val();
 $("#inputEscola").change(function(){
@@ -92,9 +90,12 @@ async function cadastrar() {
     var telefone = document.getElementById('inputTelefone').value;
     var celular = document.getElementById('inputCelular').value;
     var cpf = document.getElementById('inputCpf').value;
-    var horarioInicial = document.getElementById('inputHorarioInicial').value;
-    var horarioFinal = document.getElementById('inputHorarioFinal').value;
-
+    var horarioInicial = new Date(document.getElementById('inputHorarioInicial').valueAsDate);
+    var horarioFinal = document.getElementById('inputHorarioFinal').valueAsDate;
+    //var horarioInicialFormatado = horarioInicial.toString().slice(16,24);
+    //var horarioFinalFormatado = horarioFinal.toString().slice(16,24);
+    
+    
     //Dados Endereço
     var estado = $("#inputEstado :selected").val();
     var cidade = document.getElementById('inputCidade').value;
@@ -140,7 +141,7 @@ async function cadastrar() {
 
             //Chamada da api para registrar o Endereço no banco de dados
             var insertEndereco = await usarApi("POST", "http://localhost:8080/api/endereco/inserir/"+enderecoJson);
-
+            
             //Cria o objeto Coordenador
             var inserirCoordenador = {
                 nome: nome,
@@ -151,11 +152,11 @@ async function cadastrar() {
                 tipoUsuario: 3,
                 email: email,
                 senha: senha,
-                horarioFinalExpediente: null,
-                horarioInicioExpediente: null,
+                horarioFinalExpediente: horarioFinal,
+                horarioInicioExpediente: horarioInicial,
                 fotoUsuario: null,
                 fk_endereco: ultimoId + 1,
-                fk_escola: $("#inputEscola").children("option:selected").val()
+                fk_escola: usuario
             }
 
             //Converte o coordenador para JSON
@@ -174,21 +175,7 @@ async function cadastrar() {
     } else {
         alert("Preencha todos os campos!");
     }
+    
 }
 
 
-//Método para carregar o select com as escolas registradas
-async function carregarSelect() {
-    var resposta = await usarApi("GET", "http://localhost:8080/api/escolas");
-    var escolas = JSON.parse(resposta);
-
-    var selectEscola = document.getElementById('inputEscola');
-
-    for (let i = 0; i < escolas.length; i++) {
-        var option = document.createElement("option");
-        option.value = escolas[i].idEscola;
-        option.textContent = escolas[i].nome;
-
-        selectEscola.appendChild(option)
-    }
-}

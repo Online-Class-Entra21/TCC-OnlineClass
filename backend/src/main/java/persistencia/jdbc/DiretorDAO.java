@@ -42,8 +42,8 @@ public class DiretorDAO {
 			diretor.setTipoUsuario(resultSet.getInt(7));
 			diretor.setEmail(resultSet.getString(8));
 			diretor.setSenha(resultSet.getString(9));
-			diretor.setHorarioFinalExpediente(resultSet.getTime(10));
-			diretor.setHorarioInicioExpediente(resultSet.getTime(11));
+			diretor.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			diretor.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			diretor.setFotoUsuario(resultSet.getString(12));
 			diretor.setFk_endereco(resultSet.getInt(13));
 			diretor.setFk_escola(resultSet.getInt(14));
@@ -78,8 +78,8 @@ public class DiretorDAO {
 			diretor.setTipoUsuario(resultSet.getInt(7));
 			diretor.setEmail(resultSet.getString(8));
 			diretor.setSenha(resultSet.getString(9));
-			diretor.setHorarioFinalExpediente(resultSet.getTime(10));
-			diretor.setHorarioInicioExpediente(resultSet.getTime(11));
+			diretor.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			diretor.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			diretor.setFotoUsuario(resultSet.getString(12));
 			diretor.setFk_endereco(resultSet.getInt(13));
 			diretor.setFk_escola(resultSet.getInt(14));
@@ -149,8 +149,8 @@ public class DiretorDAO {
 			diretor.setTipoUsuario(resultSet.getInt(7));
 			diretor.setEmail(resultSet.getString(8));
 			diretor.setSenha(resultSet.getString(9));
-			diretor.setHorarioFinalExpediente(resultSet.getTime(10));
-			diretor.setHorarioInicioExpediente(resultSet.getTime(11));
+			diretor.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			diretor.setHorarioInicioExpediente(resultSet.getTimestamp(11));
 			diretor.setFotoUsuario(resultSet.getString(12));
 			diretor.setFk_endereco(resultSet.getInt(13));
 			diretor.setFk_escola(resultSet.getInt(14));
@@ -213,18 +213,18 @@ public class DiretorDAO {
 	 * @throws SQLException
 	 */
 	public void update(Diretor diretor) throws SQLException {
-		String sql = "update usuario (nome, sobrenome, telefone, celular, email, "
-				   + "senha) values (?,?,?,?,?,?) where idUsuario = ?"; 
+		String sql = "update usuario set nome = ?, sobrenome = ?, telefone = ?, celular = ?, email = ?, "
+				   + "senha = ? where idUsuario = ?"; 
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
-		     
+		
 		comandoSql.setString(1, diretor.getNome());
 		comandoSql.setString(2, diretor.getSobrenome());
 		comandoSql.setString(3, diretor.getTelefone());
 		comandoSql.setString(4, diretor.getCelular());
 		comandoSql.setString(5, diretor.getEmail());
 		comandoSql.setString(6, diretor.getSenha());
-		comandoSql.setInt(6, diretor.getIdUsuario());
-
+		comandoSql.setInt(7, diretor.getIdUsuario());
+		System.out.println(comandoSql.toString());
 		comandoSql.execute();
 		comandoSql.close();
 	}

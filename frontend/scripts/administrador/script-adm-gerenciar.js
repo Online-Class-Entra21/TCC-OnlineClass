@@ -74,6 +74,8 @@ function usarApi(method, url) {
     });
 }
 
+
+
 //Método para retornar um array de escolas cadastradas no banco de dados e populá-las em uma tabela
 listaEscolas();
 async function listaEscolas(){
@@ -120,9 +122,11 @@ async function listaEscolas(){
         //Termina o loading de carregamento 
         document.getElementById("idLoad").style.display = "none";
     }
-    //Retorna o valor da linha da escola clicada
-    $( ".LinhaEscolas" ).click(function() { 
-        var escolaEscolhida = escolasIndex[$(this).index()].idEscola;
-    });
+  //Retorna o valor da linha da escola clicada
+$( ".LinhaEscolas" ).click(function() { 
+    var escolaEscolhida = escolasIndex[$(this).index()].idEscola;
+    sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
+    location.href = "/frontend/paginas/administrador/adm-editar.html"
+});  
 }
 
