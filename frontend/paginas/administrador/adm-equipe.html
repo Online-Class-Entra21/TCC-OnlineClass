@@ -11,96 +11,97 @@
         <title>Equipe - Administrador</title>
     </head>
     <body>
+        <!-- Div de abertura do menu -->
         <div id="mostrar"></div>
         <div id="menu">
-        <!--Menu lateral-->
-        <div id="menu-titulo">
-            <h4 id="idMenuTitulo">Administrador</h4>
+            <!--Menu lateral-->
+            <div id="menu-titulo">
+                <h4 id="idMenuTitulo">Administrador</h4>
+            </div>
+            <section id="cadastrar" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/conhecimento.png" alt="Cadastro" title="Cadastro" class="img-opcoes">
+                    <a href="/frontend/paginas/administrador/adm-cadastrar.html">Cadastrar Escola</a>
+                </figure>
+            </section>
+            <section id="gerenciar" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/editar.png" alt="Gerenciar" title="Gerenciar" class="img-opcoes">
+                    <a href="/frontend/paginas/administrador/adm-gerenciar.html">Gerenciar Escolas</a>
+                </figure>
+            </section>
+            <section id="equipe" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/team.png" alt="Equipe" title="Equipe" class="img-opcoes">
+                    <a href="/frontend/paginas/administrador/adm-equipe.html">Equipe OnlineClass</a>
+                </figure>
+            </section>
+            <section id="tela-principal" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
+                    <a href="/frontend/paginas/administrador/adm-principal.html">Tela Principal</a>
+                </figure>
+            </section>
+            <section id="sair" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
+                    <a id="ancoraSair" href="/frontend/index.html">Sair</a>
+                </figure>
+            </section>
         </div>
-        <section id="cadastrar" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/conhecimento.png" alt="Cadastro" title="Cadastro" class="img-opcoes">
-                <a href="/frontend/paginas/administrador/adm-cadastrar.html">Cadastrar Escola</a>
-            </figure>
-        </section>
-        <section id="gerenciar" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/editar.png" alt="Gerenciar" title="Gerenciar" class="img-opcoes">
-                <a href="/frontend/paginas/administrador/adm-gerenciar.html">Gerenciar Escolas</a>
-            </figure>
-        </section>
-        <section id="equipe" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/team.png" alt="Equipe" title="Equipe" class="img-opcoes">
-                <a href="/frontend/paginas/administrador/adm-equipe.html">Equipe OnlineClass</a>
-            </figure>
-        </section>
-        <section id="tela-principal" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
-                <a href="/frontend/paginas/administrador/adm-principal.html">Tela Principal</a>
-            </figure>
-        </section>
-        <section id="sair" class="opcoes">
-            <figure class="figure-opcoes">
-                <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
-                <a id="ancoraSair" href="/frontend/index.html">Sair</a>
-            </figure>
-        </section>
-    </div>
-    <header>
         <!--Cabecalho-->
-        <nav id="cabecalho">
-            <div id="lado-esquerdo">
-                <div id="botao-menu">
-                    <figure id="figure-menu">
-                        <img id="idImgMenu" src="/frontend/imagens/botao-menu.png" alt="Menu" title="Menu" name="menu">
+        <header>
+            <nav id="cabecalho">
+                <div id="lado-esquerdo">
+                    <div id="botao-menu">
+                        <figure id="figure-menu">
+                            <img id="idImgMenu" src="/frontend/imagens/botao-menu.png" alt="Menu" title="Menu" name="menu">
+                        </figure>
+                    </div>
+                </div>
+                <div id="lado-direito">
+                    <figure id="figure-perfil">
+                        <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil" title="Foto de Perfil">
+                        <label id="idNomeUsuario" for="foto-perfil" name="nome-usuario" title="Nome">Nome</label>
                     </figure>
                 </div>
-            </div>
-            <div id="lado-direito">
-                <figure id="figure-perfil">
-                    <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil" title="Foto de Perfil">
-                    <label id="idNomeUsuario" for="foto-perfil" name="nome-usuario" title="Nome">Nome</label>
-                </figure>
-            </div>
-        </nav>
-    </header>
-    <!-- Conteudo do corpo do programa -->
-    <main class="nav justify-content-center">
-        <section class="cartoes">
-            <div>
-                <p>ANDRÉ<a class="ancoras-card" href="https://github.com/AndreLuisOvidio" target="_blank"><img class="imagens" src="/frontend/imagens/foto-andre.png"></a>BACK-END</p>
-            </div>
-        </section>
+            </nav>
+        </header>
+        <!-- Conteudo do corpo do programa -->
+        <main class="nav justify-content-center">
+            <section class="cartoes">
+                <div>
+                    <p>ANDRÉ<a class="ancoras-card" href="https://github.com/AndreLuisOvidio" target="_blank"><img class="imagens" src="/frontend/imagens/foto-andre.png"></a>BACK-END</p>
+                </div>
+            </section>
 
-        <section class="cartoes">
-            <div>
-                <p>ANDREY<a class="ancoras-card" href="https://github.com/andrey-romig" target="_blank"><img class="imagens" src="/frontend/imagens/foto-andrey.png"></a>BACK-END</p>
-            </div>
-        </section>
+            <section class="cartoes">
+                <div>
+                    <p>ANDREY<a class="ancoras-card" href="https://github.com/andrey-romig" target="_blank"><img class="imagens" src="/frontend/imagens/foto-andrey.png"></a>BACK-END</p>
+                </div>
+            </section>
 
-        <section class="cartoes">
-            <div>
-                <p>BRENO<a class="ancoras-card" href="https://github.com/BrenoAugustoComandolli" target="_blank"><img class="imagens" src="/frontend/imagens/foto-breno.png"></a>BACK-END <br> FRONT-END</p>
-            </div>
-        </section>
+            <section class="cartoes">
+                <div>
+                    <p>BRENO<a class="ancoras-card" href="https://github.com/BrenoAugustoComandolli" target="_blank"><img class="imagens" src="/frontend/imagens/foto-breno.png"></a>BACK-END <br> FRONT-END</p>
+                </div>
+            </section>
 
-        <section class="cartoes">
-            <div>
-                <p>IAN<a class="ancoras-card" href="https://github.com/I-Vicenzo" target="_blank"><img class="imagens" src="/frontend/imagens/foto-ian.jpeg"></a>FRONT-END</p>
-            </div>
-        </section>
+            <section class="cartoes">
+                <div>
+                    <p>IAN<a class="ancoras-card" href="https://github.com/I-Vicenzo" target="_blank"><img class="imagens" src="/frontend/imagens/foto-ian.jpeg"></a>FRONT-END</p>
+                </div>
+            </section>
 
-        <section class="cartoes">
-            <div>
-                <p>RUAN<a class="ancoras-card" href="https://github.com/RuanDaniell" target="_blank"><img class="imagens" src="/frontend/imagens/foto-ruan.png"></a>FRONT-END</p>
-            </div>
-        </section>
-    </main>
-    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
+            <section class="cartoes">
+                <div>
+                    <p>RUAN<a class="ancoras-card" href="https://github.com/RuanDaniell" target="_blank"><img class="imagens" src="/frontend/imagens/foto-ruan.png"></a>FRONT-END</p>
+                </div>
+            </section>
+        </main>
+        <!--JS - Scrits -->
+        <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
+        <script src="/frontend/scripts/login/script-utilitarios.js"></script>
+        <script src="/frontend/scripts/administrador/script-adm-equipe.js"></script>
     </body>
-    <!--JS - Scrits -->
-    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
-    <script src="/frontend/scripts/administrador/script-adm-equipe.js"></script>
 </html>

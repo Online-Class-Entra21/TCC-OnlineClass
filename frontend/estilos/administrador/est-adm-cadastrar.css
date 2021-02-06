@@ -20,6 +20,9 @@ body, html{
     border: 0;
 }
 
+/*
+Config. do main 
+*/
 main{
     width: 100%;
     height: 100%;
@@ -240,49 +243,41 @@ Config. da div do botão de saida
 
 /**************************
 Config. das alteracoes especificas
-***************************/
+**************************/
 
 form{
     width: 100%;
-    height: 90%;
-}
-/*
-Config. da coluna da linha 
-*/
-td{
-    font-size: 100%;
-    margin-left: 2%;
-}
-
-/*
-Config. das linhas 
-*/
-tr{
-    align-items: center;
-    display: flex;
+    height: 100%;
 }
 
 /*
 COnfig. dos inputs 
 */
 input{
-    width: 100%;
-    height: 100%;
+    width: 35vh;
+}
+
+/*
+Config. das tr
+*/
+tr{
+    display: flex;
+    margin-top: 3%;
 }
 
 /*
 Config. dos botoes 
 */
 .but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
     margin: 1%;
-    color: white;
-    background-color: black;
-    border-radius: 2vh;
     padding: 1.2%;
     font-size: 2vh;
 }
 .but:hover{
-    border: 2px solid chartreuse;
+    border: 2px solid black;
 }
 
 /*
@@ -292,27 +287,39 @@ Config. dos titulos
     font-weight: bolder;
 }
 
+/*
+Config. das tabelas 
+*/
+.tabela{
+    display: flex;
+}
 
 /*
-Condifg. das divs de conteudo 
+Config. dos inputs
 */
-#dados{
+.input{
+    margin-left: 2%;
+}
+
+/*
+Config. do cabecalho de afastamento
+*/
+#cab{
+    width: 100%;
+    height: 10%;
+}
+
+/*
+Config. da div de conteudo
+*/
+#conteudo{
     border: 2px solid black;
     border-radius: 2vh;
     float: left;
     padding: 2%;
-    margin-top: 3%;
-    margin-left: 3%;
-    margin-right: 3%;
-    width: 100vh;
-    height: 100%;
-}
-
-/*
-Config. dos botoes do form 
-*/
-#botoes{
-    margin: 0;
+    margin: 2%;
+    width: 85vh;
+    height: 105vh;
 }
 
 /*
@@ -321,19 +328,6 @@ Config. da selecao de imagem
 #imagemInput{
    width: 0%;
    opacity: 0;
-}
-
-/*
-Config. div de separacao
-*/
-#cab{
-    height: 10%;
-    width: 100%;
-}
-
-#conteudo{
-    width: 100%;
-    height: 90%;
 }
 
 /*
@@ -350,35 +344,26 @@ Config. de tamanho das tabelas
 }
 
 /*
-Config. das divs 
+Config. das div do conteudo 
 */
 #escola-div{
     width: 100%;
-    height: 18%;
+    height: 20%;
 }
 #dados-div{
     width: 100%;
-    height: 40%;
+    height: 41%;
 }
 #login-div{
     width: 100%;
-    height: 30%;
-}
-#botoes{
-    width: 100%;
-    height: 9%;
-}
-
-/*
-Config. de inputs classe
-*/
-.input{
-    width: 50%;
+    height: 32%;
 }
 
 /*
 Config. dos botoes do form
 */
 #botoes{
-    margin-top: 3%;
+    width: 100%;
+    height: 7%;
+    margin-top: 1%;
 }

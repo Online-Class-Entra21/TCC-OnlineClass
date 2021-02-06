@@ -21,30 +21,12 @@ if(idUsuario != null){
 
     xhr.send();
 }else{
-    //alert('Sessão expirada - Erro (0002)')
-    //window.location = "/frontend/index.html";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
 }
-
-//Evento de abertura do menu 
-document.getElementById("mostrar").addEventListener("mouseover", function(){
-    abrirMenu();
-})
-document.getElementById("idImgMenu").addEventListener("mouseover", function(){
-    abrirMenu();
-})
-
-//Abertura do menu
-function abrirMenu(){
-    document.getElementById("menu").style.display = "block";
-}
-
-//Evento de fechamento do menu 
-document.getElementById("menu").addEventListener("mouseleave", function(){
-    document.getElementById("menu").style.display = "none";
-})
 
 //Método para chamada da API - requisição de lista de escolas 
-function usarApi(method, url) {
+function usarApiLocal(method, url) {
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url);
@@ -74,15 +56,16 @@ function usarApi(method, url) {
     });
 }
 
-
+listaEscolas();
 
 //Método para retornar um array de escolas cadastradas no banco de dados e populá-las em uma tabela
-listaEscolas();
 async function listaEscolas(){
+
     //Inicia o loading 
     document.getElementById("idLoad").style.display = "block";
+
     //Faz a buscar na API
-    var resposta = await usarApi("GET", "http://localhost:8080/api/escolas");
+    var resposta = await usarApiLocal("GET", "http://localhost:8080/api/escolas");
     var escolas = JSON.parse(resposta);
 
     //Verifica se tem alguma escola no banco de dados
@@ -106,7 +89,7 @@ async function listaEscolas(){
             coluna.append(input);
             linha.append(coluna);
             
-            var diretor = await usarApi("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
+            var diretor = await usarApiLocal("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
             diretor = JSON.parse(diretor);
 
             //Verifica se a escola tem um diretor 
@@ -122,11 +105,12 @@ async function listaEscolas(){
         //Termina o loading de carregamento 
         document.getElementById("idLoad").style.display = "none";
     }
-  //Retorna o valor da linha da escola clicada
-$( ".LinhaEscolas" ).click(function() { 
-    var escolaEscolhida = escolasIndex[$(this).index()].idEscola;
-    sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
-    location.href = "/frontend/paginas/administrador/adm-editar.html"
-});  
+
+    //Retorna o valor da linha da escola clicada
+    $( ".LinhaEscolas" ).click(function() { 
+        var escolaEscolhida = escolasIndex[$(this).index()].idEscola;
+        sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
+        location.href = "/frontend/paginas/administrador/adm-cadastrar.html";
+    });  
 }
 
