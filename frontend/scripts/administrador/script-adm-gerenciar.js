@@ -15,8 +15,10 @@ if(idUsuario != null){
             document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
             //Adiciona a foto de perfil do usuario
             var img = document.querySelector("#idFotoPerfil");
-            img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
-            img.style.borderRadius = "80%";
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
         })
 
     xhr.send();
