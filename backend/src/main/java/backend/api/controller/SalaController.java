@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import entidade.Reuniao;
 import entidade.Sala;
+import persistencia.jdbc.ReuniaoDAO;
 import persistencia.jdbc.SalaDAO;
 
 /**
@@ -137,6 +139,39 @@ public class SalaController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Sala Mal Sucedida - Sala {} - erro - {}",codigo,e.toString());
 			return false;
+		}
+	}
+	
+	/**
+	 * Retorna a sala que corresponde ao idReuniao informado
+	 * @param int codigo - idReuniao
+	 * @return String json
+	 * @author André
+	 */
+	@GetMapping(path = "/api/salaidreuniao/{codigo}")
+	public String consultarIdReuniao(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Sala da Reuniao {} iniciada", codigo);
+		SalaDAO salaDao = new SalaDAO();
+		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
+		Reuniao reuniao;
+		Sala sala;
+		try {
+			reuniao = reuniaoDAO.buscarId(codigo);
+			LOGGER.info("Requisição Reuniao codigo {} bem sucedida",codigo);
+			try {
+				sala = salaDao.buscarId(reuniao.getFk_sala());
+				Gson gson = new Gson();
+				String json = gson.toJson(sala);
+				LOGGER.info("Requisição Sala codigo {} bem sucedida",codigo);
+				return json;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				LOGGER.error("Requisição para Consultar Sala Mal Sucedida - Sala {} - erro - {}",codigo,e.toString());
+				return null;
+			}
+		} catch (SQLException e) {
+			LOGGER.error("Requisição para Consultar Reuniao Mal Sucedida - Reuniao {} - erro - {}",codigo,e.toString());
+			return null;
 		}
 	}
 }
