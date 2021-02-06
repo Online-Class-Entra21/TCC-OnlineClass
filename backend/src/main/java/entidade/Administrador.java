@@ -1,6 +1,6 @@
 package entidade;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * Classe contendo metodos e atributos para o administrador.
@@ -34,7 +34,7 @@ public class Administrador extends Usuario {
      * @param fk_endereco
      */
 	public Administrador(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-						 String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+						 String email, String senha, Timestamp horarioInicioExpediente, Timestamp horarioFinalExpediente,
 						 String fotoUsuario, int fk_endereco) {
 		
 		super(idUsuario, nome, sobrenome, cpf, telefone, celular, 1, email, senha, horarioInicioExpediente,

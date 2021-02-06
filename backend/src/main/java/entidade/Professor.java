@@ -1,6 +1,6 @@
 package entidade;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * Classe contendo metodos e atributos para o professor.
@@ -35,7 +35,7 @@ public class Professor extends Usuario {
      * @param fk_escola
      */
 	public Professor(int idUsuario, String nome, String sobrenome, String cpf, String telefone, String celular,
-					 String email, String senha, Time horarioInicioExpediente, Time horarioFinalExpediente,
+					 String email, String senha, Timestamp horarioInicioExpediente, Timestamp horarioFinalExpediente,
 					 String fotoUsuario, int fk_endereco, int fk_escola) {
 		
 		super(idUsuario, nome, sobrenome, cpf, telefone, celular, 4, email, senha, horarioInicioExpediente,
