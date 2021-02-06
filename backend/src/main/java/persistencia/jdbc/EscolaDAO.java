@@ -52,8 +52,8 @@ public class EscolaDAO {
 		comandoSql.setTimestamp(2, (Timestamp) escola.getDataInicioLetivo());
 		comandoSql.setTimestamp(3, (Timestamp) escola.getDataFinalLetivo());
 		comandoSql.setInt(4, escola.getIdEscola());
-		comandoSql.execute();
 		
+		comandoSql.execute();
 		comandoSql.close();
 	}
 	
@@ -144,7 +144,6 @@ public class EscolaDAO {
 		comandoSql.setString(1, escola.getNome());
 		
 		comandoSql.execute();
-		
 		comandoSql.close();
 	}
 	
@@ -169,11 +168,26 @@ public class EscolaDAO {
 			escola.setNome(resultSet.getString(2));
 			escola.setDataInicioLetivo(resultSet.getTimestamp(3));
 			escola.setDataFinalLetivo(resultSet.getTimestamp(4));
-			
 		}
 		comandoSql.close();
 		return escola;
 	}
 	
-	
+	/**
+	 * Metodo para atualizar uma escola no banco de dados na visao do ADM
+	 * O <code>idEscola</code> deve ser igual ao do escola que deseja atualizar
+	 * @param Escola escola
+	 * @author Andrey
+	 * @throws SQLException 
+	 */ 	
+	public void updateAdm(Escola escola) throws SQLException {
+		String sql = "update escola set nome = ? where idEscola = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setString(1, escola.getNome());
+		comandoSql.setInt(2, escola.getIdEscola());
+		
+		comandoSql.execute();
+		comandoSql.close();
+	}
 }

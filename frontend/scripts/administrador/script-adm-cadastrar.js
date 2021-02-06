@@ -18,26 +18,23 @@ if(idUsuario != null){
              img.setAttribute('src', dadosUsuario.fotoUsuario);
              img.style.borderRadius = "80%";
         })
-        xhr.onerror = function () {
-            alert('Sem Conexão com a Base de Dados - Erro (0001)')
-            window.location = "/frontend/index.html";
-        }
 
     xhr.send();
+
 }else{
     alert('Sessão expirada - Erro (0002)')
     window.location = "/frontend/index.html";
 }
 
-//Métodos onclick dos botões cadastrar e limpar
+//Mascara dos inputs 
+$("#inputTelefone").mask("(00) 0000-0000");
+$("#inputCelular").mask("(00) 00000-0000");
+
+//Métodos onclick do botao cadastrar
 var btnCadastrar =  document.getElementById('btnCadastrar');
 btnCadastrar.addEventListener("click", function() {
     cadastrar();
 })
-
-//Mascara dos inputs 
-$("#inputTelefone").mask("(00) 0000-0000");
-$("#inputCelular").mask("(00) 00000-0000");
 
 //Método para cadastrar
 async function cadastrar() {
@@ -57,43 +54,51 @@ async function cadastrar() {
         var senha = document.getElementById('inputSenha').value;
         var confirmarSenha = document.getElementById('inputConfirmSenha').value;
 
-        //Cria o objeto escola com as informações a serem registradas no banco de dados
-        var inserirEscola = {
-            nome: escola
-        }
+        if(senha != confirmarSenha){
+            alert("Senhas incompatíveis");
+        }else{
+            
+            //Cria o objeto escola com as informações a serem registradas no banco de dados
+            var inserirEscola = {
+                nome: escola
+            }
 
-        //Converte para JSON
-        var escolaJson = JSON.stringify(inserirEscola);
+            //Converte para JSON
+            var escolaJson = JSON.stringify(inserirEscola);
 
-        //Chama a api para cadastrar a escola
-        var insertEscola = await usarApi("POST", "http://localhost:8080/api/escola/inserir/nome/" + escolaJson);
+            //Chama a api para cadastrar a escola
+            var insertEscola = await usarApi("POST", "http://localhost:8080/api/escola/inserir/nome/" + escolaJson);
 
-        //Busca o id da escola cadastrada pelo nome
-        var resposta =  await usarApi("GET", "http://localhost:8080/api/escola/nome/" + inserirEscola.nome);
-        var idEscolaNome = JSON.parse(resposta);
+            //Busca o id da escola cadastrada pelo nome
+            var resposta =  await usarApi("GET", "http://localhost:8080/api/escola/buscar/nome/" + inserirEscola.nome);
+            var escolaNome = JSON.parse(resposta);
 
-        //Cria o objeto usuario com as informações a serem registradas no banco de dados
-        var inserirUsuario = {
-            nome: nome,
-            sobrenome: sobrenome,
-            telefone: telefone,
-            celular: celular,
-            tipoUsuario: 2,
-            email: email,
-            senha: senha,
-            fk_escola: idEscolaNome.idEscola
-        }
-        
-        //Converte para JSON
-        var usuarioJson = JSON.stringify(inserirUsuario);
-        
-        //Chama a api para cadastrar o usuário
-        var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/diretor/" + usuarioJson);
-        
-        if (insertUsuario == false || insertEscola == false) {
-            alert("Ocorreu um erro ao cadastrar!")
-        } else {
-            alert("Cadastrado com sucesso");
+            if(escolaNome != null){
+                //Cria o objeto usuario com as informações a serem registradas no banco de dados
+                var inserirUsuario = {
+                    nome: nome,
+                    sobrenome: sobrenome,
+                    telefone: telefone,
+                    celular: celular,
+                    email: email,
+                    senha: senha,
+                    fk_escola: escolaNome.idEscola
+                }
+                
+                //Converte para JSON
+                var usuarioJson = JSON.stringify(inserirUsuario);
+                
+                //Chama a api para cadastrar o usuário
+                var insertUsuario = await usarApi("POST", "http://localhost:8080/api/diretor/inserir/" + usuarioJson);
+                
+                if (insertUsuario == false || insertEscola == false) {
+                    alert("Ocorreu um erro ao cadastrar!");
+                } else {
+                    alert("Cadastrado com sucesso");
+                }
+            }else{
+                alert("Ocorreu um erro ao cadastrar!")
+            }
         }
     } 
 }

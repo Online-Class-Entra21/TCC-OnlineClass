@@ -268,28 +268,5 @@ public class UsuarioController {
 			return false;
 		}
 	}
-	
-	/**
-	 * Insere uma novo usuário no banco de dados {POST}
-	 * @param String json
-	 * @author Andrey
-	 * @return boolean situacao da operacao
-	 */
-	@PostMapping(path = "api/usuario/inserir/diretor/{json}")
-	public boolean inserirDiretor(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Usuario - {}",json);
-		Gson gson = new Gson();
-		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
-		UsuarioDAO usuarioDao = new UsuarioDAO();
-		try {
-			usuarioDao.insertDiretor(usuario);
-			LOGGER.info("Requisição Inserir Usuario - {} - Bem Sucedida",json);
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			LOGGER.error("Requisição para Inserir Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
-			return false;
-		}
-	}
 }
 

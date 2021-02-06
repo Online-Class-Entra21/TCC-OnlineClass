@@ -78,7 +78,7 @@ public class EscolaController {
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/escola/inserir/{json}")
+	@PostMapping(path = "/api/escola/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Inserir Escola - {}",json);
 		Gson gson = new Gson();
@@ -97,13 +97,12 @@ public class EscolaController {
 
 	/**
 	 * Metodo para alteração da escola que corresponde ao codigo informado {PUT}
-	 * @param int codigo
 	 * @param String json
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/escola/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "/api/escola/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Atualizar Escola - {}",json);
 		Gson gson = new Gson();
 		Escola escola = gson.fromJson(json, Escola.class);
@@ -140,13 +139,17 @@ public class EscolaController {
 		}
 	}
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
 	/**
 	 * Insere uma nova escola no banco de dados só com o nome {POST}
 	 * @param String json
 	 * @author Andrey
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/escola/inserir/nome/{json}")
+	@PostMapping(path = "/api/escola/inserir/nome/{json}")
 	public boolean inserirNome(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Inserir Nome Escola - {}",json);
 		Gson gson = new Gson();
@@ -163,17 +166,13 @@ public class EscolaController {
 		}
 	}
 	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
-	
 	/**
 	 * Retorna a escola que corresponde ao nome indicado {GET}
 	 * @param int nome
 	 * @return String json
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/escola/nome/{nome}")
+	@GetMapping(path = "/api/escola/buscar/nome/{nome}")
 	public String consultarNome(@PathVariable("nome") String nome) {
 		LOGGER.info("Requisição Escola Nome {} iniciada", nome);
 		EscolaDAO escolaDAO = new EscolaDAO();
@@ -190,5 +189,27 @@ public class EscolaController {
 			return null;
 		}
 	}
-
+	
+	/**
+	 * Metodo para alteração da escola que corresponde ao codigo informado na visao do Adm {PUT}
+	 * @param String json
+	 * @author Andre
+	 * @return boolean situacao da operacao
+	 */
+	@PutMapping(path = "/api/escola/alterar/administrador/{json}")
+	public boolean alterarAdm(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Escola - {}",json);
+		Gson gson = new Gson();
+		Escola escola = gson.fromJson(json, Escola.class);
+		EscolaDAO escolaDAO = new EscolaDAO();
+		try {
+			escolaDAO.updateAdm(escola);
+			LOGGER.info("Requisição Atualizar Escola - {} - Bem Sucedida",json);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Escola Mal Sucedida - Escola {} - erro - {}",json,e.toString());
+			return false;
+		}
+	}
 }

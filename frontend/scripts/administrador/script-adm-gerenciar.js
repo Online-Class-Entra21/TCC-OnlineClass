@@ -110,7 +110,7 @@ async function listaEscolas(){
     $( ".LinhaEscolas" ).click(function() { 
         var escolaEscolhida = escolasIndex[$(this).index()].idEscola;
         sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
-        location.href = "/frontend/paginas/administrador/adm-cadastrar.html";
+        location.href = "/frontend/paginas/administrador/adm-editar.html";
     });  
 }
 

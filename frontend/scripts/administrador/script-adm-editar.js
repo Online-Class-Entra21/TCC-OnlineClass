@@ -1,112 +1,177 @@
-var escolaEscolhida = sessionStorage.getItem('idEscolaSelecionada');
+// Pegando id do usuário que logou 
+var idUsuario = sessionStorage.getItem("idUsuario");
+var idDiretorSelecionado;
+var senha;
 
-//Método para chamada da api
-function usarApi(method, url) {
-    return new Promise(function (resolve, reject) {
-        let xhr = new XMLHttpRequest();
-        xhr.open(method, url);
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-                resolve(xhr.response);
-            } else {
-                //document.getElementById("idLoad").style.display = "none";
-                //document.getElementById("idErro").textContent = "Sem Conexão com a Base de Dados - Erro (0001)";
-                //document.getElementById("idErro").style.display = "block";
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
-            }
-        };
-        xhr.onerror = function () {
-            document.getElementById("idLoad").style.display = "none";
-            document.getElementById("idErro").textContent = "Sem Conexão com a Base de Dados - Erro (0001)";
-            document.getElementById("idErro").style.display = "block";
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send();
-    });
+//Verifica se o cep é válido 
+if(idUsuario != null){
+    //Busca dos dados do usuário
+    var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosUsuario = JSON.parse(resposta);
+             //Adiciona o nome 
+             document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+             //Adiciona a foto de perfil do usuario
+             var img = document.querySelector("#idFotoPerfil");
+             img.setAttribute('src', dadosUsuario.fotoUsuario);
+             img.style.borderRadius = "80%";
+        })
+
+    xhr.send();
+
+}else{
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
 }
+
+//Mascara dos inputs 
+$("#inputTelefone").mask("(00) 0000-0000");
+$("#inputCelular").mask("(00) 00000-0000");
+
 //Retorna o id da escola a ser editada
-var idEscola = sessionStorage.getItem('idEscolaSelecionada')
+var idEscolaSelecionada = sessionStorage.getItem('idEscolaSelecionada')
+     
+carregarCampos();
+
+//Método para carregar os campos com os atuais dados da escola 
+async function carregarCampos() {
+
+    //Busca os dados da escola 
+    var resposta = await usarApi("GET", "http://localhost:8080/api/escola/" + idEscolaSelecionada)
+    var escola = JSON.parse(resposta)
+
+    document.getElementById('inputEscola').value = escola.nome;
+
+    resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscolaSelecionada)
+    var diretor = JSON.parse(resposta);
+ 
+    if (diretor == null) {
+        document.getElementById('inputNome').value = "Nenhum";
+    } else {
+        idDiretorSelecionado = diretor.idUsuario;
+        document.getElementById('inputNome').value = diretor.nome;
+        document.getElementById('inputSobrenome').value = diretor.sobrenome;
+        document.getElementById('inputCelular').value = diretor.celular;
+        document.getElementById('inputTelefone').value = diretor.telefone;
+        document.getElementById('inputEmail').value = diretor.email;
+        senha = document.getElementById('inputSenha').value = diretor.senha;
+    }        
+}
 
 //Chama o método editarEscola ao clicar no botão confirmar
 $("#btnEditar").click(function() {
-    editarEscola(idEscola);
+    editarEscola();
 })
-
-
-carregarCampos(idEscola);
-     
-//Método para carregar os campos com os atuais dados da escola 
-async function carregarCampos(idEscola) {
-    var resposta = await usarApi("GET", "http://localhost:8080/api/escola/" + idEscola)
-    var escola = JSON.parse(resposta)
-    console.log(escola)
-
-    document.getElementById('idID').value = escola.idEscola;
-    document.getElementById('idNome').value = escola.nome;
-    document.getElementById('idDataInic').value = escola.dataInicioLetivo;
-    document.getElementById('idDataFim').value = escola.dataFinalLetivo;
-
-    resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscola)
-    var diretor = JSON.parse(resposta);
- 
-    if (diretor.fk_escola == null) {
-        document.getElementById('idDiretor').value = "Nenhum";
-    } else {
-        document.getElementById('idDiretor').value = diretor.nome;
-    }        
-}
     
 //Método para edição da escola  
 async function editarEscola(idEscola) {
 
-    if (document.getElementById('idNome').value != '') {
-        //Edita os Campos da escola
-        var alterarEscola = {
-            nome: document.getElementById('idNome').value,
-            dataInicioLetivo: document.getElementById('idDataInic').value,
-            dataFinalLetivo: document.getElementById('idDataFim').value
-        }
-        var escolaJson = JSON.stringify(alterarEscola);
-        console.log(escolaJson);
-        var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/"+escolaEscolhida+"/"+escolaJson)
-        if (updateEscola == false) {
-            alert("Erro, Solicitação de edição mal sucedida");
-            
-        }
-    } else {
-        alert("Informe o nome!")
-    } 
-}   
+    //Verifica se os campos foram preenchidos 
+    var form = $('#formulario');
+    if(!form[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo(form).click().remove();
+    }else{
 
-//Método para deletar a escola
-async function excluirEscola(idEscola) {
-    var confirmar =  confirm("Tem certeza de que deseja excluir a escola "+ document.getElementById('idNome').value+"?")
-    if (confirmar==true) {
-        //Retorna o diretor
-        resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscola)
+        var isConfirmado = false;
+        //Pede a confirmação da senha 
+        if(senha != document.getElementById("inputSenha").value){
+            isConfirmado = confirm("Deseja mesmo alterar a senha?");
 
-        //Exclui o diretor
-        if (resposta != null) {
-            var diretor = JSON.parse(resposta);
-            var excluirDiretor = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/" + diretor.idUsuario);
+            //Confirma a troca de senha 
+            if(isConfirmado){
+                //Edita os Campos da escola
+                var alterarEscola = {
+                    nome: document.getElementById('inputEscola').value,
+                }
+                var escolaJson = JSON.stringify(alterarEscola);
+                var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/administrador/"+escolaJson)
+                if (updateEscola == false) {
+                    alert("Erro ao salvar edição!");
+                }else{
+                    editarDiretor();
+                }
+            }
 
-        }
-
-        //Exclui a escola
-        var excluirEscola = await usarApi("DELETE", "http://localhost:8080/api/escola/deletar/" + escolaEscolhida);
-
-        //Verificação
-        if (excluirDiretor == false || excluirEscola == false) {
-            alert("Ocorreu um erro ao excluir a instituição!")
+        }else{
+            //Edita os Campos da escola
+            var alterarEscola = {
+                idEscola: idEscolaSelecionada,
+                nome: document.getElementById('inputEscola').value
+            }
+            var escolaJson = JSON.stringify(alterarEscola);
+            var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/administrador/"+escolaJson)
+            if (updateEscola == false) {
+                alert("Erro ao salvar edição!");
+            }else{
+                editarDiretor();
+            }
         }
     }
-    
+}   
 
+//Método para edição da escola  
+async function editarDiretor() {
+
+    //Edita os Campos da escola
+    var alterarDiretor = {
+        idUsuario: idDiretorSelecionado,
+        nome: document.getElementById('inputNome').value,
+        sobrenome: document.getElementById('inputSobrenome').value,
+        celular: document.getElementById('inputCelular').value,
+        telefone: document.getElementById('inputTelefone').value,
+        email: document.getElementById('inputEmail').value,
+        senha: document.getElementById('inputSenha').value
+    }
+    var diretorJson = JSON.stringify(alterarDiretor);
+    console.log(diretorJson)
+
+    var updateEscola = await usarApi("PUT", "http://localhost:8080/api/diretor/alterar/"+diretorJson)
+
+    if (updateEscola == false) {
+        alert("Erro ao salvar edição!");
+    }else{
+        alert("Alterado com sucesso!");
+    }
 }
+
+//Evento de exclusão de escola 
+document.getElementById("btnExcluir").addEventListener("click",function(){
+
+    var isConfirm =  confirm("Tem certeza de que deseja excluir a escola "+ document.getElementById('inputNome').value+"?")
+    
+    if(isConfirm){
+        excluirEscola();
+    }
+});
+
+//Método para deletar a escola
+async function excluirEscola() {
+
+    //Exclui o diretor
+    if (resposta != null) {
+        var diretor = JSON.parse(resposta);
+        var excluirDiretor = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/" + idDiretorSelecionado);
+    }
+
+    //Exclui a escola
+    var excluirEscola = await usarApi("DELETE", "http://localhost:8080/api/escola/deletar/" + escolaEscolhida);
+    
+    //Verificação
+    if (!excluirDiretor || !excluirEscola) {
+        alert("Ocorreu um erro ao excluir a instituição!")
+    }else{
+        alert("Excluida com sucesso!")
+    }
+}
+
+//Email repetido 
+//Excluir 
+//Revição geral
+
+
+
 
