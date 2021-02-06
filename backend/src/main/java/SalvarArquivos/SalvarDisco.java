@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class SalvarDisco {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("SalvarArquivos");
+	
 	private String raiz;
 
 	/**
@@ -33,6 +34,7 @@ public class SalvarDisco {
 	 * 
 	 * @param arquivo
 	 * @param idUsuario
+	 * @author Andre
 	 * @return
 	 */
 	public String salvarFoto(MultipartFile arquivo, int idUsuario){
@@ -52,6 +54,7 @@ public class SalvarDisco {
 	 * @param diretorio - pasta a onde vai ser salvo o arquivo dentro da raiz
 	 * @param arquivo - arquivo que vai ser salvo
 	 * @param nome - nome do arquivo com a extensão dele
+	 * @author Andre
 	 * @return diretorio apartir da raiz onde o arquivo foi salvo ex: /imagens-usuarios/user001
 	 */
 	public String salvarDir(String diretorio, MultipartFile arquivo, String nome){
@@ -72,7 +75,7 @@ public class SalvarDisco {
 	/**
 	 * return o diretorio raiz onde a classe
 	 * salva os arquivos
-	 * 
+	 * @author Andre
 	 * @return diretorioRaiz
 	 */
 	public String getRaiz() {
@@ -82,13 +85,10 @@ public class SalvarDisco {
 	/**
 	 * seta o diretorio raiz onde a classe
 	 * salva os arquivos
-	 * 
+	 * @author Andre
 	 * @param raiz
 	 */
 	public void setRaiz(String raiz) {
 		this.raiz = raiz;
 	}
-	
-	
-	
 }
