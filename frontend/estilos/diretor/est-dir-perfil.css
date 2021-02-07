@@ -34,6 +34,8 @@ Config. do main
 main{
     width: 100%;
     height: 90%;
+    justify-content: center;
+    align-items: center;
 }
 
 /*
@@ -303,7 +305,7 @@ Config. divs do form
 */
 #div-titulo{
     padding: 4%;
-    height: 15%;
+    height: 12%;
     align-items: center;
     display: flex;
 }
@@ -317,10 +319,10 @@ Config. dados pessoais div
 */
 #dados-pessoais {
     width: 58vh;
-    height: 83vh;
+    height: 80vh;
     border-radius: 3vh;
     border: 2px solid black;
-    padding: 1.5%;
+    padding: 2%;
     margin: 2.5%;
 }
 
@@ -342,3 +344,66 @@ Config. do botao salvar
 #botao-salvar:hover{
     border: 2px solid black;
 }
+
+/*
+Config da div de imagem
+*/
+#visul-img{
+    width: 40vh;
+    height: 50vh;
+    background-color: rgb(87, 16, 16);
+    position: fixed;
+    border-radius: 3%;
+    display: none;
+}
+#img{
+    width: 100%;
+    height: 70%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#img_preview{
+    border-radius: 100%;
+}
+#botoes-img{
+    width: 100%;
+    height: 30%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+
+/*
+Config. dos componentes de add de imagem 
+*/
+#botao-input{
+    font-size: 90%;
+}
+#imagemInput{
+    display: none;
+    width: 0;
+    height: 0;
+}
+#visualizacao{
+    width: 6.5%;
+    height: 6.5%;
+    margin-left: 2%;
+}
+#ok{
+    font-size: 90%;
+    color: rgb(13, 97, 45);
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    margin-left: 2%;
+}
+
+#tr-salvar{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 4%;
+}
+

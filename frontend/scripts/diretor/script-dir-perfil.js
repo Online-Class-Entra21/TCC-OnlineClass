@@ -1,5 +1,6 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
+var senhaSelecionada;
 
 //Verifica se já tem foto do usuario 
 var isFotoExistente = false;
@@ -30,6 +31,7 @@ if(idUsuario != 0 && idUsuario != null){
             document.getElementById("idSenha").value = dadosUsuario.senha;
             document.getElementById("idTelefone").value = dadosUsuario.telefone;
             document.getElementById("idCelular").value = dadosUsuario.celular;
+            senhaSelecionada = dadosUsuario.senha;
 
             //Puxando imagem
             var caminhoImagem = dadosUsuario.fotoUsuario;
@@ -48,8 +50,8 @@ if(idUsuario != 0 && idUsuario != null){
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/index.html";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
 }
 
 //Carrga os dados do perfil do diretor
@@ -68,24 +70,6 @@ function carregarDadosEscola(fk_escola){
 
     xhr.send();
 } 
-
-//Evento de abertura do menu 
-document.getElementById("mostrar").addEventListener("mouseover", function(){
-    abrirMenu();
-})
-document.getElementById("idImgMenu").addEventListener("mouseover", function(){
-    abrirMenu();
-})
-
-//Abertura do menu
-function abrirMenu(){
-    document.getElementById("menu").style.display = "block";
-}
-
-//Evento de fechamento do menu 
-document.getElementById("menu").addEventListener("mouseleave", function(){
-    document.getElementById("menu").style.display = "none";
-})
 
 //Carregamento automático da foto do usuario 
 function ImagePreview(input)
@@ -116,8 +100,8 @@ $().ready(function() {
 	if (set_image_border)
 		$("#img_preview").css("border", "2px solid #ffffff");
   
-    $("#img_preview").css("width", "80%");
-    $("#img_preview").css("height", "80%");
+    $("#img_preview").css("width", "53%");
+    $("#img_preview").css("height", "60%");
 
 	$("#imagemInput").change(function(e){
         ImagePreview(this);
@@ -128,11 +112,8 @@ $().ready(function() {
         imagem = this.files;
     });
     $("#botao-salvar").click(function() {
-        console.log(imagem)
         if (imagem!=undefined) {
             UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
-        }else{
-            console.log("selecione uma imagem")
         }
     });
 });
@@ -163,43 +144,34 @@ $("#botao-salvar").click(function(){
     if(!form[0].checkValidity()) {
         $('<input type="submit">').hide().appendTo(form).click().remove();
     }else{
-        if (imagem!=undefined) {
-            UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
-            console.log("imagem inserida")
+
+        //Pede a confirmação da senha 
+        if(senhaSelecionada != document.getElementById("idSenha").value){
+            isConfirmado = confirm("Deseja mesmo alterar a senha?");
+
+            if(isConfirmado){
+                //Altera a imagem
+                if (imagem!=undefined) {
+                    UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                }
+                //Altera os dados 
+                alterar(); 
+            }
         }else{
-            console.log("informe uma imagem")
+            //Altera a imagem
+            if (imagem!=undefined) {
+                UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+            }
+            //Altera os dados 
+            alterar(); 
         }
-        alterar(); 
     }
 })
 
-//Método para chamada da API async
-function usarApi(method, url) {
-    return new Promise(function (resolve, reject) {
-        let xhr = new XMLHttpRequest();
-        xhr.open(method, url);
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-                resolve(xhr.response);
-            } else {
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
-            }
-        };
-        xhr.onerror = function () {
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send();
-    });
-}
-
 //Método de alteracao dos dados do diretor
 async function alterar(){
+
+    senhaSelecionada = $("#idSenha").val();
 
     var perfil = {
         nome: $("#idNome").val(),
@@ -212,8 +184,9 @@ async function alterar(){
     }
 
     var json = JSON.stringify(perfil);
-    var isCorreto =  await usarApi("PUT", "http://localhost:8080/api/diretor/alterar/" + json); 
-    
+    var resposta =  await usarApi("PUT", "http://localhost:8080/api/diretor/alterar/" + json); 
+    var isCorreto = JSON.parse(resposta);
+
     if(isCorreto){
         alert('Alterações Salvas com sucesso!')
     }else{
@@ -221,6 +194,7 @@ async function alterar(){
     }
 }
 
+//Adiciona imagem no arquivo raiz 
 function UploadFile(file,url){
     var files = file[0];
     var xhr = new XMLHttpRequest();
@@ -228,7 +202,6 @@ function UploadFile(file,url){
 
     fd.append( "foto", files, files.name);
     xhr.open("POST", url, true);
-
     xhr.send(fd);
 }
 

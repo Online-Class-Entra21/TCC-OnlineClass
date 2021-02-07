@@ -131,7 +131,7 @@
                                         <label>Email: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idEmail" class="inputs" type="text" required>
+                                        <input id="idEmail" class="inputs" type="email" placeholder="Ex: exemplo@complemento.com" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -139,7 +139,7 @@
                                         <label>Senha: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idSenha" class="inputs" type="password" required>
+                                        <input id="idSenha" class="inputs" maxlength="14" minlength="8" type="password" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -147,7 +147,7 @@
                                         <label>Celular: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idCelular" class="inputs" type="text" required>
+                                        <input id="idCelular" class="inputs" maxlength="15" minlength="15" type="text" placeholder="(00) 00000-0000" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -155,7 +155,7 @@
                                         <label>Telafone: </label>
                                     </td>
                                     <td class="cont">
-                                        <input id="idTelefone" class="inputs" type="text" required>
+                                        <input id="idTelefone" class="inputs" maxlength="14" minlength="14" type="text" placeholder="(00) 0000-0000" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -179,6 +179,7 @@
         </main>
         <!-- JS - Script -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
+        <script src="/frontend/scripts/login/script-utilitarios.js"></script>
         <script src="/frontend/scripts/diretor/script-dir-perfil.js"></script>
     </body>
 </html>

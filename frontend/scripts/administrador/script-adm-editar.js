@@ -138,6 +138,8 @@ async function editarEscola(idEscola) {
 //Método para edição da escola  
 async function editarDiretor() {
 
+    senha = document.getElementById('inputSenha').value;
+
     //Edita os Campos da escola
     var alterarDiretor = {
         idUsuario: idDiretorSelecionado,
