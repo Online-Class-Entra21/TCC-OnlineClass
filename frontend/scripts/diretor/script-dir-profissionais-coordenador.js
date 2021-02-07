@@ -215,7 +215,7 @@ async function carregarCheckbox() {
            divCoord.appendChild(label)
         }    
     }
-
+    /*
     //Retorna o valor da linha da escola clicada
     $( ".LinhaCoordenadores" ).click(function() { 
         var coordenadorEscolhido = coordenadoresIndex[$(this).index()];
@@ -225,18 +225,21 @@ async function carregarCheckbox() {
         //sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
         //location.href = "/frontend/paginas/administrador/adm-editar.html";
     });  
-   
+   */
 }
 
-
+/*
 async function remover() {
     
     //pegar o id pelo coordenador selecionado no checkbox
     
+    var confirmar = confirm("Tem certeza de que deseja remover esse coordenador?")
+
+    var removerEndereco = await usarApi("DELETE", "http://localhost:8080/api/endereco/deletar/"+coordenador.fk_escola)
 
     var removerCoordenador = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/" + idCoordenador)
-    var confirmar = confirm("Tem certeza de que deseja remover esse coordenador?")
     
+
     if (confirmar == true) {
         if (removerCoordenador == false) {
             alert("Ocorreu um erro ao remover o coordenador.")
@@ -246,7 +249,7 @@ async function remover() {
     }
     
 }
-
+*/
 
 /*
 async function carregarCampos() {
