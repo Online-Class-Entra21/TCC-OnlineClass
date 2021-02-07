@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--CSS-->
         <link rel="stylesheet" href="/frontend/estilos/diretor/est-dir-profissionais-coordenador.css">
-        <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
+       <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">--> 
         <title>Profissionais - Diretor</title>
     </head>
     <body>
@@ -95,12 +95,10 @@
                             <div id="dados-div">
                                 <table id="tab-dados" class="tabela">
                                     <fieldset class="border p-6">
-                                        <div id="coordExist">
-                                            <ul>
-                                                <li>Breno</li>
-                                                <li>André</li>
-                                                <li>Ian</li>
-                                            </ul>
+                                        <div id="coordExiste">
+                                            <input type="checkbox" name="nmCoordenadores" id="idNenhum" value="Cadastrar" checked>
+                                            <label for="idNenhum">Cadastrar Novo</label>
+
                                         </div>
                                     </fieldset>
                                     <h5 class="titulo-dados titulo">Dados do Coordenador</h5>
@@ -291,6 +289,7 @@
                             <div id="botoes" class="nav justify-content-center">
                                 <button class="but" type="button" id="btnCadastrar">Cadastrar</button>
                                 <button class="but" type="reset">Limpar</button>
+                                <button class="but" type="button" id="btnDeletar" hidden>Remover</button>
                             </div>
                         </div>
                     </form>
