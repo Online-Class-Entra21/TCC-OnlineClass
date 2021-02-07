@@ -23,7 +23,14 @@ public class SalvarDisco {
 	public SalvarDisco() {
 		String dir = System.getProperty("user.dir");
 		Path diretorio = Paths.get(dir);
-		this.raiz = diretorio.getParent().toString();
+		System.out.println(diretorio.getName(diretorio.getNameCount()-1));
+		String ultimoDiretorio = diretorio.getName(diretorio.getNameCount()-1).toString();
+		if (ultimoDiretorio.equals("backend")) {
+			this.raiz = diretorio.getParent().toString();
+		}else{
+			this.raiz = diretorio.toString();			
+		}
+		System.out.println(raiz);
 	}
 	
 	
@@ -67,8 +74,7 @@ public class SalvarDisco {
 		} catch (Exception e) {
 			LOGGER.error("Erro ao salvar o arquivo {} - erro : {}",arquivoPath,e);
 		}
-		String diretorioFinal = "/"+diretorio+"/"+nome;
-		return diretorioFinal;
+		return nome;
 		
 	}
 
