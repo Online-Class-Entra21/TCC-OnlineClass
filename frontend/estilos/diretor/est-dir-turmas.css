@@ -243,11 +243,6 @@ Config. das alteracoes especificas
     margin: 2%;
     border-radius: 3%;
 }
-
-#ver-turma{
-    margin-top: 35%;
-}
-
 button {
     width: 100%;
     height: 5vh;
@@ -260,20 +255,24 @@ button:hover {
     color: white;
 }
 
-
-/******************************
-Config. Segunda Tela do Diretor
-******************************/
-
-table#turmasExib {
-	width: 100%;
-	height: 100%;
-	border-collapse: collapse;
-    font-size: 1.5em;
-    margin: 4%;
+/*
+Config. da tabela de turmas 
+*/
+#centralizacao{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+section{
+    width: 70%;
+    height: 80%;
+    background-color: rgb(224, 219, 219);
+    overflow-y: scroll;
 }
 th, td {
-    padding: 30px;
+    padding: 15px;
     text-transform: uppercase;
     border-top: 1px solid #999;
     border-bottom: 1px solid #111;
@@ -283,16 +282,17 @@ th, td {
     font-size: 70%;
     font-family: cursive;
     letter-spacing: 0.2em;
+    width: 100vh;
+}
+th{
+    background-color: #999;
+    border-top: 1px solid #111;
+    border-right: 1px solid #111;
 }
 td.alunoExib {
     width: 100vh;
 
 }
-
-.alternado {
-    background-color: #efefef;
-}
-
 tr:hover {
     background-color: #c3e6e5;
 }

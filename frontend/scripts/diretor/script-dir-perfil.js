@@ -13,17 +13,7 @@ if(idUsuario != 0 && idUsuario != null){
         xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
 
         xhr.addEventListener("load", function(){
-            var resposta = xhr.responseText; 
-            var dadosUsuario = JSON.parse(resposta);
-            //Adiciona o nome 
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
-            //Adiciona a foto de perfil do usuario
-            var img = document.querySelector("#idFotoPerfil");
-            if(dadosUsuario.fotoUsuario != null){
-                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
-                img.style.borderRadius = "80%";
-            }
-
+            
             //Carrega os dados do perfil do diretor 
             document.getElementById("idNome").value = dadosUsuario.nome;
             document.getElementById("idSobrenome").value = dadosUsuario.sobrenome;
