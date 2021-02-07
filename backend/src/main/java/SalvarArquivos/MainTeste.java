@@ -1,9 +1,5 @@
 package SalvarArquivos;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class MainTeste {
 	
 	/**
@@ -13,5 +9,6 @@ public class MainTeste {
 	 */
 	public static void main(String[] args) {
 		SalvarDisco salvar = new SalvarDisco();
+		System.out.println(salvar);
 	}
 }

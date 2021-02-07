@@ -285,8 +285,7 @@ th, td {
     letter-spacing: 0.2em;
 }
 td.alunoExib {
-    width: 1000px;
-
+    width: 100vh;
 }
 
 .alternado {

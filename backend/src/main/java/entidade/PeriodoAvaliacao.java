@@ -1,7 +1,6 @@
 package entidade;
 
 import java.sql.Timestamp;
-import java.util.*;
 
 /**
  * Classe com metodos e atributos para o periodo de avaliacao
@@ -58,7 +57,7 @@ public class PeriodoAvaliacao {
      * Metodo para retorno da data inicial do PeriodoAvaliacao
      * @return Timestamp dataInicial
      */
-    public Date getDataInicial() {
+    public Timestamp getDataInicial() {
         return dataInicial;
     }
 

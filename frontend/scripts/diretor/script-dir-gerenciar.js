@@ -125,6 +125,7 @@ document.getElementById("salv-per").addEventListener("click", function(){
     inserirPeriodoAvaliativo();
 })
 
+//Insere periodos de avaliacao
 async function inserirPeriodoAvaliativo(){
 
     //Verifica se os campos foram preenchidos 
@@ -144,14 +145,15 @@ async function inserirPeriodoAvaliativo(){
         if(dataFinalConvertida > dataInicioConvertida){
             //dados do periodo avaliativo
             var periodo = {
-                dataInicial: dataInicioConvertida,
-                datafinal: dataFinalConvertida,
+                dataInicial: dataFormatada1(dataInicioConvertida),
+                dataFinal: dataFormatada1(dataFinalConvertida),
                 descricao: $("#idDescricao").val(),
                 fk_escola: idEscolaSelecionada
             }
-        
+
             //insere os periodos avaliativos no sistema  
             var json = JSON.stringify(periodo);
+            console.log(json)
             var resposta =  await usarApi("POST", "http://localhost:8080/api/periodoAvaliacao/inserir/"+json); 
             var isCorreto = JSON.parse(resposta);
 
@@ -165,8 +167,3 @@ async function inserirPeriodoAvaliativo(){
         }
     }
 }
-
-
-
-
- 

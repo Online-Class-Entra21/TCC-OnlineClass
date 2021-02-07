@@ -68,7 +68,7 @@ public class PeriodoAvaliacaoDAO {
 	 * @throws SQLException 
 	 */	
 	public void deleteId(int idPeriodoAvaliacao) throws SQLException {
-		String sql = "delete from periodoavaliacao where idescola = ?";
+		String sql = "delete from periodoavaliacao where idPeriodoAvaliacao = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, idPeriodoAvaliacao);
@@ -111,7 +111,7 @@ public class PeriodoAvaliacaoDAO {
 	 */	
 	public List<PeriodoAvaliacao> buscarTodos() throws SQLException {
 		List<PeriodoAvaliacao> lista = new ArrayList<PeriodoAvaliacao>();
-		String sql = "select * from Escola";
+		String sql = "select * from PeriodoAvaliacao";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		ResultSet resultSet = comandoSql.executeQuery();
@@ -127,5 +127,54 @@ public class PeriodoAvaliacaoDAO {
 		}	
 		comandoSql.close();
 		return lista;
+	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Metodo para selecionar todos os periodosAvaliacaos do banco de dados na escola informada
+	 * @return lista de periodosAvaliacoes registradas no banco na escola informada
+	 * @author Breno
+	 * @param int fk_escola
+	 * @throws SQLException 
+	 */	
+	public List<PeriodoAvaliacao> buscarTodosEscola(int fk_escola) throws SQLException {
+		List<PeriodoAvaliacao> lista = new ArrayList<PeriodoAvaliacao>();
+		String sql = "select * from PeriodoAvaliacao where fk_escola = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, fk_escola);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			PeriodoAvaliacao periodoAvaliacao = new PeriodoAvaliacao();
+			periodoAvaliacao.setIdPeriodoAvaliacao(resultSet.getInt(1));
+			periodoAvaliacao.setDataInicial(resultSet.getTimestamp(2));
+			periodoAvaliacao.setDataFinal(resultSet.getTimestamp(3));
+			periodoAvaliacao.setDescricao(resultSet.getString(4));
+			periodoAvaliacao.setFk_escola(resultSet.getInt(5));
+			lista.add(periodoAvaliacao);
+		}	
+		comandoSql.close();
+		return lista;
+	}
+	
+	/**
+	 *  Metodo para deletar do banco de dados um periodoAvaliacao através do fk
+	 *  O <code>fk_escola</code> deve ser igual ao do periodoAvaliacao que deseja delete
+	 * @param int fk_escola
+	 * @author Breno
+	 * @throws SQLException 
+	 */	
+	public void deleteFk(int fk_escola) throws SQLException {
+		String sql = "delete from periodoavaliacao where fk_escola = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, fk_escola);
+		
+		comandoSql.execute();
+		comandoSql.close();
 	}
 }

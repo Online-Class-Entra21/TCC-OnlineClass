@@ -139,4 +139,51 @@ public class PeriodoAvaliacaoController {
 			return false;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Retorna a lista dos periodosAvaliacoes registrados no sistema na escola informada {GET}
+	 * @return lista de periodosAvaliacoes registrados no banco na escola informada
+	 * @param int fk_escola
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/periodosAvaliacoes/{fk_escola}")
+	public List<PeriodoAvaliacao> consultarEscola(@PathVariable("fk_escola") int fk_escola){
+		LOGGER.info("Requisição List<PeriodoAvaliacao>");
+		List<PeriodoAvaliacao> lista;
+		PeriodoAvaliacaoDAO periodoAvaliacaoDao = new PeriodoAvaliacaoDAO();
+		try {
+			lista = periodoAvaliacaoDao.buscarTodosEscola(fk_escola);
+			LOGGER.info("Requisição List<PeriodoAvaliacao> bem sucedida");
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos PeriodoAvaliacao Mal Sucedida - erro - {}",e.toString());
+			return null;
+		}
+	}
+	
+	/**
+	 * Método de exclusão do periodoAvaliacao que corresponde ao fk_escola informado {DELETE}
+	 * @param int fk_escola
+	 * @author Breno
+	 * @return boolean situacao da operacao
+	 */
+	@DeleteMapping(path = "/api/periodoAvaliacao/deletar/escola/{fk_escola}")
+	public boolean deletarFk(@PathVariable("fk_escola") int fk_escola) {
+		LOGGER.info("Requisição para Deletar PeriodoAvaliacao fk_escola - {}",fk_escola);
+		PeriodoAvaliacaoDAO periodoAvaliacaoDAO = new PeriodoAvaliacaoDAO();
+		try {
+			periodoAvaliacaoDAO.deleteFk(fk_escola);
+			LOGGER.info("Requisição para Deletar PeriodoAvaliacao fk_escola - {} - Bem Sucedida",fk_escola);
+			return true;	
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Deletar PeriodoAvaliacao Mal Sucedida - fk_escola {} - erro - {}",fk_escola,e.toString());
+			return false;
+		}
+	}
 }

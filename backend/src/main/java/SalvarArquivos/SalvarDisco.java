@@ -23,16 +23,13 @@ public class SalvarDisco {
 	public SalvarDisco() {
 		String dir = System.getProperty("user.dir");
 		Path diretorio = Paths.get(dir);
-		System.out.println(diretorio.getName(diretorio.getNameCount()-1));
 		String ultimoDiretorio = diretorio.getName(diretorio.getNameCount()-1).toString();
 		if (ultimoDiretorio.equals("backend")) {
 			this.raiz = diretorio.getParent().toString();
 		}else{
 			this.raiz = diretorio.toString();			
 		}
-		System.out.println(raiz);
 	}
-	
 	
 	/**
 	 * Gera o nome do arquivo com base no idUsuario
@@ -50,7 +47,6 @@ public class SalvarDisco {
 		nome = "OnlineClass-imagens-"+id+"."+arquivo.getContentType().substring(arquivo.getContentType().indexOf('/')+1);
 		return this.salvarDir("imagens-usuarios", arquivo, nome);
 	}
-	
 	
 	/**
 	 * Salva um arquivo dentro da pasta raiz
@@ -75,7 +71,6 @@ public class SalvarDisco {
 			LOGGER.error("Erro ao salvar o arquivo {} - erro : {}",arquivoPath,e);
 		}
 		return nome;
-		
 	}
 
 	/**
