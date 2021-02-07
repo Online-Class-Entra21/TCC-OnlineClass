@@ -286,6 +286,7 @@ th, td {
 }
 td.alunoExib {
     width: 100vh;
+
 }
 
 .alternado {
@@ -294,4 +295,12 @@ td.alunoExib {
 
 tr:hover {
     background-color: #c3e6e5;
+}
+
+.btnExpulsar {
+    background: none;
+}
+.btnExpulsar:hover {
+    background: none;
+    color: black;
 }

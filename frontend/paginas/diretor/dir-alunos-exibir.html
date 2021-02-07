@@ -18,103 +18,140 @@
                        <tr>
                            <td class="alunoExib">001</td>
                            <td class="alunoExib">André</td>
-                       </tr>
+                           <td><button class="btnExpulsar">Expulsar</button></td>
+                        </tr>
                        <tr>
-                            <td>002</td>
-                            <td>Breno</td>
+                            <td class="alunoExib">002</td>
+                            <td class="alunoExib">Breno</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
-                            <td>003</td>
-                            <td>Bruno</td>
+                            <td class="alunoExib">003</td>
+                            <td class="alunoExib">Bruno</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>004</td>
                             <td>Carlos</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>005</td>
                             <td>Charles</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>006</td>
                             <td>Danilo</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>007</td>
                             <td>Danniel</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>008</td>
                             <td>Eliandro</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>010</td>
                             <td>Ester</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>011</td>
                             <td>Fabricio</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>012</td>
                             <td>Fagunde</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>013</td>
                             <td>Felipe</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>014</td>
                             <td>Gabriel</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>0015</td>
                             <td>Gabriela</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>0016</td>
                             <td>Gustavo</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>017</td>
                             <td>Heitor</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>018</td>
                             <td>Henrique</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>019</td>
                             <td>Ian</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>020</td>
                             <td>Iago</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>021</td>
                             <td>João</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>022</td>
                             <td>Kelvin</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>023</td>
                             <td>Kevin</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                         <tr>
                             <td>024</td>
                             <td>Zlatan</td>
+                            <td><button class="btnExpulsar">Expulsar</button></td>
                         </tr>
                    </table>
                 </div>
             </section>
         </main>
+        <!-- JS - Script -->
+        <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
+        <script>
+        
+        $(document).ready(() => {
+                    $(".btnExpulsar").click(event => {
+                        let apagar = confirm('Deseja realmente expulsar este registro?');
+                        if (apagar) {
+                            let tableRow = event.target.parentNode.parentNode
+                            $(tableRow).remove()
+                        }
+                    });
+                });
+                function expulsarAluno(){
+                    $('#tbUser').on('click', '.btnExpulsar', function() {
+                        $(this).closest('tr').remove();
+                    });
 
-
+        </script>    
     </body>
-    <!-- JS - Script -->
-    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
-    <script src="/frontend/scripts/diretor/script-dir-turmas.js"></script>
 </html>

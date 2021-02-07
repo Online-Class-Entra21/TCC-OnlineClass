@@ -48,3 +48,10 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
 function verAlunos() {
     novaJanela = window.open ("/frontend/paginas/diretor/dir-alunos-exibir.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
 }
+
+
+function expulsarAluno(){
+    $('#tbUser').on('click', '.btnExpulsar', function() {
+        $(this).closest('tr').remove();
+    });
+}
