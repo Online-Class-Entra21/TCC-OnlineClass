@@ -39,6 +39,18 @@
 				<a href="/frontend/paginas/coordenador/coord-turmas.html">Controle de Turmas</a>
 			</figure>
 		</section>
+        <section>
+        <figure class="figure-opcoes">
+            <img src="/frontend/imagens/relatorio.png" alt="Relatorios" title="Relatorios" class="img-opcoes">
+            <a href="/frontend/paginas/coordenador/coord-relatorios.html">Relatórios</a>
+        </figure>
+        </section>
+        <section id="reunioes" class="opcoes">
+            <figure class="figure-opcoes">
+                <img src="/frontend/imagens/videoconferencia.png" alt="Reunioes" title="Reuniões" class="img-opcoes">
+                <a href="/frontend/paginas/coordenador/coord-reunioes.html">Reuniões</a>
+            </figure>
+        </section>
 		<section id="tela-principal" class="opcoes">
 			<figure class="figure-opcoes">
 				<img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
@@ -71,41 +83,63 @@
     </header>
     <main>
 
-        <input type="checkbox" id="check2">
-        <label id= "icone2" for="check2"><img src="/frontend/imagens/add-reminder.png"></label>
-    <div class='content'>
-    
-        <div class="row">
-                
-                <div class="col-12">
-                    <h2> Post-it </h2>
-                    <form>
-
-                        <input type="text" name="task" id='task' placeholder="Novo Item..." />
-                        <input type="button" name="" 
-                                onclick="addTask();" 
-                                value="+"/>
-
-                    </form>
-
+         <!-- Div do Centro -->
+         <div id="centro" class="nav justify-content-center">
+            <div id="historico" class="div-conteudos">
+                <div class="cab-divs" id="cab-historico">
+                    <b><label class="titulo" for="historico" name="historico" title="Histórico">Histórico de Reuniões</label></b>
+                    <img class="img-cab" src="/frontend/imagens/historia.png" alt="Histórico" name="historico" title="Histórico">
                 </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-            
-                <div class="to-do-list-box">
-                
-                    <label>Lembretes</label>
-                    <ul id="myList">	
-                    </ul>
+                <div id="div-historico" class="corpo-divs">
+                    <fieldset id="fieldset-lista-historico">
+                        <table class="tabela" id="lista-historico">
+                            <tbody id="tbLista-historico">
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </div>
+            </div>
+            <!-- Div da Programacao -->
+            <div id="programacao" class="div-conteudos">
+                <div class="cab-divs">
+                    <b><label class="titulo" for="programacao" name="programacao" title="Reuniões Marcadas">Reuniões Marcadas</label></b>
+                    <img class="img-cab" src="/frontend/imagens/video-chamada.png" alt="Reunioes" name="reunioes" title="Reuniões">
+                </div>
+                <div class="corpo-divs">
+                    <div class="div-tabela">
+                        <fieldset id="fieldset-lista-programacao">
+                            <table class="tabela" id="lista-programacao">
+                                <tbody id="tbLista-programacao">
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="div-botao">
+                        <input id="criarReunioes" value="Criar Reunião" type="button" name="criarReunioes" title="Criar Reunião">
+                    </div>
+                </div>
+            </div>
+            <!-- Div de Relatorios -->
+            <div id="relatorios" class="div-conteudos">
+                <div class="cab-divs">
+                    <b><label class="titulo" for="relatorios" name="relatorios" title="Relatórios">Relatórios</label></b>
+                    <img class="img-cab" src="/frontend/imagens/rolagem.png" alt="Relatórios" name="relatorios" title="Relatórios">
+                </div>
+                <div class="corpo-divs">
+                    <div class="div-tabela">
+                        <fieldset id="fieldset-lista-relatorios">
+                            <table class="tabela" id="lista-relatorios">
+                                <tbody id="tbLista-relatorio">
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="div-botao">
+                        <input id="criarRelatorios" value="Criar Relatório" type="button" name="criarRelatorios" title="Criar Relatórios" onclick="src">
+                    </div>
                 </div>
             </div>
         </div>
-</div>
-
-	</div>
 
     </main>
 </body>
