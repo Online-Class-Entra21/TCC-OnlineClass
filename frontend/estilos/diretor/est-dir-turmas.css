@@ -33,7 +33,12 @@ Config. do main
 */
 main{
     width: 100%;
-    height: 90%;
+    height: 80%;
+}
+
+footer{
+    width: 100%;
+    height: 7%;
 }
 
 /*
@@ -236,6 +241,9 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
+/*
+Config. da tabela da segunda tela 
+*/
 #informacao-turma {
     border: 3px solid black;
     width: 20%;
@@ -248,11 +256,19 @@ button {
     height: 5vh;
     background: white;
     border: none;
+    color: red;
 }
 button:hover {
     background: black;
     border: none;
     color: white;
+}
+.btnExpulsar {
+    background: none;
+}
+.btnExpulsar:hover {
+    background: none;
+    color: black;
 }
 
 /*
@@ -265,7 +281,7 @@ Config. da tabela de turmas
     align-items: center;
     display: flex;
 }
-section{
+#selec{
     width: 70%;
     height: 80%;
     background-color: rgb(224, 219, 219);
@@ -287,7 +303,6 @@ th, td {
 th{
     background-color: #999;
     border-top: 1px solid #111;
-    border-right: 1px solid #111;
 }
 td.alunoExib {
     width: 100vh;
@@ -297,10 +312,20 @@ tr:hover {
     background-color: #c3e6e5;
 }
 
-.btnExpulsar {
-    background: none;
+/*
+Config. spin de carregamento 
+*/
+.loader {
+    border: 1.5vh solid #c0aea4; /* Light grey */
+    border-top: 1.5vh solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 6vh;
+    height: 6vh;
+    animation: spin 2s linear infinite;
+    margin-left: 2%;
+    display: none;
 }
-.btnExpulsar:hover {
-    background: none;
-    color: black;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

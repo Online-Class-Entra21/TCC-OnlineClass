@@ -19,39 +19,73 @@ if(idUsuario != 0 && idUsuario != null){
                 img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
                 img.style.borderRadius = "80%";
             }
+            carregarTurmas();
         })
 
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/index.html";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
 }
 
-//Evento de abertura do menu 
-document.getElementById("mostrar").addEventListener("mouseover", function(){
-    abrirMenu();
-})
-document.getElementById("idImgMenu").addEventListener("mouseover", function(){
-    abrirMenu();
-})
+//Carrega as turmas 
+function carregarTurmas(){
 
-//Abertura do menu
-function abrirMenu(){
-    document.getElementById("menu").style.display = "block";
+    //Inicia o loading 
+    document.getElementById("idLoad").style.display = "block";
+
+    //Busca das turmas 
+    var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/turmas");
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            var turmas = JSON.parse(resposta);
+
+            turmas.forEach(element => {
+
+                //Cria uma linha e suas colunas 
+                var linha = document.createElement("tr");
+                linha.classList.add("linhas");
+
+                //Coluna de dataInicial
+                var colunaAno = document.createElement("td");
+                colunaAno.textContent = element.ano;
+
+                //Coluna de dataFinal
+                var colunaQtdAlunos = document.createElement("td");
+                colunaQtdAlunos.textContent = element.qtdAluno;
+
+                //Adiciona a linha na tabela 
+                var tabela = document.getElementById("turmasExib");
+                linha.appendChild(colunaAno);
+                linha.appendChild(colunaQtdAlunos);
+
+                tabela.appendChild(linha);
+            });
+
+            //Termina o loading de carregamento 
+            document.getElementById("idLoad").style.display = "none";
+
+            //Abre uma nova guia para vizualizar turmas e alunos 
+            $( ".linhas" ).click(function() { 
+                var idTurma = turmas[$(this).index()-1].idTurma;
+                sessionStorage.setItem("idTurma",idTurma);
+                verAlunos();
+            });
+        })
+
+    xhr.send();
 }
 
-//Evento de fechamento do menu 
-document.getElementById("menu").addEventListener("mouseleave", function(){
-    document.getElementById("menu").style.display = "none";
-})
-
-//Abre uma nova guia para vizualizar turmas e alunos 
+//Abre a nova tela de alunos 
 function verAlunos() {
     novaJanela = window.open ("/frontend/paginas/diretor/dir-alunos-exibir.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
 }
 
-
+//Expulsa um aluno do sistema 
 function expulsarAluno(){
     $('#tbUser').on('click', '.btnExpulsar', function() {
         $(this).closest('tr').remove();

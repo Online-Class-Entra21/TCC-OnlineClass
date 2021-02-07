@@ -165,4 +165,26 @@ public class AlunoController {
 			return 0;
 		}
 	}
+	
+	/**
+	 * Retorna a lista de alunos registrados no sistema em determinada turma {GET}
+	 * @return lista de aluno registrados no banco em determinada turma
+	 * @param int idTurma
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/alunos/{idTurma}")
+	public List<Aluno> consultarTurma(@PathVariable("idTurma") int idTurma){
+		LOGGER.info("Requisição List<Aluno>");
+		List<Aluno> lista;
+		AlunoDAO alunoDao = new AlunoDAO();
+		try {
+		LOGGER.info("Requisição List<Aluno> Bem Sucedida");
+		lista = alunoDao.buscarTodosTurma(idTurma);
+		return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição Lista de todos os Alunos Mal Sucedida erro : {}", e.toString());
+			return null;
+		}
+	}
 }
