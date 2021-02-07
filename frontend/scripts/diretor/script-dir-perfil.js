@@ -34,8 +34,8 @@ if(idUsuario != 0 && idUsuario != null){
             senhaSelecionada = dadosUsuario.senha;
 
             //Puxando imagem
-            var caminhoImagem = dadosUsuario.fotoUsuario;
-
+            var caminhoImagem = "/imagens-usuarios/"+dadosUsuario.fotoUsuario;
+            
             //Verifica se a imagem não é nula 
             if(caminhoImagem != null){
                 $("#img_preview").show();
