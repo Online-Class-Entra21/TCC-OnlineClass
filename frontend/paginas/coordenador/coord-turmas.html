@@ -40,6 +40,18 @@
                     <a href="/frontend/paginas/coordenador/coord-turmas.html">Controle de Turmas</a>
                 </figure>
             </section>
+            <section>
+            <figure class="figure-opcoes">
+                <img src="/frontend/imagens/relatorio.png" alt="Relatorios" title="Relatorios" class="img-opcoes">
+                <a href="/frontend/paginas/coordenador/coord-relatorios.html">Relatórios</a>
+            </figure>
+            </section>
+            <section id="reunioes" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/videoconferencia.png" alt="Reunioes" title="Reuniões" class="img-opcoes">
+                    <a href="/frontend/paginas/coordenador/coord-reunioes.html">Reuniões</a>
+                </figure>
+            </section>
             <section id="tela-principal" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
@@ -70,97 +82,58 @@
                 </div>
             </nav>
         </header>
-		<main>
+        <main>
+            <div class="Principal container">
+                <h2 id="TForm" class="mt-5 pb-5" >Controle de Turmas</h2>  
+            
+                    <div id="fPessoas" class="dados mt-4 col-md-5 col-xl-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="txtCodigo">Código</label>
+                            <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTurma">Turma</label>
+                            <input type="text" class="form-control" id="txtTurma" aria-describedby="emailHelp" placeholder="Turma">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtTurno">Turno</label>
+                            <input type="text" class="form-control" id="txtTurno" placeholder="Turno">
+                        </div>
+                        <div class="form-group">
+                            <label for="txtNumAlu">Número de Alunos</label>
+                            <input type="number" class="form-control" id="txtNumAlu" placeholder="Quantidade de alunos">
+                        </div>
+                        <button type="button" class="p-1 m-1 btn-primary btn-lg"
+                         onclick="cadTurma(txtTurma.value, txtTurno.value, txtNumAlu.value)">Cadastrar
+                        
+                         <button type="button" class="p-1 m-1 btn-primary btn-lg"
+                         onclick="altPessoa(txtTurma.value, txtTurno.value, txtNumAlu.value)">Atualizar
+                        
+                        <button type="button" class="p-1 m-1 btn-danger btn-lg" id="idBtn"
+                        onclick="delRegistro()">Excluir
 
-
-    </div>
-    <input type="checkbox" id="check2">
-    <label id= "icone2" for="check2"><img src="/frontend/imagens/atualizar.png"></label>
-    <div class="alterar">
-    <div id="fAltera">
-        <form>
-            <div class="form-group">
-                <h2 id="TForm">Atualizar / Deletar <br> Turma</h2>
-                <label for="txtCodigo">Código</label>
-                <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+                    </form>
+                    </div>
+                 </div>
+        
+            <div class="col-md-6 col-xl-6">
+            <div id="dGridPessoas ">
+        
+                <table class="table" id="tbPessoas" class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Matricula</th>
+                            <th scope="col">Turma</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <div class="form-group">
-                <label for="txtTurma">Turma</label>
-                <input type="text" class="form-control" id="txtTurma" aria-describedby="emailHelp" placeholder="Turma">
-            </div>
-            <div class="form-group">
-                <label for="txtTurno">Turno</label>
-                <input type="text" class="form-control" id="txtTurno" placeholder="Turno">
-            </div>
-            <div class="form-group">
-                <label for="txtNumAlu">Número de Alunos</label>
-                <input type="number" class="form-control" id="txtNumAlu" placeholder="Quantidade de alunos">
-            </div>
-            <div class="botao">
-            <button type="button" class="btnAlt btn-primary btn-lg"
-            onclick="altPessoa(txtTurma.value, txtTurno.value, txtNumAlu.value)">
-        Atualizar
-            <button type="button" class="btnAlt btn-danger btn-lg" id="idBtn"
-        onclick="delRegistro()">Excluir
-    </div>
-    </div>
-    </div>
-
-            <input type="checkbox" id="check3">
-            <label id= "icone3" for="check3"><img src="/frontend/imagens/mais.png"></label>
-
-        </form>
-        <div class="animCad">
-            <div id="fPessoas">
-            <form>
-                <h2 id="TForm">Cadastro de Turmas</h2>
-                <div class="form-group">
-                    <label for="txtCodigo">Código</label>
-                    <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="txtTurma">Turma</label>
-                    <input type="text" class="form-control" id="txtTurma" aria-describedby="emailHelp" placeholder="Turma">
-                </div>
-                <div class="form-group">
-                    <label for="txtTurno">Turno</label>
-                    <input type="text" class="form-control" id="txtTurno" placeholder="Turno">
-                </div>
-                <div class="form-group">
-                    <label for="txtNumAlu">Número de Alunos</label>
-                    <input type="number" class="form-control" id="txtNumAlu" placeholder="Quantidade de alunos">
-                </div>
-                <div class="botaoCad">
-                <button type="button" class="btnCad btn-primary btn-lg"
-                onclick="cadTurma(txtTurma.value, txtTurno.value, txtNumAlu.value)">
-            Cadastrar  
         </div>
-            </div>
-                </div>  
-
-    <div class="maxTb">
-    <div id="dGridPessoas">
-
-        <table class="table" id="tbPessoas" class="table table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Turma</th>
-                    <th scope="col">Turno</th>
-                    <th scope="col">Número de Alunos</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-</div>
-
-<div id="aviso"><p>*Cuidado ao excluir algum cadastro, quando excluido os dados são perdidos permanentemente*</p></div>
-
-
-</body>
-
-</html>
-	</main>
+        </div>
+            </main>
 
     <script src="/frontend/scripts/coordenador/script-coord-turmas.js"></script>
     </body>
