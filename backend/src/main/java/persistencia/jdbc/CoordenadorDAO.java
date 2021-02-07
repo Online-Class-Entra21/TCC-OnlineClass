@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Coordenador;
+import entidade.Diretor;
 
 /**
  * Metodo para consulta do administrador no banco de dados 
@@ -77,4 +78,42 @@ public class CoordenadorDAO {
 		comandoSql.close();
 		return qtdCoordenadores;
 	}
+	
+	/**
+	 * Método para retorno do coordenador correspondente ao id da escola
+	 * @param int fk_escola
+	 * @return Andrey
+	 * @throws SQLException
+	 */
+	public List<Coordenador> buscarEscola(int fk_escola) throws SQLException {
+		List<Coordenador> lista =  new ArrayList<Coordenador>();
+		String sql = "select * from usuario where tipoUsuario = 3 and fk_escola = ?";
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, fk_escola);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			Coordenador coordenador = new Coordenador();
+			coordenador.setIdUsuario(resultSet.getInt(1));
+			coordenador.setNome(resultSet.getString(2));
+			coordenador.setSobrenome(resultSet.getString(3));
+			coordenador.setCpf(resultSet.getString(4));
+			coordenador.setTelefone(resultSet.getString(5));
+			coordenador.setCelular(resultSet.getString(6));
+			coordenador.setTipoUsuario(resultSet.getInt(7));
+			coordenador.setEmail(resultSet.getString(8));
+			coordenador.setSenha(resultSet.getString(9));
+			coordenador.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			coordenador.setHorarioInicioExpediente(resultSet.getTimestamp(11));
+			coordenador.setFotoUsuario(resultSet.getString(12));
+			coordenador.setFk_endereco(resultSet.getInt(13));
+			coordenador.setFk_escola(resultSet.getInt(14));
+			
+			lista.add(coordenador);
+		}
+		comandoSql.close();
+		return lista;
+	}
+	
 }

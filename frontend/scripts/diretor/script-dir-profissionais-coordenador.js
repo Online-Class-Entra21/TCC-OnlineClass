@@ -70,6 +70,9 @@ function usarApi(method, url) {
     });
 }
 
+//Cria os CheckBox
+carregarCheckbox();
+
 //Método para pegar a escola Escolhida
 var escolaEscolhida = $("#inputEscola").children("option:selected").val();
 $("#inputEscola").change(function(){
@@ -80,6 +83,12 @@ $("#inputEscola").change(function(){
 var btnCadastrar =  document.getElementById('btnCadastrar');
 btnCadastrar.addEventListener("click", function() {
     cadastrar();
+})
+
+//Método onclick botão de remover
+var btnDeletar = document.getElementById('btnDeletar');
+btnDeletar.addEventListener("click", function() {
+    remover();
 })
 
 //Método para cadastrar
@@ -177,5 +186,110 @@ async function cadastrar() {
     }
     
 }
+
+//Método para carregar a lista no canto direito com os coordenadores existentes
+async function carregarCheckbox() {
+    var divCoord = document.getElementById('coordExiste');
+
+    var resposta = await usarApi("GET", "http://localhost:8080/api/coordenador/escola/"+usuario)
+    var coordenadores =  JSON.parse(resposta);
+
+    //Verifica se existe algum coordenador ja cadastrado
+    if (coordenadores != null) {
+        var coordenadoresIndex = []
+        for (let i = 0; i < coordenadores.length; i++) {
+            coordenadoresIndex.push(coordenadores[i]);
+
+            var checkbox = document.createElement("input");
+            checkbox.type="checkbox";
+            checkbox.name="nmCoordenadores";
+            checkbox.value=coordenadores[i].idUsuario;
+            var id = "id"+coordenadores[i].nome;
+            checkbox.id=id;
+           
+            var label = document.createElement("label")
+            label.htmlFor=id
+            label.appendChild(document.createTextNode(coordenadores[i].nome))
+                    
+           divCoord.appendChild(checkbox);
+           divCoord.appendChild(label)
+        }    
+    }
+    /*
+    //Retorna o valor da linha da escola clicada
+    $( ".LinhaCoordenadores" ).click(function() { 
+        var coordenadorEscolhido = coordenadoresIndex[$(this).index()];
+        $(".LinhaCoordenadores").css("background-color", "rgba(203, 207, 209)");
+        $(".LinhaCoordenadores").css("color", "black");
+        $(".LinhaCoordenadores").css("width", "100%")
+        //sessionStorage.setItem('idEscolaSelecionada', escolaEscolhida)
+        //location.href = "/frontend/paginas/administrador/adm-editar.html";
+    });  
+   */
+}
+
+/*
+async function remover() {
+    
+    //pegar o id pelo coordenador selecionado no checkbox
+    
+    var confirmar = confirm("Tem certeza de que deseja remover esse coordenador?")
+
+    var removerEndereco = await usarApi("DELETE", "http://localhost:8080/api/endereco/deletar/"+coordenador.fk_escola)
+
+    var removerCoordenador = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/" + idCoordenador)
+    
+
+    if (confirmar == true) {
+        if (removerCoordenador == false) {
+            alert("Ocorreu um erro ao remover o coordenador.")
+        } else {
+            alert("Coordenador removido com sucesso.")
+        }
+    }
+    
+}
+*/
+
+/*
+async function carregarCampos() {
+    //Busca os dados do coordenador selecionado no checkbox 
+    var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + idUsuario)
+    var coordenador = JSON.parse(resposta)
+
+
+    //Dados Coordenador
+    document.getElementById('inputNome').value = coordenador.nome;
+    document.getElementById('inputSobrenome').value = coordenador.sobrenome;
+    document.getElementById('inputTelefone').value = coordenaor.telefone;
+    document.getElementById('inputCelular').value = coordenador.celular;
+    document.getElementById('inputCpf').value = coordenador.cpf
+    
+    //var horarioInicial = new Date(document.getElementById('inputHorarioInicial').valueAsDate);
+    //var horarioFinal = document.getElementById('inputHorarioFinal').valueAsDate;
+    //var horarioInicialFormatado = horarioInicial.toString().slice(16,24);
+    //var horarioFinalFormatado = horarioFinal.toString().slice(16,24);
+    
+    //Dados de Login
+    document.getElementById('inputEmail').value = coordenador.email;
+    document.getElementById('inputSenha').value = coordenador.senha;
+    document.getElementById('inputConfirmSenha').value = coordenador.senha;
+
+    resposta = await usarApi("GET", "http://localhost:8080/api/endereco/"+coordenador.fk_escola);
+    var endereco = JSON.parse(resposta);
+
+    //Dados Endereço
+    var estado = $("#inputEstado").val(endereco.estado);
+    document.getElementById('inputCidade').value = endereco.cidade;
+    var bairro = document.getElementById('inputBairro').value = endereco.bairro;
+    var cep = document.getElementById('inputCep').value = endereco.cep;
+    var logradouro = document.getElementById('inputLogradouro').value = endereco.logradouro;
+    var numero = document.getElementById('inputNumero').value = endereco.numero;
+    //var tipoLogradouro = document.getElementById('inputTipoLogradouro').value = endereco.tipoLogradouro;  
+}
+*/
+
+    
+
 
 
