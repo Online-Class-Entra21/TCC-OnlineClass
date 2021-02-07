@@ -136,9 +136,9 @@
         </main>
         <!-- JS - Script -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
+
         <script>
-        
-        $(document).ready(() => {
+            $(document).ready(() => {
                     $(".btnExpulsar").click(event => {
                         let apagar = confirm('Deseja realmente expulsar este registro?');
                         if (apagar) {
@@ -147,11 +147,7 @@
                         }
                     });
                 });
-                function expulsarAluno(){
-                    $('#tbUser').on('click', '.btnExpulsar', function() {
-                        $(this).closest('tr').remove();
-                    });
 
-        </script>    
+            </script>    
     </body>
 </html>
