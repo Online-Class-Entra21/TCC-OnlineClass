@@ -82,7 +82,6 @@ public class DiretorController {
 		LOGGER.info("Requisição Atualizar Diretor - {}",json);
 		Gson gson = new Gson();
 		Diretor diretor = gson.fromJson(json.toString(), Diretor.class);
-		System.out.println(diretor.getTelefone());
 		DiretorDAO diretorDao = new DiretorDAO();
 		try {
 			diretorDao.update(diretor);

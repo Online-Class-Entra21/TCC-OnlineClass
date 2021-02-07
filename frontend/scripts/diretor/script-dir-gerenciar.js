@@ -1,5 +1,6 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
+var idEscolaSelecionada;
 
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
@@ -11,13 +12,17 @@ if(idUsuario != 0 && idUsuario != null){
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
             dadosUsuario = JSON.parse(resposta);
+            var resposta = xhr.responseText; 
+            var dadosUsuario = JSON.parse(resposta);
             //Adiciona o nome 
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
             //Adiciona a foto de perfil do usuario
             var img = document.querySelector("#idFotoPerfil");
-            img.setAttribute('src', dadosUsuario.fotoUsuario);
-            img.style.borderRadius = "80%";
-
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
+            idEscolaSelecionada = dadosUsuario.fk_escola;
             //Carrega os dados da escola 
             carregarDadosEscola(dadosUsuario.fk_escola)
         })
@@ -25,8 +30,8 @@ if(idUsuario != 0 && idUsuario != null){
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/index.html";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
 }
 
 //Carrga os dados do perfil do diretor
@@ -48,7 +53,7 @@ function carregarDadosEscola(fk_escola){
             var dataInicio = dadosEscola.dataInicioLetivo;
             if(dataInicio != null){
                 var data = new Date(dataInicio);
-                var dataInicioLetivo = dataFormatada(data);
+                var dataInicioLetivo = dataFormatada1(data);
                 document.getElementById('idInicioAnoLetivo').value = dataInicioLetivo;
             }
 
@@ -56,7 +61,7 @@ function carregarDadosEscola(fk_escola){
             var dataFinal = dadosEscola.dataFinalLetivo;
             if(dataFinal != null){
                 var data = new Date(dataFinal);
-                var dataFinalLetivo = dataFormatada(data);
+                var dataFinalLetivo = dataFormatada1(data);
                 document.getElementById('idFinalAnoLetivo').value = dataFinalLetivo;
             }
         })
@@ -64,34 +69,52 @@ function carregarDadosEscola(fk_escola){
     xhr.send();
 }
 
-//Evento de abertura do menu 
-document.getElementById("mostrar").addEventListener("mouseover", function(){
-    abrirMenu();
-})
-document.getElementById("idImgMenu").addEventListener("mouseover", function(){
-    abrirMenu();
-})
-
-//Abertura do menu
-function abrirMenu(){
-    document.getElementById("menu").style.display = "block";
-}
-
-//Evento de fechamento do menu 
-document.getElementById("menu").addEventListener("mouseleave", function(){
-    document.getElementById("menu").style.display = "none";
-})
-
 //Alteracao da escola 
 document.getElementById("salv-esc").addEventListener("click",function(){
-
-    //Pega os dados da escola 
-    var escola = {
-        nome: $("#idEditEscola").val(),
-        idInicioAnoLetivo: $("#idInicioAnoLetivo").val(),
-        idFinalAnoLetivo: $("#idFinalAnoLetivo").val(),
-    }
+    atualizaDadosEscola();
 })
+
+async function atualizaDadosEscola(){
+
+    //Verifica se os campos foram preenchidos 
+    var form = $('#formulario');
+    if(!form[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo(form).click().remove();
+    }else{
+        
+        //Verificacao de data
+        var dataInicio = document.getElementById('idInicioAnoLetivo').value;
+        var str = dataInicio;
+        var dataInicio = new Date(str);
+
+        var dataFinal = document.getElementById('idFinalAnoLetivo').value;
+        var str = dataFinal;
+        var dataFinal = new Date(str);
+
+        if(dataFinal > dataInicio){
+            //Pega os dados da escola 
+            var escola = {
+                idEscola: idEscolaSelecionada,
+                nome: $("#idEditEscola").val(),
+                dataInicioLetivo: $("#idInicioAnoLetivo").val(),
+                dataFinalLetivo: $("#idFinalAnoLetivo").val()
+            }
+
+            //Altera os dados da escola 
+            var json = JSON.stringify(escola);
+            var resposta =  await usarApi("PUT", "http://localhost:8080/api/escola/alterar/"+json); 
+            var isCorreto = JSON.parse(resposta);
+
+            if(isCorreto){
+                alert("Editado com sucesso!");
+            }else{
+                alert("Erro ao salvar!");
+            }
+        }else{
+            alert("Data final deve se maior que a inicial!");
+        }
+    }
+}
 
 //Abre a visualizacao dos periodos de avaliacao 
 document.getElementById("img-visualizar").addEventListener("click",function(){
@@ -99,9 +122,49 @@ document.getElementById("img-visualizar").addEventListener("click",function(){
 })
 
 document.getElementById("salv-per").addEventListener("click", function(){
-    
+    inserirPeriodoAvaliativo();
 })
 
+async function inserirPeriodoAvaliativo(){
+
+    //Verifica se os campos foram preenchidos 
+    var form = $('#formulario2');
+    if(!form[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo(form).click().remove();
+    }else{
+        //Verificacao de data 
+        var dataInicio = document.getElementById('idInicioPeriodo').value;
+        var str = dataInicio;
+        var dataInicioConvertida = new Date(str);
+
+        var dataFinal = document.getElementById('idFinalPeriodo').value;
+        var str = dataFinal;
+        var dataFinalConvertida = new Date(str);
+
+        if(dataFinalConvertida > dataInicioConvertida){
+            //dados do periodo avaliativo
+            var periodo = {
+                dataInicial: dataInicioConvertida,
+                datafinal: dataFinalConvertida,
+                descricao: $("#idDescricao").val(),
+                fk_escola: idEscolaSelecionada
+            }
+        
+            //insere os periodos avaliativos no sistema  
+            var json = JSON.stringify(periodo);
+            var resposta =  await usarApi("POST", "http://localhost:8080/api/periodoAvaliacao/inserir/"+json); 
+            var isCorreto = JSON.parse(resposta);
+
+            if(isCorreto){
+                alert("Inserido com sucesso!");
+            }else{
+                alert("Erro ao inserir!");
+            }
+        }else{
+            alert("Data final deve se maior que a inicial!");
+        }
+    }
+}
 
 
 

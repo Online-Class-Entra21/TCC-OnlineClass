@@ -88,21 +88,21 @@
         <div id="formularios" class="nav justify-content-center">
             <div id="form1" class="nav justify-content-center">
                 <!--Formulario de edição de gerenciamento de escola-->
-                <form class="ger-escola">
+                <form class="ger-escola" id="formulario">
                     <div class="divs">
                         <h4 class="titulo">Dados Escola</h4>
                     </div>
                     <div class="divs"> 
                         <label for="idEditEscola">Escola:</label>
-                        <input type="text" id="idEditEscola">
+                        <input type="text" id="idEditEscola" required>
                     </div>
                     <div class="divs">
                         <label for="idInicioAnoLetivo">Data de inicio do ano letivo: </label>
-                        <input type="date" id="idInicioAnoLetivo">
+                        <input type="date" id="idInicioAnoLetivo" required>
                     </div>       
                     <div class="divs">
                         <label for="idFinalAnoLetivo">Data de fim de ano letivo: </label>
-                        <input type="date" id="idFinalAnoLetivo">
+                        <input type="date" id="idFinalAnoLetivo" required>
                     </div>     
                     <div class="divs">
                         <input id="salv-esc" class="btnEnviar" type="button" value="Salvar">
@@ -111,20 +111,20 @@
             </div>
             <div id="form2" class="nav justify-content-center">
                 <!--Formulario de edição de gerenciamento de escola-->
-                <form class="ger-per">
+                <form class="ger-per" id="formulario2">
                     <div class="divs">
                         <h4 class="titulo">Períodos Avaliativos</h4>
                     </div>
                     <div class="divs">
                         <label for="idInicioPeriodo">Data de inicio do período: </label>
-                        <input type="date" id="idInicioPeriodo">
+                        <input type="date" id="idInicioPeriodo" required>
                     </div>       
                     <div class="divs">
                         <label for="idFinalPeriodo">Data de término do período: </label>
-                        <input type="date" id="idFinalPeriodo">
+                        <input type="date" id="idFinalPeriodo" required>
                     </div>  
                     <div class="divs">
-                        <textarea id="idDescricao" name="mensagem" placeholder="Observação..."></textarea>
+                        <textarea id="idDescricao" name="mensagem" placeholder="Observação..." required></textarea>
                     </div>    
                     <div class="divs">
                         <input id="salv-per" class="btnEnviar" type="button" value="Salvar">
@@ -136,7 +136,7 @@
     </main>
     <!-- JS - Script -->
     <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
-    <script src="/frontend/scripts/diretor/script-dir-gerenciar.js"></script>
     <script src="/frontend/scripts/login/script-utilitarios.js"></script>
+    <script src="/frontend/scripts/diretor/script-dir-gerenciar.js"></script>
     </body>
 </html>

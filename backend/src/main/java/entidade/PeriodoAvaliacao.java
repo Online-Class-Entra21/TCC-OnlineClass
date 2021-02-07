@@ -1,5 +1,6 @@
 package entidade;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -9,8 +10,8 @@ import java.util.*;
 public class PeriodoAvaliacao {
 	
     private int idPeriodoAvaliacao;
-    private Date dataInicial;
-    private Date dataFinal;
+    private Timestamp dataInicial;
+    private Timestamp dataFinal;
     private String descricao;
     private int fk_escola;
     
@@ -29,7 +30,7 @@ public class PeriodoAvaliacao {
      * @param descricao
      * @param fk_escola
      */
-	public PeriodoAvaliacao(int idPeriodoAvaliacao, Date dataInicial, Date dataFinal, String descricao, int fk_escola) {
+	public PeriodoAvaliacao(int idPeriodoAvaliacao, Timestamp dataInicial, Timestamp dataFinal, String descricao, int fk_escola) {
 		setIdPeriodoAvaliacao(idPeriodoAvaliacao);
 		setDataInicial(dataInicial);
 		setDataFinal(dataFinal);
@@ -55,7 +56,7 @@ public class PeriodoAvaliacao {
 
     /** 
      * Metodo para retorno da data inicial do PeriodoAvaliacao
-     * @return Date dataInicial
+     * @return Timestamp dataInicial
      */
     public Date getDataInicial() {
         return dataInicial;
@@ -63,25 +64,25 @@ public class PeriodoAvaliacao {
 
     /**
      * Metodo para insercao da data inicial do PeriodoAvaliacao 
-     * @param Date dataInicial
+     * @param Timestamp dataInicial
      */
-    public void setDataInicial(Date dataInicial) {
+    public void setDataInicial(Timestamp dataInicial) {
         this.dataInicial = dataInicial;
     }
 
     /** 
      * Metodo para retorno da data final do PeriodoAvaliacao
-     * @return Date dataFinal
+     * @return Timestamp dataFinal
      */
-    public Date getDataFinal() {
+    public Timestamp getDataFinal() {
         return dataFinal;
     }
 
     /**
      * Metodo para insercao da data final do PeriodoAvaliacao 
-     * @param Date dataFinal
+     * @param Timestamp dataFinal
      */
-    public void setDataFinal(Date dataFinal) {
+    public void setDataFinal(Timestamp dataFinal) {
         this.dataFinal = dataFinal;
     }
 

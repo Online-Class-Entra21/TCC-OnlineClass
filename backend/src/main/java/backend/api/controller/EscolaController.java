@@ -105,6 +105,7 @@ public class EscolaController {
 		LOGGER.info("Requisição Atualizar Escola - {}",json);
 		Gson gson = new Gson();
 		Escola escola = gson.fromJson(json, Escola.class);
+		System.out.println(escola.getIdEscola());
 		EscolaDAO escolaDAO = new EscolaDAO();
 		try {
 			escolaDAO.update(escola);

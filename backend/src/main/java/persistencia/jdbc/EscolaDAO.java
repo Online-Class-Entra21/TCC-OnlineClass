@@ -45,7 +45,7 @@ public class EscolaDAO {
 	 * @throws SQLException 
 	 */ 	
 	public void update(Escola escola) throws SQLException {
-		String sql = "update escola set nome = ?, datainicioletivo = ?, datafinalletivo = ? where idescola = ?";
+		String sql = "update escola set nome = ?, datainicioletivo = ?, datafinalletivo = ? where idEscola = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, escola.getNome());

@@ -1,10 +1,10 @@
 package persistencia.jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +29,8 @@ public class PeriodoAvaliacaoDAO {
 		String sql = "insert into periodoavaliacao (datainicial, datafinal, descricao, fk_escola) values (?,?,?,?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setDate(1, (Date) periodoAvaliacao.getDataInicial());
-		comandoSql.setDate(2, (Date) periodoAvaliacao.getDataFinal());
+		comandoSql.setTimestamp(1, (Timestamp) periodoAvaliacao.getDataInicial());
+		comandoSql.setTimestamp(2, (Timestamp) periodoAvaliacao.getDataFinal());
 		comandoSql.setString(3, periodoAvaliacao.getDescricao());
 		comandoSql.setInt(4, periodoAvaliacao.getFk_escola());
 		
@@ -50,8 +50,8 @@ public class PeriodoAvaliacaoDAO {
 				   + "where idperiodoavaliacao = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setDate(1, (Date) periodoAvaliacao.getDataInicial());
-		comandoSql.setDate(2, (Date) periodoAvaliacao.getDataFinal());
+		comandoSql.setTimestamp(1, (Timestamp) periodoAvaliacao.getDataInicial());
+		comandoSql.setTimestamp(2, (Timestamp) periodoAvaliacao.getDataFinal());
 		comandoSql.setString(3, periodoAvaliacao.getDescricao());
 		comandoSql.setInt(4, periodoAvaliacao.getFk_escola());
 		comandoSql.setInt(5, periodoAvaliacao.getIdPeriodoAvaliacao());
@@ -94,8 +94,8 @@ public class PeriodoAvaliacaoDAO {
 		
 		if (resultSet.next()) {
 			periodoAvaliacao.setIdPeriodoAvaliacao(resultSet.getInt(1));
-			periodoAvaliacao.setDataInicial(resultSet.getDate(2));
-			periodoAvaliacao.setDataFinal(resultSet.getDate(3));
+			periodoAvaliacao.setDataInicial(resultSet.getTimestamp(2));
+			periodoAvaliacao.setDataFinal(resultSet.getTimestamp(3));
 			periodoAvaliacao.setDescricao(resultSet.getString(4));
 			periodoAvaliacao.setFk_escola(resultSet.getInt(5));
 		}
@@ -119,8 +119,8 @@ public class PeriodoAvaliacaoDAO {
 		while (resultSet.next()) {
 			PeriodoAvaliacao periodoAvaliacao = new PeriodoAvaliacao();
 			periodoAvaliacao.setIdPeriodoAvaliacao(resultSet.getInt(1));
-			periodoAvaliacao.setDataInicial(resultSet.getDate(2));
-			periodoAvaliacao.setDataFinal(resultSet.getDate(3));
+			periodoAvaliacao.setDataInicial(resultSet.getTimestamp(2));
+			periodoAvaliacao.setDataFinal(resultSet.getTimestamp(3));
 			periodoAvaliacao.setDescricao(resultSet.getString(4));
 			periodoAvaliacao.setFk_escola(resultSet.getInt(5));
 			lista.add(periodoAvaliacao);
