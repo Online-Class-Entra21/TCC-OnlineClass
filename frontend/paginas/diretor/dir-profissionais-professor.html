@@ -173,6 +173,14 @@
                                     <h5 class="titulo-dados titulo">Endereço do Professor</h5>
                                     <tr>
                                         <td>
+                                            <label for="inputCep">CEP: </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="inputCep" name="cep">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
                                             <label for="inputEstado">Estado: </label>
                                         </td>
                                         <td>
@@ -222,14 +230,6 @@
                                         </td>
                                         <td>
                                             <input type="text" id="inputBairro" name="bairro">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label for="inputCep">CEP: </label>
-                                        </td>
-                                        <td>
-                                            <input type="text" id="inputCep" name="cep">
                                         </td>
                                     </tr>
                                     <tr>
@@ -363,5 +363,7 @@
     </body>
     <!-- JS - Script -->
     <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/frontend/frameworks/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+    <script src="/frontend/scripts/login/script-utilitarios.js"></script>
     <script src="/frontend/scripts/diretor/script-dir-profissionais-professor.js"></script>
 </html>

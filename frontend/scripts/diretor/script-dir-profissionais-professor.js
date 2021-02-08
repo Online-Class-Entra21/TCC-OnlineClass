@@ -26,6 +26,24 @@ if(idUsuario != 0 && idUsuario != null){
     // window.location = "/frontend/index.html";
 }
 
+$("#inputCelular").mask("(00) 00000-0000")
+$("#inputTelefone").mask("(00) 0000-0000")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Evento de abertura do menu 
 document.getElementById("mostrar").addEventListener("mouseover", function(){
     abrirMenu();

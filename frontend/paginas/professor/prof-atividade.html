@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
+<html lang="pt-br">
 
-        <link rel="stylesheet"  href="/frontend/estilos/professor/est-prof-atividade.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <title> Postagem de Atividades</title>
-    </head>
+<head>
+    <meta charset="utf-8">
 
-    <body>
-      
-        <div id="mostrar"></div>
+    <link rel="stylesheet" href="/frontend/estilos/professor/est-prof-atividade.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title> Postagem de Atividades</title>
+</head>
+
+<body>
+
+    <div id="mostrar"></div>
     <div id="menu">
         <div id="menu-titulo">
             <h4 id="idMenuTitulo">Professor</h4>
@@ -63,63 +64,66 @@
             </div>
             <div id="lado-direito">
                 <figure id="figure-perfil">
-                    <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil" title="Foto de Perfil">
+                    <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil"
+                        title="Foto de Perfil">
                     <label id="idNomeUsuario" for="foto-perfil" name="nome-usuario" title="Nome">Nome</label>
                 </figure>
             </div>
         </nav>
     </header>
-        <main>
-            
-           
-            <div id="conteudo ">
-                <form class="postar-atividade ">
-                  
-                    <label class="aulaTipo lead" for="idTitle">Titulo da atividade </label>
+    <main>
+
+
+        <div id="conteudo ">
+            <form class="postar-atividade ">
+
+                <label class="aulaTipo lead" for="idTitle">Titulo da atividade </label>
                 <input class="aula form-control" type="text" id="idTitle" name="nmTitle">
-                    
-                    <label class="aulaTipo lead pt-3" for="idDateTime">ㅤㅤEntrega </label>
+
+                <label class="aulaTipo lead pt-3" for="idDateTime">ㅤㅤEntrega </label>
                 <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
-        
-                    <label class="aulaTipo lead pt-3" for="idTipo">Tipo de atividade</label>
-                    <select name="assunto" id="idTipo" class="aula form-control">
-                        <option>-Selecione o tipo</option>
-                        <option>-Avaliação</option>
-                        <option>-Atividade em grupo</option>
-                        <option>-Atividade</option>
-                        <option>-Recuperação Paralela</option>
-                        <option>-Outro</option>
-                    </select>
-                
-                    <div class="custom-file">
-                        <label class="arq custom-file-label " for="idFile">Anexar Arquivo</label>
-                        <input class="arq custom-file-input" type="file" name="nmFile" id="idFile">
-                    </div>
-                    
-                      
-                    <div class="custom-file">
-                        <label class="arq2 custom-file-label " for="idFile">Anexar Arquivo</label>
-                        <input class="arq2 custom-file-input" type="file" name="nmFile" id="idFile">
-                    </div>
-                    
-                    <div class="custom-file">
-                        <label class="arq3 custom-file-label " for="idFile">Anexar Arquivo</label>
-                        <input class="arq3 custom-file-input" type="file" name="nmFile" id="idFile">
-                    </div>
-                    
+
+                <label class="aulaTipo lead pt-3" for="idTipo">Tipo de atividade</label>
+                <select name="assunto" id="idTipo" class="aula form-control">
+                    <option>-Selecione o tipo</option>
+                    <option>-Avaliação</option>
+                    <option>-Atividade em grupo</option>
+                    <option>-Atividade</option>
+                    <option>-Recuperação Paralela</option>
+                    <option>-Outro</option>
+                </select>
+
+                <div class="custom-file">
+                    <label class="arq custom-file-label " for="idFile">Anexar Arquivo</label>
+                    <input class="arq custom-file-input" type="file" name="nmFile" id="idFile">
+                </div>
 
 
-                    <textarea name="mensagem" class="descricao form-control" placeholder="Insira um breve resumo..."></textarea>
-                    
-                    <button class=" marcar btn-secondary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
-                    
-                    
-                    
-                
-                </form>
-              
-            </div>
-        </main>
-        <script src="/frontend/scripts/professor/script-prof-atividade.js"></script>
-    </body>
+                <div class="custom-file">
+                    <label class="arq2 custom-file-label " for="idFile">Anexar Arquivo</label>
+                    <input class="arq2 custom-file-input" type="file" name="nmFile" id="idFile">
+                </div>
+
+                <div class="custom-file">
+                    <label class="arq3 custom-file-label " for="idFile">Anexar Arquivo</label>
+                    <input class="arq3 custom-file-input" type="file" name="nmFile" id="idFile">
+                </div>
+
+
+
+                <textarea name="mensagem" class="descricao form-control"
+                    placeholder="Insira um breve resumo..."></textarea>
+
+                <button class=" marcar btn-secondary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
+
+
+
+
+            </form>
+
+        </div>
+    </main>
+    <script src="/frontend/scripts/professor/script-prof-atividade.js"></script>
+</body>
+
 </html>
