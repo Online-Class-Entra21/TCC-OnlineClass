@@ -28,12 +28,6 @@
                     <a href="/frontend/paginas/coordenador/coord-salas.html">Controle de Salas</a>
                 </figure>
             </section>
-            <section id="Professores" class="opcoes">
-                <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/professor.png" alt="Professores" title="Professores" class="img-opcoes">
-                    <a href="/frontend/paginas/coordenador/coord-professores.html">Controle de Professores</a>
-                </figure>
-            </section>
             <section id="Turmas" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/turma.png" alt="Turmas" title="Turmas" class="img-opcoes">
@@ -82,58 +76,252 @@
                 </div>
             </nav>
         </header>
-		
-        <main>
-            <div class="Principal container">
-                <h2 id="TForm" class="mt-5 pb-5" >Controle de Alunos</h2>  
-            
-                    <div id="fPessoas" class="dados mt-4 col-md-5 col-xl-4">
-                    <form>
-                        <div class="form-group">
-                            <label for="txtCodigo">Código</label>
-                            <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+	    <main>
+            <section>
+                <div id="cab"></div>
+                <div id="conteudo">
+                    <form action="" class="nav justify-content-center">
+                        <!-- Dados pessoais -->
+                        <div id="dados">
+                            <div id="dados-div">
+                                <table id="tab-dados" class="tabela">
+                
+                                    <h5 class="titulo-dados titulo">Dados do Aluno</h5>
+                                    <!-- Nome -->
+                                    <tr>
+                                        <td>
+                                            <label for="nome">Nome: </label>
+                                        </td>
+                                        <td class="input">
+                                            <input type="text" name="nome" id="inputNome" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <!-- Sobrenome -->
+                                    <tr>
+                                        <td>
+                                            <label for="sobrenome">Sobrenome: </label>
+                                        </td>
+                                        <td class="input">
+                                            <input type="text" name="sobrenome" id="inputSobrenome"  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <!-- Celular -->
+                                    <tr>
+                                        <td>
+                                            <label>Celular:</label>
+                                        </td>
+                                        <td class="input">
+                                            <input id="inputCelular" type="text" placeholder="(00) 00000-0000"  class="form-control">     
+                                        </td>
+                                    </tr>
+                                    <!-- Telefone -->
+                                    <tr>
+                                        <td>
+                                            <label>Telefone:</label>
+                                        </td>
+                                        <td class="input">
+                                            <input id="inputTelefone" type="text" placeholder="(00) 0000-0000"  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="cpf">CPF: </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="inputCpf" name="cpf" placeholder="000.000.000-00"  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br>
+                                            <label for="inputHorarioInicial">Horário inicial da aula: </label>
+                                        </td>
+                                        <td>
+                                            <input type="time" name="horarioInicial" id="inputHorarioInicial"  class="form-control"> 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br>
+                                            <label for="inputHorarioFinal">Horário final da aula: </label>
+                                        </td>
+                                        <td>
+                                            <input type="time" name="horarioFinal" id="inputHorarioFinal"  class="form-control">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="endereco-div">
+                                <table id="tab-endereco" class="tabela">
+                                    <h5 class="titulo-dados titulo">Endereço do Aluno</h5>
+                                    <tr>
+                                        <td>
+                                            <label for="inputEstado">Estado: </label>
+                                        </td>
+                                        <td>
+                                            <select id="inputEstado" name="estado"  class="form-control">
+                                                <option value="AC">Acre</option>
+                                                <option value="AL">Alagoas</option>
+                                                <option value="AP">Amapá</option>
+                                                <option value="AM">Amazonas</option>
+                                                <option value="BA">Bahia</option>
+                                                <option value="CE">Ceará</option>
+                                                <option value="DF">Distrito Federal</option>
+                                                <option value="ES">Espírito Santo</option>
+                                                <option value="GO">Goiás</option>
+                                                <option value="MA">Maranhão</option>
+                                                <option value="MT">Mato Grosso</option>
+                                                <option value="MS">Mato Grosso do Sul</option>
+                                                <option value="MG">Minas Gerais</option>
+                                                <option value="PA">Pará</option>
+                                                <option value="PB">Paraíba</option>
+                                                <option value="PR">Paraná</option>
+                                                <option value="PE">Pernambuco</option>
+                                                <option value="PI">Piauí</option>
+                                                <option value="RJ">Rio de Janeiro</option>
+                                                <option value="RN">Rio Grande do Norte</option>
+                                                <option value="RS">Rio Grande do Sul</option>
+                                                <option value="RO">Rondônia</option>
+                                                <option value="RR">Roraima</option>
+                                                <option value="SC">Santa Catarina</option>
+                                                <option value="SP">São Paulo</option>
+                                                <option value="SE">Sergipe</option>
+                                                <option value="TO">Tocantins</option>
+                                                <option value="EX">Estrangeiro</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputCidade">Cidade: </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="inputCidade" name="cidade"  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputBairro">Bairro: </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="inputBairro" name="bairro"  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputCep">CEP: </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="inputCep" name="cep"  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputLogradouro">Logradouro: </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="inputLogradouro" name="logradouro" placeholder="Rua, Avenida"  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputNumero">Número: </label>
+                                        </td>
+                                        <td>
+                                            <input type="number" id="inputNumero" name="numLog" placeholder=""  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputTipoLogradouro">Tipo do Logradouro</label>
+                                        </td>
+                                        <td>
+                                            <input type="text" id="inputTipoLogradouro" name="tipoLog" placeholder="Ex: Condominio, Casa"  class="form-control">
+                                        </td>
+                                    </tr>
+                                
+                                </table>
+                            </div>
+                            <div id="login-div">
+                                <table id="tab-login" class="tabela">
+                                    <h5 class="titulo-dados titulo">Login do Aluno</h5>
+                                    <tr>
+                                        <td>
+                                            <label for="inputEmail">E-mail: </label>
+                                        </td>
+                                        <td class="input">
+                                            <input type="email" name="email" placeholder="Ex: email@complemento.com" id="inputEmail"  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputSenha">Senha: </label>
+                                        </td>
+                                        <td class="input">
+                                            <input type="password" name="pass" id="inputSenha"  class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputConfirmSenha">Confirme a senha: </label>
+                                        </td>
+                                        <td class="input">
+                                            <input type="password" name="passconfirm" id="inputConfirmSenha"  class="form-control">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="escola-div">
+                                <table id="tab-escola" class="tabela">
+                                    <h5 class="titulo-dados titulo">Escola</h5>
+                                    <tr>
+                                        <td class="multiselect">
+                                          <div class="selectBox" onclick="optionPeriodos()">
+                                            <select>
+                                              <option>Informe o Período</option>
+                                            </select>
+                                            <div class="overSelect"></div>
+                                          </div>
+                                        
+                                        <div id="periodos"> 
+                                        <label for="one">
+                                            <input type="checkbox" id="one">⠀Matutino</label>
+                                        <label for="two">
+                                            <input type="checkbox" id="two">⠀Vespertino</label>
+                                        <label for="three">
+                                            <input type="checkbox" id="three">⠀Noturno</label>
+                                        </div>
+                                        </td>
+                                    </tr>  
+                                    <tr>
+                                        <td class="multiselect">
+                                            <div class="selectBox" onclick="optionTurmas()">
+                                              <select>
+                                                <option>Informe a Turma</option>
+                                              </select>
+                                              <div class="overSelect"></div>
+                                            </div>
+                                          
+                                          <div id="turmas">
+                                          <label for="one">
+                                              <input type="checkbox" id="one">⠀Turma 1</label>
+                                          <label for="two">
+                                              <input type="checkbox" id="two">⠀Turma 2</label>
+                                          <label for="three">
+                                              <input type="checkbox" id="three">⠀Turma 3</label>
+                                          </div>
+                                          </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="botoes" class="nav justify-content-center">
+                                <button class="but p-1 m-1 btn-primary btn-lg" type="button" id="btnCadastrar">Cadastrar</button>
+                                <button class="but p-1 m-1 btn-danger btn-lg" type="reset">Limpar</button>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="txtNomAlu">Nome</label>
-                            <input type="text" class="form-control" id="txtNomAlu" placeholder="Nome do Aluno">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtMatricula">Matricula</label>
-                            <input type="text" class="form-control" id="txtMatricula" placeholder="Matricula">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtTurma">Turma</label>
-                            <input type="number" class="form-control" id="txtTurma" aria-describedby="emailHelp" placeholder="Turma">
-                        </div>
-                        <button type="button" class="p-1 m-1 btn-primary btn-lg"
-                        onclick="cadAlunos(txtNomAlu.value, txtMatricula.value, txtTurma.value)">Cadastrar  
-                        
-                            <button type="button" class="p-1 m-1 btn-primary btn-lg"
-                            onclick="altPessoa(txtNomAlu.value, txtMatricula.value, txtTurma.value)">Atualizar
-                        
-                            <button type="button" class="p-1 m-1 btn-danger btn-lg" id="idBtn"
-                        onclick="delRegistro()">Excluir
                     </form>
-                    </div>
-                 </div>
-        
-            <div class="col-md-6 col-xl-6">
-            <div id="dGridPessoas ">
-        
-                <table class="table" id="tbPessoas" class="table table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Código</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Matricula</th>
-                            <th scope="col">Turma</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
-        </div>
-        </div>
-            </main>
-
+                </div>
+            </section>
+        </main>
     <script src="/frontend/scripts/coordenador/script-coord-alunos.js"></script>
 </html>

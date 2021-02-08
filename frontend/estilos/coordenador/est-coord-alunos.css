@@ -1,45 +1,6 @@
-/*
-Config. Tabela
-*/
-#tbPessoas {
-    font: 1em Verdana;
-    text-align: center;
-}
-#TForm{
-   text-align: center;
-}
-
-.dados{
-    float: right;
-}
- /*
-Config. conteudo
-*/
-.content h2{
-    text-align: center;
-    color: white;
-}
-/*
-Config. Inputs
-*/
-input[type=text]{
-    width: 80%;
-    height: 2em;
-    margin-bottom: 10px;
-}
-input[type=button]{
-    border: none;
-    width: 10%;
-    float: right;
-    height: 1em;
-}
-/*
-Config. hover linhas
-*/
-tr:hover {
-    cursor: pointer;
-    background-color: lightblue;
-}
+/**************************
+Config. do menu padrao
+***************************/
 
 /*
 Config. para todos os elementos 
@@ -68,6 +29,14 @@ header{
 }
 
 /*
+Config. do main 
+*/
+main{
+    width: 100%;
+    height: 90%;
+}
+
+/*
 Config. das ancoras 
 */
 a{
@@ -90,7 +59,6 @@ a:visited {
      color: white;
 }
 
-
 /*
 Config figures opcoes e img opcoes
 */
@@ -105,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:lightblue;
+    color: lightblue;
 }
 .img-opcoes{
     width: 9%;
@@ -133,9 +101,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#0d96a8;
-    z-index: 9999;
-    position: relative;
+    background-color: #0d96a8;
 }
 
 /*
@@ -170,9 +136,10 @@ Config. do menu
     background-color: #0d96a8;
     border-right: 1px solid;
     border-color: white;
-    position: fixed;
+    position: absolute;
     display: none;
-    z-index: 99999;
+    position: fixed;
+    z-index: 9999;
 }
 
 /*
@@ -199,7 +166,6 @@ Config. div do menu
     display: flex;
     flex-direction: row;
     margin-left: 7%;
-    z-index: 1;
 }
 
 /*
@@ -223,7 +189,6 @@ Config. da div da barra no lado direito
     display: flex;
     flex-direction: row-reverse;
     margin: 0;
-    
 }
 
 /*
@@ -264,7 +229,233 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 85%;
+    margin-top: 35%;
+}
+
+/**************************
+Config. das alteracoes especificas
+***************************/
+
+form{
+    width: 100%;
+    height: 90%;
+}
+/*
+Config. da coluna da linha 
+*/
+td{
+    font-size: 100%;
+    margin-left: 2%;
+}
+
+/*
+Config. das linhas 
+*/
+tr{
+    align-items: center;
+    display: flex;
+}
+
+/*
+COnfig. dos inputs 
+input{
+    width: 100%;
+    height: 100%;
+}
+*/
+
+/*
+Config. dos botoes 
+*/
+.but{
+    margin: 1%;
+    border-radius: 2vh;
+    padding: 1.2%;
+    font-size: 2vh;
+}
+.but:hover{
+    border: 2px solid black;
+}
+
+/*
+Config. dos titulos 
+*/
+.titulo{
+    font-weight: bolder;
 }
 
 
+/*
+Condifg. das divs de conteudo 
+*/
+#dados{
+    border: 2px solid black;
+    border-radius: 2vh;
+    float: left;
+    padding: 2%;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 100vh;
+    height: 100%;
+}
+
+/*
+Config. dos botoes do form 
+*/
+#botoes{
+    margin: 0;
+}
+
+/*
+Config. da selecao de imagem 
+*/
+#imagemInput{
+   width: 0%;
+   opacity: 0;
+}
+
+/*
+Config. div de separacao
+*/
+#cab{
+    height: 10%;
+    width: 100%;
+}
+
+#conteudo{
+    width: 100%;
+    height: 90%;
+}
+
+/*
+Config. de tamanho das tabelas
+*/
+#tab-dados{
+    width: 100%;
+}
+#tab-login{
+    width: 100%;
+}
+#tab-endereco{
+    width: 100%;
+}
+
+/*
+Config. das divs 
+*/
+#dados-div{
+    width: 100%;
+    height: 40%;
+}
+#login-div{
+    width: 100%;
+    height: 30%;
+}
+#endereco-div{
+    width: 100%;
+    height: 30%;
+}
+#botoes{
+    width: 100%;
+    height: 9%;
+}
+
+/*
+Config. de inputs classe
+.input{
+    width: 50%;
+}
+*/
+
+/*
+Config. dos botoes do form
+*/
+#botoes{
+    margin-top: 3%;
+}
+
+
+/*
+Config. coordenadores existentes
+*/
+
+#coordExist {
+    float: right;
+    text-align: left;
+    margin: 1%;
+    margin-right: 17vh;
+}
+
+table {
+    margin: 4%;
+}
+
+fieldset {
+    width: 25vh;
+    height: 100%;
+    float: right;
+}
+
+li {
+    list-style: none;
+}
+.multiselect {
+    width: 200px;
+}
+  
+.selectBox {
+    position: relative;
+}
+  
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+}
+  
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#periodos {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#periodos label {
+    display: block;
+}
+
+#periodos label:hover {
+    background-color: #1e90ff;
+}
+
+#materias {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#materias label {
+    display: block;
+}
+
+#materias label:hover {
+    background-color: #1e90ff;
+}
+
+#turmas {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#turmas label {
+    display: block;
+}
+
+#turmas label:hover {
+    background-color: #1e90ff;
+}

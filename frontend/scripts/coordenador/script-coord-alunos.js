@@ -1,3 +1,31 @@
+// Pegando id do usuário que logou 
+var idUsuario = sessionStorage.getItem("idUsuario");
+
+//Verifica se o idUsuario é válido 
+if(idUsuario != 0 && idUsuario != null){
+    //Busca dos dados do usuário
+    var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosUsuario = JSON.parse(resposta);
+            //Adiciona o nome 
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            //Adiciona a foto de perfil do usuario
+            var img = document.querySelector("#idFotoPerfil");
+            img.setAttribute('src', dadosUsuario.fotoUsuario);
+            img.style.borderRadius = "80%";
+        })
+
+    xhr.send();
+    
+}else{
+    // alert('Sessão expirada - Erro (0002)')
+    // window.location = "/frontend/index.html";
+}
+
 //Evento de abertura do menu 
 document.getElementById("mostrar").addEventListener("mouseover", function(){
     abrirMenu();
@@ -17,66 +45,42 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
 })
 
 
-//Evento de Cadastro
-var cadalunos, index;
+//---> Referencia checkbox inside select
+//---> https://stackoverflow.com/questions/17714705/how-to-use-checkbox-inside-select-option
+//-> Checkbox Inside Select code:
 
-function cadAlunos(nomAlu, matricula, turma) {
-    cadalunos = document.getElementById("tbPessoas");    
-    var qtdlLinhas = cadalunos.rows.length;
-    var linha = cadalunos.insertRow(qtdlLinhas);
-    var linhaParam;
+var expanded = false;
 
-    var cellCodigo = linha.insertCell(0);
-    var cellTurma = linha.insertCell(1);
-    var cellMatricula = linha.insertCell(2);
-    var cellNomAlu = linha.insertCell(3);
-
-    cellCodigo.innerHTML = qtdlLinhas;
-    cellNomAlu.innerHTML = nomAlu;
-    cellMatricula.innerHTML = matricula;
-    cellTurma.innerHTML = turma;
-    preencheCamposForm();
-    
-
+function optionPeriodos() {
+  var periodos = document.getElementById("periodos");
+  if (!expanded) {
+    periodos.style.display = "block";
+    expanded = true;
+  } else {
+    periodos.style.display = "none";
+    expanded = false;
+  }
 }
-//Evento de Alteração
-function altPessoa(nomAlu, matricula, turno) {
 
-
-    cadalunos.rows[index].cells[1].innerHTML = nomAlu ;
-    cadalunos.rows[index].cells[2].innerHTML = matricula;
-    cadalunos.rows[index].cells[3].innerHTML = turno;
-   
-
-}
-//Evento de preenchimento
-function preencheCamposForm() {
-
-    for(var i = 0; i < cadalunos.rows.length; i++) 
-    {
-
-       cadalunos.rows[i].onclick = function() 
-        {
-            index = this.rowIndex;
-            document.getElementById("txtCodigo").value = cadalunos.rows[index].cells[0].innerText;
-            document.getElementById("txtNomAlu").value = cadalunos.rows[index].cells[1].innerText;
-            document.getElementById("txtMatricula").value = cadalunos.rows[index].cells[2].innerText;
-            document.getElementById("txtTurno").value = cadalunos.rows[index].cells[3].innerText;
-
-        }
+function optionMaterias() {
+    var materias = document.getElementById("materias");
+    if (!expanded) {
+      materias.style.display = "block";
+      expanded = true;
+    } else {
+      materias.style.display = "none";
+      expanded = false;
     }
-}
+  }
 
-
-//Evento de delete
-function delRegistro() {
-
-    for(var i = 0; i < cadalunos.rows.length; i++) 
-    {
-        if (index == i) {
-            cadalunos.deleteRow(index);
-           
-            return;
-        }
+  function optionTurmas() {
+    var turmas = document.getElementById("turmas");
+    if (!expanded) {
+      turmas.style.display = "block";
+      expanded = true;
+    } else {
+      turmas.style.display = "none";
+      expanded = false;
     }
-}
+  }
+
