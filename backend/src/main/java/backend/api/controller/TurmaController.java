@@ -139,4 +139,25 @@ public class TurmaController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Retorna a lista das turmas registrados no sistema pelo id da escola {GET}
+	 * @return lista de turmas registradas no banco pelo id da escola
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/turmas/escola/{codigo}")
+	public List<Turma> consultarIdEscola(@PathVariable("codigo") int codigo){
+		LOGGER.info("Requisição List<Turma> pelo fk_escola");
+		List<Turma> lista;
+		TurmaDAO turmaDao = new TurmaDAO();
+		try {
+			lista = turmaDao.buscarIdEscola(codigo);
+			LOGGER.info("Requisição List<Turma> pelo fk_escola bem sucedida");
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Turma pelo fk_escola Mal Sucedida - erro - {}",e.toString());
+			return null;
+		}
+	}
 }

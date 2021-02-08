@@ -83,9 +83,9 @@
 }
 .descricao{
     min-width: 85%;
-    min-height: 300px;
+    min-height: 25vh;
     max-width: 85%;
-    max-height: 300px;
+    max-height: 25vh;
     padding-left: 1%;
     padding-top: 5%;
     margin-left: 10%;
@@ -94,19 +94,6 @@
     
     margin-top: 5%;
   
-}
-
-
-
-/* INICIO CLASSE */
-
-/* FIM CLASSE */
-
-
-/* INICIO TAG */
-body {
-    
-    overflow: hidden;
 }
 /*
 Config. padrao da barra 
@@ -165,7 +152,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:lightblue;
+    color: #00bd13;
 }
 .img-opcoes{
     width: 9%;
@@ -193,7 +180,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#2e2e2e;
+    background-color:black;
 }
 
 /*
@@ -225,7 +212,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #2e2e2e;
+    background-color: black;
     border-right: 1px solid;
     border-color: white;
     position: absolute;

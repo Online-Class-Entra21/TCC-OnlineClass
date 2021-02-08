@@ -25,7 +25,7 @@ public class TurmaDAO {
 	 * @throws SQLException 
 	 */
 	public void insert(Turma turma) throws SQLException {
-		String sql = "insert into turma (ano, qtdAluno, horaInicioAula, horaFinalAula, fk_sala) values (?,?,?,?,?)"; 
+		String sql = "insert into turma (ano, qtdAluno, horaInicioAula, horaFinalAula, fk_sala, fk_escola) values (?,?,?,?,?,?)"; 
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		     
 		comandoSql.setString(1, turma.getAno());
@@ -33,6 +33,7 @@ public class TurmaDAO {
 		comandoSql.setTime(3, turma.getHorarioInicioAula());
 		comandoSql.setTime(4, turma.getHorarioFinalAula());
 		comandoSql.setInt(5, turma.getFk_sala());
+		comandoSql.setInt(6, turma.getFk_escola());
 		
 		comandoSql.execute(); 
 		comandoSql.close(); 
@@ -47,7 +48,7 @@ public class TurmaDAO {
 	 */
 	public void update(Turma turma) throws SQLException {
 		String sql = "Update turma set ano = ?, qtdAluno = ?, horaInicioAula = ?, "
-				   + "horaFinalAula = ?, fk_sala = ? where idTurma = ?"; 
+				   + "horaFinalAula = ?, fk_sala = ?, fk_escola where idTurma = ?"; 
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		    
 		comandoSql.setString(1, turma.getAno());
@@ -55,7 +56,8 @@ public class TurmaDAO {
 		comandoSql.setTime(3, turma.getHorarioInicioAula());
 		comandoSql.setTime(4, turma.getHorarioFinalAula());
 		comandoSql.setInt(5, turma.getFk_sala());
-		comandoSql.setInt(6, turma.getIdTurma());
+		comandoSql.setInt(6, turma.getFk_escola());
+		comandoSql.setInt(7, turma.getIdTurma());
 
 		comandoSql.execute(); 
 		comandoSql.close(); 
@@ -163,5 +165,41 @@ public class TurmaDAO {
 		comandoSql.close(); 
 		return turma;
 	}
+	
+	
+	/**
+	 * Metodo de busca de todas as informacoes de uma linha
+	 * da tabela Turma do banco de dados.
+	 * O <code>fk_escola</code> deve ser igual ao da turma que deseja buscar
+	 * @param int fk_escola
+	 * @return Turma turma 
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public List<Turma> buscarIdEscola(int fk_escola) throws SQLException {
+		List<Turma> lista = new ArrayList<Turma>(); 
+		String sql = "select * from turma where fk_escola = ?"; 
+			
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, fk_escola);
+		
+		ResultSet resultSet = comandoSql.executeQuery(); 
+			
+		while (resultSet.next()) {
+			Turma turma = new Turma(); 
+			turma.setIdTurma(resultSet.getInt(1));
+			turma.setAno(resultSet.getString(2));
+			turma.setQtdAluno(resultSet.getInt(3));
+			turma.setHorarioInicioAula(resultSet.getTime(4));
+			turma.setHorarioFinalAula(resultSet.getTime(5));
+			turma.setFk_sala(resultSet.getInt(6));
+			turma.setFk_escola(resultSet.getInt(7));
+			lista.add(turma); 
+		}
+		comandoSql.close();
+		return lista;
+	}	
+	
 	
 }

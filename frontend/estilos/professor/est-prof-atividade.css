@@ -2,23 +2,6 @@
     font-family: Arial, Helvetica, sans-serif;
     
 }
-/* INICIO ID # */
-
-
-#check2{
-    display: none;
-   
-}
-#check2:checked ~ .content{
-    transform: translateY(530px);
-}
-#check2:checked ~ .content ul li #icone2 {
-    opacity: 1;
-    margin-top: 0;
-    transition-delay: .2s;
-}
-
-
 /* FIM ID */
 
 .marcar:hover {
@@ -63,9 +46,10 @@
 .aulaTipo {
     font-family: Arial, Helvetica, sans-serif;
     color: black;
-    text-align: center;
-    margin-left: 81%;
+    display: flex;
+    margin-left: 79%;
     border: none;
+
 }
 .arq{
     margin-left: 10%;
@@ -87,29 +71,16 @@
 }
 .descricao{
     min-width: 85%;
-    min-height: 300px;
+    min-height: 25vh;
     max-width: 85%;
-    max-height: 300px;
+    max-height: 25vh;
     padding-left: 1%;
     padding-top: 5%;
     margin-left: 10%;
 }
 .postar-atividade{
-    
+
     margin-top: 2%;
-
-  
-}
-
-/* INICIO CLASSE */
-
-/* FIM CLASSE */
-
-
-/* INICIO TAG */
-body {
-    
-    overflow: hidden;
 }
 /*
 Config. padrao da barra 
@@ -168,7 +139,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:lightblue;
+    color: #00bd13;
 }
 .img-opcoes{
     width: 9%;
@@ -196,7 +167,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#2e2e2e;
+    background-color:black;
 }
 
 /*
@@ -228,7 +199,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #2e2e2e;
+    background-color: black;
     border-right: 1px solid;
     border-color: white;
     position: absolute;

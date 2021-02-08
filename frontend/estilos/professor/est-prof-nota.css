@@ -40,18 +40,17 @@
     width: 100px;
     font-size: 20px;
     font-weight: 100;
-    background-color: gray;
     border: solid #333333 1px;
     text-decoration: none;
     cursor: pointer;
     margin-left: 50%;
  }
 .cont {
-    max-width: 15%;
+    max-width: 50%;
     border: 1px solid black;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    margin-left: 10%;
+    margin-left: 20%;
     position: relative;
     
 }
@@ -59,18 +58,18 @@
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     text-align: center;
-    margin-left: 14%;
+    margin-left: 35%;
     border: none;
     
     
 }
 
 .cont2 {
-    max-width: 15%;
+    max-width: 50%;
     border: 1px solid black;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    margin-left: 70%;
+    margin-left: 100%;
     position: relative;
     
 }
@@ -78,7 +77,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: black;
     text-align: center;
-    margin-left: 74%;
+    margin-left: 120%;
     border: none;
     
     
@@ -86,28 +85,14 @@
 
 .descricao{
     min-width: 85%;
-    min-height: 300px;
+    min-height: 25vh;
     max-width: 85%;
-    max-height: 300px;
+    max-height: 25vh;
     padding-left: 1%;
-    padding-top: 1%;
-    margin-top: 2%;
+    padding-top: 5%;
     margin-left: 10%;
+    margin-top: 5vh;
 
-}
-
-
-
-
-/* INICIO CLASSE */
-
-/* FIM CLASSE */
-
-
-/* INICIO TAG */
-body {
-    
-    overflow: hidden;
 }
 /*
 Config. padrao da barra 
@@ -166,7 +151,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:lightblue;
+    color: #00bd13;
 }
 .img-opcoes{
     width: 9%;
@@ -194,7 +179,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#2e2e2e;
+    background-color:black;
 }
 
 /*
@@ -226,7 +211,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #2e2e2e;
+    background-color:black;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
