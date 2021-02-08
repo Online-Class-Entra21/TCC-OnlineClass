@@ -89,27 +89,31 @@
                     <div id="fPessoas" class="dados mt-4 col-md-5 col-xl-4">
                     <form id="formulario">
                         <div class="form-group">
-                            <label for="txtCodigo">Código</label>
-                            <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+                            <label for="SelectTurma">Selecione uma turma</label><br>
+                            <select name="nmSelect" id="SelectTurma">
+                                <option value="1">Cedup</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="txtTurma">Turma</label>
-                            <input type="text" class="form-control" id="txtTurma" aria-describedby="emailHelp" placeholder="Turma">
+                            <label for="inputNome">Turma</label>
+                            <input type="text" class="form-control" id="inputNome" aria-describedby="emailHelp" placeholder="Turma">
                         </div>
                         <div class="form-group">
-                            <label for="txtTurno">Turno</label>
-                            <input type="text" class="form-control" id="txtTurno" placeholder="Turno">
+                            <label for="inputHorarioInicial">Início da aula</label>
+                            <input type="time" class="form-control" id="inputHorarioInicial" placeholder="Turno">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputHorarioFinal">Final da aula</label>
+                            <input type="time" class="form-control" id="inputHorarioFinal" placeholder="Turno">
                         </div>
                         <div class="form-group">
                             <label for="txtNumAlu">Número de Alunos</label>
-                            <input type="number" class="form-control" id="txtNumAlu" placeholder="Quantidade de alunos">
+                            <input type="number" class="form-control" id="txtNumAlu" placeholder="Quantidade de alunos" disabled>
                         </div>
                         <button type="button" class="p-1 m-1 btn-primary btn-lg"
                          onclick="cadTurma(txtTurma.value, txtTurno.value, txtNumAlu.value)">Cadastrar
                         
-                         <button type="button" class="p-1 m-1 btn-primary btn-lg"
-                         onclick="altPessoa(txtTurma.value, txtTurno.value, txtNumAlu.value)">Atualizar
-                        
+                       
                         <button type="button" class="p-1 m-1 btn-danger btn-lg" id="idBtn"
                         onclick="delRegistro()">Excluir
 
@@ -129,11 +133,15 @@
                             <th scope="col">Turma</th>
                         </tr>
                     </thead>
+                    <tbody id="tbLista">
+
+                    </tbody>
                 </table>
             </div>
         </div>
         </div>
             </main>
+    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
     <script src="/frontend/scripts/login/script-utilitarios.js"></script>
     <script src="/frontend/scripts/coordenador/script-coord-turmas.js"></script>
     </body>
