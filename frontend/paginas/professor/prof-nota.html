@@ -74,9 +74,9 @@
             
             <div id="conteudo">
  
-                <div class="chamarAluno">
+                <div class="chamarAluno col-md-4 col-lg-6">
                 
-                    <label class="contTipo2 lead pt-3" for="idIdAluno">Id Aluno </label>
+                    <label class="contTipo2 lead mt-5 pt-3" for="idIdAluno">Id Aluno </label>
                     <input class="cont2 form-control" type="text" id="idIdAluno" name="nmIdAluno">
 
                     <label class="contTipo2 lead pt-3" for="idMatricula">Matricula </label>
@@ -85,30 +85,30 @@
 
                 <div id="PostarNota">
 
-                    <form class="postar-nota">
+                    <form class="postar-nota col-md-4 col-lg-6">
                   
-                    <label class="contTipo lead pt-3" for="idAluno">ㅤㅤAluno </label>
+                    <label class="contTipo lead" for="idAluno">ㅤㅤAluno </label>
                     <input class="cont form-control" type="text" id="idAluno" name="nmAluno">
     
                     <label class="contTipo lead pt-3" for="idEscola">ㅤㅤEscola </label>
                     <input class="cont form-control" type="text" id="idEscola" name="nmEscola">
     
-                    <label class="contTipo lead pt-3" for="idTipo">Tipo de atividade</label>
+                    <label class="contTipo lead pt-3" for="idTipo">Tipo de avaliação</label>
                     <select name="assunto" id="idTipo" class="cont form-control">
                             <option>-Selecione o tipo</option>
-                            <option>-Avaliação</option>
+                            <option>-Prova</option>
                             <option>-Atividade em grupo</option>
                             <option>-Atividade</option>
                             <option>-Recuperação Paralela</option>
                             <option>-Outro</option>
                      </select>
                         
-                        <textarea name="mensagem" class="descricao form-control" placeholder="Observação..."></textarea>
+                    
 
                 </div>   
                 </form>
-
-                <button class="marcar btn-secondary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
+                <textarea name="mensagem" class="descricao form-control col-7" placeholder="Observação..."></textarea>
+                <button class="marcar btn-primary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
             </div>
 
         </main>
