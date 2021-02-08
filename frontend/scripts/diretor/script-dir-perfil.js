@@ -35,12 +35,12 @@ if(idUsuario != 0 && idUsuario != null){
             senhaSelecionada = dadosUsuario.senha;
 
             //Puxando imagem
-            var caminhoImagem = "/imagens-usuarios/"+dadosUsuario.fotoUsuario;
+            var caminhoImagem = dadosUsuario.fotoUsuario;
             
             //Verifica se a imagem não é nula 
-            if(caminhoImagem != null){
+            if(caminhoImagem != undefined){
                 $("#img_preview").show();
-                $("#img_preview").attr("src", caminhoImagem);
+                $("#img_preview").attr("src", "/imagens-usuarios/"+caminhoImagem);
                 document.getElementById('botao-input').value = "Alterar Imagem";
                 document.getElementById('ok').textContent = "Ok"; 
                 isFotoExistente = true;

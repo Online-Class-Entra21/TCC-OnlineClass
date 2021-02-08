@@ -1,7 +1,7 @@
 package entidade;
 
 /**
- * Classe contendo metodos e atributos para o endere�o dos usuarios cadastrados no sistema
+ * Classe contendo metodos e atributos para o endereco dos usuarios cadastrados no sistema
  * @see Usuario
  * @author Andrey 
  */
@@ -14,6 +14,7 @@ public class Endereco {
     private String rua;
     private int numero;
     private String cep;
+    private String complemento;
     
     /**
      * Construtor padrao
@@ -31,8 +32,9 @@ public class Endereco {
      * @param rua
      * @param numero
      * @param cep
+     * @param complemento
      */
-	public Endereco(int idEndereco, String estado, String cidade, String bairro, String rua, int numero, String cep) {
+	public Endereco(int idEndereco, String estado, String cidade, String bairro, String rua, int numero, String cep, String complemento) {
 		setIdEndereco(idEndereco);
 		setEstado(estado);
 		setCidade(cidade);
@@ -40,6 +42,7 @@ public class Endereco {
 		setRua(rua);
 		setNumero(numero);
 		setCep(cep);
+        setComplemento(complemento);
 	}
 
 	/**
@@ -152,5 +155,21 @@ public class Endereco {
      */
     public void setCep(String cep) {
     	this.cep = cep;
+    }
+
+    /**
+     * Metodo para insercao do complemento
+     * @param String complemento
+     */
+    public String getComplemento() {
+        return complemento;
+    }
+
+     /** 
+     * Metodo para retorno do complemento
+     * @return String complemento
+     */
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 }

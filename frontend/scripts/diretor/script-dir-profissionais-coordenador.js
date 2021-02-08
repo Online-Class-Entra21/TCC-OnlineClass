@@ -32,12 +32,29 @@ if(idUsuario != 0 && idUsuario != null){
 //Mascara dos inputs 
 $("#inputTelefone").mask("(00) 0000-0000");
 $("#inputCelular").mask("(00) 00000-0000");
+$("#inputCpf").mask("000.000.000-00");
+$("#inputCep").mask("00000-000");
 
-//Método para pegar a escola Escolhida
-var escolaEscolhida = $("#inputEscola").children("option:selected").val();
-$("#inputEscola").change(function(){
-    escolaEscolhida = $(this).children("option:selected").val();
-}); 
+//Preenchimento de CEP
+document.getElementById("inputCep").addEventListener("blur",function(){
+    var cep = document.getElementById("inputCep").value;
+    cep = cep.replace("-","");
+    buscarCep(cep);
+})
+
+//Busca o cep altomaticamente
+async function buscarCep(cep){
+    var resposta = await usarApi("GET", "http://viacep.com.br/ws/"+cep+"/json/");
+    var dadosLocalizacao =  JSON.parse(resposta);
+    if(resposta != null){
+        document.getElementById("inputEstado").value = dadosLocalizacao.uf;
+        document.getElementById("inputCidade").value = dadosLocalizacao.localidade;
+        document.getElementById("inputBairro").value = dadosLocalizacao.bairro;
+        document.getElementById("inputLogradouro").value = dadosLocalizacao.logradouro;
+    }else{
+        alert("CEP inválido!")
+    }
+}
 
 //Método onclick botão de cadastrar
 var btnCadastrar =  document.getElementById('btnCadastrar');
@@ -47,7 +64,6 @@ btnCadastrar.addEventListener("click", function() {
 
 //Método para cadastrar
 async function cadastrar() {
-
     //Verifica se os campos foram preenchidos 
     var form = $('#formulario');
     if(!form[0].checkValidity()) {
@@ -61,7 +77,7 @@ async function cadastrar() {
         var celular = document.getElementById('inputCelular').value;
         var cpf = document.getElementById('inputCpf').value;
         var horarioInicial = new Date(document.getElementById('inputHorarioInicial').valueAsDate);
-        var horarioFinal = document.getElementById('inputHorarioFinal').valueAsDate;
+        var horarioFinal = new Date(document.getElementById('inputHorarioFinal').valueAsDate);
         
         //Dados Endereço
         var estado = $("#inputEstado :selected").val();
@@ -70,7 +86,7 @@ async function cadastrar() {
         var cep = document.getElementById('inputCep').value;
         var logradouro = document.getElementById('inputLogradouro').value;
         var numero = Number(document.getElementById('inputNumero').value);
-        var tipoLogradouro = document.getElementById('inputTipoLogradouro').value;
+        var complemento = document.getElementById('inputTipoLogradouro').value;
 
         //Dados de Login
         var email = document.getElementById('inputEmail').value;
@@ -82,63 +98,95 @@ async function cadastrar() {
             alert("As senhas não coincidem!")
         }else{
 
-            //Verifica algum id disponível para ser registrado ao endereço
-            var resposta = await usarApi("GET", "http://localhost:8080/api/enderecos");
-            var enderecos =  JSON.parse(resposta);
-            var ultimoId = Number(enderecos[enderecos.length-1].idEndereco);
+            //Verifica o email se já está sendo usado 
+            var resp = await usarApi("GET", "http://localhost:8080/api/verificar/"+ email);
+            var isExisteEmail = JSON.parse(resp);
 
-            
-            //Cria o objeto Endereço
-            var inserirEndereco = {
-                estado: estado,
-                cidade: cidade,
-                bairro: bairro,
-                rua: logradouro,
-                numero: numero,
-                cep: cep
-                //tipologradouro: tipoLogradouro
+            if(!isExisteEmail){
+
+                //Verifica se o cpf é válido
+                cpf = cpf.replace(".", "");
+                cpf = cpf.replace(".", "");
+                cpf = cpf.replace("-", "");
+                var isValido = TestaCPF(cpf);
+
+
+                if(isValido){
+
+                    //Verifica se o cpf já está sendo usado  
+                    var resp = await usarApi("GET", "http://localhost:8080/api/verificar/cpf/"+ cpf);
+                    var isExisteCpf =  JSON.parse(resp);
+
+                    if(!isExisteCpf){
+
+                        //Verifica se o horário é válido ou não 
+                        if(horarioInicial < horarioFinal){
+
+                            //Verifica algum id disponível para ser registrado ao endereço
+                            var resposta = await usarApi("GET", "http://localhost:8080/api/enderecos");
+                            var enderecos =  JSON.parse(resposta);
+                            var ultimoId = Number(enderecos[enderecos.length-1].idEndereco);
+                            
+                            //Cria o objeto Endereço
+                            var inserirEndereco = {
+                                estado: estado,
+                                cidade: cidade,
+                                bairro: bairro,
+                                rua: logradouro,
+                                numero: numero,
+                                cep: cep,
+                                complemento: complemento
+                            }
+
+                            //Converte o endereço para JSON
+                            var enderecoJson =  JSON.stringify(inserirEndereco);
+
+                            //Chamada da api para registrar o Endereço no banco de dados
+                            var insertEndereco = await usarApi("POST", "http://localhost:8080/api/endereco/inserir/"+enderecoJson);
+                            
+                            //Cria o objeto Coordenador
+                            var inserirCoordenador = {
+                                nome: nome,
+                                sobrenome: sobrenome,
+                                cpf: cpf,
+                                telefone: telefone,
+                                celular: celular,
+                                tipoUsuario: 3,
+                                email: email,
+                                senha: senha,
+                                horarioFinalExpediente: horarioFinal,
+                                horarioInicioExpediente: horarioInicial,
+                                fotoUsuario: null,
+                                fk_endereco: ultimoId + 1,
+                                fk_escola: usuario
+                            }
+
+                            //Converte o coordenador para JSON
+                            var coordenadorJson = JSON.stringify(inserirCoordenador);
+
+                            //Chamada da api para registrar o Coordenador no banco de dados
+                            var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/"+coordenadorJson);
+                            
+                            if (!insertUsuario || !insertEndereco) {
+                                alert("Ocorreu um erro no cadastro do coordenador!")
+                            } else {
+                                alert("Cadastrado com sucesso");
+                            }
+
+                        }else{
+                            alert("Hora inicial não pode ser maior ou igual ao horario final");
+                        }
+                    }else{
+                        alert("CPF já cadastrado no sistema!")
+                    }
+                }else{
+                    alert("CPF inválido!")
+                }
+            }else{
+                alert("E-mail já cadastrado no sistema!");
             }
-
-            //Converte o endereço para JSON
-            var enderecoJson =  JSON.stringify(inserirEndereco);
-
-            //Chamada da api para registrar o Endereço no banco de dados
-            var insertEndereco = await usarApi("POST", "http://localhost:8080/api/endereco/inserir/"+enderecoJson);
-            
-            //Cria o objeto Coordenador
-            var inserirCoordenador = {
-                nome: nome,
-                sobrenome: sobrenome,
-                cpf: cpf,
-                telefone: telefone,
-                celular: celular,
-                tipoUsuario: 3,
-                email: email,
-                senha: senha,
-                horarioFinalExpediente: horarioFinal,
-                horarioInicioExpediente: horarioInicial,
-                fotoUsuario: null,
-                fk_endereco: ultimoId + 1,
-                fk_escola: usuario
-            }
-
-            //Converte o coordenador para JSON
-            var coordenadorJson = JSON.stringify(inserirCoordenador);
-
-            //Chamada da api para registrar o Coordenador no banco de dados
-            var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/"+coordenadorJson);
-            
-            if (insertUsuario == false || insertEndereco == false) {
-                alert("Ocorreu um erro no cadastro do coordenador!")
-            } else {
-                alert("Cadastrado com sucesso");
-            }
-            
-        }    
-    }
-    } else {
-        alert("Preencha todos os campos!");
-    }
+        }
+    } 
 }
 
     

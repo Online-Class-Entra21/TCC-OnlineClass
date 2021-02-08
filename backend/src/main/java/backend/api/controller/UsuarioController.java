@@ -175,7 +175,6 @@ public class UsuarioController {
 	 * @param String email
 	 * @return boolean situacao de existencia do usuario
 	 * @author Breno
-	 * @return boolean situacao da operacao
 	 */
 	@GetMapping(path = "api/verificar/{email}")
 	public boolean verificarEmail(@PathVariable("email") String email) {
@@ -189,7 +188,7 @@ public class UsuarioController {
 			usuario = null;
 			LOGGER.error("Requisição de verificação Usuario por Email Mal Sucedida - Email do Usuario {} - erro - {}",email,e.toString());
 		}
-		if(usuario != null) {
+		if(usuario.getIdUsuario() != 0) {
 			LOGGER.info("Requisição de verificação Usuario por email - {} - Bem Sucedida",email);
 			return true;
 		}
@@ -267,6 +266,31 @@ public class UsuarioController {
 			LOGGER.info("Requisição de mudança de senha email Mal Sucedida - Email do Usuario {} - senha {} - erro - {}",email,senha,e.toString());
 			return false;
 		}
+	}
+
+	/**
+	 * Verifica se o usuario existe no banco de dados  {GET}
+	 * @param String cpf
+	 * @return boolean situacao de existencia do usuario
+	 * @author Breno
+	 */
+	@GetMapping(path = "api/verificar/cpf/{cpf}")
+	public boolean verificarCpf(@PathVariable("cpf") String cpf) {
+		LOGGER.info("Requisição de verificação Usuario por cpf - {}",cpf);
+		Usuario usuario;
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		try {
+			usuario = usuarioDao.buscarCpf(cpf);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			usuario = null;
+			LOGGER.error("Requisição de verificação Usuario por Cpf Mal Sucedida - Cpf do Usuario {} - erro - {}",cpf,e.toString());
+		}
+		if(usuario.getIdUsuario() != 0) {
+			LOGGER.info("Requisição de verificação Usuario por cpf - {} - Bem Sucedida",cpf);
+			return true;
+		}
+		return false;
 	}
 }
 

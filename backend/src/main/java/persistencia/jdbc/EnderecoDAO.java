@@ -25,7 +25,7 @@ public class EnderecoDAO {
 	 * @throws SQLException 
 	 */
 	public void insert(Endereco endereco) throws SQLException {
-		String sql = "insert into endereco (estado, cidade, bairro, rua, numero, cep) values (?,?,?,?,?,?)";
+		String sql = "insert into endereco (estado, cidade, bairro, rua, numero, cep, complemento) values (?,?,?,?,?,?,?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, endereco.getEstado());
@@ -34,6 +34,7 @@ public class EnderecoDAO {
 		comandoSql.setString(4, endereco.getRua());
 		comandoSql.setInt(5, endereco.getNumero());
 		comandoSql.setString(6, endereco.getCep());
+		comandoSql.setString(7, endereco.getComplemento());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -46,7 +47,7 @@ public class EnderecoDAO {
 	 * @throws SQLException 
 	 */ 	
 	public void update(Endereco endereco) throws SQLException {
-		String sql = "update escola set estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, cep = ? where idendereco = ?";
+		String sql = "update escola set estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, cep = ?, complemento = ? where idendereco = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, endereco.getEstado());
@@ -55,7 +56,8 @@ public class EnderecoDAO {
 		comandoSql.setString(4, endereco.getRua());
 		comandoSql.setInt(5, endereco.getNumero());
 		comandoSql.setString(6, endereco.getCep());
-		comandoSql.setInt(7, endereco.getIdEndereco());
+		comandoSql.setString(7, endereco.getComplemento());
+		comandoSql.setInt(8, endereco.getIdEndereco());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -102,6 +104,7 @@ public class EnderecoDAO {
 			endereco.setRua(resultSet.getString(5));
 			endereco.setNumero(resultSet.getInt(6));
 			endereco.setCep(resultSet.getString(7));
+			endereco.setComplemento(resultSet.getString(8));
 		}
 		comandoSql.close();
 		return endereco;
@@ -129,6 +132,7 @@ public class EnderecoDAO {
 			endereco.setRua(resultSet.getString(5));
 			endereco.setNumero(resultSet.getInt(6));
 			endereco.setCep(resultSet.getString(7));
+			endereco.setComplemento(resultSet.getString(8));
 			
 			lista.add(endereco);
 		}
