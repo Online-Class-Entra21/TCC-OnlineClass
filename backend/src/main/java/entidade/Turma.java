@@ -17,6 +17,7 @@ public class Turma {
     private Time horarioInicioAula;
     private Time horarioFinalAula;
     private int fk_sala;
+    private int fk_escola;
     
     /**
      * Construtor padrao
@@ -33,8 +34,9 @@ public class Turma {
      * @param horarioInicioAula
      * @param horarioFinalAula
      * @param fk_sala
+     * @param fk_escola
      */
-	public Turma(int idTurma, String ano, int qtdAluno, Time horarioInicioAula, Time horarioFinalAula, int fk_sala) {
+	public Turma(int idTurma, String ano, int qtdAluno, Time horarioInicioAula, Time horarioFinalAula, int fk_sala, int fk_escola) {
 		
 		setIdTurma(idTurma);
 		setAno(ano);
@@ -42,6 +44,7 @@ public class Turma {
 		setHorarioInicioAula(horarioInicioAula);
 		setHorarioFinalAula(horarioFinalAula);
 		setFk_sala(fk_sala);
+		setFk_escola(fk_escola);
 	}
 
 	/** Metodo para retorno do ID da turma
@@ -137,5 +140,21 @@ public class Turma {
      */
 	public void setFk_sala(int fk_sala) {
 		this.fk_sala = fk_sala;
+	}
+	
+	/**
+     * Metodo para retorno do FK da escola 
+     * @return int fk_escola 
+     */
+    public int getFk_escola() {
+		return fk_escola;
+	}
+
+    /**
+     * Metodo para insercao do FK da sala 
+     * @param int fk_sala
+     */
+	public void setFk_escola(int fk_escola) {
+		this.fk_escola = fk_escola;
 	}
 }
