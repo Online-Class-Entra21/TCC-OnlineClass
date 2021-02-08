@@ -174,4 +174,28 @@ public class SalaController {
 			return null;
 		}
 	}
+	/**
+	 * Insere uma nova sala no banco de dados {POST}
+	 * e retorna o json da sala inserida
+	 * @param String json
+	 * @author André
+	 * @return boolean situacao da operacao
+	 */
+	@PostMapping(path = "api/sala/inserir/return/{json}")
+	public String inserirReturn(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Sala - {}",json);
+		Gson gson = new Gson();
+		Sala sala = gson.fromJson(json, Sala.class);
+		SalaDAO salaDAO = new SalaDAO();
+		try {
+			int idSala = salaDAO.insertReturnID(sala);
+			LOGGER.info("Requisição Inserir Sala - {} - Bem Sucedida",json);
+			String salaJson = gson.toJson(salaDAO.buscarId(idSala));
+			return salaJson;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Sala Mal Sucedida - Sala {} - erro - {}",json,e.toString());
+			return null;
+		}
+	}
 }

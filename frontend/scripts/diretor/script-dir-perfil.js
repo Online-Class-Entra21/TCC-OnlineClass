@@ -112,11 +112,6 @@ $().ready(function() {
         document.getElementById('ok').textContent = "Ok";
         imagem = this.files;
     });
-    $("#botao-salvar").click(function() {
-        if (imagem!=undefined) {
-            UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
-        }
-    });
 });
 var imagem;
 
@@ -195,16 +190,7 @@ async function alterar(){
     }
 }
 
-//Adiciona imagem no arquivo raiz 
-function UploadFile(file,url){
-    var files = file[0];
-    var xhr = new XMLHttpRequest();
-    var fd = new FormData();
 
-    fd.append( "foto", files, files.name);
-    xhr.open("POST", url, true);
-    xhr.send(fd);
-}
 
 
 
