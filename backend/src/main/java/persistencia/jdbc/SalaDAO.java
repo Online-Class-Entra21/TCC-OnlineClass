@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import entidade.Sala;
@@ -132,5 +133,30 @@ public class SalaDAO {
 		}
 		comandoSql.close(); 
 		return lista;
-	}	
+	}
+	/**
+	 * Realiza o registro de uma sala no banco de dados
+	 * e retorna o id registrado no banco de dados
+	 * @param Sala sala
+	 * @return int idSala
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public int insertReturnID(Sala sala) throws SQLException {
+		String sql = "insert into sala (nome, descricao, situacaoAcesso, tipoSala, link) values (?,?,?,?,?)"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		     
+		comandoSql.setString(1, sala.getNome());
+		comandoSql.setString(2, sala.getDescricao());
+		comandoSql.setBoolean(3, sala.getSituacaoAcesso());
+		comandoSql.setBoolean(4, sala.getTipoSala());
+		comandoSql.setString(5, sala.getLink());
+		
+		comandoSql.execute();
+        ResultSet rs = comandoSql.getGeneratedKeys();
+        rs.next();
+        int idSala = rs.getInt(1);
+		comandoSql.close(); 
+		return idSala;
+	}
 }

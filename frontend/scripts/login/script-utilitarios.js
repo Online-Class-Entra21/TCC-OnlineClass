@@ -48,6 +48,26 @@ function usarApi(method, url) {
     });
 }
 
+//Adiciona imagem no arquivo raiz 
+function UploadFile(file,url){
+    var size = file[0].size;
+    console.log(size)
+    if(size < 1048576) { //1MB
+      
+    } else {           
+      alert('Arquivo não enviado maior que 1 MB'); //Acima do limite
+      return;
+    }
+    
+    var files = file[0];
+    var xhr = new XMLHttpRequest();
+    var fd = new FormData();
+
+    fd.append( "foto", files, files.name);
+    xhr.open("POST", url, true);
+    xhr.send(fd);
+}
+
 /**
  * Formatacao de datas 
  */
@@ -70,4 +90,17 @@ function dataFormatada2(data){
     mesF     = (mes.length == 1) ? '0'+mes : mes,
     anoF     = data.getFullYear();
     return diaF+"/"+mesF+"/"+anoF;
+}
+
+//Formata a data para exibição para (AAAA-MM-DD hh:mm:ss-03)
+function timeStampFormat(data){
+    dia  = data.getDate().toString();
+    diaF = (dia.length == 1) ? '0'+dia : dia;
+    mes  = (data.getMonth()+1).toString(); //+1 pois no getMonth Janeiro começa com zero.
+    mesF = (mes.length == 1) ? '0'+mes : mes;
+    anoF = data.getFullYear();
+    hora = data.getHours();
+    min  = data.getMinutes();
+    sec  = data.getSeconds();
+    return anoF+"-"+mesF+"-"+diaF+" "+hora+":"+min+":"+sec;
 }

@@ -202,4 +202,24 @@ public class ReuniaoDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	/**
+	 * Metodo para inserir reuniao no banco de dados
+	 * @param Reuniao reuniao
+	 * @author Andrey
+	 * @throws SQLException 
+	 */	
+	public void insertReuniaoGenerica(Reuniao reuniao) throws SQLException {
+		String sql = "insert into reuniao (descricao, datainicio, dono, fk_sala) values (?, ?, ?, ?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setString(1, reuniao.getDescricao());
+		comandoSql.setTimestamp(2, (Timestamp) reuniao.getDataInicio());
+		comandoSql.setInt(3, reuniao.getDono());
+		comandoSql.setInt(4, reuniao.getFk_sala());
+		
+		comandoSql.execute();
+		comandoSql.close();
+	}
+	
 }

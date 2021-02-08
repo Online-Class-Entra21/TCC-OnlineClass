@@ -19,9 +19,14 @@ Config. para todos os elementos
     width: 50vh;
 }
 .Principal{
-    float: right;
-    align-items: center;
-    display: flex;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.btnCriarReuniao{
+    display:flex;
+    flex-wrap: wrap;
+    flex: 1;
 }
 
 /*
