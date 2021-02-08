@@ -79,14 +79,30 @@
 
 
             <!-- <form class="marcar-aula custom-file"> -->
-            <div class="d-flex justify-content-between">
-                <div class="float-left">
-                    <div>
-                        <label class="aulaTipo lead pt-3" for="idTitle">Titulo </label>
-                        <input class="aula form-control mr-0" type="text" id="idTitle" name="nmTitle">
+            <div class="mt-5">
 
-                        <label class="aulaTipo lead pt-3" for="idDateTime">Data e Hora </label>
-                        <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
+                <div class="d-flex justify-content-between ml-5 mr-5" style="height: 90%;">
+                    <div class="float-left h-100 d-inline-block">
+                        <div>
+                            <label class="aulaTipo lead" for="idTitle">Titulo </label>
+                            <input class="aula form-control" type="text" id="idTitle" name="nmTitle">
+
+                            <label class="aulaTipo lead pt-3" for="idDateTime">Data e Hora </label>
+                            <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
+                        </div>
+                    </div>
+                    <div class="flex-fill bd-highlight justify-content-center">
+
+                        <div class="border border-primary" style="height: 200px; width: 200px;">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Adicionar Arquivo</label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center ml-5 mr-5 mt-3">
+                            <textarea name="mensagem" class="descricao"
+                            placeholder="Insira um breve resumo sobre a aula..."></textarea>
+                        </div>
                     </div>
                 </div>
 
