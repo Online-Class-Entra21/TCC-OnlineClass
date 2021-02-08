@@ -105,6 +105,13 @@ function timeStampFormat(data){
     return anoF+"-"+mesF+"-"+diaF+" "+hora+":"+min+":"+sec;
 }
 
+//Formata a hora para exibição para (hh:mm)
+function timeFormat(data){
+    hora = data.getHours();
+    min  = data.getMinutes();
+    return hora+":"+min;
+}
+
 //Verifica se o cpf é válido
 function TestaCPF(strCPF) {
 

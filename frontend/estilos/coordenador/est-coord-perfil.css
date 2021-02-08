@@ -73,10 +73,10 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color: lightblue;
+    color:lightblue;
 }
 .img-opcoes{
-    width: 9%;
+    width: 11%;
     height: auto;
     margin-left: 7%;
     margin-right: 3%;
@@ -101,7 +101,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color: #0d96a8;
+    background-color:#0d96a8;
 }
 
 /*
@@ -236,16 +236,22 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
+/*
+Config. do form 
+*/
 form{
     width: 100%;
     height: 90%;
 }
+
 /*
 Config. da coluna da linha 
 */
 td{
     font-size: 100%;
     margin-left: 2%;
+    align-items: center;
+    display: flex;
 }
 
 /*
@@ -258,11 +264,11 @@ tr{
 
 /*
 COnfig. dos inputs 
+*/
 input{
     width: 100%;
     height: 100%;
 }
-*/
 
 /*
 Config. dos botoes 
@@ -283,7 +289,6 @@ Config. dos titulos
 .titulo{
     font-weight: bolder;
 }
-
 
 /*
 Condifg. das divs de conteudo 
@@ -351,22 +356,26 @@ Config. das divs
 #login-div{
     width: 100%;
     height: 30%;
+    margin-top: 2%;
 }
 #endereco-div{
     width: 100%;
     height: 30%;
+    margin-top: 2%;
 }
 #botoes{
     width: 100%;
     height: 9%;
+    margin-top: 2%;
 }
 
 /*
 Config. de inputs classe
-.input{
-    width: 50%;
-}
 */
+.input{
+    width: 30vh;
+    margin: 1vh;
+}
 
 /*
 Config. dos botoes do form
@@ -375,116 +384,3 @@ Config. dos botoes do form
     margin-top: 3%;
 }
 
-
-/*
-Config. coordenadores existentes
-*/
-
-#coordExist {
-    float: right;
-    text-align: left;
-    margin: 1%;
-    margin-right: 17vh;
-}
-
-table {
-    margin: 4%;
-}
-
-fieldset {
-    width: 25vh;
-    height: 100%;
-    float: right;
-}
-
-li {
-    list-style: none;
-}
-.multiselect {
-    width: 200px;
-}
-  
-.selectBox {
-    position: relative;
-}
-  
-.selectBox select {
-    width: 100%;
-    font-weight: bold;
-}
-  
-.overSelect {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
-
-#periodos {
-    display: none;
-    border: 1px #dadada solid;
-}
-
-#periodos label {
-    display: block;
-}
-
-#periodos label:hover {
-    background-color: #1e90ff;
-}
-
-#materias {
-    display: none;
-    border: 1px #dadada solid;
-}
-
-#materias label {
-    display: block;
-}
-
-#materias label:hover {
-    background-color: #1e90ff;
-}
-
-#turmas {
-    display: none;
-    border: 1px #dadada solid;
-}
-
-#turmas label {
-    display: block;
-}
-
-#turmas label:hover {
-    background-color: #1e90ff;
-}
-
-#botao-input{
-    font-size: 90%;
-}
-#imagemInput{
-    display: none;
-    width: 0;
-    height: 0;
-}
-#visualizacao{
-    width: 6.5%;
-    height: 6.5%;
-    margin-left: 2%;
-}
-#ok{
-    font-size: 90%;
-    color: rgb(13, 97, 45);
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
-    margin-left: 2%;
-}
-
-#tr-salvar{
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    margin-top: 4%;
-}

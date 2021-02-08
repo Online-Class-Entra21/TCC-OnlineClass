@@ -105,10 +105,10 @@ async function cadastrar() {
             if(!isExisteEmail){
 
                 //Verifica se o cpf é válido
-                cpf = cpf.replace(".", "");
-                cpf = cpf.replace(".", "");
-                cpf = cpf.replace("-", "");
-                var isValido = TestaCPF(cpf);
+                cpfValida = cpf.replace(".", "");
+                cpfValida = cpfValida.replace(".", "");
+                cpfValida = cpfValida.replace("-", "");
+                var isValido = TestaCPF(cpfValida);
 
 
                 if(isValido){
