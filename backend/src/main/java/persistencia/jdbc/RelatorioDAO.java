@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import entidade.Relatorio;
@@ -26,7 +27,7 @@ public class RelatorioDAO {
 	 * @throws SQLException 
 	 */	
 	public void insert(Relatorio relatorio) throws SQLException {
-		String sql = "insert into relatorio (titulo, destinatario, texto, dataRelatorio, fk_usuario) values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into relatorio (titulo, destinatario, texto, dataRelatorio, fk_usuario) values (?, ?, ?, ?, ?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, relatorio.getTitulo());

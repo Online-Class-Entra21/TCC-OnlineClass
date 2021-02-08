@@ -153,7 +153,6 @@ async function inserirPeriodoAvaliativo(){
 
             //insere os periodos avaliativos no sistema  
             var json = JSON.stringify(periodo);
-            console.log(json)
             var resposta =  await usarApi("POST", "http://localhost:8080/api/periodoAvaliacao/inserir/"+json); 
             var isCorreto = JSON.parse(resposta);
 
