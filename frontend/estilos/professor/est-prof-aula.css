@@ -47,40 +47,22 @@
     margin-left: 50%;
  }
 .aula {
-    max-width: 25%;
     border: 1px solid black;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
-    text-align: center;
-    margin-left: 70%;
-   
+    /* text-align: center;    */
 }
 .aulaTipo {
 
     font-family: Arial, Helvetica, sans-serif;
     color: black;
-    text-align: center;
-    margin-left: 80%;
+    /* text-align: center; */
  
 }
 .arq{
-    margin-left: 10%;
-    margin-top: -10%;
-    width: 30%; 
-    cursor: pointer;
+    width: 40vh; 
 }
-.arq2{
-    margin-left: 10%;
-    margin-top: -7%;
-    width: 30%; 
-    cursor: pointer;
-}
-.arq3{
-    margin-left: 10%;
-    margin-top: -4%;
-    width: 30%; 
-    cursor: pointer;
-}
+
 .descricao{
     min-width: 85%;
     min-height: 300px;
