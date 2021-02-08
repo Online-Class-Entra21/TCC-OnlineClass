@@ -66,9 +66,7 @@ async function verificarEmail(email){
 async function buscarUsuario(email){
     
     //insere os relatorios  
-    var json = JSON.stringify(email);
-    
-    var resposta =  await usarApi("GET", "http://localhost:8080/api/usuario/email/"+json); 
+    var resposta =  await usarApi("GET", "http://localhost:8080/api/usuario/email/"+email); 
     var usuario = JSON.parse(resposta);
 
     var idDestinatario = usuario.idUsuario;
