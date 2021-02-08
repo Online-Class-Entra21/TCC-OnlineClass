@@ -88,7 +88,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:yellow;
+    color:lightblue;
 }
 .img-opcoes{
     width: 9%;
