@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Coordenador;
-import entidade.Diretor;
 
 /**
  * Metodo para consulta do administrador no banco de dados 

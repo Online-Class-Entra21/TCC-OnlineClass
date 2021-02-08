@@ -1,6 +1,6 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
-var usuario = sessionStorage.getItem("escolaUsuario");
+var dadosUsuario;
 
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
@@ -11,7 +11,7 @@ if(idUsuario != 0 && idUsuario != null){
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
-            var dadosUsuario = JSON.parse(resposta);
+            dadosUsuario = JSON.parse(resposta);
             //Adiciona o nome 
             document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
             //Adiciona a foto de perfil do usuario
@@ -121,11 +121,6 @@ async function cadastrar() {
 
                         //Verifica se o horário é válido ou não 
                         if(horarioInicial < horarioFinal){
-
-                            //Verifica algum id disponível para ser registrado ao endereço
-                            var resposta = await usarApi("GET", "http://localhost:8080/api/enderecos");
-                            var enderecos =  JSON.parse(resposta);
-                            var ultimoId = Number(enderecos[enderecos.length-1].idEndereco);
                             
                             //Cria o objeto Endereço
                             var inserirEndereco = {
@@ -142,35 +137,42 @@ async function cadastrar() {
                             var enderecoJson =  JSON.stringify(inserirEndereco);
 
                             //Chamada da api para registrar o Endereço no banco de dados
-                            var insertEndereco = await usarApi("POST", "http://localhost:8080/api/endereco/inserir/"+enderecoJson);
-                            
-                            //Cria o objeto Coordenador
-                            var inserirCoordenador = {
-                                nome: nome,
-                                sobrenome: sobrenome,
-                                cpf: cpf,
-                                telefone: telefone,
-                                celular: celular,
-                                tipoUsuario: 3,
-                                email: email,
-                                senha: senha,
-                                horarioFinalExpediente: horarioFinal,
-                                horarioInicioExpediente: horarioInicial,
-                                fotoUsuario: null,
-                                fk_endereco: ultimoId + 1,
-                                fk_escola: usuario
-                            }
+                            var insertEndereco = await usarApi("POST", "http://localhost:8080/api/endereco/inserir/return/"+enderecoJson);
+                            var idEndereco =  JSON.parse(insertEndereco);
 
-                            //Converte o coordenador para JSON
-                            var coordenadorJson = JSON.stringify(inserirCoordenador);
+                            if(idEndereco != 0){
 
-                            //Chamada da api para registrar o Coordenador no banco de dados
-                            var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/"+coordenadorJson);
-                            
-                            if (!insertUsuario || !insertEndereco) {
-                                alert("Ocorreu um erro no cadastro do coordenador!")
-                            } else {
-                                alert("Cadastrado com sucesso");
+                                //Cria o objeto Coordenador
+                                var inserirCoordenador = {
+                                    nome: nome,
+                                    sobrenome: sobrenome,
+                                    cpf: cpf,
+                                    telefone: telefone,
+                                    celular: celular,
+                                    tipoUsuario: 3,
+                                    email: email,
+                                    senha: senha,
+                                    horarioFinalExpediente: horarioFinal,
+                                    horarioInicioExpediente: horarioInicial,
+                                    fotoUsuario: null,
+                                    fk_endereco: idEndereco,
+                                    fk_escola: dadosUsuario.fk_escola
+                                }
+
+                                console.log(inserirCoordenador)
+                                //Converte o coordenador para JSON
+                                var coordenadorJson = JSON.stringify(inserirCoordenador);
+
+                                //Chamada da api para registrar o Coordenador no banco de dados
+                                var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/"+coordenadorJson);
+                                
+                                if (!insertUsuario || !insertEndereco) {
+                                    alert("Ocorreu um erro no cadastro do coordenador!")
+                                } else {
+                                    alert("Cadastrado com sucesso");
+                                }
+                            }else{
+                                alert("Erro ao cadastrar!")
                             }
 
                         }else{

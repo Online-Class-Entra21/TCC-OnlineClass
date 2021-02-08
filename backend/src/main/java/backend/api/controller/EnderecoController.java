@@ -140,4 +140,31 @@ public class EnderecoController {
 			return false;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Insere um novo endereco no banco de dados {POST}
+	 * @param String json
+	 * @author Breno
+	 * @return boolean situacao da operacao
+	 */
+	@PostMapping(path = "api/endereco/inserir/return/{json}")
+	public int inserirReturn(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Endereco - {}",json);
+		Gson gson = new Gson();
+		Endereco endereco = gson.fromJson(json, Endereco.class);
+		EnderecoDAO enderecoDAO = new EnderecoDAO();
+		try {
+			int idEndereco = enderecoDAO.insertReturnID(endereco);
+			LOGGER.info("Requisição Inserir Endereco - {} - Bem Sucedida",json);
+			return idEndereco;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Endereco Mal Sucedida - Endereco {} - erro - {}",json,e.toString());
+			return 0;
+		}
+	}
 }
