@@ -176,15 +176,18 @@ public class TurmaDAO {
 	 * @author Andrey
 	 * @throws SQLException 
 	 */
-	public Turma buscarIdEscola(int fk_escola) throws SQLException {
-		Turma turma = new Turma(); 
+	public List<Turma> buscarIdEscola(int fk_escola) throws SQLException {
+		List<Turma> lista = new ArrayList<Turma>(); 
 		String sql = "select * from turma where fk_escola = ?"; 
-		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
-		comandoSql.setInt(1, fk_escola);
-		ResultSet resultSet = comandoSql.executeQuery();
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		if (resultSet.next()) {
+		comandoSql.setInt(1, fk_escola);
+		
+		ResultSet resultSet = comandoSql.executeQuery(); 
+			
+		while (resultSet.next()) {
+			Turma turma = new Turma(); 
 			turma.setIdTurma(resultSet.getInt(1));
 			turma.setAno(resultSet.getString(2));
 			turma.setQtdAluno(resultSet.getInt(3));
@@ -192,10 +195,11 @@ public class TurmaDAO {
 			turma.setHorarioFinalAula(resultSet.getTime(5));
 			turma.setFk_sala(resultSet.getInt(6));
 			turma.setFk_escola(resultSet.getInt(7));
+			lista.add(turma); 
 		}
-		comandoSql.close(); 
-		return turma;
-	}
+		comandoSql.close();
+		return lista;
+	}	
 	
 	
 }
