@@ -307,13 +307,15 @@ Config. divs do form
 Config. dados pessoais div
 */
 #dados-pessoais {
-    width: 58vh;
+    width: 98vh;
     height: 83vh;
     border-radius: 3vh;
     border: 2px solid black;
     padding: 1.5%;
     margin: 2.5%;
+    float: left;
 }
+
 
 /*
 Config. do titulo
