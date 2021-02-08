@@ -21,14 +21,6 @@
     max-width: 50vh;
     max-height: 50vh;
 }
-
-/* FIM CLASSE */
-
-
-/* INICIO TAG */
-body {
-    overflow-x: hidden;
-}
 /*
 Config. padrao da barra 
 */
@@ -86,7 +78,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:lightblue;
+    color: #00bd13;
 }
 .img-opcoes{
     width: 9%;
@@ -114,7 +106,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#2e2e2e;
+    background-color:black;
 }
 
 /*
@@ -146,7 +138,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #2e2e2e;
+    background-color: black;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
