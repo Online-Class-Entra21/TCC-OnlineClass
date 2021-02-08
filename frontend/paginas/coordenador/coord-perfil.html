@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Icone da página -->
         <link rel="sortcut icon" href="/frontend/imagens/Logo-OnlineClass.png" type="image/x-icon"/>
-        <link rel="stylesheet"  href="/frontend/estilos/coordenador/est-coord-alunos.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <title>Controle de Alunos</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS-->
+        <link rel="stylesheet" href="/frontend/estilos/coordenador/est-coord-perfil.css">
+        <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
+        <title>Perfil - Coordenador</title>
     </head>
-
     <body>
+        <!-- Menu latral -->
         <div id="mostrar"></div>
         <div id="menu">
             <div id="menu-titulo">
@@ -20,12 +21,6 @@
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/dir-perfil.png" alt="Perfil" title="Perfil" class="img-opcoes">
                     <a href="/frontend/paginas/diretor/dir-perfil.html">Perfil</a>
-                </figure>
-            </section>
-            <section id="Alunos" class="opcoes">
-                <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/alunos.png" alt="Alunos" title="Alunos" class="img-opcoes">
-                    <a href="/frontend/paginas/coordenador/coord-alunos.html">Controle de Alunos</a>
                 </figure>
             </section>
             <section id="Salas" class="opcoes">
@@ -65,6 +60,7 @@
                 </figure>
             </section>
         </div>
+        <!-- Cabecalho -->
         <header>
             <nav id="cabecalho">
                 <div id="lado-esquerdo">
@@ -82,7 +78,8 @@
                 </div>
             </nav>
         </header>
-	    <main>
+        
+        <main>
             <section>
                 <div id="cab"></div>
                 <div id="conteudo">
@@ -92,7 +89,7 @@
                             <div id="dados-div">
                                 <table id="tab-dados" class="tabela">
                 
-                                    <h5 class="titulo-dados titulo">Dados do Aluno</h5>
+                                    <h5 class="titulo-dados titulo">Dados do Coordenador</h5>
                                     <!-- Nome -->
                                     <tr>
                                         <td>
@@ -140,7 +137,7 @@
                                     <tr>
                                         <td>
                                             <br>
-                                            <label for="inputHorarioInicial">Horário inicial da aula: </label>
+                                            <label for="inputHorarioInicial">Horário inicial do expediente: </label>
                                         </td>
                                         <td>
                                             <input type="time" name="horarioInicial" id="inputHorarioInicial"  class="form-control"> 
@@ -149,7 +146,7 @@
                                     <tr>
                                         <td>
                                             <br>
-                                            <label for="inputHorarioFinal">Horário final da aula: </label>
+                                            <label for="inputHorarioFinal">Horário final do expediente: </label>
                                         </td>
                                         <td>
                                             <input type="time" name="horarioFinal" id="inputHorarioFinal"  class="form-control">
@@ -250,7 +247,7 @@
                             </div>
                             <div id="login-div">
                                 <table id="tab-login" class="tabela">
-                                    <h5 class="titulo-dados titulo">Login do Aluno</h5>
+                                    <h5 class="titulo-dados titulo">Login do Coordenador</h5>
                                     <tr>
                                         <td>
                                             <label for="inputEmail">E-mail: </label>
@@ -320,14 +317,26 @@
                                     </tr>
                                 </table>
                             </div>
+                            <td id="imagem-add">
+                                <input id="botao-input" value="Adicionar Imagem" type="button" title="Adiciona Imagem">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                                <input id="imagemInput" type=file name="imagem" accept=".jpg, .jpeg, .png">
+                                <img id="visualizacao" src="/frontend/imagens/olho.png" alt="Visualizacao" nome="visualizacao" title="Visualizacao">
+                                <label id="ok" for="visualizacao" name="ok" title="Ok"></label>
+                            </td>
                             <div id="botoes" class="nav justify-content-center">
-                                <button class="but p-1 m-1 btn-primary btn-lg" type="button" id="btnCadastrar">Cadastrar</button>
-                                <button class="but p-1 m-1 btn-danger btn-lg" type="reset">Limpar</button>
+                                <button class="but p-1 m-1 btn-primary btn-lg" type="button" id="btnCadastrar">Salvar</button>
+                            
                             </div>
                         </div>
+                        
                     </form>
                 </div>
+                
             </section>
         </main>
-    <script src="/frontend/scripts/coordenador/script-coord-alunos.js"></script>
+        <!-- JS - Script -->
+      <script src="/frontend/scripts/coordenador/script-coord-perfil.js"></script>
+    </body>
 </html>
+

@@ -11,13 +11,15 @@ if(idUsuario != 0 && idUsuario != null){
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
-            dadosUsuario = JSON.parse(resposta);
+            var dadosUsuario = JSON.parse(resposta);
             //Adiciona o nome 
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
             //Adiciona a foto de perfil do usuario
             var img = document.querySelector("#idFotoPerfil");
-            img.setAttribute('src', dadosUsuario.fotoUsuario);
-            img.style.borderRadius = "80%";
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
             carregarListasTipo1();
         })
     xhr.send();
@@ -290,7 +292,7 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria a imagem dentro da coluna 1
             var img = document.createElement("img");
             img.className = "img-usuario";
-            img.src = usuario.fotoUsuario;
+            img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
             img.alt="Foto Usuario";
             img.title="Foto do Usuário";
 
@@ -451,7 +453,7 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria a imagem dentro da coluna 1
             var img = document.createElement("img");
             img.className = "img-usuario";
-            img.src = usuario.fotoUsuario;
+            img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
             img.alt="Foto Usuario";
             img.title="Foto do Usuário";
 

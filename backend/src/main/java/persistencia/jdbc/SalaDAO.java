@@ -134,6 +134,7 @@ public class SalaDAO {
 		comandoSql.close(); 
 		return lista;
 	}
+	
 	/**
 	 * Realiza o registro de uma sala no banco de dados
 	 * e retorna o id registrado no banco de dados

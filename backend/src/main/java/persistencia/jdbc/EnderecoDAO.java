@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,5 +139,34 @@ public class EnderecoDAO {
 		}
 		comandoSql.close();
 		return lista;
+	}
+	
+	/**
+	 * Realiza o registro de um endereco no banco de dados
+	 * e retorna o id registrado no banco de dados
+	 * @param Endereco endereco
+	 * @return int idEndereco
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public int insertReturnID(Endereco endereco) throws SQLException {
+		String sql = "insert into endereco (estado, cidade, bairro, rua, numero, cep, complemento) values (?,?,?,?,?,?,?)"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		     
+		comandoSql.setString(1, endereco.getEstado());
+		comandoSql.setString(2, endereco.getCidade());
+		comandoSql.setString(3, endereco.getBairro());
+		comandoSql.setString(4, endereco.getRua());
+		comandoSql.setInt(5, endereco.getNumero());
+		comandoSql.setString(6, endereco.getCep());
+		comandoSql.setString(7, endereco.getComplemento());
+		
+		comandoSql.execute();
+		
+        ResultSet rs = comandoSql.getGeneratedKeys();
+        rs.next();
+        int idEndereco = rs.getInt(1);
+		comandoSql.close(); 
+		return idEndereco;
 	}
 }
