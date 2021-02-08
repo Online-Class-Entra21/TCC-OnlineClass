@@ -20,6 +20,7 @@ if(idUsuario != 0 && idUsuario != null){
                 img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
                 img.style.borderRadius = "80%";
             }
+            carregarListasTipo1();
         })
     xhr.send();
 
@@ -129,7 +130,7 @@ if(idUsuario != 0 && idUsuario != null){
 
     //Mostra os resultados na tela 
     function mostrar(reunioes){
-
+        
         var reunioesMarcadas = [];
         var historico = [];
         for (let i = 0; i < reunioes.length; i++) {
@@ -198,7 +199,7 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria a imagem dentro da coluna 1
             var img = document.createElement("img");
             img.className = "img-usuario";
-            img.src = usuario.fotoUsuario;
+            img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
             img.alt="Foto Usuario";
             img.title="Foto do Usuário";
 
@@ -291,7 +292,7 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria a imagem dentro da coluna 1
             var img = document.createElement("img");
             img.className = "img-usuario";
-            img.src = usuario.fotoUsuario;
+            img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
             img.alt="Foto Usuario";
             img.title="Foto do Usuário";
 
@@ -407,7 +408,7 @@ if(idUsuario != 0 && idUsuario != null){
             for (let i = 0; i < dadosRelatorio.length; i++) {
                 relatorios.push(dadosRelatorio[i]);
             }
-   
+
             //Ordena a tabela pela data 
             for (var i = 0; i < relatorios.length; i++) {
 
@@ -452,7 +453,7 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria a imagem dentro da coluna 1
             var img = document.createElement("img");
             img.className = "img-usuario";
-            img.src = usuario.fotoUsuario;
+            img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
             img.alt="Foto Usuario";
             img.title="Foto do Usuário";
 
