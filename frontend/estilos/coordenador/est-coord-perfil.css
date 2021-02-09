@@ -245,6 +245,14 @@ form{
 }
 
 /*
+Config. da section
+*/
+section{
+    width: 100%;
+    height: 100%;
+}
+
+/*
 Config. da coluna da linha 
 */
 td{
@@ -394,6 +402,7 @@ Config da div de imagem
     position: fixed;
     border-radius: 3%;
     display: none;
+    margin-top: 2%;
 }
 #img{
     width: 100%;
@@ -441,11 +450,13 @@ Config. dos componentes de add de imagem
     padding: 0;
     margin-left: 2%;
 }
-#img-sec{
-    width: 100%;
-    height: 100%;
-    position: absolute;
+#idBotaoFechar{
+    width: 40%;
+    height: 40%;
 }
+
+
+
 
 
 
