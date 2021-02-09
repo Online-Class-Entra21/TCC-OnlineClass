@@ -3,55 +3,66 @@
     <head>
         <meta charset="utf-8">
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet"  href="/frontend/estilos/professor/est-prof-relatorio.css">
-        <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet"  href="/frontend/estilos/professor/est-prof-relatorio.css">
+  <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
         <title> Relatórios</title>
+    
     </head>
-
     <body>
-        <div id="mostrar"></div>
-    <div id="menu">
-        <div id="menu-titulo">
+
+        <!-- Menu latral -->
+     <div id="mostrar"></div>
+       <div id="menu">
+          <div id="menu-titulo">
             <h4 id="idMenuTitulo">Professor</h4>
-        </div>
-        <section id="Atividade" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/atividade.png" alt="Atividade" title="Atividade" class="img-opcoes">
-                <a href="/frontend/paginas/professor/prof-atividade.html">Postar Atividade</a>
-            </figure>
+          </div>
+       
+          <section id="Atividade" class="opcoes"> <!--Opção Postar atividade-->
+          <figure class="figure-opcoes">
+             <img src="/frontend/imagens/atividade.png" alt="Atividade" title="Atividade" class="img-opcoes">
+             <a href="/frontend/paginas/professor/prof-atividade.html">Postar Atividade</a>
+          </figure>
         </section>
-        <section id="Aula" class="opcoes">
+
+        <section id="Aula" class="opcoes"> <!--Opção Marcar aula-->
             <figure class="figure-opcoes">
                 <img src="/frontend/imagens/aula-online.png" alt="Aula" title="Aula" class="img-opcoes">
                 <a href="/frontend/paginas/professor/prof-aula.html">Marcar Aula</a>
             </figure>
         </section>
-        <section id="Nota" class="opcoes">
+
+        <section id="Nota" class="opcoes"> <!--Opção Postar Nota-->
             <figure class="figure-opcoes">
                 <img src="/frontend/imagens/notas.png" alt="Nota" title="Nota" class="img-opcoes">
                 <a href="/frontend/paginas/professor/prof-nota.html">Postar Nota</a>
             </figure>
         </section>
-        <section id="Relatorio" class="opcoes">
+
+        <section id="Relatorio" class="opcoes"> <!--Opção Relatórios-->
             <figure class="figure-opcoes">
                 <img src="/frontend/imagens/relatorios.png" alt="Relatorio" title="Relatorio" class="img-opcoes">
                 <a href="/frontend/paginas/professor/prof-relatorio.html">Relatórios</a>
             </figure>
         </section>
-        <section id="tela-principal" class="opcoes">
+
+        <section id="tela-principal" class="opcoes"> <!--Opção Tela Principal-->
             <figure class="figure-opcoes">
                 <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
                 <a href="/frontend/paginas/professor/prof-principal.html">Tela Principal</a>
             </figure>
         </section>
-        <section id="sair" class="opcoes">
+
+        <section id="sair" class="opcoes"> <!--Opção Sair-->
             <figure class="figure-opcoes">
                 <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
                 <a id="ancoraSair" href="/frontend/index.html">Sair</a>
             </figure>
         </section>
-    </div>
+
+    </div> <!--Fim Menu Lateral-->
+
+    <!-- Cabecalho -->
     <header>
         <nav id="cabecalho">
             <div id="lado-esquerdo">
@@ -71,18 +82,18 @@
     </header>
 
     <main>
-        <div class="Principal container">
+        <div class="Principal container"><!--Div Principal-->
             <div class="row">
-
-        <div class="postar col-md-4 col-xl-6">
-            <form class="relatorio form-group">
-                <label class="tipoRel lead pt-4" for="idNomReu">Nome</label><br>
+            <div class="postar col-md-4 col-xl-6"> <!--Div Conteúdo-->
+           
+                <form class="relatorio form-group">
+                <label class="tipoRel lead pt-4" for="idNomReu">Nome</label><!--Selecionar Remetente-->
                 <input class="tipoRel form-control"  type="text" id="idNomRel" name="nmReu">
 
-                <label class="tipoRel lead pt-3" for="idDestinatario">Destinatário</label><br>
+                <label class="tipoRel lead pt-3" for="idDestinatario">Destinatário</label><!--Selecionar Destinatário-->
                 <input class="tipoRel form-control"  type="email" id="idDestinatario" name="nmDestinatario">
 
-                <label class="tipoRel lead pt-3"  for="idAssuntoRel">Assunto</label><br>
+                <label class="tipoRel lead pt-3"  for="idAssuntoRel">Assunto</label> <!--Selecionar Assunto-->
                 <select name="tipoUser" id="idAssuntoRel" class="tipoRel form-control">
                     <option>-Selecione o tipo de usuario</option>
                     <option>-Selecione o assunto</option>
@@ -92,14 +103,17 @@
                     <option>-Outro</option>
                 </select>
 
-                <textarea name="mensagem" class="mensagem form-control mt-5" placeholder="Escreva algo..."></textarea>
-                <div class="custom-file mt-3">
+                <textarea name="mensagem" class="mensagem form-control mt-5" placeholder="Escreva algo..."></textarea> <!--Área de Texto-->
+              
+                <div class="custom-file mt-3"> <!--Adicionar Arquivo-->
                     <input class="custom-file-input " type="file" id="arquivo">
                     <label class="custom-file-label">Selecione arquivo</label>
                 </div>
+
             <input type="button" value="Enviar Relatório" class="btn btn-primary mt-4" onclick="alert('Relatório enviado')">
-    </div>
-            </main>
+        </div>
+    </main>
+               <!-- JS - Script -->
             <script src="/frontend/scripts/professor/script-prof-relatrio.js"></script>
     </body>
 </html>

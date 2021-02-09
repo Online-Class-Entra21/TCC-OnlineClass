@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" href="/frontend/estilos/professor/est-prof-atividade.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title> Postagem de Atividades</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <!-- Icone da página -->
+        <link rel="sortcut icon" href="/frontend/imagens/Logo-OnlineClass.png" type="image/x-icon"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS-->
+        <link rel="stylesheet" href="/frontend/estilos/professor/est-prof-atividade.css">
+        <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
+        <title>Postagem de Atividades</title>
+    </head>
 
 <body>
-
+    
     <div id="mostrar"></div>
     <div id="menu">
         <div id="menu-titulo">
@@ -109,20 +111,15 @@
                     <input class="arq3 custom-file-input" type="file" name="nmFile" id="idFile">
                 </div>
 
-
-
                 <textarea name="mensagem" class="descricao form-control"
                     placeholder="Insira um breve resumo..."></textarea>
 
-                <button class=" marcar btn-secondary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
-
-
-
-
+                <button class=" marcar btn-primary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
             </form>
 
         </div>
     </main>
+       <!-- JS - Script -->
     <script src="/frontend/scripts/professor/script-prof-atividade.js"></script>
 </body>
 

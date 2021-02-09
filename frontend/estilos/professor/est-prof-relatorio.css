@@ -1,29 +1,30 @@
+/* Config. All*/
 *{
-    font-family: Arial, Helvetica, sans-serif;
-    
+    font-family: Arial, Helvetica, sans-serif; 
 }
+
 /* Config.Relatório*/
-
 .Principal{
-
     align-items: center;
     display: flex;
 }
+
+/* Config. mensagem relatório*/
 .mensagem{
     min-width:80vh;
     min-height: 50vh;
     max-width: 80vh;
     max-height: 50vh;
     padding-left: 1%;
-
 }
+
+/* Config. inputs/ labels relatório*/
 .tipoRel{
     max-width: 50vh;
     max-height: 50vh;
 }
-/*
-Config. padrao da barra 
-*/
+
+/* Config. padrao da barra */
 body, html{
     height: 100%;
     width: 100%;
@@ -32,41 +33,30 @@ body, html{
     border: 0;
 }
 
-/*
-Config. do header
-*/
+/* Config. do header */
 header{
     height: 10%;
     width: 100%;
 }
 
-/*
-Config. das ancoras 
-*/
+/* Config. das ancoras */
 a{
    text-decoration: none;
    margin-left: 3%;
    color: white;
 }
 
-/* 
-link que ainda não foi visitado 
-*/
+/* link que ainda não foi visitado */
 a:link {
     color: white;
 }
 
-/* 
-link que foi visitado 
-*/
+/* link que foi visitado */
 a:visited {
      color: white;
 }
 
-
-/*
-Config figures opcoes e img opcoes
-*/
+/* Config figures opcoes e img opcoes */
 .figure-opcoes{
     width: 100%;
     height: 100%;
@@ -89,9 +79,7 @@ Config figures opcoes e img opcoes
     text-decoration: none;
 }
 
-/*
-Config. das opcoes do menu 
-*/
+/* Config. das opcoes do menu */
 .opcoes{
     width: 100%;
     height: 8%;
@@ -109,9 +97,7 @@ Config. de nav - cabecalho
     background-color:black;
 }
 
-/*
-Config. das div do cabecalho
-*/
+/* Config. das div do cabecalho */
 #lado-esquerdo{
     float: left;
     width: 30%;
@@ -123,18 +109,14 @@ Config. das div do cabecalho
     height: 100%;
 }
 
-/*
-Config. da div que mostra o menu 
-*/
+/* Config. da div que mostra o menu */
 #mostrar{
     width: 1%;
     height: 100%;
     position: absolute;
 }
 
-/*
-Config. do menu 
-*/
+/* Config. do menu */
 #menu{
     width: 42vh;
     height: 100%;
@@ -146,9 +128,7 @@ Config. do menu
     z-index: 999;
 }
 
-/*
-Config. do titulo de diretor 
-*/
+/* Config. do titulo de diretor */
 #menu-titulo{
     cursor: default;
     align-items: center;
@@ -160,9 +140,7 @@ Config. do titulo de diretor
     color: white;
 }
 
-/*
-Config. div do menu
-*/
+/* Config. div do menu */
 #botao-menu{
     width: 50%;
     height: 100%;
@@ -172,9 +150,7 @@ Config. div do menu
     margin-left: 7%;
 }
 
-/*
-Config. do botao do menu 
-*/
+/* Config. do botao do menu */
 #figure-menu{
     width: 8vh;
     margin: 0;
@@ -185,9 +161,7 @@ Config. do botao do menu
     height: auto;
 }
 
-/*
-Config. da div da barra no lado direito
-*/
+/* Config. da div da barra no lado direito */
 #lado-direito{
     align-items: center;
     display: flex;
@@ -195,9 +169,7 @@ Config. da div da barra no lado direito
     margin: 0;
 }
 
-/*
-Config. img-perfil
-*/
+/* Config. img-perfil */
 #figure-perfil{
     width: 100%;
     height: 100%;
@@ -214,9 +186,7 @@ Config. img-perfil
     height: auto;
 }
 
-/*
-Config. Dados do usuario 
-*/
+/* Config. Dados do usuario */
 #idNomeUsuario{
     color: white;
     float: left;
@@ -229,13 +199,7 @@ Config. Dados do usuario
     height: 10%;
 }
 
-/*
-Config. da div do botão de saida 
-*/
+/* Config. da div do botão de saida */
 #sair{
     margin-top: 80%;
 }
-
-
-
-/* FIM TAG */

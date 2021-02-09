@@ -9,56 +9,66 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>Controle de Salas</title>
     </head>
-
-    <body>
+    <body>  
+        <!-- Menu lateral -->
         <div id="mostrar"></div>
         <div id="menu">
             <div id="menu-titulo">
                 <h4 id="idMenuTitulo">Coordenador</h4>
             </div>
-            <section id="perfil" class="opcoes">
+    
+            <section id="perfil" class="opcoes"> <!--Opção Perfil-->
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/dir-perfil.png" alt="Perfil" title="Perfil" class="img-opcoes">
                     <a href="/frontend/paginas/coordenador/coord-perfil.html">Perfil</a>
                 </figure>
             </section>
-            <section id="Alunos" class="opcoes">
+    
+            <section id="Alunos" class="opcoes"> <!--Opção Controle de Alunos-->
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/alunos.png" alt="Alunos" title="Alunos" class="img-opcoes">
                     <a href="/frontend/paginas/coordenador/coord-alunos.html">Controle de Alunos</a>
                 </figure>
             </section>
-            <section id="Turmas" class="opcoes">
+    
+            <section id="Turmas" class="opcoes"> <!--Opção Controle de Turmas-->
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/turma.png" alt="Turmas" title="Turmas" class="img-opcoes">
                     <a href="/frontend/paginas/coordenador/coord-turmas.html">Controle de Turmas</a>
                 </figure>
             </section>
-            <section id="reunioes" class="opcoes">
+    
+            <section id="reunioes" class="opcoes"> <!--Opção Relatórios-->
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/relatorio.png" alt="Relatorios" title="Relatorios" class="img-opcoes">
                     <a href="/frontend/paginas/coordenador/coord-relatorios.html">Relatórios</a>
                 </figure>
             </section>
-            <section id="reunioes" class="opcoes">
+    
+            <section id="reunioes" class="opcoes"> <!--Opção Reuniões-->
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/videoconferencia.png" alt="Reunioes" title="Reuniões" class="img-opcoes">
                     <a href="/frontend/paginas/coordenador/coord-reunioes.html">Reuniões</a>
                 </figure>
             </section>
-            <section id="tela-principal" class="opcoes">
+    
+            <section id="tela-principal" class="opcoes"> <!--Opção Tela Principal-->
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
                     <a href="/frontend/paginas/coordenador/coord-principal.html">Tela Principal</a>
                 </figure>
             </section>
-            <section id="sair" class="opcoes">
+    
+            <section id="sair" class="opcoes"> <!--Opção Sair-->
                 <figure class="figure-opcoes">
                     <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
                     <a id="ancoraSair" href="/frontend/index.html">Sair</a>
                 </figure>
             </section>
-        </div>
+    
+        </div> <!--Final do Menu Lateral-->
+    
+        <!--Cabeçalho-->
         <header>
             <nav id="cabecalho">
                 <div id="lado-esquerdo">
@@ -75,76 +85,83 @@
                     </figure>
                 </div>
             </nav>
-        </header>
-		<main>
+        </header> <!--Fim Cabeçalho-->
 
-            <main>
-                <div class="Principal container">
-                    <h2 id="TForm" class="mt-5 pb-5" >Controle de Salas</h2>  
+        <main> <!--Inicio Main-->
+
+         <div class="Principal container"> <!--Div Pincipal-->
+             <h2 id="TForm" class="mt-5 pb-5" >Controle de Salas</h2>  
                 
-                        <div id="fPessoas" class="dados mt-4 col-md-5 col-xl-4">
-                        <form>
-                            <div class="form-group">
-                                <label for="txtCodigo">Código</label>
-                                <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="txtNome">Nome</label>
-                                <input type="text" class="form-control" id="txtNome" aria-describedby="emailHelp" placeholder="Nome">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtTipo">Tipo de sala</label><br>
-                                <select class="form-control" id="txtTipo" >
-                                    <option>-Selecione o tipo</option>
-                                    <option>-Oficial</option>
-                                    <option>-Professor</option>
-                                    <option>-Aluno</option>
-                                    <option>-Coordenador</option>
-                                    <option>-Diretor</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="txtData">Data da Reunião</label>
-                                <input type="datetime-local" class="form-control" id="txtData" placeholder="Data da Reunião">
-                            </div>
-                            <div class="form-group">
-                                <label for="txtDono">Dono ㅤ</label>
-                                <input type="text" class="form-control" id="txtDono" placeholder="Dono">
-                            </div>
-                            <button type="button" class="p-1 m-1 btn-primary btn-lg"
-                            onclick="cadSalas(txtNome.value, txtTipo.value, txtData.value, txtDono.value)">
-                        Cadastrar  
-                        <button type="button" class="p-1 m-1 btn-primary btn-lg"
-                        onclick="altPessoa(txtNome.value, txtTipo.value, txtData.value, txtDono.value)">
-                    Atualizar
-                        <button type="button" class="p-1 m-1 btn-danger btn-lg" id="idBtn"
-                    onclick="delRegistro()">Excluir
-                        </form>
-                        </div>
-                     </div>
-            
-                <div class="col-md-6 col-xl-6">
-                <div id="dGridPessoas ">
-            
-                    <table class="table" id="tbPessoas" class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Tipo</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Dono</th>
-                            </tr>
-                        </thead>
-                    </table>
+            <div id="fPessoas" class="dados mt-4 col-md-5 col-xl-4"> <!--Div de Cadastro de dados-->
+                <form> <!--Inicio Form-->
+
+                <div class="form-group"><!--Cod Sala-->
+                    <label for="txtCodigo">Código</label>
+                    <input type="text" class="form-control" id="txtCodigo" aria-describedby="emailHelp" placeholder="Código" readonly>
+                 </div>
+
+                <div class="form-group"><!--Selecionar Nome da sala-->
+                    <label for="txtNome">Nome</label>
+                   <input type="text" class="form-control" id="txtNome" aria-describedby="emailHelp" placeholder="Nome">
                 </div>
-            </div>
-            </div>
-                </main>
 
-	</main>
+                 <div class="form-group"><!--Selecionar Tipo da Sala-->
+                    <label for="txtTipo">Tipo de sala</label>
+                    <select class="form-control" id="txtTipo" >
+                        <option>-Selecione o tipo</option>
+                        <option>-Oficial</option>
+                        <option>-Professor</option>
+                        <option>-Aluno</option>
+                        <option>-Coordenador</option>
+                        <option>-Diretor</option>
+                    </select>
+                </div>
 
+                <div class="form-group"><!--Selecionar Data da reunião-->
+                    <label for="txtData">Data da Reunião</label>
+                    <input type="datetime-local" class="form-control" id="txtData" placeholder="Data da Reunião">
+                </div>
+
+                <div class="form-group"><!--Selecionar Dono da reunião-->
+                    <label for="txtDono">Dono ㅤ</label>
+                    <input type="text" class="form-control" id="txtDono" placeholder="Dono">
+                </div>
+        
+                <button type="button" class="p-1 m-1 btn-primary btn-lg"
+                    onclick="cadSalas(txtNome.value, txtTipo.value, txtData.value, txtDono.value)">Cadastrar  <!--Botão de Cadastro de Sala-->
+                
+                <button type="button" class="p-1 m-1 btn-primary btn-lg"
+                onclick="altPessoa(txtNome.value, txtTipo.value, txtData.value, txtDono.value)">Atualizar <!--Botão de atualização Sala-->
+                        
+                <button type="button" class="p-1 m-1 btn-danger btn-lg" id="idBtn"
+                onclick="delRegistro()">Excluir <!--Botão de Excluir Sala-->
+        
+            </form>
+        </div><!--Final Div cadastro de dados-->
+    </div> <!--Final Div Principal-->
+            
+        <div class="col-md-6 col-xl-6"> <!--Inicio Div Tabela de cadastros-->
+        <div id="dGridPessoas ">
+            
+            <table class="table" id="tbPessoas" class="table table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Dono</th>
+                </tr>
+                </thead>
+            </table>
+
+        </div> 
+    </div> <!--Final div Tabelas de cadastros-->
+
+</main> <!--Final Main-->
+
+            <!--Script-->
     <script src="/frontend/scripts/coordenador/script-coord-salas.js"></script>
-    </body>
-  
+
+</body>
 </html>

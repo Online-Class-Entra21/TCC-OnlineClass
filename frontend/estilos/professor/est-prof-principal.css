@@ -1,16 +1,10 @@
-/*
-Config. para todos os elementos 
-*/
+/* Config. para todos os elementos */
 *{
     font-family: Arial, Helvetica, sans-serif;
 }
-
-/*
-Config. Post-it
-*/
+/* Config. Sininho */
 #check2{
     display: none;
-   
 }
 #check2:checked ~ .content{
     transform: translateY(291%);
@@ -28,7 +22,6 @@ Config. Post-it
     margin-left: 97%;
    display: block;
    position: fixed;
-  
 }
 ul{
     list-style-type: none;
@@ -43,7 +36,6 @@ li{
     border-bottom: 1px solid;
 
 }
-
 input[type=text]{
     width: 80%;
     height: 3vh;
@@ -59,8 +51,8 @@ button:hover, input[type=button]:hover{
     background: #ccc;
 }
 
-button, input[type=button]{ cursor: pointer; }
-
+button, input[type=button]{ cursor: pointer; 
+}
 button{
     float: right;
     width: 15%;
@@ -80,100 +72,12 @@ button{
     font-family: Arial;
     display: block;
    position: fixed;
-   overflow: hidden;
-  
-   
 }
 .content h2{
     text-align: center;
     color: white;
 }
-
-/* 
-config. calendario
-*/
-#check3{
-    display: none;
-   
-}
-#check3:checked ~ .calendario{
-    transform: translateY(220%);
-}
-
-#icone3{
-    cursor: pointer;
-    padding: 15px;
-    position: absolute;
-    z-index: 1;
-    margin-left: 47%;
-   width: 20px;
-   height: 20px;
-   display: block;
-   position: fixed;
-   
-}
-.calendario {
-    background-color: #00bd13;
-    height: 50%;
-    width: 65%;
-    position: absolute;
-    transition: all .2s linear;
-    margin-left: 20%;
-    top: -100%;
-    display: block;
-   position: fixed;
-   font-family: Arial, Helvetica, sans-serif;
- 
-}
-.cal {
-    
-    background-color:  white;
-    width: 19%;
-   height: 75% ;
-   text-align: center;
-   margin-top: 6%;
-   display: inline-block;
-   margin-left: 1.5%;
-  
-}
-.cal2{
-   background-color:  white;
-    width: 19%;
-   height: 75% ;
-   text-align: center;
-   margin-top: 6%;
-   display: inline-block;   
- }
- .cal3 {
-    background-color:  white;
-    width: 19%;
-   height: 75% ;
-   text-align: center;
-   margin-top: 6%;
-   display: inline-block;   
- }
- .cal4 {
-    background-color:  white;
-    width: 19%;
-   height: 75% ;
-   text-align: center;
-   margin-top: 6%;
-   display: inline-block;   
-   
- }
- .cal5 {
-    background-color:  white;
-    width: 19%;
-   height: 75% ;
-   text-align: center;
-   margin-top: 6%;
-   display: inline-block;   
-   
- }
-
-/*
-Config. padrao da barra 
-*/
+/* Config. padrao da barra */
 body, html{
     height: 100%;
     width: 100%;
@@ -182,41 +86,30 @@ body, html{
     border: 0;
 }
 
-/*
-Config. do header
-*/
+/* Config. do header */
 header{
     height: 10%;
     width: 100%;
 }
 
-/*
-Config. das ancoras 
-*/
+/* Config. das ancoras */
 a{
    text-decoration: none;
    margin-left: 3%;
    color: white;
 }
 
-/* 
-link que ainda não foi visitado 
-*/
+/* Link que ainda não foi visitado */
 a:link {
     color: white;
 }
 
-/* 
-link que foi visitado 
-*/
+/* Link que foi visitado */
 a:visited {
      color: white;
 }
 
-
-/*
-Config figures opcoes e img opcoes
-*/
+/* Config figures opcoes e img opcoes */
 .figure-opcoes{
     width: 100%;
     height: 100%;
@@ -239,9 +132,7 @@ Config figures opcoes e img opcoes
     text-decoration: none;
 }
 
-/*
-Config. das opcoes do menu 
-*/
+/* Config. das opcoes do menu */
 .opcoes{
     width: 100%;
     height: 8%;
@@ -250,18 +141,14 @@ Config. das opcoes do menu
     flex-direction: row;
 }
 
-/*
-Config. de nav - cabecalho
-*/
+/* Config. de nav - cabecalho */
 #cabecalho{
     height: 100%;
     width: 100%;
     background-color:black;
 }
 
-/*
-Config. das div do cabecalho
-*/
+/* Config. das div do cabecalho */
 #lado-esquerdo{
     float: left;
     width: 30%;
@@ -273,18 +160,14 @@ Config. das div do cabecalho
     height: 100%;
 }
 
-/*
-Config. da div que mostra o menu 
-*/
+/* Config. da div que mostra o menu  */
 #mostrar{
     width: 1%;
     height: 100%;
     position: absolute;
 }
 
-/*
-Config. do menu 
-*/
+/* Config. do menu */
 #menu{
     width: 42vh;
     height: 100%;
@@ -296,9 +179,7 @@ Config. do menu
     z-index: 999;
 }
 
-/*
-Config. do titulo de diretor 
-*/
+/* Config. do titulo de diretor */
 #menu-titulo{
     cursor: default;
     align-items: center;
@@ -310,9 +191,7 @@ Config. do titulo de diretor
     color: white;
 }
 
-/*
-Config. div do menu
-*/
+/* Config. div do menu */
 #botao-menu{
     width: 50%;
     height: 100%;
@@ -322,9 +201,7 @@ Config. div do menu
     margin-left: 7%;
 }
 
-/*
-Config. do botao do menu 
-*/
+/* Config. do botao do menu  */
 #figure-menu{
     width: 8vh;
     margin: 0;
@@ -335,9 +212,7 @@ Config. do botao do menu
     height: auto;
 }
 
-/*
-Config. da div da barra no lado direito
-*/
+/* Config. da div da barra no lado direito */
 #lado-direito{
     align-items: center;
     display: flex;
@@ -345,9 +220,7 @@ Config. da div da barra no lado direito
     margin: 0;
 }
 
-/*
-Config. img-perfil
-*/
+/* Config. img-perfil */
 #figure-perfil{
     width: 100%;
     height: 100%;
@@ -364,9 +237,7 @@ Config. img-perfil
     height: auto;
 }
 
-/*
-Config. Dados do usuario 
-*/
+/* Config. Dados do usuario  */
 #idNomeUsuario{
     color: white;
     float: left;
@@ -378,9 +249,7 @@ Config. Dados do usuario
     width: 10%;
     height: 10%;
 }
-/*
-Config. da div do botão de saida 
-*/
+/* Config. da div do botão de saida  */
 #sair{
     margin-top: 80%;
 }
