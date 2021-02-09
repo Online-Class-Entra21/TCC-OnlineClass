@@ -1,6 +1,7 @@
 package entidade;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  * Classe contendo metodos e atributos para a turma.
@@ -14,8 +15,8 @@ public class Turma {
     private int idTurma;
     private String ano;
     private int qtdAluno;
-    private Time horarioInicioAula;
-    private Time horarioFinalAula;
+    private Timestamp horarioInicioAula;
+    private Timestamp horarioFinalAula;
     private int fk_sala;
     private int fk_escola;
     
@@ -36,7 +37,7 @@ public class Turma {
      * @param fk_sala
      * @param fk_escola
      */
-	public Turma(int idTurma, String ano, int qtdAluno, Time horarioInicioAula, Time horarioFinalAula, int fk_sala, int fk_escola) {
+	public Turma(int idTurma, String ano, int qtdAluno, Timestamp horarioInicioAula, Timestamp horarioFinalAula, int fk_sala, int fk_escola) {
 		
 		setIdTurma(idTurma);
 		setAno(ano);
@@ -98,7 +99,7 @@ public class Turma {
      * Metodo para retorno do horario inicial da aula
      * @return Time horarioInicioAula
      */
-    public Time getHorarioInicioAula() {
+    public Timestamp getHorarioInicioAula() {
         return horarioInicioAula;
     }
     
@@ -106,7 +107,7 @@ public class Turma {
      * Metodo de insercao do horario inicial da aula 
      * @param Time horarioInicioAula
      */
-    public void setHorarioInicioAula(Time horarioInicioAula) {
+    public void setHorarioInicioAula(Timestamp horarioInicioAula) {
 		this.horarioInicioAula = horarioInicioAula;
 	}
 
@@ -114,7 +115,7 @@ public class Turma {
      * Metodo para retorno do horario final da aula
      * @return Time horarioFinalAula
      */
-    public Time getHorarioFinalAula() {
+    public Timestamp getHorarioFinalAula() {
         return horarioFinalAula;
     }
     
@@ -122,7 +123,7 @@ public class Turma {
      * Metodo de insercao do horario final da aula
      * @param Time horarioFinalAula
      */
-    public void setHorarioFinalAula(Time horarioFinalAula) {
+    public void setHorarioFinalAula(Timestamp horarioFinalAula) {
 		this.horarioFinalAula = horarioFinalAula;
 	}
 
