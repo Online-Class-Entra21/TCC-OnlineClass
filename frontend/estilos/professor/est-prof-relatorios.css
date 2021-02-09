@@ -1,26 +1,14 @@
+/**************************
+Config. do menu padrao
+***************************/
+
+/*
+Config. para todos os elementos 
+*/
 *{
     font-family: Arial, Helvetica, sans-serif;
-    
 }
-/* Config.Relatório*/
 
-.Principal{
-
-    align-items: center;
-    display: flex;
-}
-.mensagem{
-    min-width:80vh;
-    min-height: 50vh;
-    max-width: 80vh;
-    max-height: 50vh;
-    padding-left: 1%;
-
-}
-.tipoRel{
-    max-width: 50vh;
-    max-height: 50vh;
-}
 /*
 Config. padrao da barra 
 */
@@ -38,6 +26,14 @@ Config. do header
 header{
     height: 10%;
     width: 100%;
+}
+
+/*
+Config. do main 
+*/
+main{
+    width: 100%;
+    height: 90%;
 }
 
 /*
@@ -63,7 +59,6 @@ a:visited {
      color: white;
 }
 
-
 /*
 Config figures opcoes e img opcoes
 */
@@ -78,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color: #00bd13;
+    color:#00bd13;
 }
 .img-opcoes{
     width: 9%;
@@ -143,7 +138,8 @@ Config. do menu
     border-color: white;
     position: absolute;
     display: none;
-    z-index: 999;
+    position: fixed;
+    z-index: 9999;
 }
 
 /*
@@ -233,9 +229,34 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 80%;
+    margin-top: 35%;
 }
 
+/**************************
+Config. das alteracoes especificas
+***************************/
 
+.Principal{
+    align-items: center;
+    display: flex;
+}
+.mensagem{
+    min-width:80vh;
+    min-height: 50vh;
+    max-width: 80vh;
+    max-height: 50vh;
+    padding-left: 1%;
+}
+.tipoRel{
+    max-width: 50vh;
+    max-height: 50vh;
+}
 
-/* FIM TAG */
+/*
+Config. da area de texto
+*/
+#texto-area{
+    margin-top: 10%;
+    width: 50vh;
+    height: 30vh;
+}

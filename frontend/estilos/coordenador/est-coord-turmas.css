@@ -241,6 +241,11 @@ Config. Tabela
 }
 #TForm{
    text-align: center;
+   padding-bottom: 0px;
+}
+
+#form-radio {
+    padding: 0px
 }
 
 .dados{
