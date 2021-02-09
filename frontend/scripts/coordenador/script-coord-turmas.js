@@ -1,3 +1,8 @@
+/*
+var fk_escola = sessionStorage.getItem('escolaUsuario');
+var idUsuario = sessionStorage.getItem('idUsuario');
+carregarSelect();
+
 //Evento de abertura do menu 
 document.getElementById("mostrar").addEventListener("mouseover", function(){
     abrirMenu();
@@ -16,70 +21,59 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
-
-//Evento de Cadastro
-var cadturmas, index;
-
-function cadTurma(turma, turno, numAlu) {
-    cadturmas = document.getElementById("tbPessoas");    
-    var qtdlLinhas = cadturmas.rows.length;
-    var linha = cadturmas.insertRow(qtdlLinhas);
-    var linhaParam;
-
-    var cellCodigo = linha.insertCell(0);
-    var cellTurma = linha.insertCell(1);
-    var cellTurno = linha.insertCell(2);
-    var cellNumAlu = linha.insertCell(3);
-
-    cellCodigo.innerHTML = qtdlLinhas;
-    cellTurma.innerHTML = turma;
-    cellTurno.innerHTML = turno;
-    cellNumAlu.innerHTML = numAlu;
-    preencheCamposForm();
-    
-
-}
-//Evento de Alteração
-function altPessoa(turma, turno, numAlu) {
-
-
-    cadturmas.rows[index].cells[1].innerHTML = turma;
-    cadturmas.rows[index].cells[2].innerHTML = turno;
-    cadturmas.rows[index].cells[3].innerHTML = numAlu;
-   
-
-}
-//Evento de preenchimento
-function preencheCamposForm() {
-
-    for(var i = 0; i < cadturmas.rows.length; i++) 
-    {
-
-       cadturmas.rows[i].onclick = function() 
-        {
-            index = this.rowIndex;
-            document.getElementById("txtCodigo").value = cadturmas.rows[index].cells[0].innerText;
-            document.getElementById("txtTurma").value = cadturmas.rows[index].cells[1].innerText;
-            document.getElementById("txtTurno").value = cadturmas.rows[index].cells[2].innerText;
-            document.getElementById("txtNumAlu").value = cadturmas.rows[index].cells[3].innerText;
-
-        }
+//Método para os botões radio
+function eventoRadio(radioB) {
+    var opcaoEscolhida = radioB.value;
+    if (opcaoEscolhida == 'cadastrar') {
+        document.getElementById('SelectTurma').disabled = true;
+        document.getElementById('idBtn').hidden = true;
+        document.getElementById('inputNome').disabled = false;
+        document.getElementById('InputQtdAlunos').disabled = true;
+        document.getElementById('inputHoraInicio').disabled = false;
+        document.getElementById('inputHoraFinal').disabled = false;
+        document.getElementById('btnCadastrar').textContent = 'Cadastrar'
+        document.getElementById('btnCadastrar').hidden = false;
+        $('#divSelect').css('display', 'none');
+        $("#tbLista").empty();
+        document.getElementById("formulario").reset();
+    } else {
+        document.getElementById('inputNome').disabled = true;
+        document.getElementById('InputQtdAlunos').disabled = true;
+        document.getElementById('inputHoraInicio').disabled = true;
+        document.getElementById('inputHoraFinal').disabled = true;
+        document.getElementById('SelectTurma').disabled = false;
+        document.getElementById('idBtn').hidden = false;
+        document.getElementById('btnCadastrar').textContent = 'Atualizar'
+        document.getElementById('btnCadastrar').hidden = true;
+        $('#divSelect').css('display', 'block');
     }
 }
 
-//Evento de delete
-function delRegistro() {
-
-    for(var i = 0; i < cadturmas.rows.length; i++) 
-    {
-        if (index == i) {
-            cadturmas.deleteRow(index);
-           
-            return;
-        }
+//Método para o select
+$( "#SelectTurma" ).change(function() { 
+    var turmaEscolhida = $('#SelectTurma :selected').val();
+    var nomeTurmaEscolhida = $('#SelectTurma :selected').text();
+    $("#tbLista").empty();
+    if (turmaEscolhida == 'default') {
+        document.getElementById('inputNome').value = '';
+        document.getElementById('InputQtdAlunos').value = '';
+        document.getElementById('inputHoraInicio').value = '';
+        document.getElementById('inputHoraFinal').value = '';
+        document.getElementById('inputNome').disabled = true;
+        document.getElementById('InputQtdAlunos').disabled = true;
+        document.getElementById('inputHoraInicio').disabled = true;
+        document.getElementById('inputHoraFinal').disabled = true;
+        document.getElementById('btnCadastrar').hidden = true;
+    } else {
+        document.getElementById('btnCadastrar').hidden = false;
+        document.getElementById('inputNome').disabled = false;
+        document.getElementById('InputQtdAlunos').disabled = true;
+        document.getElementById('inputHoraInicio').disabled = false;
+        document.getElementById('inputHoraFinal').disabled = false;
+        carregarListaAlunos(turmaEscolhida, nomeTurmaEscolhida);
+        carregarCampos(turmaEscolhida);
     }
-}
-
+});  
 
 //Método para o cadastro de uma turma
 async function cadastrar() {
@@ -89,15 +83,17 @@ async function cadastrar() {
     }else{
         //Coleta os dados do input
         var turma = document.getElementById('inputNome').value;
-        var horaInicioAula = document.getElementById('inputHorarioInicial').valueAsDate;
-        var horaFinalAula = document.getElementById('inputHorarioFinal').valueAsDate;
-        
+        var horaInicioAula = new Date(document.getElementById('inputHoraInicio').valueAsDate);
+        var horaFinalAula = new Date(document.getElementById('inputHoraFinal').valueAsDate);
+        horaInicioAula.setHours(horaInicioAula.getHours()+3);
+        horaFinalAula.setHours(horaFinalAula.getHours()+3);
         var inserirTurma = {
             ano: turma,
-            horainicioaula: horaInicioAula,
-            horafinalaula: horafinalaula,
             qtdaluno: null,
-            fk_sala: null
+            horarioInicioAula: horaInicioAula,
+            horarioFinalAula: horaFinalAula,
+            fk_sala: 1,
+            fk_escola: fk_escola
         }
 
         //Converte para JSON
@@ -110,6 +106,16 @@ async function cadastrar() {
             alert("Ocorreu um erro ao cadastrar a turma.")
         } else {
             alert("Turma cadastrada com sucesso.")
+            document.getElementById('inputNome').value = '';
+            document.getElementById('InputQtdAlunos').value = '';
+            document.getElementById('inputHoraInicio').value = '';
+            document.getElementById('inputHoraFinal').value = '';
+            $("#SelectTurma").empty();
+            var opt = document.createElement("option");
+            opt.value = "default";
+            opt.textContent = "Selecione uma turma"
+            document.getElementById("SelectTurma").append(opt)
+            carregarSelect();
         }
     }
 }
@@ -127,8 +133,9 @@ async function atualizar() {
             ano: document.getElementById('inputNome').value,
             horainicioaula: document.getElementById('inputHorarioInicial').valueAsDate,
             horafinalaula: document.getElementById('inputHorarioFinal').valueAsDate,
-            qtdaluno: document.getElementById('inputQtdAluno').value,
-            fk_sala: document.getElementById('inputFk_Escola').value
+            qtdaluno: null,
+            fk_sala: null,
+            fk_escola: document.getElementById('inputFk_Escola').value
         }
         var turmaJson = JSON.stringify(alterarTurma);
         var updateEscola = await usarApi("PUT", "http://localhost:8080/api/turma/alterar/"+codigoEscola+"/"+turmaJson);
@@ -144,27 +151,49 @@ async function atualizar() {
             
 }
 
+//Método para carregar o select com as turmas existentes
+async function carregarSelect() {
+    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/escola/"+fk_escola);
+    var turmas = JSON.parse(resposta);
+    var select = document.getElementById('SelectTurma');
+
+    for (let index = 0; index < turmas.length; index++) {
+        
+        var option = document.createElement('option')
+        option.textContent = turmas[index].ano;
+        option.value = turmas[index].idTurma;
+        option.classList.add('optionTurmas')
+
+        select.append(option);
+    }
+}
+
 //Método para carregar os campos da turma selecionada
-async function carregarCampos() {
+async function carregarCampos(turma) {
     //Busca os dados da turma selecionado no checkbox 
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + idUsuario)
+    var resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + turma)
     var turma = JSON.parse(resposta)
 
     //Dados Turma
-    document.getElementById('inputAno').value = turma.ano;
-    document.getElementById('InputQtdAlunos').value = turma.qtdaluno
-    document.getElementById('inputHoraInicio').value = turma.horainicioaula;
-    document.getElementById('inputHoraFinal').value = turma.horafinalaula;
-    
-    carregarListaAlunos();
-    
+    document.getElementById('inputNome').value = turma.ano;
+    document.getElementById('InputQtdAlunos').value = turma.qtdAluno
+    /*
+    var horaInicioAulaFormatado = turma.horarioInicioAula.slice(13, 20);
+    var horaFinalAulaFormatado = turma.horarioFinalAula.slice(13, 20);
+    console.log(horaInicioAulaFormatado.toISOString())
+    console.log(horaFinalAulaFormatado)
+    document.getElementById('inputHoraInicio').value = horaInicioAulaFormatado;
+    document.getElementById('inputHoraFinal').value = turma.horarioFinalAula;
+    */
+   /*
 }
 //Método para carregar a lista de alunos da turma selecionada
-async function carregarListaAlunos() {
+async function carregarListaAlunos(idTurma, nomeTurma) {
     //Faz a buscar na API
-    var resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + 3);
+    var resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + idTurma);
     var alunos = JSON.parse(resposta);
 
+    
     //Verifica se tem alguma escola no banco de dados
     if(alunos[0] == null){
         var tr = document.createElement("tr");
@@ -176,17 +205,17 @@ async function carregarListaAlunos() {
         var alunosIndex = []
         for (let i = 0; i < alunos.length; i++) {
 
+            resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + alunos[i].fk_usuario);
+            var usuarioNome = JSON.parse(resposta);
+
             alunosIndex.push(alunos[i]);
 
             var linha = document.createElement("tr");
             linha.classList.add("LinhaAlunos")
-            var colunaCod = document.createElement("td");
-            colunaCod.classList.add("colunaCodigo");
-            colunaCod.append(alunos[i].idaluno);
-            linha.append(colunaCod)
             var colunaNome = document.createElement("td");
             colunaNome.classList.add("colunaNome")
-            colunaNome.append(alunos[i].nome)
+            var nomeAluno = usuarioNome.nome+" "+usuarioNome.sobrenome;
+            colunaNome.append(nomeAluno)
             linha.append(colunaNome);
             var colunaMatricula = document.createElement("td");
             colunaMatricula.classList.add("colunaMatricula")
@@ -194,11 +223,15 @@ async function carregarListaAlunos() {
             linha.append(colunaMatricula);
             var colunaTurma = document.createElement("td");
             colunaTurma.classList.add("colunaTurma")
-           // colunaTurma.append(turma.ano)
-           // linha.append(colunaTurma);
+            colunaTurma.append(nomeTurma)
+            linha.append(colunaTurma);
 
             document.getElementById('tbLista').append(linha)
         }  
     }
 }
 
+async function deletarTurma() {
+
+}
+*/

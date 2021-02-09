@@ -30,8 +30,8 @@ public class TurmaDAO {
 		     
 		comandoSql.setString(1, turma.getAno());
 		comandoSql.setInt(2, turma.getQtdAluno());
-		comandoSql.setTime(3, turma.getHorarioInicioAula());
-		comandoSql.setTime(4, turma.getHorarioFinalAula());
+		comandoSql.setTimestamp(3, turma.getHorarioInicioAula());
+		comandoSql.setTimestamp(4, turma.getHorarioFinalAula());
 		comandoSql.setInt(5, turma.getFk_sala());
 		comandoSql.setInt(6, turma.getFk_escola());
 		
@@ -53,8 +53,8 @@ public class TurmaDAO {
 		    
 		comandoSql.setString(1, turma.getAno());
 		comandoSql.setInt(2, turma.getQtdAluno());
-		comandoSql.setTime(3, turma.getHorarioInicioAula());
-		comandoSql.setTime(4, turma.getHorarioFinalAula());
+		comandoSql.setTimestamp(3, turma.getHorarioInicioAula());
+		comandoSql.setTimestamp(4, turma.getHorarioFinalAula());
 		comandoSql.setInt(5, turma.getFk_sala());
 		comandoSql.setInt(6, turma.getFk_escola());
 		comandoSql.setInt(7, turma.getIdTurma());
@@ -101,8 +101,8 @@ public class TurmaDAO {
 			turma.setIdTurma(resultSet.getInt(1));
 			turma.setAno(resultSet.getString(2));
 			turma.setQtdAluno(resultSet.getInt(3));
-			turma.setHorarioInicioAula(resultSet.getTime(4));
-			turma.setHorarioFinalAula(resultSet.getTime(5));
+			turma.setHorarioInicioAula(resultSet.getTimestamp(4));
+			turma.setHorarioFinalAula(resultSet.getTimestamp(5));
 			turma.setFk_sala(resultSet.getInt(6));
 		}
 		comandoSql.close(); 
@@ -127,8 +127,8 @@ public class TurmaDAO {
 			turma.setIdTurma(resultSet.getInt(1));
 			turma.setAno(resultSet.getString(2));
 			turma.setQtdAluno(resultSet.getInt(3));
-			turma.setHorarioInicioAula(resultSet.getTime(4));
-			turma.setHorarioFinalAula(resultSet.getTime(5));
+			turma.setHorarioInicioAula(resultSet.getTimestamp(4));
+			turma.setHorarioFinalAula(resultSet.getTimestamp(5));
 			turma.setFk_sala(resultSet.getInt(6));
 			lista.add(turma); 
 		}
@@ -158,8 +158,8 @@ public class TurmaDAO {
 			turma.setIdTurma(resultSet.getInt(1));
 			turma.setAno(resultSet.getString(2));
 			turma.setQtdAluno(resultSet.getInt(3));
-			turma.setHorarioInicioAula(resultSet.getTime(4));
-			turma.setHorarioFinalAula(resultSet.getTime(5));
+			turma.setHorarioInicioAula(resultSet.getTimestamp(4));
+			turma.setHorarioFinalAula(resultSet.getTimestamp(5));
 			turma.setFk_sala(resultSet.getInt(6));
 		}
 		comandoSql.close(); 
@@ -191,8 +191,8 @@ public class TurmaDAO {
 			turma.setIdTurma(resultSet.getInt(1));
 			turma.setAno(resultSet.getString(2));
 			turma.setQtdAluno(resultSet.getInt(3));
-			turma.setHorarioInicioAula(resultSet.getTime(4));
-			turma.setHorarioFinalAula(resultSet.getTime(5));
+			turma.setHorarioInicioAula(resultSet.getTimestamp(4));
+			turma.setHorarioFinalAula(resultSet.getTimestamp(5));
 			turma.setFk_sala(resultSet.getInt(6));
 			turma.setFk_escola(resultSet.getInt(7));
 			lista.add(turma); 
