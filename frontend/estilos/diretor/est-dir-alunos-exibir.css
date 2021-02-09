@@ -1,0 +1,30 @@
+
+/*
+Config. da tabela da segunda tela 
+*/
+#informacao-turma {
+    border: 3px solid black;
+    width: 20%;
+    height: 30vh;
+    margin: 2%;
+    border-radius: 3%;
+}
+button {
+    width: 100%;
+    height: 5vh;
+    background: white;
+    border: none;
+    color: red;
+}
+button:hover {
+    background: black;
+    border: none;
+    color: white;
+}
+.btnExpulsar {
+    background: none;
+}
+.btnExpulsar:hover {
+    background: none;
+    color: black;
+}
