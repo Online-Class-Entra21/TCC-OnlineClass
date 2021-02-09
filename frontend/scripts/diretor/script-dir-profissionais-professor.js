@@ -91,9 +91,6 @@ $("#btnCadastrar").click(function(){
     }
 });
 
-
-
-
 getMaterias();
 getTurmas();
 
