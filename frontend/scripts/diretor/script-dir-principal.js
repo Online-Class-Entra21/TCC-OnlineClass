@@ -519,7 +519,7 @@ if(idUsuario != 0 && idUsuario != null){
         $( ".colunaRel" ).click(function() { 
             var idRelatorio = relatorios[$(this).index()-1].idRelatorio
             sessionStorage.setItem("idRelatorio",idRelatorio);
-            novaJanela = window.open ("/frontend/paginas/diretor/dir-relatorio-aberto.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2);
+            novaJanela = window.open ("/frontend/paginas/login/relatorio-aberto.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2);
         });
     }
 

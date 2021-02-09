@@ -33,12 +33,7 @@ Config. do main
 */
 main{
     width: 100%;
-    height: 80%;
-}
-
-footer{
-    width: 100%;
-    height: 7%;
+    height: 90%;
 }
 
 /*
@@ -78,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:yellow;
+    color:#00bd13;
 }
 .img-opcoes{
     width: 9%;
@@ -106,7 +101,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:rgb(87, 16, 16);
+    background-color:black;
 }
 
 /*
@@ -138,7 +133,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: rgb(87, 16, 16);
+    background-color: black;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
@@ -240,61 +235,3 @@ Config. da div do botão de saida
 /**************************
 Config. das alteracoes especificas
 ***************************/
-
-/*
-Config. da tabela de turmas 
-*/
-#centralizacao{
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-#selec{
-    width: 70%;
-    height: 80%;
-    background-color: rgb(224, 219, 219);
-    overflow-y: scroll;
-}
-th, td {
-    padding: 15px;
-    text-transform: uppercase;
-    border-top: 1px solid #999;
-    border-bottom: 1px solid #111;
-    border-right: 1px solid #999;
-    border-left: 1px solid #111;
-    text-align: left;
-    font-size: 70%;
-    font-family: cursive;
-    letter-spacing: 0.2em;
-    width: 100vh;
-}
-th{
-    background-color: #999;
-    border-top: 1px solid #111;
-}
-td.alunoExib {
-    width: 100vh;
-}
-tr:hover {
-    background-color: #c3e6e5;
-}
-
-/*
-Config. spin de carregamento 
-*/
-.loader {
-    border: 1.5vh solid #c0aea4; /* Light grey */
-    border-top: 1.5vh solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 6vh;
-    height: 6vh;
-    animation: spin 2s linear infinite;
-    margin-left: 2%;
-    display: none;
-}
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}

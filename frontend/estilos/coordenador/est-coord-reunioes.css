@@ -296,7 +296,7 @@ Config dos inputs
 .adicionar{
     border-style: solid;
     border-radius: 2%;
-    border-color:  rgb(87, 16, 16);
+    border-color: #0d96a8;
     width: 50vh;
 }
 .marcar{

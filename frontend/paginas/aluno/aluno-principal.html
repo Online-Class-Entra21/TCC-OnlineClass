@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-
     <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
+        <meta charset="UTF-8">
+        <!-- Icone da página -->
+        <link rel="sortcut icon" href="/frontend/imagens/Logo-OnlineClass.png" type="image/x-icon"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS-->
         <link rel="stylesheet" href="/frontend/estilos/aluno/est-aluno-principal.css">
-        <script src="/frontend/jquery/jquery-3.5.1.min.js"> </script>
-
-        <title> Aluno - Online Class </title>
+        <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
+        <title>Tela Principal - Aluno</title>
     </head>
-
     <body>
         <!-- Menu latral -->
         <div id="mostrar"></div>
@@ -23,22 +23,16 @@
                     <a href="/frontend/paginas/aluno/aluno-perfil.html">Perfil</a>
                 </figure>
             </section>
-            <section id="calendario" class="opcoes">
-                <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/portfolio.png" alt="Calendario" title="Calendário" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-calendario.html">Calendário</a>
-                </figure>
-            </section>
             <section id="notas" class="opcoes">
                 <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/turmas.png" alt="Notas" title="Notas" class="img-opcoes">
+                    <img src="/frontend/imagens/notas.png" alt="Notas" title="Notas" class="img-opcoes">
                     <a href="/frontend/paginas/aluno/aluno-notas.html">Notas</a>
                 </figure>
             </section>
-            <section id="atividades" class="opcoes">
+            <section id="comunicacao" class="opcoes">
                 <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/relatorio.png" alt="Atividades" title="Atividades" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-atividades.html">Atividades</a>
+                    <img src="/frontend/imagens/relatorio.png" alt="Comunicacao" title="Comuniçacão" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-comunicacao.html">Comunicação</a>
                 </figure>
             </section>
             <section id="aulas" class="opcoes">
@@ -47,16 +41,28 @@
                     <a href="/frontend/paginas/aluno/aluno-aula.html">Aulas</a>
                 </figure>
             </section>
+            <section id="relatorio" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/videoconferencia.png" alt="Relatorio" title="Relatório" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-aula.html">Relatório</a>
+                </figure>
+            </section>
+            <section id="boletim" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/videoconferencia.png" alt="boletim" title="Boletim" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-aula.html">Boletim</a>
+                </figure>
+            </section>
+            <section id="chamada" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/videoconferencia.png" alt="chamada" title="Chamada" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-aula.html">Chamada</a>
+                </figure>
+            </section>
             <section id="tela-principal" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
                     <a href="/frontend/paginas/aluno/aluno-principal.html">Tela Principal</a>
-                </figure>
-            </section>
-            <section id="tela-chamada" class="opcoes">
-                <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-chamada.html">Tela Principal</a>
                 </figure>
             </section>
             <section id="sair" class="opcoes">
@@ -85,54 +91,42 @@
                 </div>
             </nav>
         </header>
-
-
-        <main>
-            <!-- Inicio center-->
-            <section>
-                <div>
-                    <h1>Online Class</h1>
-                </div>
+        <!-- Atividades -->
+        <div id="lista-atividades">
+            <section id="matematica" class="d-flex bd-highlight">
+                <table class="nav justify-content-center" >
+                    <tr id="atividade" onclick="answer()">
+                        <td>Matemática</td>
+                        <td>Atividade<br>23/05</td>
+                        <td>Atividade em Dupla<br>Assunto:Matrizes</td>
+                    </tr>
+                    <tr class="alternado">
+                        <td>Português</td>
+                        <td>Prova<br>31/05</td>
+                        <td>Prova Individual<br>Assunto:Semantica</td>
+                    </tr>
+                    <tr>
+                        <td>História</td>
+                        <td>Trabalho<br>03/06</td>
+                        <td>Atividade em Dupla<br>Assunto:Matrizes</td>
+                    </tr>
+                    <tr class="alternado">
+                        <td>Física</td>
+                        <td>Trabalho<br>15/06</td>
+                        <td>Prova Individual<br>Assunto:Semantica</td>
+                    </tr>
+                    <tr>
+                        <td>Química</td>
+                        <td>Prova<br>19/06</td>
+                        <td>Trabalho em Grupos de 5<br>Assunto:Revolução Francesa</td>
+                    </tr>
+                </table>
             </section>
-            <section>
-                <div>
-                    <table class="nav justify-content-center">
-
-                        <tr>
-                            <td>Matemática</td>
-                            <td>Atividade<br>23/05</td>
-                            <td>Atividade em Dupla<br>Assunto:Matrizes</td>
-                        </tr>
-                        <tr class="alternado">
-                            <td>Português</td>
-                            <td>Prova<br>31/05</td>
-                            <td>Prova Individual<br>Assunto:Semantica</td>
-                        </tr>
-                        <tr>
-                            <td>História</td>
-                            <td>Trabalho<br>03/06</td>
-                            <td>Atividade em Dupla<br>Assunto:Matrizes</td>
-                        </tr>
-                        <tr class="alternado">
-                            <td>Física</td>
-                            <td>Trabalho<br>15/06</td>
-                            <td>Prova Individual<br>Assunto:Semantica</td>
-                        </tr>
-                        <tr>
-                            <td>Química</td>
-                            <td>Prova<br>19/06</td>
-                            <td>Trabalho em Grupos de 5<br>Assunto:Revolução Francesa</td>
-                        </tr>
-                    </table>
-                </div>
-            </section>
-        </main> <!-- Fim center-->
-
-        <scrip>
-
-        </scrip>
-
+        </div>
+    </main> 
+    <!-- Script - JS -->
+    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
+    <script src="/frontend/scripts/login/script-utilitarios.js"></script>
     <script src="/frontend/scripts/aluno/script-aluno-principal.js"></script>
     </body>
-
 </html>
