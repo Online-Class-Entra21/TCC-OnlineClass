@@ -88,8 +88,10 @@
                 <form class="postar-atividade ">
                     <label class="aulaTipo lead" for="idTitle">Titulo da atividade </label>
                     <input class="aula form-control" type="text" id="idTitle" name="nmTitle">
+
                     <label class="aulaTipo lead pt-3" for="idDateTime">ㅤㅤEntrega </label>
                     <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
+                   
                     <label class="aulaTipo lead pt-3" for="idTipo">Tipo de atividade</label>
                     <select name="assunto" id="idTipo" class="aula form-control">
                         <option>-Selecione o tipo</option>
@@ -99,18 +101,19 @@
                         <option>-Recuperação Paralela</option>
                         <option>-Outro</option>
                     </select>
+
+                    <label class="arq lead pt-3" for="idTipo">Turma</label>
+                    <select name="assunto" id="idTipo" class="tipo form-control">
+                        <option>-Selecione a turma</option>
+                        <option>-Turma 01</option>
+                        <option>-Turma 02</option>
+                    </select>
+
                     <div class="custom-file">
                         <label class="arq custom-file-label " for="idFile">Anexar Arquivo</label>
                         <input class="arq custom-file-input" type="file" name="nmFile" id="idFile">
                     </div>
-                    <div class="custom-file">
-                        <label class="arq2 custom-file-label " for="idFile">Anexar Arquivo</label>
-                        <input class="arq2 custom-file-input" type="file" name="nmFile" id="idFile">
-                    </div>
-                    <div class="custom-file">
-                        <label class="arq3 custom-file-label " for="idFile">Anexar Arquivo</label>
-                        <input class="arq3 custom-file-input" type="file" name="nmFile" id="idFile">
-                    </div>
+                    
                     <textarea name="mensagem" class="descricao form-control"
                         placeholder="Insira um breve resumo..."></textarea>
                     <button class=" marcar btn-primary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>

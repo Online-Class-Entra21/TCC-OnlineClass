@@ -264,6 +264,15 @@ Config. das atividades do usuarios
     cursor: pointer;
     margin-left: 50%;
  }
+ 
+ .tipo{
+     margin-left: 10%;
+     min-width: 15%;
+    min-height: 10%;
+    max-width: 15%;
+    max-height: 10%;
+  
+ }
 .aula {
     min-width: 15%;
     min-height: 10%;
@@ -286,19 +295,7 @@ Config. das atividades do usuarios
 }
 .arq{
     margin-left: 10%;
-    margin-top: -10%;
-    width: 30%; 
-    cursor: pointer;
-}
-.arq2{
-    margin-left: 10%;
-    margin-top: -7%;
-    width: 30%; 
-    cursor: pointer;
-}
-.arq3{
-    margin-left: 10%;
-    margin-top: -4%;
+    margin-top: -15%;
     width: 30%; 
     cursor: pointer;
 }
@@ -310,6 +307,7 @@ Config. das atividades do usuarios
     padding-left: 1%;
     padding-top: 5%;
     margin-left: 10%;
+    margin-top: 1%;
 }
 .postar-atividade{
     margin-top: 2%;
