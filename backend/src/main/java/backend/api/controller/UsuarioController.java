@@ -111,6 +111,14 @@ public class UsuarioController {
 		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println(usuario.getHorarioFinalExpediente());
+			System.out.println(usuario.getHorarioInicioExpediente());
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
 			usuarioDao.update(usuario);
 			LOGGER.info("Requisição Atualizar Usuario - {} - Bem Sucedida",json);
 			return true;
