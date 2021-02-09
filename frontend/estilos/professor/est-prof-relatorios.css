@@ -1,3 +1,4 @@
+<<<<<<< HEAD:frontend/estilos/professor/est-prof-relatorio.css
 /* Config. All*/
 *{
     font-family: Arial, Helvetica, sans-serif; 
@@ -25,6 +26,22 @@
 }
 
 /* Config. padrao da barra */
+=======
+/**************************
+Config. do menu padrao
+***************************/
+
+/*
+Config. para todos os elementos 
+*/
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+Config. padrao da barra 
+*/
+>>>>>>> e014a1eb37bd4397385f3ab3f3a2044f42df647b:frontend/estilos/professor/est-prof-relatorios.css
 body, html{
     height: 100%;
     width: 100%;
@@ -39,7 +56,21 @@ header{
     width: 100%;
 }
 
+<<<<<<< HEAD:frontend/estilos/professor/est-prof-relatorio.css
 /* Config. das ancoras */
+=======
+/*
+Config. do main 
+*/
+main{
+    width: 100%;
+    height: 90%;
+}
+
+/*
+Config. das ancoras 
+*/
+>>>>>>> e014a1eb37bd4397385f3ab3f3a2044f42df647b:frontend/estilos/professor/est-prof-relatorios.css
 a{
    text-decoration: none;
    margin-left: 3%;
@@ -56,7 +87,13 @@ a:visited {
      color: white;
 }
 
+<<<<<<< HEAD:frontend/estilos/professor/est-prof-relatorio.css
 /* Config figures opcoes e img opcoes */
+=======
+/*
+Config figures opcoes e img opcoes
+*/
+>>>>>>> e014a1eb37bd4397385f3ab3f3a2044f42df647b:frontend/estilos/professor/est-prof-relatorios.css
 .figure-opcoes{
     width: 100%;
     height: 100%;
@@ -94,7 +131,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:black;
+    background-color: black;
 }
 
 /* Config. das div do cabecalho */
@@ -125,7 +162,8 @@ Config. de nav - cabecalho
     border-color: white;
     position: absolute;
     display: none;
-    z-index: 999;
+    position: fixed;
+    z-index: 9999;
 }
 
 /* Config. do titulo de diretor */
@@ -201,5 +239,39 @@ Config. de nav - cabecalho
 
 /* Config. da div do botão de saida */
 #sair{
-    margin-top: 80%;
+    margin-top: 35%;
 }
+<<<<<<< HEAD:frontend/estilos/professor/est-prof-relatorio.css
+=======
+
+/**************************
+Config. das alteracoes especificas
+***************************/
+
+.Principal{
+
+    align-items: center;
+    display: flex;
+}
+.mensagem{
+    min-width:80vh;
+    min-height: 50vh;
+    max-width: 80vh;
+    max-height: 50vh;
+    padding-left: 1%;
+
+}
+.tipoRel{
+    max-width: 50vh;
+    max-height: 50vh;
+}
+
+/*
+Config. da area de texto
+*/
+#texto-area{
+    margin-top: 10%;
+    width: 50vh;
+    height: 30vh;
+}
+>>>>>>> e014a1eb37bd4397385f3ab3f3a2044f42df647b:frontend/estilos/professor/est-prof-relatorios.css
