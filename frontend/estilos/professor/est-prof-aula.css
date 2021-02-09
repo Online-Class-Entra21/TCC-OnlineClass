@@ -309,3 +309,20 @@ Config. da div do botão de saida
 
 
 /* FIM TAG */
+
+#andre {
+    border: 1px solid black;
+}
+
+#testeArea {
+    margin-top: 14%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#teste {
+    margin-left: 2%;
+    float: right;
+}
+
