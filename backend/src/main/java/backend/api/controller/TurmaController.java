@@ -83,6 +83,7 @@ public class TurmaController {
 		LOGGER.info("Requisição Inserir Turma - {}",json);
 		Gson gson = new Gson();
 		Turma turma = gson.fromJson(json, Turma.class);
+		System.out.println(turma.getHorarioInicioAula());
 		TurmaDAO turmaDAO = new TurmaDAO();
 		try {
 			turmaDAO.insert(turma);
