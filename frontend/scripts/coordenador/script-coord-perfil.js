@@ -207,6 +207,10 @@ async function editar() {
         var horarioFinal = new Date(document.getElementById('inputHorarioFinal').valueAsDate);
         horarioInicial.setHours(horarioInicial.getHours()+3);
         horarioFinal.setHours(horarioFinal.getHours()+3);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         //Dados Endereço
         var estado = $("#inputEstado :selected").val();
         var cidade = document.getElementById('inputCidade').value;
@@ -284,9 +288,13 @@ async function editar() {
                                 senha: senha,
                                 horarioFinalExpediente: horarioFinal.toISOString(),
                                 horarioInicioExpediente: horarioInicial.toISOString(),
-                                fotoUsuario: null,
                                 fk_endereco: idEndereco,
                                 fk_escola: dadosUsuario.fk_escola
+                            }
+
+                             //Altera a imagem
+                            if (imagem!=undefined) {
+                                caminho = UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
                             }
 
                             //Converte o coordenador para JSON
@@ -294,12 +302,7 @@ async function editar() {
 
                             //Chamada da api para registrar o Coordenador no banco de dados
                             var insertUsuario = await usarApi("PUT", "http://localhost:8080/api/usuario/alterar/"+coordenadorJson);
-                            
-                             //Altera a imagem
-                             if (imagem!=undefined) {
-                                 UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
-                             }
-                            
+
                             if (!insertUsuario || !insertEndereco) {
                                 alert("Ocorreu um erro ao editar coordenador!")
                             } else {
