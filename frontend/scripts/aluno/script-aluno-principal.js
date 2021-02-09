@@ -43,3 +43,11 @@ function abrirMenu(){
 document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
+
+
+//Abre uma nova guia para digitar o email de recuperação 
+function answer() {
+    answer = window.open ("/frontend/paginas/aluno/aluno-respostas.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
+}
+
+$('#atividade').click(answer) 
