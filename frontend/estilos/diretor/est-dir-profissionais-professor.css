@@ -95,6 +95,7 @@ Config. das opcoes do menu
     flex-direction: row;
 }
 
+
 /*
 Config. de nav - cabecalho
 */
@@ -421,41 +422,24 @@ li {
     bottom: 0;
 }
 
-#periodos {
-    display: none;
+
+.radioMenu{
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    display: block;
+}
+.radioMenu {
+    display: block;
     border: 1px #dadada solid;
 }
 
-#periodos label {
+.radioMenu label {
     display: block;
 }
 
-#periodos label:hover {
+.radioMenu label:hover {
     background-color: #1e90ff;
 }
 
-#materias {
-    display: none;
-    border: 1px #dadada solid;
-}
 
-#materias label {
-    display: block;
-}
-
-#materias label:hover {
-    background-color: #1e90ff;
-}
-
-#turmas {
-    display: none;
-    border: 1px #dadada solid;
-}
-
-#turmas label {
-    display: block;
-}
-
-#turmas label:hover {
-    background-color: #1e90ff;
-}

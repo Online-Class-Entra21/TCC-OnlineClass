@@ -169,4 +169,39 @@ public class EnderecoDAO {
 		comandoSql.close(); 
 		return idEndereco;
 	}
+	
+	/**
+	 * Metodo para selecionar o idEndereco no banco de dados.
+	 * O objeto endereco ter os tributos iguais aos do banco de dados
+	 * caso nao tenha nenhum enedereco igual sera retornado 0
+	 * 
+	 * @param Endereco endereco
+	 * @return int idEndereco
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public int buscarIgual(Endereco endereco) throws SQLException {
+		int idEndereco = 0;
+		String sql = "select idenereco from endereco where"
+				+ "LOWER(estado)=LOWER(?) and LOWER(cidade)=LOWER(?)"
+				+ "and LOWER(bairro)=LOWER(?) and LOWER(rua)=LOWER(?)"
+				+ "and numero=? and LOWER(cep)=LOWER(?) and LOWER(complemento)=LOWER(?);";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setString(1, endereco.getEstado());
+		comandoSql.setString(2, endereco.getCidade());
+		comandoSql.setString(3, endereco.getBairro());
+		comandoSql.setString(4, endereco.getRua());
+		comandoSql.setInt(5, endereco.getNumero());
+		comandoSql.setString(6, endereco.getCep());
+		comandoSql.setString(7, endereco.getComplemento());
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			idEndereco = resultSet.getInt(1);
+		}
+		comandoSql.close();
+		return idEndereco;
+	}
+	
 }

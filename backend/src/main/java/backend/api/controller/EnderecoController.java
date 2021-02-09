@@ -168,4 +168,34 @@ public class EnderecoController {
 		}
 	}
 	
+	/**
+	 * Verifica se existe alguem indereco identico no
+	 * banco e Insere um novo endereco no banco de dados
+	 * caso nao tenha um igual ou retorna o id do enderco
+	 * ja existente
+	 * 
+	 * @param String json
+	 * @author Andre
+	 * @return boolean situacao da operacao
+	 */
+	@PostMapping(path = "api/endereco/inseriralterar/{json}")
+	public int inserirAlterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição InserirAlterar Endereco - {}",json);
+		Gson gson = new Gson();
+		Endereco endereco = gson.fromJson(json, Endereco.class);
+		EnderecoDAO enderecoDAO = new EnderecoDAO();
+		try {
+			int idEndereco = enderecoDAO.buscarIgual(endereco);
+			if (idEndereco==0) {
+				idEndereco = enderecoDAO.insertReturnID(endereco);
+			}
+			LOGGER.info("Requisição Inserir Endereco - {} - Bem Sucedida",json);
+			return idEndereco;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para InserirAlterar Endereco Mal Sucedida - Endereco {} - erro - {}",json,e.toString());
+			return 0;
+		}
+	}
+	
 }
