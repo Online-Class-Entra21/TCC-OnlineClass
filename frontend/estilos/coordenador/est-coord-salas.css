@@ -1,45 +1,6 @@
-/*
-Config. Tabela
-*/
-#tbPessoas {
-    font: 1em Verdana;
-    text-align: center;
-}
-#TForm{
-   text-align: center;
-}
-
-.dados{
-    float: right;
-}
- /*
-Config. conteudo
-*/
-.content h2{
-    text-align: center;
-    color: white;
-}
-/*
-Config. Inputs
-*/
-input[type=text]{
-    width: 80%;
-    height: 2em;
-    margin-bottom: 10px;
-}
-input[type=button]{
-    border: none;
-    width: 10%;
-    float: right;
-    height: 1em;
-}
-/*
-Config. hover linhas
-*/
-tr:hover {
-    cursor: pointer;
-    background-color: lightblue;
-}
+/**************************
+Config. do menu padrao
+***************************/
 
 /*
 Config. para todos os elementos 
@@ -264,7 +225,57 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 85%;
+    margin-top: 55%;
+}
+
+/**************************
+Config. das alteracoes especificas
+***************************/
+
+/*
+Config. Tabela
+*/
+#tbPessoas {
+    font: 1em Verdana;
+    text-align: center;
+}
+#TForm{
+   text-align: center;
+}
+
+.dados{
+    float: right;
+}
+
+ /*
+Config. conteudo
+*/
+.content h2{
+    text-align: center;
+    color: white;
+}
+
+/*
+Config. Inputs
+*/
+input[type=text]{
+    width: 80%;
+    height: 2em;
+    margin-bottom: 10px;
+}
+input[type=button]{
+    border: none;
+    width: 10%;
+    float: right;
+    height: 1em;
+}
+
+/*
+Config. hover linhas
+*/
+tr:hover {
+    cursor: pointer;
+    background-color: lightblue;
 }
 
 
