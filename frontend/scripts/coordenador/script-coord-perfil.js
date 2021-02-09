@@ -203,9 +203,11 @@ async function editar() {
         var telefone = document.getElementById('inputTelefone').value;
         var celular = document.getElementById('inputCelular').value;
         var cpf = document.getElementById('inputCpf').value;
-        var horarioInicial = (document.getElementById('inputHorarioInicial').valueAsDate);
-        var horarioFinal = (document.getElementById('inputHorarioFinal').valueAsDate);
-
+        var horarioInicial = new Date(document.getElementById('inputHorarioInicial').valueAsDate);
+        var horarioFinal = new Date(document.getElementById('inputHorarioFinal').valueAsDate);
+        horarioInicial.setHours(horarioInicial.getHours()+3);
+        horarioFinal.setHours(horarioFinal.getHours()+3);
+        console.log(horarioInicial.getHours());
         //Dados Endereço
         var estado = $("#inputEstado :selected").val();
         var cidade = document.getElementById('inputCidade').value;
