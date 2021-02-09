@@ -1,60 +1,14 @@
-/* Config. para todos os elementos */
+/**************************
+Config. do menu padrao
+***************************/
+
+/*
+Config. para todos os elementos 
+*/
 *{
-    font-family: Arial, Helvetica, sans-serif;  
-}
-    
- .marcar {
-    margin-left: 50%;
- }
-.cont {
-    max-width: 50%;
-    border: 1px solid black;
     font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    margin-left: 20%;
-    position: relative;
-    
-}
-.contTipo {
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-    text-align: center;
-    margin-left: 35%;
-    border: none;
-    
-    
 }
 
-.cont2 {
-    max-width: 50%;
-    border: 1px solid black;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    margin-left: 100%;
-    position: relative;
-    
-}
-.contTipo2 {
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-    text-align: center;
-    margin-left: 120%;
-    border: none;
-    
-    
-}
-
-.descricao{
-    min-width: 85%;
-    min-height: 25vh;
-    max-width: 85%;
-    max-height: 25vh;
-    padding-left: 1%;
-    padding-top: 5%;
-    margin-left: 10%;
-    margin-top: 5vh;
-
-}
 /*
 Config. padrao da barra 
 */
@@ -72,6 +26,14 @@ Config. do header
 header{
     height: 10%;
     width: 100%;
+}
+
+/*
+Config. do main 
+*/
+main{
+    width: 100%;
+    height: 90%;
 }
 
 /*
@@ -97,7 +59,6 @@ a:visited {
      color: white;
 }
 
-
 /*
 Config figures opcoes e img opcoes
 */
@@ -112,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color: #00bd13;
+    color:#00bd13;
 }
 .img-opcoes{
     width: 9%;
@@ -172,12 +133,13 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color:black;
+    background-color: black;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
     display: none;
-    z-index: 999;
+    position: fixed;
+    z-index: 9999;
 }
 
 /*
@@ -267,10 +229,67 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 80%;
+    margin-top: 35%;
 }
 
+/**************************
+Config. das alteracoes especificas
+***************************/
 
+/* Config. para todos os elementos */
+*{
+    font-family: Arial, Helvetica, sans-serif;  
+}
+    
+ .marcar {
+    margin-left: 50%;
+ }
+.cont {
+    max-width: 50%;
+    border: 1px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-left: 20%;
+    position: relative;
+    
+}
+.contTipo {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    text-align: center;
+    margin-left: 35%;
+    border: none;
+    
+    
+}
 
+.cont2 {
+    max-width: 50%;
+    border: 1px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-left: 100%;
+    position: relative;
+    
+}
+.contTipo2 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    text-align: center;
+    margin-left: 120%;
+    border: none;
+    
+    
+}
 
-/* FIM TAG */
+.descricao{
+    min-width: 85%;
+    min-height: 25vh;
+    max-width: 85%;
+    max-height: 25vh;
+    padding-left: 1%;
+    padding-top: 5%;
+    margin-left: 10%;
+    margin-top: 5vh;
+
+}
