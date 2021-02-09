@@ -390,6 +390,7 @@ Config. dos componentes de add de imagem
     width: 6.5%;
     height: 6.5%;
     margin-left: 2%;
+    cursor: pointer;
 }
 #ok{
     font-size: 90%;

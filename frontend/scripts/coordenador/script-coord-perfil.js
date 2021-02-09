@@ -6,6 +6,9 @@ var cpf;
 var cpfPadrao;
 var idEndereco;
 
+//Verifica se já tem foto do usuario 
+var isFotoExistente = false;
+
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
@@ -43,6 +46,18 @@ if(idUsuario != 0 && idUsuario != null){
             document.getElementById('inputSenha').value = dadosUsuario.senha;
             document.getElementById('inputConfirmSenha').value = dadosUsuario.senha;
 
+            //Puxando imagem
+            var caminhoImagem = dadosUsuario.fotoUsuario;
+            
+            //Verifica se a imagem não é nula 
+            if(caminhoImagem != undefined){
+                $("#img_preview").show();
+                $("#img_preview").attr("src", "/imagens-usuarios/"+caminhoImagem);
+                document.getElementById('botao-input').value = "Alterar Imagem";
+                document.getElementById('ok').textContent = "Ok"; 
+                isFotoExistente = true;
+            }
+
             buscaEndereco(dadosUsuario.fk_endereco);
         })
 
@@ -52,6 +67,66 @@ if(idUsuario != 0 && idUsuario != null){
     alert('Sessão expirada - Erro (0002)')
     window.location = "/frontend/index.html";
 }
+
+//Carregamento automático da foto do usuario 
+function ImagePreview(input)
+{
+    if (input.files && input.files[0])
+	{
+        var r = new FileReader();
+        r.onload = function(e)
+		{
+			$("#img_preview").show();
+            $("#img_preview").attr("src", e.target.result);
+        }
+        r.readAsDataURL(input.files[0]);
+    }
+}
+$().ready(function() {
+
+	hide_empty_image = false;
+	set_blank_to_empty_image = false;
+	set_image_border = true;
+
+	if (hide_empty_image)
+		$("#img_preview").hide();
+
+	if (set_blank_to_empty_image)
+		$("#img_preview").attr("src","data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=");
+
+	if (set_image_border)
+		$("#img_preview").css("border", "2px solid #ffffff");
+  
+    $("#img_preview").css("width", "53%");
+    $("#img_preview").css("height", "60%");
+
+	$("#imagemInput").change(function(e){
+        ImagePreview(this);
+        url = URL.createObjectURL(e.target.files[0]);
+        $('#imagemInput').html($(this).val());
+        document.getElementById('botao-input').value = "Alterar Imagem";
+        document.getElementById('ok').textContent = "Ok";
+        imagem = this.files;
+    });
+});
+var imagem;
+
+//Eventos de abertura e fechamento do preview
+$("#visualizacao").click(function(){
+    if($("#imagemInput").val() != "" || isFotoExistente){
+        $("#visul-img").css("display", "inline");
+    }else{
+        alert("insira uma imagem primeiro!");
+    }
+})
+$("#idBotaoFechar").click(function(){
+    $("#visul-img").css("display", "none");
+})
+
+//Aciona o botao de carregamento de imagens 
+document.getElementById('botao-input').onclick = function () {
+    document.getElementById('imagemInput').click();
+};
 
 function buscaEndereco(fk_endereco){
 
@@ -218,6 +293,11 @@ async function editar() {
 
                             //Chamada da api para registrar o Coordenador no banco de dados
                             var insertUsuario = await usarApi("PUT", "http://localhost:8080/api/usuario/alterar/"+coordenadorJson);
+                            
+                             //Altera a imagem
+                             if (imagem!=undefined) {
+                                 UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                             }
                             
                             if (!insertUsuario || !insertEndereco) {
                                 alert("Ocorreu um erro ao editar coordenador!")

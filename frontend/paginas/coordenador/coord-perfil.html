@@ -2,7 +2,7 @@
 <html lang="pt-br">
     
     <head>
-        <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <!-- Icone da página -->
     <link rel="sortcut icon" href="/frontend/imagens/Logo-OnlineClass.png" type="image/x-icon"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,6 +86,14 @@
         </header>
         <main>
             <section>
+                <div id="visul-img">
+                    <div id="img">
+                        <img id="img_preview" src="" alt="Image Preview"/>
+                    </div>
+                    <div id="botoes-img">
+                        <input id="idBotaoFechar" type="button" value="Fechar" title="Fechar">
+                    </div>
+                </div> 
                 <div id="cab"></div>
                 <div id="conteudo">
                     <form action="" id="formulario" class="nav justify-content-center">
@@ -276,6 +284,15 @@
                                             <input class="input" type="password" name="passconfirm" maxlength="14" minlength="8" id="inputConfirmSenha" required>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td id="imagem-add">
+                                            <input id="botao-input" value="Adicionar Imagem" type="button" title="Adiciona Imagem">
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="1048576" />
+                                            <input id="imagemInput" type=file name="imagem" accept=".jpg, .jpeg, .png">
+                                            <img id="visualizacao" src="/frontend/imagens/olho.png" alt="Visualizacao" nome="visualizacao" title="Visualizacao">
+                                            <label id="ok" for="visualizacao" name="ok" title="Ok"></label>
+                                        </td>
+                                    </tr> 
                                 </table>
                             </div>
                             <div id="botoes" class="nav justify-content-center">

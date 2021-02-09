@@ -43,7 +43,7 @@ var convidados = [];
 async function criarReuniao(){
     var data;
     var nome;
-    var valido = false;
+    var valido = true;
     if ($("#idDateTime").val()=="") {
         valido = false;
         $('#erroData').text('Insira uma data').show(300);
@@ -63,7 +63,6 @@ async function criarReuniao(){
         data = new Date($("#idDateTime").val());
         nome = $('#idNomeReu').val();
         data = timeStampFormat(data);
-        console.log(data)
         
         var sala = {
             nome:"Reuniao: "+nome,
@@ -72,8 +71,11 @@ async function criarReuniao(){
             tipoSala: true,
             link: nome.replace(" ","_")
         }
+
         sala = JSON.stringify(sala);
         sala = await usarApi('POST','http://localhost:8080/api/sala/inserir/return/'+sala);
+        
+        
         var reuniao = {
             descricao : nome,
             dataInicio : data,
