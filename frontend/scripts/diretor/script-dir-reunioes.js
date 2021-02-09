@@ -95,8 +95,6 @@ async function criarReuniao(){
             usarApi('POST','http://localhost:8080/api/convite/inserir/'+convite);
             
         }
-        $('tr').remove();
-        $("input").val('');
     }
     
 }

@@ -74,7 +74,7 @@ async function criarReuniao(){
 
         sala = JSON.stringify(sala);
         sala = await usarApi('POST','http://localhost:8080/api/sala/inserir/return/'+sala);
-        
+        sala = JSON.parse(sala);
         
         var reuniao = {
             descricao : nome,
@@ -82,6 +82,7 @@ async function criarReuniao(){
             dono: idUsuario,
             fk_sala: sala.idSala
         };
+
         reuniao = JSON.stringify(reuniao);
         usarApi('POST','http://localhost:8080/api/reuniao/personalizada/inserir/'+reuniao);
         $('#reuniaoCriada').text('Reunião criada com sucesso').show(300);
@@ -94,10 +95,7 @@ async function criarReuniao(){
             }
             convite = JSON.stringify(convite);
             usarApi('POST','http://localhost:8080/api/convite/inserir/'+convite);
-            
         }
-        $('tr').remove();
-        $("input").val('');
     }
     
 }
@@ -105,8 +103,6 @@ async function criarReuniao(){
 $('#btnCriarReuniao').click(criarReuniao);
 $('#btnAddConvite').click(convidar);
 $('#inConvidado').bind("enterKey",convidar);
-
-
 
 async function convidar(){
     var email = $('#inConvidado').val();
