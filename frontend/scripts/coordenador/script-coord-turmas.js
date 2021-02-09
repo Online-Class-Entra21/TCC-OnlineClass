@@ -1,3 +1,4 @@
+/*
 var fk_escola = sessionStorage.getItem('escolaUsuario');
 var idUsuario = sessionStorage.getItem('idUsuario');
 carregarSelect();
@@ -82,8 +83,8 @@ async function cadastrar() {
     }else{
         //Coleta os dados do input
         var turma = document.getElementById('inputNome').value;
-        var horaInicioAula = new Date(document.getElementById('inputHorarioInicial').valueAsDate);
-        var horaFinalAula = new Date(document.getElementById('inputHorarioFinal').valueAsDate);
+        var horaInicioAula = new Date(document.getElementById('inputHoraInicio').valueAsDate);
+        var horaFinalAula = new Date(document.getElementById('inputHoraFinal').valueAsDate);
         horaInicioAula.setHours(horaInicioAula.getHours()+3);
         horaFinalAula.setHours(horaFinalAula.getHours()+3);
         var inserirTurma = {
@@ -105,6 +106,16 @@ async function cadastrar() {
             alert("Ocorreu um erro ao cadastrar a turma.")
         } else {
             alert("Turma cadastrada com sucesso.")
+            document.getElementById('inputNome').value = '';
+            document.getElementById('InputQtdAlunos').value = '';
+            document.getElementById('inputHoraInicio').value = '';
+            document.getElementById('inputHoraFinal').value = '';
+            $("#SelectTurma").empty();
+            var opt = document.createElement("option");
+            opt.value = "default";
+            opt.textContent = "Selecione uma turma"
+            document.getElementById("SelectTurma").append(opt)
+            carregarSelect();
         }
     }
 }
@@ -174,6 +185,7 @@ async function carregarCampos(turma) {
     document.getElementById('inputHoraInicio').value = horaInicioAulaFormatado;
     document.getElementById('inputHoraFinal').value = turma.horarioFinalAula;
     */
+   /*
 }
 //Método para carregar a lista de alunos da turma selecionada
 async function carregarListaAlunos(idTurma, nomeTurma) {
@@ -219,3 +231,7 @@ async function carregarListaAlunos(idTurma, nomeTurma) {
     }
 }
 
+async function deletarTurma() {
+
+}
+*/
