@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* Config. para todos os elementos */
 *{
     font-family: Arial, Helvetica, sans-serif;
@@ -79,22 +79,7 @@ button{
     color: white;
 }
 /* Config. padrao da barra */
-=======
-/**************************
-Config. do menu padrao
-***************************/
 
-/*
-Config. para todos os elementos 
-*/
-*{
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/*
-Config. padrao da barra 
-*/
->>>>>>> e014a1eb37bd4397385f3ab3f3a2044f42df647b
 body, html{
     height: 100%;
     width: 100%;
@@ -108,22 +93,11 @@ header{
     height: 10%;
     width: 100%;
 }
-
-<<<<<<< HEAD
-/* Config. das ancoras */
-=======
-/*
-Config. do main 
-*/
+/* Config. do main */
 main{
     width: 100%;
     height: 90%;
 }
-
-/*
-Config. das ancoras 
-*/
->>>>>>> e014a1eb37bd4397385f3ab3f3a2044f42df647b
 a{
    text-decoration: none;
    margin-left: 3%;
@@ -140,13 +114,7 @@ a:visited {
      color: white;
 }
 
-<<<<<<< HEAD
 /* Config figures opcoes e img opcoes */
-=======
-/*
-Config figures opcoes e img opcoes
-*/
->>>>>>> e014a1eb37bd4397385f3ab3f3a2044f42df647b
 .figure-opcoes{
     width: 100%;
     height: 100%;
@@ -287,14 +255,8 @@ Config figures opcoes e img opcoes
     width: 10%;
     height: 10%;
 }
-<<<<<<< HEAD
-/* Config. da div do botão de saida  */
-=======
 
-/*
-Config. da div do botão de saida 
-*/
->>>>>>> e014a1eb37bd4397385f3ab3f3a2044f42df647b
+/* Config. da div do botão de saida  */
 #sair{
     margin-top: 35%;
 }
