@@ -39,7 +39,7 @@ if(idUsuario != 0 && idUsuario != null){
             idEndereco = dadosUsuario.fk_endereco;
 
             document.getElementById('inputHorarioInicial').value = timeFormat(new Date(dadosUsuario.horarioInicioExpediente));
-            document.getElementById('inputHorarioFinal').value = timeFormat(new Date(dadosUsuario.horarioFinalExpediente))
+            document.getElementById('inputHorarioFinal').value = timeFormat(new Date(dadosUsuario.horarioFinalExpediente));
 
             //Dados de Login
             document.getElementById('inputEmail').value = dadosUsuario.email;
