@@ -146,6 +146,7 @@ $("#botao-salvar").click(function(){
             isConfirmado = confirm("Deseja mesmo alterar a senha?");
 
             if(isConfirmado){
+                console.log("if "+imagem)
                 //Altera a imagem
                 if (imagem!=undefined) {
                     UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
@@ -155,6 +156,7 @@ $("#botao-salvar").click(function(){
             }
         }else{
             //Altera a imagem
+            console.log("else "+imagem)
             if (imagem!=undefined) {
                 UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
             }

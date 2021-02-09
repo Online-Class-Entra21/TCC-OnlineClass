@@ -7,7 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.google.gson.Gson;
 
 import entidade.Coordenador;
 import persistencia.jdbc.CoordenadorDAO;
@@ -86,6 +89,30 @@ public class CoordenadorController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Coordenador pelo id escola Mal Sucedida - erro - {}",e.toString());
 			return null;
+		}
+	}
+	
+	/**
+	 * Metodo para alteração do coordenador que corresponde ao codigo informado {PUT}
+	 * @param int codigo
+	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Breno
+	 */
+	@PutMapping(path = "/api/coordenador/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Coordenador - {}",json);
+		Gson gson = new Gson();
+		Coordenador coordenador = gson.fromJson(json.toString(), Coordenador.class);
+		CoordenadorDAO coordenadorDao = new CoordenadorDAO();
+		try {
+			coordenadorDao.update(coordenador);
+			LOGGER.info("Requisição Atualizar Coordenador - {} - Bem Sucedida",json);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Coordenador Mal Sucedida - Coordenador {} - erro - {}",json,e.toString());
+			return false;
 		}
 	}
 	

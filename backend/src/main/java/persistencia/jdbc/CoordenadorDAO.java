@@ -115,4 +115,31 @@ public class CoordenadorDAO {
 		return lista;
 	}
 	
+	/**
+	 * Metodo para atualizar os dados de um perfil do coordenador no banco de dados.
+	 * O <code>idCoordenador</code> deve ser igual ao do coordenador que deseja atualizar
+	 * @param Coordenador coordenador
+	 * @throws SQLException
+	 */
+	public void update(Coordenador coordenador) throws SQLException {
+		String sql = "update usuario set nome = ?, sobrenome = ?, telefone = ?, celular = ?, email = ?, "
+				   + "senha = ?, horafinalexpediente = ?, horainicioexpediente = ?, fk_escola = ?, fk_endereco = ? where idUsuario = ?"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setString(1, coordenador.getNome());
+		comandoSql.setString(2, coordenador.getSobrenome());
+		comandoSql.setString(3, coordenador.getTelefone());
+		comandoSql.setString(4, coordenador.getCelular());
+		comandoSql.setString(5, coordenador.getEmail());
+		comandoSql.setString(6, coordenador.getSenha());
+		comandoSql.setTimestamp(7, coordenador.getHorarioFinalExpediente());
+		comandoSql.setTimestamp(8, coordenador.getHorarioInicioExpediente());
+		comandoSql.setInt(9, coordenador.getFk_escola());
+		comandoSql.setInt(10, coordenador.getFk_endereco());
+		comandoSql.setInt(11, coordenador.getIdUsuario());
+
+		comandoSql.execute();
+		comandoSql.close();
+	}
+	
 }
