@@ -4,6 +4,7 @@ var dadosUsuario;
 var email;
 var cpf;
 var cpfPadrao;
+var idEndereco;
 
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
@@ -32,8 +33,9 @@ if(idUsuario != 0 && idUsuario != null){
             document.getElementById('inputCelular').value = dadosUsuario.celular;
             document.getElementById('inputCpf').value = dadosUsuario.cpf;
             cpfPadrao = dadosUsuario.cpf;
+            idEndereco = dadosUsuario.fk_endereco;
 
-            document.getElementById('inputHorarioInicial').value = timeFormat(new Date(dadosUsuario.horarioInicioExpediente))
+            document.getElementById('inputHorarioInicial').value = timeFormat(new Date(dadosUsuario.horarioInicioExpediente));
             document.getElementById('inputHorarioFinal').value = timeFormat(new Date(dadosUsuario.horarioFinalExpediente))
 
             //Dados de Login
@@ -67,7 +69,7 @@ function buscaEndereco(fk_endereco){
             document.getElementById('inputCidade').value = endereco.cidade; 
             document.getElementById('inputBairro').value = endereco.bairro;
             document.getElementById('inputCep').value = endereco.cep;
-            document.getElementById('inputLogradouro').value = endereco.logradouro;
+            document.getElementById('inputLogradouro').value = endereco.rua;
             document.getElementById('inputNumero').value = endereco.numero;
 
             if(endereco.tipoUsuario != undefined){
@@ -178,6 +180,7 @@ async function editar() {
                             
                             //Cria o objeto Endereço
                             var inserirEndereco = {
+                                idEndereco: idEndereco,
                                 estado: estado,
                                 cidade: cidade,
                                 bairro: bairro,
@@ -193,12 +196,12 @@ async function editar() {
                             //Chamada da api para registrar o Endereço no banco de dados
                             var insertEndereco = await usarApi("PUT", "http://localhost:8080/api/endereco/alterar/"+enderecoJson);
 
-
                             //Cria o objeto Coordenador
                             var inserirCoordenador = {
+                                idUsuario: idUsuario,
                                 nome: nome,
                                 sobrenome: sobrenome,
-                                cpf: cpfDigitado,
+                                cpf: cpf,
                                 telefone: telefone,
                                 celular: celular,
                                 tipoUsuario: 3,
@@ -211,7 +214,6 @@ async function editar() {
                                 fk_escola: dadosUsuario.fk_escola
                             }
 
-                            console.log(inserirCoordenador)
                             //Converte o coordenador para JSON
                             var coordenadorJson = JSON.stringify(inserirCoordenador);
 

@@ -107,9 +107,22 @@ function timeStampFormat(data){
 
 //Formata a hora para exibição para (hh:mm)
 function timeFormat(data){
-    hora = data.getHours();
-    min  = data.getMinutes();
-    return hora+":"+min;
+    hora = data.getHours().toString();
+    horaF = (hora.length == 1) ? '0'+hora : hora;
+    min  = data.getMinutes().toString();
+    minF = (min.length == 1) ? '0'+min : min;
+    return horaF+":"+minF;
+}
+
+//Formata a hora para exibição para (hh:mm:ss)
+function timeFormat2(data){
+    hora = data.getHours().toString();
+    horaF = (hora.length == 1) ? '0'+hora : hora;
+    min  = data.getMinutes().toString();
+    minF = (min.length == 1) ? '0'+min : min;
+    seg  = data.getSeconds().toString();
+    segF = (seg.length == 1) ? '0'+seg : seg;
+    return horaF+":"+minF+":"+segF;
 }
 
 //Verifica se o cpf é válido

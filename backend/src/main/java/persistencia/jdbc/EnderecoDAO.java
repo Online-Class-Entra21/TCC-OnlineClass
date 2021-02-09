@@ -48,7 +48,7 @@ public class EnderecoDAO {
 	 * @throws SQLException 
 	 */ 	
 	public void update(Endereco endereco) throws SQLException {
-		String sql = "update escola set estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, cep = ?, complemento = ? where idendereco = ?";
+		String sql = "update endereco set estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, cep = ?, complemento = ? where idendereco = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, endereco.getEstado());
