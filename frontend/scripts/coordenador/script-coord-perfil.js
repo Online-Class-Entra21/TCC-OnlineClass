@@ -128,9 +128,9 @@ async function editar() {
         var telefone = document.getElementById('inputTelefone').value;
         var celular = document.getElementById('inputCelular').value;
         var cpf = document.getElementById('inputCpf').value;
-        var horarioInicial = new Date(document.getElementById('inputHorarioInicial').valueAsDate);
-        var horarioFinal = new Date(document.getElementById('inputHorarioFinal').valueAsDate);
-        
+        var horarioInicial = (document.getElementById('inputHorarioInicial').valueAsDate);
+        var horarioFinal = (document.getElementById('inputHorarioFinal').valueAsDate);
+
         //Dados Endereço
         var estado = $("#inputEstado :selected").val();
         var cidade = document.getElementById('inputCidade').value;
@@ -180,7 +180,6 @@ async function editar() {
                             
                             //Cria o objeto Endereço
                             var inserirEndereco = {
-                                idEndereco: idEndereco,
                                 estado: estado,
                                 cidade: cidade,
                                 bairro: bairro,
@@ -194,7 +193,7 @@ async function editar() {
                             var enderecoJson =  JSON.stringify(inserirEndereco);
 
                             //Chamada da api para registrar o Endereço no banco de dados
-                            var insertEndereco = await usarApi("PUT", "http://localhost:8080/api/endereco/alterar/"+enderecoJson);
+                            var insertEndereco = await usarApi("POST", "http://localhost:8080/api/endereco/inserir/"+enderecoJson);
 
                             //Cria o objeto Coordenador
                             var inserirCoordenador = {
@@ -207,8 +206,8 @@ async function editar() {
                                 tipoUsuario: 3,
                                 email: emailDigitado,
                                 senha: senha,
-                                horarioFinalExpediente: horarioFinal,
-                                horarioInicioExpediente: horarioInicial,
+                                horarioFinalExpediente: horarioFinal.toISOString(),
+                                horarioInicioExpediente: horarioInicial.toISOString(),
                                 fotoUsuario: null,
                                 fk_endereco: idEndereco,
                                 fk_escola: dadosUsuario.fk_escola
