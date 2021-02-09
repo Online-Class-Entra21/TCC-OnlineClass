@@ -1,85 +1,17 @@
+/**************************
+Config. do menu padrao
+***************************/
 
-/* Config. para todos os elementos */
+/*
+Config. para todos os elementos 
+*/
 *{
     font-family: Arial, Helvetica, sans-serif;
 }
-/* Config. Sininho */
-#check2{
-    display: none;
-}
-#check2:checked ~ .content{
-    transform: translateY(291%);
-}
-#check2:checked ~ .content ul li #icone2 {
-    opacity: 1;
-    margin-top: 0;
-    transition-delay: .2s;
-}
-#icone2{
-    cursor: pointer;
-    padding: 1em;
-    position: absolute;
-    z-index: 1;
-    margin-left: 97%;
-   display: block;
-   position: fixed;
-}
-ul{
-    list-style-type: none;
-    padding: 10px;
-    height: 30vh;
-    background: #fff;
-    overflow-y: auto;
-}
-li{
-    height: 15%;
-    margin: 1% 0% 1% 0;
-    border-bottom: 1px solid;
 
-}
-input[type=text]{
-    width: 80%;
-    height: 3vh;
-    margin-bottom: 1%;
-}
-input[type=button]{
-    border: none;
-    width: 17%;
-    float: right;
-  
-}
-button:hover, input[type=button]:hover{
-    background: #ccc;
-}
-
-button, input[type=button]{ cursor: pointer; 
-}
-button{
-    float: right;
-    width: 15%;
-    padding: 1%;
-}
-.content{
-    
-    margin-left: 84%;
-    background: silver;
-    height: 55%;
-    padding: 2%;
-    border:1px solid;
-    position: absolute;
-    transition: all .2s linear;
-    top: -150%;
-    overflow: auto;
-    font-family: Arial;
-    display: block;
-   position: fixed;
-}
-.content h2{
-    text-align: center;
-    color: white;
-}
-/* Config. padrao da barra */
-
+/*
+Config. padrao da barra 
+*/
 body, html{
     height: 100%;
     width: 100%;
@@ -88,33 +20,48 @@ body, html{
     border: 0;
 }
 
-/* Config. do header */
+/*
+Config. do header
+*/
 header{
     height: 10%;
     width: 100%;
 }
-/* Config. do main */
+
+/*
+Config. do main 
+*/
 main{
     width: 100%;
     height: 90%;
 }
+
+/*
+Config. das ancoras 
+*/
 a{
    text-decoration: none;
    margin-left: 3%;
    color: white;
 }
 
-/* Link que ainda não foi visitado */
+/* 
+link que ainda não foi visitado 
+*/
 a:link {
     color: white;
 }
 
-/* Link que foi visitado */
+/* 
+link que foi visitado 
+*/
 a:visited {
      color: white;
 }
 
-/* Config figures opcoes e img opcoes */
+/*
+Config figures opcoes e img opcoes
+*/
 .figure-opcoes{
     width: 100%;
     height: 100%;
@@ -126,7 +73,7 @@ a:visited {
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color: #00bd13;
+    color:#00bd13;
 }
 .img-opcoes{
     width: 9%;
@@ -137,7 +84,9 @@ a:visited {
     text-decoration: none;
 }
 
-/* Config. das opcoes do menu */
+/*
+Config. das opcoes do menu 
+*/
 .opcoes{
     width: 100%;
     height: 8%;
@@ -146,14 +95,18 @@ a:visited {
     flex-direction: row;
 }
 
-/* Config. de nav - cabecalho */
+/*
+Config. de nav - cabecalho
+*/
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color: black;
+    background-color:black;
 }
 
-/* Config. das div do cabecalho */
+/*
+Config. das div do cabecalho
+*/
 #lado-esquerdo{
     float: left;
     width: 30%;
@@ -165,14 +118,18 @@ a:visited {
     height: 100%;
 }
 
-/* Config. da div que mostra o menu  */
+/*
+Config. da div que mostra o menu 
+*/
 #mostrar{
     width: 1%;
     height: 100%;
     position: absolute;
 }
 
-/* Config. do menu */
+/*
+Config. do menu 
+*/
 #menu{
     width: 42vh;
     height: 100%;
@@ -185,7 +142,9 @@ a:visited {
     z-index: 9999;
 }
 
-/* Config. do titulo de diretor */
+/*
+Config. do titulo de diretor 
+*/
 #menu-titulo{
     cursor: default;
     align-items: center;
@@ -197,7 +156,9 @@ a:visited {
     color: white;
 }
 
-/* Config. div do menu */
+/*
+Config. div do menu
+*/
 #botao-menu{
     width: 50%;
     height: 100%;
@@ -207,7 +168,9 @@ a:visited {
     margin-left: 7%;
 }
 
-/* Config. do botao do menu  */
+/*
+Config. do botao do menu 
+*/
 #figure-menu{
     width: 8vh;
     margin: 0;
@@ -218,7 +181,9 @@ a:visited {
     height: auto;
 }
 
-/* Config. da div da barra no lado direito */
+/*
+Config. da div da barra no lado direito
+*/
 #lado-direito{
     align-items: center;
     display: flex;
@@ -226,7 +191,9 @@ a:visited {
     margin: 0;
 }
 
-/* Config. img-perfil */
+/*
+Config. img-perfil
+*/
 #figure-perfil{
     width: 100%;
     height: 100%;
@@ -243,7 +210,9 @@ a:visited {
     height: auto;
 }
 
-/* Config. Dados do usuario  */
+/*
+Config. Dados do usuario 
+*/
 #idNomeUsuario{
     color: white;
     float: left;
@@ -256,7 +225,9 @@ a:visited {
     height: 10%;
 }
 
-/* Config. da div do botão de saida  */
+/*
+Config. da div do botão de saida 
+*/
 #sair{
     margin-top: 35%;
 }
@@ -461,6 +432,7 @@ Config. dos botoes de criacao
     padding: 2%;
     text-decoration: none;
 }
+
 
 
 
