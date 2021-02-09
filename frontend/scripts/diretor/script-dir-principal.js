@@ -199,7 +199,11 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria a imagem dentro da coluna 1
             var img = document.createElement("img");
             img.className = "img-usuario";
-            img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
+            if(usuario.fotoUsuario != undefined){
+                img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
+            }else{
+                img.src = "/frontend/imagens/perfil.png";
+            }
             img.alt="Foto Usuario";
             img.title="Foto do Usuário";
 
@@ -292,7 +296,11 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria a imagem dentro da coluna 1
             var img = document.createElement("img");
             img.className = "img-usuario";
-            img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
+            if(usuario.fotoUsuario != undefined){
+                img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
+            }else{
+                img.src = "/frontend/imagens/perfil.png";
+            }
             img.alt="Foto Usuario";
             img.title="Foto do Usuário";
 
@@ -453,7 +461,11 @@ if(idUsuario != 0 && idUsuario != null){
             //Cria a imagem dentro da coluna 1
             var img = document.createElement("img");
             img.className = "img-usuario";
-            img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
+            if(usuario.fotoUsuario != undefined){
+                img.src = "/imagens-usuarios/"+usuario.fotoUsuario;
+            }else{
+                img.src = "/frontend/imagens/perfil.png";
+            }
             img.alt="Foto Usuario";
             img.title="Foto do Usuário";
 

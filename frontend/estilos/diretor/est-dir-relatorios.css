@@ -8,23 +8,7 @@ Config. para todos os elementos
 *{
     font-family: Arial, Helvetica, sans-serif;
 }
-.Principal{
 
-    align-items: center;
-    display: flex;
-}
-.mensagem{
-    min-width:80vh;
-    min-height: 50vh;
-    max-width: 80vh;
-    max-height: 50vh;
-    padding-left: 1%;
-
-}
-.tipoRel{
-    max-width: 50vh;
-    max-height: 50vh;
-}
 /*
 Config. padrao da barra 
 */
@@ -251,6 +235,24 @@ Config. da div do botão de saida
 /**************************
 Config. das alteracoes especificas
 ***************************/
+
+.Principal{
+
+    align-items: center;
+    display: flex;
+}
+.mensagem{
+    min-width:80vh;
+    min-height: 50vh;
+    max-width: 80vh;
+    max-height: 50vh;
+    padding-left: 1%;
+
+}
+.tipoRel{
+    max-width: 50vh;
+    max-height: 50vh;
+}
 
 /*
 Config. da area de texto

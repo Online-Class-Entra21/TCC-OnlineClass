@@ -38,8 +38,6 @@ document.getElementById("idSalvar").addEventListener("click",function(){
     if(!form[0].checkValidity()) {
         $('<input type="submit">').hide().appendTo(form).click().remove();
     }else{
-        now = new Date();
-
         var email = $("#idDestinatario").val();
         verificarEmail(email);
     }
@@ -70,12 +68,13 @@ async function buscarUsuario(email){
     var usuario = JSON.parse(resposta);
 
     var idDestinatario = usuario.idUsuario;
-    
+    now = new Date();
+
     var relatorio = {
         titulo: $("#idTitulo").val(),
         destinatario: idDestinatario,
         texto: $("#texto-area").val(),
-        dataRelatorio: dataFormatada1(now),
+        dataRelatorio: now,
         fk_usuario: idUsuario
     }
     cadastrar(relatorio);

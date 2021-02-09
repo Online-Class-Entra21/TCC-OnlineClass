@@ -11,7 +11,6 @@
         <title>Relatórios - Coordenador</title>
     </head>
     <body>
-        <!-- Menu latral -->
         <div id="mostrar"></div>
         <div id="menu">
             <div id="menu-titulo">
@@ -83,41 +82,27 @@
                 </div>
             </nav>
         </header>
-
         <main>
             <div class="Principal container">
                 <div class="row">
-    
-            <div class="postar col-md-4 col-xl-6">
-                <form class="relatorio form-group">
-                    <label class="tipoRel lead pt-4" for="idNomReu">Nome</label><br>
-                    <input class="tipoRel form-control"  type="text" id="idNomRel" name="nmReu">
-    
-                    <label class="tipoRel lead pt-3" for="idDestinatario">Destinatário</label><br>
-                    <input class="tipoRel form-control"  type="email" id="idDestinatario" name="nmDestinatario">
-    
-                    <label class="tipoRel lead pt-3"  for="idAssuntoRel">Assunto</label><br>
-                    <select name="tipoUser" id="idAssuntoRel" class="tipoRel form-control">
-                        <option>-Selecione o tipo de usuario</option>
-                        <option>-Selecione o assunto</option>
-                        <option>-Relatar problema de sistema</option>
-                        <option>-Sugestão</option>
-                        <option>-Reclamaçôes</option>
-                        <option>-Outro</option>
-                    </select>
-    
-                    <textarea name="mensagem" class="mensagem form-control mt-5" placeholder="Escreva algo..."></textarea>
-                    <div class="custom-file mt-3">
-                        <input class="custom-file-input " type="file" id="arquivo">
-                        <label class="custom-file-label">Selecione arquivo</label>
+                    <div class="postar col-md-4 col-xl-6">
+                        <form class="relatorio form-group" id="formulario">
+                            <label class="tipoRel lead pt-3" for="idDestinatario">Destinatário</label><br>
+                            <input class="tipoRel form-control" placeholder="Ex: email@complemento.com" type="email" id="idDestinatario" name="nmDestinatario" required>
+            
+                            <label class="tipoRel lead pt-3"  for="idAssuntoRel">Título</label><br>
+                            <input class="tipoRel form-control"  type="text" id="idTitulo" name="nmReu" required>
+        
+                            <textarea id="texto-area" name="mensagem" placeholder="Escreva algo..."></textarea>
+                            <input id="idSalvar" type="button" value="Enviar Relatório" class="btn btn-primary mt-4">
+                        </form>
                     </div>
-                <input type="button" value="Enviar Relatório" class="btn btn-primary mt-4" onclick="alert('Relatório enviado')">
-        </div>
-                </main>
-
-
+                </div>
+            </div>
+        </main>
     </body>
     <!-- JS - Script -->
     <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/frontend/scripts/login/script-utilitarios.js"></script>
     <script src="/frontend/scripts/coordenador/script-coord-relatorios.js"></script>
 </html>

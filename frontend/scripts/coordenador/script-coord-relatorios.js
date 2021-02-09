@@ -1,5 +1,6 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
+var userEmail;
 
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
@@ -11,35 +12,83 @@ if(idUsuario != 0 && idUsuario != null){
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
             dadosUsuario = JSON.parse(resposta);
+            var resposta = xhr.responseText; 
+            var dadosUsuario = JSON.parse(resposta);
             //Adiciona o nome 
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
             //Adiciona a foto de perfil do usuario
             var img = document.querySelector("#idFotoPerfil");
-            img.setAttribute('src', dadosUsuario.fotoUsuario);
-            img.style.borderRadius = "80%";
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
+            userEmail = dadosUsuario.email;
         })
 
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/index.html";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
 }
 
-//Evento de abertura do menu 
-document.getElementById("mostrar").addEventListener("mouseover", function(){
-    abrirMenu();
-})
-document.getElementById("idImgMenu").addEventListener("mouseover", function(){
-    abrirMenu();
+document.getElementById("idSalvar").addEventListener("click",function(){
+    //Verifica se os campos foram preenchidos 
+    var form = $('#formulario');
+    if(!form[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo(form).click().remove();
+    }else{
+        var email = $("#idDestinatario").val();
+        verificarEmail(email);
+    }
 })
 
-//Abertura do menu
-function abrirMenu(){
-    document.getElementById("menu").style.display = "block";
+//Verifica o email
+async function verificarEmail(email){
+    
+    //insere os relatorios  
+    var resposta =  await usarApi("GET", "http://localhost:8080/api/verificar/"+email); 
+    var verificacao = JSON.parse(resposta);
+
+    if(email == userEmail){
+        alert("Você não pode digitar seu próprio e-mail")
+    }else if(verificacao){
+        buscarUsuario(email); 
+    }else{
+        alert("Destinatário não registrado no sistema!")
+    }
 }
 
-//Evento de fechamento do menu 
-document.getElementById("menu").addEventListener("mouseleave", function(){
-    document.getElementById("menu").style.display = "none";
-})
+//Buscar usuario pelo email
+async function buscarUsuario(email){
+    
+    //insere os relatorios  
+    var resposta =  await usarApi("GET", "http://localhost:8080/api/usuario/email/"+email); 
+    var usuario = JSON.parse(resposta);
+
+    var idDestinatario = usuario.idUsuario;
+    now = new Date();
+
+    var relatorio = {
+        titulo: $("#idTitulo").val(),
+        destinatario: idDestinatario,
+        texto: $("#texto-area").val(),
+        dataRelatorio: now,
+        fk_usuario: idUsuario
+    }
+    cadastrar(relatorio);
+}
+
+//Cadastrar relatorio
+async function cadastrar(relatorio){
+    //insere os relatorios  
+    var json = JSON.stringify(relatorio);
+    var resposta =  await usarApi("POST", "http://localhost:8080/api/relatorio/inserir/"+json); 
+    var isCorreto = JSON.parse(resposta);
+
+    if(isCorreto){
+        alert("Enviado com sucesso!");
+    }else{
+        alert("Erro ao enviar");
+    }
+}
