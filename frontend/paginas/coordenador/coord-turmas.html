@@ -90,34 +90,42 @@
     <main> <!--Inicio Main-->
             <div class="Principal container"> <!--Div Principal-->
                 <h2 id="TForm" class="mt-5 pb-5" >Controle de Turmas</h2>  
-            
-     <div id="fPessoas" class="dados mt-4 col-md-5 col-xl-4"> <!--Div de Cadastro de dados-->
-         <form id="formulario"><!--Inicio Form-->
-
-            <div class="form-group"> <!--Selecionar Turma-->
-                <label for="SelectTurma ">Selecione uma turma</label>
-                 <select name="nmSelect" id="SelectTurma" class="form-control">
-                   <option value="1">Cedup</option>
-                 </select>
-            </div>
-            <div class="form-group"> <!--Selecionar Início da aula-->
-                <label for="inputHorarioInicial">Início da aula</label>
-                <input type="time" class="form-control" id="inputHorarioInicial" placeholder="Turno">
-            </div>
-            <div class="form-group"><!--Selecionar Fim da aula-->
-                <label for="inputHorarioFinal">Final da aula</label>
-                <input type="time" class="form-control" id="inputHorarioFinal" placeholder="Turno">
-            </div>
-            <div class="form-group"><!--Selecionar Quantidade de alunos-->
-                <label for="txtNumAlu">Número de Alunos</label>
-                 <input type="number" class="form-control" id="txtNumAlu" placeholder="Quantidade de alunos" disabled>
-            </div>
-                    <button type="button" class="p-1 m-1 btn-primary btn-lg"
-                     onclick="cadTurma(txtTurma.value, txtTurno.value, txtNumAlu.value)">Cadastrar <!--Botão de cadastro de Turma-->
+                    <div id="fPessoas" class="dados mt-4 col-md-5 col-xl-4">
                         
-                    <button type="button" class="p-1 m-1 btn-danger btn-lg" id="idBtn"
-                    onclick="delRegistro()">Excluir <!--Botão de exlcuir Turma-->
-         </form> <!--Final Form-->
+                    <form id="formulario">
+                        <div class="form-group" id="form-radio">
+                           <input type="radio" name="nmRadio" id="radioCadastrar" value="cadastrar" checked onclick="eventoRadio(this)">
+                           <label for="radioCadastrar">Cadastrar</label>
+                           <input type="radio" name="nmRadio" id="radioAtualizar" value="atualizar" style="margin-left: 15px;" onclick="eventoRadio(this)">
+                           <label for="radioCadastrar">Atualizar</label>
+                        </div>
+                        <div class="form-group" id="divSelect" style="display: none;">
+                            <select name="nmSelect" id="SelectTurma">
+                                <option value="default">Selecione uma turma</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNome">Turma</label>
+                            <input type="text" class="form-control" id="inputNome" aria-describedby="emailHelp" placeholder="Ex: 3º C">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputHoraInicio">Início da aula</label>
+                            <input type="time" class="form-control" id="inputHoraInicio" placeholder="Turno">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputHoraFinal">Final da aula</label>
+                            <input type="time" class="form-control" id="inputHoraFinal" placeholder="Turno">
+                        </div>
+                        <div class="form-group">
+                            <label for="InputQtdAlunos">Número de Alunos</label>
+                            <input type="number" class="form-control" id="InputQtdAlunos" placeholder="Quantidade de alunos" disabled>
+                        </div>
+                        <button type="button" class="p-1 m-1 btn-primary btn-lg" id="btnCadastrar"
+                         onclick="cadastrar()">Cadastrar
+                        
+                       
+                        <button type="button" class="p-1 m-1 btn-danger btn-lg" id="idBtn" hidden
+                        onclick="delRegistro()">Excluir
 
         </div> <!--Final Div Cadastro de Dados-->
                  </div> <!--Final Div Pincipal-->
@@ -127,8 +135,7 @@
         
                 <table class="table" id="tbPessoas" class="table table-striped">
                     <thead class="thead-dark">
-                        <tr><!--Opções da tabela-->
-                            <th scope="col">Código</th>
+                        <tr>
                             <th scope="col">Nome</th>
                             <th scope="col">Matricula</th>
                             <th scope="col">Turma</th>
