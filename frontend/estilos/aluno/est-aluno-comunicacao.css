@@ -238,18 +238,15 @@ Config. das alteracoes especificas
 section#matematica {
     margin: 100px;
 }
-
 table {
 	width: 100%;
 	height: 100%;
 	border-collapse: collapse;
 	font-size: 1em;
 }
-
 th, td {
     padding: 50px;
 }
-
 th {
     text-transform: uppercase;
     border-top: 1px solid #999;
@@ -258,7 +255,6 @@ th {
     font-size: 90%;
     letter-spacing: 0.1em;
 }
-
 .alternado {
     background-color: #efefef;
 }

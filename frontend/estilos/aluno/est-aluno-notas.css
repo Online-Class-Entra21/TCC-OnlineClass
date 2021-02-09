@@ -245,15 +245,12 @@ Config. da tabela de turmas
     align-items: center;
     display: flex;
 }
-
 #selec{
     width: 70%;
     height: 80%;
     background-color: rgb(224, 219, 219);
     overflow-y: scroll;
 }
-
-
 tr, th, td{
     padding: 15px;
     text-transform: uppercase;
@@ -267,12 +264,10 @@ tr, th, td{
     letter-spacing: 0.2em;
     width: 100vh;
 }
-
 th {
     background: #999;
     border: 1px solid #111;
 }
-
 th:hover, td:hover {
     background: cyan;
 }
