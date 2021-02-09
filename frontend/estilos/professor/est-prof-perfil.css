@@ -34,6 +34,8 @@ Config. do main
 main{
     width: 100%;
     height: 90%;
+    justify-content: center;
+    align-items: center;
 }
 
 /*
@@ -73,7 +75,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:#00bd13;
+    color:yellow;
 }
 .img-opcoes{
     width: 9%;
@@ -101,7 +103,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:black;
+    background-color:rgb(0, 0, 0);
 }
 
 /*
@@ -133,7 +135,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     border-right: 1px solid;
     border-color: white;
     position: absolute;
@@ -235,3 +237,174 @@ Config. da div do botão de saida
 /**************************
 Config. das alteracoes especificas
 ***************************/
+
+/*
+Config. das sections
+*/
+#corpo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/*
+Config. do form
+*/
+form {
+    width: 100%;
+    height: 100%;
+}
+
+/*
+Config. das linhas 
+*/
+tr{
+    margin: 2%;
+    display: flex;
+    align-items: center;
+}
+
+/*
+Config. da tabela
+*/
+.tabela{
+    padding: 0;
+    width: 100%;
+}
+
+/*
+Config. das tds
+*/
+.ind{
+    width: 10vh;
+}
+.cont{
+    width: 30vh;
+}
+
+/*
+Config. do titulo
+*/
+.titulo{
+    font-weight: bold;
+    font-size: 3.5vh;
+}
+
+/*
+Config. dos inputs 
+*/
+.inputs {
+    width: 100%;
+    margin-left: 22%;
+    font-size: 85%;
+}
+
+/*
+Config. divs do form
+*/
+#div-titulo{
+    padding: 4%;
+    height: 12%;
+    align-items: center;
+    display: flex;
+}
+#div-tabela{
+    height: 85%;
+    justify-content: center;
+}
+
+/*
+Config. dados pessoais div
+*/
+#dados-pessoais {
+    width: 58vh;
+    height: 80vh;
+    border-radius: 3vh;
+    border: 2px solid black;
+    padding: 2%;
+    margin: 2.5%;
+}
+
+/*
+Config. do botao salvar 
+*/
+#salvar{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 1%;
+    border-radius: 2vh;
+    padding: 1.2%;
+    font-size: 2.5vh;
+}
+#botao-salvar{
+    margin-top: 5%;
+}
+#botao-salvar:hover{
+    border: 2px solid black;
+}
+
+/*
+Config da div de imagem
+*/
+#visul-img{
+    width: 40vh;
+    height: 50vh;
+    background-color: rgb(0, 0, 0);
+    position: fixed;
+    border-radius: 3%;
+    display: none;
+}
+#img{
+    width: 100%;
+    height: 70%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#img_preview{
+    border-radius: 100%;
+}
+#botoes-img{
+    width: 100%;
+    height: 30%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+
+/*
+Config. dos componentes de add de imagem 
+*/
+#botao-input{
+    font-size: 90%;
+}
+#imagemInput{
+    display: none;
+    width: 0;
+    height: 0;
+}
+#visualizacao{
+    width: 6.5%;
+    height: 6.5%;
+    margin-left: 2%;
+    cursor: pointer;
+}
+#ok{
+    font-size: 90%;
+    color: rgb(13, 97, 45);
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    margin-left: 2%;
+}
+
+#tr-salvar{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 4%;
+}
+

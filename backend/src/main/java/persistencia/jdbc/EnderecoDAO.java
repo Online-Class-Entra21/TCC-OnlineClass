@@ -182,10 +182,10 @@ public class EnderecoDAO {
 	 */
 	public int buscarIgual(Endereco endereco) throws SQLException {
 		int idEndereco = 0;
-		String sql = "select idenereco from endereco where"
-				+ "LOWER(estado)=LOWER(?) and LOWER(cidade)=LOWER(?)"
-				+ "and LOWER(bairro)=LOWER(?) and LOWER(rua)=LOWER(?)"
-				+ "and numero=? and LOWER(cep)=LOWER(?) and LOWER(complemento)=LOWER(?);";
+		String sql = "select idendereco from endereco where"
+				+ " LOWER(estado)=LOWER(?) and LOWER(cidade)=LOWER(?)"
+				+ " and LOWER(bairro)=LOWER(?) and LOWER(rua)=LOWER(?)"
+				+ " and numero=? and LOWER(cep)=LOWER(?) and LOWER(complemento)=LOWER(?);";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
 		comandoSql.setString(1, endereco.getEstado());
