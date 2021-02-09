@@ -207,7 +207,6 @@ async function editar() {
         var horarioFinal = new Date(document.getElementById('inputHorarioFinal').valueAsDate);
         horarioInicial.setHours(horarioInicial.getHours()+3);
         horarioFinal.setHours(horarioFinal.getHours()+3);
-        console.log(horarioInicial.getHours());
         //Dados Endereço
         var estado = $("#inputEstado :selected").val();
         var cidade = document.getElementById('inputCidade').value;
