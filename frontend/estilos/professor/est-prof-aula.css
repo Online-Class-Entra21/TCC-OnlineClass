@@ -248,7 +248,6 @@ Config. das alteracoes especificas
     margin-top: 0;
     transition-delay: .2s;
 }
-
 .marcar:hover {
     background: #050542;
     border: solid #050542 1px;
@@ -295,13 +294,11 @@ Config. das alteracoes especificas
     width: 100%;
     height: 50vh;
 }
-
 .marcar-aula{
     
     margin-top: 5%;
   
 }
-
 .inputFile{
     margin-right: 10%;
 }
@@ -309,14 +306,12 @@ Config. das alteracoes especificas
 #andre {
     border: 1px solid black;
 }
-
 #testeArea {
     margin-top: 14%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 #teste {
     margin-left: 2%;
     float: right;

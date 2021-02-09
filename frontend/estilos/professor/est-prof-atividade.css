@@ -236,6 +236,9 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
+/*
+Config. das atividades do usuarios
+*/
 .marcar:hover {
     background: #050542;
     border: solid #050542 1px;
@@ -280,7 +283,6 @@ Config. das alteracoes especificas
     display: flex;
     margin-left: 79%;
     border: none;
-
 }
 .arq{
     margin-left: 10%;

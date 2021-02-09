@@ -241,9 +241,10 @@ Config. das alteracoes especificas
     font-family: Arial, Helvetica, sans-serif;  
 }
     
- .marcar {
+.marcar {
     margin-left: 50%;
- }
+}
+
 .cont {
     max-width: 50%;
     border: 1px solid black;
