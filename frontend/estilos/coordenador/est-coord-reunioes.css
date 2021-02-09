@@ -9,21 +9,6 @@ Config. para todos os elementos
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.adicionar{
-    border-style: solid;
-    border-radius: 2%;
-    border-color:  #0d96a8;
-    width: 50vh;
-}
-.marcar{
-    width: 50vh;
-}
-.Principal{
-    float: right;
-    align-items: center;
-    display: flex;
-}
-
 /*
 Config. padrao da barra 
 */
@@ -273,8 +258,7 @@ Config. das alteracoes especificas
    display: block;
 }
 .content{
-    
-   width: 42vh;
+    width: 42vh;
     margin-left: 163vh;
     background:  #0d96a8;
     padding: 2%;
@@ -305,3 +289,26 @@ li{
 }
 
 /* FIM TAG */
+
+/*
+Config dos inputs 
+*/
+.adicionar{
+    border-style: solid;
+    border-radius: 2%;
+    border-color:  rgb(87, 16, 16);
+    width: 50vh;
+}
+.marcar{
+    width: 50vh;
+}
+.Principal{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.btnCriarReuniao{
+    display:flex;
+    flex-wrap: wrap;
+    flex: 1;
+}

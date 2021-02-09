@@ -9,26 +9,6 @@ Config. para todos os elementos
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.adicionar{
-    border-style: solid;
-    border-radius: 2%;
-    border-color:  rgb(87, 16, 16);
-    width: 50vh;
-}
-.marcar{
-    width: 50vh;
-}
-.Principal{
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-.btnCriarReuniao{
-    display:flex;
-    flex-wrap: wrap;
-    flex: 1;
-}
-
 /*
 Config. padrao da barra 
 */
@@ -255,3 +235,26 @@ Config. da div do botão de saida
 /**************************
 Config. das alteracoes especificas
 ***************************/
+
+/*
+Config dos inputs 
+*/
+.adicionar{
+    border-style: solid;
+    border-radius: 2%;
+    border-color:  rgb(87, 16, 16);
+    width: 50vh;
+}
+.marcar{
+    width: 50vh;
+}
+.Principal{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.btnCriarReuniao{
+    display:flex;
+    flex-wrap: wrap;
+    flex: 1;
+}

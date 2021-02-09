@@ -24,11 +24,13 @@ if(idUsuario != 0 && idUsuario != null){
             var min  = String(dataAgora.getMinutes()).padStart(2, '0');;
             var dataAgora = ano+'-'+mes+'-'+dia+'T'+hora+':'+min;
             $("#idDateTime").attr("min",dataAgora);
-            $("#idUuario").val("Diretor").prop("disabled", true)
+            $("#idUsuario").val("Diretor").prop("disabled", true)
             //Adiciona a foto de perfil do usuario
             var img = document.querySelector("#idFotoPerfil");
-            img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
-            img.style.borderRadius = "80%";
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
         })
 
     xhr.send();
