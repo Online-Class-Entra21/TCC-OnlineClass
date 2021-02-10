@@ -101,7 +101,7 @@
             <section>
                 <div id="cab"></div>
                 <div id="conteudo">
-                    <form action="" class="nav justify-content-center">
+                    <form action="" class="nav justify-content-center" id="formulario">
                         <!-- Dados pessoais -->
                         <div id="dados">
                             <div id="dados-div">
@@ -111,7 +111,7 @@
                                     <!-- Nome -->
                                     <tr>
                                         <td>
-                                            <label for="nome">Nome: </label>
+                                            <label for="inputNome">Nome: </label>
                                         </td>
                                         <td class="input">
                                             <input type="text" name="nome" id="inputNome" class="form-control">
@@ -120,7 +120,7 @@
                                     <!-- Sobrenome -->
                                     <tr>
                                         <td>
-                                            <label for="sobrenome">Sobrenome: </label>
+                                            <label for="inputSobrenome">Sobrenome: </label>
                                         </td>
                                         <td class="input">
                                             <input type="text" name="sobrenome" id="inputSobrenome"  class="form-control">
@@ -129,7 +129,7 @@
                                     <!-- Celular -->
                                     <tr>
                                         <td>
-                                            <label>Celular:</label>
+                                            <label for="inputCelular">Celular:</label>
                                         </td>
                                         <td class="input">
                                             <input id="inputCelular" type="text" placeholder="(00) 00000-0000"  class="form-control">     
@@ -138,7 +138,7 @@
                                     <!-- Telefone -->
                                     <tr>
                                         <td>
-                                            <label>Telefone:</label>
+                                            <label for="inputTelefone">Telefone:</label>
                                         </td>
                                         <td class="input">
                                             <input id="inputTelefone" type="text" placeholder="(00) 0000-0000"  class="form-control">
@@ -146,7 +146,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label for="cpf">CPF: </label>
+                                            <label for="inputCpf">CPF: </label>
                                         </td>
                                         <td>
                                             <input type="text" id="inputCpf" name="cpf" placeholder="000.000.000-00"  class="form-control">
@@ -155,19 +155,40 @@
                                     <tr>
                                         <td>
                                             <br>
-                                            <label for="inputHorarioInicial">Horário inicial da aula: </label>
+                                            <label for="inputDeficiencia">Possui alguma deficiência?</label>
                                         </td>
                                         <td>
-                                            <input type="time" name="horarioInicial" id="inputHorarioInicial"  class="form-control"> 
+                                            <br>
+                                           <input type="radio" name="nmRadio" id="idTrueDef" value="true">
+                                           <label for="idTrueDef">Sim</label>
+                                           <input type="radio" name="nmRadio" id="idFalseDef" style="margin-left: 15px;" value="false" checked>
+                                           <label for="idFalseDef">Não</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <br>
-                                            <label for="inputHorarioFinal">Horário final da aula: </label>
+                                            <label for="inputNomeMae">Nome da mãe: </label>
                                         </td>
+                                        <td class="input">
+                                            <br>
+                                            <input type="text" name="nome" id="inputNomeMae" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>
-                                            <input type="time" name="horarioFinal" id="inputHorarioFinal"  class="form-control">
+                                            <label for="inputNomePai">Nome do pai: </label>
+                                        </td>
+                                        <td class="input">
+                                            <input type="text" name="nome" id="inputNomePai" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputNomeResponsavel">Nome do responsável: </label>
+                                        </td>
+                                        <td class="input">
+                                            <input type="text" name="nome" id="inputNomeResponsavel" class="form-control">
                                         </td>
                                     </tr>
                                 </table>
@@ -204,7 +225,7 @@
                                                 <option value="RS">Rio Grande do Sul</option>
                                                 <option value="RO">Rondônia</option>
                                                 <option value="RR">Roraima</option>
-                                                <option value="SC">Santa Catarina</option>
+                                                <option value="SC" selected>Santa Catarina</option>
                                                 <option value="SP">São Paulo</option>
                                                 <option value="SE">Sergipe</option>
                                                 <option value="TO">Tocantins</option>
@@ -294,43 +315,37 @@
                             </div>
                             <div id="escola-div">
                                 <table id="tab-escola" class="tabela">
-                                    <h5 class="titulo-dados titulo">Escola</h5>
+                                    <h5 class="titulo-dados titulo">Dados Escolares</h5>
+                                    <tr>
+                                        <td>
+                                            <label for="inputRa">RA: </label>
+                                        </td>
+                                        <td class="input">
+                                            <input type="number" name="nmRa" id="inputRa" class="form-control">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inputMatricula">Matricula: </label>
+                                        </td>
+                                        <td class="input">
+                                            <input type="number" name="nmMatricula" id="inputMatricula" class="form-control">
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="multiselect">
-                                          <div class="selectBox" onclick="optionPeriodos()">
-                                            <select>
-                                              <option>Informe o Período</option>
-                                            </select>
-                                            <div class="overSelect"></div>
-                                          </div>
-                                        
-                                        <div id="periodos"> 
-                                        <label for="one">
-                                            <input type="checkbox" id="one">⠀Matutino</label>
-                                        <label for="two">
-                                            <input type="checkbox" id="two">⠀Vespertino</label>
-                                        <label for="three">
-                                            <input type="checkbox" id="three">⠀Noturno</label>
-                                        </div>
+                                         <select name="nmPeriodo" id="SelectPeriodo">
+                                             <option value="matutino">Matutino</option>
+                                             <option value="vespertino">Vespertino</option>
+                                             <option value="noturno">Noturno</option>
+                                         </select>
                                         </td>
                                     </tr>  
                                     <tr>
                                         <td class="multiselect">
-                                            <div class="selectBox" onclick="optionTurmas()">
-                                              <select>
-                                                <option>Informe a Turma</option>
-                                              </select>
-                                              <div class="overSelect"></div>
-                                            </div>
-                                          
-                                          <div id="turmas">
-                                          <label for="one">
-                                              <input type="checkbox" id="one">⠀Turma 1</label>
-                                          <label for="two">
-                                              <input type="checkbox" id="two">⠀Turma 2</label>
-                                          <label for="three">
-                                              <input type="checkbox" id="three">⠀Turma 3</label>
-                                          </div>
+                                            <select name="nmTurma" id="SelectTurma">
+                                                <option value="default">Selecione uma Turma</option>
+                                            </select>
                                           </td>
                                     </tr>
                                 </table>
@@ -346,5 +361,7 @@
         </main> <!--Final Main-->
 
         <!--Script-->
+    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/frontend/scripts/login/script-utilitarios.js"></script>
     <script src="/frontend/scripts/coordenador/script-coord-alunos.js"></script>
 </html>

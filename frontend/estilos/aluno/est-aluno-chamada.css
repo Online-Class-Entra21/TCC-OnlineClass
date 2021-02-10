@@ -253,34 +253,25 @@ main{
 ul{
     margin-left: auto;
     margin-right: auto;
-    
 }
 #divJitsi{
     width: 75%;
-    height: auto;
-    float: left;
-    margin: 2%;
-    color: white;
     border: solid;
+    color: white;
+    margin: 2%;
+    float: left;
 }
 #divParticipantes{
     width: 25vh;
-    float: left;
+    height: auto;
     margin: 2%;
-    border: solid;
     color: white;
-    background: #4b005e60;
-    height: 90%;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-#divParticipantes{
-    margin-left: auto;
-    margin-right: auto;
     background: #ffffff60;
     border-radius: 3vh;
+    border: solid;
+    float: left;
 }
+
 li::marker {
     color: red
 }
