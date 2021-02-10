@@ -264,9 +264,10 @@ input[type=text]{
 }
 input[type=button]{
     border: none;
-    width: 10%;
-    float: right;
-    height: 1em;
+    width: 25%;
+    float: left;
+    height: 2.5em;
+    border-radius: 1vh;
 }
 
 /*
@@ -276,5 +277,6 @@ tr:hover {
     cursor: pointer;
     background-color: lightblue;
 }
+
 
 

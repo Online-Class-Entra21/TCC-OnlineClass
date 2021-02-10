@@ -1,20 +1,69 @@
-//Evento de abertura do menu 
-document.getElementById("mostrar").addEventListener("mouseover", function(){
-    abrirMenu();
-})
-document.getElementById("idImgMenu").addEventListener("mouseover", function(){
-    abrirMenu();
-})
+//Config. iniciais 
+document.getElementById('idBtnCadastrar').hidden = false;
+document.getElementById('idBtnAtualizar').hidden = true;
+document.getElementById('idBtnExcluir').hidden = true;
+document.getElementById('txtNome').disabled = false;
+document.getElementById('divSelect').hidden = true;
 
-//Abertura do menu
-function abrirMenu(){
-    document.getElementById("menu").style.display = "block";
+//Método para os botões radio
+function eventoRadio(radioB){
+    var opcaoEscolhida = radioB.value;
+    if (opcaoEscolhida == 'cadastrar') {
+        //Esconde os botões - config. de cadastro
+        document.getElementById('idBtnCadastrar').hidden = false;
+        document.getElementById('idBtnAtualizar').hidden = true;
+        document.getElementById('idBtnExcluir').hidden = true;
+        document.getElementById('txtNome').disabled = false;
+        document.getElementById('divSelect').hidden = true;
+    }else{
+        //Esconde os botões - config. atualizacao
+        document.getElementById('idBtnCadastrar').hidden = true;
+        document.getElementById('idBtnAtualizar').hidden = false;
+        document.getElementById('idBtnExcluir').hidden = false;
+        document.getElementById('txtNome').disabled = true;
+        document.getElementById('divSelect').hidden = false;
+    }
 }
 
-//Evento de fechamento do menu 
-document.getElementById("menu").addEventListener("mouseleave", function(){
-    document.getElementById("menu").style.display = "none";
-})
+//Cadastra uma disciplina no banco 
+function cadastrar(){
+
+}
+
+//Atualiza uma disciplina no banco
+function atualizar(){
+
+}
+
+//Deleta uma disciplina no banco 
+function deletar(){
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Evento de Cadastro
@@ -38,26 +87,19 @@ function cadSalas(nome, tipo, data, dono) {
     cellData.innerHTML = data;
     cellDono.innerHTML = dono;
     preencheCamposForm();
-    
-
 }
 //Evento de Alteração
 function altPessoa(nome, tipo, data, dono) {
-
-
     cadsalas.rows[index].cells[1].innerHTML = nome;
     cadsalas.rows[index].cells[2].innerHTML = tipo;
     cadsalas.rows[index].cells[3].innerHTML = data;
     cadsalas.rows[index].cells[4].innerHTML = dono;
-   
-
 }
 //Evento de preenchimento
 function preencheCamposForm() {
 
     for(var i = 0; i < cadsalas.rows.length; i++) 
     {
-
        cadsalas.rows[i].onclick = function() 
         {
             index = this.rowIndex;
@@ -73,12 +115,10 @@ function preencheCamposForm() {
 
 //Evento de delete
 function delRegistro() {
-
     for(var i = 0; i < cadsalas.rows.length; i++) 
     {
         if (index == i) {
             cadsalas.deleteRow(index);
-           
             return;
         }
     }
