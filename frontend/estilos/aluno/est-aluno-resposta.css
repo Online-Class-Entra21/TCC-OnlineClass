@@ -235,12 +235,16 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
-/* Esconde o input */
+/* 
+Esconde o input 
+*/
 input[type='file'] {
     display: none
-  }
+}
   
-  /* Aparência que terá o seletor de arquivo */
+/* 
+Aparência que terá o seletor de arquivo
+*/
 #selecao {
     background-color: #3498db;
     border-radius: 5px;

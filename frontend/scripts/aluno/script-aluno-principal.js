@@ -30,7 +30,7 @@ if(idUsuario != 0 && idUsuario != null){
 
 //Abre uma nova guia para digitar o email de recuperação 
 function answer() {
-    answer = window.open ("/frontend/paginas/aluno/aluno-respostas.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
+    answer = window.open ("/frontend/paginas/aluno/aluno-resposta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
 }
 
 $('#atividade').click(answer) 
