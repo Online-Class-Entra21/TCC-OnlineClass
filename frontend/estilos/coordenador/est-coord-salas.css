@@ -29,14 +29,6 @@ header{
 }
 
 /*
-Config. do main 
-*/
-main{
-    width: 100%;
-    height: 90%;
-}
-
-/*
 Config. das ancoras 
 */
 a{
@@ -59,6 +51,7 @@ a:visited {
      color: white;
 }
 
+
 /*
 Config figures opcoes e img opcoes
 */
@@ -73,7 +66,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color: #1100ff;
+    color:lightblue;
 }
 .img-opcoes{
     width: 9%;
@@ -101,7 +94,9 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#00a2ff;
+    background-color:#0d96a8;
+    z-index: 9999;
+    position: relative;
 }
 
 /*
@@ -133,12 +128,12 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #00a2ff;
+    background-color: #0d96a8;
     border-right: 1px solid;
     border-color: white;
-    position: absolute;
-    display: none;
     position: fixed;
+    display: none;
+    z-index: 99999;
 }
 
 /*
@@ -165,6 +160,7 @@ Config. div do menu
     display: flex;
     flex-direction: row;
     margin-left: 7%;
+    z-index: 1;
 }
 
 /*
@@ -188,6 +184,7 @@ Config. da div da barra no lado direito
     display: flex;
     flex-direction: row-reverse;
     margin: 0;
+    
 }
 
 /*
@@ -228,44 +225,57 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 20%;
+    margin-top: 55%;
 }
 
 /**************************
 Config. das alteracoes especificas
 ***************************/
 
-section#atividades {
-    width: 100%;
-
+/*
+Config. Tabela
+*/
+#tbPessoas {
+    font: 1em Verdana;
+    text-align: center;
 }
-table {
-	width: 100%;
-	height: 100%;
-	border-collapse: collapse;
-	font-size: 1em;
-}
-th, td {
-    width:5900px;
-    padding: 50px;
-}
-th {
-    width: 100%;
-    text-transform: uppercase;
-    border-top: 1px solid #999;
-    border-bottom: 1px solid #111;
-    text-align: left;
-    font-size: 90%;
-    letter-spacing: 0.1em;
-}
-.alternado {
-    background-color: #efefef;
+#TForm{
+   text-align: center;
 }
 
-tr {
-    width: 100%;
+.dados{
+    float: right;
 }
+
+ /*
+Config. conteudo
+*/
+.content h2{
+    text-align: center;
+    color: white;
+}
+
+/*
+Config. Inputs
+*/
+input[type=text]{
+    width: 80%;
+    height: 2em;
+    margin-bottom: 10px;
+}
+input[type=button]{
+    border: none;
+    width: 10%;
+    float: right;
+    height: 1em;
+}
+
+/*
+Config. hover linhas
+*/
 tr:hover {
-    background-color: #c3e6e5;
+    cursor: pointer;
+    background-color: lightblue;
 }
-    
+
+

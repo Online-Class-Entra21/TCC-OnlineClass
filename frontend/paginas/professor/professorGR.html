@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet"  href="/frontend/estilos/professor/estilo-professor-GerarRelatorio.css">
+        <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
+        <title> Professor - Online Class aaaa</title>
+    </head>
+
+    <body>
+
+        <header>
+			<div class="topo">
+				.
+			</div>
+		</header>
+        <main>
+
+			<div id="menu-topo">
+        <div class="topo">
+        <input type="checkbox" id="check">
+        <label id= "icone" for="check"><img src="/frontend/imagens/lista.png"></label>
+     
+        <div class="barra">
+            <nav>
+                <a href="/frontend/paginas/professor/professor.html"><div class="link">Início</div></a>
+                <br><br><br>
+				<a href="/frontend/paginas/professor/professorGR.html"><div class="link">Gerar relatório</div></a>
+                <a href="/frontend/paginas/professor/professorMA.html"><div class="link">Marcar aula</div></a>
+                <a href="/frontend/paginas/professor/professorPA.html"><div class="link">Postar atividade avaliativa</div></a>
+                <a href="/frontend/paginas/professor/professorPN.html"><div class="link">Postar nota</div></a>
+           
+				<br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br>
+           
+                <a href=""><div class="link">Sair</div></a>
+            </nav>
+        </div>
+    </div>
+        <div id="conteudo">
+
+                
+            <form class="relatorio">
+                <label class="tipoRel" for="idNome">Nome</label><br>
+                <input class="infoRel"  type="text" id="idNome" name="nmNome">
+                <br>
+                <br>
+                <label class="tipoRel" for="idDestinatario">Destinatário </label><br>
+                <input class="infoRel"  type="email" id="idDestinatario" name="nmDestinatario">
+                <br>
+                <br>
+                <label class="tipoRel"  for="idAssunto">Assunto</label><br>
+                <select name="assunto" id="idAssunto" class="formulario">
+                    <option>-Selecione o assunto</option>
+                    <option>-Relatar problema de sistema</option>
+                    <option>-Sugestão</option>
+                    <option>-Reclamaçôes</option>
+                    <option>-Outro</option>
+                </select>
+                <br>
+                <br>
+            
+                <textarea name="mensagem" class="mensagem">Escreva algo...</textarea>
+                <br>
+                <label class="arq" for="idFile">Anexar arquivo</label>
+                <input class="arq" type="file" name="nmFile" id="idFile">
+                <br>
+                <button class="botao-relatorio" onclick="alert('Mensagem enviada')">ENVIAR</button>
+                
+                
+                
+            
+            </form>
+            </main>
+    </body>
+</html>
