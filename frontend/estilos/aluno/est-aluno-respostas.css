@@ -240,7 +240,7 @@ input[type='file'] {
     display: none
   }
   
-  /* Aparência que terá o seletor de arquivo */
+/* Aparência que terá o seletor de arquivo */
 #selecao {
     background-color: #3498db;
     border-radius: 5px;
@@ -248,4 +248,8 @@ input[type='file'] {
     cursor: pointer;
     margin: 10px;
     padding: 6px 20px
+}
+
+fieldset {
+  width: 90%;
 }
