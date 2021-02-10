@@ -119,6 +119,7 @@ public class CoordenadorDAO {
 	 * Metodo para atualizar os dados de um perfil do coordenador no banco de dados.
 	 * O <code>idCoordenador</code> deve ser igual ao do coordenador que deseja atualizar
 	 * @param Coordenador coordenador
+	 * @author Andre
 	 * @throws SQLException
 	 */
 	public void update(Coordenador coordenador) throws SQLException {

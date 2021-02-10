@@ -38,5 +38,4 @@ public class UploadArquivosController {
 			LOGGER.error("Foto do usuario {} não atualizada erro {}",idUsuario,e);
 		}
 	}
-	
 }

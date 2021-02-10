@@ -298,7 +298,7 @@ async function editar() {
                             var coordenadorJson = JSON.stringify(inserirCoordenador);
 
                             //Chamada da api para registrar o Coordenador no banco de dados
-                            var insertUsuario = await usarApi("PUT", "http://localhost:8080/api/usuario/alterar/"+coordenadorJson);
+                            var insertUsuario = await usarApi("PUT", "http://localhost:8080/api/coordenador/alterar/"+coordenadorJson);
 
                             if (!insertUsuario || !insertEndereco) {
                                 alert("Ocorreu um erro ao editar coordenador!")
