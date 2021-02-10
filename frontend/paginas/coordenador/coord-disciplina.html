@@ -99,28 +99,30 @@
 
         <!-- Principal -->
 		<main>
-            <div class="Principal container">
+            <div class="Principal container ">
                 <h2 id="TForm" class="mt-5 pb-5" >Controle de Disciplinas</h2>  
                 <div id="fPessoas" class="dados mt-4 col-md-5 col-xl-4">
+
                     <form id="formulario">
                         <div class="form-group" id="form-radio">
+
                             <input type="radio" name="nmRadio" id="radioCadastrar" value="cadastrar" checked onclick="eventoRadio(this)">
                             <label for="radioCadastrar">Cadastrar</label>
                             <input type="radio" name="nmRadio" id="radioAtualizar" value="atualizar" style="margin-left: 15px;" onclick="eventoRadio(this)">
                             <label for="radioCadastrar">Atualizar</label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group ">
                             <label for="txtNome">Disciplina</label>
                             <input type="text" class="form-control" id="txtNome" aria-describedby="emailHelp" placeholder="Nome" required>
                         </div>
                         <div class="form-group" id="divSelect">
-                            <select name="nmSelect" id="SelectDisciplina">
+                            <select name="nmSelect" id="SelectTurma" class="form-control">
                                 <option value="default">Selecione uma disciplina</option>
                             </select>
-                        </div>
-                        <input value="Cadastrar" type="button" class="p-1 m-1 btn-primary but" id="idBtnCadastrar">
-                        <input value="Atualizar" type="button" class="p-1 m-1 btn-primary but" id="idBtnAtualizar">
-                        <input value="Excluir" type="button" class="p-1 m-1 btn-danger but" id="idBtnExcluir">
+                        </div>                        
+                        <button value="Cadastrar" type="button" class=" mr-2 mt-2 mb-3 btn-primary but" id="idBtnCadastrar"> Cadastrar </button>
+                        <button value="Atualizar" type="button" class=" mr-2 mt-2 mb-3 btn-primary but " id="idBtnAtualizar">Atualizar </button>
+                        <button value="Excluir" type="button" class="mr-2 mt-2 mb-3 btn-danger but" id="idBtnExcluir">Excluir </button>
                     </form>
                 </div>
             </div>
@@ -138,6 +140,7 @@
                     </table>
                 </div>
             </div>
+
         </main>
         <!-- Script - JS -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>

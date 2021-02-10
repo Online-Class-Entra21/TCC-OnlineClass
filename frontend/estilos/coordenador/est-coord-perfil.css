@@ -282,10 +282,14 @@ input{
 Config. dos botoes 
 */
 .but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
     margin: 1%;
-    border-radius: 2vh;
-    padding: 1.2%;
-    font-size: 2.7vh;
+    padding: 1%;
+    font-size: 2.5vh;
+    background-color: white;
+    border-radius: 1vh;
 }
 .but:hover{
     border: 2px solid black;
