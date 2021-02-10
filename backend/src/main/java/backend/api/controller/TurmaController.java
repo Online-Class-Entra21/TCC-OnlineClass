@@ -103,11 +103,12 @@ public class TurmaController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/turma/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "api/turma/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Atualizar Turma - {}",json);
 		Gson gson = new Gson();
 		Turma turma = gson.fromJson(json, Turma.class);
+		System.out.println(turma.getHorarioFinalAula());
 		TurmaDAO turmaDAO = new TurmaDAO();
 		try {
 			turmaDAO.update(turma);

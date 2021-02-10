@@ -235,8 +235,9 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
-section#matematica {
-    margin: 100px;
+section#atividades {
+    width: 100%;
+
 }
 table {
 	width: 100%;
@@ -245,9 +246,11 @@ table {
 	font-size: 1em;
 }
 th, td {
+    width:5900px;
     padding: 50px;
 }
 th {
+    width: 100%;
     text-transform: uppercase;
     border-top: 1px solid #999;
     border-bottom: 1px solid #111;
@@ -259,6 +262,11 @@ th {
     background-color: #efefef;
 }
 
+tr {
+    width: 100%;
+    border: 1px solid black;
+}
 tr:hover {
     background-color: #c3e6e5;
 }
+    

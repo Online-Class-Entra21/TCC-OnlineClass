@@ -48,7 +48,7 @@ public class TurmaDAO {
 	 */
 	public void update(Turma turma) throws SQLException {
 		String sql = "Update turma set ano = ?, qtdAluno = ?, horaInicioAula = ?, "
-				   + "horaFinalAula = ?, fk_sala = ?, fk_escola where idTurma = ?"; 
+				   + "horaFinalAula = ?, fk_sala = ?, fk_escola = ? where idTurma = ?"; 
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		    
 		comandoSql.setString(1, turma.getAno());
@@ -130,6 +130,7 @@ public class TurmaDAO {
 			turma.setHorarioInicioAula(resultSet.getTimestamp(4));
 			turma.setHorarioFinalAula(resultSet.getTimestamp(5));
 			turma.setFk_sala(resultSet.getInt(6));
+			turma.setFk_escola(resultSet.getInt(7));
 			lista.add(turma); 
 		}
 		comandoSql.close();

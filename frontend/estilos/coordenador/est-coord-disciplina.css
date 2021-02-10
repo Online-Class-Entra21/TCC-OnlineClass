@@ -51,7 +51,6 @@ a:visited {
      color: white;
 }
 
-
 /*
 Config figures opcoes e img opcoes
 */
@@ -225,7 +224,7 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 55%;
+    margin-top: 35%;
 }
 
 /**************************

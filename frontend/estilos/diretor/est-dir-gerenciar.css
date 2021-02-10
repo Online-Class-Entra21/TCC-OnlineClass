@@ -332,13 +332,24 @@ Config. de gerenciar periodos
     padding: 1%;
     font-size: 90%;
 }
-#salv-per{
-    margin-top: 2%;
-}
 #img-visualizar{
     margin-left: 2%;
     width: 4%;
     cursor: pointer;
     height: 4%;
 }
+
+/*
+Config. do botao de salvar 
+*/
+#salv-per{
+    font-size: 90%;
+    margin-top: 2%;
+}
+#salv-esc{
+    font-size: 90%;
+    margin-top: 2%;
+}
+
+
 

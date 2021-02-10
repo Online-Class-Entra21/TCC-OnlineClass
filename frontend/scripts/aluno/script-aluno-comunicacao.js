@@ -548,8 +548,8 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
 
 //Eventos de click nos botoes 
 document.getElementById("criarRelatorios").addEventListener("click", function(){
-    location = "/frontend/paginas/professor/prof-relatorios.html";
+    location = "/frontend/paginas/aluno/aluno-relatorio.html";
 })
 document.getElementById("criarReunioes").addEventListener("click", function(){
-    location = "/frontend/paginas/professor/prof-aula.html";
+    location = "/frontend/paginas/aluno/aluno-chamada.html";
 })

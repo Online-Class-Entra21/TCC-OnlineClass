@@ -207,10 +207,7 @@ async function editar() {
         var horarioFinal = new Date(document.getElementById('inputHorarioFinal').valueAsDate);
         horarioInicial.setHours(horarioInicial.getHours()+3);
         horarioFinal.setHours(horarioFinal.getHours()+3);
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
+        
         //Dados Endereço
         var estado = $("#inputEstado :selected").val();
         var cidade = document.getElementById('inputCidade').value;
@@ -301,7 +298,7 @@ async function editar() {
                             var coordenadorJson = JSON.stringify(inserirCoordenador);
 
                             //Chamada da api para registrar o Coordenador no banco de dados
-                            var insertUsuario = await usarApi("PUT", "http://localhost:8080/api/usuario/alterar/"+coordenadorJson);
+                            var insertUsuario = await usarApi("PUT", "http://localhost:8080/api/coordenador/alterar/"+coordenadorJson);
 
                             if (!insertUsuario || !insertEndereco) {
                                 alert("Ocorreu um erro ao editar coordenador!")

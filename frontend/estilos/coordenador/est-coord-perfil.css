@@ -229,7 +229,7 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 55%;
+    margin-top: 35%;
 }
 
 /**************************
@@ -285,7 +285,7 @@ Config. dos botoes
     margin: 1%;
     border-radius: 2vh;
     padding: 1.2%;
-    font-size: 2vh;
+    font-size: 2.7vh;
 }
 .but:hover{
     border: 2px solid black;
@@ -398,7 +398,7 @@ Config da div de imagem
 #visul-img{
     width: 40vh;
     height: 50vh;
-    background-color: rgb(87, 16, 16);
+    background-color: #0d96a8;
     position: fixed;
     border-radius: 3%;
     display: none;
