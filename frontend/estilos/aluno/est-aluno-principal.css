@@ -264,7 +264,6 @@ th {
 
 tr {
     width: 100%;
-    border: 1px solid black;
 }
 tr:hover {
     background-color: #c3e6e5;

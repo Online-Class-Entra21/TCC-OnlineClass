@@ -307,7 +307,7 @@ Config. dados pessoais div
 */
 #dados-pessoais {
     width: 98vh;
-    height: 83vh;
+    height: 125%;
     border-radius: 3vh;
     border: 2px solid black;
     padding: 1.5%;

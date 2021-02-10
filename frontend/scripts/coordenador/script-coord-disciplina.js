@@ -1,9 +1,17 @@
+//Dados iniciais 
+var fk_escola = sessionStorage.getItem('escolaUsuario');
+var idUsuario = sessionStorage.getItem('idUsuario');
+
+padraoDefault();
+
 //Config. iniciais 
-document.getElementById('idBtnCadastrar').hidden = false;
-document.getElementById('idBtnAtualizar').hidden = true;
-document.getElementById('idBtnExcluir').hidden = true;
-document.getElementById('txtNome').disabled = false;
-document.getElementById('divSelect').hidden = true;
+function padraoDefault(){
+    document.getElementById('idBtnCadastrar').hidden = false;
+    document.getElementById('idBtnAtualizar').hidden = true;
+    document.getElementById('idBtnExcluir').hidden = true;
+    document.getElementById('txtNome').disabled = false;
+    document.getElementById('divSelect').hidden = true;
+}
 
 //Método para os botões radio
 function eventoRadio(radioB){
@@ -26,100 +34,117 @@ function eventoRadio(radioB){
 }
 
 //Cadastra uma disciplina no banco 
-function cadastrar(){
+document.getElementById("idBtnCadastrar").addEventListener("click",function(){
+    cadastrar();
+})
 
-}
+//Cadastro de disciplina 
+async function cadastrar(){
 
-//Atualiza uma disciplina no banco
-function atualizar(){
+    //Cria a classe disciplina 
+    var disciplina = {
+        nome: document.getElementById("txtNome").value
+    }
 
-}
+    //Verifica se os campos foram preenchidos 
+    var form = $('#formulario');
+    if(!form[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo(form).click().remove();
+    }else{
+        //Converte para JSON
+        var disciplinaJson = JSON.stringify(disciplina);
+        console.log(disciplinaJson);
 
-//Deleta uma disciplina no banco 
-function deletar(){
+        //Chama a api para cadastrar a turma
+        var insertDisciplina = await usarApi("POST", "http://localhost:8080/api/disciplina/inserir/" + disciplinaJson)
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Evento de Cadastro
-var cadsalas, index;
-
-function cadSalas(nome, tipo, data, dono) {
-    cadsalas = document.getElementById("tbPessoas");    
-    var qtdlLinhas = cadsalas.rows.length;
-    var linha = cadsalas.insertRow(qtdlLinhas);
-    var linhaParam;
-
-    var cellCodigo = linha.insertCell(0);
-    var cellNome = linha.insertCell(1);
-    var cellTipo = linha.insertCell(2);
-    var cellData = linha.insertCell(3);
-    var cellDono = linha.insertCell(4);
-
-    cellCodigo.innerHTML = qtdlLinhas;
-    cellNome.innerHTML = nome;
-    cellTipo.innerHTML = tipo;
-    cellData.innerHTML = data;
-    cellDono.innerHTML = dono;
-    preencheCamposForm();
-}
-//Evento de Alteração
-function altPessoa(nome, tipo, data, dono) {
-    cadsalas.rows[index].cells[1].innerHTML = nome;
-    cadsalas.rows[index].cells[2].innerHTML = tipo;
-    cadsalas.rows[index].cells[3].innerHTML = data;
-    cadsalas.rows[index].cells[4].innerHTML = dono;
-}
-//Evento de preenchimento
-function preencheCamposForm() {
-
-    for(var i = 0; i < cadsalas.rows.length; i++) 
-    {
-       cadsalas.rows[i].onclick = function() 
-        {
-            index = this.rowIndex;
-            document.getElementById("txtCodigo").value = cadsalas.rows[index].cells[0].innerText;
-            document.getElementById("txtNome").value = cadsalas.rows[index].cells[1].innerText;
-            document.getElementById("txtTipo").value = cadsalas.rows[index].cells[2].innerText;
-            document.getElementById("txtData").value = cadsalas.rows[index].cells[3].innerText;
-            document.getElementById("txtDono").value = cadsalas.rows[index].cells[4].innerText;
-
+        if (!insertDisciplina) {
+            alert("Ocorreu um erro ao cadastrar a disciplina!");
+        } else {
+            alert("Cadastrado com sucesso!");
+            document.getElementById('txtNome').value = '';
         }
     }
 }
 
-//Evento de delete
-function delRegistro() {
-    for(var i = 0; i < cadsalas.rows.length; i++) 
-    {
-        if (index == i) {
-            cadsalas.deleteRow(index);
-            return;
-        }
+//Método para selecao da disciplina 
+$("#SelectDisciplina").change(function() { 
+    var disciplinaEscolhida = $('#SelectDisciplina :selected').val();
+    var nomeDisciplinaEscolhida = $('#SelectDisciplina :selected').text();
+    console.log(disciplinaEscolhida)
+});
+
+//Método para carregar o select com as turmas existentes
+async function carregarSelect() {
+    //Chama a api e retorna um arrays com as disciplinas pertencentes à escola
+    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/escola/"+fk_escola);
+    var turmas = JSON.parse(resposta);
+    var select = document.getElementById('SelectTurma');
+
+    //Cria os options do select
+    for (let index = 0; index < turmas.length; index++) {
+        
+        var option = document.createElement('option')
+        option.textContent = turmas[index].ano;
+        option.value = turmas[index].idTurma;
+        option.classList.add('optionTurmas')
+
+        select.append(option);
     }
 }
+
+//Método para carregar os campos da turma selecionada
+async function carregarCampos(turma) {
+    //Busca os dados da turma selecionado no checkbox 
+    var resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + turma)
+    var turma = JSON.parse(resposta)
+
+    //Dados Turma
+    document.getElementById('inputNome').value = turma.ano;
+    document.getElementById('InputQtdAlunos').value = turma.qtdAluno
+}
+
+//Método para carregar a lista de turmas da disciplina selecionada
+async function carregarListaTurmas(idTurma, nomeTurma) {
+    //Faz a buscar na API
+    var resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + idTurma);
+    var alunos = JSON.parse(resposta);
+
+    
+    //Verifica se tem algum aluno no banco de dados
+    if(alunos[0] == null){
+        var tr = document.createElement("tr");
+        var coluna = document.createElement("td");
+        coluna.append("Nenhum aluno ligado à essa turma.")
+        tr.append(coluna)
+        document.getElementById('tbLista').append(tr)
+    }else{
+        var alunosIndex = []
+        for (let i = 0; i < alunos.length; i++) {
+
+            resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + alunos[i].fk_usuario);
+            var usuarioNome = JSON.parse(resposta);
+
+            alunosIndex.push(alunos[i]);
+
+            var linha = document.createElement("tr");
+            linha.classList.add("LinhaAlunos")
+            var colunaNome = document.createElement("td");
+            colunaNome.classList.add("colunaNome")
+            var nomeAluno = usuarioNome.nome+" "+usuarioNome.sobrenome;
+            colunaNome.append(nomeAluno)
+            linha.append(colunaNome);
+            var colunaMatricula = document.createElement("td");
+            colunaMatricula.classList.add("colunaMatricula")
+            colunaMatricula.append(alunos[i].matricula)
+            linha.append(colunaMatricula);
+            var colunaTurma = document.createElement("td");
+            colunaTurma.classList.add("colunaTurma")
+            colunaTurma.append(nomeTurma)
+            linha.append(colunaTurma);
+
+            document.getElementById('tbLista').append(linha)
+        }  
+    }
+}
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet"  href="/frontend/estilos/professor/estilo-professor-PostarAtividade.css">
+        <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
+        <title> Professor - Online Class aaaa</title>
+    </head>
+
+    <body>
+        <div class="topo">
+            .
+        </div>
+        <input type="checkbox" id="check">
+        <label id= "icone" for="check"><img src="/frontend/imagens/lista.png"></label>
+     
+        <div class="barra">
+            <nav>
+                <a href="/frontend/paginas/professor/professor.html"><div class="link">Início</div></a>
+                <br><br><br>
+				<a href="/frontend/paginas/professor/professorGR.html"><div class="link">Gerar relatório</div></a>
+                <a href="/frontend/paginas/professor/professorMA.html"><div class="link">Marcar aula</div></a>
+                <a href="/frontend/paginas/professor/professorPA.html"><div class="link">Postar atividade avaliativa</div></a>
+                <a href="/frontend/paginas/professor/professorPN.html"><div class="link">Postar nota</div></a>
+           
+				<br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br>
+           
+                <a href=""><div class="link">Sair</div></a>
+            </nav>
+        </div>
+
+        <main>
+            
+           
+            <div id="conteudo">
+                
+                <img class="logo" src="imagens/Logo-OnlineClass.png" alt="">
+                
+                <form class="postar-atividade">
+                  
+                    <label class="aulaTipo" for="idTitle">Titulo da atividade </label><br>
+                <input class="aula" type="text" id="idTitle" name="nmTitle">
+                    <br>
+                    <label class="aulaTipo" for="idDateTime">Entrega </label><br>
+                <input class="aula" type="datetime-local" id="idDateTime" name="nmDateTitle">
+                    <br><br>
+                    <label class="aulaTipo" for="idTipo">Tipo de atividade</label><br>
+                    <select name="assunto" id="idTipo" class="aula">
+                        <option>-Selecione o tipo</option>
+                        <option>-Avaliação</option>
+                        <option>-Atividade em grupo</option>
+                        <option>-Atividade</option>
+                        <option>-Recuperação Paralela</option>
+                        <option>-Outro</option>
+                    </select>
+                
+                    
+                    <label class="arq" for="idFile"></label>
+                    <input class="arq" type="file" name="nmFile" id="idFile">
+                   
+                    <label class="arq" for="idFile"></label>
+                    <input class="arq" type="file" name="nmFile" id="idFile">
+                   
+                    <label class="arq" for="idFile"></label>
+                    <input class="arq" type="file" name="nmFile" id="idFile">
+
+                    <textarea name="mensagem" class="descricao">Insira um breve resumo sobre a atividade...</textarea>
+                    <br>
+                    
+                    <button class="marcar" onclick="alert('Aula marcada')">ENVIAR</button>
+                    
+                    
+                    
+                
+                </form>
+              
+            </div>
+        </main>
+    </body>
+</html>
