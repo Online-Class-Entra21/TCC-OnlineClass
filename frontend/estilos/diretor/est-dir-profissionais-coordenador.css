@@ -277,7 +277,7 @@ Config. dos botoes
     margin: 1%;
     border-radius: 2vh;
     padding: 1.2%;
-    font-size: 2vh;
+    font-size: 2.5vh;
 }
 .but:hover{
     border: 2px solid black;
@@ -303,13 +303,6 @@ Condifg. das divs de conteudo
     margin-right: 3%;
     width: 100vh;
     height: 100%;
-}
-
-/*
-Config. dos botoes do form 
-*/
-#botoes{
-    margin: 0;
 }
 
 /*
@@ -355,18 +348,18 @@ Config. das divs
 }
 #login-div{
     width: 100%;
-    height: 30%;
+    height: 20%;
     margin-top: 2%;
 }
 #endereco-div{
     width: 100%;
-    height: 30%;
+    height: 40%;
     margin-top: 2%;
 }
 #botoes{
     width: 100%;
-    height: 9%;
-    margin-top: 2%;
+    height: 15%;
+    margin-top: 3%;
 }
 
 /*
@@ -375,12 +368,5 @@ Config. de inputs classe
 .input{
     width: 30vh;
     margin: 1vh;
-}
-
-/*
-Config. dos botoes do form
-*/
-#botoes{
-    margin-top: 3%;
 }
 
