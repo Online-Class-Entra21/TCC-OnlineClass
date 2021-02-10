@@ -1,4 +1,3 @@
-/*
 var fk_escola = sessionStorage.getItem('escolaUsuario');
 var idUsuario = sessionStorage.getItem('idUsuario');
 carregarSelect();
@@ -21,6 +20,16 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
+//Métodos onclick dos botões
+var btnCadastrar = document.getElementById('btnCadastrar');
+var btnAtualizar = document.getElementById('btnAtualizar')
+btnCadastrar.addEventListener("click", function() {
+    cadastrar();
+})
+btnAtualizar.addEventListener("click", function() {
+    atualizar();
+})
+
 //Método para os botões radio
 function eventoRadio(radioB) {
     var opcaoEscolhida = radioB.value;
@@ -31,20 +40,27 @@ function eventoRadio(radioB) {
         document.getElementById('InputQtdAlunos').disabled = true;
         document.getElementById('inputHoraInicio').disabled = false;
         document.getElementById('inputHoraFinal').disabled = false;
-        document.getElementById('btnCadastrar').textContent = 'Cadastrar'
         document.getElementById('btnCadastrar').hidden = false;
+        document.getElementById('btnAtualizar').hidden = true;
         $('#divSelect').css('display', 'none');
         $("#tbLista").empty();
         document.getElementById("formulario").reset();
+
     } else {
+        $("#SelectTurma").val("default");
+        $("#tbLista").empty();
+        document.getElementById('inputNome').value = '';
+        document.getElementById('InputQtdAlunos').value = '';
+        document.getElementById('inputHoraInicio').value = '';
+        document.getElementById('inputHoraFinal').value = '';
         document.getElementById('inputNome').disabled = true;
         document.getElementById('InputQtdAlunos').disabled = true;
         document.getElementById('inputHoraInicio').disabled = true;
         document.getElementById('inputHoraFinal').disabled = true;
         document.getElementById('SelectTurma').disabled = false;
         document.getElementById('idBtn').hidden = false;
-        document.getElementById('btnCadastrar').textContent = 'Atualizar'
         document.getElementById('btnCadastrar').hidden = true;
+        document.getElementById('btnAtualizar').hidden = true;
         $('#divSelect').css('display', 'block');
     }
 }
@@ -64,8 +80,10 @@ $( "#SelectTurma" ).change(function() {
         document.getElementById('inputHoraInicio').disabled = true;
         document.getElementById('inputHoraFinal').disabled = true;
         document.getElementById('btnCadastrar').hidden = true;
+        document.getElementById('btnAtualizar').hidden = true;
     } else {
-        document.getElementById('btnCadastrar').hidden = false;
+        document.getElementById('btnCadastrar').hidden = true;
+        document.getElementById('btnAtualizar').hidden = false;
         document.getElementById('inputNome').disabled = false;
         document.getElementById('InputQtdAlunos').disabled = true;
         document.getElementById('inputHoraInicio').disabled = false;
@@ -77,16 +95,17 @@ $( "#SelectTurma" ).change(function() {
 
 //Método para o cadastro de uma turma
 async function cadastrar() {
-    var form = $('#formulario');
-    if(!form[0].checkValidity()) {
-        $('<input type="submit">').hide().appendTo(form).click().remove();
-    }else{
-        //Coleta os dados do input
-        var turma = document.getElementById('inputNome').value;
-        var horaInicioAula = new Date(document.getElementById('inputHoraInicio').valueAsDate);
-        var horaFinalAula = new Date(document.getElementById('inputHoraFinal').valueAsDate);
-        horaInicioAula.setHours(horaInicioAula.getHours()+3);
-        horaFinalAula.setHours(horaFinalAula.getHours()+3);
+    //Coleta os dados do input
+    var turma = document.getElementById('inputNome').value;
+    var horaInicioAula = new Date(document.getElementById('inputHoraInicio').valueAsDate);
+    var horaFinalAula = new Date(document.getElementById('inputHoraFinal').valueAsDate);
+    
+    //Verifica os campos
+    if(turma == '' || horaInicioAula == "Wed Dec 31 1969 21:00:00 GMT-0300 (Horário Padrão de Brasília)" || horaFinalAula == "Wed Dec 31 1969 21:00:00 GMT-0300 (Horário Padrão de Brasília)") {
+       alert("Preencha os campos")
+    }else {
+
+        //Cria o Objeto turma
         var inserirTurma = {
             ano: turma,
             qtdaluno: null,
@@ -122,41 +141,48 @@ async function cadastrar() {
 
 //Método para atualizar a turma
 async function atualizar() {
+    //Coleta os dados do input
+    var turma = document.getElementById('inputNome').value;
+    var horaInicioAula = new Date(document.getElementById('inputHoraInicio').valueAsDate);
+    var horaFinalAula = new Date(document.getElementById('inputHoraFinal').valueAsDate);
     
-    //Verifica se os campos foram preenchidos 
-    var form = $('#formulario');
-    if(!form[0].checkValidity()) {
-        $('<input type="submit">').hide().appendTo(form).click().remove();
+    //Verifica o campo nome
+    if(turma == '') {
+       alert("Preencha os campos")
     }else{
-        //Edita os Campos da escola
+        //Cria o objeto turma
         var alterarTurma = {
-            ano: document.getElementById('inputNome').value,
-            horainicioaula: document.getElementById('inputHorarioInicial').valueAsDate,
-            horafinalaula: document.getElementById('inputHorarioFinal').valueAsDate,
+            ano: turma,
             qtdaluno: null,
-            fk_sala: null,
-            fk_escola: document.getElementById('inputFk_Escola').value
+            horarioInicioAula: horaInicioAula,
+            horarioFinalAula: horaFinalAula,
+            fk_sala: 1,
+            fk_escola: fk_escola,
+            idTurma: $('#SelectTurma :selected').val()
+            
         }
+
+        //Converte para Json
         var turmaJson = JSON.stringify(alterarTurma);
-        var updateEscola = await usarApi("PUT", "http://localhost:8080/api/turma/alterar/"+codigoEscola+"/"+turmaJson);
+        var updateEscola = await usarApi("PUT", "http://localhost:8080/api/turma/alterar/"+turmaJson);
         var resposta = JSON.parse(updateEscola)
                     
         if (!resposta) {
             alert("Erro ao salvar edição!");
         }else{
-            editarDiretor();
+            alert("Atualizado com sucesso.")
         }
-    }
-
-            
+    }        
 }
 
 //Método para carregar o select com as turmas existentes
 async function carregarSelect() {
+    //Chama a api e retorna um arrays com as turmas pertencentes à escola
     var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/escola/"+fk_escola);
     var turmas = JSON.parse(resposta);
     var select = document.getElementById('SelectTurma');
 
+    //Cria os options do select
     for (let index = 0; index < turmas.length; index++) {
         
         var option = document.createElement('option')
@@ -177,16 +203,9 @@ async function carregarCampos(turma) {
     //Dados Turma
     document.getElementById('inputNome').value = turma.ano;
     document.getElementById('InputQtdAlunos').value = turma.qtdAluno
-    /*
-    var horaInicioAulaFormatado = turma.horarioInicioAula.slice(13, 20);
-    var horaFinalAulaFormatado = turma.horarioFinalAula.slice(13, 20);
-    console.log(horaInicioAulaFormatado.toISOString())
-    console.log(horaFinalAulaFormatado)
-    document.getElementById('inputHoraInicio').value = horaInicioAulaFormatado;
-    document.getElementById('inputHoraFinal').value = turma.horarioFinalAula;
-    */
-   /*
+   
 }
+
 //Método para carregar a lista de alunos da turma selecionada
 async function carregarListaAlunos(idTurma, nomeTurma) {
     //Faz a buscar na API
@@ -194,7 +213,7 @@ async function carregarListaAlunos(idTurma, nomeTurma) {
     var alunos = JSON.parse(resposta);
 
     
-    //Verifica se tem alguma escola no banco de dados
+    //Verifica se tem algum aluno no banco de dados
     if(alunos[0] == null){
         var tr = document.createElement("tr");
         var coluna = document.createElement("td");
@@ -231,7 +250,8 @@ async function carregarListaAlunos(idTurma, nomeTurma) {
     }
 }
 
+//Método para deletar a turma
 async function deletarTurma() {
 
 }
-*/
+
