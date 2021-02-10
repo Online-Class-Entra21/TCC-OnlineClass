@@ -73,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color: #1100ff;
+    color: #ffc400;
 }
 .img-opcoes{
     width: 9%;
@@ -101,7 +101,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#00a2ff;
+    background-color:#4b005e;
 }
 
 /*
@@ -133,7 +133,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #00a2ff;
+    background-color: #4b005e;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
@@ -235,8 +235,10 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
+
 html{
     height: 95%;
+    background: url(/frontend/imagens/fundo.png);
 }
 body{
     height: 100%;
@@ -245,11 +247,9 @@ main{
     display: flex;
     flex-wrap: wrap;
     height: 100%;
+    background: url(/frontend/imagens/fundo.png);
 }
-div{
-    border: solid;
-    margin-bottom: 10px;
-}
+
 ul{
     margin-left: auto;
     margin-right: auto;
@@ -260,11 +260,16 @@ ul{
     height: auto;
     float: left;
     margin: 2%;
+    color: white;
+    border: solid;
 }
 #divParticipantes{
     width: 25vh;
     float: left;
     margin: 2%;
+    border: solid;
+    color: white;
+    background: #4b005e60;
 }
 li::marker {
     color: red
