@@ -2,7 +2,9 @@
 var idUsuario = sessionStorage.getItem("idUsuario");
 
 var idEscola;
-
+// $('#dados').animate({
+//     height: '20px'
+// }, 1500);
 $('#inputCep').val('89023760');
 $('#inputCpf').val('89054823760');
 $('#inputNome').val('Cacau');
@@ -137,15 +139,16 @@ getMaterias();
 getTurmas();
 
 
-
+var turmas;
 async function getTurmas() {
-    var turmas = await usarApi('GET','http://localhost:8080/api/turmas');
+    turmas = await usarApi('GET','http://localhost:8080/api/turmas');
     turmas = JSON.parse(turmas);
     for (var i = 0; i < turmas.length; i++){
-        const turma = turmas[i];
-        $("#turma").append('<label for="turma'+turma.idTurma+'"><input type="checkbox" id="turma'+turma.idTurma+'">turma '+turma.ano+'</label>')
+        const turm = turmas[i];
+        $("#turma").append('<label for="turma'+turm.idTurma+'"><input type="checkbox" id="turma'+turm.idTurma+'">turma '+turm.ano+'</label>')
     }
 }
+
 async function getMaterias() {
     var disciplinas = await usarApi('GET','http://localhost:8080/api/disciplinas');
     disciplinas = JSON.parse(disciplinas);
@@ -157,11 +160,18 @@ async function getMaterias() {
 }
 
 
-function get(params) {
-    
+function getSelTurmas() {
+    var turmas = $('input[id^="turma"]:checked');
+    console.log(turmas)
+    for (var i = 0; i <turmas.length;i++){
+        const turma = turmas[i];
+        
+    }
 }
 
-
+$('#testebtn').click(function(){
+    getSelTurmas();
+})
 
 
 
@@ -240,3 +250,5 @@ function optionTurmas() {
     }
 }
     
+// segunda parte do cadastro adicionar turmas e materias
+

@@ -87,7 +87,6 @@
     </header>
     <main>
         <section>
-            <div id="cab"></div>
             <div id="conteudo">
                 <form id="form" action="" class="nav justify-content-center">
                     <!-- Dados pessoais -->
@@ -285,60 +284,57 @@
                                 </tr>
                             </table>
                         </div>
-                        <div id="escola-div">
-                            <table id="tab-escola" class="tabela">
-                                <h5 class="titulo-dados titulo">Escola</h5>
-                                <tr>
-                                    <td class="multiselect" >
-                                        <div class="selectBox" onclick="optionPeriodos()">
-                                            <select>
-                                                <option>Informe os Períodos</option>
-                                            </select>
-                                            <div class="overSelect"></div>
-                                        </div>
-
-                                        <div id="periodos" class="radioMenu">
-                                            <label for="one">
-                                                <input type="checkbox" id="periodo1">Matutino</label>
-                                            <label for="two">
-                                                <input type="checkbox" id="periodo2">Vespertino</label>
-                                            <label for="three">
-                                                <input type="checkbox" id="periodo3">Noturno</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="multiselect">
-                                        <div class="selectBox" onclick="optionMaterias()">
-                                            <select>
-                                                <option>Informe as Matérias</option>
-                                            </select>
-                                            <div class="overSelect"></div>
-                                        </div>
-                                        <div id="materias" class="radioMenu"></div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="multiselect">
-                                        <div class="selectBox" onclick="optionTurmas()">
-                                            <select>
-                                                <option>Informe as Turmas</option>
-                                            </select>
-                                            <div class="overSelect"></div>
-                                        </div>
-                                        <div id="turma" class="radioMenu">
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                        <h5 class="titulo-dados titulo">Escola</h5>
+                        <div id="escola-div" class="d-flex justify-content-between">
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="optionTurmas()">
+                                    <select>
+                                        <option>Informe as Turmas</option>
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div id="turma" class="radioMenu">
+                                </div>
+                            </div>
                         </div>
                         <div id="botoes" class="nav justify-content-center">
-                            <button class="but btn-primary" type="button" id="btnCadastrar">Cadastrar</button>
-                            <button class="but btn-danger" type="reset">Limpar</button>
+                            <button class="but" type="button" id="btnCadastrar">Cadastrar</button>
+                            <button class="but" type="reset">Limpar</button>
+                            <button class="but btn-primary" id="testebtn" type="button">teste</button>
                         </div>
-                    </div>
+                    </div> 
                 </form>
             </div>
+
+        </section>
+        <section>
+            <form id="form" action="" class="nav justify-content-center">
+                <!-- Dados pessoais -->
+                <div id="turmaMataria" class="">
+                    <div id="dados-div">
+                        <table id="tab-turma" class="tabela">
+                            <h5 class="titulo-dados titulo">Dados do Professor</h5>
+                            <!-- Nome -->
+                            <tr>
+                                <td>
+                                    <label for="nome">Turma1 </label>
+                                </td>
+                                <td class="input">
+                                    <div class="selectBox" onclick="optionMaterias()">
+                                        <select>
+                                            <option>Informe as Matérias</option>
+                                        </select>
+                                        <div class="overSelect"></div>
+                                    </div>
+
+                                    <div id="materias" class="radioMenu">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div> 
+            </form>
         </section>
     </main>
 </body>
