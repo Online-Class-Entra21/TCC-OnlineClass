@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+
+import entidade.Endereco;
 import entidade.Usuario;
+import persistencia.jdbc.EnderecoDAO;
 import persistencia.jdbc.UsuarioDAO;
 
 /**
@@ -299,6 +302,30 @@ public class UsuarioController {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Insere um novo endereco no banco de dados {POST}
+	 * @param String json
+	 * @author Andrey
+	 * @return boolean situacao da operacao
+	 */
+	@PostMapping(path = "api/usuario/inserir/return/{json}")
+	public int inserirReturn(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Usuario - {}",json);
+		Gson gson = new Gson();
+		System.out.println("teste  linha 317");
+		Usuario usuario = gson.fromJson(json, Usuario.class);
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		try {
+			int idUsuario = usuarioDAO.insertReturnID(usuario);
+			LOGGER.info("Requisição Inserir Usuario - {} - Bem Sucedida",json);
+			return idUsuario;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
+			return 0;
+		}
 	}
 }
 

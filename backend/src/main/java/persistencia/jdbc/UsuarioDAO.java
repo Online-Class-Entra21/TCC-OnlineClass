@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import entidade.Endereco;
 import entidade.Usuario;
 
 /**
@@ -302,5 +304,43 @@ public class UsuarioDAO {
 		}
 		comandoSql.close(); 
 		return usuario;
+	}
+	
+	/**
+	 * Realiza o registro de um usuario no banco de dados
+	 * e retorna o id registrado no banco de dados
+	 * @param Usuario usuario
+	 * @return int idUsuario
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public int insertReturnID(Usuario usuario) throws SQLException {
+		String sql = "insert into usuario (nome, sobrenome, cpf, telefone, celular, tipoUsuario, email, "
+				   + "senha, horaFinalExpediente, horaInicioExpediente, fotoUsuario, fk_endereco, "
+				   + "fk_escola) values (?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		     
+		comandoSql.setString(1, usuario.getNome());
+		comandoSql.setString(2, usuario.getSobrenome());
+		comandoSql.setString(3, usuario.getCpf());
+		comandoSql.setString(4, usuario.getTelefone());
+		comandoSql.setString(5, usuario.getCelular());
+		comandoSql.setInt(6, usuario.getTipoUsuario());
+		comandoSql.setString(7, usuario.getEmail());
+		comandoSql.setString(8, usuario.getSenha());
+		comandoSql.setTimestamp(9, (Timestamp) usuario.getHorarioFinalExpediente());
+		comandoSql.setTimestamp(10, (Timestamp) usuario.getHorarioInicioExpediente());
+		comandoSql.setString(11, usuario.getFotoUsuario());
+		comandoSql.setInt(12, usuario.getFk_endereco());
+		comandoSql.setInt(13, usuario.getFk_escola());
+
+		comandoSql.execute();
+		ResultSet rs = comandoSql.getGeneratedKeys();
+        rs.next();
+        int idUsuario = rs.getInt(1);
+		comandoSql.close(); 
+		
+        
+		return idUsuario;
 	}
 }

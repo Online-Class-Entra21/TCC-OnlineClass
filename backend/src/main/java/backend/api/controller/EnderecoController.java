@@ -159,6 +159,7 @@ public class EnderecoController {
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		try {
 			int idEndereco = enderecoDAO.insertReturnID(endereco);
+			System.out.println(idEndereco);
 			LOGGER.info("Requisição Inserir Endereco - {} - Bem Sucedida",json);
 			return idEndereco;
 		} catch (SQLException e) {
@@ -169,7 +170,7 @@ public class EnderecoController {
 	}
 	
 	/**
-	 * Verifica se existe alguem indereco identico no
+	 * Verifica se existe alguem endereco identico no
 	 * banco e Insere um novo endereco no banco de dados
 	 * caso nao tenha um igual ou retorna o id do enderco
 	 * ja existente
