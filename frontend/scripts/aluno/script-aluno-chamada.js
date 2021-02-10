@@ -2,7 +2,11 @@ var idUsuario = sessionStorage.getItem("idUsuario");
 console.log(idUsuario)
 var listaalunos;
 getListaParticipante();
+jitsiSize();
 entraChamada();
+$(window).resize(function(){
+    jitsiSize();
+});
 var usuario;
 var sala;
 var api;

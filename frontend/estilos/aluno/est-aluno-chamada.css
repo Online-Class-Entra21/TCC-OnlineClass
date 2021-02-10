@@ -256,6 +256,7 @@ ul{
     
 }
 #divJitsi{
+<<<<<<< HEAD
     width: 75%;
     height: auto;
     float: left;
@@ -270,6 +271,16 @@ ul{
     border: solid;
     color: white;
     background: #4b005e60;
+=======
+    height: 90%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#divParticipantes{
+    margin-left: auto;
+    margin-right: auto;
+>>>>>>> parent of ca0f4c9 (Projeto Inteiro)
 }
 li::marker {
     color: red
