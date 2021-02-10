@@ -407,4 +407,14 @@ Config. dos componentes de add de imagem
     display: flex;
     margin-top: 4%;
 }
+/* Config. Botão*/
+.but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 5%;
+    font-size: 2.5vh;
+    background-color: white;
+    border-radius: 1vh;
+}
 
