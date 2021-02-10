@@ -258,21 +258,13 @@ tr{
 }
 
 /*
-COnfig. dos inputs 
-input{
-    width: 100%;
-    height: 100%;
-}
-*/
-
-/*
 Config. dos botoes 
 */
 .but{
     margin: 1%;
     border-radius: 2vh;
     padding: 1.2%;
-    font-size: 2vh;
+    font-size: 2.5vh;
 }
 .but:hover{
     border: 2px solid black;
@@ -285,6 +277,12 @@ Config. dos titulos
     font-weight: bolder;
 }
 
+/*
+Config. dos input
+*/
+.input{
+    margin: 1vh;
+}
 
 /*
 Condifg. das divs de conteudo 

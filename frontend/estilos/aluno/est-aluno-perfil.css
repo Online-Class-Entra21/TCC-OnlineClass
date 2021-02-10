@@ -285,7 +285,6 @@ Config. dos inputs
 */
 .inputs {
     width: 100%;
-    margin-left: 22%;
     font-size: 85%;
 }
 
@@ -422,3 +421,10 @@ Config. do botao salvar
     border: 2px solid black;
 }
 
+#nome {
+    text-decoration: none;
+    width: 0;
+    height: 0;
+    padding: 0;
+
+}

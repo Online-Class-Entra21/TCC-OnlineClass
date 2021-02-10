@@ -73,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:yellow;
+    color: #1100ff;
 }
 .img-opcoes{
     width: 9%;
@@ -101,7 +101,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:rgb(87, 16, 16);
+    background-color:#00a2ff;
 }
 
 /*
@@ -133,13 +133,12 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: rgb(87, 16, 16);
+    background-color: #00a2ff;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
     display: none;
     position: fixed;
-    z-index: 9999;
 }
 
 /*
@@ -229,52 +228,11 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 35%;
+    margin-top: 20%;
 }
 
 /**************************
 Config. das alteracoes especificas
 ***************************/
 
-/*
-Config do formulario 
-*/
-#formulario{
-    width:50%;
-    height:80%;
-    justify-content: center;
-    align-items: center;
-    margin:3%;
-}
-.Principal{
-    align-items: center;
-    display: flex;
-}
-.mensagem{
-    min-width:80vh;
-    min-height: 50vh;
-    max-width: 80vh;
-    max-height: 50vh;
-    padding-left: 1%;
-}
-.tipoRel{
-    max-width: 100vh;
-    max-height: 50vh;
-    width: 100vh
-}
 
-/*
-Config. da area de texto
-*/
-#texto-area{
-    margin-top: 10%;
-    width: 50vh;
-    height: 30vh;
-}
-
-/*
-Config. do botao salvar
-*/
-#idSalvar{
-    font-size: 80%;
-}
