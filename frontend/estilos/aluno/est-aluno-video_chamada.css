@@ -73,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:lightblue;
+    color: #ffc400;
 }
 .img-opcoes{
     width: 9%;
@@ -101,7 +101,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#00a2ff;
+    background-color:#4b005e;
 }
 
 /*
@@ -133,13 +133,12 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #00a2ff;
+    background-color: #4b005e;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
     display: none;
     position: fixed;
-    z-index: 9999;
 }
 
 /*
@@ -229,96 +228,53 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 35%;
+    margin-top: 20%;
 }
 
 /**************************
 Config. das alteracoes especificas
 ***************************/
 
-/*DIV "Sininho"*/
-#check2{
-    display: none;
-   
-}
-#check2:checked ~ .content{
-    transform: translateY(90vh);
-}
-#check2:checked ~ .content ul li #icone2 {
-    opacity: 1;
-    margin-top: 0;
-    transition-delay: .2s;
-}
-#icone2{
-    cursor: pointer;
-    padding: 1vh;
-    position: relative;
-    z-index: 99999;
-    margin-left: 198vh;
-   display: block;
-}
-.content{
-    width: 42vh;
-    margin-left: 163vh;
-    background:  #00a2ff;
-    padding: 2%;
-    border:2px solid;
-    position: absolute;
-    transition: all .2s linear;
-    top: -80vh;
-    overflow: auto;
-    font-family: Arial;
-    display: block;
 
+html{
+    height: 95%;
+    background: url(/frontend/imagens/fundo.png);
 }
-.content h2{
-    text-align: center;
-    color: white;
+body{
+    height: 100%;
 }
-ul{
-    list-style-type: none;
-    padding: 1vh;
-    height: 40vh;
-    background: #fff;
-    overflow-y: auto;
-}
-li{
-    height: 4vh;
-    margin: 1vh 0 1vh 0;
-    border-bottom: 1px solid;
-}
-
-/* FIM TAG */
-
-/*
-Config dos inputs 
-*/
-.adicionar{
-    border-style: solid;
-    border-radius: 2%;
-    border-color:#00a2ff;
-    width: 50vh;
-}
-.marcar{
-    width: 50vh;
-}
-.Principal{
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-.btnCriarReuniao{
-    display:flex;
-    flex-wrap: wrap;
-    flex: 1;
-}
-.but{
-    align-items: center;
-    justify-content: center;
+main{
     display: flex;
-    margin: 1%;
-    padding: 1%;
-    font-size: 2.5vh;
-    background-color: white;
-    border-radius: 1vh;
+    flex-wrap: wrap;
+    height: 100%;
+    background: url(/frontend/imagens/fundo.png);
+}
+
+ul{
+    margin-left: auto;
+    margin-right: auto;
+}
+#divJitsi{
+    width: 75%;
+    border: solid;
+    color: white;
+    margin: 2%;
+    float: left;
+}
+#divParticipantes{
+    width: 25vh;
+    height: auto;
+    margin: 2%;
+    color: white;
+    background: #ffffff60;
+    border-radius: 3vh;
+    border: solid;
+    float: left;
+}
+
+li::marker {
+    color: red
+}
+li.online::marker{
+    color: green
 }

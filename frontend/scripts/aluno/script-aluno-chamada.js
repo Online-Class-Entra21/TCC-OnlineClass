@@ -1,161 +1,170 @@
+// Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
-console.log(idUsuario)
-var listaalunos;
-getListaParticipante();
-entraChamada();
+var userEmail;
+$('.alert').hide();
+//Verifica se o idUsuario é válido 
+if(idUsuario != 0 && idUsuario != null){
+    //Busca dos dados do usuário
+    var xhr = new XMLHttpRequest(); 
 
-var usuario;
-var sala;
-var api;
-async function entraChamada() {
-    usuario = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/"+idUsuario));
-    sala = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/usuario/"+idUsuario));
-    console.log(usuario);
-    var nome = usuario.nome+" "+usuario.sobrenome
-    var domain = "classeonline.tk";
-    var options = {
-        roomName: sala.link,
-        parentNode: divJitsi,
-        configOverwrite: {
-            startWithAudioMuted: true,
-            startWithVideoMuted: true
-        },
-        userInfo: {
-            participantId: usuario.idUsuario,
-            email: usuario.email,
-            displayName: nome
+        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosUsuario = JSON.parse(resposta);
+            userEmail = dadosUsuario.email;
+            //Adiciona o nome
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            $("#idDestinatario").val(dadosUsuario.nome).prop("disabled", true);
+            var dataAgora = new Date();
+            var dia  = String(dataAgora.getDate()).padStart(2, '0');
+            var mes  = String(dataAgora.getMonth() + 1).padStart(2, '0');
+            var ano  = dataAgora.getFullYear();
+            var hora = String(dataAgora.getHours()).padStart(2, '0');
+            var min  = String(dataAgora.getMinutes()).padStart(2, '0');;
+            var dataAgora = ano+'-'+mes+'-'+dia+'T'+hora+':'+min;
+            $("#idDateTime").attr("min",dataAgora);
+            $("#idUsuario").val("Coordenador").prop("disabled", true)
+            //Adiciona a foto de perfil do usuario
+            var img = document.querySelector("#idFotoPerfil");
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
+        })
+
+    xhr.send();
+    
+}else{
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/";
+}
+var convidados = [];
+async function criarReuniao(){
+    var data;
+    var nome;
+    var valido = true;
+    if ($("#idDateTime").val()=="") {
+        valido = false;
+        $('#erroData').text('Insira uma data').show(300);
+        setTimeout(function(){$('#erroData').hide(300)},1500);
+    }
+    if($("#idNomeReu").val()==""){
+        valido = false;
+        $('#erroNome').text('Insira um nome').show(300);
+        setTimeout(function(){$('#erroNome').hide(300)},1500);
+    }
+    if (convidados.length==0) {
+        valido = false;
+        $('#erroConvidado').text('Insira um convidado').show(300);
+        setTimeout(function(){$('#erroConvidado').hide(300)},1500);
+    }
+    if (valido) {
+        data = new Date($("#idDateTime").val());
+        nome = $('#idNomeReu').val();
+        data = timeStampFormat(data);
+        
+        var sala = {
+            nome:"Reuniao: "+nome,
+            descricao: "",
+            situacaoAcesso: true,
+            tipoSala: true,
+            link: nome.replace(" ","_")
         }
 
-    };
-    api = new JitsiMeetExternalAPI(domain, options);
-    api.addListener("displayNameChange",function() {
-        api.executeCommand("displayName",nome);
-        usuarioOnline();
-    });
-    api.addListener("emailChange",function(){
-        api.executeCommand("email","usuario.email")
-    });
-    api.addListener("participantJoined",function(){
-        usuarioOnline();
-    });
-}
-
-
-
-
-
-function usuarioOnline() {
-    var participantes = api.getParticipantsInfo();
-    participantes.forEach(element => {
-        console.log(listaalunos);
-        listaalunos.forEach(element2 => {
-            if (element.displayName==element2.nomecompleto) {
-                console.log("on");
-                document.getElementById(element2.nomecompleto).className = 'online';
-            }else{
-                console.log("off");
-            }
-            
-        });
+        sala = JSON.stringify(sala);
+        sala = await usarApi('POST','http://localhost:8080/api/sala/inserir/return/'+sala);
+        sala = JSON.parse(sala);
         
-    });
-}
+        var reuniao = {
+            descricao : nome,
+            dataInicio : data,
+            dono: idUsuario,
+            fk_sala: sala.idSala
+        };
 
-async function getListaParticipante() {
-    var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/participantes/1"));
-    usuarios.sort(function(a,b) {
-        return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
-    });
-    usuarios.forEach(element => {
-        var li = $("<li></li>").text(element.nome).attr('id',element.nomecompleto);
-        $("#listaAlunos").append(li);
-        
-    });
-    listaalunos = usuarios;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Método para chamada da API - requisição de lista de escolas 
-function usarApi(method, url) {
-    return new Promise(function (resolve, reject) {
-        let xhr = new XMLHttpRequest();
-        xhr.open(method, url);
-        xhr.onload = function () {
-            if (this.status >= 200 && this.status < 300) {
-                resolve(xhr.response);
-            } else {
-                document.getElementById("idLoad").style.display = "none";
-                document.getElementById("idErro").textContent = "Sem Conexão com a Base de Dados - Erro (0001)";
-                document.getElementById("idErro").style.display = "block";
-                reject({
-                    status: this.status,
-                    statusText: xhr.statusText
-                });
+        reuniao = JSON.stringify(reuniao);
+        usarApi('POST','http://localhost:8080/api/reuniao/personalizada/inserir/'+reuniao);
+        $('#reuniaoCriada').text('Reunião criada com sucesso').show(300);
+        for (var i = 0; i < convidados.length; i++) {
+            const element = convidados[i];
+            var convite = {
+                destinatario: element.idUsuario,
+                salaConvite: sala.idSala,
+                fk_usuario: idUsuario
             }
-        };
-        xhr.onerror = function () {
-            document.getElementById("idLoad").style.display = "none";
-            document.getElementById("idErro").textContent = "Sem Conexão com a Base de Dados - Erro (0001)";
-            document.getElementById("idErro").style.display = "block";
-            reject({
-                status: this.status,
-                statusText: xhr.statusText
-            });
-        };
-        xhr.send();
-    });
-}
-
-function jitsiSize() {
-    var altura = $(window).height();
-    var largura = $(window).width();
-    var sizeTela;
-    var x;
-    console.log(largura)
-    if (largura<1003) {
-        altura = altura - (0.20*altura);
-        largura = largura - (0.20*largura);
-        sizeTela = largura/altura;
-        if (sizeTela>1.77) {
-            x = altura/9;
-            largura = x*16;
-        }else{
-            x = largura/16;
-            altura = x*9;
+            convite = JSON.stringify(convite);
+            usarApi('POST','http://localhost:8080/api/convite/inserir/'+convite);
         }
-        $("#divJitsi").height(altura+"px").width(largura+"px");
-        $("#divParticipantes").width(largura+"px");
-        $("#divParticipantes").height("480px");
+    }
+    
+}
+
+$('#btnCriarReuniao').click(criarReuniao);
+$('#btnAddConvite').click(convidar);
+$('#inConvidado').bind("enterKey",convidar);
+
+async function convidar(){
+    var email = $('#inConvidado').val();
+    var form = $('form');
+    if(!form[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo(form).click().remove();
     }else{
-        altura = altura - (0.20*altura);
-        largura = largura - (0.20*largura);
-        sizeTela = largura/altura;
-        if (sizeTela>1.77) {
-            x = altura/9;
-            largura = x*16;
+        if (email=='') {
+            $('#erroEmail').text('Insira um email').show(300);
+            setTimeout(function(){$('#erroEmail').hide(300)},1500);
+        }else if (email==userEmail) {
+            $('#erroEmail').text('Não insira o seu email').show(300);
+            setTimeout(function(){$('#erroEmail').hide(300)},1500);
         }else{
-            x = largura/16;
-            altura = x*9;
+            var user = JSON.parse(await usarApi('GET','http://localhost:8080/api/usuario/email/'+email));
+            if (user.idUsuario==0) {
+                $('#erroEmail').text('usuario nao existe').show(300);
+                setTimeout(function(){$('#erroEmail').hide(300)},1500)
+            }else{
+                var jaExiste = false;
+                for (var i = 0; i < convidados.length; i++) {
+                    const convidado = convidados[i];
+                    if (convidado.email == user.email) {
+                        jaExiste = true;
+                    }
+                }
+                if (!jaExiste) {
+                    convidados.push(user)
+                    $('#tbConvidados').append('<tr><th><img src="/imagens-usuarios/'+user.fotoUsuario+'" alt="" width="32" style="border-radius: 80%;">'+user.email+'</th></tr>')
+
+                    $('#emailCerto').text('Email adicionado com sucesso').show(300);
+                    setTimeout(function(){$('#emailCerto').hide(300)},1500);
+                }else{
+                    $('#erroEmail').text('Email já inserido').show(300);
+                    setTimeout(function(){$('#erroEmail').hide(300)},1500);
+                }
+            }
         }
-        $("#divJitsi").height(altura+"px").width(largura+"px");
-        $("#divParticipantes").width("170px");
-        $("#divParticipantes").height(altura+"px");
     }
 }
+
+$('#inConvidado').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+        $(this).trigger("enterKey");
+    }
+});
+
+//Evento de abertura do menu 
+document.getElementById("mostrar").addEventListener("mouseover", function(){
+    abrirMenu();
+})
+document.getElementById("idImgMenu").addEventListener("mouseover", function(){
+    abrirMenu();
+})
+
+//Abertura do menu
+function abrirMenu(){
+    document.getElementById("menu").style.display = "block";
+}
+
+//Evento de fechamento do menu 
+document.getElementById("menu").addEventListener("mouseleave", function(){
+    document.getElementById("menu").style.display = "none";
+})
