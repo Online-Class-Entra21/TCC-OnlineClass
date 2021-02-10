@@ -38,25 +38,25 @@
             <section id="aulas" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/videoconferencia.png" alt="Aulas" title="Aulas" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-aula.html">Aulas</a>
+                    <a href="/frontend/paginas/aluno/aluno-aulas.html">Aulas</a>
                 </figure>
             </section>
             <section id="relatorio" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/Relatorios.png" alt="Relatorio" title="Relatório" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-aula.html">Relatório</a>
+                    <a href="/frontend/paginas/aluno/aluno-relatorio.html">Relatório</a>
                 </figure>
             </section>
             <section id="boletim" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/boletim-de-noticias.png" alt="boletim" title="Boletim" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-aula.html">Boletim</a>
+                    <a href="/frontend/paginas/aluno/aluno-boletim.html">Boletim</a>
                 </figure>
             </section>
             <section id="chamada" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/comunicacao.png" alt="chamada" title="Chamada" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-aula.html">Chamada</a>
+                    <a href="/frontend/paginas/aluno/aluno-chamada.html">Chamada</a>
                 </figure>
             </section>
             <section id="tela-principal" class="opcoes">
@@ -91,6 +91,65 @@
                 </div>
             </nav>
         </header>
+        <main>
+            <!-- Div do Centro -->
+            <div id="centro" class="nav justify-content-center">
+                <div id="historico" class="div-conteudos">
+                    <div class="cab-divs" id="cab-historico">
+                        <b><label class="titulo" for="historico" name="historico" title="Histórico">Histórico de Reuniões</label></b>
+                        <img class="img-cab" src="/frontend/imagens/historia.png" alt="Histórico" name="historico" title="Histórico">
+                    </div>
+                    <div id="div-historico" class="corpo-divs">
+                        <fieldset id="fieldset-lista-historico">
+                            <table class="tabela" id="lista-historico">
+                                <tbody id="tbLista-historico">
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                </div>
+                <!-- Div da Programacao -->
+                <div id="programacao" class="div-conteudos">
+                    <div class="cab-divs">
+                        <b><label class="titulo" for="programacao" name="programacao" title="Reuniões Marcadas">Reuniões Marcadas</label></b>
+                        <img class="img-cab" src="/frontend/imagens/video-chamada.png" alt="Reunioes" name="reunioes" title="Reuniões">
+                    </div>
+                    <div class="corpo-divs">
+                        <div class="div-tabela">
+                            <fieldset id="fieldset-lista-programacao">
+                                <table class="tabela" id="lista-programacao">
+                                    <tbody id="tbLista-programacao">
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <div class="div-botao">
+                            <input id="criarReunioes" value="Criar Chamada" type="button" name="criarReunioes" title="Criar Reunião">
+                        </div>
+                    </div>
+                </div>
+                <!-- Div de Relatorios -->
+                <div id="relatorios" class="div-conteudos">
+                    <div class="cab-divs">
+                        <b><label class="titulo" for="relatorios" name="relatorios" title="Relatórios">Relatórios</label></b>
+                        <img class="img-cab" src="/frontend/imagens/rolagem.png" alt="Relatórios" name="relatorios" title="Relatórios">
+                    </div>
+                    <div class="corpo-divs">
+                        <div class="div-tabela">
+                            <fieldset id="fieldset-lista-relatorios">
+                                <table class="tabela" id="lista-relatorios">
+                                    <tbody id="tbLista-relatorio">
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <div class="div-botao">
+                            <input id="criarRelatorios" value="Criar Relatório" type="button" name="criarRelatorios" title="Criar Relatórios">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
         <!-- Script - JS -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
         <script src="/frontend/scripts/login/script-utilitarios.js"></script>

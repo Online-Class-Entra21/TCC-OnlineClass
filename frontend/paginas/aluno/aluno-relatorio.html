@@ -23,28 +23,40 @@
                     <a href="/frontend/paginas/aluno/aluno-perfil.html">Perfil</a>
                 </figure>
             </section>
-            <section id="calendario" class="opcoes">
-                <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/portfolio.png" alt="Calendario" title="Calendário" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-calendario.html">Calendário</a>
-                </figure>
-            </section>
             <section id="notas" class="opcoes">
                 <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/turmas.png" alt="Notas" title="Notas" class="img-opcoes">
+                    <img src="/frontend/imagens/notas.png" alt="Notas" title="Notas" class="img-opcoes">
                     <a href="/frontend/paginas/aluno/aluno-notas.html">Notas</a>
                 </figure>
             </section>
-            <section id="atividades" class="opcoes">
+            <section id="comunicacao" class="opcoes">
                 <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/relatorio.png" alt="Atividades" title="Atividades" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-comunicacaos.html">Atividades</a>
+                    <img src="/frontend/imagens/comunicacao2.png" alt="Comunicacao" title="Comuniçacão" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-comunicacao.html">Comunicação</a>
                 </figure>
             </section>
             <section id="aulas" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/videoconferencia.png" alt="Aulas" title="Aulas" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-aula.html">Aulas</a>
+                    <a href="/frontend/paginas/aluno/aluno-aulas.html">Aulas</a>
+                </figure>
+            </section>
+            <section id="relatorio" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/Relatorios.png" alt="Relatorio" title="Relatório" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-relatorio.html">Relatório</a>
+                </figure>
+            </section>
+            <section id="boletim" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/boletim-de-noticias.png" alt="boletim" title="Boletim" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-boletim.html">Boletim</a>
+                </figure>
+            </section>
+            <section id="chamada" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/comunicacao.png" alt="chamada" title="Chamada" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-chamada.html">Chamada</a>
                 </figure>
             </section>
             <section id="tela-principal" class="opcoes">
@@ -79,6 +91,24 @@
                 </div>
             </nav>
         </header>
+        <main>
+            <div class="Principal container">
+                <div class="row">
+                    <div id="corpo">
+                        <form class="relatorio" id="formulario">
+                            <label class="tipoRel lead pt-3" for="idDestinatario">Destinatário</label><br>
+                            <input class="tipoRel form-control" placeholder="Ex: email@complemento.com" type="email" id="idDestinatario" name="nmDestinatario" required>
+            
+                            <label class="tipoRel lead pt-3"  for="idAssuntoRel">Título</label><br>
+                            <input class="tipoRel form-control"  type="text" id="idTitulo" name="nmReu" required>
+        
+                            <textarea id="texto-area" class="form-control" name="mensagem" placeholder="Escreva algo..."></textarea>
+                            <input id="idSalvar" type="button" value="Enviar Relatório" class="btn btn-primary mt-4 btn-lg">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
         <!-- Script - JS -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
         <script src="/frontend/scripts/login/script-utilitarios.js"></script>

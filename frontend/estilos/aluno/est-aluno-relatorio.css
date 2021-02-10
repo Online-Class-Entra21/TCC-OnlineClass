@@ -234,3 +234,46 @@ Config. da div do botão de saida
 /**************************
 Config. das alteracoes especificas
 ***************************/
+
+/*
+Config do formulario 
+*/
+#formulario{
+    width:50%;
+    height:80%;
+    justify-content: center;
+    align-items: center;
+    margin:3%;
+}
+.Principal{
+    align-items: center;
+    display: flex;
+}
+.mensagem{
+    min-width:80vh;
+    min-height: 50vh;
+    max-width: 80vh;
+    max-height: 50vh;
+    padding-left: 1%;
+}
+.tipoRel{
+    max-width: 100vh;
+    max-height: 50vh;
+    width: 100vh
+}
+
+/*
+Config. da area de texto
+*/
+#texto-area{
+    margin-top: 10%;
+    width: 50vh;
+    height: 30vh;
+}
+
+/*
+Config. do botao salvar
+*/
+#idSalvar{
+    font-size: 80%;
+}
