@@ -75,7 +75,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:yellow;
+    color:#00bd13;
 }
 .img-opcoes{
     width: 9%;
@@ -406,5 +406,15 @@ Config. dos componentes de add de imagem
     align-items: center;
     display: flex;
     margin-top: 4%;
+}
+/* Config. Botão*/
+.but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 5%;
+    font-size: 2.5vh;
+    background-color: white;
+    border-radius: 1vh;
 }
 
