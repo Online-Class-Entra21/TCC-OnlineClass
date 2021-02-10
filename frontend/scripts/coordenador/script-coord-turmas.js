@@ -22,7 +22,11 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
 
 //Métodos onclick dos botões
 var btnCadastrar = document.getElementById('btnCadastrar');
-var btnAtualizar = document.getElementById('btnAtualizar')
+var btnAtualizar = document.getElementById('btnAtualizar');
+var btnExcluir = document.getElementById('idBtn');
+btnExcluir.addEventListener("click", function() {
+    deletarTurma();
+})
 btnCadastrar.addEventListener("click", function() {
     cadastrar();
 })
@@ -58,7 +62,7 @@ function eventoRadio(radioB) {
         document.getElementById('inputHoraInicio').disabled = true;
         document.getElementById('inputHoraFinal').disabled = true;
         document.getElementById('SelectTurma').disabled = false;
-        document.getElementById('idBtn').hidden = false;
+        document.getElementById('idBtn').hidden = true;
         document.getElementById('btnCadastrar').hidden = true;
         document.getElementById('btnAtualizar').hidden = true;
         $('#divSelect').css('display', 'block');
@@ -81,6 +85,7 @@ $( "#SelectTurma" ).change(function() {
         document.getElementById('inputHoraFinal').disabled = true;
         document.getElementById('btnCadastrar').hidden = true;
         document.getElementById('btnAtualizar').hidden = true;
+        document.getElementById('idBtn').hidden = true;
     } else {
         document.getElementById('btnCadastrar').hidden = true;
         document.getElementById('btnAtualizar').hidden = false;
@@ -88,6 +93,8 @@ $( "#SelectTurma" ).change(function() {
         document.getElementById('InputQtdAlunos').disabled = true;
         document.getElementById('inputHoraInicio').disabled = false;
         document.getElementById('inputHoraFinal').disabled = false;
+        document.getElementById('idBtn').hidden = false;
+
         carregarListaAlunos(turmaEscolhida, nomeTurmaEscolhida);
         carregarCampos(turmaEscolhida);
     }
@@ -99,7 +106,7 @@ async function cadastrar() {
     var turma = document.getElementById('inputNome').value;
     var horaInicioAula = new Date(document.getElementById('inputHoraInicio').valueAsDate);
     var horaFinalAula = new Date(document.getElementById('inputHoraFinal').valueAsDate);
-    
+
     //Verifica os campos
     if(turma == '' || horaInicioAula == "Wed Dec 31 1969 21:00:00 GMT-0300 (Horário Padrão de Brasília)" || horaFinalAula == "Wed Dec 31 1969 21:00:00 GMT-0300 (Horário Padrão de Brasília)") {
        alert("Preencha os campos")
@@ -143,6 +150,7 @@ async function cadastrar() {
 async function atualizar() {
     //Coleta os dados do input
     var turma = document.getElementById('inputNome').value;
+    //Converte a data de inicio para pegar só o horário
     var horaInicioAula = new Date(document.getElementById('inputHoraInicio').valueAsDate);
     var horaFinalAula = new Date(document.getElementById('inputHoraFinal').valueAsDate);
     
@@ -171,6 +179,22 @@ async function atualizar() {
             alert("Erro ao salvar edição!");
         }else{
             alert("Atualizado com sucesso.")
+            document.getElementById('inputNome').value = '';
+            document.getElementById('InputQtdAlunos').value = '';
+            document.getElementById('inputHoraInicio').value = '';
+            document.getElementById('inputHoraFinal').value = '';
+            $("#SelectTurma").empty();
+            var opt = document.createElement("option");
+            opt.value = "default";
+            opt.textContent = "Selecione uma turma"
+            document.getElementById("SelectTurma").append(opt)
+            carregarSelect();
+            document.getElementById('inputNome').disabled = true;
+            document.getElementById('InputQtdAlunos').disabled = true;
+            document.getElementById('inputHoraInicio').disabled = true;
+            document.getElementById('inputHoraFinal').disabled = true;
+            document.getElementById('btnAtualizar').hidden = true;
+            document.getElementById('idBtn').hidden = true;
         }
     }        
 }
@@ -200,9 +224,43 @@ async function carregarCampos(turma) {
     var resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + turma)
     var turma = JSON.parse(resposta)
 
+    //Converte as datas para só pegar o horário
+    var horaInicioAula = new Date(turma.horarioInicioAula);
+    var horas = horaInicioAula.getHours()+3;
+    var minutos = horaInicioAula.getMinutes();
+    if (horas < 10 && minutos < 10) {
+        horas = "0"+horas;
+        minutos = "0"+minutos;
+    } else if (horas < 10 && minutos >= 10) {
+        horas = "0"+horas;
+    } else if (horas >= 10 && minutos < 10) {
+        minutos = "0"+minutos;
+    }
+    horaInicioAula = horas+":"+minutos+":00";
+    
+    var horaFinalAula = new Date(turma.horarioFinalAula);
+    horas = horaFinalAula.getHours()+3;
+    minutos = horaFinalAula.getMinutes();
+    if (horas < 10 && minutos < 10) {
+        horas = "0"+horas;
+        minutos = "0"+minutos;
+    } else if (horas < 10 && minutos >= 10) {
+        horas = "0"+horas;
+    } else if (horas >= 10 && minutos < 10) {
+        minutos = "0"+minutos;
+    }
+    horaFinalAula = horas+":"+minutos+":00";
+
     //Dados Turma
+    document.getElementById('inputHoraInicio').value = horaInicioAula;
+    document.getElementById('inputHoraFinal').value = horaFinalAula;
     document.getElementById('inputNome').value = turma.ano;
-    document.getElementById('InputQtdAlunos').value = turma.qtdAluno
+
+    //Faz a contagem dos alunos da turma
+    resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + turma.idTurma);
+    var alunos = JSON.parse(resposta);
+    var qtdaluno = alunos.length;
+    document.getElementById('InputQtdAlunos').value = qtdaluno;
    
 }
 
@@ -252,6 +310,32 @@ async function carregarListaAlunos(idTurma, nomeTurma) {
 
 //Método para deletar a turma
 async function deletarTurma() {
-
+    var idTurmaDelete = $('#SelectTurma :selected').val();
+    
+    var resposta = await usarApi("DELETE", "http://localhost:8080/api/turma/deletar/" + idTurmaDelete);
+    var deletarTurma = JSON.parse(resposta);
+     if (deletarTurma == true) {
+        alert("Turma deletada com sucesso.")
+        document.getElementById('inputNome').value = '';
+        document.getElementById('InputQtdAlunos').value = '';
+        document.getElementById('inputHoraInicio').value = '';
+        document.getElementById('inputHoraFinal').value = '';
+        $("#SelectTurma").empty();
+        var opt = document.createElement("option");
+        opt.value = "default";
+        opt.textContent = "Selecione uma turma"
+        document.getElementById("SelectTurma").append(opt)
+        carregarSelect();
+        document.getElementById('inputNome').disabled = true;
+        document.getElementById('InputQtdAlunos').disabled = true;
+        document.getElementById('inputHoraInicio').disabled = true;
+        document.getElementById('inputHoraFinal').disabled = true;
+        document.getElementById('btnAtualizar').hidden = true;
+        document.getElementById('idBtn').hidden = true;
+        $("#tbLista").empty();
+     } else {
+        alert("Ocorreu um erro ao deletar a turma")
+     }
 }
+
 
