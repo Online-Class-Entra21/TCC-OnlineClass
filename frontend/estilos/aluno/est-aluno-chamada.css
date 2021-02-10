@@ -270,6 +270,7 @@ ul{
     margin: 2%;
     border: solid;
     color: white;
+<<<<<<< Updated upstream
     background: #4b005e60;
 =======
     height: 90%;
@@ -281,6 +282,10 @@ ul{
     margin-left: auto;
     margin-right: auto;
 >>>>>>> parent of ca0f4c9 (Projeto Inteiro)
+=======
+    background: #ffffff60;
+    border-radius: 3vh;
+>>>>>>> Stashed changes
 }
 li::marker {
     color: red

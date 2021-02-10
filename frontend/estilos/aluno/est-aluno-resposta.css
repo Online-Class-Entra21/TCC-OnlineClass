@@ -245,15 +245,44 @@ input[type='file'] {
 /* 
 Aparência que terá o seletor de arquivo
 */
-#selecao {
-    background-color: #3498db;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    margin: 10px;
-    padding: 6px 20px
-}
-
 fieldset {
   width: 90%;
+  border: 1px solid black;
+  border-radius: 2vh;
 }
+
+
+#selecao {
+  background-color: #3498db;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 8%;
+  padding: 6px 20px;
+}
+
+#areaText {
+  margin-top: 5%;
+}
+
+#area {
+  border: 2px solid black;
+  border-radius: 3vh;
+  margin-top: 5%;
+}
+
+#botao{
+  border-radius: 2vh;
+  margin-top: 6%;
+}
+#botao:hover {
+  background: white;
+}
+
+#field {
+  margin-top: 15%;
+  border: 2px solid black;
+  padding: 8%;
+  text-align: center;
+}
+
