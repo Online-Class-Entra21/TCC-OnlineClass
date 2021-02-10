@@ -294,3 +294,41 @@ Config. das alteracoes especificas
     margin-top: 5vh;
 
 }
+
+
+/*
+Config. da tabela de turmas 
+*/
+#centralizacao{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#selec{
+    width: 70%;
+    height: 80%;
+    background-color: rgb(224, 219, 219);
+    overflow-y: scroll;
+}
+tr, th, td{
+    padding: 15px;
+    text-transform: uppercase;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #111;
+    border-right: 1px solid #999;
+    border-left: 1px solid #111;
+    text-align: left;
+    font-size: 100%;
+    font-family: cursive;
+    letter-spacing: 0.2em;
+    width: 100vh;
+}
+th {
+    background: #999;
+    border: 1px solid #111;
+}
+th:hover, td:hover {
+    background: cyan;
+}

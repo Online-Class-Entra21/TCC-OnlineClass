@@ -37,7 +37,7 @@
            <section id="Nota" class="opcoes">
                <figure class="figure-opcoes">
                    <img src="/frontend/imagens/notas.png" alt="Nota" title="Nota" class="img-opcoes">
-                   <a href="/frontend/paginas/professor/prof-nota.html">Postar Nota</a>
+                   <a href="/frontend/paginas/professor/prof-nota.html">Gerenciar Nota</a>
                </figure>
            </section>
            <section id="Relatorio" class="opcoes">
@@ -82,38 +82,34 @@
                </div>
            </nav>
        </header>
-        <main>
-            <div id="conteudo">
-                <div class="chamarAluno col-md-4 col-lg-6">
-                    <label class="contTipo2 lead mt-5 pt-3" for="idIdAluno">Id Aluno </label>
-                    <input class="cont2 form-control" type="text" id="idIdAluno" name="nmIdAluno">
-                    <label class="contTipo2 lead pt-3" for="idMatricula">Matricula </label>
-                    <input class="cont2 form-control" type="text" id="idMatricula" name="nmMatricula">
-                </div>
-                <div id="PostarNota">
-                    <form class="postar-nota col-md-4 col-lg-6">
-
-                        <label class="contTipo lead" for="idAluno">ㅤㅤAluno </label>
-                        <input class="cont form-control" type="text" id="idAluno" name="nmAluno">
-
-                        <label class="contTipo lead pt-3" for="idEscola">ㅤㅤEscola </label>
-                        <input class="cont form-control" type="text" id="idEscola" name="nmEscola">
-
-                        <label class="contTipo lead pt-3" for="idTipo">Tipo de avaliação</label>
-                        <select name="assunto" id="idTipo" class="cont form-control">
-                                <option>-Selecione o tipo</option>
-                                <option>-Prova</option>
-                                <option>-Atividade em grupo</option>
-                                <option>-Atividade</option>
-                                <option>-Recuperação Paralela</option>
-                                <option>-Outro</option>
-                        </select>
-                    </form>
-                </div>   
-                <textarea name="mensagem" class="descricao form-control col-7" placeholder="Observação..."></textarea>
-                <button  class="marcar btn btn-primary mt-4" onclick="alert('Aula marcada')">ENVIAR</button>
-            </div>
-        </main>
+       <main>
+        <div id="centralizacao">
+            <section id="selec">
+                <table>
+                    <tr>
+                        <th>Turma</th>
+                        <th>Data</th>
+                        <th>Atividade</th>
+                        <th>Nota</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            01
+                        </td>
+                        <td>
+                            05/08
+                        </td>
+                        <td>
+                            Funções
+                        </td>
+                        <td>
+                            8.9
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+    </main>
         <!-- Script - JS -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
         <script src="/frontend/scripts/login/script-utilitarios.js"></script>
