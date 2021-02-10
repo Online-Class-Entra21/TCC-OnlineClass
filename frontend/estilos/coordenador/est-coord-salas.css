@@ -29,14 +29,6 @@ header{
 }
 
 /*
-Config. do main 
-*/
-main{
-    width: 100%;
-    height: 90%;
-}
-
-/*
 Config. das ancoras 
 */
 a{
@@ -59,6 +51,7 @@ a:visited {
      color: white;
 }
 
+
 /*
 Config figures opcoes e img opcoes
 */
@@ -73,7 +66,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color: #1100ff;
+    color:lightblue;
 }
 .img-opcoes{
     width: 9%;
@@ -101,7 +94,9 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#00a2ff;
+    background-color:#0d96a8;
+    z-index: 9999;
+    position: relative;
 }
 
 /*
@@ -133,12 +128,12 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #00a2ff;
+    background-color: #0d96a8;
     border-right: 1px solid;
     border-color: white;
-    position: absolute;
-    display: none;
     position: fixed;
+    display: none;
+    z-index: 99999;
 }
 
 /*
@@ -165,6 +160,7 @@ Config. div do menu
     display: flex;
     flex-direction: row;
     margin-left: 7%;
+    z-index: 1;
 }
 
 /*
@@ -188,6 +184,7 @@ Config. da div da barra no lado direito
     display: flex;
     flex-direction: row-reverse;
     margin: 0;
+    
 }
 
 /*
@@ -228,7 +225,7 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 20%;
+    margin-top: 55%;
 }
 
 /**************************
@@ -236,195 +233,49 @@ Config. das alteracoes especificas
 ***************************/
 
 /*
-Config. das sections
+Config. Tabela
 */
-#corpo {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
+#tbPessoas {
+    font: 1em Verdana;
+    text-align: center;
+}
+#TForm{
+   text-align: center;
+}
+
+.dados{
+    float: right;
+}
+
+ /*
+Config. conteudo
+*/
+.content h2{
+    text-align: center;
+    color: white;
 }
 
 /*
-Config. do form
+Config. Inputs
 */
-form {
-    width: 100%;
-    height: 100%;
+input[type=text]{
+    width: 80%;
+    height: 2em;
+    margin-bottom: 10px;
+}
+input[type=button]{
+    border: none;
+    width: 10%;
+    float: right;
+    height: 1em;
 }
 
 /*
-Config. das linhas 
+Config. hover linhas
 */
-tr{
-    margin: 2%;
-    display: flex;
-    align-items: center;
-}
-
-/*
-Config. da tabela
-*/
-.tabela{
-    padding: 0;
-    width: 100%;
-}
-
-/*
-Config. das tds
-*/
-.ind{
-    width: 10vh;
-}
-.cont{
-    width: 30vh;
-}
-
-/*
-Config. dos inputs 
-*/
-.inputs {
-    width: 100%;
-    font-size: 85%;
-}
-
-/*
-Config. divs do form
-*/
-#div-titulo{
-    padding: 4%;
-    height: 15%;
-    align-items: center;
-    display: flex;
-}
-#div-tabela{
-    height: 85%;
-    justify-content: center;
-}
-
-/*
-Config. dados pessoais div
-*/
-#dados-pessoais {
-    width: 98vh;
-    height: 125%;
-    border-radius: 3vh;
-    border: 2px solid black;
-    padding: 1.5%;
-    margin: 2.5%;
-    float: left;
-}
-
-
-/*
-Config. do titulo
-*/
-#idTitulo{
-    font-weight: bold;
-    font-size: 3.5vh;
-}
-
-/*
-Config. da visualizacao da div com a img do perfil
-*/
-#visul-img{
-    position: fixed;
-    width: 45vh;
-    height: 45vh;
-    margin-top: 10%;
-    background-color: #00a2ff;
-    border-radius: 3vh;
-    display: none;
-}
-#img{
-    margin-top: 3%;
-    margin-left: 25%;
-    margin-right: 25%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50%;
-    width: 50%;
-}
-#botoes-img{
-    margin-top: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#img_preview{
-    border-radius: 50%;
-    margin-top: 10%;
-} 
-#idBotaoFechar{
-    width: 12vh;
-    height: 5vh;
-    border-radius: 1vh;
-}
-
-/*
-Config. da linha de carregamento da imagem 
-*/
-#imagem-add{
-    display: flex;
-    width: 100%;
-    margin-top: 2%;
-    display: flex;
-    align-items: center;
-}
-#imagemInput{
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-#botao-input{
-    margin-right: 2%;
-    font-size: 90%;
-}
-#ok{
-    font-size: 90%;
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-top: 3%;
-    color: darkgreen;
-    font-weight: bold;
-}
-#visualizacao{
-    width: 3.5vh;
-    height: 3.5vh;
-    margin-right: 1%;
-    margin-left: 1%;
+tr:hover {
     cursor: pointer;
+    background-color: lightblue;
 }
 
-/*
-Config. do botao salvar 
-*/
-#tr-salvar{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-#salvar{
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin: 1%;
-    border-radius: 2vh;
-    padding: 1.2%;
-    font-size: 2.5vh;
-}
-#botao-salvar{
-    margin-top: 5%;
-}
-#botao-salvar:hover{
-    border: 2px solid black;
-}
 
-#nome {
-    text-decoration: none;
-    width: 0;
-    height: 0;
-    padding: 0;
-
-}
