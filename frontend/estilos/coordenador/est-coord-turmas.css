@@ -282,3 +282,21 @@ tr:hover {
     cursor: pointer;
     background-color: lightblue;
 }
+/* Config. Botões */
+.but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 1%;
+    padding: 1%;
+    font-size: 2.5vh;
+    background-color: white;
+    border-radius: 1vh;
+}
+/* Config. impede que de conflito nas tabelas com os formularios */
+#dGridPessoas{
+    z-index: 1;
+}
+#fPessoas{
+    z-index: 2;
+}

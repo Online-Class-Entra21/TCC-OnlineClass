@@ -8,7 +8,6 @@ public class Disciplina {
 	
     private int idDisciplina;
     private String nome;
-    private int numeroAulas;
     
     /**
      * Construtor padrao
@@ -21,12 +20,10 @@ public class Disciplina {
      * Metodo construtor que preenche os atributos da classe 
      * @param idDisciplina
      * @param nome
-     * @param numeroAulas
      */
     public Disciplina(int idDisciplina, String nome, int numeroAulas) {
     	setIdDisciplina(idDisciplina);
     	setNome(nome);
-    	setNumeroAulas(numeroAulas);
     }
     
     /** 
@@ -59,21 +56,5 @@ public class Disciplina {
      */
     public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-    /** 
-     * Metodo para retorno do numero de aulas da disciplina
-     * @return int numeroAulas
-     */
-    public int getNumeroAulas() {
-        return numeroAulas;
-    }
-
-    /**
-     * Metodo para insercao do numero de aulas 
-     * @param int numeroAulas
-     */
-	public void setNumeroAulas(int numeroAulas) {
-		this.numeroAulas = numeroAulas;
 	}
 }
