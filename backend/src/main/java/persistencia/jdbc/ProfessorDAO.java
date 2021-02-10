@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Professor;
+import entidade.Usuario;
 
 /**
  * Metodo para consulta do professor no banco de dados 
@@ -76,5 +78,40 @@ public class ProfessorDAO {
 		}
 		comandoSql.close();
 		return qtdProfessores;
+	}
+	
+	/**
+	 * Realiza o registro de um professor no banco de dados
+	 * e retorna o id do registro
+	 * @param Usuario usuario
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public int insertReturnID(Usuario usuario) throws SQLException {
+		String sql = "insert into usuario (nome, sobrenome, cpf, telefone, celular, tipoUsuario, email, "
+				   + "senha, horaFinalExpediente, horaInicioExpediente, fk_endereco, "
+				   + "fk_escola) values (?,?,?,?,?,?,?,?,?,?,?,?)"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		     
+		comandoSql.setString(1, usuario.getNome());
+		comandoSql.setString(2, usuario.getSobrenome());
+		comandoSql.setString(3, usuario.getCpf());
+		comandoSql.setString(4, usuario.getTelefone());
+		comandoSql.setString(5, usuario.getCelular());
+		comandoSql.setInt(6, usuario.getTipoUsuario());
+		comandoSql.setString(7, usuario.getEmail());
+		comandoSql.setString(8, usuario.getSenha());
+		comandoSql.setTimestamp(9, (Timestamp) usuario.getHorarioFinalExpediente());
+		comandoSql.setTimestamp(10, (Timestamp) usuario.getHorarioInicioExpediente());
+		comandoSql.setInt(11, usuario.getFk_endereco());
+		comandoSql.setInt(12, usuario.getFk_escola());
+
+		comandoSql.execute();
+		
+        ResultSet rs = comandoSql.getGeneratedKeys();
+        rs.next();
+        int idEndereco = rs.getInt(1);
+		comandoSql.close();
+		return idEndereco;
 	}
 }

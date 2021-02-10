@@ -252,7 +252,7 @@ td{
 /*
 Config. das linhas 
 */
-tr{
+#dados tr{
     align-items: center;
     display: flex;
 }
@@ -289,16 +289,17 @@ Config. dos titulos
 /*
 Condifg. das divs de conteudo 
 */
-#dados{
+#dados,#turmaMataria{
     border: 2px solid black;
     border-radius: 2vh;
     float: left;
     padding: 2%;
     margin-top: 3%;
-    margin-left: 3%;
-    margin-right: 3%;
-    width: 100vh;
+    margin-left: 13%;
+    margin-right: 13%;
+    width: 100%;
     height: 100%;
+    /* overflow: auto; */
 }
 
 /*
@@ -333,13 +334,13 @@ Config. div de separacao
 Config. de tamanho das tabelas
 */
 #tab-dados{
-    width: 100%;
+    width: 90%;
 }
 #tab-login{
-    width: 100%;
+    width: 90%;
 }
 #tab-endereco{
-    width: 100%;
+    width: 90%;
 }
 
 /*
@@ -402,7 +403,7 @@ li {
     list-style: none;
 }
 .multiselect {
-    width: 200px;
+    width:300px;
 }
   
 .selectBox {
@@ -410,7 +411,7 @@ li {
 }
   
 .selectBox select {
-    width: 100%;
+    width: 45vh;
     font-weight: bold;
 }
   
@@ -428,6 +429,9 @@ li {
     z-index: 1;
     background-color: white;
     display: block;
+    width: 45vh;
+    height: 100px;
+    overflow: auto;
 }
 .radioMenu {
     display: block;
@@ -442,4 +446,9 @@ li {
     background-color: #1e90ff;
 }
 
-
+.materias{
+    border: 2px solid black;
+    width: 100%;
+    max-height: 300px;
+    overflow:auto;
+}
