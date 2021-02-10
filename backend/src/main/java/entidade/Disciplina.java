@@ -8,6 +8,7 @@ public class Disciplina {
 	
     private int idDisciplina;
     private String nome;
+    private int fk_escola;
     
     /**
      * Construtor padrao
@@ -21,9 +22,10 @@ public class Disciplina {
      * @param idDisciplina
      * @param nome
      */
-    public Disciplina(int idDisciplina, String nome, int numeroAulas) {
+    public Disciplina(int idDisciplina, String nome, int fk_escola) {
     	setIdDisciplina(idDisciplina);
     	setNome(nome);
+    	
     }
     
     /** 
@@ -56,5 +58,21 @@ public class Disciplina {
      */
     public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+    /**
+     * Metodo para insercao do fk da escola 
+     * @param int fk_escola
+     */
+	public int getFk_escola() {
+		return fk_escola;
+	}
+
+	/**
+     * Metodo para insercao do fk da escola 
+     * @param int fk_escola
+     */
+	public void setFk_escola(int fk_escola) {
+		this.fk_escola = fk_escola;
 	}
 }

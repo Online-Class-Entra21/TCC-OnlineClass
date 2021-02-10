@@ -242,15 +242,17 @@ Config. das sections
     width: 100%;
     height: 100%;
     display: flex;
+    float: left;
     justify-content: center;
+    
 }
 
 /*
 Config. do form
 */
-form {
+form{
     width: 100%;
-    height: 100%;
+    height: 90%;
 }
 
 /*
@@ -298,21 +300,29 @@ Config. divs do form
     display: flex;
 }
 #div-tabela{
-    height: 85%;
-    justify-content: center;
+     width: 100%;
+
 }
 
 /*
 Config. dados pessoais div
 */
 #dados-pessoais {
-    width: 98vh;
-    height: 83vh;
-    border-radius: 3vh;
     border: 2px solid black;
-    padding: 1.5%;
-    margin: 2.5%;
+    border-radius: 2vh;
     float: left;
+    padding: 2%;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 100vh;
+    height: 100%;
+
+}
+/* Config. centralização do conteudo */
+.centered {
+    margin: 1% auto !important;
+    float: none !important;
 }
 
 
@@ -414,12 +424,7 @@ Config. do botao salvar
     padding: 1.2%;
     font-size: 2.5vh;
 }
-#botao-salvar{
-    margin-top: 5%;
-}
-#botao-salvar:hover{
-    border: 2px solid black;
-}
+
 
 #nome {
     text-decoration: none;
@@ -427,4 +432,24 @@ Config. do botao salvar
     height: 0;
     padding: 0;
 
+}
+
+/*
+Config. dos botoes 
+*/
+.but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 10%;
+    padding: 10%;
+    font-size: 2.5vh;
+    background-color: white;
+    border-radius: 1vh;
+}
+.teste{
+    width: 100vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }

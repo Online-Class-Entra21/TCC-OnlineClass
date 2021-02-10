@@ -236,6 +236,8 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
+
+
 /*
 Config. das atividades do usuarios
 */
@@ -266,13 +268,25 @@ Config. das atividades do usuarios
  }
  
  .tipo{
-     margin-left: 10%;
-     min-width: 15%;
+    margin-left: 10%;
+    min-width: 15%;
     min-height: 10%;
     max-width: 15%;
     max-height: 10%;
-  
- }
+}
+.disci {
+    margin-left: 10%;
+    min-width: 15%;
+    min-height: 10%;
+    max-width: 15%;
+    max-height: 10%;
+}
+.materia {
+    margin-left: 10%;
+    margin-top: -15%;
+    width: 30%; 
+    cursor: pointer;
+}
 .aula {
     min-width: 15%;
     min-height: 10%;

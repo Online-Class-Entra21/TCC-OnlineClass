@@ -26,7 +26,7 @@
             <section id="Atividade" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/atividade.png" alt="Atividade" title="Atividade" class="img-opcoes">
-                    <a href="/frontend/paginas/professor/prof-atividade.html">Postar Atividade</a>
+                    <a href="/frontend/paginas/professor/prof-atividade.html">Gerenciar Atividade</a>
                 </figure>
             </section>
             <section id="Resposta" class="opcoes">
@@ -84,7 +84,7 @@
             </nav>
         </header>
         <main>
-            <div id="conteudo ">
+            <div id="conteudo">
                 <form class="postar-atividade ">
                     <label class="aulaTipo lead" for="idTitle">Titulo da atividade </label>
                     <input class="aula form-control" type="text" id="idTitle" name="nmTitle">
@@ -96,10 +96,9 @@
                     <select name="assunto" id="idTipo" class="aula form-control">
                         <option>-Selecione o tipo</option>
                         <option>-Avaliação</option>
-                        <option>-Atividade em grupo</option>
                         <option>-Atividade</option>
                         <option>-Recuperação Paralela</option>
-                        <option>-Outro</option>
+                        <option>-Auto-Avaliação</option>
                     </select>
 
                     <label class="arq lead pt-3" for="idTipo">Turma</label>
@@ -107,6 +106,13 @@
                         <option>-Selecione a turma</option>
                         <option>-Turma 01</option>
                         <option>-Turma 02</option>
+                    </select>
+
+                    <label class="materia lead pt-3" for="idDisci">Disciplina</label>
+                    <select name="disci" id="idDisci" class="disci form-control">
+                        <option>-Seleciona a Disciplina</option>
+                        <option>-Matemátoca</option>
+                        <option>-Português</option>
                     </select>
 
                     <div class="custom-file">

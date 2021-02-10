@@ -2,9 +2,7 @@
 var idUsuario = sessionStorage.getItem("idUsuario");
 
 var idEscola;
-// $('#dados').animate({
-//     height: '20px'
-// }, 1500);
+
 $('#inputCep').val('89023760');
 $('#inputCpf').val('89054823760');
 $('#inputNome').val('Cacau');
@@ -135,8 +133,9 @@ $("#btnCadastrar").click(async function(){
     }
 });
 
-getMaterias();
 getTurmas();
+getMaterias($('#turma1').attr('id'));
+getMaterias($('#turma2').attr('id'));
 
 
 var turmas;
@@ -145,19 +144,12 @@ async function getTurmas() {
     turmas = JSON.parse(turmas);
     for (var i = 0; i < turmas.length; i++){
         const turm = turmas[i];
-        $("#turma").append('<label for="turma'+turm.idTurma+'"><input type="checkbox" id="turma'+turm.idTurma+'">turma '+turm.ano+'</label>')
+        $("#turma").append('<label for="turma'+turm.idTurma+'"><input type="checkbox" name="'+turm.ano+'" id="turma'+turm.idTurma+'">turma '+turm.ano+'</label>')
     }
 }
 
-async function getMaterias() {
-    var disciplinas = await usarApi('GET','http://localhost:8080/api/disciplinas');
-    disciplinas = JSON.parse(disciplinas);
-    for (var i = 0; i < disciplinas.length; i++){
-        const materia = disciplinas[i];
-        console.log(materia)
-        $("#materias").append('<label for="'+materia.nome+'"><input type="checkbox" id="'+materia.nome+'">'+materia.nome+'</label>')
-    }
-}
+
+
 
 
 function getSelTurmas() {
@@ -201,54 +193,58 @@ document.getElementById("menu").addEventListener("mouseleave", function () {
 //---> https://stackoverflow.com/questions/17714705/how-to-use-checkbox-inside-select-option
 //-> Checkbox Inside Select code:
 
-var isMaterias = false;
-var isPeriodos = false;
-var isTurma = false;
-
-
-function optionPeriodos() {
-    var periodos = document.getElementById("periodos");
-    if (!isPeriodos) {
-        $("#periodos").show();
-        isPeriodos = true;
-        $("#turma").hide();
-        isTurma = false;
-        $("#materias").hide();
-        isMaterias = false;
-    } else {
-        $("#periodos").hide();
-        isPeriodos = false;
-    }
-}
-
-function optionMaterias() {
-    var materias = document.getElementById("materias");
-    if (!isMaterias) {
-        $("#materias").show();
-        isMaterias = true;
-        $("#turma").hide();
-        isTurma = false;
-        $("#periodos").hide();
-        isPeriodos = false;
-    } else {
-        $("#materias").hide();
-        isMaterias = false;
-    }
-}
 
 function optionTurmas() {
-    if (!isTurma) {
-        $("#turma").show();
-        isTurma = true;
-        $("#materias").hide();
-        isMaterias = false;
-        $("#periodos").hide();
-        isPeriodos = false;
-    } else {
-        $("#turma").hide();
-        isTurma = false;
-    }
+    $('#turma').toggle();
 }
     
 // segunda parte do cadastro adicionar turmas e materias
+$('#turmaMataria').hide();
+$('#testebtn').click(async function(){
+    await $('#dados').slideToggle('slow');
+    await $('#turmaMataria').slideToggle('slow');
+    var turmas = $('input[id^="turma"]:checked');
+    for (var i = 0; i < turmas.length; i++){
+        const turma = turmas[i];
+        $("#tab-turma").append('<tr>'
+        +'<td>'
+            +'<label for="turma">'+turma.name+'</label>'
+        +'</td>'
+        +'<td class="input" id="'+turma.id+'">'
+            
+        +'</td>'
+        +'</tr>')
+        console.log($('#'+turma.id).attr('id'))
+        getMaterias($('#'+turma.id).attr('id'));
+    }
 
+});
+
+
+async function getMaterias(idTurma) {
+    var disciplinas = await usarApi('GET','http://localhost:8080/api/disciplinas');
+    disciplinas = JSON.parse(disciplinas);
+    console.log($('td#'+idTurma)[0]);
+    $('td#'+idTurma).append('<div name="materias'+idTurma+'" class="selectBox">'
+                    +'<select>'
+                        +'<option>Informe as Matérias</option>'
+                    +'</select>'
+                    +'<div  id="'+idTurma+'-sel" class="overSelect"></div>'
+                +'</div>'
+                +'<div id="materias'+idTurma+'" class="radioMenu">'
+               +'</div>');
+    for (var i = 0; i < disciplinas.length; i++){
+        const materia = disciplinas[i];
+        // console.log(materia)
+        $("#materias"+idTurma).append('<label for="'+materia.nome+'-'+idTurma+'"><input type="checkbox" id="'+materia.nome+'-'+idTurma+'">'+materia.nome+'</label>')
+    }
+    $("#materias"+idTurma).hide();
+    $('#'+idTurma+'-sel').click(function() {
+        // console.log('teste');
+        var materias = document.getElementById("materias");
+        var idTSel = $(this).parent().attr("name");
+        // console.log($("#"+idTeste))
+        
+        $("#"+idTSel).toggle();
+    });
+}

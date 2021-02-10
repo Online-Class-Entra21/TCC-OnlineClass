@@ -295,9 +295,10 @@ Condifg. das divs de conteudo
     margin-top: 3%;
     margin-left: 13%;
     margin-right: 13%;
+    margin-bottom: 3%;
     width: 100%;
     height: 100%;
-    /* overflow: auto; */
+    overflow: auto;
 }
 
 /*
@@ -434,6 +435,7 @@ li {
 .radioMenu {
     display: block;
     border: 1px #dadada solid;
+    z-index: 1;
 }
 
 .radioMenu label {

@@ -47,12 +47,6 @@
                     <a href="/frontend/paginas/aluno/aluno-relatorio.html">Relatório</a>
                 </figure>
             </section>
-            <section id="boletim" class="opcoes">
-                <figure class="figure-opcoes">
-                    <img src="/frontend/imagens/boletim-de-noticias.png" alt="boletim" title="Boletim" class="img-opcoes">
-                    <a href="/frontend/paginas/aluno/aluno-boletim.html">Boletim</a>
-                </figure>
-            </section>
             <section id="chamada" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/comunicacao.png" alt="chamada" title="Chamada" class="img-opcoes">
@@ -91,7 +85,8 @@
                 </div>
             </nav>
         </header>
-        <main class="nav justify-content-center">
+
+        <main >
             <div id="visul-img">
                 <div id="img">
                     <img id="img_preview" src="" alt="Image Preview"/>
@@ -100,13 +95,14 @@
                     <input id="idBotaoFechar" type="button" value="Fechar" title="Fechar">
                 </div>
             </div> 
-            <div id="corpo">
-                <div id="dados-pessoais"  class="nav justify-content-center">
-                    <form id="formulario" action="">
+
+            <div id="corpo flex-fill">
+                <div id="dados-pessoais" class="centered">
+                    <form id="formulario"class="nav justify-content-center">
                         <div id="div-titulo">
                             <h4 id="idTitulo">Dados do Perfil</h4>
                         </div>
-                        <div id="div-tabela">
+                        <div id="div-tabela form-group">
                             <table class="tabela">
                                 <tr>
                                     <td class="ind">
@@ -141,12 +137,12 @@
                                 <tr>
                                     <td>
                                         <label class="cont" >Nome: </label>
-                                        <input id="idNome" class="inputs" type="text" required>
+                                        <input id="idNome" class="inputs form-control" type="text" required >
                                     </td>
                                     
                                     <td>
                                         <label class="cont" >Sobrenome: </label>
-                                        <input id="idSobrenome" class="inputs" type="text" required>
+                                        <input  id="idSobrenome" class="inputs form-control" type="text" required >
                                         
                                     </td>
                                     <td class="cont">
@@ -157,11 +153,11 @@
                                 <tr>
                                     <td>
                                         <label class="cont">Email: </label>
-                                        <input id="idEmail" class="inputs" type="text" required>
+                                        <input id="idEmail" class="inputs form-control" type="text" required>
                                     </td>
                                     <td>
                                         <label class="cont">Senha: </label>
-                                        <input id="idSenha" class="inputs" type="password" required>
+                                        <input id="idSenha" class="inputs form-control" type="password" required>
                                     </td>
                                     <td class="cont">
                                     </td>
@@ -172,11 +168,11 @@
                                 <tr>
                                     <td>
                                         <label class="cont">Celular: </label>
-                                        <input id="idCelular" class="inputs" type="text" required>
+                                        <input id="idCelular" class="inputs form-control" type="text" required>
                                     </td>
                                     <td>
                                         <label class="cont">Telefone: </label>
-                                        <input id="idTelefone" class="inputs" type="text" required>
+                                        <input id="idTelefone" class="inputs form-control" type="text" required>
                                     </td>
                                     <td class="cont">
                                     </td>
@@ -187,11 +183,11 @@
                                 <tr>
                                     <td>
                                         <label for="" class="cont">CPF: </label>                                            
-                                        <input type="number" name="" id="" class="inputs" required>
+                                        <input type="number" name="" id="" class="inputs form-control" required>
                                     </td>
                                     <td>
                                         <label for="" class="cont">RG:</label>
-                                        <input type="number" name="" id="" class="inputs" required>
+                                        <input type="number" name="" id="" class="inputs form-control" required>
                                     </td>
                                     <td class="cont">
                                     </td>
@@ -202,15 +198,15 @@
                                     <tr>
                                         <td class="cont">
                                             <label for="" class="cont">Pai</label>
-                                            <input type="text" name="" id="" class="cont">
+                                            <input type="text" name="" id="" class="cont form-control">
                                         </td>
                                         <td class="cont">
                                             <label for="" class="cont">Mãe</label>
-                                            <input type="text" name="" id="" class="cont">
+                                            <input type="text" name="" id="" class="cont form-control">
                                         </td>
                                         <td class="cont">
                                             <label for="" class="cont">Responsavel</label>
-                                            <input type="text" name="" id="" class="cont">
+                                            <input type="text" name="" id="" class="cont form-control">
                                         </td>
                                 <tr>
                                     <td id="imagem-add">
@@ -222,7 +218,7 @@
                                 </tr> 
                                 <tr id="tr-salvar">
                                     <td id="salvar">
-                                        <input id="botao-salvar" value="Salvar" type="button" title="Salvar">
+                                        <button id="botao-salvar" class="mt-2 btn-primary but" value="Salvar" type="button" title="Salvar">Salvar </button>
                                     </td>
                                 </tr> 
                             </table>
