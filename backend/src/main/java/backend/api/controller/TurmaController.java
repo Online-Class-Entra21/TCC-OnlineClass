@@ -162,4 +162,30 @@ public class TurmaController {
 			return null;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais
+	//------------------------------------------------------------------
+	
+	/**
+	 * Retorna a lista das turmas registrados no sistema onde ocorre aquela disciplina {GET}
+	 * @return lista de turmas registradas no banco onde ocorre aquela disciplina
+	 * @author Breno
+	 * @param int codigo 
+	 */
+	@GetMapping(path = "/api/turmas/disciplina/{codigo}")
+	public List<Turma> consultarDisciplina(@PathVariable("codigo") int codigo){
+		LOGGER.info("Requisição List<Turma> pela disciplina");
+		List<Turma> lista;
+		TurmaDAO turmaDao = new TurmaDAO();
+		try {
+			lista = turmaDao.buscarDisciplina(codigo);
+			LOGGER.info("Requisição List<Turma> pela disciplina bem sucedida");
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Turma pela disciplina Mal Sucedida - erro - {}",e.toString());
+			return null;
+		}
+	}
 }

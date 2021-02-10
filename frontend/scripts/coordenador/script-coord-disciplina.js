@@ -2,6 +2,7 @@
 var fk_escola = sessionStorage.getItem('escolaUsuario');
 var idUsuario = sessionStorage.getItem('idUsuario');
 
+carregarSelect();
 padraoDefault();
 
 //Config. iniciais 
@@ -22,6 +23,7 @@ function eventoRadio(radioB){
         document.getElementById('idBtnAtualizar').hidden = true;
         document.getElementById('idBtnExcluir').hidden = true;
         document.getElementById('txtNome').disabled = false;
+        document.getElementById('txtNome').value = "";
         document.getElementById('divSelect').hidden = true;
     }else{
         //Esconde os botões - config. atualizacao
@@ -43,7 +45,8 @@ async function cadastrar(){
 
     //Cria a classe disciplina 
     var disciplina = {
-        nome: document.getElementById("txtNome").value
+        nome: document.getElementById("txtNome").value,
+        fk_escola: fk_escola
     }
 
     //Verifica se os campos foram preenchidos 
@@ -53,7 +56,6 @@ async function cadastrar(){
     }else{
         //Converte para JSON
         var disciplinaJson = JSON.stringify(disciplina);
-        console.log(disciplinaJson);
 
         //Chama a api para cadastrar a turma
         var insertDisciplina = await usarApi("POST", "http://localhost:8080/api/disciplina/inserir/" + disciplinaJson)
@@ -70,80 +72,90 @@ async function cadastrar(){
 //Método para selecao da disciplina 
 $("#SelectDisciplina").change(function() { 
     var disciplinaEscolhida = $('#SelectDisciplina :selected').val();
-    var nomeDisciplinaEscolhida = $('#SelectDisciplina :selected').text();
-    console.log(disciplinaEscolhida)
+    document.getElementById('txtNome').disabled = false;
+    carregarListaDisciplinas(disciplinaEscolhida);
+    carregarCampos(disciplinaEscolhida);
 });
 
 //Método para carregar o select com as turmas existentes
 async function carregarSelect() {
     //Chama a api e retorna um arrays com as disciplinas pertencentes à escola
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/escola/"+fk_escola);
-    var turmas = JSON.parse(resposta);
-    var select = document.getElementById('SelectTurma');
+    var resposta = await usarApi("GET", "http://localhost:8080/api/disciplinas/"+fk_escola);
+    var disciplinas = JSON.parse(resposta);
+    var select = document.getElementById('SelectDisciplina');
 
     //Cria os options do select
-    for (let index = 0; index < turmas.length; index++) {
+    for (let index = 0; index < disciplinas.length; index++) {
         
-        var option = document.createElement('option')
-        option.textContent = turmas[index].ano;
-        option.value = turmas[index].idTurma;
-        option.classList.add('optionTurmas')
+        var option = document.createElement('option');
+        option.textContent = disciplinas[index].nome;
+        option.value = disciplinas[index].idDisciplina;
+        option.classList.add('optionDisciplinas')
 
         select.append(option);
     }
 }
 
-//Método para carregar os campos da turma selecionada
-async function carregarCampos(turma) {
-    //Busca os dados da turma selecionado no checkbox 
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + turma)
-    var turma = JSON.parse(resposta)
+//Método para carregar os campos da disciplina selecionada
+async function carregarCampos(disciplina) {
+    //Busca os dados da disciplina selecionado no checkbox 
+    var resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + disciplina)
+    var disciplina = JSON.parse(resposta)
 
-    //Dados Turma
-    document.getElementById('inputNome').value = turma.ano;
-    document.getElementById('InputQtdAlunos').value = turma.qtdAluno
+    //Dados Disciplina
+    document.getElementById('txtNome').value = disciplina.nome;
 }
 
 //Método para carregar a lista de turmas da disciplina selecionada
-async function carregarListaTurmas(idTurma, nomeTurma) {
+async function carregarListaDisciplinas(disciplinaEscolhida) {
     //Faz a buscar na API
-    var resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + idTurma);
-    var alunos = JSON.parse(resposta);
+    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/disciplina/" + disciplinaEscolhida);
+    var turmas = JSON.parse(resposta);
 
-    
-    //Verifica se tem algum aluno no banco de dados
-    if(alunos[0] == null){
+    //Verifica se tem alguma turma no banco de dados
+    if(turmas[0] == null){
         var tr = document.createElement("tr");
         var coluna = document.createElement("td");
-        coluna.append("Nenhum aluno ligado à essa turma.")
+        coluna.append("Nenhuma turma ligado à essa disciplina.")
         tr.append(coluna)
-        document.getElementById('tbLista').append(tr)
+        document.getElementById('tbTurmas').append(tr)
     }else{
-        var alunosIndex = []
-        for (let i = 0; i < alunos.length; i++) {
 
-            resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + alunos[i].fk_usuario);
-            var usuarioNome = JSON.parse(resposta);
+        for (let i = 0; i < turmas.length; i++) {
 
-            alunosIndex.push(alunos[i]);
-
+            //Cria a linha 
             var linha = document.createElement("tr");
-            linha.classList.add("LinhaAlunos")
+            linha.classList.add("LinhaTurmas")
+
+            //Cria a coluna de nome 
             var colunaNome = document.createElement("td");
             colunaNome.classList.add("colunaNome")
-            var nomeAluno = usuarioNome.nome+" "+usuarioNome.sobrenome;
-            colunaNome.append(nomeAluno)
+            var nomeTurma = turmas[i].nome;
+            colunaNome.append(nomeTurma);
             linha.append(colunaNome);
-            var colunaMatricula = document.createElement("td");
-            colunaMatricula.classList.add("colunaMatricula")
-            colunaMatricula.append(alunos[i].matricula)
-            linha.append(colunaMatricula);
-            var colunaTurma = document.createElement("td");
-            colunaTurma.classList.add("colunaTurma")
-            colunaTurma.append(nomeTurma)
-            linha.append(colunaTurma);
 
-            document.getElementById('tbLista').append(linha)
+            //Cria a coluna de n° de alunos 
+            var colunaNumAlunos = document.createElement("td");
+            colunaNumAlunos.classList.add("colunaNumAlunos")
+            var numAlunos = turmas[i].qtdAluno;
+            colunaNumAlunos.append(numAlunos);
+            linha.append(colunaNumAlunos);
+
+            //Cria a coluna de inicio da aula
+            var inicioAula = document.createElement("td");
+            inicioAula.classList.add("inicioAula")
+            var inicio = turmas[i].horaInicioAula;
+            inicioAula.append(inicio);
+            linha.append(inicioAula);
+
+            //Cria a coluna de fim da aula
+            var finalAula = document.createElement("td");
+            finalAula.classList.add("finalAula")
+            var final = turmas[i].horaFinalAula;
+            finalAula.append(final);
+            linha.append(finalAula);
+
+            document.getElementById('tbTurmas').append(linha)
         }  
     }
 }

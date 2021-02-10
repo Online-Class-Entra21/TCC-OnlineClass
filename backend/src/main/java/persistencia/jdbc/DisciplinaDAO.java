@@ -25,10 +25,11 @@ public class DisciplinaDAO {
 	 * @throws SQLException 
 	 */
 	public void insert(Disciplina disciplina) throws SQLException {
-		String sql = "insert into disciplina (nome) values (?)";
+		String sql = "insert into disciplina (nome, fk_escola) values (?,?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, disciplina.getNome());
+		comandoSql.setInt(2, disciplina.getFk_escola());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -46,7 +47,8 @@ public class DisciplinaDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, disciplina.getNome());
-		comandoSql.setInt(3, disciplina.getIdDisciplina());
+		comandoSql.setInt(2, disciplina.getIdDisciplina());
+		comandoSql.setInt(3, disciplina.getFk_escola());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -88,6 +90,7 @@ public class DisciplinaDAO {
 		if (resultSet.next()) {
 			disciplina.setIdDisciplina(resultSet.getInt(1));
 			disciplina.setNome(resultSet.getString(2));
+			disciplina.setFk_escola(resultSet.getInt(3));
 		}
 		comandoSql.close();
 		return disciplina;
@@ -110,6 +113,38 @@ public class DisciplinaDAO {
 			Disciplina disciplina = new Disciplina();
 			disciplina.setIdDisciplina(resultSet.getInt(1));
 			disciplina.setNome(resultSet.getString(2));
+			disciplina.setFk_escola(resultSet.getInt(3));
+			
+			lista.add(disciplina);
+		}
+		comandoSql.close();
+		return lista;
+	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais
+	//------------------------------------------------------------------
+	
+	/**
+	 * Metodo para selecionar todas as disciplinas do banco de dados
+	 * @return lista de disciplinas resgistradas no banco 
+	 * @param int fk_escola
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public List<Disciplina> buscarTodosFk(int fk_escola) throws SQLException {
+		List<Disciplina> lista = new ArrayList<Disciplina>();
+		String sql = "select * from Disciplina where fk_escola = ?";
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, fk_escola);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Disciplina disciplina = new Disciplina();
+			disciplina.setIdDisciplina(resultSet.getInt(1));
+			disciplina.setNome(resultSet.getString(2));
+			disciplina.setFk_escola(resultSet.getInt(3));
 			
 			lista.add(disciplina);
 		}

@@ -202,5 +202,45 @@ public class TurmaDAO {
 		return lista;
 	}	
 	
-	
+	/**
+	 * Metodo de busca de todas as informacoes de uma linha
+	 * da tabela Turma do banco de dados onde a disciplina ocorre.
+	 * O <code>idDisciplina</code> deve ser igual ao da turma que deseja buscar
+	 * @param int idDisciplina
+	 * @return Turma turma 
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public List<Turma> buscarDisciplina(int idDisciplina) throws SQLException {
+		List<Turma> lista = new ArrayList<Turma>(); 
+		String sql = "select * "
+				+ "   from turma,"
+				+ "        disciplina,"
+				+ "        usuario_disciplina,"
+				+ "        usuario_disciplina_turma"
+				+ "    where turma.idturma = usuario_disciplina_turma.fk_turma"
+				+ "    and   usuario_disciplina_turma.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina"
+				+ "    and   usuario_disciplina.fk_disciplina = disciplina.iddisciplina"
+				+ "    and disciplina.iddisciplina = ?"; 
+			
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idDisciplina);
+		
+		ResultSet resultSet = comandoSql.executeQuery(); 
+			
+		while (resultSet.next()) {
+			Turma turma = new Turma(); 
+			turma.setIdTurma(resultSet.getInt(1));
+			turma.setAno(resultSet.getString(2));
+			turma.setQtdAluno(resultSet.getInt(3));
+			turma.setHorarioInicioAula(resultSet.getTimestamp(4));
+			turma.setHorarioFinalAula(resultSet.getTimestamp(5));
+			turma.setFk_sala(resultSet.getInt(6));
+			turma.setFk_escola(resultSet.getInt(7));
+			lista.add(turma); 
+		}
+		comandoSql.close();
+		return lista;
+	}	
 }

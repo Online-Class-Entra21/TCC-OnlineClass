@@ -141,4 +141,30 @@ public class DisciplinaController {
 			return false;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais
+	//------------------------------------------------------------------
+	
+	/**
+	 * Retorna a lista de disciplinas registrados no sistema na escola especifica {GET}
+	 * @return lista de disciplinas registrados no banco na escola especifica
+	 * @param int fk_escola 
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/disciplinas/{fk_escola}")
+	public List<Disciplina> consultarFk(@PathVariable int fk_escola) {
+		LOGGER.info("Requisição List<Disciplina>");
+		List<Disciplina> lista;
+		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
+		try {
+			lista = disciplinaDao.buscarTodosFk(fk_escola);
+			LOGGER.info("Requisição List<Disciplina> bem sucedida Fk_escola - {}",fk_escola);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Disciplina Fk_escola - {} Mal Sucedida - erro - {}",fk_escola,e.toString());
+			return null;
+		}
+	}
 }
