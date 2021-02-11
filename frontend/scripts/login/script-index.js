@@ -1,6 +1,11 @@
 //Encerra a sessão 
 sessionStorage.setItem("idUsuario", 0);
 
+$('#input-senha').on('keypress',function(e) {
+    if(e.which == 13) {
+        logar($('#input-email').val(), $('#input-senha').val());
+    }
+});
 //Verifica as informações e loga no sistema 
 function logar(email, senha) {
     $('#input-email').css('border', 'none')

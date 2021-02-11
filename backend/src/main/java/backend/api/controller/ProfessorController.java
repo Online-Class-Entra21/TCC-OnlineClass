@@ -16,8 +16,10 @@ import entidade.Disciplina;
 import entidade.Professor;
 import entidade.Turma;
 import entidade.Usuario;
+import entidade.UsuarioDisciplina;
 import persistencia.jdbc.ProfessorDAO;
 import persistencia.jdbc.UsuarioDAO;
+import persistencia.jdbc.UsuarioDisciplinaDAO;
 
 /**
  * Metodo controller do professor para consulta no banco de dados através da API Rest
@@ -75,29 +77,27 @@ public class ProfessorController {
 	}
 	
 	/**
-	 * Insere uma novo usuário no banco de dados {POST}
+	 * Insere um novo professor no banco de dados {POST}
+	 * e retorna um 
 	 * @param String json
-	 * @author Breno
-	 * @return boolean situacao da operacao
+	 * @author Andre
+	 * @return int idProfessor
 	 */
-	@PostMapping(path = "api/usuario/inserir/{jsonProf}/{jsonMate}/{jsonTurm}")
-	public boolean inserir(@PathVariable("jsonProf") String jsonProf,@PathVariable("jsonMate") String jsonMate,@PathVariable("jsonTurm") String jsonTurm) {
-		LOGGER.info("Requisição Inserir Professor Materias e Turmas - {} - {} - {}",jsonProf,jsonMate,jsonTurm);
+	@PostMapping(path = "/api/professor/inserir/return/{json}")
+	public int inserirReturn(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Usuario - {}",json);
 		Gson gson = new Gson();
-		Usuario professor = gson.fromJson(jsonProf.toString(), Usuario.class);
-		Disciplina[] disciplinas = gson.fromJson(jsonMate, Disciplina[].class);
-		Turma[] turmas = gson.fromJson(jsonTurm, Turma[].class); 
-		ProfessorDAO professorDAO = new ProfessorDAO();
+		Usuario usuario = gson.fromJson(json, Usuario.class);
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		try {
-			int idprof = professorDAO.insertReturnID(professor);
-			
-			
-			LOGGER.info("Requisição Inserir Professor - {} - Bem Sucedida",jsonProf);
-			return true;
+			int idUsuario = usuarioDAO.insertReturnID(usuario);
+			LOGGER.info("Requisição Inserir Usuario - {} - Bem Sucedida",json);
+			return idUsuario;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			LOGGER.error("Requisição para Inserir Professor Materias e Turmas Mal Sucedida - {} - {} - {} - erro - {}",jsonProf,jsonMate,jsonTurm,e.toString());
-			return false;
+			LOGGER.error("Requisição para Inserir Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
+			return 0;
 		}
-	}
+	}	
 }
+

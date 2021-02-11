@@ -288,7 +288,7 @@
                         <div id="escola-div" class="d-flex justify-content-between">
                             <div class="multiselect">
                                 <div class="selectBox" onclick="optionTurmas()">
-                                    <select>
+                                    <select class="form-control">
                                         <option>Informe as Turmas</option>
                                     </select>
                                     <div class="overSelect"></div>
@@ -298,9 +298,8 @@
                             </div>
                         </div>
                         <div id="botoes" class="nav justify-content-center">
-                            <button class="but" type="button" id="btnCadastrar">Cadastrar</button>
-                            <button class="but" type="reset">Limpar</button>
-                            <button class="but btn-primary" id="testebtn" type="button">teste</button>
+                            <button class="but btn-danger" type="reset">Limpar</button>
+                            <button class="but btn-primary" id="btnAvancar" type="button">Avançar</button>
                         </div>
                     </div> 
                 </form>
@@ -313,10 +312,13 @@
                 <div id="turmaMataria" class="">
                     <div id="dados-div">
                         <table id="tab-turma" class="tabela">
-                            <h5 class="titulo-dados titulo">Dados do Professor</h5>
+                            <h5 class="titulo-dados titulo">Materias Turmas</h5>
                         </table>
+                        <div id="botoes" class="nav justify-content-center">
+                            <button class="but btn-primary" type="button" id="btnCadastrar">Cadastrar</button>
+                        </div>
                     </div>
-                </div> 
+                </div>
             </form>
         </section>
     </main>
