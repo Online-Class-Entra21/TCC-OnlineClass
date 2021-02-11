@@ -187,4 +187,30 @@ public class AlunoController {
 			return null;
 		}
 	}
+	
+	/**
+	 * Retorna o aluno que corresponde ao id do usuario {GET}
+	 * @param int codigo - fk_escola
+	 * @return String json
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	@GetMapping(path = "/api/aluno/usuario/{codigo}")
+	public String consultarIdUsuario(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição Aluno pelo fk_escola {} iniciada", codigo);
+		Aluno aluno;
+		AlunoDAO alunoDao = new AlunoDAO();
+		try {
+			aluno = alunoDao.buscarIdUsuario(codigo);
+			Gson gson = new Gson();
+			String json = gson.toJson(aluno);
+			LOGGER.info("Requisição Aluno pelo fk_escola {} bem sucedida",codigo);
+			return json;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição Aluno pelo fk_escola {} mal sucedida erro : {}",codigo,e.toString());
+			return null;
+		}
+	}
+	
 }

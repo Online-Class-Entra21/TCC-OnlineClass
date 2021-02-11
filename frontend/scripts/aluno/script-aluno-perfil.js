@@ -140,42 +140,23 @@ btnAtualizar.addEventListener("click", function() {
 
 //Método para carregar os campos
 async function carregarCampos() {
-    //Chama a api para carregar o usuario e escola do banco
+    //Chama a api
     var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + idUsuario);
     var usuarioAluno = JSON.parse(resposta);
     resposta = await usarApi("GET", "http://localhost:8080/api/escola/" +   usuarioAluno.fk_escola);
     var escola = JSON.parse(resposta);
+    resposta = await usarApi("GET", "http://localhost:8080/api/aluno/usuario/" + usuarioAluno.idUsuario);
+    var aluno = JSON.parse(resposta);
+    resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + aluno.fk_turma);
+    var turma = JSON.parse(resposta);
 
-    document.getElementById('inputEscola').value = escola.nome;
-
-    //Converte as datas para só pegar o horário
-    var horarioInicioExpediente = new Date  usuarioAluno.horarioInicioExpediente);
-    var horas = horarioInicioExpediente.getHours()+3;
-    var minutos = horarioInicioExpediente.getMinutes();
-    if (horas < 10 && minutos < 10) {
-        horas = "0"+horas;
-        minutos = "0"+minutos;
-    } else if (horas < 10 && minutos >= 10) {
-        horas = "0"+horas;
-    } else if (horas >= 10 && minutos < 10) {
-        minutos = "0"+minutos;
-    }
-    horarioInicioExpediente = horas+":"+minutos+":00";
     
-    var horarioFinalExpediente = new Date   usuarioAluno.horarioFinalExpediente);
-    horas = horarioFinalExpediente.getHours()+3;
-    minutos = horarioFinalExpediente.getMinutes();
-    if (horas < 10 && minutos < 10) {
-        horas = "0"+horas;
-        minutos = "0"+minutos;
-    } else if (horas < 10 && minutos >= 10) {
-        horas = "0"+horas;
-    } else if (horas >= 10 && minutos < 10) {
-        minutos = "0"+minutos;
-    }
-    horarioFinalExpediente = horas+":"+minutos+":00";
-    document.getElementById('inputHorarioInicial').value = horarioInicioExpediente;
-    document.getElementById('inputHorarioFinal').value = horarioFinalExpediente;
+    document.getElementById('inputEscola').textContent = escola.nome;
+    document.getElementById('inputTurma').textContent = turma.ano;
+    document.getElementById('inputRa').textContent = aluno.ra;
+    document.getElementById('inputMatricula').textContent = aluno.matricula;
+    
+
     document.getElementById('inputNome').value =    usuarioAluno.nome;
     document.getElementById('inputSobrenome').value =   usuarioAluno.sobrenome;
     document.getElementById('inputEmail').value =   usuarioAluno.email;
