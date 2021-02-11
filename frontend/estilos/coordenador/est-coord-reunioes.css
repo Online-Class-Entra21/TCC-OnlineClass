@@ -236,60 +236,6 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
-/*DIV "Sininho"*/
-#check2{
-    display: none;
-   
-}
-#check2:checked ~ .content{
-    transform: translateY(90vh);
-}
-#check2:checked ~ .content ul li #icone2 {
-    opacity: 1;
-    margin-top: 0;
-    transition-delay: .2s;
-}
-#icone2{
-    cursor: pointer;
-    padding: 1vh;
-    position: relative;
-    z-index: 99999;
-    margin-left: 198vh;
-   display: block;
-}
-.content{
-    width: 42vh;
-    margin-left: 163vh;
-    background:  #0d96a8;
-    padding: 2%;
-    border:2px solid;
-    position: absolute;
-    transition: all .2s linear;
-    top: -80vh;
-    overflow: auto;
-    font-family: Arial;
-    display: block;
-
-}
-.content h2{
-    text-align: center;
-    color: white;
-}
-ul{
-    list-style-type: none;
-    padding: 1vh;
-    height: 40vh;
-    background: #fff;
-    overflow-y: auto;
-}
-li{
-    height: 4vh;
-    margin: 1vh 0 1vh 0;
-    border-bottom: 1px solid;
-}
-
-/* FIM TAG */
-
 /*
 Config dos inputs 
 */
