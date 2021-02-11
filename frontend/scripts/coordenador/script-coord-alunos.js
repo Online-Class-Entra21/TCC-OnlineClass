@@ -50,11 +50,6 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
 })
 
 
-var btnCadastrar = document.getElementById('btnCadastrar');
-  btnCadastrar.addEventListener("click", function() {
-    cadastrar();
-})
-
 //Mascara dos inputs 
 $("#inputTelefone").mask("(00) 0000-0000");
 $("#inputCelular").mask("(00) 00000-0000");
