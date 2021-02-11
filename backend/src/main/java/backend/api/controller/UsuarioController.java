@@ -303,16 +303,16 @@ public class UsuarioController {
 	}
 	
 	/**
-	 * Insere um novo endereco no banco de dados {POST}
+	 * Insere um novo usuario no banco de dados {POST}
+	 * e retorna o idUsuario gerado
 	 * @param String json
 	 * @author Andrey
-	 * @return boolean situacao da operacao
+	 * @return int idUsuario
 	 */
 	@PostMapping(path = "api/usuario/inserir/return/{json}")
 	public int inserirReturn(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Inserir Usuario - {}",json);
 		Gson gson = new Gson();
-		System.out.println("teste  linha 317");
 		Usuario usuario = gson.fromJson(json, Usuario.class);
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		try {

@@ -125,7 +125,7 @@ public class UsuarioDisciplinaController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/usuarioDisciplina/deletar/{codigo}")
+	@DeleteMapping(path = "api/usuarioDisciplina/deletar/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar UsuarioDisciplina id - {}",codigo);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
@@ -137,6 +137,37 @@ public class UsuarioDisciplinaController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar UsuarioDisciplina Mal Sucedida - UsuarioDisciplina {} - erro - {}",codigo,e.toString());
 			return false;
+		}
+	}
+	
+	/**
+	 * Verifica se existe alguem endereco identico no
+	 * banco e Insere um novo endereco no banco de dados
+	 * caso nao tenha um igual ou retorna o id do enderco
+	 * ja existente
+	 * 
+	 * @param String json
+	 * @author Andre
+	 * @return boolean situacao da operacao
+	 */	
+	@PostMapping(path = "/api/usuarioDisciplina/inserirAlterar/{json}")
+	public int inserirDisciplinaTurma(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
+		Gson gson = new Gson();
+		UsuarioDisciplina usuarioDisciplinas = gson.fromJson(json, UsuarioDisciplina.class);
+		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
+		try {
+			int idUserDisc = usuarioDisciplinaDAO.buscarIgual(usuarioDisciplinas);
+			if (idUserDisc==0) {
+				idUserDisc = usuarioDisciplinaDAO.insertReturn(usuarioDisciplinas);
+			}
+			
+			LOGGER.info("Requisição Inserir UsuarioDisciplina - Bem Sucedida - {}",json);
+			return idUserDisc;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir UsuarioDisciplina Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
+			return 0;
 		}
 	}
 }
