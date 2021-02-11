@@ -1,6 +1,7 @@
 package backend.api.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.Reuniao;
+import entidade.Usuario;
 import persistencia.jdbc.ReuniaoDAO;
+import persistencia.jdbc.UsuarioDAO;
 
 /**
  * Metodo controller da reuniao para consulta no banco de dados através da API Rest
@@ -218,6 +221,35 @@ public class ReuniaoController {
 			String teste = null;
 			System.out.println(teste);
 			return false;
+		}
+	}
+
+	/**
+	 * Retorna a lista das aulas registrados no sistema {GET}
+	 * @return lista de aulas registradas no banco
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/aulas")
+	public List<Reuniao> consultarAulas(){
+		LOGGER.info("Requisição List<Reuniao>");
+		List<Reuniao> listaReunioes;
+		List<Reuniao> lista = new ArrayList<Reuniao>();
+		ReuniaoDAO reuniaoDao = new ReuniaoDAO();
+		try {
+			listaReunioes = reuniaoDao.buscarTodos();
+			for (Reuniao reuniao : listaReunioes) {
+				UsuarioDAO usuarioDao = new UsuarioDAO();
+				Usuario usuario = usuarioDao.buscarId(reuniao.getDono());
+				if(usuario.getTipoUsuario() == 4){
+					lista.add(reuniao);
+				}
+			}
+			LOGGER.info("Requisição List<Reuniao> bem sucedida");
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Reuniao Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
 	}
 }
