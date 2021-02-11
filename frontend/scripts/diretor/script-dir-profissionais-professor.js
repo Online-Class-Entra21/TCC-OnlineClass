@@ -277,7 +277,7 @@ $('#btnCadastrar').click(async function() {
         fk_escola: idEscola
     };
     var idProfessor = await usarApi('POST','http://localhost:8080/api/usuario/inserir/return/'+JSON.stringify(inserirProf));
-    alert('Inserido com sucesso '+JSON.stringify(inserirProf))
+    alert('Professor cadastrado com sucesso');
 
     //pega o professor e junta nas tabeelas
     var materiasCheck = $('input[id^="Materia"]:checked');

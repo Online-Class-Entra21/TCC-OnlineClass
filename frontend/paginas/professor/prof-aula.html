@@ -9,7 +9,7 @@
         <!--CSS-->
         <link rel="stylesheet" href="/frontend/estilos/professor/est-prof-aula.css">
         <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
-        <title>Aulas - Coordenador</title>
+        <title>Aulas - Professor</title>
     </head>
     
     <body>
@@ -114,10 +114,9 @@
                                 <option value="Professor">-Professor</option>
                             </select>
                             <div class="d-flex bd-highlight mt-4">
-                                <input type="button" id="btnCriarReuniao" value="Criar Reunião" class="btn btn-primary m-0">
+                                <button type="button" id="btnCriarReuniao" value="Criar Reunião" class="btn-primary but" > Criar Reunião </button>
                                 <div id="erroConvidado" class="alert alert-danger p-0 m-0 text-center flex-fill bd-highlight" role="alert"></div>
                             </div>
-                        </form>
                     </div>
 
                     <div class="adicionar mt-5 p-4 flex-fill">
@@ -126,7 +125,7 @@
                             <form action="">
                                 <input class="form-control" id="inConvidado" type="email" placeholder="Email" checked>
                                 <div class="input-group-append">
-                                    <button type="button" id="btnAddConvite" class="btn btn-secondary but" value="Convidar">Convidar </button>
+                                    <button type="button" id="btnAddConvite" class="btn btn-secondary" value="Convidar">Convidar </button>
                                 </div>
                             </form>
                         </div>
@@ -140,9 +139,6 @@
                         </div>
                     </div>
                 </div>
-                <textarea name="mensagem" class="descricao form-control"
-                placeholder="Insira um breve resumo sobre a aula..."></textarea>
-                <button id="btnEnviar" class="marcar btn-secondary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
             </div>
         </main>
     </body>

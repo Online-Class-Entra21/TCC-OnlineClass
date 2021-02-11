@@ -242,7 +242,7 @@ Config dos inputs
 .adicionar{
     border-style: solid;
     border-radius: 2%;
-    border-color: #0d96a8;
+    border-color: black;
     width: 50vh;
 }
 .marcar{
@@ -260,24 +260,17 @@ Config dos inputs
 }
 .but{
     align-items: center;
-<<<<<<< Updated upstream
+    justify-content: center;
+    display: flex;
+    padding: 0.7%;
+    font-size: 2.5vh;
+    background-color: white;
+    border-radius: 0.7vh;
+    color: white;
+    background-color: black;
 }
-#teste {
-    margin-left: 2%;
-    float: right;
-}
-#btnEnviar {
+#btnCriarReuniao{
     background: black;
     border-radius: 1vh;
     border: 1px solid black;
 }
-=======
-    justify-content: center;
-    display: flex;
-    margin: 1%;
-    padding: 1%;
-    font-size: 2.5vh;
-    background-color: white;
-    border-radius: 1vh;
-}
->>>>>>> Stashed changes
