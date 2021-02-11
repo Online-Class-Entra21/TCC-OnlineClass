@@ -1,6 +1,8 @@
+//const { json } = require("body-parser");
+
 var idUsuario = sessionStorage.getItem('idUsuario');
 var isFotoExistente = false;
-
+var senhaSelecionada;
 ///Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
@@ -21,6 +23,8 @@ if(idUsuario != 0 && idUsuario != null){
                 img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
                 img.style.borderRadius = "80%";
             }
+            senhaSelecionada = dadosUsuario.senha;
+
 
             //Puxando imagem
             var caminhoImagem = dadosUsuario.fotoUsuario;
@@ -101,19 +105,38 @@ document.getElementById('botao-input').onclick = function () {
 };
 
 
-
-var idEscola = sessionStorage.getItem('escolaUsuario');
 carregarCampos();
-
 
 
 //Método onclick do botão atualizar
 var btnAtualizar = document.getElementById('botao-salvar');
 btnAtualizar.addEventListener("click", function() {
-    //atualizar();
-    //Altera a imagem
-    if (imagem!=undefined) {
-        UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+    //Verifica se os campos foram preenchidos 
+    var form = $('#formulario');
+    if(!form[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo(form).click().remove();
+    }else{
+
+        //Pede a confirmação da senha 
+        if(senhaSelecionada != document.getElementById("inputSenha").value){
+            isConfirmado = confirm("Deseja mesmo alterar a senha?");
+
+            if(isConfirmado){
+                //Altera a imagem
+                if (imagem!=undefined) {
+                    UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                }
+                //Altera os dados 
+                atualizar(); 
+            }
+        }else{
+            //Altera a imagem
+            if (imagem!=undefined) {
+                UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+            }
+            //Altera os dados 
+            atualizar(); 
+        }
     }
 })
 
@@ -122,7 +145,7 @@ async function carregarCampos() {
     //Chama a api para carregar o usuario e escola do banco
     var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + idUsuario);
     var professor = JSON.parse(resposta);
-    resposta = await usarApi("GET", "http://localhost:8080/api/escola/" + idEscola);
+    resposta = await usarApi("GET", "http://localhost:8080/api/escola/" + professor.fk_escola);
     var escola = JSON.parse(resposta);
 
     document.getElementById('inputEscola').value = escola.nome;
@@ -168,9 +191,58 @@ async function carregarCampos() {
     if(dadosUsuario.fotoUsuario != null){
         img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
         img.style.borderRadius = "80%";
+    }  
+}
+
+//Método para atualizar
+async function atualizar() {
+    
+    senhaSelecionada = $("#inputSenha").val();
+
+    //Pega os dados dos campos
+    var horarioInicioExpediente = document.getElementById('inputHorarioInicial').valueAsDate;
+    var horarioFinalExpediente = document.getElementById('inputHorarioFinal').valueAsDate;
+    var nome = document.getElementById('inputNome').value;
+    var sobrenome = document.getElementById('inputSobrenome').value;
+    var email = document.getElementById('inputEmail').value;
+    var senha = document.getElementById('inputSenha').value;
+    var cpf = document.getElementById('inputCpf').value;
+    var celular = document.getElementById('inputCelular').value;
+    var telefone = document.getElementById('inputTelefone').value;
+
+    //Verifica os campos
+    if (horarioInicioExpediente == null || horarioFinalExpediente == null || nome == '' || sobrenome == '' || email == '' ||
+    senha == '' || cpf == '' || celular == '' || telefone == '') {
+        alert("Preencha todos os campos!")
+    } else {
+        //Cria o objeto professor
+        var atualizarProfessor = {
+            idUsuario: idUsuario,
+            nome: nome,
+            sobrenome: sobrenome,
+            cpf: cpf,
+            telefone: telefone,
+            celular: celular,
+            email: email,
+            senha: senha,
+            horarioFinalExpediente: horarioFinalExpediente,
+            horarioInicioExpediente: horarioInicioExpediente,
+        }
+
+        var updateProfessor = JSON.stringify(atualizarProfessor);
+        
+        var situacaoUpdate = await usarApi("PUT", "http://localhost:8080/api/professor/alterar/" + updateProfessor);
+
+        if (situacaoUpdate == false) {
+            alert('Ocorreu um erro na edição do professor!')
+        } else {
+            alert('Professor atualizado com sucesso.')
+        }
     }
 
-     
+    
+    
 
-   
+    
+
 }
