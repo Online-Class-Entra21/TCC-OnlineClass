@@ -236,76 +236,15 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
-
-
 /*
 Config. das atividades do usuarios
 */
-.marcar:hover {
-    background: #050542;
-    border: solid #050542 1px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    text-decoration: none;
- }
- .marcar {
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    height: 50px;
-    line-height: 50px;
-    color: #FFFFFF;
-    font-family: Trebuchet MS;
-    width: 100px;
-    font-size: 20px;
-    font-weight: 100;
-    background-color: gray;
-    border: solid #333333 1px;
-    text-decoration: none;
-    cursor: pointer;
-    margin-left: 50%;
- }
- 
- .tipo{
-    margin-left: 10%;
-    min-width: 15%;
-    min-height: 10%;
-    max-width: 15%;
-    max-height: 10%;
-}
-.disci {
-    margin-left: 10%;
-    min-width: 15%;
-    min-height: 10%;
-    max-width: 15%;
-    max-height: 10%;
-}
+
 .materia {
     margin-left: 10%;
     margin-top: -15%;
     width: 30%; 
     cursor: pointer;
-}
-.aula {
-    min-width: 15%;
-    min-height: 10%;
-    max-width: 15%;
-    max-height: 10%;
-    border: 1px solid black;
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-    text-align: center;
-    margin-left: 77%;
-    display: flex;
-   
-}
-.aulaTipo {
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-    display: flex;
-    margin-left: 79%;
-    border: none;
 }
 .arq{
     margin-left: 10%;
@@ -325,4 +264,33 @@ Config. das atividades do usuarios
 }
 .postar-atividade{
     margin-top: 2%;
+    float: right;
+}
+
+.but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 45%;
+    padding: 0.7%;
+    font-size: 2.5vh;
+    background-color: white;
+    border-radius: 0.7vh;
+    color: white;
+    background-color: black;
+}
+
+.Principal{
+    width: 50vh;
+    float: right;
+
+}
+
+#btnEnviar{
+    background: black;
+    border-radius: 1vh;
+    border: 1px solid black;
+}
+.adicionar{
+    width: 50vh;
 }

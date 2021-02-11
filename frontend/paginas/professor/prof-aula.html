@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
     <head>
         <meta charset="UTF-8">
         <!-- Icone da página -->
@@ -8,8 +9,9 @@
         <!--CSS-->
         <link rel="stylesheet" href="/frontend/estilos/professor/est-prof-aula.css">
         <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
-        <title>Aulas - Professor</title>
+        <title>Aulas - Coordenador</title>
     </head>
+    
     <body>
         <!-- Menu lateral -->
         <div id="mostrar"></div>
@@ -26,7 +28,7 @@
             <section id="Atividade" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/atividade.png" alt="Atividade" title="Atividade" class="img-opcoes">
-                    <a href="/frontend/paginas/professor/prof-atividade.html">Postar Atividade</a>
+                    <a href="/frontend/paginas/professor/prof-atividade.html">Gerenciar Atividade</a>
                 </figure>
             </section>
             <section id="Resposta" class="opcoes">
@@ -38,7 +40,7 @@
             <section id="Nota" class="opcoes">
                 <figure class="figure-opcoes">
                     <img src="/frontend/imagens/notas.png" alt="Nota" title="Nota" class="img-opcoes">
-                    <a href="/frontend/paginas/professor/prof-nota.html">Gerenciar Nota</a>
+                    <a href="/frontend/paginas/professor/prof-nota.html">Postar Nota</a>
                 </figure>
             </section>
             <section id="Relatorio" class="opcoes">
@@ -83,55 +85,71 @@
                 </div>
             </nav>
         </header>
+
         <main>
-            <div id="conteudo">
-                <!-- <form class="marcar-aula custom-file"> -->
-                <div class="mt-5">
-                    <div class="d-flex justify-content-between ml-5 mr-5" style="height: 90%;">
-                        <div class="float-left h-100 d-inline-block" id="andre">
-                            <div>
-                                <label class="aulaTipo lead" for="idTitle">Titulo </label>
-                                <input class="aula form-control" type="text" id="idTitle" name="nmTitle">
+            <div class="Principal">
+                <div id="reuniaoCriada" class="alert alert-success p-0 m-0 text-center" role="alert"></div>
+                <div class="row justify-content-center ml-0 mr-0 p-3">
+                    <div class="marcar mt-5 pr-5 flex-fill">
+                        <form class="relatorio form-group">
+                            <label class="tipoReu lead pt-5" for="idNomReu">Nome da Reunião</label>
+                            <input class="infoReu form-control" type="text" id="idNomeReu" name="nmReu">
+                            <div id="erroNome" class="alert alert-danger p-0 m-0 text-center" role="alert"></div>
 
-                                <label class="aulaTipo lead pt-3" for="idDateTime">Data e Hora </label>
-                                <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
+                            <label class="tipoReu lead pt-3" for="idDestinatario">Dono</label>
+                            <input class="tipoReu form-control" type="text" id="idDestinatario" name="nmDestinatario">
+                            
+
+                            <label class="aulaTipo lead pt-3" for="idDateTime">Data e Hora </label>
+                            <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
+                            <div id="erroData" class="alert alert-danger p-0 m-0 text-center" role="alert"></div>
+
+                            <label class="tipoReu lead pt-3" for="id">Tipo de usuario</label>
+                            <select name="tipoUser" id="idUsuario" class="tipoReu form-control">
+                                <option value="nenhum">-Selecione o tipo de usuario</option>
+                                <option value="Oficial">-Oficial</option>
+                                <option value="Aluno">-Aluno</option>
+                                <option value="Coordenador">-Coordenador</option>
+                                <option value="Diretor">-Diretor</option>
+                                <option value="Professor">-Professor</option>
+                            </select>
+                            <div class="d-flex bd-highlight mt-4">
+                                <input type="button" id="btnCriarReuniao" value="Criar Reunião" class="btn btn-primary m-0">
+                                <div id="erroConvidado" class="alert alert-danger p-0 m-0 text-center flex-fill bd-highlight" role="alert"></div>
                             </div>
-                        </div>
-                        <div class="flex-fill bd-highlight justify-content-center">
+                        </form>
+                    </div>
 
-                            <div class="border border-primary" id="teste" style="height: 200px; width: 200px;">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Adicionar Arquivo</label>
+                    <div class="adicionar mt-5 p-4 flex-fill">
+                        <h1 class="lead mt-3">Adicionar Participante</h1>
+                        <div class="input-group pt-3">
+                            <form action="">
+                                <input class="form-control" id="inConvidado" type="email" placeholder="Email" checked>
+                                <div class="input-group-append">
+                                    <button type="button" id="btnAddConvite" class="btn btn-secondary but" value="Convidar">Convidar </button>
                                 </div>
-                            </div>
-                            <div id="testeArea">
-                                <textarea  name="mensagem" class="descricao"
-                                placeholder="Insira um breve resumo sobre a aula..."></textarea>
-                            </div>
+                            </form>
                         </div>
-                    </div>
-                    <div class="custom-file w-20">
-                        <input type="file" class="custom-file-input" id="customFile">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
-                    </div>
-                    <div class="flex-grow-2 w-100">
-                        teste
+                        <div id="erroEmail" class="alert alert-danger p-0 m-0 text-center" role="alert"></div>
+                        <div id="emailCerto" class="alert alert-success p-0 m-0 text-center" role="alert"></div>
+                        <div class="mt-5">
+                            <table class="table table-dark">
+                                <tbody id="tbConvidados">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
-            <textarea name="mensagem" class="descricao form-control"
+                <textarea name="mensagem" class="descricao form-control"
                 placeholder="Insira um breve resumo sobre a aula..."></textarea>
-
-            <button class="marcar btn-secondary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
-
-            <!-- </form> -->
-
-        </div>
+                <button id="btnEnviar" class="marcar btn-secondary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
+            </div>
         </main>
-         <!-- Script - JS -->
-         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
-         <script src="/frontend/scripts/login/script-utilitarios.js"></script>
-         <script src="/frontend/scripts/professor/script-prof-nota.js"></script>
     </body>
+    <!--Script -->
+    <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
+    <script src="/frontend/scripts/login/script-utilitarios.js"></script>
+    <script src="/frontend/scripts/professor/script-prof-aula.js"></script>
 </html>
+            
+            

@@ -452,3 +452,23 @@ li {
     max-height: 300px;
     overflow:auto;
 }
+
+
+#btnAvancar{
+    border: 1px solid#571010;
+    margin-top: 5%;
+    background: #571010;
+    border-radius: 1vh;
+}
+#btnCadastrar{
+    border: 1px solid#571010;
+    margin-top: 5%;
+    background: #571010;
+    border-radius: 1vh;
+}
+#btnLimpar{
+    border: 1px solid#571010;
+    margin-top: 5%;
+    background: #571010;
+    border-radius: 1vh;
+}

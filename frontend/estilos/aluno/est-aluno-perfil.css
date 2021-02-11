@@ -228,7 +228,18 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 35%;
+    margin-top: 20%;
+}
+
+/*
+Config. da div do botão de excluir
+*/
+#ancoraExcluir {
+    color: white;
+}
+#ancoraExcluir:hover {
+    color: #e72525;
+    transition: 1s;
 }
 
 /**************************
@@ -447,3 +458,5 @@ Config. dos botoes
     background-color: white;
     border-radius: 1vh;
 }
+
+

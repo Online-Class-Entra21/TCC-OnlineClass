@@ -50,11 +50,6 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
 })
 
 
-var btnCadastrar = document.getElementById('btnCadastrar');
-  btnCadastrar.addEventListener("click", function() {
-    cadastrar();
-})
-
 //Mascara dos inputs 
 $("#inputTelefone").mask("(00) 0000-0000");
 $("#inputCelular").mask("(00) 00000-0000");
@@ -122,7 +117,7 @@ async function cadastrar() {
 
     var selectTurma = $('#SelectTurma :selected').val();
     if(nome == '' || sobrenome == '' || telefone == '' || celular == '' || cpf == '' || horarioInicial == '' || email == '' || senha == '' || confirmarSenha == '' ||
-    cidade == '' || bairro == '' || cep == '' || logradouro == '' || numero == '' || complemento == '' || ra == '' || matricula == '' || nomeMae == '' || nomePai == '' || selectTurma == 'default') {
+    cidade == '' || bairro == '' || cep == '' || logradouro == '' || numero == '' || ra == '' || matricula == '' || nomeMae == '' || nomePai == '' || selectTurma == 'default') {
         alert("Preencha todos os campos!")
     }else{
         //Valida a senha
@@ -220,6 +215,8 @@ async function cadastrar() {
                                 }
                                 if (inserirAluno != false) {
                                   alert("Aluno cadastrado com sucesso.");
+                                    document.getElementById("formulario").reset();
+
                                 } else {
                                   alert("Ocorreu um erro no cadastro do aluno!");
                                 }
