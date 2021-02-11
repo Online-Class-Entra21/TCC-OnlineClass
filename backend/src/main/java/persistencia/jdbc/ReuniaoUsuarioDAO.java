@@ -25,8 +25,8 @@ public class ReuniaoUsuarioDAO {
 	 * @throws SQLException 
 	 */	
 	public void insert(ReuniaoUsuario reuniaoUsuario) throws SQLException {
-		String sql = "insert into reuniaoUsuario (fk_Reuniao, fk_Usuario, entradaReuniao, notaReuniao, comentarioReuniao)"
-				   + " values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into reuniao_usuario (fk_Reuniao, fk_Usuario, entradaReuniao, notaReuniao, comentarioReuniao)"
+				   + " values (?, ?, ?, ?, ?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 			
 		comandoSql.setInt(1, reuniaoUsuario.getFk_reuniao());

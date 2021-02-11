@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -220,5 +221,30 @@ public class ReuniaoDAO {
 		
 		comandoSql.execute();
 		comandoSql.close();
+	}
+	
+	/**
+	 * Metodo para inserir reuniao no banco de dados
+	 * e retorna o idReuniao gerado
+	 * @param Reuniao reuniao
+	 * @author Andre
+	 * @return idReuniao
+	 * @throws SQLException 
+	 */	
+	public int insertReuniaoGenericaReturnID(Reuniao reuniao) throws SQLException {
+		String sql = "insert into reuniao (descricao, datainicio, dono, fk_sala) values (?, ?, ?, ?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			
+		comandoSql.setString(1, reuniao.getDescricao());
+		comandoSql.setTimestamp(2, (Timestamp) reuniao.getDataInicio());
+		comandoSql.setInt(3, reuniao.getDono());
+		comandoSql.setInt(4, reuniao.getFk_sala());
+		
+		comandoSql.execute();
+        ResultSet rs = comandoSql.getGeneratedKeys();
+        rs.next();
+        int idReuniao = rs.getInt(1);
+		comandoSql.close();
+		return idReuniao;
 	}
 }

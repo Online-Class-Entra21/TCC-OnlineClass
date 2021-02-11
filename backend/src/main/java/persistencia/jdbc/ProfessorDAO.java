@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +92,7 @@ public class ProfessorDAO {
 		String sql = "insert into usuario (nome, sobrenome, cpf, telefone, celular, tipoUsuario, email, "
 				   + "senha, horaFinalExpediente, horaInicioExpediente, fk_endereco, "
 				   + "fk_escola) values (?,?,?,?,?,?,?,?,?,?,?,?)"; 
-		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		PreparedStatement comandoSql = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		     
 		comandoSql.setString(1, usuario.getNome());
 		comandoSql.setString(2, usuario.getSobrenome());
@@ -110,8 +111,8 @@ public class ProfessorDAO {
 		
         ResultSet rs = comandoSql.getGeneratedKeys();
         rs.next();
-        int idEndereco = rs.getInt(1);
+        int idProfessor = rs.getInt(1);
 		comandoSql.close();
-		return idEndereco;
+		return idProfessor;
 	}
 }

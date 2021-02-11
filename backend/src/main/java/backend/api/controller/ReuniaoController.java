@@ -217,9 +217,6 @@ public class ReuniaoController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Reuniao Mal Sucedida - Reuniao {} - erro - {}",json,e.toString());
-			System.out.println(reuniao.getFk_usuarioDisciplina());
-			String teste = null;
-			System.out.println(teste);
 			return false;
 		}
 	}
@@ -252,6 +249,31 @@ public class ReuniaoController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Reuniao Mal Sucedida - erro - {}",e.toString());
 			return null;
+		}
+	}
+	
+	/**	 
+	 * Insere uma nova reuniao no banco de dados {POST}
+	 * @param String json
+	 * @author Andre
+	 * @return int idReuniao
+	 */
+	@PostMapping(path = "api/reuniao/personalizada/inserir/return/{json}")
+	public int inserirReturnID(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir Reuniao - {}",json);
+	    GsonBuilder gsonBuilder = new GsonBuilder();
+	    gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
+		Gson gson = gsonBuilder.create();
+		Reuniao reuniao = gson.fromJson(json, Reuniao.class);
+		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
+		try {
+			int idReuniao = reuniaoDAO.insertReuniaoGenericaReturnID(reuniao);
+			LOGGER.info("Requisição Inserir Reuniao - {} - Bem Sucedida",json);
+			return idReuniao;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Reuniao Mal Sucedida - Reuniao {} - erro - {}",json,e.toString());
+			return 0;
 		}
 	}
 }
