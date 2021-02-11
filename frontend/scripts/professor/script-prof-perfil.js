@@ -152,7 +152,7 @@ async function carregarCampos() {
 
     //Converte as datas para só pegar o horário
     var horarioInicioExpediente = new Date(professor.horarioInicioExpediente);
-    var horas = horarioInicioExpediente.getHours();
+    var horas = horarioInicioExpediente.getHours()+3;
     var minutos = horarioInicioExpediente.getMinutes();
     if (horas < 10 && minutos < 10) {
         horas = "0"+horas;
@@ -165,7 +165,7 @@ async function carregarCampos() {
     horarioInicioExpediente = horas+":"+minutos+":00";
     
     var horarioFinalExpediente = new Date(professor.horarioFinalExpediente);
-    horas = horarioFinalExpediente.getHours();
+    horas = horarioFinalExpediente.getHours()+3;
     minutos = horarioFinalExpediente.getMinutes();
     if (horas < 10 && minutos < 10) {
         horas = "0"+horas;
@@ -239,10 +239,4 @@ async function atualizar() {
             alert('Professor atualizado com sucesso.')
         }
     }
-
-    
-    
-
-    
-
 }
