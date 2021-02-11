@@ -236,10 +236,14 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
+/*
+Config. do form 
+*/
 form{
     width: 100%;
     height: 90%;
 }
+
 /*
 Config. da coluna da linha 
 */
@@ -287,7 +291,6 @@ Config. dos titulos
 .titulo{
     font-weight: bolder;
 }
-
 
 /*
 Condifg. das divs de conteudo 
@@ -366,24 +369,15 @@ Config. das divs
 }
 
 /*
-Config. de inputs classe
-.input{
-    width: 50%;
-}
-*/
-
-/*
 Config. dos botoes do form
 */
 #botoes{
     margin-top: 3%;
 }
 
-
 /*
 Config. coordenadores existentes
 */
-
 #coordExist {
     float: right;
     text-align: left;
@@ -391,33 +385,35 @@ Config. coordenadores existentes
     margin-right: 17vh;
 }
 
+/*
+Config. da tabela 
+*/
 table {
     margin: 4%;
 }
-
 fieldset {
     width: 25vh;
     height: 100%;
     float: right;
 }
 
+/*
+Config. dos componentes do form 
+*/
 li {
     list-style: none;
 }
 .multiselect {
     margin-top: 2vh;
-    width: 200px;
+    width: 40vh;
 }
-  
 .selectBox {
     position: relative;
 }
-  
 .selectBox select {
     width: 100%;
     font-weight: bold;
-}
-  
+} 
 .overSelect {
     position: absolute;
     left: 0;
@@ -425,46 +421,36 @@ li {
     top: 0;
     bottom: 0;
 }
-
 #periodos {
     display: none;
     border: 1px #dadada solid;
 }
-
 #periodos label {
     display: block;
 }
-
 #periodos label:hover {
     background-color: #1e90ff;
 }
-
 #materias {
     display: none;
     border: 1px #dadada solid;
 }
-
 #materias label {
     display: block;
 }
-
 #materias label:hover {
     background-color: #1e90ff;
 }
-
 #turmas {
     display: none;
     border: 1px #dadada solid;
 }
-
 #turmas label {
     display: block;
 }
-
 #turmas label:hover {
     background-color: #1e90ff;
 }
-
 .input {
     margin: 1vh;
 }

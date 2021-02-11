@@ -24,7 +24,7 @@ if(idUsuario != 0 && idUsuario != null){
             var min  = String(dataAgora.getMinutes()).padStart(2, '0');;
             var dataAgora = ano+'-'+mes+'-'+dia+'T'+hora+':'+min;
             $("#idDateTime").attr("min",dataAgora);
-            $("#idUsuario").val("Coordenador").prop("disabled", true)
+            $("#idUsuario").val("Diretor").prop("disabled", true)
             //Adiciona a foto de perfil do usuario
             var img = document.querySelector("#idFotoPerfil");
             if(dadosUsuario.fotoUsuario != null){
@@ -36,8 +36,8 @@ if(idUsuario != 0 && idUsuario != null){
     xhr.send();
     
 }else{
-    alert('Sessão expirada - Erro (0002)')
-    window.location = "/frontend/";
+    // alert('Sessão expirada - Erro (0002)')
+    // window.location = "/frontend/";
 }
 var convidados = [];
 async function criarReuniao(){
@@ -63,6 +63,7 @@ async function criarReuniao(){
         data = new Date($("#idDateTime").val());
         nome = $('#idNomeReu').val();
         data = timeStampFormat(data);
+        console.log(data)
         
         var sala = {
             nome:"Reuniao: "+nome,
@@ -71,18 +72,15 @@ async function criarReuniao(){
             tipoSala: true,
             link: nome.replace(" ","_")
         }
-
         sala = JSON.stringify(sala);
         sala = await usarApi('POST','http://localhost:8080/api/sala/inserir/return/'+sala);
         sala = JSON.parse(sala);
-        
         var reuniao = {
             descricao : nome,
             dataInicio : data,
             dono: idUsuario,
             fk_sala: sala.idSala
         };
-
         reuniao = JSON.stringify(reuniao);
         usarApi('POST','http://localhost:8080/api/reuniao/personalizada/inserir/'+reuniao);
         $('#reuniaoCriada').text('Reunião criada com sucesso').show(300);
@@ -95,6 +93,7 @@ async function criarReuniao(){
             }
             convite = JSON.stringify(convite);
             usarApi('POST','http://localhost:8080/api/convite/inserir/'+convite);
+            
         }
     }
     
@@ -103,6 +102,8 @@ async function criarReuniao(){
 $('#btnCriarReuniao').click(criarReuniao);
 $('#btnAddConvite').click(convidar);
 $('#inConvidado').bind("enterKey",convidar);
+
+
 
 async function convidar(){
     var email = $('#inConvidado').val();
