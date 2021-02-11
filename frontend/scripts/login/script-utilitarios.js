@@ -1,3 +1,5 @@
+// Pegando id do usuário que logou 
+var idUsuario = sessionStorage.getItem("idUsuario");
 
 /**
  * Funcoes do menu padrao das paginas 
@@ -166,4 +168,25 @@ function TestaCPF(strCPF) {
         return false;
     } 
     return true;
+}
+
+//Evento para apagar a conta do usuário 
+document.getElementById("ancoraExcluir").addEventListener("click",function(){
+    var isConfirm = comfirm("Deseja realmente excluir");
+
+    if(isConfirm){
+        apagarConta(idUsuario);
+    }
+})
+
+//Apaga a conta do usuario logado
+async function apagarConta(idUsuario){
+    var isDeletado = await usarApi('POST','http://localhost:8080/api/usuario/deletar'+idUsuario);
+
+    if(isDeletado){
+        alert("Conta apagada com sucesso!");
+        location = "frontend/index.html";
+    }else{
+        alert("Erro ao apagar conta!");
+    }
 }
