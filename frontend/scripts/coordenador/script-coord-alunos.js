@@ -122,7 +122,7 @@ async function cadastrar() {
 
     var selectTurma = $('#SelectTurma :selected').val();
     if(nome == '' || sobrenome == '' || telefone == '' || celular == '' || cpf == '' || horarioInicial == '' || email == '' || senha == '' || confirmarSenha == '' ||
-    cidade == '' || bairro == '' || cep == '' || logradouro == '' || numero == '' || complemento == '' || ra == '' || matricula == '' || nomeMae == '' || nomePai == '' || selectTurma == 'default') {
+    cidade == '' || bairro == '' || cep == '' || logradouro == '' || numero == '' || ra == '' || matricula == '' || nomeMae == '' || nomePai == '' || selectTurma == 'default') {
         alert("Preencha todos os campos!")
     }else{
         //Valida a senha
