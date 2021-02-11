@@ -277,4 +277,7 @@ Config. do botao salvar
 */
 #idSalvar{
     font-size: 80%;
+    background: black;
+    border-radius: 1vh;
+    border: 1px solid black;
 }

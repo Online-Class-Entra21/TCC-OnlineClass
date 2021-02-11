@@ -236,8 +236,6 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
-
-
 /*
 Config. das atividades do usuarios
 */
@@ -325,4 +323,9 @@ Config. das atividades do usuarios
 }
 .postar-atividade{
     margin-top: 2%;
+}
+#btnEnviar{
+    background: black;
+    border-radius: 1vh;
+    border: 1px solid black;
 }
