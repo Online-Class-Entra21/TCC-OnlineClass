@@ -215,6 +215,8 @@ async function cadastrar() {
                                 }
                                 if (inserirAluno != false) {
                                   alert("Aluno cadastrado com sucesso.");
+                                    document.getElementById("formulario").reset();
+
                                 } else {
                                   alert("Ocorreu um erro no cadastro do aluno!");
                                 }
