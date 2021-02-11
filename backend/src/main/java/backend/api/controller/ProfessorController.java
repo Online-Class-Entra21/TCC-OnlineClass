@@ -8,15 +8,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import entidade.Diretor;
 import entidade.Disciplina;
 import entidade.Professor;
 import entidade.Turma;
 import entidade.Usuario;
 import entidade.UsuarioDisciplina;
+import persistencia.jdbc.DiretorDAO;
 import persistencia.jdbc.ProfessorDAO;
 import persistencia.jdbc.UsuarioDAO;
 import persistencia.jdbc.UsuarioDisciplinaDAO;
@@ -98,6 +101,30 @@ public class ProfessorController {
 			LOGGER.error("Requisição para Inserir Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
 			return 0;
 		}
-	}	
+	}
+	
+	/**
+	 * Metodo para alteração do professor que corresponde ao codigo informado {PUT}
+	 * @param int codigo
+	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
+	 */
+	@PutMapping(path = "/api/professor/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Professor - {}",json);
+		Gson gson = new Gson();
+		Professor professor = gson.fromJson(json.toString(), Professor.class);
+		ProfessorDAO professorDao = new ProfessorDAO();
+		try {
+			professorDao.update(professor);
+			LOGGER.info("Requisição Atualizar Professor - {} - Bem Sucedida",json);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Professor Mal Sucedida - Diretor {} - erro - {}",json,e.toString());
+			return false;
+		}
+	}
 }
 
