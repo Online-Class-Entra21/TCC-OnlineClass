@@ -50,45 +50,6 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
 })
 
 
-//---> Referencia checkbox inside select
-//---> https://stackoverflow.com/questions/17714705/how-to-use-checkbox-inside-select-option
-//-> Checkbox Inside Select code:
-
-var expanded = false;
-
-function optionPeriodos() {
-  var periodos = document.getElementById("periodos");
-  if (!expanded) {
-    periodos.style.display = "block";
-    expanded = true;
-  } else {
-    periodos.style.display = "none";
-    expanded = false;
-  }
-}
-
-function optionMaterias() {
-    var materias = document.getElementById("materias");
-    if (!expanded) {
-      materias.style.display = "block";
-      expanded = true;
-    } else {
-      materias.style.display = "none";
-      expanded = false;
-    }
-  }
-
-  function optionTurmas() {
-    var turmas = document.getElementById("turmas");
-    if (!expanded) {
-      turmas.style.display = "block";
-      expanded = true;
-    } else {
-      turmas.style.display = "none";
-      expanded = false;
-    }
-  }
-
 var btnCadastrar = document.getElementById('btnCadastrar');
   btnCadastrar.addEventListener("click", function() {
     cadastrar();
