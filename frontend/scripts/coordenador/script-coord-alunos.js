@@ -93,13 +93,13 @@ var btnCadastrar = document.getElementById('btnCadastrar');
   btnCadastrar.addEventListener("click", function() {
     cadastrar();
 })
-/*
+
 //Mascara dos inputs 
 $("#inputTelefone").mask("(00) 0000-0000");
 $("#inputCelular").mask("(00) 00000-0000");
 $("#inputCpf").mask("000.000.000-00");
 $("#inputCep").mask("00000-000");
-*/
+
 //Preenchimento de CEP
 document.getElementById("inputCep").addEventListener("blur",function(){
     var cep = document.getElementById("inputCep").value;
@@ -130,41 +130,40 @@ btnCadastrar.addEventListener("click", function() {
 //Método para cadastrar
 async function cadastrar() {
     //Verifica se os campos foram preenchidos 
-    var form = $('#formulario');
-    if(!form[0].checkValidity()) {
-        $('<input type="submit">').hide().appendTo(form).click().remove();
+    //Dados Usuario
+    var nome = document.getElementById('inputNome').value;
+    var sobrenome = document.getElementById('inputSobrenome').value;
+    var telefone = document.getElementById('inputTelefone').value;
+    var celular = document.getElementById('inputCelular').value;
+    var cpf = document.getElementById('inputCpf').value;
+    var horarioInicial = new Date(document.getElementById('inputHorarioInicial').valueAsDate);
+    var horarioFinal = new Date(document.getElementById('inputHorarioFinal').valueAsDate);
+    var email = document.getElementById('inputEmail').value;
+    var senha = document.getElementById('inputSenha').value;
+    var confirmarSenha = document.getElementById('inputConfirmSenha').value;
+    
+    //Dados Endereço
+    var estado = $("#inputEstado :selected").val();
+    var cidade = document.getElementById('inputCidade').value;
+    var bairro = document.getElementById('inputBairro').value;
+    var cep = document.getElementById('inputCep').value;
+    var logradouro = document.getElementById('inputLogradouro').value;
+    var numero = Number(document.getElementById('inputNumero').value);
+    var complemento = document.getElementById('inputTipoLogradouro').value;
+
+    //Dados Aluno
+    var ra = document.getElementById('inputRa').value;
+    var matricula = document.getElementById('inputMatricula').value;
+    var deficiencia = $('input[name="nmRadio"]:checked').val();
+    var nomeMae = document.getElementById('inputNomeMae').value;
+    var nomePai = document.getElementById('inputnomePai').value;
+    var nomeResponsavel = document.getElementById('inputNomeResponsavel').value;
+
+    var selectTurma = $('#SelectTurma :selected').val();
+    if(nome == '' || sobrenome == '' || telefone == '' || celular == '' || cpf == '' || horarioInicial == '' || email == '' || senha == '' || confirmarSenha == '' ||
+    cidade == '' || bairro == '' || cep == '' || logradouro == '' || numero == '' || complemento == '' || ra == '' || matricula == '' || nomeMae == '' || nomePai == '' || selectTurma == 'default') {
+        alert("Preencha todos os campos!")
     }else{
-
-        //Dados Usuario
-        var nome = document.getElementById('inputNome').value;
-        var sobrenome = document.getElementById('inputSobrenome').value;
-        var telefone = document.getElementById('inputTelefone').value;
-        var celular = document.getElementById('inputCelular').value;
-        var cpf = document.getElementById('inputCpf').value;
-        var horarioInicial = new Date(document.getElementById('inputHorarioInicial').valueAsDate);
-        var horarioFinal = new Date(document.getElementById('inputHorarioFinal').valueAsDate);
-        var email = document.getElementById('inputEmail').value;
-        var senha = document.getElementById('inputSenha').value;
-        var confirmarSenha = document.getElementById('inputConfirmSenha').value;
-        
-        //Dados Endereço
-        var estado = $("#inputEstado :selected").val();
-        var cidade = document.getElementById('inputCidade').value;
-        var bairro = document.getElementById('inputBairro').value;
-        var cep = document.getElementById('inputCep').value;
-        var logradouro = document.getElementById('inputLogradouro').value;
-        var numero = Number(document.getElementById('inputNumero').value);
-        var complemento = document.getElementById('inputTipoLogradouro').value;
-
-        //Dados Aluno
-        var ra = document.getElementById('inputRa').value;
-        var matricula = document.getElementById('inputMatricula').value;
-        var deficiencia = $('input[name="nmRadio"]:checked').val();
-        var nomeMae = document.getElementById('inputNomeMae').value;
-        var nomePai = document.getElementById('inputnomePai').value;
-        var nomeResponsavel = document.getElementById('inputNomeResponsavel').value;
-        
-
         //Valida a senha
         if (senha != confirmarSenha) {
             alert("As senhas não coincidem!")
