@@ -194,7 +194,7 @@ public class ReuniaoDAO {
 		
 		while (resultSet.next()) {
 			Reuniao reuniao = new Reuniao();
-			int idReuniao = (resultSet.getInt(3));
+			int idReuniao = (resultSet.getInt(2));
 			ReuniaoDAO reuniaoDao = new ReuniaoDAO();
 			reuniao = reuniaoDao.buscarId(idReuniao);
 			lista.add(reuniao);

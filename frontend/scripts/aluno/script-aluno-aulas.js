@@ -20,17 +20,17 @@ if(idUsuario != 0 && idUsuario != null){
                 img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
                 img.style.borderRadius = "80%";
             }
-            carregarListasTipo1();
+            carregarAulas();
         })
     xhr.send();
 
     //Reunioes com o dono sendo o usuario 
-    function carregarListasTipo1(){
+    function carregarAulas(){
         
         var xhr2 = new XMLHttpRequest(); 
-
-        xhr2.open("GET", "http://localhost:8080/api/reunioes/"+idUsuario);
-
+        
+        xhr2.open("GET", "http://localhost:8080/api/aulas/"+idUsuario);
+       
         xhr2.addEventListener("load", function(){
             var resposta2 = xhr2.responseText; 
             dadosReuniao = JSON.parse(resposta2);
@@ -38,51 +38,6 @@ if(idUsuario != 0 && idUsuario != null){
             var reunioes = [];
             for (let i = 0; i < dadosReuniao.length; i++) {
                 reunioes.push(dadosReuniao[i]);
-            }
-            carregarListasTipo2(reunioes)
-        })
-        xhr2.send();
-    }
-
-    //Reunioes onde o usuario participa 
-    function carregarListasTipo2(reunioes){
-
-        var xhr2 = new XMLHttpRequest(); 
-
-        xhr2.open("GET", "http://localhost:8080/api/reunioes/participantes/"+idUsuario);
-
-        xhr2.addEventListener("load", function(){
-            var resposta2 = xhr2.responseText; 
-            dadosReuniao = JSON.parse(resposta2);
-           
-            for (var i = 0; i < dadosReuniao.length; i++) {
-                var passou = false;
-                for (let j = 0; j < reunioes.length; j++) {
-                    if(dadosReuniao[i].idReuniao == reunioes[j].idReuniao){
-                        passou = true;
-                    }
-                }
-                if(!passou){
-                    reunioes.push(dadosReuniao[i]);
-                }
-            }
-
-            //Ordena a tabela pela data 
-            for (var i = 0; i < reunioes.length; i++) {
-
-                var str2 = reunioes[i].dataInicio;
-                var dataReuniao2 = new Date(str2.split('/').reverse().join('/'));
-    
-                for(let j = 0; j < reunioes.length; j++){
-                    var str3 = reunioes[j].dataInicio;
-                    var dataReuniao3 = new Date(str3.split('/').reverse().join('/'));
-    
-                    if(dataReuniao2 > dataReuniao3){
-                        var elemento = reunioes[i];
-                        reunioes[i] = reunioes[j];
-                        reunioes[j] = elemento;
-                    }
-                }    
             }
             mostrar(reunioes)
         })
@@ -130,9 +85,26 @@ if(idUsuario != 0 && idUsuario != null){
 
     //Mostra os resultados na tela 
     function mostrar(reunioes){
+
+        //Ordena a tabela pela data 
+        for (var i = 0; i < reunioes.length; i++) {
+
+            var str2 = reunioes[i].dataInicio;
+            var dataReuniao2 = new Date(str2.split('/').reverse().join('/'));
+
+            for(let j = 0; j < reunioes.length; j++){
+                var str3 = reunioes[j].dataInicio;
+                var dataReuniao3 = new Date(str3.split('/').reverse().join('/'));
+
+                if(dataReuniao2 > dataReuniao3){
+                    var elemento = reunioes[i];
+                    reunioes[i] = reunioes[j];
+                    reunioes[j] = elemento;
+                }
+            }    
+        }
         
         var reunioesMarcadas = [];
-        var historico = [];
         for (let i = 0; i < reunioes.length; i++) {
 
             //Pega a data da reuniao para comparacao

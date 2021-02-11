@@ -227,17 +227,19 @@ public class ReuniaoController {
 	/**
 	 * Retorna a lista das aulas registrados no sistema {GET}
 	 * @return lista de aulas registradas no banco
+	 * @param int codigo 
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/aulas")
-	public List<Reuniao> consultarAulas(){
+	@GetMapping(path = "/api/aulas/{codigo}")
+	public List<Reuniao> consultarAulas(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Reuniao>");
 		List<Reuniao> listaReunioes;
 		List<Reuniao> lista = new ArrayList<Reuniao>();
 		ReuniaoDAO reuniaoDao = new ReuniaoDAO();
 		try {
-			listaReunioes = reuniaoDao.buscarTodos();
+			listaReunioes = reuniaoDao.buscarTodosParticipantes(codigo);
 			for (Reuniao reuniao : listaReunioes) {
+				System.out.println(reuniao.getDono());
 				UsuarioDAO usuarioDao = new UsuarioDAO();
 				Usuario usuario = usuarioDao.buscarId(reuniao.getDono());
 				if(usuario.getTipoUsuario() == 4){
