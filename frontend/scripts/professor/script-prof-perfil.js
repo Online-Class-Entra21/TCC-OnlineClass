@@ -12,22 +12,22 @@ if(idUsuario != 0 && idUsuario != null){
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
-            dadosUsuario = JSON.parse(resposta);
+            professor = JSON.parse(resposta);
             var resposta = xhr.responseText; 
-            var dadosUsuario = JSON.parse(resposta);
+            var professor = JSON.parse(resposta);
             //Adiciona o nome 
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
+            document.getElementById("idNomeUsuario").textContent = professor.nome +" "+professor.sobrenome;
             //Adiciona a foto de perfil do usuario
             var img = document.querySelector("#idFotoPerfil");
-            if(dadosUsuario.fotoUsuario != null){
-                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+            if(professor.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+professor.fotoUsuario);
                 img.style.borderRadius = "80%";
             }
-            senhaSelecionada = dadosUsuario.senha;
+            senhaSelecionada = professor.senha;
 
 
             //Puxando imagem
-            var caminhoImagem = dadosUsuario.fotoUsuario;
+            var caminhoImagem = professor.fotoUsuario;
                     
             //Verifica se a imagem não é nula 
             if(caminhoImagem != undefined){
@@ -188,8 +188,8 @@ async function carregarCampos() {
 
     //Adiciona a foto de perfil do usuario
     var img = document.querySelector("#idFotoPerfil");
-    if(dadosUsuario.fotoUsuario != null){
-        img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+    if(professor.fotoUsuario != null){
+        img.setAttribute('src', "/imagens-usuarios/"+professor.fotoUsuario);
         img.style.borderRadius = "80%";
     }  
 }
