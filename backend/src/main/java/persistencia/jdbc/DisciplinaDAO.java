@@ -27,7 +27,7 @@ public class DisciplinaDAO {
 	public void insert(Disciplina disciplina) throws SQLException {
 		String sql = "insert into disciplina (nome, fk_escola) values (?,?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
-		
+	
 		comandoSql.setString(1, disciplina.getNome());
 		comandoSql.setInt(2, disciplina.getFk_escola());
 		
@@ -43,12 +43,12 @@ public class DisciplinaDAO {
 	 * @throws SQLException 
 	 */ 
 	public void update(Disciplina disciplina) throws SQLException {
-		String sql = "update disciplina set nome = ?, numeroaulas = ? where iddisciplina = ?";
+		String sql = "update disciplina set nome = ?, fk_escola = ? where iddisciplina = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, disciplina.getNome());
-		comandoSql.setInt(2, disciplina.getIdDisciplina());
-		comandoSql.setInt(3, disciplina.getFk_escola());
+		comandoSql.setInt(2, disciplina.getFk_escola());
+		comandoSql.setInt(3, disciplina.getIdDisciplina());
 		
 		comandoSql.execute();
 		comandoSql.close();

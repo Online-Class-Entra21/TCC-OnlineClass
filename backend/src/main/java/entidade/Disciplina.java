@@ -21,11 +21,12 @@ public class Disciplina {
      * Metodo construtor que preenche os atributos da classe 
      * @param idDisciplina
      * @param nome
+     * @param fk_escola
      */
     public Disciplina(int idDisciplina, String nome, int fk_escola) {
     	setIdDisciplina(idDisciplina);
     	setNome(nome);
-    	
+    	setFk_escola(fk_escola);
     }
     
     /** 

@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.Endereco;
 import entidade.Usuario;
-import persistencia.jdbc.EnderecoDAO;
 import persistencia.jdbc.UsuarioDAO;
 
 /**
