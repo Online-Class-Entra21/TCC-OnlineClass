@@ -274,7 +274,8 @@ Config. dos botoes
     display: flex;
     margin: 1%;
     padding: 1.2%;
-    font-size: 2vh;
+    font-size: 2.5vh;
+    border-radius: 1vh;
     background-color: white;
 }
 .but:hover{
@@ -320,7 +321,7 @@ Config. da div de conteudo
     padding: 2%;
     margin: 2%;
     width: 85vh;
-    height: 95vh;
+    height: 100vh;
 }
 
 /*
@@ -349,15 +350,15 @@ Config. das div do conteudo
 */
 #escola-div{
     width: 100%;
-    height: 19%;
+    height: 18%;
 }
 #dados-div{
     width: 100%;
-    height: 46%;
+    height: 50%;
 }
 #login-div{
     width: 100%;
-    height: 28%;
+    height: 26%;
 }
 
 /*
