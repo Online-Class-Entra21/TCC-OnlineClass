@@ -297,3 +297,11 @@ tr:hover {
 .teste{
     z-index: 999;
 }
+
+#idBtnAtualizar {
+    float: left;
+}
+
+#idBtnExcluir {
+    float: left;
+}
