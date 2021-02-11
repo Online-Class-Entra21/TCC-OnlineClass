@@ -83,7 +83,63 @@
                 </div>
             </nav>
         </header>
-        <main>   
+        <main>
+            <div class="Principal">
+                <div id="reuniaoCriada" class="alert alert-success p-0 m-0 text-center" role="alert"></div>
+                <div class="row justify-content-center ml-0 mr-0 p-3">
+                    <div class="marcar mt-5 pr-5 flex-fill">
+                        <form class="relatorio form-group">
+
+                            <label class="tipoReu lead pt-3" for="id">Turma </label>
+                            <select name="tipoUser" id="idUsuario" class="tipoReu form-control">
+                                <option value="nenhum">-Selecione a Turma</option>
+                                <option value="Turma1">-Turma1</option>
+                                <option value="Turma2">-Turma2</option>
+                                <option value="Turma3">-Turma3</option>
+                                <option value="Turma4">-Turma4</option>
+                            </select>
+
+                            <label class="tipoReu lead pt-3" for="id">Disciplina </label>
+                            <select name="tipoUser" id="idUsuario" class="tipoReu form-control">
+                                <option value="nenhum">-Selecione a Disciplina</option>
+                                <option value="Disciplina1">-Disciplina1</option>
+                                <option value="Disciplina2">-Disciplina2</option>
+                                <option value="Disciplina3">-Disciplina3</option>
+                                <option value="Disciplina4">-Disciplina4</option>
+                            </select>
+                    </div>
+
+                        <div class="col-md-12 col-xl-12 mt-5"> <!--Div Tabela de usuários cadastrados-->
+                            <div id="dGridPessoas ">
+                                <table  id="tbPessoas" class="table table-striped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Atividade</th>
+                                            <th scope="col">Tipo de Avaliação</th>
+                                            <th scope="col">Aluno</th>
+                                            <th scope="col">Data</th>
+                                            <th scope="col">Nota</th>
+                                        </tr>
+                                        
+                                    </thead>
+                                    <tbody id="tbLista">
+
+                                        <tr>
+                                            <td scope="col">Atividade 001</td>
+                                            <td scope="col">Recuperação</td>
+                                            <td scope="col">Iago Picachu</td>
+                                            <td scope="col">23/04/2021</td>
+                                            <td scope="col" class="ult"><input class="nota form-control" type="number" min="0" max="10" step=".03" maxlength="2" id="idNota" name="nmNota"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
     <!-- Script - JS -->
