@@ -1,6 +1,37 @@
 //Dados iniciais 
 var fk_escola = sessionStorage.getItem('escolaUsuario');
 var idUsuario = sessionStorage.getItem('idUsuario');
+var disciplinaEscolhida;
+
+//Verifica se o idUsuario é válido 
+if(idUsuario != 0 && idUsuario != null){
+    //Busca dos dados do usuário
+    var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosUsuario = JSON.parse(resposta);
+            var resposta = xhr.responseText; 
+            var dadosUsuario = JSON.parse(resposta);
+            //Adiciona o nome 
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
+            //Adiciona a foto de perfil do usuario
+            var img = document.querySelector("#idFotoPerfil");
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
+            userEmail = dadosUsuario.email;
+        })
+
+    xhr.send();
+    
+}else{
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
+}
 
 carregarSelect();
 padraoDefault();
@@ -19,6 +50,7 @@ function eventoRadio(radioB){
     var opcaoEscolhida = radioB.value;
     if (opcaoEscolhida == 'cadastrar') {
         //Esconde os botões - config. de cadastro
+        $("#carregamento").empty();
         document.getElementById('idBtnCadastrar').hidden = false;
         document.getElementById('idBtnAtualizar').hidden = true;
         document.getElementById('idBtnExcluir').hidden = true;
@@ -28,8 +60,6 @@ function eventoRadio(radioB){
     }else{
         //Esconde os botões - config. atualizacao
         document.getElementById('idBtnCadastrar').hidden = true;
-        document.getElementById('idBtnAtualizar').hidden = false;
-        document.getElementById('idBtnExcluir').hidden = false;
         document.getElementById('txtNome').disabled = true;
         document.getElementById('divSelect').hidden = false;
     }
@@ -57,7 +87,7 @@ async function cadastrar(){
         //Converte para JSON
         var disciplinaJson = JSON.stringify(disciplina);
 
-        //Chama a api para cadastrar a turma
+        //Chama a api para cadastrar a disciplina
         var insertDisciplina = await usarApi("POST", "http://localhost:8080/api/disciplina/inserir/" + disciplinaJson)
 
         if (!insertDisciplina) {
@@ -71,10 +101,16 @@ async function cadastrar(){
 
 //Método para selecao da disciplina 
 $("#SelectDisciplina").change(function() { 
-    var disciplinaEscolhida = $('#SelectDisciplina :selected').val();
-    document.getElementById('txtNome').disabled = false;
-    carregarListaDisciplinas(disciplinaEscolhida);
-    carregarCampos(disciplinaEscolhida);
+    disciplinaEscolhida = $('#SelectDisciplina :selected').val();
+
+    if(disciplinaEscolhida != 'default'){
+        document.getElementById('txtNome').disabled = false;
+        $("#carregamento").empty();
+        document.getElementById('idBtnAtualizar').hidden = false;
+        document.getElementById('idBtnExcluir').hidden = false;
+        carregarListaDisciplinas(disciplinaEscolhida);
+        carregarCampos(disciplinaEscolhida);
+    }
 });
 
 //Método para carregar o select com as turmas existentes
@@ -99,7 +135,7 @@ async function carregarSelect() {
 //Método para carregar os campos da disciplina selecionada
 async function carregarCampos(disciplina) {
     //Busca os dados da disciplina selecionado no checkbox 
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + disciplina)
+    var resposta = await usarApi("GET", "http://localhost:8080/api/disciplina/" + disciplina)
     var disciplina = JSON.parse(resposta)
 
     //Dados Disciplina
@@ -118,7 +154,7 @@ async function carregarListaDisciplinas(disciplinaEscolhida) {
         var coluna = document.createElement("td");
         coluna.append("Nenhuma turma ligado à essa disciplina.")
         tr.append(coluna)
-        document.getElementById('tbTurmas').append(tr)
+        document.getElementById('carregamento').append(tr)
     }else{
 
         for (let i = 0; i < turmas.length; i++) {
@@ -130,7 +166,7 @@ async function carregarListaDisciplinas(disciplinaEscolhida) {
             //Cria a coluna de nome 
             var colunaNome = document.createElement("td");
             colunaNome.classList.add("colunaNome")
-            var nomeTurma = turmas[i].nome;
+            var nomeTurma = turmas[i].ano;
             colunaNome.append(nomeTurma);
             linha.append(colunaNome);
 
@@ -144,19 +180,90 @@ async function carregarListaDisciplinas(disciplinaEscolhida) {
             //Cria a coluna de inicio da aula
             var inicioAula = document.createElement("td");
             inicioAula.classList.add("inicioAula")
-            var inicio = turmas[i].horaInicioAula;
+            var horaFinal = new Date(turmas[i].horarioInicioAula);
+            var inicio = timeFormat(horaFinal);
             inicioAula.append(inicio);
             linha.append(inicioAula);
 
             //Cria a coluna de fim da aula
             var finalAula = document.createElement("td");
             finalAula.classList.add("finalAula")
-            var final = turmas[i].horaFinalAula;
+            var horaInicio = new Date(turmas[i].horarioFinalAula);
+            var final = timeFormat(horaInicio);
             finalAula.append(final);
             linha.append(finalAula);
 
-            document.getElementById('tbTurmas').append(linha)
+            document.getElementById('carregamento').append(linha)
         }  
     }
 }
 
+//Evento de atualizar 
+document.getElementById("idBtnAtualizar").addEventListener("click",function (){
+    if(disciplinaEscolhida != undefined){
+        atualizar(disciplinaEscolhida)
+    }else{
+        alert("Selecione uma disciplina para atualizar");
+    }
+})
+
+//Atualiza a disciplina 
+async function atualizar(disciplinaEscolhida){
+
+    //Verifica se os campos foram preenchidos 
+    var form = $('#formulario');
+    if(!form[0].checkValidity()) {
+        $('<input type="submit">').hide().appendTo(form).click().remove();
+    }else{
+
+        //Cria a classe disciplina 
+        var disciplina = {
+            idDisciplina: disciplinaEscolhida,
+            nome: document.getElementById("txtNome").value,
+            fk_escola: fk_escola
+        }
+
+        //Converte para JSON
+        var disciplinaJson = JSON.stringify(disciplina);
+
+        //Chama a api para editar a disciplina
+        var insertDisciplina = await usarApi("PUT", "http://localhost:8080/api/disciplina/alterar/" + disciplinaJson)
+
+        if (!insertDisciplina) {
+            alert("Ocorreu um erro ao editar a disciplina!");
+        } else {
+            alert("Editado com sucesso!");
+        }
+    }
+}
+
+//Evento de deletar 
+document.getElementById("idBtnExcluir").addEventListener("click",function (){
+    if(disciplinaEscolhida != undefined){
+        deletar(disciplinaEscolhida)
+    }else{
+        alert("Selecione uma disciplina para apagar");
+    }
+})
+
+//Deleta a disciplina
+async function deletar(disciplinaEscolhida){
+    //Deletar a disciplina deletar 
+    var isDeletado = await usarApi("DELETE", "http://localhost:8080/api/disciplina/deletar/" + disciplinaEscolhida)
+
+    //situacao mensagem 
+    if(isDeletado){
+        $("#carregamento").empty();
+        document.getElementById('idBtnCadastrar').hidden = true;
+        document.getElementById('idBtnAtualizar').hidden = false;
+        document.getElementById('idBtnExcluir').hidden = false;
+        document.getElementById('txtNome').disabled = true;
+        document.getElementById('divSelect').hidden = false;
+        document.getElementById('txtNome').value = "";
+        $("#SelectDisciplina").val("default");
+        carregarSelect();
+        alert("Excluído com sucesso!");
+    }else{
+        alert("Erro ao excluír!");
+    }
+}

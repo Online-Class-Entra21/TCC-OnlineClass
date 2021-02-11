@@ -228,7 +228,7 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 20%;
+    margin-top: 35%;
 }
 
 /**************************
@@ -446,10 +446,4 @@ Config. dos botoes
     font-size: 2.5vh;
     background-color: white;
     border-radius: 1vh;
-}
-.teste{
-    width: 100vh;
-    align-items: center;
-    justify-content: center;
-    display: flex;
 }

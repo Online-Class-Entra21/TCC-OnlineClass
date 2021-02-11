@@ -154,6 +154,8 @@ async function atualizar() {
     var horaInicioAula = new Date(document.getElementById('inputHoraInicio').valueAsDate);
     var horaFinalAula = new Date(document.getElementById('inputHoraFinal').valueAsDate);
     
+    var qtdAluno = document.getElementById('InputQtdAlunos').value;
+    
     //Verifica o campo nome
     if(turma == '') {
        alert("Preencha os campos")
@@ -161,7 +163,7 @@ async function atualizar() {
         //Cria o objeto turma
         var alterarTurma = {
             ano: turma,
-            qtdaluno: null,
+            qtdAluno: qtdAluno,
             horarioInicioAula: horaInicioAula,
             horarioFinalAula: horaFinalAula,
             fk_sala: 1,
@@ -188,6 +190,7 @@ async function atualizar() {
             opt.value = "default";
             opt.textContent = "Selecione uma turma"
             document.getElementById("SelectTurma").append(opt)
+            $("#tbLista").empty();
             carregarSelect();
             document.getElementById('inputNome').disabled = true;
             document.getElementById('InputQtdAlunos').disabled = true;

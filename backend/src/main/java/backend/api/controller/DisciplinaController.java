@@ -83,7 +83,6 @@ public class DisciplinaController {
 	public boolean inserir(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Inserir Disciplina - {}",json);
 		Gson gson = new Gson();
-		System.err.println(json);
 		Disciplina disciplina = gson.fromJson(json, Disciplina.class);
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		try {
@@ -99,13 +98,12 @@ public class DisciplinaController {
 
 	/**
 	 * Metodo para alteração da disciplina que corresponde ao codigo informado {PUT}
-	 * @param int codigo
 	 * @param String json
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/disciplina/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@PutMapping(path = "api/disciplina/alterar/{json}")
+	public boolean alterar(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Disciplina Disciplina - {}",json);
 		Gson gson = new Gson();
 		Disciplina disciplina = gson.fromJson(json, Disciplina.class);

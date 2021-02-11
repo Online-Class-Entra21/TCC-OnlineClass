@@ -300,3 +300,11 @@ tr:hover {
 #fPessoas{
     z-index: 2;
 }
+
+#btnAtualizar {
+    float: left;
+}
+
+#idBtn {
+    float: left;
+}

@@ -228,7 +228,7 @@ Config. Dados do usuario
 Config. da div do botão de saida 
 */
 #sair{
-    margin-top: 20%;
+    margin-top: 35%;
 }
 
 /**************************
@@ -244,6 +244,8 @@ Config. da tabela de turmas
     justify-content: center;
     align-items: center;
     display: flex;
+        font: 1em Verdana;
+        text-align: center;
 }
 #selec{
     width: 70%;
@@ -270,4 +272,29 @@ th {
 }
 th:hover, td:hover {
     background: cyan;
+}
+
+#gerar-boletim {
+    width: 100%;
+    height: 9vh;
+    border: none;
+    background: gray;
+    font-size: 1.8em;
+}
+#gerar-boletim:hover {
+    background: #0077ff;
+    color: white;
+}
+
+/* Config. Botão */
+.but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 79%;
+    margin-top: -4%;
+    padding: 0.6%;
+    font-size: 1.5vh;
+    background-color: white;
+    border-radius: 1vh;
 }

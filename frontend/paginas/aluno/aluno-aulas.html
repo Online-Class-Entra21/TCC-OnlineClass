@@ -85,9 +85,31 @@
                 </div>
             </nav>
         </header>
+        <main>
+            <!-- Div do Centro -->
+            <div id="centro" class="nav justify-content-center">
+                <!-- Div das aulas -->
+                <div id="programacao" class="div-conteudos">
+                    <div class="cab-divs">
+                        <b><label class="titulo" for="programacao" name="programacao" title="Reuniões Marcadas">Aulas Marcadas</label></b>
+                        <img class="img-cab" src="/frontend/imagens/video-chamada.png" alt="Reunioes" name="reunioes" title="Reuniões">
+                    </div>
+                    <div class="corpo-divs">
+                        <div class="div-tabela">
+                            <fieldset id="fieldset-lista-programacao">
+                                <table class="tabela" id="lista-programacao">
+                                    <tbody id="tbLista-programacao">
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
         <!-- Script - JS -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
         <script src="/frontend/scripts/login/script-utilitarios.js"></script>
-        <script src="/frontend/scripts/aluno/script-aluno-aula.js"></script>
+        <script src="/frontend/scripts/aluno/script-aluno-aulas.js"></script>
     </body>
 </html>
