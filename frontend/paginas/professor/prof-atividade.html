@@ -84,46 +84,53 @@
             </nav>
         </header>
         <main>
-            <div id="conteudo">
-                <form class="postar-atividade ">
-                    <label class="aulaTipo lead" for="idTitle">Titulo da atividade </label>
+            <div class="Principal mt-5 col-md-6 col-xl-6">
+                <div class="row justify-content-center ml-0 mr-0 p-3">
+                <form >
+                    <label class="aula lead" for="idTitle">Titulo da atividade </label>
                     <input class="aula form-control" type="text" id="idTitle" name="nmTitle">
 
-                    <label class="aulaTipo lead pt-3" for="idDateTime">ㅤㅤEntrega </label>
+                    <label class="aula lead pt-3" for="idDateTime">Entrega </label>
                     <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
                    
-                    <label class="aulaTipo lead pt-3" for="idTipo">Tipo de atividade</label>
+                    <label class="aula lead pt-3" for="idTipo">Tipo de atividade</label>
                     <select name="assunto" id="idTipo" class="aula form-control">
-                        <option>-Selecione o tipo</option>
+                        <option >-Selecione o tipo</option>
                         <option>-Avaliação</option>
                         <option>-Atividade</option>
                         <option>-Recuperação Paralela</option>
                         <option>-Auto-Avaliação</option>
                     </select>
+                </form>
+            </div>
+        </div>
 
-                    <label class="arq lead pt-3" for="idTipo">Turma</label>
-                    <select name="assunto" id="idTipo" class="tipo form-control">
+        <div class="adicionar p-4 col-md-6 col-xl-6 flex-fill">
+            <div class="row justify-content-center ml-0 mr-0 p-3">    
+            <form>
+                    <label class=" lead pt-3" for="idTipo">Turma</label>
+                    <select name="assunto" id="idTipo" class=" form-control">
                         <option>-Selecione a turma</option>
                         <option>-Turma 01</option>
                         <option>-Turma 02</option>
                     </select>
 
-                    <label class="materia lead pt-3" for="idDisci">Disciplina</label>
-                    <select name="disci" id="idDisci" class="disci form-control">
+                    <label class=" lead pt-3" for="idDisci">Disciplina</label>
+                    <select name="disci" id="idDisci" class=" form-control">
                         <option>-Seleciona a Disciplina</option>
-                        <option>-Matemátoca</option>
+                        <option>-Matemática</option>
                         <option>-Português</option>
                     </select>
 
-                    <div class="custom-file">
-                        <label class="arq custom-file-label " for="idFile">Anexar Arquivo</label>
-                        <input class="arq custom-file-input" type="file" name="nmFile" id="idFile">
+                    <div class="custom-file mt-5">
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Anexar Arquivo</label>
                     </div>
-                    
-                    <textarea name="mensagem" class="descricao form-control"
-                        placeholder="Insira um breve resumo..."></textarea>
-                    <button id="btnEnviar" class=" marcar btn-primary mt-3" onclick="alert('Aula marcada')">ENVIAR</button>
                 </form>
+        </div>
+    </div>
+           <textarea name="mensagem" class="descricao form-control" placeholder="Insira um breve resumo..."></textarea>
+           <button id="btnEnviar" class=" btn-primary mt-3 but" onclick="alert('Aula marcada')">ENVIAR</button>
             </div>
         </main>
         <!-- Script - JS -->
