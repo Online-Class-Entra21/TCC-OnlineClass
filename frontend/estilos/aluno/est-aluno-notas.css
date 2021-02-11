@@ -244,6 +244,8 @@ Config. da tabela de turmas
     justify-content: center;
     align-items: center;
     display: flex;
+        font: 1em Verdana;
+        text-align: center;
 }
 #selec{
     width: 70%;
@@ -271,3 +273,17 @@ th {
 th:hover, td:hover {
     background: cyan;
 }
+/* Config. Botão */
+.but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 79%;
+    margin-top: -4%;
+    padding: 0.6%;
+    font-size: 1.5vh;
+    background-color: white;
+    border-radius: 1vh;
+}
+
+
