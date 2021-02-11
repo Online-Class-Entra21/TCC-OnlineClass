@@ -464,3 +464,7 @@ li {
 #turmas label:hover {
     background-color: #1e90ff;
 }
+
+.input {
+    margin: 1vh;
+}
