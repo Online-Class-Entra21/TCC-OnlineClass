@@ -326,3 +326,8 @@ Config. das atividades do usuarios
 .postar-atividade{
     margin-top: 2%;
 }
+#btnEnviar{
+    background: black;
+    border-radius: 1vh;
+    border: 1px solid black;
+}

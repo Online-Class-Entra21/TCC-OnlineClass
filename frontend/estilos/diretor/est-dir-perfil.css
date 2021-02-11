@@ -103,7 +103,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:rgb(87, 16, 16);
+    background-color:#571010;
 }
 
 /*
@@ -338,12 +338,11 @@ Config. do botao salvar
     font-size: 2.8vh;
 }
 #botao-salvar{
+    border: 1px solid#571010;
     margin-top: 5%;
+    background: #571010;
+    border-radius: 1vh;
 }
-#botao-salvar:hover{
-    border: 2px solid black;
-}
-
 /*
 Config da div de imagem
 */
@@ -406,3 +405,6 @@ Config. dos componentes de add de imagem
     margin-top: 4%;
 }
 
+button {
+    background: #571010;
+}

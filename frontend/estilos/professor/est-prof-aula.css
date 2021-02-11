@@ -316,4 +316,8 @@ Config. das alteracoes especificas
     margin-left: 2%;
     float: right;
 }
-
+#btnEnviar {
+    background: black;
+    border-radius: 1vh;
+    border: 1px solid black;
+}
