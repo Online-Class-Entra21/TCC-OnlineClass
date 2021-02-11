@@ -292,9 +292,6 @@ Config. dos botoes
     background-color: white;
     border-radius: 1vh;
 }
-.but:hover{
-    border: 2px solid black;
-}
 
 /*
 Config. dos titulos 
