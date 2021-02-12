@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import backend.api.controller.form.NotasForm;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -141,22 +143,23 @@ public class RespostaController {
 	}
 	
 	/**
-	 * Método de busca da resposta com as notas, materia e periodo de avaliacao que corresponde ao idUsuario informado {GET}
-	 * @param int idUsuario
+	 * Retorna a lista das notas registradas no sistema {GET}
+	 * @return lista de respostas registrados no banco
 	 * @author Breno
-	 * @return boolean situacao da operacao
 	 */
-	public boolean buscarNotas(@PathVariable("idUsuario") int idUsuario) {
-		LOGGER.info("Requisição para Notas idUsuario - {}",idUsuario);
-		RespostaDAO respostaDAO = new RespostaDAO();
+	@GetMapping(path = "/api/notas/{idUsuario}")
+	public List<NotasForm> consultarNotas(@PathVariable("idUsuario") int idUsuario){
+		LOGGER.info("Requisição List<NotasForm>");
+		List<NotasForm> lista;
+		RespostaDAO respostaDao = new RespostaDAO();
 		try {
-			respostaDAO.buscarNotas(idUsuario); 
-			LOGGER.info("Requisição para Notas idUsuario - {} - Bem Sucedida",idUsuario);
-			return true;
-		} catch (Exception e) {
+			lista = respostaDao.buscarNotas(idUsuario);
+			LOGGER.info("Requisição List<NotasForm> bem sucedida");
+			return lista;
+		} catch (SQLException e) {
 			e.printStackTrace();
-			LOGGER.error("Requisição para Notas idUsuario Mal Sucedida - {} - erro - {}",idUsuario,e.toString());
-			return false;
+			LOGGER.error("Requisição para Consultar todas as notas Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
 	}
 }

@@ -36,9 +36,10 @@ if(idUsuario != 0 && idUsuario != null){
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/";
 }
+
 var convidados = [];
 async function criarReuniao(){
     var data;

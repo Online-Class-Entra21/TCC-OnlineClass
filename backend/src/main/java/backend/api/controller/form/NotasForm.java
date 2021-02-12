@@ -3,29 +3,29 @@ package backend.api.controller.form;
 import java.sql.Timestamp;
 
 public class NotasForm {
-	
-	private String periodo;
+
 	private String materia;
 	private Timestamp dataNota;
 	private String tipoAvaliacao;
 	private double nota;
 	
-	/**
-	 * Metodo para retorno do periodo
-	 * @return String periodo
-	 */
-	public String getPeriodo() {
-		return periodo;
+	public NotasForm() {
 	}
 	
 	/**
-	 * Metodo para insercao do periodo 
-	 * @param String periodo
+	 * Metodo construtor da entidade form de notas
+	 * @param materia
+	 * @param dataNota
+	 * @param tipoAvaliacao
+	 * @param nota
 	 */
-	public void setPeriodo(String periodo) {
-		this.periodo = periodo;
+	public NotasForm(String materia, Timestamp dataNota, String tipoAvaliacao, double nota) {
+		setMateria(materia);
+		setDataNota(dataNota);
+		setTipoAvaliacao(tipoAvaliacao);
+		setNota(nota);
 	}
-	
+
 	/**
 	 * Metodo para retorno da materia 
 	 * @return String materia 
