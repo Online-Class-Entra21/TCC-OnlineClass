@@ -213,4 +213,28 @@ public class AlunoController {
 		}
 	}
 	
+	/**
+	 * Metodo para alteração do aluno que corresponde ao codigo informado {PUT}
+	 * @param int codigo
+	 * @param String json
+	 * @return boolean situacao da operacao
+	 * @author Andrey
+	 */
+	@PutMapping(path = "api/aluno/alterar/perfil/{json}")
+	public boolean alterarAluno(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Aluno - {}",json);
+		Gson gson = new Gson();
+		Aluno aluno = gson.fromJson(json.toString(), Aluno.class);
+		AlunoDAO alunoDao = new AlunoDAO();
+		try {
+			alunoDao.updateAluno(aluno);
+			LOGGER.info("Requisição Atualizar Aluno - {} - Bem Sucedida",json);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição Atualizar Aluno - {} - Mal Sucedida {}",json,e.toString());
+			return false;
+		}
+	}
+	
 }

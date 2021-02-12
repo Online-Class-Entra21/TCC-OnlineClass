@@ -343,4 +343,28 @@ public class UsuarioDAO {
         
 		return idUsuario;
 	}
+	
+	/**
+	 * Realiza atualizacao dos dados da usuario no banco de dados.
+	 * O <code>idUsuario</code> deve ser igual ao da usuario que deseja atualizar
+	 * @param Usuario usuario
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public void updateUsuarioAluno(Usuario usuario) throws SQLException {
+		String sql = "update usuario set nome = ?, sobrenome = ?, cpf = ?, telefone = ?, celular = ?, email = ?, senha = ? where idUsuario = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+
+		comandoSql.setString(1, usuario.getNome());
+		comandoSql.setString(2, usuario.getSobrenome());
+		comandoSql.setString(3, usuario.getCpf());
+		comandoSql.setString(4, usuario.getTelefone());
+		comandoSql.setString(5, usuario.getCelular());
+		comandoSql.setString(6, usuario.getEmail());
+		comandoSql.setString(7, usuario.getSenha());
+		comandoSql.setInt(8, usuario.getIdUsuario());
+		
+		comandoSql.execute(); 
+		comandoSql.close(); 
+	}
 }
