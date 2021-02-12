@@ -36,8 +36,8 @@ if(idUsuario != 0 && idUsuario != null){
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/";
 }
 var convidados = [];
 async function criarReuniao(){
@@ -103,8 +103,6 @@ async function criarReuniao(){
 $('#btnCriarReuniao').click(criarReuniao);
 $('#btnAddConvite').click(convidar);
 $('#inConvidado').bind("enterKey",convidar);
-
-
 
 async function convidar(){
     var email = $('#inConvidado').val();

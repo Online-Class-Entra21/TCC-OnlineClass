@@ -13,16 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.Diretor;
-import entidade.Disciplina;
 import entidade.Professor;
-import entidade.Turma;
 import entidade.Usuario;
-import entidade.UsuarioDisciplina;
-import persistencia.jdbc.DiretorDAO;
 import persistencia.jdbc.ProfessorDAO;
 import persistencia.jdbc.UsuarioDAO;
-import persistencia.jdbc.UsuarioDisciplinaDAO;
 
 /**
  * Metodo controller do professor para consulta no banco de dados através da API Rest
