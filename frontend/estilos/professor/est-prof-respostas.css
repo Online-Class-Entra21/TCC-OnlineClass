@@ -244,30 +244,41 @@ Config. das alteracoes especificas
 ***************************/
 
 /*
-Config dos inputs 
+Config. das atividades do usuarios
 */
-.adicionar{
-    border-style: solid;
-    border-radius: 2%;
-    border-color: black;
-}
-.marcar{
-    width: 50vh;
-}
-.Principal{
+
+.materia {
     margin-left: 10%;
-    margin-right: 10%;
+    margin-top: -15%;
+    width: 30%; 
+    cursor: pointer;
+}
+.arq{
+    margin-left: 10%;
+    margin-top: -15%;
+    width: 30%; 
+    cursor: pointer;
+}
+.descricao{
+    min-width: 85%;
+    min-height: 25vh;
+    max-width: 85%;
+    max-height: 25vh;
+    padding-left: 1%;
+    padding-top: 5%;
+    margin-left: 10%;
+    margin-top: 1%;
+}
+.postar-atividade{
+    margin-top: 2%;
+    float: right;
 }
 
-.btnCriarReuniao{
-    display:flex;
-    flex-wrap: wrap;
-    flex: 1;
-}
 .but{
     align-items: center;
     justify-content: center;
     display: flex;
+    margin-left: 45%;
     padding: 0.7%;
     font-size: 2.5vh;
     background-color: white;
@@ -275,11 +286,24 @@ Config dos inputs
     color: white;
     background-color: black;
 }
-#btnCriarReuniao{
+
+.Principal{
+    width: 50vh;
+    float: right;
+
+}
+
+#btnEnviar{
     background: black;
     border-radius: 1vh;
     border: 1px solid black;
 }
-.nota{
-    max-width: 30%;
+.adicionar{
+    width: 50vh;
+}
+.test{
+    float: left;
+    margin-left: 15%;
+    margin-top: 3%;
+    margin-right: 20%;
 }
