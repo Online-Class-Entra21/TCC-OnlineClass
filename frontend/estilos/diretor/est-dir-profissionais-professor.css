@@ -95,7 +95,6 @@ Config. das opcoes do menu
     flex-direction: row;
 }
 
-
 /*
 Config. de nav - cabecalho
 */
@@ -224,13 +223,6 @@ Config. Dados do usuario
 #idImgCadastro{
     width: 10%;
     height: 10%;
-}
-
-/*
-Config. da div do botão de saida 
-*/
-#sair{
-    margin-top: 10%;
 }
 
 /*

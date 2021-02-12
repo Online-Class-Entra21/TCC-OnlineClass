@@ -33,6 +33,7 @@ Config. do main
 */
 main{
     width: 100%;
+    height: 90%;
 }
 
 /*
@@ -222,13 +223,6 @@ Config. Dados do usuario
 #idImgCadastro{
     width: 10%;
     height: 10%;
-}
-
-/*
-Config. da div do botão de saida 
-*/
-#sair{
-    margin-top: 10%;
 }
 
 /*

@@ -553,3 +553,24 @@ document.getElementById("criarRelatorios").addEventListener("click", function(){
 document.getElementById("criarReunioes").addEventListener("click", function(){
     location = "/frontend/paginas/diretor/dir-reunioes.html";
 })
+
+//Evento para apagar a conta do usuário 
+document.getElementById("ancoraExcluir").addEventListener("click",function(){
+    var isConfirm = confirm("Deseja realmente excluir");
+
+    if(isConfirm){
+        apagarConta(idUsuario);
+    }
+})
+
+//Apaga a conta do usuario logado
+async function apagarConta(idUsuario){
+    var isDeletado = await usarApi('POST','http://localhost:8080/api/usuario/deletar'+idUsuario);
+
+    if(isDeletado){
+        alert("Conta apagada com sucesso!");
+        location = "frontend/index.html";
+    }else{
+        alert("Erro ao apagar conta!");
+    }
+}

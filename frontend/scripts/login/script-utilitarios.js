@@ -172,7 +172,7 @@ function TestaCPF(strCPF) {
 
 //Evento para apagar a conta do usuário 
 document.getElementById("ancoraExcluir").addEventListener("click",function(){
-    var isConfirm = comfirm("Deseja realmente excluir");
+    var isConfirm = confirm("Deseja realmente excluir");
 
     if(isConfirm){
         apagarConta(idUsuario);
