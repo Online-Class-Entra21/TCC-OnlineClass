@@ -139,4 +139,35 @@ public class UsuarioDisciplinaTurmaController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Verifica se existe alguem UsuarioDisciplinaTurma identico no
+	 * banco e Insere um novo UsuarioDisciplinaTurma no banco de dados
+	 * caso nao tenha um igual ou retorna o id do UsuarioDisciplinaTurma
+	 * ja existente
+	 * 
+	 * @param String json
+	 * @author Andre
+	 * @return id idUsuarioDisciplinaTurma
+	 */	
+	@PostMapping(path = "/api/usuarioDisciplinaTurma/inserirAlterar/{json}")
+	public int inserirAlterarReturnID(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
+		Gson gson = new Gson();
+		UsuarioDisciplinaTurma usuarioDisciplinaTurma = gson.fromJson(json, UsuarioDisciplinaTurma.class);
+		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDAO = new UsuarioDisciplinaTurmaDAO();
+		try {
+			int idUserDisc = usuarioDisciplinaTurmaDAO.buscarIgual(usuarioDisciplinaTurma);
+			if (idUserDisc==0) {
+				idUserDisc = usuarioDisciplinaTurmaDAO.insertReturn(usuarioDisciplinaTurma);
+			}
+			
+			LOGGER.info("Requisição Inserir UsuarioDisciplina - Bem Sucedida - {}",json);
+			return idUserDisc;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir UsuarioDisciplina Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
+			return 0;
+		}
+	}
 }

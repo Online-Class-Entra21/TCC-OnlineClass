@@ -42,6 +42,7 @@ public class TurmaController {
 			turma = turmaDao.buscarId(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(turma);
+			System.out.println(json);
 			LOGGER.info("Requisição Turma codigo {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {

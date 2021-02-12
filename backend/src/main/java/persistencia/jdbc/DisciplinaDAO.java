@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.api.controller.form.DisciplinaTurmaForm;
 import entidade.Disciplina;
 
 /**
@@ -151,4 +152,42 @@ public class DisciplinaDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	/**
+	 * Metodo para selecionar disciplina e suas turmas no banco de dados de um usuario.
+	 * O <code>idUsuario</code> deve ser igual ao do usuario que deseja buscar as informaçoes
+	 * @param int idUsuario
+	 * @return DisciplinaTurmaForm disciplinaTurma 
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public List<DisciplinaTurmaForm> buscarDisciplinasTurmaIdUsuario(int idUsuario) throws SQLException {
+		List<DisciplinaTurmaForm> disciplinaTurmas =	new ArrayList<DisciplinaTurmaForm>();
+		String sql = "select usuario_disciplina_turma.idusuario_disciplina_turma, usuario_disciplina.fk_disciplina, usuario_disciplina_turma.fk_turma"
+				+ " from"
+				+ "	usuario_disciplina,"
+				+ " usuario_disciplina_turma,"
+				+ " usuario"
+				+ " where"
+				+ "	usuario_disciplina.id_usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina"
+				+ " and usuario.idusuario = usuario_disciplina.fk_usuario"
+				+ " and usuario.idusuario = ?;";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idUsuario);
+		System.out.println(comandoSql.toString());
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			DisciplinaTurmaForm disciplinaTurma = new DisciplinaTurmaForm();
+			disciplinaTurma.setIdUsuario_disciplina_turma(resultSet.getInt(1));
+			disciplinaTurma.setIdDisciplina(resultSet.getInt(2));
+			disciplinaTurma.setIdTurma(resultSet.getInt(3));
+			
+			disciplinaTurmas.add(disciplinaTurma);
+		}
+		comandoSql.close();
+		return disciplinaTurmas;
+	}
+	
 }

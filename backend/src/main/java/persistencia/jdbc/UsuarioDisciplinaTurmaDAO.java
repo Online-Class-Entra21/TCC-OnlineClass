@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,5 +120,46 @@ public class UsuarioDisciplinaTurmaDAO {
 		}
 		comandoSql.close(); 
 		return lista;
-	}	
+	}
+
+	/**
+	 * Metodo para selecionar o idUsuarioDisciplinaTurma no banco de dados.
+	 * O objeto usuarioDisciplinaTurma ter os atributos iguais aos do banco de dados
+	 * caso nao tenha nenhum usuarioDisciplina igual sera retornado 0
+	 * 
+	 * @param UsuarioDisciplina usuarioDisciplina
+	 * @return int idUsuarioDisciplina
+	 * @author Andre
+	 * @throws SQLException
+	 */
+	public int buscarIgual(UsuarioDisciplinaTurma usuarioDisciplinaTurma) throws SQLException {
+		int idUsuarioDisciplina = 0;
+		String sql = "select idusuario_Disciplina_turma from usuario_disciplina_turma where fk_usuario_disciplina=? and fk_turma=?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+			
+		comandoSql.setInt(1, usuarioDisciplinaTurma.getFk_usuariorDisciplina());
+		comandoSql.setInt(2, usuarioDisciplinaTurma.getFk_turma());
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			idUsuarioDisciplina = resultSet.getInt(1);
+		}
+		comandoSql.close();
+		return idUsuarioDisciplina;
+	}
+
+	public int insertReturn(UsuarioDisciplinaTurma usuarioDisciplinaTurma) throws SQLException {
+		String sql = "insert into usuario_disciplina_turma (fk_usuario_disciplina, fk_turma) values (?,?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		
+		comandoSql.setInt(1, usuarioDisciplinaTurma.getFk_usuariorDisciplina());
+		comandoSql.setInt(2, usuarioDisciplinaTurma.getFk_turma());
+		
+		comandoSql.execute();
+        ResultSet rs = comandoSql.getGeneratedKeys();
+        rs.next();
+        int idusuarioDisciplina = rs.getInt(1);
+		comandoSql.close();
+		return idusuarioDisciplina; 
+	}
 }

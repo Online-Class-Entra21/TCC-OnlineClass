@@ -141,25 +141,25 @@ public class UsuarioDisciplinaController {
 	}
 	
 	/**
-	 * Verifica se existe alguem endereco identico no
-	 * banco e Insere um novo endereco no banco de dados
-	 * caso nao tenha um igual ou retorna o id do enderco
+	 * Verifica se existe alguem usuarioDisciplina identico no
+	 * banco e Insere um novo usuarioDisciplina no banco de dados
+	 * caso nao tenha um igual ou retorna o id do usuarioDisciplina
 	 * ja existente
 	 * 
 	 * @param String json
 	 * @author Andre
-	 * @return boolean situacao da operacao
+	 * @return int idUsuarioDisciplina
 	 */	
 	@PostMapping(path = "/api/usuarioDisciplina/inserirAlterar/{json}")
-	public int inserirDisciplinaTurma(@PathVariable("json") String json) {
+	public int inserirAlterarReturnID(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
 		Gson gson = new Gson();
-		UsuarioDisciplina usuarioDisciplinas = gson.fromJson(json, UsuarioDisciplina.class);
+		UsuarioDisciplina usuarioDisciplina = gson.fromJson(json, UsuarioDisciplina.class);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
 		try {
-			int idUserDisc = usuarioDisciplinaDAO.buscarIgual(usuarioDisciplinas);
+			int idUserDisc = usuarioDisciplinaDAO.buscarIgual(usuarioDisciplina);
 			if (idUserDisc==0) {
-				idUserDisc = usuarioDisciplinaDAO.insertReturn(usuarioDisciplinas);
+				idUserDisc = usuarioDisciplinaDAO.insertReturn(usuarioDisciplina);
 			}
 			
 			LOGGER.info("Requisição Inserir UsuarioDisciplina - Bem Sucedida - {}",json);

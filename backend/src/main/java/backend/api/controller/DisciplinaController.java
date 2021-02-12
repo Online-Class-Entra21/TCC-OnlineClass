@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import backend.api.controller.form.DisciplinaTurmaForm;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -165,4 +167,29 @@ public class DisciplinaController {
 			return null;
 		}
 	}
+	
+	/**
+	 * Retorna a lista de disciplinas em alguma turma e do professor idProfessor
+	 * na escola especifica {GET}
+	 * 	
+	 * @return lista de disciplinas registrados no banco na escola especifica
+	 * @param int fk_escola 
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/disciplinas/turmas/{idProfessor}")
+	public List<DisciplinaTurmaForm> consultarDisciplinasTurmasIdProfessor(@PathVariable int idProfessor) {
+		LOGGER.info("Requisição List<DisciplinaTurmaForm>");
+		List<DisciplinaTurmaForm> lista;
+		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
+		try {
+			lista = disciplinaDao.buscarDisciplinasTurmaIdUsuario(idProfessor);
+			LOGGER.info("Requisição List<DisciplinaTurmaForm> bem sucedida idProfessor - {}",idProfessor);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos DisciplinaTurmaForm idProfessor - {} Mal Sucedida - erro - {}",idProfessor,e.toString());
+			return null;
+		}
+	}
+	
 }
