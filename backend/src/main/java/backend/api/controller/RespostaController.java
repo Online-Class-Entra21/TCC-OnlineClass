@@ -139,4 +139,24 @@ public class RespostaController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Método de busca da resposta com as notas, materia e periodo de avaliacao que corresponde ao idUsuario informado {GET}
+	 * @param int idUsuario
+	 * @author Breno
+	 * @return boolean situacao da operacao
+	 */
+	public boolean buscarNotas(@PathVariable("idUsuario") int idUsuario) {
+		LOGGER.info("Requisição para Notas idUsuario - {}",idUsuario);
+		RespostaDAO respostaDAO = new RespostaDAO();
+		try {
+			respostaDAO.buscarNotas(idUsuario); 
+			LOGGER.info("Requisição para Notas idUsuario - {} - Bem Sucedida",idUsuario);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Notas idUsuario Mal Sucedida - {} - erro - {}",idUsuario,e.toString());
+			return false;
+		}
+	}
 }

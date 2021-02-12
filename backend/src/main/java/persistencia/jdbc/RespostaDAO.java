@@ -138,4 +138,32 @@ public class RespostaDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	/**
+	 * Metodo para selecionar todas as notas, materias e periodos das respostas do banco de dados
+	 * @return lista de notas registradas no banco do aluno informado
+	 * @author Breno
+	 * @throws SQLException 
+	 */	
+	public List<Resposta> buscarNotas() throws SQLException {
+		List<Resposta> lista = new ArrayList<Resposta>();
+		PreparedStatement comandoSql = conexao.prepareStatement("select * from Resposta");
+		
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Resposta resposta = new Resposta();
+			resposta.setIdResposta(resultSet.getInt(1));
+			resposta.setNota(resultSet.getDouble(2));
+			resposta.setComentarioAtividade(resultSet.getString(3));
+			resposta.setCorrecaoAtividade(resultSet.getBoolean(4));
+			resposta.setDataEntrega(resultSet.getDate(5));
+			resposta.setFk_aluno(resultSet.getInt(6));
+			resposta.setFk_atividade(resultSet.getInt(7));
+			
+			lista.add(resposta);
+		}
+		comandoSql.close();
+		return lista;
+	}
 }
