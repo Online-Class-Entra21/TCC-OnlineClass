@@ -276,4 +276,24 @@ public class AlunoDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	/**
+	 * Metodo para Atualizar aluno no banco de dados.
+	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja atualizar
+	 * @param Aluno aluno
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public void updateAluno(Aluno aluno) throws SQLException {
+		String sql = "update aluno set nomemae = ?, nomepai = ?, nomeresponsavel = ? where fk_usuario = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setString(1, aluno.getNomeMae());
+		comandoSql.setString(2, aluno.getNomePai());
+		comandoSql.setString(3, aluno.getNomeResponsavel());
+		comandoSql.setInt(4, aluno.getFk_usuario());
+		
+		comandoSql.execute();
+		comandoSql.close();
+	}
 }

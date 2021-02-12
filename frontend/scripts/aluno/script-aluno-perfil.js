@@ -10,9 +10,9 @@ if(idUsuario != 0 && idUsuario != null){
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
-            dadosUsuario = JSON.parse(resposta);
-            var resposta = xhr.responseText; 
             var dadosUsuario = JSON.parse(resposta);
+            var resposta = xhr.responseText; 
+            dadosUsuario = JSON.parse(resposta);
             //Adiciona o nome 
             document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
             //Adiciona a foto de perfil do usuario
@@ -151,10 +151,10 @@ async function carregarCampos() {
     var turma = JSON.parse(resposta);
 
     
-    document.getElementById('inputEscola').textContent = escola.nome;
-    document.getElementById('inputTurma').textContent = turma.ano;
-    document.getElementById('inputRa').textContent = aluno.ra;
-    document.getElementById('inputMatricula').textContent = aluno.matricula;
+    document.getElementById('inputEscola').value = escola.nome;
+    document.getElementById('inputTurma').value = turma.ano;
+    document.getElementById('inputRa').value = aluno.ra;
+    document.getElementById('inputMatricula').value = aluno.matricula;
     
 
     document.getElementById('inputNome').value =    usuarioAluno.nome;
@@ -164,11 +164,19 @@ async function carregarCampos() {
     document.getElementById('inputCpf').value = usuarioAluno.cpf;
     document.getElementById('inputCelular').value = usuarioAluno.celular;
     document.getElementById('inputTelefone').value =    usuarioAluno.telefone;
+    document.getElementById('inputNomePai').value = aluno.nomePai;
+    document.getElementById('inputNomeMae').value =  aluno.nomeMae;
+
+    if (aluno.nomeResponsavel != null) {
+        document.getElementById('inputNomeResponsavel').value = aluno.nomeResponsavel;
+    } else {
+        document.getElementById('inputNomeResponsavel').value = '';
+    }
 
     //Adiciona a foto de perfil do usuario
     var img = document.querySelector("#idFotoPerfil");
-    if(dadosUsuario.fotoUsuario != null){
-        img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+    if(usuarioAluno.fotoUsuario != null){
+        img.setAttribute('src', "/imagens-usuarios/"+usuarioAluno.fotoUsuario);
         img.style.borderRadius = "80%";
     }  
 }
@@ -178,9 +186,7 @@ async function atualizar() {
     
     senhaSelecionada = $("#inputSenha").val();
 
-    //Pega os dados dos campos
-    var horarioInicioExpediente = document.getElementById('inputHorarioInicial').valueAsDate;
-    var horarioFinalExpediente = document.getElementById('inputHorarioFinal').valueAsDate;
+    //Dados Usuario
     var nome = document.getElementById('inputNome').value;
     var sobrenome = document.getElementById('inputSobrenome').value;
     var email = document.getElementById('inputEmail').value;
@@ -188,35 +194,38 @@ async function atualizar() {
     var cpf = document.getElementById('inputCpf').value;
     var celular = document.getElementById('inputCelular').value;
     var telefone = document.getElementById('inputTelefone').value;
+    var nomeMae = document.getElementById('inputNomeMae').value;
+    var nomePai = document.getElementById('inputNomePai').value;
+    var nomeResponsavel = document.getElementById('inputNomeResponsavel').value;
 
-    //Verifica os campos
-    if (horarioInicioExpediente == null || horarioFinalExpediente == null || nome == '' || sobrenome == '' || email == '' ||
-    senha == '' || cpf == '' || celular == '' || telefone == '') {
-        alert("Preencha todos os campos!")
+    //Cria o objeto usuarioAluno
+    var atualizarUsuario = {
+        idUsuario: idUsuario,
+        nome: nome,
+        sobrenome: sobrenome,
+        telefone: telefone,
+        celular: celular,
+        email: email,
+        senha: senha,
+        cpf: cpf
+    }
+    //Cria o objeto Aluno
+    var atualizarAluno = {
+        nomeMae: nomeMae,
+        nomePai: nomePai,
+        nomeResponsavel: nomeResponsavel,
+        fk_usuario: idUsuario
+    }
+    var updateUsuario = JSON.stringify(atualizarUsuario);
+    var updateAluno = JSON.stringify(atualizarAluno);
+    
+    var situacaoUpdateUsuario = await usarApi("PUT", "http://localhost:8080/api/usuario/alterar/aluno/" + updateUsuario);
+    var situacaoUpdateAluno = await usarApi("PUT", "http://localhost:8080/api/aluno/alterar/perfil/" + updateAluno);
+    if (situacaoUpdateUsuario == false && situacaoUpdateAluno == false)  {
+        alert('Ocorreu um erro na edição do aluno!')
     } else {
-        //Cria o objeto usuarioAluno
-        var atualizarProfessor = {
-            idUsuario: idUsuario,
-            nome: nome,
-            sobrenome: sobrenome,
-            cpf: cpf,
-            telefone: telefone,
-            celular: celular,
-            email: email,
-            senha: senha,
-            horarioFinalExpediente: horarioFinalExpediente,
-            horarioInicioExpediente: horarioInicioExpediente,
-        }
-
-        var updateProfessor = JSON.stringify(atualizarProfessor);
-        
-        var situacaoUpdate = await usarApi("PUT", "http://localhost:8080/api    usuarioAluno/alterar/" + updateProfessor);
-
-        if (situacaoUpdate == false) {
-            alert('Ocorreu um erro na edição do usuarioAluno!')
-        } else {
-            alert('Professor atualizado com sucesso.')
-        }
+        alert('Aluno atualizado com sucesso.')
     }
 }
+
 

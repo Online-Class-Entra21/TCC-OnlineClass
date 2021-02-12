@@ -95,7 +95,6 @@ Config. das opcoes do menu
     flex-direction: row;
 }
 
-
 /*
 Config. de nav - cabecalho
 */
@@ -227,13 +226,6 @@ Config. Dados do usuario
 }
 
 /*
-Config. da div do botão de saida 
-*/
-#sair{
-    margin-top: 10%;
-}
-
-/*
 Config. da div do botão de excluir
 */
 #ancoraExcluir {
@@ -241,6 +233,7 @@ Config. da div do botão de excluir
 }
 #ancoraExcluir:hover {
     color: #e72525;
+    cursor: pointer;
     transition: 1s;
 }
 
