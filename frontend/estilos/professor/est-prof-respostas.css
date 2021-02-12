@@ -226,12 +226,85 @@ Config. Dados do usuario
 }
 
 /*
-Config. da div do botão de saida 
+Config. da div do botão de excluir
 */
-#sair{
-    margin-top: 35%;
+#excluir{
+    margin-top: 25%;
+}
+#ancoraExcluir {
+    color: white;
+}
+#ancoraExcluir:hover {
+    color: #e72525;
+    cursor: pointer;
+    transition: 1s;
 }
 
 /**************************
 Config. das alteracoes especificas
 ***************************/
+
+/*
+Config. das atividades do usuarios
+*/
+
+.materia {
+    margin-left: 10%;
+    margin-top: -15%;
+    width: 30%; 
+    cursor: pointer;
+}
+.arq{
+    margin-left: 10%;
+    margin-top: -15%;
+    width: 30%; 
+    cursor: pointer;
+}
+.descricao{
+    min-width: 85%;
+    min-height: 25vh;
+    max-width: 85%;
+    max-height: 25vh;
+    padding-left: 1%;
+    padding-top: 5%;
+    margin-left: 10%;
+    margin-top: 1%;
+}
+.postar-atividade{
+    margin-top: 2%;
+    float: right;
+}
+
+.but{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 45%;
+    padding: 0.7%;
+    font-size: 2.5vh;
+    background-color: white;
+    border-radius: 0.7vh;
+    color: white;
+    background-color: black;
+}
+
+.Principal{
+    width: 50vh;
+    float: right;
+
+}
+
+#btnEnviar{
+    background: black;
+    border-radius: 1vh;
+    border: 1px solid black;
+}
+.adicionar{
+    width: 50vh;
+}
+.test{
+    float: left;
+    margin-left: 15%;
+    margin-top: 3%;
+    margin-right: 20%;
+}

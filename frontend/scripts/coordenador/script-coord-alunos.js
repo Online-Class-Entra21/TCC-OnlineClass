@@ -186,7 +186,6 @@ async function cadastrar() {
                                     fk_escola: fk_escola
                                 }
 
-                                console.log(inserirUsuario)
                                 //Converte o coordenador para JSON
                                 var UsuarioJson = JSON.stringify(inserirUsuario);
 

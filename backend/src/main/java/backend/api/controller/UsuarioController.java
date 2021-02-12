@@ -325,5 +325,29 @@ public class UsuarioController {
 			return 0;
 		}
 	}
+	
+	/**
+	 * Metodo para alteração do usuario que corresponde ao codigo informado {PUT}
+	 * @param int codigo
+	 * @param String json
+	 * @author Andrey
+	 * @return boolean situacao da operacao
+	 */
+	@PutMapping(path = "api/usuario/alterar/aluno/{json}")
+	public boolean alterarUsuarioAluno(@PathVariable("json") String json) {
+		LOGGER.info("Requisição Atualizar Usuario - {}",json);
+		Gson gson = new Gson();
+		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		try {
+			usuarioDao.updateUsuarioAluno(usuario);
+			LOGGER.info("Requisição Atualizar Usuario - {} - Bem Sucedida",json);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
+			return false;
+		}
+	}
 }
 

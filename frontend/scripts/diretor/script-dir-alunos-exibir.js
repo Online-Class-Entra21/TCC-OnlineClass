@@ -45,6 +45,32 @@ async function colocarTabela(alunos){
 
         tabela.appendChild(linha);
     }
+    
+    $(".linhas").dblclick(function() { 
+        var isConfirm = confirm("Deseja expulsar o aluno?");
+
+        if(isConfirm){
+            var idAluno = alunos[$(this).index()-1].idAluno;
+            apagar(idAluno);
+        }
+    });
+}
+
+//Exclui a conta do aluno 
+async function apagar(idAluno){
+
+    var alunoResposta = await usarApi("GET", "http://localhost:8080/api/aluno/"+idAluno)
+    var aluno = JSON.parse(alunoResposta);
+
+    var resposta = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/"+aluno.fk_usuario);
+    var isApagou = JSON.parse(resposta);
+
+    if(isApagou){
+        alert("Aluno foi expulso com sucesso!");
+        location = "/frontend/paginas/diretor/dir-alunos-exibir.html";
+    }else{
+        alert("Erro ao expulsar aluno!");
+    }
 }
 
 //Método para chamada da API async

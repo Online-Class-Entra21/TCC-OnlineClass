@@ -228,10 +228,18 @@ Config. Dados do usuario
 }
 
 /*
-Config. da div do botão de saida 
+Config. da div do botão de excluir
 */
-#sair{
-    margin-top: 35%;
+#excluir{
+    margin-top: 25%;
+}
+#ancoraExcluir {
+    color: white;
+}
+#ancoraExcluir:hover {
+    color: #e72525;
+    cursor: pointer;
+    transition: 1s;
 }
 
 /**************************
@@ -318,8 +326,8 @@ Config. divs do form
 Config. dados pessoais div
 */
 #dados-pessoais {
-    width: 58vh;
-    height: 107vh;
+    width: 70vh;
+    height: 121vh;
     border-radius: 3vh;
     border: 2px solid black;
     padding: 2%;
@@ -340,9 +348,8 @@ Config. do botao salvar
 }
 #botao-salvar{
     margin-top: 5%;
-}
-#botao-salvar:hover{
-    border: 2px solid black;
+    background-color: black;
+    border: 1px solid black;
 }
 
 /*

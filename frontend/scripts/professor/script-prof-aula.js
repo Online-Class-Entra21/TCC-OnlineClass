@@ -1,5 +1,6 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
+var convidados = [];
 var userEmail;
 $('.alert').hide();
 //Verifica se o idUsuario é válido 
@@ -36,10 +37,10 @@ if(idUsuario != 0 && idUsuario != null){
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/";
 }
-var convidados = [];
+
 async function criarReuniao(){
     var data;
     var nome;
@@ -54,16 +55,16 @@ async function criarReuniao(){
         $('#erroNome').text('Insira um nome').show(300);
         setTimeout(function(){$('#erroNome').hide(300)},1500);
     }
-    if (convidados.length==0) {
+    TurmaSelecionada = $('#lista-turmas :selected').val();
+    if (convidados.length==0 && TurmaSelecionada == 'default') {
         valido = false;
-        $('#erroConvidado').text('Insira um convidado').show(300);
+        $('#erroConvidado').text('Insira um convidado ou uma turma').show(300);
         setTimeout(function(){$('#erroConvidado').hide(300)},1500);
     }
     if (valido) {
         data = new Date($("#idDateTime").val());
         nome = $('#idNomeReu').val();
         data = timeStampFormat(data);
-        console.log(data)
         
         var sala = {
             nome:"Reuniao: "+nome,
@@ -82,18 +83,31 @@ async function criarReuniao(){
             fk_sala: sala.idSala
         };
         reuniao = JSON.stringify(reuniao);
-        usarApi('POST','http://localhost:8080/api/reuniao/personalizada/inserir/'+reuniao);
-        $('#reuniaoCriada').text('Reunião criada com sucesso').show(300);
+        var idReuniao = await usarApi('POST','http://localhost:8080/api/reuniao/personalizada/inserir/return/'+reuniao);
+        $('#reuniaoCriada').text('Aula criada com sucesso').show(300);
+
+        //Adiciona a tuma na lista de convidados 
+        if(TurmaSelecionada != 'default'){
+            //Chama a api e retorna um arrays com os alunos pertencentes à turma selecionada
+            var resposta = await usarApi("GET", "http://localhost:8080/api/alunos/"+TurmaSelecionada);
+            var alunos = JSON.parse(resposta);
+    
+            for(var i = 0; i < alunos.length; i++){
+                //Chama a api e retorna um arrays com o usuario pertencente ao aluno do indice
+                var resposta2 = await usarApi("GET", "http://localhost:8080/api/usuario/"+alunos[i].fk_usuario);
+                var usuario = JSON.parse(resposta2);
+                convidados.push(usuario);
+            }
+        }
+
         for (var i = 0; i < convidados.length; i++) {
             const element = convidados[i];
             var convite = {
-                destinatario: element.idUsuario,
-                salaConvite: sala.idSala,
-                fk_usuario: idUsuario
+                fk_reuniao: idReuniao,
+                fk_usuario: element.idUsuario
             }
             convite = JSON.stringify(convite);
-            usarApi('POST','http://localhost:8080/api/convite/inserir/'+convite);
-            
+            usarApi('POST','http://localhost:8080/api/reuniaoUsuario/inserir/'+convite);
         }
     }
     
@@ -102,8 +116,6 @@ async function criarReuniao(){
 $('#btnCriarReuniao').click(criarReuniao);
 $('#btnAddConvite').click(convidar);
 $('#inConvidado').bind("enterKey",convidar);
-
-
 
 async function convidar(){
     var email = $('#inConvidado').val();
@@ -169,3 +181,24 @@ function abrirMenu(){
 document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
+
+carregarSelect();
+//Método para carregar o select com as turmas existentes
+async function carregarSelect() {
+    //Chama a api e retorna um arrays com as turmas pertencentes à escola e há esse professor
+    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/professor/"+idUsuario);
+    var turmas = JSON.parse(resposta);
+    var select = document.getElementById('lista-turmas');
+
+    //Cria os options do select
+    for (let index = 0; index < turmas.length; index++) {
+        
+        var option = document.createElement('option');
+        option.textContent = turmas[index].ano;
+        option.value = turmas[index].idTurma;
+        option.classList.add('optionTurmas')
+
+        select.append(option);
+    }
+}
+

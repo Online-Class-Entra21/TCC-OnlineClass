@@ -57,6 +57,33 @@ public class ProfessorDAO {
 		return lista;
 	}
 	
+	/**
+	 * Metodo para atualizar os dados de um perfil do professor no banco de dados.
+	 * O <code>idProfessor</code> deve ser igual ao do professor que deseja atualizar
+	 * @param Professor professor
+	 * @author Andrey
+	 * @throws SQLException
+	 */
+	public void update(Professor professor) throws SQLException {
+		String sql = "update usuario set nome = ?, sobrenome = ?, cpf = ?, telefone = ?, celular = ?, email = ?, senha = ?, horaFinalExpediente = ?,"
+				+ " horaInicioExpediente = ? where idUsuario = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setString(1, professor.getNome());
+		comandoSql.setString(2, professor.getSobrenome());
+		comandoSql.setString(3, professor.getCpf());
+		comandoSql.setString(4, professor.getTelefone());
+		comandoSql.setString(5, professor.getCelular());
+		comandoSql.setString(6, professor.getEmail());
+		comandoSql.setString(7, professor.getSenha());
+		comandoSql.setTimestamp(8, professor.getHorarioFinalExpediente());
+		comandoSql.setTimestamp(9, professor.getHorarioInicioExpediente());
+		comandoSql.setInt(10, professor.getIdUsuario());
+
+		comandoSql.execute();
+		comandoSql.close();
+	}
+	
 	//------------------------------------------------------------------
 	//Método Extras - Fora dos 5 principais 
 	//------------------------------------------------------------------

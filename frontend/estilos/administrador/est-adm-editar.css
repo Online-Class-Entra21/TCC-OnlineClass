@@ -369,3 +369,8 @@ Config. dos botoes do form
     height: 7%;
     margin-top: 1%;
 }
+#btnEditar {
+    background: black;
+    border: 1px solid black;
+    border-radius:1vh;
+}

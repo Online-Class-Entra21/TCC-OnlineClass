@@ -65,12 +65,7 @@
                     <a id="ancoraSair" href="/frontend/index.html">Sair</a>
                 </figure>
             </section>
-            <section id="excluir" class="opcoes">
-                <figure class="figure-opcoes">
-                    <img id="excluir" src="/frontend/imagens/excluir.png" alt="excluir" title="Excluir" class="img-opcoes">
-                    <a id="ancoraExcluir" href="">Excluir</a>
-                </figure>
-            </section>
+
         </div>
         <!-- Cabecalho -->
         <header>
@@ -115,13 +110,13 @@
                                         <label id="escola">Escola: </label>
                                     </td>
                                     <td class="cont">
-                                        <label id="idEscola" class="inputs" for="escola"></label>
+                                        <input type="text" id="inputEscola" disabled>
                                     </td>
                                     <td class="ind">
                                         <label id="ra">RA: </label>
                                     </td>
                                     <td class="cont">
-                                        <label id="idRa" class="inputs" for="ra"></label>
+                                       <input type="text" id="inputRa" disabled>
 
                                     </td>
                                 </tr>
@@ -130,25 +125,25 @@
                                         <label id="escola">Turma: </label>
                                     </td>
                                     <td class="cont">
-                                        <label id="idTurma" class="inputs" for="turma"></label>
+                                        <input type="text" id="inputTurma" disabled>
                                     </td>
                                     <td class="ind">
                                         <label id="matricula">Cód. Matricula</label>
                                     </td>
                                     <td class="cont">
-                                        <label id="idMatricula" class="inputs" for="matricula"></label>
+                                        <input type="text" id="inputMatricula" disabled>
 
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label class="cont" >Nome: </label>
-                                        <input id="idNome" class="inputs form-control" type="text" required >
+                                        <label class="cont" for="inputNome">Nome: </label>
+                                        <input id="inputNome" class="inputs form-control" type="text" required >
                                     </td>
                                     
                                     <td>
-                                        <label class="cont" >Sobrenome: </label>
-                                        <input  id="idSobrenome" class="inputs form-control" type="text" required >
+                                        <label class="cont" for="inputSobrenome">Sobrenome: </label>
+                                        <input  id="inputSobrenome" class="inputs form-control" type="text" required >
                                         
                                     </td>
                                     <td class="cont">
@@ -158,12 +153,12 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <label class="cont">Email: </label>
-                                        <input id="idEmail" class="inputs form-control" type="text" required>
+                                        <label class="cont" for="inputEmail">Email: </label>
+                                        <input id="inputEmail" class="inputs form-control" type="text" required>
                                     </td>
                                     <td>
-                                        <label class="cont">Senha: </label>
-                                        <input id="idSenha" class="inputs form-control" type="password" required>
+                                        <label class="cont" for="inputSenha">Senha: </label>
+                                        <input id="inputSenha" class="inputs form-control" type="password" required>
                                     </td>
                                     <td class="cont">
                                     </td>
@@ -173,12 +168,12 @@
 
                                 <tr>
                                     <td>
-                                        <label class="cont">Celular: </label>
-                                        <input id="idCelular" class="inputs form-control" type="text" required>
+                                        <label class="cont" for="inputCelular">Celular: </label>
+                                        <input id="inputCelular" class="inputs form-control" type="text" required>
                                     </td>
                                     <td>
-                                        <label class="cont">Telefone: </label>
-                                        <input id="idTelefone" class="inputs form-control" type="text" required>
+                                        <label class="cont" for="inputTelefone">Telefone: </label>
+                                        <input id="inputTelefone" class="inputs form-control" type="text" required>
                                     </td>
                                     <td class="cont">
                                     </td>
@@ -188,12 +183,8 @@
 
                                 <tr>
                                     <td>
-                                        <label for="" class="cont">CPF: </label>                                            
-                                        <input type="number" name="" id="" class="inputs form-control" required>
-                                    </td>
-                                    <td>
-                                        <label for="" class="cont">RG:</label>
-                                        <input type="number" name="" id="" class="inputs form-control" required>
+                                        <label for="inputCpf" class="cont">CPF: </label>                                            
+                                        <input type="text" name="" id="inputCpf" class="inputs form-control" disabled>
                                     </td>
                                     <td class="cont">
                                     </td>
@@ -203,16 +194,16 @@
  
                                     <tr>
                                         <td class="cont">
-                                            <label for="" class="cont">Pai</label>
-                                            <input type="text" name="" id="" class="cont form-control">
+                                            <label for="inputNomePai" class="cont">Pai</label>
+                                            <input type="text" name="" id="inputNomePai" class="cont form-control">
                                         </td>
                                         <td class="cont">
-                                            <label for="" class="cont">Mãe</label>
-                                            <input type="text" name="" id="" class="cont form-control">
+                                            <label for="inputNomeMae" class="cont">Mãe</label>
+                                            <input type="text" name="" id="inputNomeMae" class="cont form-control">
                                         </td>
                                         <td class="cont">
-                                            <label for="" class="cont">Responsavel</label>
-                                            <input type="text" name="" id="" class="cont form-control">
+                                            <label for="inputNomeResponsavel" class="cont">Responsavel</label>
+                                            <input type="text" name="" id="inputNomeResponsavel" class="cont form-control">
                                         </td>
                                 <tr>
                                     <td id="imagem-add">
@@ -234,7 +225,7 @@
             </div>
         </main>
         <!--Chamada JS -->
-        <script src="/frontend/jquery/jquery-3.5.1.min.js"></script>
+        <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
         <script src="/frontend/scripts/login/script-utilitarios.js"></script>
         <script src="/frontend/scripts/aluno/script-aluno-perfil.js"></script>
     </body>
