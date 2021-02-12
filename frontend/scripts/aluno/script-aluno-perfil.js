@@ -221,7 +221,7 @@ async function atualizar() {
     
     var situacaoUpdateUsuario = await usarApi("PUT", "http://localhost:8080/api/usuario/alterar/aluno/" + updateUsuario);
     var situacaoUpdateAluno = await usarApi("PUT", "http://localhost:8080/api/aluno/alterar/perfil/" + updateAluno);
-    if (situacaoUpdateUsuario != true || situacaoUpdateAluno != true)  {
+    if (situacaoUpdateUsuario == false && situacaoUpdateAluno == false)  {
         alert('Ocorreu um erro na edição do aluno!')
     } else {
         alert('Aluno atualizado com sucesso.')
