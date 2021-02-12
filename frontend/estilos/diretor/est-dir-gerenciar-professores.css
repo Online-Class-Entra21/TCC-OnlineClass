@@ -133,7 +133,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: rgb(87, 16, 16);
+    background-color: #571010;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
@@ -256,7 +256,6 @@ Config. da tabela de turmas
 
 
 #divPrincial{
-    border: 1px solid;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -321,3 +320,9 @@ tr:hover {
     width: 100%;
     height:100%;
 }
+
+.table .thead-red th {
+    color: #fff;
+    background-color: #571010;
+    border-color: #571010;
+  }

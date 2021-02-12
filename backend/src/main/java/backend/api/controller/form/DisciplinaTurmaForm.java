@@ -10,7 +10,7 @@ public class DisciplinaTurmaForm {
 	
 	public DisciplinaTurmaForm(int idUsuario_disciplina_turma,int idTurma,int idDisciplina) {
 		setIdUsuario_disciplina_turma(idUsuario_disciplina_turma);;
-		setIdTurma(idTurma);;
+		setIdTurma(idTurma);
 		setIdDisciplina(idDisciplina);
 	}
 
