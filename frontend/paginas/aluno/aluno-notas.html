@@ -114,13 +114,71 @@
                     </table>
                 </section>
             </div>
-            <button type="button" class="m-3 btn-primary but" id="btnCadastrar">Gerar Boletim </button>
-          
         </main>
+        <div id="idBoletim" style="display: none;">
+            <section id="informacoes-escola">
+                <div>
+                    <table id="i">
+                        <tr>
+                            <th id="i">Escola</th>
+                            <th id="i">Turma</th>
+                            <th id="i">Ano</th>
+                        </tr>
+                        <tr>
+                            <td id="i">Cedup</td>
+                            <td id="i">3º Ano A</td>
+                            <td id="i">2021</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <section id="informações-notas">
+                <div>
+                    <table id="t">
+                        <tr>
+                            <th id="t">Matéria</th>
+                            <th id="t">1º Trimestre</th>
+                            <th id="t">2º Trimestre</th>
+                            <th id="t">3º Trimestre</th>
+                            <th id="t">Média Trim.</th>
+                        </tr>
+                        <tr>
+                            <td id="t"></td>
+                            <td id="t">Nota</td>
+                            <td id="t">Nota</td>
+                            <td id="t">Nota</td>
+                            <td id="t"></td>
+                        </tr>
+                        <tr>
+                            <td id="t">Matemática</td>
+                            <td id="t">8.0</td>
+                            <td id="t">9.5</td>
+                            <td id="t">9.0</td>
+                            <td id="t">8.8</td>
+                        </tr>
+                        <tr>
+                            <td id="t">Química</td>
+                            <td id="t">7.5</td>
+                            <td id="t">9.0</td>
+                            <td id="t">7.0</td>
+                            <td id="t">7.8</td>
+                        </tr>
+                        <tr>
+                            <td id="t">Física</td>
+                            <td id="t">8.5</td>
+                            <td id="t">10</td>
+                            <td id="t">5.0</td>
+                            <td id="t">7.8</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </div>
         <footer>
-            <button id="gerar-boletim">Gerar Boletim</button>
+            <button id="gerar-boletim" onclick="CriaPDF()">Gerar Boletim</button>
         </footer>
         <!-- Script - JS -->
+        <script src="/frontend/scripts/aluno/script-aluno-boletim.js"></script>
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>
         <script src="/frontend/scripts/login/script-utilitarios.js"></script>
         <script src="/frontend/scripts/aluno/script-aluno-notas.js"></script>
