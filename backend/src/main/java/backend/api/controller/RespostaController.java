@@ -150,7 +150,7 @@ public class RespostaController {
 		LOGGER.info("Requisição para Notas idUsuario - {}",idUsuario);
 		RespostaDAO respostaDAO = new RespostaDAO();
 		try {
-			respostaDAO.deleteId(idUsuario); 
+			respostaDAO.buscarNotas(idUsuario); 
 			LOGGER.info("Requisição para Notas idUsuario - {} - Bem Sucedida",idUsuario);
 			return true;
 		} catch (Exception e) {
