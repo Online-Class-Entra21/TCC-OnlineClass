@@ -34,3 +34,60 @@ function answer() {
 }
 
 $('#click').click(answer) 
+
+carregarLinhas();
+
+async function carregarLinhas() {
+    var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/usuario/" + idUsuario);
+    var aluno = JSON.parse(resposta);
+    var idTurma = aluno.fk_turma;
+
+    //Retorna as atividades da turma
+    resposta = await usarApi("GET", "http://localhost:8080/api/atividades/turma/" + 42);
+    var turmasAtividades = JSON.parse(resposta);
+    
+
+    //Retorna os dados para popular a tabela
+    resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + 42);
+    var dados = JSON.parse(resposta);
+
+    for (let index = 0; index < dados.length; index++) {
+        if (turmasAtividades[index].tipoAtividade == 3) {
+            turmasAtividades[index].tipoAtividade = 'Prova';
+        }
+        //Converte a data
+        var dataFinal = new Date(turmasAtividades[index].finalAtividade);
+        dataFinal = timeStampFormat(dataFinal);
+        
+        
+
+
+        var linha = document.createElement('tr');
+        var colunaDisciplina = document.createElement('td');
+        colunaDisciplina.append(turmasAtividades[index].disciplinaNome);
+        colunaDisciplina.classList.add('alternado');
+        linha.append(colunaDisciplina);
+
+        var colunaTipo = document.createElement('td');
+        var br = document.createElement('br')
+        colunaTipo.append(turmasAtividades[index].tipoAtividade);
+        colunaTipo.append(br)
+        colunaTipo.append(dataFinal)
+        colunaTipo.classList.add('alternado');
+        linha.append(colunaTipo)
+
+        var colunaTitulo = document.createElement('td');
+        colunaTitulo.append(turmasAtividades[index].tituloAtividade);
+        colunaTitulo.classList.add('alternado');
+        linha.append(colunaTitulo);
+
+        document.getElementById('tbAtividades').appendChild(linha);
+        
+        
+    }
+
+    $( "tr" ).click(function() { 
+        
+        window.open ("/frontend/paginas/aluno/aluno-resposta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
+    });  
+}

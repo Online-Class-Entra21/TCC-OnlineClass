@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import backend.api.controller.form.DisciplinaTurmaForm;
+import backend.api.controller.form.TurmaAtividadeForm;
 import entidade.Atividade;
 import persistencia.jdbc.AtividadeDAO;
+import persistencia.jdbc.DisciplinaDAO;
 
 /**
  * Metodo controller da atividade para consulta no banco de dados através da API Rest
@@ -140,4 +143,27 @@ public class AtividadeController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Retorna a lista de atividades correspondentes ao id da turma informado (GET)
+	 * @return lista de atividade registrados no banco na turma específica
+	 * @param int idTurma
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/atividades/turma/{idTurma}")
+	public List<TurmaAtividadeForm> consultarTurmaAtividade(@PathVariable int idTurma) {
+		LOGGER.info("Requisição List<TurmaAtividadeForm>");
+		List<TurmaAtividadeForm> lista;
+		AtividadeDAO atividadeDao = new AtividadeDAO();
+		try {
+			lista = atividadeDao.buscarTurmaAtividade(idTurma);
+			LOGGER.info("Requisição List<TurmaAtividadeForm> bem sucedida idTurma - {}",idTurma);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos TurmaAtividade idTurma - {} Mal Sucedida - erro - {}",idTurma,e.toString());
+			return null;
+		}
+	}
+	
 }

@@ -1,5 +1,6 @@
 package entidade;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 /**
@@ -11,8 +12,8 @@ public class Atividade {
 	
     private int idAtividade;
     private String descricao;
-    private Date inicioAtividade;
-    private Date finalAtividade;
+    private Timestamp inicioAtividade;
+    private Timestamp finalAtividade;
     private int tipoAtividade;
     private double pesoNota;
     private int fk_usuarioDisciplina;
@@ -35,7 +36,7 @@ public class Atividade {
      * @param pesoNota
      * @param fk_usuario_disciplina
      */
-    public Atividade(int idAtividade, String descricao, Date inicioAtividade, Date finalAtividade, int tipoAtividade,
+    public Atividade(int idAtividade, String descricao, Timestamp inicioAtividade, Timestamp finalAtividade, int tipoAtividade,
 					 double pesoNota, int fk_usuario_disciplina) {
     	
 		setIdAtividade(idAtividade);
@@ -83,7 +84,7 @@ public class Atividade {
      * Metodo para retorno da data de inicio da atividade.
      * @return Date inicioAtividade 
      */
-    public Date getInicioAtividade() {
+    public Timestamp getInicioAtividade() {
         return inicioAtividade;
     }
 
@@ -91,7 +92,7 @@ public class Atividade {
      * Metodo para insercao da data de incio da atividade 
      * @param Date inicioAtividade
      */
-    public void setInicioAtividade(Date inicioAtividade) {
+    public void setInicioAtividade(Timestamp inicioAtividade) {
         this.inicioAtividade = inicioAtividade;
     }
 
@@ -99,7 +100,7 @@ public class Atividade {
      * Metodo para retorno da data final da atividade.
      * @return Date finalAtividade 
      */
-    public Date getFinalAtividade() {
+    public Timestamp getFinalAtividade() {
         return finalAtividade;
     }
 
@@ -107,7 +108,7 @@ public class Atividade {
      * Metodo para insercao da data final da atividade 
      * @param Date finalAtividade
      */
-    public void setFinalAtividade(Date finalAtividade) {
+    public void setFinalAtividade(Timestamp finalAtividade) {
         this.finalAtividade = finalAtividade;
     }
 

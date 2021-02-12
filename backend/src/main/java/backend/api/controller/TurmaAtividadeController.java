@@ -139,4 +139,25 @@ public class TurmaAtividadeController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Retorna a lista das turmasAtividades registrados no sistema {GET}
+	 * @return lista de turmasAtividades registradas no banco
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/turmas/atividades/turma/{idTurma}")
+	public List<TurmaAtividade> consultarTodosIdTurma(@PathVariable("idTurma") int idTurma){
+		LOGGER.info("Requisição List<TurmaAtividade>");
+		List<TurmaAtividade> lista;
+		TurmaAtividadeDAO turmaAtividadeDao = new TurmaAtividadeDAO();
+		try {
+			lista = turmaAtividadeDao.buscarTodosIdTurma(idTurma);
+			LOGGER.info("Requisição List<TurmaAtividade> bem sucedida");
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos TurmaAtividade Mal Sucedida - erro - {}",e.toString());
+			return null;
+		}
+	}
 }
