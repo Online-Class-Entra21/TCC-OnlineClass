@@ -8,27 +8,19 @@ public class DisciplinaTurmaForm {
 	public DisciplinaTurmaForm() {
 	}
 	
-	
-	
 	public DisciplinaTurmaForm(int idUsuario_disciplina_turma,int idTurma,int idDisciplina) {
-		this.idUsuario_disciplina_turma = idUsuario_disciplina_turma;
-		this.idTurma = idTurma;
-		this.idTurma = idDisciplina;
+		setIdUsuario_disciplina_turma(idUsuario_disciplina_turma);;
+		setIdTurma(idTurma);
+		setIdDisciplina(idDisciplina);
 	}
 
-	
-	
 	public int getIdUsuario_disciplina_turma() {
 		return idUsuario_disciplina_turma;
 	}
 
-
-
 	public void setIdUsuario_disciplina_turma(int idUsuario_disciplina_turma) {
 		this.idUsuario_disciplina_turma = idUsuario_disciplina_turma;
 	}
-
-
 
 	public int getIdTurma() {
 		return idTurma;
@@ -45,9 +37,4 @@ public class DisciplinaTurmaForm {
 	public void setIdDisciplina(int idDisciplina) {
 		this.idDisciplina = idDisciplina;
 	}
-	
-	
-	
-	
-	
 }

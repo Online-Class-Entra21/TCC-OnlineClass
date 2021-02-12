@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import backend.api.controller.form.NotasForm;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -137,6 +139,27 @@ public class RespostaController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Deletar Resposta Mal Sucedida - Resposta {} - erro - {}",codigo,e.toString());
 			return false;
+		}
+	}
+	
+	/**
+	 * Retorna a lista das notas registradas no sistema {GET}
+	 * @return lista de respostas registrados no banco
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/notas/{idUsuario}")
+	public List<NotasForm> consultarNotas(@PathVariable("idUsuario") int idUsuario){
+		LOGGER.info("Requisição List<NotasForm>");
+		List<NotasForm> lista;
+		RespostaDAO respostaDao = new RespostaDAO();
+		try {
+			lista = respostaDao.buscarNotas(idUsuario);
+			LOGGER.info("Requisição List<NotasForm> bem sucedida");
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todas as notas Mal Sucedida - erro - {}",e.toString());
+			return null;
 		}
 	}
 }

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.api.controller.form.NotasForm;
 import entidade.Resposta;
 
 /**
@@ -134,6 +135,51 @@ public class RespostaDAO {
 			resposta.setFk_atividade(resultSet.getInt(7));
 			
 			lista.add(resposta);
+		}
+		comandoSql.close();
+		return lista;
+	}
+	
+	/**
+	 * Metodo para selecionar todas as notas, materias e periodos das respostas do banco de dados
+	 * @return lista de notas registradas no banco do aluno informado
+	 * @param int idUsuario
+	 * @author Breno
+	 * @throws SQLException 
+	 */	
+	public List<NotasForm> buscarNotas(int idUsuario) throws SQLException {
+		List<NotasForm> lista = new ArrayList<NotasForm>();
+		PreparedStatement comandoSql = conexao.prepareStatement("select disciplina.nome,"
+																 + "	   atividade.titulo,"
+																 + "	   atividade.finalatividade,"
+																 + "       resposta.nota"
+																 + " from   aluno,"
+																 + "       resposta,"
+																 + "       atividade,"
+															 	 + "       turma_atividade,"
+																 + "       turma,"
+																 + "       usuario_disciplina_turma,"
+																 + "       usuario_disciplina,"
+																 + "       disciplina"
+																 + " where aluno.idaluno = resposta.fk_aluno"
+																 + " and	  resposta.fk_atividade = atividade.idatividade"
+																 + " and   atividade.idatividade = turma_atividade.fk_atividade"
+																 + " and   turma_atividade.fk_turma = turma.idturma"
+																 + " and   turma.idturma = usuario_disciplina_turma.fk_turma"
+																 + " and   usuario_disciplina_turma.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina"
+																 + " and   usuario_disciplina.fk_disciplina = disciplina.iddisciplina"
+																 + " and   aluno.fk_usuario = ?");
+		comandoSql.setInt(1, idUsuario);	
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			NotasForm notasForm = new NotasForm();
+			notasForm.setMateria(resultSet.getString(1));
+			notasForm.setDataNota(resultSet.getTimestamp(1));
+			notasForm.setTipoAvaliacao(resultSet.getString(1));
+			notasForm.setNota(resultSet.getDouble(1));
+			
+			lista.add(notasForm);
 		}
 		comandoSql.close();
 		return lista;

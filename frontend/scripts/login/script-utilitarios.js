@@ -170,14 +170,17 @@ function TestaCPF(strCPF) {
     return true;
 }
 
-//Evento para apagar a conta do usuário 
-document.getElementById("ancoraExcluir").addEventListener("click",function(){
-    var isConfirm = confirm("Deseja realmente excluir");
+var ancora = document.getElementById("ancoraExcluir");
+if(ancora != null){
+    //Evento para apagar a conta do usuário 
+    document.getElementById("ancoraExcluir").addEventListener("click",function(){
+        var isConfirm = confirm("Deseja realmente excluir");
 
-    if(isConfirm){
-        apagarConta();
-    }
-})
+        if(isConfirm){
+            apagarConta();
+        }
+    })
+}
 
 //Apaga a conta do usuario logado
 async function apagarConta(){
