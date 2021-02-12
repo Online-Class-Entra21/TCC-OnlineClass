@@ -1,4 +1,9 @@
-function CriaPDF() {
+//Evento para gerar boletim 
+document.getElementById("gerar-boletim").addEventListener("click", function(){
+    criaPDF();
+})
+
+function criaPDF() {
     var meuBoletim = document.getElementById('idBoletim').innerHTML;
     var style = "<style>";
     style = style + "table#t {width: 100%;font: 20px Calibri;}";
@@ -10,12 +15,12 @@ function CriaPDF() {
     // CRIA UM OBJETO WINDOW
     var win = window.open('', '', 'height=700,width=700');
     win.document.write('<html><head>');
-    win.document.write('<title>Boletim</title>');   // <title> CABEÇALHO DO PDF.
-    win.document.write(style);                                     // INCLUI UM ESTILO NA TAB HEAD
+    win.document.write('<title>Boletim</title>');   //<title> CABEÇALHO DO PDF.
+    win.document.write(style);            //INCLUI UM ESTILO NA TAB HEAD
     win.document.write('</head>');
     win.document.write('<body>');
-    win.document.write(meuBoletim);                          // O CONTEUDO DA TABELA DENTRO DA TAG BODY
+    win.document.write(meuBoletim);         //O CONTEUDO DA TABELA DENTRO DA TAG BODY
     win.document.write('</body></html>');
-    win.document.close(); 	                                         // FECHA A JANELA
-    win.print();                                                            // IMPRIME O CONTEUDO
+    win.document.close(); 	                 //FECHA A JANELA
+    win.print();                     //IMPRIME O CONTEUDO
 }

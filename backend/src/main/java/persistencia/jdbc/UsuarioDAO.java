@@ -9,7 +9,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import entidade.Endereco;
 import entidade.Usuario;
 
 /**

@@ -235,6 +235,7 @@ Config. da div do botão de excluir
     color: white;
 }
 #ancoraExcluir:hover {
+    cursor: pointer;
     color: #e72525;
     transition: 1s;
 }
