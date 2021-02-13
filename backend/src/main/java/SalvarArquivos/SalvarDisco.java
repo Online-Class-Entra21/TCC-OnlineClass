@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
+import entidade.Arquivo;
+
 public class SalvarDisco {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("SalvarArquivos");
@@ -112,7 +114,7 @@ public class SalvarDisco {
 	 * @return String caminho do arquivo
 	 */
 	public String salvarFile(MultipartFile arquivo) {
-		String nome = arquivo.getName()+"."+FilenameUtils.getExtension(arquivo.getOriginalFilename());
+		String nome = arquivo.getOriginalFilename();
 		return this.salvarDir("arquivos-usuarios", arquivo, nome);
 	}
 }
