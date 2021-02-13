@@ -28,7 +28,7 @@ public class RespostaDAO {
 	 */	
 	public void insert(Resposta resposta) throws SQLException {
 		String sql = "insert into resposta (nota, comentarioatividade, correcaoatividade, dataentrega,"
-				   + " fk_aluno, fk_atividade) values (?, ?, ?, ?, ?, ?)";
+				   + " fk_aluno, fk_atividade, fk_arquivo) values (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setDouble(1, resposta.getNota());
@@ -37,6 +37,7 @@ public class RespostaDAO {
 		comandoSql.setDate(4, (Date) resposta.getDataEntrega());
 		comandoSql.setInt(5, resposta.getFk_aluno());
 		comandoSql.setInt(6, resposta.getFk_atividade());
+		comandoSql.setInt(7, resposta.getFk_arquivo());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -51,7 +52,7 @@ public class RespostaDAO {
 	 */ 	
 	public void update(Resposta resposta) throws SQLException {
 		String sql = "update resposta set nota=?, comentarioatividade=?, correcaoatividade=?, dataentrega=?,"
-				   + " fk_aluno=?, fk_atividade=? where idresposta = ?";
+				   + " fk_aluno=?, fk_atividade=?, fk_arquivo where idresposta = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
 		comandoSql.setDouble(1, resposta.getNota());
@@ -60,7 +61,8 @@ public class RespostaDAO {
 		comandoSql.setDate(4, (Date) resposta.getDataEntrega());
 		comandoSql.setInt(5, resposta.getFk_aluno());
 		comandoSql.setInt(6, resposta.getFk_atividade());
-		comandoSql.setInt(7, resposta.getIdResposta());
+		comandoSql.setInt(7, resposta.getFk_arquivo());
+		comandoSql.setInt(8, resposta.getIdResposta());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -107,6 +109,7 @@ public class RespostaDAO {
 			resposta.setDataEntrega(resultSet.getDate(5));
 			resposta.setFk_aluno(resultSet.getInt(6));
 			resposta.setFk_atividade(resultSet.getInt(7));
+			resposta.setFk_arquivo(resultSet.getInt(8));
 		}
 		comandoSql.close();
 		return resposta;
@@ -133,6 +136,7 @@ public class RespostaDAO {
 			resposta.setDataEntrega(resultSet.getDate(5));
 			resposta.setFk_aluno(resultSet.getInt(6));
 			resposta.setFk_atividade(resultSet.getInt(7));
+			resposta.setFk_arquivo(resultSet.getInt(8));
 			
 			lista.add(resposta);
 		}

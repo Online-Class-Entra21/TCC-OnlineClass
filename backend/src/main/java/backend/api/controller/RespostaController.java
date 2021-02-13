@@ -82,6 +82,7 @@ public class RespostaController {
 	 */
 	@PostMapping(path = "api/resposta/inserir/{json}")
 	public boolean inserir(@PathVariable("json") String json) {
+		System.out.println("Entrou");
 		LOGGER.info("Requisição Inserir Resposta - {}",json);
 		Gson gson = new Gson();
 		Resposta resposta = gson.fromJson(json, Resposta.class);
@@ -104,7 +105,7 @@ public class RespostaController {
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/resposta/alterar/{codigo}/{json}")
+	@PutMapping(path = "/api/resposta/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		LOGGER.info("Requisição Atualizar Resposta - {}",json);
 		Gson gson = new Gson();

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import entidade.Arquivo;
+import entidade.ArquivoUsuario;
 import persistencia.jdbc.ArquivoDAO;
+import persistencia.jdbc.ArquivoUsuarioDAO;
 import persistencia.jdbc.UsuarioDAO;
 import SalvarArquivos.SalvarDisco;
 
@@ -51,12 +53,14 @@ public class UploadArquivosController {
 	 * @return int idArquivo 
 	 * @author Andre
 	 */
-	@PostMapping(path = "/api/upload/file/return")
-	public int upGenericFile(MultipartFile file){
+	@PostMapping(path = "/api/upload/file/return/{idUsuario}")
+	public int upGenericFile(MultipartFile file, @PathVariable("idUsuario") int idUsuario){
 		int idArquivo = 0;
 		LOGGER.info("Enviando Arquivo {} ",file.getOriginalFilename());
 		Arquivo arquivo = new Arquivo();
 		ArquivoDAO arquivoDAO = new ArquivoDAO();
+		ArquivoUsuario arquivoUsuario =  new ArquivoUsuario();
+		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		String caminho = save.salvarFile(file);
 		arquivo.setCaminhoArquivo(caminho);
 		try {
@@ -65,6 +69,9 @@ public class UploadArquivosController {
 			String extensao = FilenameUtils.getExtension(file.getOriginalFilename());
 			arquivo.setExtensao(extensao);
 			idArquivo = arquivoDAO.insertReturnID(arquivo);
+			arquivoUsuario.setFk_arquivo(idArquivo);
+			arquivoUsuario.setFk_usuario(idUsuario);
+			arquivoUsuarioDao.insert2(arquivoUsuario);
 			LOGGER.info("Arquivo {} sendo enviado atualizada com sucesso",file.getOriginalFilename());
 			return idArquivo;
 		} catch (SQLException e) {
