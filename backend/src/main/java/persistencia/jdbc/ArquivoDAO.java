@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class ArquivoDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, arquivo.getExtensao());
-		comandoSql.setDate(2, (Date) arquivo.getDataEnvio());
+		comandoSql.setTimestamp(2, arquivo.getDataEnvio());
 		comandoSql.setInt(3, arquivo.getRemetente());
 		comandoSql.setString(4, arquivo.getCaminhoArquivo());
 		
@@ -50,7 +51,7 @@ public class ArquivoDAO {
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, arquivo.getExtensao());
-		comandoSql.setDate(2, (Date) arquivo.getDataEnvio());
+		comandoSql.setTimestamp(2, arquivo.getDataEnvio());
 		comandoSql.setInt(3, arquivo.getRemetente());
 		comandoSql.setString(4, arquivo.getCaminhoArquivo());
 		comandoSql.setInt(5, arquivo.getIdArquivo());
@@ -95,7 +96,7 @@ public class ArquivoDAO {
 		if (resultSet.next()) {
 			arquivo.setIdArquivo(resultSet.getInt(1));
 			arquivo.setExtensao(resultSet.getString(2));
-			arquivo.setDataEnvio(resultSet.getDate(3));
+			arquivo.setDataEnvio(resultSet.getTimestamp(3));
 			arquivo.setRemetente(resultSet.getInt(4));
 			arquivo.setCaminhoArquivo(resultSet.getString(5));
 		}
@@ -120,7 +121,7 @@ public class ArquivoDAO {
 			Arquivo arquivo = new Arquivo();
 			arquivo.setIdArquivo(resultSet.getInt(1));
 			arquivo.setExtensao(resultSet.getString(2));
-			arquivo.setDataEnvio(resultSet.getDate(3));
+			arquivo.setDataEnvio(resultSet.getTimestamp(3));
 			arquivo.setRemetente(resultSet.getInt(4));
 			arquivo.setCaminhoArquivo(resultSet.getString(5));
 
@@ -129,4 +130,31 @@ public class ArquivoDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	/**
+	 * Metodo para inserir um arquivo no banco de dados
+	 * e retorna o idArquivo gerado
+	 * 
+	 * @param Arquivo arquivo
+	 * @return idArquivo
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public int insertReturnID(Arquivo arquivo) throws SQLException {
+		String sql = "insert into arquivo (extensao, dataenvio, remetente, arquivo) values (?, ?, ?, ?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		
+		comandoSql.setString(1, arquivo.getExtensao());
+		comandoSql.setTimestamp(2, arquivo.getDataEnvio());
+		comandoSql.setInt(3, arquivo.getRemetente());
+		comandoSql.setString(4, arquivo.getCaminhoArquivo());
+		
+		comandoSql.execute();
+        ResultSet rs = comandoSql.getGeneratedKeys();
+        rs.next();
+        int idEndereco = rs.getInt(1);
+		comandoSql.close();
+		return idEndereco;
+	}
+	
 }

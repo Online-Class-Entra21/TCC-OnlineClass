@@ -160,7 +160,6 @@ public class EnderecoDAO {
 		comandoSql.setInt(5, endereco.getNumero());
 		comandoSql.setString(6, endereco.getCep());
 		comandoSql.setString(7, endereco.getComplemento());
-		System.out.println(comandoSql.toString());
 		comandoSql.execute();
 		
         ResultSet rs = comandoSql.getGeneratedKeys();
