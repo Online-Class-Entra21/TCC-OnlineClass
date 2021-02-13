@@ -19,7 +19,6 @@ if(idUsuario != 0 && idUsuario != null){
                 img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
                 img.style.borderRadius = "80%";
             }
-            carregarTurmas();
         })
 
     xhr.send();
@@ -29,55 +28,55 @@ if(idUsuario != 0 && idUsuario != null){
     window.location = "/frontend/index.html";
 }
 
+carregarTurmas();
+
 //Carrega as turmas 
-function carregarTurmas(){
+async function carregarTurmas(){
 
     //Inicia o loading 
     document.getElementById("idLoad").style.display = "block";
 
-    //Busca das turmas 
-    var xhr = new XMLHttpRequest(); 
+    //Busca as turmas 
+    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas");
+    var turmas = JSON.parse(resposta);
+    
+    for (let i = 0; i < turmas.length; i++) {
+        const element = turmas[i];
 
-        xhr.open("GET", "http://localhost:8080/api/turmas");
+        //Cria uma linha e suas colunas 
+        var linha = document.createElement("tr");
+        linha.classList.add("linhas");
 
-        xhr.addEventListener("load", function(){
-            var resposta = xhr.responseText; 
-            var turmas = JSON.parse(resposta);
+        //Coluna de dataInicial
+        var colunaAno = document.createElement("td");
+        colunaAno.textContent = element.ano;
 
-            turmas.forEach(element => {
+        //Busca a quantidade de alunos 
+        var resposta2 = await usarApi("GET", "http://localhost:8080/api/alunos/quantidade/"+element.idTurma);
+        var qtdAlunos = JSON.parse(resposta2);
 
-                //Cria uma linha e suas colunas 
-                var linha = document.createElement("tr");
-                linha.classList.add("linhas");
+        //Coluna de dataFinal
+        var colunaQtdAlunos = document.createElement("td");
+        colunaQtdAlunos.textContent = qtdAlunos;
 
-                //Coluna de dataInicial
-                var colunaAno = document.createElement("td");
-                colunaAno.textContent = element.ano;
+        //Adiciona a linha na tabela 
+        var tabela = document.getElementById("turmasExib");
+        linha.appendChild(colunaAno);
+        linha.appendChild(colunaQtdAlunos);
 
-                //Coluna de dataFinal
-                var colunaQtdAlunos = document.createElement("td");
-                colunaQtdAlunos.textContent = element.qtdAluno;
+        tabela.appendChild(linha);
+    }
 
-                //Adiciona a linha na tabela 
-                var tabela = document.getElementById("turmasExib");
-                linha.appendChild(colunaAno);
-                linha.appendChild(colunaQtdAlunos);
+    //Termina o loading de carregamento 
+    document.getElementById("idLoad").style.display = "none";
 
-                tabela.appendChild(linha);
-            });
-
-            //Termina o loading de carregamento 
-            document.getElementById("idLoad").style.display = "none";
-
-            //Abre uma nova guia para vizualizar turmas e alunos 
-            $( ".linhas" ).click(function() { 
-                var idTurma = turmas[$(this).index()-1].idTurma;
-                sessionStorage.setItem("idTurma",idTurma);
-                verAlunos();
-            });
-        })
-
-    xhr.send();
+    //Abre uma nova guia para vizualizar turmas e alunos 
+    $(".linhas").click(function() { 
+        var idTurma = turmas[$(this).index()-1].idTurma;
+        console.log(idTurma)
+        sessionStorage.setItem("idTurma",idTurma);
+        verAlunos();
+    });
 }
 
 //Abre a nova tela de alunos 

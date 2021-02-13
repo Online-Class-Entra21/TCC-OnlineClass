@@ -190,25 +190,25 @@ public class AlunoController {
 	
 	/**
 	 * Retorna o aluno que corresponde ao id do usuario {GET}
-	 * @param int codigo - fk_escola
+	 * @param int codigo 
 	 * @return String json
 	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	@GetMapping(path = "/api/aluno/usuario/{codigo}")
 	public String consultarIdUsuario(@PathVariable("codigo") int codigo) {
-		LOGGER.info("Requisição Aluno pelo fk_escola {} iniciada", codigo);
+		LOGGER.info("Requisição Aluno pelo idUsuario {} iniciada", codigo);
 		Aluno aluno;
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			aluno = alunoDao.buscarIdUsuario(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(aluno);
-			LOGGER.info("Requisição Aluno pelo fk_escola {} bem sucedida",codigo);
+			LOGGER.info("Requisição Aluno pelo idUsuario {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			LOGGER.error("Requisição Aluno pelo fk_escola {} mal sucedida erro : {}",codigo,e.toString());
+			LOGGER.error("Requisição Aluno pelo idUsuario {} mal sucedida erro : {}",codigo,e.toString());
 			return null;
 		}
 	}
@@ -237,4 +237,25 @@ public class AlunoController {
 		}
 	}
 	
+	/**
+	 * Metodo para consulta da quantidade de alunos de uma turma no sistema 
+	 * @return int qtdAlunos
+	 * @param int idTurma
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/alunos/quantidade/{idTurma}")
+	public int buscarQuantidade(@PathVariable("idTurma") int idTurma) {
+		LOGGER.info("Requisição quantidade de alunos");
+		int qtdAlunos;
+		AlunoDAO alunoDao = new AlunoDAO();
+		try {
+			qtdAlunos = alunoDao.buscarQuantidadeAlunos(idTurma);
+			LOGGER.info("Requisição quantidade de alunos bem sucedida");
+			return qtdAlunos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar da quantidade de alunos Mal Sucedida - erro - {}",e.toString());
+			return 0;
+		}
+	}
 }

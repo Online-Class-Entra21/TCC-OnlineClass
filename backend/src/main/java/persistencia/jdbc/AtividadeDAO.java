@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import backend.api.controller.form.DisciplinaTurmaForm;
 import backend.api.controller.form.TurmaAtividadeForm;
 import entidade.Atividade;
 

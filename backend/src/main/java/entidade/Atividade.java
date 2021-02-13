@@ -1,7 +1,6 @@
 package entidade;
 
 import java.sql.Timestamp;
-import java.util.*;
 
 /**
  * Classe contendo metodos e atributos para a criacao de atividades.

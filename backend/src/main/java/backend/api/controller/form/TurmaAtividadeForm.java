@@ -1,7 +1,6 @@
 package backend.api.controller.form;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class TurmaAtividadeForm {
 	private int idAtividade;

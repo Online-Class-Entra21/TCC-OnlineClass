@@ -167,16 +167,17 @@ public class RespostaDAO {
 																+"   and usuario_disciplina.fk_disciplina = disciplina.iddisciplina "
 																+"   and turma_atividade.fk_turma = turma.idturma "
 																+"   and turma_atividade.fk_atividade = atividade.idatividade "
-																+"   and aluno.fk_usuario = ?");
+																+"   and aluno.fk_usuario = ? "
+																+"   order by disciplina.nome");
 		comandoSql.setInt(1, idUsuario);	
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
 			NotasForm notasForm = new NotasForm();
 			notasForm.setMateria(resultSet.getString(1));
-			notasForm.setDataNota(resultSet.getTimestamp(1));
-			notasForm.setTipoAvaliacao(resultSet.getString(1));
-			notasForm.setNota(resultSet.getDouble(1));
+			notasForm.setTipoAvaliacao(resultSet.getString(2));
+			notasForm.setDataNota(resultSet.getTimestamp(3));
+			notasForm.setNota(resultSet.getDouble(4));
 			
 			lista.add(notasForm);
 		}

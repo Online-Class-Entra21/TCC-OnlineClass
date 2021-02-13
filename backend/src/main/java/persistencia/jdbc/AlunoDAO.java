@@ -176,6 +176,7 @@ public class AlunoDAO {
 		comandoSql.close();
 		return qtdAlunos;
 	}
+
 	/**
 	 * Metodo para selecionar o aluno do banco de dados apartir do id do usuario.
 	 * O <code>fk_Usuario</code> deve ser igual ao do aluno que deseja buscar
@@ -295,5 +296,30 @@ public class AlunoDAO {
 		
 		comandoSql.execute();
 		comandoSql.close();
+	}
+
+	/**
+	 * Metodo para retorno da quantidade de alunos em uma turma no banco de dados
+	 * @return int qtdAlunos
+	 * @author Breno
+	 * @throws SQLException
+	 */
+	public int buscarQuantidadeAlunos(int idTurma) throws SQLException {
+		int qtdAlunos = 0;
+		String sql = "select count(idAluno)"
+				    +" from aluno,"
+					+"      turma"
+					+" where aluno.fk_turma = turma.idTurma "
+					+" and   idTurma = ?";
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idTurma);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			qtdAlunos = (resultSet.getInt(1));
+		}
+		comandoSql.close();
+		return qtdAlunos;
 	}
 }

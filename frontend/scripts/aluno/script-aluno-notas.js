@@ -22,6 +22,7 @@ if(idUsuario != 0 && idUsuario != null){
                 img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
                 img.style.borderRadius = "80%";
             }
+            buscarNotas();
         })
 
     xhr.send();
@@ -31,11 +32,10 @@ if(idUsuario != 0 && idUsuario != null){
     window.location = "/frontend/index.html";
 }
 
-buscarNotas();
 //Buscar notas do usuario 
 async function buscarNotas(){
-
-    //Busca os dados do usuario dono da reuniao
+    
+    //Busca as notas do aluno
     var resposta = await usarApi("GET", "http://localhost:8080/api/notas/"+idUsuario);
     var dados = JSON.parse(resposta);
     
@@ -49,21 +49,13 @@ async function buscarNotas(){
         //Cria uma nova coluna da linha - part 1 
         var periodo = document.createElement("td");
         periodo.className = "td-lista";
-        var tipoPeriodo;
 
         //Busca os dados do usuario dono da reuniao
         var resposta2 = await usarApi("GET", "http://localhost:8080/api/periodosAvaliacoes/"+fk_escola);
         var periodosBuscados = JSON.parse(resposta2);
 
-        if(periodosBuscados.length == 2){
-            tipoPeriodo = 2;
-        }else if(periodosBuscados.length == 3){
-            tipoPeriodo = 3;
-        }else if(periodosBuscados.length == 4){
-            tipoPeriodo = 4;
-        }else{
-            tipoPeriodo = 0;
-            periodo.textContent = "Periodo único";
+        if(!(periodosBuscados.length > 1 && periodosBuscados.length < 5)){
+            periodo.textContent = "Período único";
         }
         
         for (let i = 0; i < periodosBuscados.length; i++) {
@@ -86,7 +78,8 @@ async function buscarNotas(){
         //Cria uma nova coluna da linha - part 3
         var data = document.createElement("td");
         data.className = "td-lista";
-        data.textContent = element.dataNota;
+        var dataFormatada = new Date(element.dataNota)
+        data.textContent = dataFormatada2(dataFormatada);
 
         //Cria uma nova coluna da linha - part 4
         var avaliacao = document.createElement("td");
@@ -98,8 +91,9 @@ async function buscarNotas(){
         nota.className = "td-lista";
         nota.textContent = element.nota;
 
-        var lista = document.getElementById("idTabela");
+        var lista = document.getElementById("tabela-notas");
         
+        linha.append(periodo);
         linha.append(materia);
         linha.append(data);
         linha.append(avaliacao);

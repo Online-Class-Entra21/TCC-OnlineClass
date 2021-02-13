@@ -262,7 +262,7 @@ tr, th, td{
     border-right: 1px solid #999;
     border-left: 1px solid #111;
     text-align: left;
-    font-size: 100%;
+    font-size: 80%;
     font-family: cursive;
     letter-spacing: 0.2em;
     width: 100vh;
@@ -280,14 +280,16 @@ th:hover, td:hover {
     height: 9vh;
     border: none;
     background: gray;
-    font-size: 1.8em;
+    font-size: 1.5em;
 }
 #gerar-boletim:hover {
     background: #0077ff;
     color: white;
 }
 
-/* Config. Botão */
+/*
+Config. Botão 
+*/
 .but{
     align-items: center;
     justify-content: center;

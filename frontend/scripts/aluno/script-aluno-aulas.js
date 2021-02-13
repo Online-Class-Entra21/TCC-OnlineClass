@@ -116,7 +116,7 @@ if(idUsuario != 0 && idUsuario != null){
             if((dataReuniao.setMinutes(dataReuniao.getMinutes() - 10)) > dataAtual){
                 reunioesMarcadas.push(reunioes[i]);
 
-                //Verifica se a reuniao ainda está acontecendo 
+            //Verifica se a reuniao ainda está acontecendo 
             }else if((dataAtual >= (dataReuniao.setMinutes(dataReuniao.getMinutes() - 10))) 
                     && (dataAtual <= (dataReuniao.setHours(dataReuniao.getHours() + 1)))){
                 reunioesMarcadas.push(reunioes[i]);

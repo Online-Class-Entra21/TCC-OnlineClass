@@ -1,8 +1,5 @@
 package backend.api;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

@@ -1,3 +1,37 @@
+// Pegando id do usuário que logou 
+var idUsuario = sessionStorage.getItem("idUsuario");
+var userEmail;
+
+//Verifica se o idUsuario é válido 
+if(idUsuario != 0 && idUsuario != null){
+    //Busca dos dados do usuário
+    var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            dadosUsuario = JSON.parse(resposta);
+            var resposta = xhr.responseText; 
+            var dadosUsuario = JSON.parse(resposta);
+            //Adiciona o nome 
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
+            //Adiciona a foto de perfil do usuario
+            var img = document.querySelector("#idFotoPerfil");
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
+            userEmail = dadosUsuario.email;
+        })
+
+    xhr.send();
+    
+}else{
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
+}
+
 var fk_escola = sessionStorage.getItem('escolaUsuario');
 var idUsuario = sessionStorage.getItem('idUsuario');
 carregarSelect();
@@ -260,19 +294,19 @@ async function carregarCampos(turma) {
     document.getElementById('inputNome').value = turma.ano;
 
     //Faz a contagem dos alunos da turma
-    resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + turma.idTurma);
-    var alunos = JSON.parse(resposta);
-    var qtdaluno = alunos.length;
-    document.getElementById('InputQtdAlunos').value = qtdaluno;
-   
+     //Busca a quantidade de alunos 
+     var resposta2 = await usarApi("GET", "http://localhost:8080/api/alunos/quantidade/"+turma.idTurma);
+     var qtd = JSON.parse(resposta2);
+    var qtdaluno = qtd
+    document.getElementById('InputQtdAlunos').value = qtdaluno; 
 }
 
 //Método para carregar a lista de alunos da turma selecionada
 async function carregarListaAlunos(idTurma, nomeTurma) {
+
     //Faz a buscar na API
     var resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + idTurma);
     var alunos = JSON.parse(resposta);
-
     
     //Verifica se tem algum aluno no banco de dados
     if(alunos[0] == null){
