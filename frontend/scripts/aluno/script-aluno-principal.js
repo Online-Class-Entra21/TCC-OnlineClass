@@ -43,17 +43,23 @@ async function carregarLinhas() {
     var idTurma = aluno.fk_turma;
 
     //Retorna as atividades da turma
-    resposta = await usarApi("GET", "http://localhost:8080/api/atividades/turma/" + 42);
+    resposta = await usarApi("GET", "http://localhost:8080/api/atividades/turma/" + idTurma);
     var turmasAtividades = JSON.parse(resposta);
     
 
     //Retorna os dados para popular a tabela
-    resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + 42);
+    resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + idTurma);
     var dados = JSON.parse(resposta);
 
     for (let index = 0; index < dados.length; index++) {
-        if (turmasAtividades[index].tipoAtividade == 3) {
-            turmasAtividades[index].tipoAtividade = 'Prova';
+        if (turmasAtividades[index].tipoAtividade == 1) {
+            turmasAtividades[index].tipoAtividade = 'Avaliação';
+        } else if (turmasAtividades[index].tipoAtividade == 2) {
+            turmasAtividades[index].tipoAtividade = 'Atividade';
+        } else if (turmasAtividades[index].tipoAtividade == 3) {
+            turmasAtividades[index].tipoAtividade = 'Recuperação Paralela';
+        } else if (turmasAtividades[index].tipoAtividade == 4) {
+            turmasAtividades[index].tipoAtividade = 'Auto-Avaliação';
         }
         //Converte a data
         var dataFinal = new Date(turmasAtividades[index].finalAtividade);
