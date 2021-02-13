@@ -9,6 +9,20 @@ async function carregarTitulo() {
     var resposta = await usarApi("GET", "http://localhost:8080/api/atividade/" + idAtividade);
     var atividade = JSON.parse(resposta);
     document.getElementById('inputTitulo').innerHTML = atividade.titulo;
+
+    //Verifica se ja foi enviado uma resposta
+    resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + idAtividade);
+    var respostaExistente = JSON.parse(resposta);
+    if (respostaExistente != null) {
+        document.getElementById('area').value = respostaExistente.comentarioAtividade;
+        var confirmar = confirm("Você ja respondeu essa atividade, responder novamente?\nAo clicar em OK, a resposta enviada anteriormente será deletada.")
+        if (confirmar == false) {
+            window.close();
+        } else{
+            //Exclui a resposta atual
+
+        }
+    } 
 }
 
 var btnEnviar = document.getElementById('botao');
@@ -32,17 +46,20 @@ async function enviar() {
     console.log(document.getElementById('area').value)
     console.log(idAluno)
     console.log(idAtividade)
+    
     var resposta = {
         nota: null,
         dataEntrega: dataAtual,
-        comentarioAtividade: null,
-        correcaoAtividade: null,
+        comentarioAtividade: 'asdsda',
+        correcaoAtividade: true,
         fk_aluno: idAluno,
         fk_atividade: idAtividade,
         fk_arquivo: 16
     }
+    
     var insertResposta = JSON.stringify(resposta);
-    var inserirResposta = await usarApi("POST", "http://localhost:8080/api/resposta/inserir/" + insertResposta);
+    console.log(insertResposta)
+    var resposta = await usarApi("POST", "http://localhost:8080/api/resposta/inserir/" + insertResposta);
     console.log(inserirResposta)
 
 }

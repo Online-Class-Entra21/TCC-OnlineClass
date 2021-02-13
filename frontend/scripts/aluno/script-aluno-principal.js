@@ -80,6 +80,18 @@ async function carregarLinhas() {
         colunaTitulo.classList.add('alternado');
         linha.append(colunaTitulo);
 
+        var colunaSituacao = document.createElement('td');
+        resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + turmasAtividades[index].idAtividade);
+        var respostaExistente = JSON.parse(resposta);
+        if (respostaExistente == null) {
+            colunaSituacao.append('Não Respondida')
+            colunaSituacao.classList.add('naorespondida');
+        } else {
+            colunaSituacao.append('Respondida')
+            colunaSituacao.classList.add('respondida');
+        }
+        linha.append(colunaSituacao);
+
         document.getElementById('tbAtividades').appendChild(linha);
         
         

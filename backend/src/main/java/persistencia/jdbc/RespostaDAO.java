@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.api.controller.form.NotasForm;
+import backend.api.controller.form.RespostaForm;
+import backend.api.controller.form.TurmaAtividadeForm;
 import entidade.Resposta;
 
 /**
@@ -187,5 +189,42 @@ public class RespostaDAO {
 		}
 		comandoSql.close();
 		return lista;
+	}
+	
+	/**
+	 * Metodo para verificar se ja foi enviada uma resposta para a atividade.
+	 * O <code>idAtividade</code> deve ser igual ao da atividade que deseja buscar
+	 * @param int idAtividade
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public RespostaForm verificarResposta(int idAtividade) throws SQLException {
+		RespostaForm respostaForm =  new RespostaForm();
+		String sql = "select resposta.idresposta, resposta.comentarioatividade, resposta.dataentrega, resposta.fk_aluno, resposta.fk_atividade, resposta.fk_arquivo "
+				+ "from "
+				+ "	resposta, "
+				+ "	aluno, "
+				+ "    atividade, "
+				+ "	arquivo "
+				+ "where resposta.fk_aluno = aluno.idaluno "
+				+ "	and resposta.fk_atividade = atividade.idatividade "
+				+ "    and resposta.fk_arquivo = arquivo.idarquivo "
+				+ "    and atividade.idatividade = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idAtividade);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			respostaForm.setIdResposta(resultSet.getInt(1));
+			respostaForm.setComentarioAtividade(resultSet.getString(2));
+			respostaForm.setDataEntrega(resultSet.getTimestamp(3));
+			respostaForm.setFk_aluno(resultSet.getInt(4));
+			respostaForm.setFk_atividade(resultSet.getInt(5));
+			respostaForm.setFk_arquivo(resultSet.getInt(6));
+		
+		}
+		comandoSql.close();
+		return respostaForm;
 	}
 }
