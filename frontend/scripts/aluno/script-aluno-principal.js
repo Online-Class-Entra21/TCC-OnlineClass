@@ -28,12 +28,6 @@ if(idUsuario != 0 && idUsuario != null){
     // window.location = "/frontend/index.html";
 }
 
-//Abre uma nova guia para digitar o email de recuperação 
-function answer() {
-    answer = window.open ("/frontend/paginas/aluno/aluno-resposta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
-}
-
-$('#click').click(answer) 
 
 carregarLinhas();
 
@@ -51,6 +45,8 @@ async function carregarLinhas() {
     resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + idTurma);
     var dados = JSON.parse(resposta);
 
+    
+
     for (let index = 0; index < dados.length; index++) {
         if (turmasAtividades[index].tipoAtividade == 1) {
             turmasAtividades[index].tipoAtividade = 'Avaliação';
@@ -63,10 +59,7 @@ async function carregarLinhas() {
         }
         //Converte a data
         var dataFinal = new Date(turmasAtividades[index].finalAtividade);
-        dataFinal = timeStampFormat(dataFinal);
-        
-        
-
+        dataFinal = dataFormatada2(dataFinal);
 
         var linha = document.createElement('tr');
         var colunaDisciplina = document.createElement('td');
@@ -78,7 +71,7 @@ async function carregarLinhas() {
         var br = document.createElement('br')
         colunaTipo.append(turmasAtividades[index].tipoAtividade);
         colunaTipo.append(br)
-        colunaTipo.append(dataFinal)
+        colunaTipo.append("Data Final - "+dataFinal.slice(0,10))
         colunaTipo.classList.add('alternado');
         linha.append(colunaTipo)
 
@@ -91,9 +84,9 @@ async function carregarLinhas() {
         
         
     }
-
     $( "tr" ).click(function() { 
-        
+        var atividadeEscolhida = turmasAtividades[$(this).index()].idAtividade;
+        sessionStorage.setItem('idAtividadeEscolhida', atividadeEscolhida);
         window.open ("/frontend/paginas/aluno/aluno-resposta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
     });  
 }
