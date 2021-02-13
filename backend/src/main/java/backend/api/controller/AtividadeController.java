@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import backend.api.controller.form.DisciplinaTurmaForm;
 import backend.api.controller.form.TurmaAtividadeForm;
 import entidade.Atividade;
 import persistencia.jdbc.AtividadeDAO;
-import persistencia.jdbc.DisciplinaDAO;
 
 /**
  * Metodo controller da atividade para consulta no banco de dados através da API Rest

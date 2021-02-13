@@ -149,26 +149,25 @@ public class RespostaDAO {
 	 */	
 	public List<NotasForm> buscarNotas(int idUsuario) throws SQLException {
 		List<NotasForm> lista = new ArrayList<NotasForm>();
-		PreparedStatement comandoSql = conexao.prepareStatement("select disciplina.nome,"
-																 + "	   atividade.titulo,"
-																 + "	   atividade.finalatividade,"
-																 + "       resposta.nota"
-																 + " from   aluno,"
-																 + "       resposta,"
-																 + "       atividade,"
-															 	 + "       turma_atividade,"
-																 + "       turma,"
-																 + "       usuario_disciplina_turma,"
-																 + "       usuario_disciplina,"
-																 + "       disciplina"
-																 + " where aluno.idaluno = resposta.fk_aluno"
-																 + " and	  resposta.fk_atividade = atividade.idatividade"
-																 + " and   atividade.idatividade = turma_atividade.fk_atividade"
-																 + " and   turma_atividade.fk_turma = turma.idturma"
-																 + " and   turma.idturma = usuario_disciplina_turma.fk_turma"
-																 + " and   usuario_disciplina_turma.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina"
-																 + " and   usuario_disciplina.fk_disciplina = disciplina.iddisciplina"
-																 + " and   aluno.fk_usuario = ?");
+		PreparedStatement comandoSql = conexao.prepareStatement("select disciplina.nome, "
+															    +      "atividade.titulo, "
+																+	   "atividade.finalatividade, "
+																+	   "resposta.nota "
+   																+"from aluno, "
+																+     "resposta, "
+																+     "atividade, "
+																+	  "turma_atividade, "
+																+	  "turma, "
+																+	  "usuario_disciplina, "
+																+	  "disciplina "
+   																+"where  aluno.idaluno = resposta.fk_aluno "
+																+"   and aluno.fk_turma = turma.idturma "
+																+"   and resposta.fk_atividade = atividade.idatividade "
+																+"   and atividade.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina "
+																+"   and usuario_disciplina.fk_disciplina = disciplina.iddisciplina "
+																+"   and turma_atividade.fk_turma = turma.idturma "
+																+"   and turma_atividade.fk_atividade = atividade.idatividade "
+																+"   and aluno.fk_usuario = ?");
 		comandoSql.setInt(1, idUsuario);	
 		ResultSet resultSet = comandoSql.executeQuery();
 		
