@@ -173,7 +173,7 @@ public class DisciplinaController {
 	 * na escola especifica {GET}
 	 * 	
 	 * @return lista de disciplinas registrados no banco na escola especifica
-	 * @param int fk_escola 
+	 * @param int idProfessor 
 	 * @author Breno
 	 */
 	@GetMapping(path = "/api/disciplinas/turmas/{idProfessor}")
@@ -191,5 +191,28 @@ public class DisciplinaController {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * Retorna a lista de disciplinas em alguma turma e do aluno idAluno
+	 * na escola especifica {GET}
+	 * 	
+	 * @return lista de disciplinas registrados no banco na escola especifica
+	 * @param int idAluno 
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/disciplinas/turmas/aluno/{idAluno}")
+	public List<Disciplina> consultarDisciplinasTurmasIdAluno(@PathVariable int idAluno) {
+		LOGGER.info("Requisição List<Disciplina>");
+		List<Disciplina> lista;
+		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
+		try {
+			lista = disciplinaDao.buscarDisciplinasTurmaIdAluno(idAluno);
+			LOGGER.info("Requisição List<Disciplina> bem sucedida idAluno - {}",idAluno);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Disciplinas idAluno - {} Mal Sucedida - erro - {}",idAluno,e.toString());
+			return null;
+		}
+	}
 }
