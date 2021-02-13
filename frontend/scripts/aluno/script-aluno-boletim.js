@@ -95,6 +95,11 @@ async function gerarBoletim() {
         //Verifica se o periodo foi definido 
         if(tipoPeriodo != 0){
 
+            //Cria a linha da materia atual 
+            var linhaMedia = document.createElement("tr");
+
+            var mediasTemporarias = [];
+            var quantidadeMedTemporarias = 0;
             //Percorre periodo por periodo para adicionar a coluna com as medias do periodo 
             for (let j = 0; j < periodosBuscados.length; j++) {
                 const per = periodosBuscados[j];
@@ -106,21 +111,68 @@ async function gerarBoletim() {
                 for (let x = 0; x < notas.length; x++) {
                     const not = notas[x];
 
-                    var dataNota = not.dataNota;
+                    var dataNota = new Date(not.dataNota);
                     
-                    if(not.materia == disc.nome && (dataNota >= dataInicioPeriodo && dataNota <= dataFinalPeriodo)){
+                    if(not.materia == disc.nome && (dataNota > dataInicioPeriodo && dataNota < dataFinalPeriodo)){
                         vetorExibicao.push(not.nota);
                     }
                 }
 
-                //Boletim com periodos 
+                //Verifica se há alguma nota 
+                var media;
+                if(vetorExibicao.length > 0){
+                    //Calcula a media das notas da materia 
+                    var soma = 0;
+                    var quantidade = vetorExibicao.length;
+                    for (let x = 0; x < vetorExibicao.length; x++) {
+                        const exib = vetorExibicao[x];
+                        
+                        //Atribui uma a uma a nota na soma 
+                        soma = soma + exib;
+                    }
+
+                    media = soma/quantidade;
+                    mediasTemporarias.push(media);
+                    quantidadeMedTemporarias = quantidadeMedTemporarias + 1; 
+                    
+                }else{
+                    media = "-";
+                } 
+
+                //Adiciona a media na tabela de boletim
+                var colunaMateria = document.createElement("td");
+                colunaMateria.textContent = disc.nome;
+                var colunaMedia = document.createElement("td");
+                colunaMedia.textContent = media;
+
+                linhaMedia.append(colunaMateria);
+                linhaMedia.append(colunaMedia);
             }
+
+            var somaMediaMateria = 0;
+            //Calcula a media final de uma materia em expecifico 
+            for (let m = 0; m < mediasTemporarias.length; m++) {
+                const med = mediasTemporarias[m];
+                
+                somaMediaMateria = somaMediaMateria + med;
+            }
+
+            //Adiciona a media da materia para contagem final depois 
+            var mediaParcial = somaMediaMateria/quantidadeMedTemporarias;
+            medias.push(mediaParcial);
+            quantidadeMed = quantidadeMed + 1;
+            
+            //Adiciona a linha da materia no boletim 
+            var colunaMediaFinal = document.createElement("td")
+            colunaMediaFinal.textContent = mediaParcial;
+            linhaMedia.append(colunaMediaFinal);
+            lista.append(linhaMedia);
 
         }else{
             //Verifica se a nota é da mesma materia 
             for (let x = 0; x < notas.length; x++) {
                 const not = notas[x];
-                console.log(not)
+    
                 if(not.materia == disc.nome){
                     vetorExibicao.push(not.nota);
                 }

@@ -61,11 +61,11 @@ async function buscarNotas(){
         for (let i = 0; i < periodosBuscados.length; i++) {
             const element = periodosBuscados[i];
             
-            var dataInicio = element.dataInicial;
-            var dataFinal = element.dataFinal;
+            var dataInicio = new Date(element.dataInicial);
+            var dataFinal = new Date(element.dataFinal);
             now = new Date();
             
-            if(now >= dataInicio && now <= dataFinal){
+            if(now > dataInicio && now < dataFinal){
                 periodo.textContent = element.descricao;
             }
         }
