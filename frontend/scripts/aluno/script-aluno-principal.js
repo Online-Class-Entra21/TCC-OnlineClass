@@ -35,15 +35,18 @@ async function carregarLinhas() {
     var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/usuario/" + idUsuario);
     var aluno = JSON.parse(resposta);
     var idTurma = aluno.fk_turma;
+    console.log(idTurma);
 
     //Retorna as atividades da turma
     resposta = await usarApi("GET", "http://localhost:8080/api/atividades/turma/" + idTurma);
     var turmasAtividades = JSON.parse(resposta);
+    console.log(turmasAtividades)
     
 
     //Retorna os dados para popular a tabela
     resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + idTurma);
     var dados = JSON.parse(resposta);
+    console.log(dados)
 
     
 
