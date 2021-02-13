@@ -87,6 +87,7 @@ async function carregarLinhas() {
     $( "tr" ).click(function() { 
         var atividadeEscolhida = turmasAtividades[$(this).index()].idAtividade;
         sessionStorage.setItem('idAtividadeEscolhida', atividadeEscolhida);
+        sessionStorage.setItem('idAluno', aluno.idAluno);
         window.open ("/frontend/paginas/aluno/aluno-resposta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
     });  
 }

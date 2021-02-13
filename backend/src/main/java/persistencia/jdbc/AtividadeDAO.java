@@ -27,7 +27,7 @@ public class AtividadeDAO {
 	 * @throws SQLException 
 	 */
 	public void insert(Atividade atividade) throws SQLException {
-		String sql = "insert into atividade (descricao, inicioatividade, finalatividade, tipoatividade, pesonota, fk_usuario_disciplina) values (?, ?, ?, ?, ?, ?)";
+		String sql = "insert into atividade (descricao, inicioatividade, finalatividade, tipoatividade, pesonota, fk_usuario_disciplina, titulo) values (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, atividade.getDescricao());
@@ -36,6 +36,7 @@ public class AtividadeDAO {
 		comandoSql.setInt(4, atividade.getTipoAtividade());
 		comandoSql.setDouble(5, atividade.getPesoNota());
 		comandoSql.setInt(6, atividade.getFk_usuarioDisciplina());
+		comandoSql.setString(7, atividade.getTitulo());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -50,7 +51,7 @@ public class AtividadeDAO {
 	 */ 
 	public void update(Atividade atividade) throws SQLException {
 		String sql = "update atividade set descricao = ?, inicioatividade = ?, finalatividade = ?, tipoatividade = ?, "
-				+ "pesonota = ?, fk_usuario_disciplina  where idatividade = ?";
+				+ "pesonota = ?, fk_usuario_disciplina, titulo = ?  where idatividade = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, atividade.getDescricao());
@@ -59,7 +60,8 @@ public class AtividadeDAO {
 		comandoSql.setInt(4, atividade.getTipoAtividade());
 		comandoSql.setDouble(5, atividade.getPesoNota());
 		comandoSql.setInt(6, atividade.getFk_usuarioDisciplina());
-		comandoSql.setInt(7, atividade.getIdAtividade());
+		comandoSql.setString(7, atividade.getTitulo());
+		comandoSql.setInt(8, atividade.getIdAtividade());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -104,6 +106,8 @@ public class AtividadeDAO {
 			atividade.setFinalAtividade(resultSet.getTimestamp(4));
 			atividade.setTipoAtividade(resultSet.getInt(5));
 			atividade.setPesoNota(resultSet.getDouble(6));
+			atividade.setFk_usuarioDisciplina(resultSet.getInt(7));
+			atividade.setTitulo(resultSet.getString(8));
 		
 		}
 		comandoSql.close();
@@ -131,6 +135,8 @@ public class AtividadeDAO {
 			atividade.setFinalAtividade(resultSet.getTimestamp(4));
 			atividade.setTipoAtividade(resultSet.getInt(5));
 			atividade.setPesoNota(resultSet.getDouble(6));
+			atividade.setFk_usuarioDisciplina(resultSet.getInt(7));
+			atividade.setTitulo(resultSet.getString(8));
 
 			lista.add(atividade);
 		}

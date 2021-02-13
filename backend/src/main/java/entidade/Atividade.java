@@ -17,6 +17,7 @@ public class Atividade {
     private int tipoAtividade;
     private double pesoNota;
     private int fk_usuarioDisciplina;
+    private String titulo;
 
     /**
      * Construtor usado ao instanciar a classe Atividade.
@@ -159,4 +160,22 @@ public class Atividade {
 	public void setFk_usuarioDisciplina(int fk_usuarioDisciplina) {
 		this.fk_usuarioDisciplina = fk_usuarioDisciplina;
 	}
+	
+	/**
+	 * Metodo para retorno do titulo da atividade
+	 * @return string titulo
+	 */
+	public String getTitulo() {
+		return titulo;
+	}
+
+	/**
+	 * Metodo para insercao do titulo da atividade
+	 * @param string titulo
+	 */
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
+	
 }
