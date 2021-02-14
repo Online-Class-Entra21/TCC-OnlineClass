@@ -81,8 +81,16 @@ async function carregarLinhas() {
         colunaTitulo.classList.add('alternado');
         linha.append(colunaTitulo);
 
+        var colunaDonwload = document.createElement('td');
+        var btnDowload = document.createElement('button');
+        btnDowload.innerHTML = "Baixar Atividade";
+        colunaDonwload.append(btnDowload);
+        colunaDonwload.classList.add('Btn');
+        $('button').attr('id', 'btnDownload')
+        $('button').attr('type', 'button')
+        linha.append(colunaDonwload);
+
         var colunaSituacao = document.createElement('td');
-        
         resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + turmasAtividades[index].idAtividade + "/" + aluno.idAluno);
         var respostaExistente = JSON.parse(resposta);
         if (respostaExistente.dataEntrega == null) {
@@ -102,6 +110,11 @@ async function carregarLinhas() {
         var atividadeEscolhida = turmasAtividades[$(this).index()].idAtividade;
         sessionStorage.setItem('idAtividadeEscolhida', atividadeEscolhida);
         sessionStorage.setItem('idAluno', aluno.idAluno);
-        window.open ("/frontend/paginas/aluno/aluno-resposta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
+        //window.open ("/frontend/paginas/aluno/aluno-resposta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
     });  
 }
+
+//Método para baixar a atividade
+$('#btnDownload').click(function() {
+    console.log('Click')
+})
