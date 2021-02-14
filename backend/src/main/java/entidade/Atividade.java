@@ -17,6 +17,7 @@ public class Atividade {
     private double pesoNota;
     private int fk_usuarioDisciplina;
     private String titulo;
+    private int fk_arquivo;
 
     /**
      * Construtor usado ao instanciar a classe Atividade.
@@ -46,6 +47,24 @@ public class Atividade {
 		setTipoAtividade(tipoAtividade);
 		setPesoNota(pesoNota);
 		setFk_usuarioDisciplina(fk_usuario_disciplina);
+	}
+
+    
+    
+    /**
+     * Metodo para retorno do FK do arquivo 
+     * @return
+     */
+	public int getFk_arquivo() {
+		return fk_arquivo;
+	}
+
+	/**
+	 * Metodo para setar o FK do arquivo
+	 * @param fk_arquivo
+	 */
+	public void setFk_arquivo(int fk_arquivo) {
+		this.fk_arquivo = fk_arquivo;
 	}
 
 	/** 

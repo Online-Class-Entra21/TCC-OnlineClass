@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class AtividadeDAO {
 	 * @throws SQLException 
 	 */
 	public void insert(Atividade atividade) throws SQLException {
-		String sql = "insert into atividade (descricao, inicioatividade, finalatividade, tipoatividade, pesonota, fk_usuario_disciplina, titulo) values (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into atividade (descricao, inicioatividade, finalatividade, tipoatividade, pesonota, fk_usuario_disciplina, titulo, fk_arquivo) values (?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, atividade.getDescricao());
@@ -36,6 +37,7 @@ public class AtividadeDAO {
 		comandoSql.setDouble(5, atividade.getPesoNota());
 		comandoSql.setInt(6, atividade.getFk_usuarioDisciplina());
 		comandoSql.setString(7, atividade.getTitulo());
+		comandoSql.setInt(8, atividade.getFk_arquivo());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -50,7 +52,7 @@ public class AtividadeDAO {
 	 */ 
 	public void update(Atividade atividade) throws SQLException {
 		String sql = "update atividade set descricao = ?, inicioatividade = ?, finalatividade = ?, tipoatividade = ?, "
-				+ "pesonota = ?, fk_usuario_disciplina, titulo = ?  where idatividade = ?";
+				+ "pesonota = ?, fk_usuario_disciplina, titulo = ?, fk_arquivo = ?  where idatividade = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setString(1, atividade.getDescricao());
@@ -60,7 +62,8 @@ public class AtividadeDAO {
 		comandoSql.setDouble(5, atividade.getPesoNota());
 		comandoSql.setInt(6, atividade.getFk_usuarioDisciplina());
 		comandoSql.setString(7, atividade.getTitulo());
-		comandoSql.setInt(8, atividade.getIdAtividade());
+		comandoSql.setInt(8, atividade.getFk_arquivo());
+		comandoSql.setInt(9, atividade.getIdAtividade());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -107,7 +110,7 @@ public class AtividadeDAO {
 			atividade.setPesoNota(resultSet.getDouble(6));
 			atividade.setFk_usuarioDisciplina(resultSet.getInt(7));
 			atividade.setTitulo(resultSet.getString(8));
-		
+			atividade.setFk_arquivo(resultSet.getInt(9));
 		}
 		comandoSql.close();
 		return atividade;
@@ -136,7 +139,7 @@ public class AtividadeDAO {
 			atividade.setPesoNota(resultSet.getDouble(6));
 			atividade.setFk_usuarioDisciplina(resultSet.getInt(7));
 			atividade.setTitulo(resultSet.getString(8));
-
+			atividade.setFk_arquivo(resultSet.getInt(9));
 			lista.add(atividade);
 		}
 		comandoSql.close();
@@ -184,6 +187,35 @@ public class AtividadeDAO {
 		}
 		comandoSql.close();
 		return turma_atividade;
+	}
+
+	/**
+	 * Metodo para inserir atividade no banco de dados
+	 * e Retornar o idAtividade gerado
+	 * @param Atividade atividade
+	 * @author Andre
+	 * @throws SQLException 
+	 * @return int idAtividade
+	 */
+	public int insertReturnID(Atividade atividade) throws SQLException {
+		String sql = "insert into atividade (descricao, inicioatividade, finalatividade, tipoatividade, pesonota, fk_usuario_disciplina, titulo, fk_arquivo) values (?, ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		
+		comandoSql.setString(1, atividade.getDescricao());
+		comandoSql.setTimestamp(2, atividade.getInicioAtividade());
+		comandoSql.setTimestamp(3, atividade.getFinalAtividade());
+		comandoSql.setInt(4, atividade.getTipoAtividade());
+		comandoSql.setDouble(5, atividade.getPesoNota());
+		comandoSql.setInt(6, atividade.getFk_usuarioDisciplina());
+		comandoSql.setString(7, atividade.getTitulo());
+		comandoSql.setInt(8, atividade.getFk_arquivo());
+		
+		comandoSql.execute();
+		ResultSet rs = comandoSql.getGeneratedKeys();
+        rs.next();
+        int idEndereco = rs.getInt(1);
+		comandoSql.close();
+		return idEndereco;
 	}
 	
 }

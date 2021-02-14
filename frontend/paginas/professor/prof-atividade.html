@@ -96,20 +96,20 @@
     <main>
         <div class="d-flex justify-content-center m-5 flex-wrap">
             <div class="row justify-content-center ml-0 mr-0 p-3">
-                <form>
+                <form id="form1">
                     <label class="aula lead" for="idTitle">Titulo da atividade </label>
-                    <input class="aula form-control" type="text" id="idTitle" name="nmTitle">
+                    <input class="aula form-control" type="text" id="idTitle" name="nmTitle" required>
 
                     <label class="aula lead pt-3" for="idDateTime">Entrega </label>
-                    <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle">
+                    <input class="aula form-control" type="datetime-local" id="idDateTime" name="nmDateTitle" required>
 
                     <label class="aula lead pt-3" for="idTipo">Tipo de atividade</label>
-                    <select name="assunto" id="idTipo" class="aula form-control">
-                        <option>-Selecione o tipo</option>
-                        <option>-Avaliação</option>
-                        <option>-Atividade</option>
-                        <option>-Recuperação Paralela</option>
-                        <option>-Auto-Avaliação</option>
+                    <select name="assunto" id="idTipo" class="aula form-control" required>
+                        <option value="0">-Selecione o tipo</option>
+                        <option value="1">-Avaliação</option>
+                        <option value="2">-Atividade</option>
+                        <option value="3">-Recuperação Paralela</option>
+                        <option value="4">-Auto-Avaliação</option>
                     </select>
                 </form>
             </div>
@@ -117,20 +117,16 @@
             <div class="row justify-content-center ml-0 mr-0 p-3">
                 <form>
                     <label class=" lead" for="idTipo">Turma</label>
-                    <select name="assunto" id="idTipo" class=" form-control">
-                        <option>-Selecione a turma</option>
-                        <option>-Turma 01</option>
-                        <option>-Turma 02</option>
+                    <select name="assunto" id="idTurma" class=" form-control" required>
+                        <option value="0">-Selecione a turma</option>
                     </select>
 
                     <label class=" lead pt-3" for="idDisci">Disciplina</label>
-                    <select name="disci" id="idDisci" class=" form-control">
-                        <option>-Seleciona a Disciplina</option>
-                        <option>-Matemática</option>
-                        <option>-Português</option>
+                    <select name="disci" id="idDisci" class=" form-control" required>
+                        <option value="0">-Seleciona Uma Turma Antes</option>
                     </select>
 
-                    <div class="custom-file mt-5">
+                    <div class="custom-file mt-5" id="descricaoDiv">
                         <input type="file" class="custom-file-input" id="customFile">
                         <label class="custom-file-label" for="customFile">Anexar Arquivo</label>
                     </div>
@@ -140,7 +136,7 @@
         <div class="d-flex justify-content-center m-5">
             <textarea name="mensagem" class="descricao form-control m-0" placeholder="Insira um breve resumo..."></textarea>
         </div>
-        <button id="btnEnviar" class=" btn-primary mt-3 but" onclick="alert('Aula marcada')">ENVIAR</button>
+        <button id="btnEnviar" class=" btn-primary mt-3 but">ENVIAR</button>
     </main>
     <!-- Script - JS -->
     <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>

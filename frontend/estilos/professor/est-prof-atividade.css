@@ -261,10 +261,10 @@ Config. das atividades do usuarios
     cursor: pointer;
 }
 .descricao{
-    min-width: 400px;
-    min-height: 25vh;
-    max-width: 400px;
-    max-height: 25vh;
+    /* min-width: 50%; */
+    min-height: 100px;
+    max-width: 600px;
+    max-height: 100px;
     padding-left: 1%;
     padding-top: 5%;
     margin-left: 10%;
@@ -298,4 +298,8 @@ Config. das atividades do usuarios
     background: black;
     border-radius: 1vh;
     border: 1px solid black;
+}
+
+#descricaoDiv{
+    width: 90%;
 }
