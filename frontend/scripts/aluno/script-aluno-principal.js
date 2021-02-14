@@ -83,7 +83,7 @@ async function carregarLinhas() {
         var colunaSituacao = document.createElement('td');
         resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + turmasAtividades[index].idAtividade);
         var respostaExistente = JSON.parse(resposta);
-        if (respostaExistente == null) {
+        if (respostaExistente.dataEntrega == null) {
             colunaSituacao.append('Não Respondida')
             colunaSituacao.classList.add('naorespondida');
         } else {

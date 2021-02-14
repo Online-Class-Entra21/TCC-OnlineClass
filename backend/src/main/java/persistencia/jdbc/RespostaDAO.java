@@ -209,7 +209,7 @@ public class RespostaDAO {
 				+ "where resposta.fk_aluno = aluno.idaluno "
 				+ "	and resposta.fk_atividade = atividade.idatividade "
 				+ "    and resposta.fk_arquivo = arquivo.idarquivo "
-				+ "    and atividade.idatividade = ?";
+				+ "    and resposta.fk_atividade = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, idAtividade);

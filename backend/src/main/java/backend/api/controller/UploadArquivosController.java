@@ -73,6 +73,7 @@ public class UploadArquivosController {
 			arquivoUsuario.setFk_usuario(idUsuario);
 			arquivoUsuarioDao.insert2(arquivoUsuario);
 			LOGGER.info("Arquivo {} sendo enviado atualizada com sucesso",file.getOriginalFilename());
+			System.out.println(idArquivo);
 			return idArquivo;
 		} catch (SQLException e) {
 			LOGGER.error("Arquivo {} não enviado erro {}",file.getOriginalFilename(),e);

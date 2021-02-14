@@ -23,6 +23,31 @@ function usarApi(method, url) {
     });
 }
 
+//Adiciona imagem no arquivo raiz 
+async function enviarArquivo(file,url){
+    var size = file[0].size;
+    console.log(size)
+    if(size < 1048576) { //1MB
+      
+    } else {           
+      alert('Arquivo não enviado maior que 1 MB'); //Acima do limite
+      return;
+    }
+    
+    var files = file[0];
+    var xhr = new XMLHttpRequest();
+    var fd = new FormData();
+
+    fd.append( "file", files, files.name);
+    xhr.open("POST", url, true);
+    var idArquivo;
+    xhr.addEventListener("load", function(){
+        var resposta = xhr.responseText;
+        idArquivo = JSON.parse(resposta); 
+        return idArquivo;
+    });
+    xhr.send(fd);
+}
 
 
 //Pega o id da atividade e o aluno
@@ -40,14 +65,13 @@ async function carregarTitulo() {
     //Verifica se ja foi enviado uma resposta
     resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + idAtividade);
     var respostaExistente = JSON.parse(resposta);
-    if (respostaExistente != null) {
-        document.getElementById('area').value = respostaExistente.comentarioAtividade;
+    if (respostaExistente.dataEntrega != null) {
         var confirmar = confirm("Você ja respondeu essa atividade, responder novamente?\nAo clicar em OK, a resposta enviada anteriormente será removida.")
         if (confirmar == false) {
             window.close();
         } else{
             //Exclui a resposta atual
-            //await usarApi("DELETE", "http://localhost:8080/api/resposta/deletar/" + respostaExistente.idResposta);
+            await usarApi("DELETE", "http://localhost:8080/api/resposta/deletar/" + respostaExistente.idResposta);
         }
     } 
 }
@@ -62,31 +86,27 @@ async function enviar() {
     /*
     var arquivo = document.getElementById('selecao-arquivo').files;
     var idArquivo = enviarArquivo(arquivo, "http://localhost:8080/api/upload/file/return/" + idUsuario)
+    console.log(idArquivo);
     */
     var dataAtual = new Date();
-    var dd = String(dataAtual.getDate()).padStart(2, '0');
-    var mm = String(dataAtual.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = dataAtual.getFullYear();
-
-    dataAtual = dd + '/' + mm + '/' + yyyy;
-    console.log(dataAtual);
-    console.log(document.getElementById('area').value)
-    console.log(idAluno)
-    console.log(idAtividade)
+    dataAtual = dataAtual.toISOString();
     
     var resposta = {
-        nota: null,
-        dataEntrega: dataAtual,
-        comentarioAtividade: 'asdsda',
-        correcaoAtividade: true,
+        comentarioAtividade: document.getElementById('area').value,
         fk_aluno: idAluno,
         fk_atividade: idAtividade,
-        fk_arquivo: 16
+        fk_arquivo: 29
     }
     console.log(resposta);
     var insertResposta = JSON.stringify(resposta);
     console.log(insertResposta)
     var resposta = await usarApi("POST", "http://localhost:8080/api/resposta/inserir/" + insertResposta);
-    console.log(inserirResposta)
+    
+    if (resposta == false) {
+        alert("Ocorreu um erro ao enviar a resposta");
+    } else {
+        alert("Resposta enviada com sucesso!")
+        window.close();
+    }
 
 }
