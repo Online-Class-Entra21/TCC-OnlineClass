@@ -45,7 +45,13 @@ async function carregarLinhas() {
     //Retorna os dados para popular a tabela
     resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + idTurma);
     var dados = JSON.parse(resposta);
-
+    if (dados[0] == null) {
+        var linha = document.createElement('tr');
+        var td = document.createElement('td');
+        td.append('Nenhuma Atividade Marcada.')
+        linha.append(td);
+        document.getElementById('tbAtividades').appendChild(linha);
+    }
     for (let index = 0; index < dados.length; index++) {
         if (turmasAtividades[index].tipoAtividade == 1) {
             turmasAtividades[index].tipoAtividade = 'Avaliação';
