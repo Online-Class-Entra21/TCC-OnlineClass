@@ -264,10 +264,12 @@ th {
     background-color: #efefef;
 }
 .respondida {
+    width: 10%;
     background-color: #6af8aa;
     color: black;
 }
 .naorespondida {
+    width: 12%;
     background-color: #f7867e;
     color: black;
 }

@@ -198,7 +198,7 @@ public class RespostaDAO {
 	 * @author Andrey
 	 * @throws SQLException 
 	 */
-	public RespostaForm verificarResposta(int idAtividade) throws SQLException {
+	public RespostaForm verificarResposta(int idAtividade, int idAluno) throws SQLException {
 		RespostaForm respostaForm =  new RespostaForm();
 		String sql = "select resposta.idresposta, resposta.comentarioatividade, resposta.dataentrega, resposta.fk_aluno, resposta.fk_atividade, resposta.fk_arquivo "
 				+ "from "
@@ -209,10 +209,12 @@ public class RespostaDAO {
 				+ "where resposta.fk_aluno = aluno.idaluno "
 				+ "	and resposta.fk_atividade = atividade.idatividade "
 				+ "    and resposta.fk_arquivo = arquivo.idarquivo "
-				+ "    and resposta.fk_atividade = ?";
+				+ "    and resposta.fk_atividade = ? "
+				+ "    and resposta.fk_aluno = ? ";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, idAtividade);
+		comandoSql.setInt(2, idAluno);
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		if (resultSet.next()) {

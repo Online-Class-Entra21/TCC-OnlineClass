@@ -164,7 +164,8 @@ public class AtividadeDAO {
 				+ "    and usuario_disciplina.fk_disciplina = disciplina.iddisciplina "
 				+ "    and atividade.idatividade = turma_atividade.fk_atividade "
 				+ "    and turma_atividade.fk_turma =  turma.idturma "
-				+ "    and turma.idturma = ?";
+				+ "    and turma.idturma = ? "
+				+ "order by atividade.finalatividade";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setInt(1, idTurma);

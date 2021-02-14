@@ -39,6 +39,7 @@ async function carregarLinhas() {
     //Retorna as atividades da turma
     resposta = await usarApi("GET", "http://localhost:8080/api/atividades/turma/" + idTurma);
     var turmasAtividades = JSON.parse(resposta);
+
     
 
     //Retorna os dados para popular a tabela
@@ -81,7 +82,8 @@ async function carregarLinhas() {
         linha.append(colunaTitulo);
 
         var colunaSituacao = document.createElement('td');
-        resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + turmasAtividades[index].idAtividade);
+        
+        resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + turmasAtividades[index].idAtividade + "/" + aluno.idAluno);
         var respostaExistente = JSON.parse(resposta);
         if (respostaExistente.dataEntrega == null) {
             colunaSituacao.append('Não Respondida')
