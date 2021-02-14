@@ -8,7 +8,7 @@
         <!--CSS-->
         <link rel="stylesheet" href="/frontend/estilos/professor/est-prof-respostas.css">
         <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
-        <title>Relatórios - Professor</title>
+        <title>Respostas - Professor</title>
     </head>
     <body>
         <!-- Menu lateral -->
@@ -90,57 +90,100 @@
             </nav>
         </header>
         <main>
-           
+            <div class="adicionar p-4 col-md-6 col-xl-6 flex-fill">
+                <div class="row justify-content-center ml-0 mr-0 p-3">    
+                    <form>
+                        <label class=" lead pt-3" for="idDisci">Disciplina</label>
+                        <select name="disci" id="idDisci" class=" form-control">
+                            <option>-Seleciona a Disciplina</option>
+                        </select>
 
-        <div class="adicionar p-4 col-md-6 col-xl-6 flex-fill">
-            <div class="row justify-content-center ml-0 mr-0 p-3">    
-            <form>
-                    <label class=" lead pt-3" for="idTipo">Turma</label>
-                    <select name="assunto" id="idTipo" class=" form-control">
-                        <option>-Selecione a turma</option>
-                        <option>-Turma 01</option>
-                        <option>-Turma 02</option>
-                    </select>
-
-                    <label class=" lead pt-3" for="idDisci">Disciplina</label>
-                    <select name="disci" id="idDisci" class=" form-control">
-                        <option>-Seleciona a Disciplina</option>
-                        <option>-Matemática</option>
-                        <option>-Português</option>
-                    </select>
-
-                </form>
-        </div>
-    </div>
-           
-    <button id="botao-pesquisar" value="salvar" type="button" class="centered but mt-4" title="Pesquisar">Pesquisar</button>
-
-           <div class="col-md-8 col-xl-8 test"> <!--Div Tabela de usuários cadastrados-->
-            <div id="dGridPessoas ">
-                <table  id="tbPessoas" class="table table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Atividade</th>
-                            <th scope="col">Tipo de Avaliação</th>
-                            <th scope="col">Aluno</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Nota</th>
-                        </tr>
-                        
-                    </thead>
-                    <tbody id="tbLista">
-
-                        <tr>
-                            <td scope="col">Atividade 001</td>
-                            <td scope="col">Recuperação</td>
-                            <td scope="col">Iago Picachu</td>
-                            <td scope="col">23/04/2021</td>
-                            <td scope="col" class="ult"><input class="nota form-control" type="number" min="0" max="10.0" step=".01" maxlength="2" id="idNota" name="nmNota"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <label class=" lead pt-3" for="idTipo">Turma</label>
+                        <select name="assunto" id="idTipo" class=" form-control">
+                            <option>-Selecione a turma</option>
+                        </select>
+                    </form>
+                </div>
             </div>
-        </div>
+            <button id="botao-pesquisar" value="salvar" type="button" class="centered but mt-4" title="Pesquisar">Pesquisar</button>
+            <div class="col-md-8 col-xl-8 test"> <!--Div Tabela de usuários cadastrados-->
+                <div id="dGridPessoas">
+                    <table  id="tbPessoas" class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Atividade</th>
+                                <th scope="col">Tipo de Avaliação</th>
+                                <th scope="col">Aluno</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Anexo</th>
+                                <th scope="col">Nota</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbLista">
+                            <tr>
+                                <td scope="col">Atividade 001</td>
+                                <td scope="col">Recuperação</td>
+                                <td scope="col">Iago Picachu</td>
+                                <td scope="col">23/04/2021</td>
+                                <td scope="col">
+                                    <button class="btn btn-primary" id="anexo">Download</button>
+                                </td>
+                                <td scope="col" class="ult"><input class="nota form-control" type="number" min="0" max="10.0" step=".01" maxlength="2" id="idNota" name="nmNota"></td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Atividade 001</td>
+                                <td scope="col">Recuperação</td>
+                                <td scope="col">Iago Picachu</td>
+                                <td scope="col">23/04/2021</td>
+                                <td scope="col">
+                                    <button class="btn btn-primary" id="anexo">Download</button>
+                                </td>
+                                <td scope="col" class="ult"><input class="nota form-control" type="number" min="0" max="10.0" step=".01" maxlength="2" id="idNota" name="nmNota"></td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Atividade 001</td>
+                                <td scope="col">Recuperação</td>
+                                <td scope="col">Iago Picachu</td>
+                                <td scope="col">23/04/2021</td>
+                                <td scope="col">
+                                    <button class="btn btn-primary" id="anexo">Download</button>
+                                </td>
+                                <td scope="col" class="ult"><input class="nota form-control" type="number" min="0" max="10.0" step=".01" maxlength="2" id="idNota" name="nmNota"></td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Atividade 001</td>
+                                <td scope="col">Recuperação</td>
+                                <td scope="col">Iago Picachu</td>
+                                <td scope="col">23/04/2021</td>
+                                <td scope="col">
+                                    <button class="btn btn-primary" id="anexo">Download</button>
+                                </td>
+                                <td scope="col" class="ult"><input class="nota form-control" type="number" min="0" max="10.0" step=".01" maxlength="2" id="idNota" name="nmNota"></td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Atividade 001</td>
+                                <td scope="col">Recuperação</td>
+                                <td scope="col">Iago Picachu</td>
+                                <td scope="col">23/04/2021</td>
+                                <td scope="col">
+                                    <button class="btn btn-primary" id="anexo">Download</button>
+                                </td>
+                                <td scope="col" class="ult"><input class="nota form-control" type="number" min="0" max="10.0" step=".01" maxlength="2" id="idNota" name="nmNota"></td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Atividade 001</td>
+                                <td scope="col">Recuperação</td>
+                                <td scope="col">Iago Picachu</td>
+                                <td scope="col">23/04/2021</td>
+                                <td scope="col">
+                                    <button class="btn btn-primary" id="anexo">Download</button>
+                                </td>
+                                <td scope="col" class="ult"><input class="nota form-control" type="number" min="0" max="10.0" step=".01" maxlength="2" id="idNota" name="nmNota"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
     </body>
     <!-- JS - Script -->
