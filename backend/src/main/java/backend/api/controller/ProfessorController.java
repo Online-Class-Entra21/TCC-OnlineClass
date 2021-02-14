@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 
 import backend.api.controller.form.ProfessorNotasForm;
-import backend.api.controller.form.RespostaForm;
 import entidade.Professor;
 import entidade.Usuario;
 import persistencia.jdbc.ProfessorDAO;
-import persistencia.jdbc.RespostaDAO;
 import persistencia.jdbc.UsuarioDAO;
 
 /**

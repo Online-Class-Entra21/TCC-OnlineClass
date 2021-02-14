@@ -3,6 +3,7 @@ package backend.api.controller.form;
 import java.sql.Timestamp;
 
 public class RespostaForm {
+
 	private int idResposta;
 	private String comentarioAtividade;
 	private Timestamp dataEntrega;
@@ -11,7 +12,6 @@ public class RespostaForm {
 	private int fk_arquivo;
 	
 	public RespostaForm() {
-		
 	}
 
 	/**
@@ -24,13 +24,12 @@ public class RespostaForm {
 	 */
 	public RespostaForm(int idResposta, String comentarioAtividade, Timestamp dataEntrega, int fk_aluno,
 			int fk_atividade, int fk_arquivo) {
-		super();
-		this.idResposta = idResposta;
-		this.comentarioAtividade = comentarioAtividade;
-		this.dataEntrega = dataEntrega;
-		this.fk_aluno = fk_aluno;
-		this.fk_atividade = fk_atividade;
-		this.fk_arquivo = fk_arquivo;
+		setIdResposta(idResposta);
+		setComentarioAtividade(comentarioAtividade);
+		setDataEntrega(dataEntrega);
+		setFk_aluno(fk_aluno);
+		setFk_atividade(fk_atividade);
+		setFk_arquivo(fk_arquivo);
 	}
 	
 
@@ -116,8 +115,5 @@ public class RespostaForm {
 	 */
 	public void setFk_arquivo(int fk_arquivo) {
 		this.fk_arquivo = fk_arquivo;
-	}
-	
-	
-	
+	}	
 }

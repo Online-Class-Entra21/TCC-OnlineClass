@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import backend.api.controller.form.ProfessorNotasForm;
 import backend.api.controller.form.UsuarioDisciplinaForm;
 import entidade.UsuarioDisciplina;
 

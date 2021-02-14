@@ -124,11 +124,11 @@ async function enviar() {
             }
         });
         xhr.send(fd);
-    }
-
-    
-
-    
-   
-    
+    }  
 }
+
+$("#selecao-arquivo").change(function (){
+    var fileName = $("")
+    
+    
+})

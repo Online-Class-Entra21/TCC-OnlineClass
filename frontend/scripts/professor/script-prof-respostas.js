@@ -56,7 +56,6 @@ async function carregarTurmas(){
 //Método para o select
 $( "#idTipo" ).change(function() { 
     var turmaEscolhida = $('#idTipo :selected').val();
-    $("#idTipo").empty();
     if (turmaEscolhida == 'default') {
         document.getElementById("idDisci").disabled = true;
     } else {
@@ -65,9 +64,39 @@ $( "#idTipo" ).change(function() {
     }
 });  
 
-//Carrega as turmas da disciplina escolhida 
+//Carrega as disciplinas escolhidas
 async function carregarDisciplinas(turmaEscolhida){
-    var resposta = await usarApi('GET','http://localhost:8080/api/);
+    var resposta = await usarApi('GET','http://localhost:8080/api/disciplinas/turmas/aluno/'+idUsuario+'/'+turmaEscolhida);
     disciplinas = JSON.parse(resposta);
+    
+    var select = document.getElementById('idDisci');
+
+    //Cria os options do select
+    for (let index = 0; index < disciplinas.length; index++) {
+        
+        var option = document.createElement('option')
+        option.textContent = disciplinas[index].nome;
+        option.value = disciplinas[index].idDisciplina;
+        option.classList.add('optionDisciplinas')
+
+        select.append(option);
+    }
+}
+
+//Evento de click do botao pesquisar 
+document.getElementById("botao-pesquisar").addEventListener("click", function(){
+    var turmaEscolhida = $('#idTipo :selected').val();
+    var disciplinaEscolhida = $('#idDisci :selected').val();
+
+    if(turmaEscolhida != "default" && disciplinaEscolhida != "default"){
+        buscarRespostas();
+    }else{
+        alert("Escolha primeiro a turma e a disciplina!");
+    }
+})
+
+//Buscar resultados 
+function buscarRespostas(){
+    
 }
 

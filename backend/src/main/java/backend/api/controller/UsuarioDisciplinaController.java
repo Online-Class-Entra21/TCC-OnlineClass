@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import backend.api.controller.form.ProfessorNotasForm;
 import backend.api.controller.form.UsuarioDisciplinaForm;
 
 import org.slf4j.Logger;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.UsuarioDisciplina;
-import persistencia.jdbc.ProfessorDAO;
 import persistencia.jdbc.UsuarioDisciplinaDAO;
 
 /**

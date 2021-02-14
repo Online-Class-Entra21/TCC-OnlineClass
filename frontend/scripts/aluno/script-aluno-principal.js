@@ -40,8 +40,6 @@ async function carregarLinhas() {
     resposta = await usarApi("GET", "http://localhost:8080/api/atividades/turma/" + idTurma);
     var turmasAtividades = JSON.parse(resposta);
 
-    
-
     //Retorna os dados para popular a tabela
     resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + idTurma);
     var dados = JSON.parse(resposta);
@@ -95,8 +93,6 @@ async function carregarLinhas() {
         colunaDownload.append(btnDownload);
         linha.append(colunaDownload);
 
-        
-
         var colunaSituacao = document.createElement('td');
         resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + turmasAtividades[index].idAtividade + "/" + aluno.idAluno);
         var respostaExistente = JSON.parse(resposta);
@@ -110,8 +106,6 @@ async function carregarLinhas() {
         linha.append(colunaSituacao);
 
         document.getElementById('tbAtividades').appendChild(linha);
-        
-        
     }
     var isPassou;
     $( ".download" ).click(function() {
