@@ -35,18 +35,15 @@ async function carregarLinhas() {
     var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/usuario/" + idUsuario);
     var aluno = JSON.parse(resposta);
     var idTurma = aluno.fk_turma;
-    console.log(idTurma);
 
     //Retorna as atividades da turma
     resposta = await usarApi("GET", "http://localhost:8080/api/atividades/turma/" + idTurma);
     var turmasAtividades = JSON.parse(resposta);
-    console.log(turmasAtividades)
     
 
     //Retorna os dados para popular a tabela
     resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + idTurma);
     var dados = JSON.parse(resposta);
-    console.log(dados)
 
     
 
@@ -82,6 +79,18 @@ async function carregarLinhas() {
         colunaTitulo.append(turmasAtividades[index].tituloAtividade);
         colunaTitulo.classList.add('alternado');
         linha.append(colunaTitulo);
+
+        var colunaSituacao = document.createElement('td');
+        resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + turmasAtividades[index].idAtividade);
+        var respostaExistente = JSON.parse(resposta);
+        if (respostaExistente.dataEntrega == null) {
+            colunaSituacao.append('Não Respondida')
+            colunaSituacao.classList.add('naorespondida');
+        } else {
+            colunaSituacao.append('Respondida')
+            colunaSituacao.classList.add('respondida');
+        }
+        linha.append(colunaSituacao);
 
         document.getElementById('tbAtividades').appendChild(linha);
         

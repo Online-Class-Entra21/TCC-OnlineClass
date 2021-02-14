@@ -122,4 +122,21 @@ public class ArquivoUsuarioDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	/**
+	 * Realiza o registro de um arquivoUsuario no banco de dados
+	 * @param ArquivoUsuario arquivoUsuario
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public void insert2(ArquivoUsuario arquivoUsuario) throws SQLException { 
+		String sql = "insert into arquivo_Usuario (fk_Arquivo, fk_Usuario) values (?,?)"; 
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+	     
+		comandoSql.setInt(1, arquivoUsuario.getFk_arquivo());
+		comandoSql.setInt(2, arquivoUsuario.getFk_usuario());
+		
+		comandoSql.execute(); 
+		comandoSql.close(); 
+	}
 }

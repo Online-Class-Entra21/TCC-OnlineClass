@@ -263,7 +263,14 @@ th {
 .alternado {
     background-color: #efefef;
 }
-
+.respondida {
+    background-color: #6af8aa;
+    color: black;
+}
+.naorespondida {
+    background-color: #f7867e;
+    color: black;
+}
 tr {
     width: 100%;
 }

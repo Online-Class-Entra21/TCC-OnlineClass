@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.api.controller.form.NotasForm;
+import backend.api.controller.form.RespostaForm;
+import backend.api.controller.form.TurmaAtividadeForm;
 import entidade.Resposta;
 
 /**
@@ -28,7 +30,7 @@ public class RespostaDAO {
 	 */	
 	public void insert(Resposta resposta) throws SQLException {
 		String sql = "insert into resposta (nota, comentarioatividade, correcaoatividade, dataentrega,"
-				   + " fk_aluno, fk_atividade) values (?, ?, ?, ?, ?, ?)";
+				   + " fk_aluno, fk_atividade, fk_arquivo) values (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
 		comandoSql.setDouble(1, resposta.getNota());
@@ -37,6 +39,7 @@ public class RespostaDAO {
 		comandoSql.setDate(4, (Date) resposta.getDataEntrega());
 		comandoSql.setInt(5, resposta.getFk_aluno());
 		comandoSql.setInt(6, resposta.getFk_atividade());
+		comandoSql.setInt(7, resposta.getFk_arquivo());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -51,7 +54,7 @@ public class RespostaDAO {
 	 */ 	
 	public void update(Resposta resposta) throws SQLException {
 		String sql = "update resposta set nota=?, comentarioatividade=?, correcaoatividade=?, dataentrega=?,"
-				   + " fk_aluno=?, fk_atividade=? where idresposta = ?";
+				   + " fk_aluno=?, fk_atividade=?, fk_arquivo where idresposta = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 
 		comandoSql.setDouble(1, resposta.getNota());
@@ -60,7 +63,8 @@ public class RespostaDAO {
 		comandoSql.setDate(4, (Date) resposta.getDataEntrega());
 		comandoSql.setInt(5, resposta.getFk_aluno());
 		comandoSql.setInt(6, resposta.getFk_atividade());
-		comandoSql.setInt(7, resposta.getIdResposta());
+		comandoSql.setInt(7, resposta.getFk_arquivo());
+		comandoSql.setInt(8, resposta.getIdResposta());
 		
 		comandoSql.execute();
 		comandoSql.close();
@@ -107,6 +111,7 @@ public class RespostaDAO {
 			resposta.setDataEntrega(resultSet.getDate(5));
 			resposta.setFk_aluno(resultSet.getInt(6));
 			resposta.setFk_atividade(resultSet.getInt(7));
+			resposta.setFk_arquivo(resultSet.getInt(8));
 		}
 		comandoSql.close();
 		return resposta;
@@ -133,6 +138,7 @@ public class RespostaDAO {
 			resposta.setDataEntrega(resultSet.getDate(5));
 			resposta.setFk_aluno(resultSet.getInt(6));
 			resposta.setFk_atividade(resultSet.getInt(7));
+			resposta.setFk_arquivo(resultSet.getInt(8));
 			
 			lista.add(resposta);
 		}
@@ -183,5 +189,42 @@ public class RespostaDAO {
 		}
 		comandoSql.close();
 		return lista;
+	}
+	
+	/**
+	 * Metodo para verificar se ja foi enviada uma resposta para a atividade.
+	 * O <code>idAtividade</code> deve ser igual ao da atividade que deseja buscar
+	 * @param int idAtividade
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public RespostaForm verificarResposta(int idAtividade) throws SQLException {
+		RespostaForm respostaForm =  new RespostaForm();
+		String sql = "select resposta.idresposta, resposta.comentarioatividade, resposta.dataentrega, resposta.fk_aluno, resposta.fk_atividade, resposta.fk_arquivo "
+				+ "from "
+				+ "	resposta, "
+				+ "	aluno, "
+				+ "    atividade, "
+				+ "	arquivo "
+				+ "where resposta.fk_aluno = aluno.idaluno "
+				+ "	and resposta.fk_atividade = atividade.idatividade "
+				+ "    and resposta.fk_arquivo = arquivo.idarquivo "
+				+ "    and resposta.fk_atividade = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idAtividade);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		if (resultSet.next()) {
+			respostaForm.setIdResposta(resultSet.getInt(1));
+			respostaForm.setComentarioAtividade(resultSet.getString(2));
+			respostaForm.setDataEntrega(resultSet.getTimestamp(3));
+			respostaForm.setFk_aluno(resultSet.getInt(4));
+			respostaForm.setFk_atividade(resultSet.getInt(5));
+			respostaForm.setFk_arquivo(resultSet.getInt(6));
+		
+		}
+		comandoSql.close();
+		return respostaForm;
 	}
 }
