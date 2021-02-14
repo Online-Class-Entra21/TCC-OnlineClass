@@ -257,13 +257,12 @@ section#atividades {
 table {
 	width: 100%;
 	height: 100%;
-	border-collapse: collapse;
+    border: solid 1px;
 	font-size: 1em;
     overflow: hidden;
 }
-th, td {
-    /* width: 100%; */
-}
+
+
 th {
     /* width: 100%; */
     text-transform: uppercase;
@@ -273,9 +272,11 @@ th {
     font-size: 90%;
     letter-spacing: 0.1em;
 }
-/* .alternado {
+/*
+ .alternado {
     background-color: #efefef;
-} */
+} 
+*/
 .respondida {
     width: 10%;
     background-color: #6af8aa;

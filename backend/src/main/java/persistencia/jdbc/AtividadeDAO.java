@@ -152,15 +152,17 @@ public class AtividadeDAO {
 	 */
 	public List<TurmaAtividadeForm> buscarTurmaAtividade(int idTurma) throws SQLException {
 		List<TurmaAtividadeForm> turma_atividade =	new ArrayList<TurmaAtividadeForm>();
-		String sql = "select atividade.idatividade, atividade.titulo, atividade.tipoatividade, atividade.finalatividade,disciplina.iddisciplina, disciplina.nome\r\n"
+		String sql = "select atividade.idatividade, atividade.titulo, atividade.tipoatividade, atividade.finalatividade, atividade.fk_arquivo, disciplina.iddisciplina, disciplina.nome\r\n"
 				+ "from "
 				+ "	atividade, "
+				+ " arquivo, "
 				+ "    usuario_disciplina, "
 				+ "    disciplina, "
 				+ "    turma_atividade, "
 				+ "    turma "
 				+ "where "
-				+ "	atividade.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina "
+				+ "    atividade.fk_arquivo = arquivo.idarquivo"
+				+ "	   and atividade.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina "
 				+ "    and usuario_disciplina.fk_disciplina = disciplina.iddisciplina "
 				+ "    and atividade.idatividade = turma_atividade.fk_atividade "
 				+ "    and turma_atividade.fk_turma =  turma.idturma "
@@ -177,8 +179,9 @@ public class AtividadeDAO {
 			turmaAtividadeForm.setTituloAtividade(resultSet.getString(2));
 			turmaAtividadeForm.setTipoAtividade(resultSet.getInt(3));
 			turmaAtividadeForm.setFinalAtividade(resultSet.getTimestamp(4));
-			turmaAtividadeForm.setIdDisciplina(resultSet.getInt(5));
-			turmaAtividadeForm.setDisciplinaNome(resultSet.getString(6));
+			turmaAtividadeForm.setFk_arquivo(resultSet.getInt(5));
+			turmaAtividadeForm.setIdDisciplina(resultSet.getInt(6));
+			turmaAtividadeForm.setDisciplinaNome(resultSet.getString(7));
 			
 			turma_atividade.add(turmaAtividadeForm);
 		

@@ -46,8 +46,6 @@ async function carregarLinhas() {
     resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + idTurma);
     var dados = JSON.parse(resposta);
 
-    
-
     for (let index = 0; index < dados.length; index++) {
         if (turmasAtividades[index].tipoAtividade == 1) {
             turmasAtividades[index].tipoAtividade = 'Avaliação';
@@ -63,6 +61,7 @@ async function carregarLinhas() {
         dataFinal = dataFormatada2(dataFinal);
 
         var linha = document.createElement('tr');
+        linha.classList.add('teste');
         var colunaDisciplina = document.createElement('td');
         colunaDisciplina.append(turmasAtividades[index].disciplinaNome);
         colunaDisciplina.classList.add('alternado');
@@ -81,14 +80,17 @@ async function carregarLinhas() {
         colunaTitulo.classList.add('alternado');
         linha.append(colunaTitulo);
 
-        var colunaDonwload = document.createElement('td');
-        var btnDowload = document.createElement('button');
-        btnDowload.innerHTML = "Baixar Atividade";
-        colunaDonwload.append(btnDowload);
-        colunaDonwload.classList.add('Btn');
-        $('button').attr('id', 'btnDownload')
-        $('button').attr('type', 'button')
-        linha.append(colunaDonwload);
+        var colunaDownload = document.createElement('td');
+        var btnDownload = document.createElement('button');
+        btnDownload.innerHTML = "Baixar Atividade";
+        //btnDowload.setAttribute('type', 'button')
+        btnDownload.setAttribute('value', turmasAtividades[index].fk_arquivo);
+        btnDownload.setAttribute('id', 'btnDownload');
+        btnDownload.setAttribute('class', 'btn btn-primary download');
+        colunaDownload.append(btnDownload);
+        linha.append(colunaDownload);
+
+        
 
         var colunaSituacao = document.createElement('td');
         resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + turmasAtividades[index].idAtividade + "/" + aluno.idAluno);
@@ -106,15 +108,43 @@ async function carregarLinhas() {
         
         
     }
-    $( "tr" ).click(function() { 
-        var atividadeEscolhida = turmasAtividades[$(this).index()].idAtividade;
-        sessionStorage.setItem('idAtividadeEscolhida', atividadeEscolhida);
-        sessionStorage.setItem('idAluno', aluno.idAluno);
-        //window.open ("/frontend/paginas/aluno/aluno-resposta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
-    });  
+    var isPassou;
+    $( ".download" ).click(function() {
+        isPassou = true;
+        var fk_arquivo = this.value;
+    
+        //Faz o download da atividade
+        var xhr = new XMLHttpRequest(); 
+        xhr.open("GET", "http://localhost:8080/api/arquivo/"+fk_arquivo);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            var arquivoDown = JSON.parse(resposta);
+            var caminhoArquivo = arquivoDown.caminhoArquivo;
+
+            //Faz o download
+            downloadFile(caminhoArquivo);
+        })
+    xhr.send();    
+    });   
+    
+    $( "tbody tr" ).click(function()  { 
+        if (!isPassou) {
+            var atividadeEscolhida = turmasAtividades[$(this).index()].idAtividade;
+            sessionStorage.setItem('idAtividadeEscolhida', atividadeEscolhida);
+            sessionStorage.setItem('idAluno', aluno.idAluno);
+            window.open ("/frontend/paginas/aluno/aluno-resposta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2)
+            return atividadeEscolhida; 
+        } else {
+            isPassou = false;
+        }  
+    });    
 }
 
-//Método para baixar a atividade
-$('#btnDownload').click(function() {
-    console.log('Click')
-})
+function downloadFile(url){
+    var link=document.createElement('a');
+    link.href = url;
+    link.download = url.substr(url.lastIndexOf('/') + 1);
+    link.click();
+}
+
