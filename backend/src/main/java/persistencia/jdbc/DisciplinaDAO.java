@@ -228,4 +228,42 @@ public class DisciplinaDAO {
 		comandoSql.close();
 		return lista;
 	}
+
+	/**
+	 * Metodo para selecionar disciplina do professor na turma.
+	 * O <code>idUsuario</code> deve ser igual ao do usuario que deseja buscar as informaçoes
+	 * O <code>idTurma</code> deve ser igual ao a turma que deseja buscar as informaçoes
+	 * @param int idUsuario
+	 * @param int idTurma
+	 * @return Disciplina disciplina 
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public List<Disciplina> buscarTurmaProfessor(int idUsuario, int idTurma) throws SQLException {
+		List<Disciplina> lista = new ArrayList<Disciplina>();
+		String sql = "select * "
+		           + "  from disciplina, "
+			       + "       usuario_disciplina,"
+			       + "       usuario_disciplina_turma"
+		           + "  where disciplina.iddisciplina = usuario_disciplina.fk_disciplina"
+		           + "  and   usuario_disciplina.id_usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina"
+		           + "  and   usuario_disciplina.fk_usuario = ?"
+		           + "  and   usuario_disciplina_turma.fk_turma = ?";
+
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idUsuario);
+		comandoSql.setInt(2, idTurma);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Disciplina disciplina = new Disciplina();
+			disciplina.setIdDisciplina(resultSet.getInt(1));
+			disciplina.setNome(resultSet.getString(2));
+			disciplina.setFk_escola(resultSet.getInt(3));
+			
+			lista.add(disciplina);
+		}
+		comandoSql.close();
+		return lista;
+	}
 }

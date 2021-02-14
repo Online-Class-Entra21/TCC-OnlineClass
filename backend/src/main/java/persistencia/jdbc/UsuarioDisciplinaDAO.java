@@ -106,7 +106,7 @@ public class UsuarioDisciplinaDAO {
 	 */	
 	public List<UsuarioDisciplina> buscarTodos() throws SQLException {
 		List<UsuarioDisciplina> lista = new ArrayList<UsuarioDisciplina>();
-		String sql = "select * from Endereco";
+		String sql = "select * from usuario_Disciplina";
 		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		ResultSet resultSet = comandoSql.executeQuery();

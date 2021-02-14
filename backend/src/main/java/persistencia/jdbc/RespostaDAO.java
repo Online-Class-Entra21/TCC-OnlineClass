@@ -10,7 +10,6 @@ import java.util.List;
 
 import backend.api.controller.form.NotasForm;
 import backend.api.controller.form.RespostaForm;
-import backend.api.controller.form.TurmaAtividadeForm;
 import entidade.Resposta;
 
 /**
