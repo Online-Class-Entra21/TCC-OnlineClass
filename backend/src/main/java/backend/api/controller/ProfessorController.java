@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import backend.api.controller.form.ProfessorNotasForm;
+import backend.api.controller.form.RespostaForm;
 import entidade.Professor;
 import entidade.Usuario;
 import persistencia.jdbc.ProfessorDAO;
+import persistencia.jdbc.RespostaDAO;
 import persistencia.jdbc.UsuarioDAO;
 
 /**
@@ -118,6 +121,28 @@ public class ProfessorController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Professor Mal Sucedida - Diretor {} - erro - {}",json,e.toString());
 			return false;
+		}
+	}
+	
+	/**
+	 * Verifica se as notas do aluno (GET)
+	 * @return notas
+	 * @param int idAluno
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/aluno/notas/{idAluno}")
+	public List<ProfessorNotasForm> consultarProfessorNotas(@PathVariable("idAluno") int idAluno) {
+		LOGGER.info("Requisição Notas aluno Existentes");
+		List<ProfessorNotasForm> professorNotasForm;
+		ProfessorDAO professorDao = new ProfessorDAO();
+		try {
+			professorNotasForm = professorDao.buscarNotasAluno(idAluno);
+			LOGGER.info("Requisição Notas Aluno Existentes bem sucedida idAluno - {}",idAluno);
+			return professorNotasForm;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para verificar Notas Aluno Existentes idAluno - {} Mal Sucedida - erro - {}",idAluno,e.toString());
+			return null;
 		}
 	}
 }
