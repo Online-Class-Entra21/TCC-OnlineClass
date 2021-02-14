@@ -127,8 +127,8 @@ async function enviar() {
     }  
 }
 
+// Coloca o nome do arquivo na atividade 
 $("#selecao-arquivo").change(function (){
-    var fileName = $("")
-    
-    
+    var fileName = $(this).val().substring(12);
+    $("nome-arquivo").text(fileName); 
 })
