@@ -67,7 +67,6 @@ async function carregarLinhas() {
         dataFinal = dataFormatada2(dataFinal);
 
         var linha = document.createElement('tr');
-        linha.classList.add('teste');
         var colunaDisciplina = document.createElement('td');
         colunaDisciplina.append(turmasAtividades[index].disciplinaNome);
         colunaDisciplina.classList.add('alternado');

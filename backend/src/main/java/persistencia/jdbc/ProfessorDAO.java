@@ -9,6 +9,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.api.controller.form.ProfessorNotasForm;
+import backend.api.controller.form.TurmaAtividadeForm;
 import entidade.Professor;
 import entidade.Usuario;
 
@@ -142,4 +144,47 @@ public class ProfessorDAO {
 		comandoSql.close();
 		return idProfessor;
 	}
+	
+	/**
+	 * Metodo para selecionar as notas do aluno.
+	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja buscar
+	 * @param int idAluno
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public List<ProfessorNotasForm> buscarNotasAluno(int idAluno) throws SQLException {
+		List<ProfessorNotasForm> notas = new ArrayList<ProfessorNotasForm>();
+		String sql = "select turma.ano, resposta.dataentrega, atividade.titulo, resposta.nota "
+				+ "from "
+				+ "	turma, "
+				+ "    resposta, "
+				+ "    atividade, "
+				+ "    turma_atividade, "
+				+ "    aluno "
+				+ "where "
+				+ "	turma.idturma = turma_atividade.fk_turma "
+				+ "    and turma_atividade.fk_atividade = atividade.idatividade "
+				+ "    and resposta.fk_aluno = aluno.idaluno "
+				+ "    and resposta.fk_atividade = atividade.idatividade "
+				+ "    and aluno.idaluno = ?"
+				+ "order by atividade.finalatividade";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idAluno);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			ProfessorNotasForm professorNotasForm = new ProfessorNotasForm();
+			professorNotasForm.setAno(resultSet.getString(1));
+			professorNotasForm.setDataEntrega(resultSet.getTimestamp(2));
+			professorNotasForm.setTitulo(resultSet.getString(3));
+			professorNotasForm.setNota(resultSet.getDouble(4));
+			
+			notas.add(professorNotasForm);
+		
+		}
+		comandoSql.close();
+		return notas;
+	}
+	
 }
