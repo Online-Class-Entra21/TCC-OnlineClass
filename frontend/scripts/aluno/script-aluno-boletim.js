@@ -91,21 +91,28 @@ async function gerarBoletim() {
     for (let i = 0; i < disciplinasAluno.length; i++) {
         const disc = disciplinasAluno[i];
         var vetorExibicao = [];
+        var isPassou = false;
         
         //Verifica se o periodo foi definido 
         if(tipoPeriodo != 0){
 
             //Cria a linha da materia atual 
             var linhaMedia = document.createElement("tr");
+            
+            //Adiciona o nome da disciplina
+            var colunaMateria = document.createElement("td");
+            colunaMateria.textContent = disc.nome;
+            linhaMedia.append(colunaMateria);
 
             var mediasTemporarias = [];
             var quantidadeMedTemporarias = 0;
             //Percorre periodo por periodo para adicionar a coluna com as medias do periodo 
             for (let j = 0; j < periodosBuscados.length; j++) {
                 const per = periodosBuscados[j];
+                vetorExibicao = [];
 
-                var dataInicioPeriodo = new Date(per.dataInicioPeriodo);
-                var dataFinalPeriodo = new Date(per.dataFinalPeriodo);
+                var dataInicioPeriodo = new Date(per.dataInicial);
+                var dataFinalPeriodo = new Date(per.dataFinal);
                 
                 //Verifica se a nota é da mesma materia e periodo 
                 for (let x = 0; x < notas.length; x++) {
@@ -115,6 +122,7 @@ async function gerarBoletim() {
                     
                     if(not.materia == disc.nome && (dataNota > dataInicioPeriodo && dataNota < dataFinalPeriodo)){
                         vetorExibicao.push(not.nota);
+                        isPassou = true;
                     }
                 }
 
@@ -139,13 +147,9 @@ async function gerarBoletim() {
                     media = "-";
                 } 
 
-                //Adiciona a media na tabela de boletim
-                var colunaMateria = document.createElement("td");
-                colunaMateria.textContent = disc.nome;
                 var colunaMedia = document.createElement("td");
                 colunaMedia.textContent = media;
 
-                linhaMedia.append(colunaMateria);
                 linhaMedia.append(colunaMedia);
             }
 
@@ -157,10 +161,14 @@ async function gerarBoletim() {
                 somaMediaMateria = somaMediaMateria + med;
             }
 
-            //Adiciona a media da materia para contagem final depois 
-            var mediaParcial = somaMediaMateria/quantidadeMedTemporarias;
-            medias.push(mediaParcial);
-            quantidadeMed = quantidadeMed + 1;
+            if(isPassou){
+                //Adiciona a media da materia para contagem final depois 
+                var mediaParcial = somaMediaMateria/quantidadeMedTemporarias;
+                medias.push(mediaParcial);
+                quantidadeMed = quantidadeMed + 1;
+            }else{
+                var mediaParcial = '-' ;
+            }
             
             //Adiciona a linha da materia no boletim 
             var colunaMediaFinal = document.createElement("td")
@@ -199,6 +207,8 @@ async function gerarBoletim() {
                 media = "-";
             }
 
+            var listaResposta = document.getElementById("resultado-final");
+
             //Adiciona a media na tabela de boletim
             var linhaMedia = document.createElement("tr");
             var colunaMateria = document.createElement("td");
@@ -211,15 +221,15 @@ async function gerarBoletim() {
             linhaMedia.append(colunaMateria);
             linhaMedia.append(colunaMedia);
             linhaMedia.append(colunaMediaFinal);
-            lista.append(linhaMedia);
+            listaResposta.append(linhaMedia);
         }
     }
 
-    //Adiciona a media final e a situacao 
-    var linhaFinal = document.createElement("tr");
-    var colunaResultado = document.createElement("td");
-    var colunaAprovacao = document.createElement("td");
-    var colunaTotal = document.createElement("td");
+    //Adiciona a media final e a situacao
+    var listaFinal = document.getElementById("resultado-final"); 
+    var linhaFinal = document.getElementById("linha-final");
+    var colunaAprovacao = document.getElementById("situacao");
+    var colunaTotal = document.getElementById("media");
     
     //Verifica se o ano acabou 
     dataFinalLetivo = new Date (escola.dataFinalLetivo);
@@ -248,11 +258,9 @@ async function gerarBoletim() {
         mediaFinalTotal = "-";
     }
     colunaTotal.textContent = "Média Final: "+mediaFinalTotal;
-    colunaResultado.textContent = "Resultado: ";
-    linhaFinal.append(colunaResultado);
     linhaFinal.append(colunaAprovacao);
     linhaFinal.append(colunaTotal);
-    lista.append(linhaFinal)
+    listaFinal.append(linhaFinal);
 
     var meuBoletim = document.getElementById('idBoletim').innerHTML;
     var style = "<style>";
