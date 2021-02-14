@@ -73,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
   list-style: none;
   text-decoration: none;
-  color: #1100ff;
+  color:#1100ff;
 }
 .img-opcoes{
   width: 9%;
@@ -139,6 +139,7 @@ Config. do menu
   position: absolute;
   display: none;
   position: fixed;
+  z-index: 9999;
 }
 
 /*
@@ -225,13 +226,23 @@ Config. Dados do usuario
 }
 
 /*
+Config. da div do botão de excluir
+*/
+#ancoraExcluir {
+  color: white;
+}
+#ancoraExcluir:hover {
+  color: #e72525;
+  cursor: pointer;
+  transition: 1s;
+}
+
+/*
 Config. da div do botão de saida 
 */
 #sair{
   margin-top: 35%;
 }
-
-
 
 /**************************
 Config. das alteracoes especificas
@@ -259,32 +270,44 @@ fieldset {
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
-  margin-bottom: 8%;
+  margin-bottom: 8px;
   padding: 6px 20px;
 }
 
 #areaText {
-  margin-top: 5%;
+  margin-top: 70px;
 }
 
 #area {
   border: 2px solid black;
+  padding: 6px;
   border-radius: 3vh;
-  margin-top: 5%;
+  margin-top: 5px;
+  max-width: 70%;
 }
 
 #botao{
   border-radius: 2vh;
-  margin-top: 6%;
+  margin-top: 6px;
 }
 #botao:hover {
   background: white;
 }
 
 #field {
-  margin-top: 15%;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
   border: 2px solid black;
-  padding: 8%;
+  height: 100%;
+  padding: 6px;
   text-align: center;
 }
 
+#sec{
+  height: 100%;
+}
+
+#divv{
+  height: 100%;
+}

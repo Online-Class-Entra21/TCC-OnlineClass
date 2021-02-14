@@ -162,4 +162,49 @@ public class UsuarioDisciplinaTurmaDAO {
 		comandoSql.close();
 		return idusuarioDisciplina; 
 	}
+	
+	/**
+	 * Metodo para selecionar as disciplinas
+	 * que um professor idProfessor da na turma
+	 * idTurma especifica
+	 * 
+	 * @throws SQLException 
+	 * @param idTurma
+	 * @param idProfessor
+	 */
+	public List<UsuarioDisciplinaTurma> buscarUsuarioDisciplinaTurmaIdTurmaIdProfessor(int idTurma, int idProfessor) throws SQLException {
+		List<UsuarioDisciplinaTurma> lista = new ArrayList<UsuarioDisciplinaTurma>(); 
+		String sql = "SELECT\r\n"
+				+ "	usuario_disciplina_turma.*\r\n"
+				+ "from\r\n"
+				+ "	disciplina,\r\n"
+				+ "    turma,\r\n"
+				+ "    usuario_disciplina,\r\n"
+				+ "    usuario_disciplina_turma,\r\n"
+				+ "    usuario\r\n"
+				+ "where\r\n"
+				+ "		usuario.idusuario = usuario_disciplina.fk_usuario\r\n"
+				+ "    and	usuario_disciplina.fk_disciplina = disciplina.iddisciplina\r\n"
+				+ "    and	usuario_disciplina.id_usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina\r\n"
+				+ "    and	usuario_disciplina_turma.fk_turma = turma.idturma\r\n"
+				+ "    and turma.idturma = ?\r\n"
+				+ "    and usuario.idusuario = ?"; 
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idTurma);
+		comandoSql.setInt(2, idProfessor);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			UsuarioDisciplinaTurma usuarioDisciplinaTurma = new UsuarioDisciplinaTurma(); 
+			usuarioDisciplinaTurma.setIdUsuarioDisciplinaTurma(resultSet.getInt(1));
+			usuarioDisciplinaTurma.setFk_usuariorDisciplina(resultSet.getInt(2));
+			usuarioDisciplinaTurma.setFk_turma(resultSet.getInt(3));
+			
+			lista.add(usuarioDisciplinaTurma); 
+		}
+		comandoSql.close(); 
+		return lista;
+	}
+	
 }
