@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.api.controller.form.ProfessorNotasForm;
+import backend.api.controller.form.UsuarioDisciplinaForm;
 import entidade.UsuarioDisciplina;
 
 /**
@@ -106,7 +108,7 @@ public class UsuarioDisciplinaDAO {
 	 */	
 	public List<UsuarioDisciplina> buscarTodos() throws SQLException {
 		List<UsuarioDisciplina> lista = new ArrayList<UsuarioDisciplina>();
-		String sql = "select * from Endereco";
+		String sql = "select * from usuario_Disciplina";
 		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		ResultSet resultSet = comandoSql.executeQuery();
@@ -168,5 +170,43 @@ public class UsuarioDisciplinaDAO {
         int idusuarioDisciplina = rs.getInt(1);
 		comandoSql.close();
 		return idusuarioDisciplina; 
+	}
+	
+	/**
+	 * Metodo para selecionar as disciplinas do aluno.
+	 * O <code>idUsuario</code> deve ser igual ao do usuario que deseja buscar
+	 * @param int idAluno
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public List<UsuarioDisciplinaForm> buscarDisciplinasAluno(int idUsuario) throws SQLException {
+		List<UsuarioDisciplinaForm> disciplinas = new ArrayList<UsuarioDisciplinaForm>();
+		String sql = "select distinct disciplina.nome, disciplina.iddisciplina "
+				+ "from "
+				+ "	disciplina, "
+				+ "    usuario, "
+				+ "    aluno, "
+				+ "    usuario_disciplina "
+				+ "where "
+				+ "    usuario.idusuario = usuario_disciplina.fk_usuario "
+				+ "    and usuario_disciplina.fk_disciplina = disciplina.iddisciplina "
+				+ "    and usuario.idusuario = ? "
+				+ "";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idUsuario);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			UsuarioDisciplinaForm usuarioDisciplinaForm = new UsuarioDisciplinaForm();
+			usuarioDisciplinaForm.setNome(resultSet.getString(1));
+			usuarioDisciplinaForm.setIdDisciplina(resultSet.getInt(2));
+			
+			
+			disciplinas.add(usuarioDisciplinaForm);
+		
+		}
+		comandoSql.close();
+		return disciplinas;
 	}
 }

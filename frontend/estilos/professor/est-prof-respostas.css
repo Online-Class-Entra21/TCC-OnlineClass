@@ -247,7 +247,6 @@ Config. das alteracoes especificas
 /*
 Config. das atividades do usuarios
 */
-
 .materia {
     margin-left: 10%;
     margin-top: -15%;
@@ -275,6 +274,17 @@ Config. das atividades do usuarios
     float: right;
 }
 
+/*
+Config. da tabela 
+*/
+#dGridPessoas{
+    height: 65vh;
+    overflow-y: auto;
+}
+
+/*
+Config. do botao 
+*/
 .but{
     align-items: center;
     justify-content: center;
@@ -287,13 +297,11 @@ Config. das atividades do usuarios
     color: white;
     background-color: black;
 }
-
 .Principal{
     width: 50vh;
     float: right;
 
 }
-
 #btnEnviar{
     background: black;
     border-radius: 1vh;

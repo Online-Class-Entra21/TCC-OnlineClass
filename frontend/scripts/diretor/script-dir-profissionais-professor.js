@@ -1,6 +1,5 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
-
 var idEscola;
 
 $(".alert").hide();
@@ -9,7 +8,6 @@ $(".radioMenu").hide();
 if (idUsuario != 0 && idUsuario != null) {
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest();
-
 
     dadosUsuario();
     async function dadosUsuario() {
@@ -26,10 +24,6 @@ if (idUsuario != 0 && idUsuario != null) {
         img.style.borderRadius = "80%";
     }
     
-    
-
-
-
 } else {
     alert('Sessão expirada - Erro (0002)')
     window.location = "/frontend/index.html";
@@ -107,10 +101,6 @@ async function getTurmas() {
     }
 }
 
-
-
-
-
 function getSelTurmas() {
     var turmas = $('input[id^="turma"]:checked');
 
@@ -123,11 +113,6 @@ function getSelTurmas() {
 $('#testebtn').click(function(){
     getSelTurmas();
 })
-
-
-
-
-
 
 //Evento de abertura do menu 
 document.getElementById("mostrar").addEventListener("mouseover", function () {
@@ -147,11 +132,9 @@ document.getElementById("menu").addEventListener("mouseleave", function () {
     document.getElementById("menu").style.display = "none";
 })
 
-
 //---> Referencia checkbox inside select
 //---> https://stackoverflow.com/questions/17714705/how-to-use-checkbox-inside-select-option
 //-> Checkbox Inside Select code:
-
 
 function optionTurmas() {
     $('#turma').toggle();
@@ -210,9 +193,7 @@ $('#btnAvancar').click(async function(){
             alert('Senha Invalida.');
         }
     }
-
 });
-
 
 async function getMaterias(idTurma) {
     var disciplinas = await usarApi('GET','http://localhost:8080/api/disciplinas');
@@ -241,7 +222,6 @@ async function getMaterias(idTurma) {
         $("#"+idTSel).toggle();
     });
 }
-
 
 $('#btnCadastrar').click(async function() {
     //posta o endereco no banco de dados
@@ -298,6 +278,4 @@ $('#btnCadastrar').click(async function() {
     
         await usarApi('POST','http://localhost:8080/api/usuarioDisciplinaTurma/inserir/'+JSON.stringify(insertTurmaDisciplina))
     }
-    
-
 });

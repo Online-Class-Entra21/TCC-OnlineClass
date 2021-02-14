@@ -7,6 +7,7 @@ public class TurmaAtividadeForm {
 	private String tituloAtividade;
 	private int tipoAtividade;
 	private Timestamp finalAtividade;
+	private int fk_arquivo;
 	private int idDisciplina;
 	private String disciplinaNome;
 	
@@ -112,6 +113,20 @@ public class TurmaAtividadeForm {
 	 */
 	public void setTipoAtividade(int tipoAtividade) {
 		this.tipoAtividade = tipoAtividade;
+	}
+
+	/**
+	 * @return the fk_arquivo
+	 */
+	public int getFk_arquivo() {
+		return fk_arquivo;
+	}
+
+	/**
+	 * @param fk_arquivo the fk_arquivo to set
+	 */
+	public void setFk_arquivo(int fk_arquivo) {
+		this.fk_arquivo = fk_arquivo;
 	}
 	
 	

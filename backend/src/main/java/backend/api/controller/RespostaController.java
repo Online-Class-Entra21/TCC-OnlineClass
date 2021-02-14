@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 
 import backend.api.controller.form.NotasForm;
 import backend.api.controller.form.RespostaForm;
-import backend.api.controller.form.TurmaAtividadeForm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.Resposta;
-import persistencia.jdbc.AtividadeDAO;
 import persistencia.jdbc.RespostaDAO;
 
 /**
@@ -173,13 +171,13 @@ public class RespostaController {
 	 * @param int idAtividade
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/atividade/resposta/{idAtividade}")
-	public RespostaForm consultarTurmaAtividade(@PathVariable int idAtividade) {
+	@GetMapping(path = "/api/atividade/resposta/{idAtividade}/{idAluno}")
+	public RespostaForm consultarTurmaAtividade(@PathVariable("idAtividade") int idAtividade, @PathVariable("idAluno") int idAluno) {
 		LOGGER.info("Requisição Resposta Atividade Existente");
 		RespostaForm respostaForm;
 		RespostaDAO respostaDao = new RespostaDAO();
 		try {
-			respostaForm = respostaDao.verificarResposta(idAtividade);
+			respostaForm = respostaDao.verificarResposta(idAtividade, idAluno);
 			LOGGER.info("Requisição Resposta Atividade Existente bem sucedida idAtividade - {}",idAtividade);
 			return respostaForm;
 		} catch (SQLException e) {

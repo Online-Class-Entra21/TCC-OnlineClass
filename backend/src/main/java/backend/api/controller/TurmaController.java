@@ -143,6 +143,10 @@ public class TurmaController {
 		}
 	}
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais
+	//------------------------------------------------------------------
+		
 	/**
 	 * Retorna a lista das turmas registrados no sistema pelo id da escola {GET}
 	 * @return lista de turmas registradas no banco pelo id da escola
@@ -163,11 +167,7 @@ public class TurmaController {
 			return null;
 		}
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais
-	//------------------------------------------------------------------
-	
+
 	/**
 	 * Retorna a lista das turmas registrados no sistema onde ocorre aquela disciplina {GET}
 	 * @return lista de turmas registradas no banco onde ocorre aquela disciplina
@@ -191,23 +191,23 @@ public class TurmaController {
 	}
 
 	/**
-	 * Retorna a lista das turmas registrados no sistema onde o professor da aula {GET}
-	 * @return lista de turmas registradas no banco onde o professor da aula 
+	 * Retorna a lista das turmas registrados no sistema onde ocorre aquela onde o professor da aula {GET}
+	 * @return lista de turmas registradas no banco onde ocorre onde o professor da aula 
 	 * @author Breno
 	 * @param int codigo 
 	 */
 	@GetMapping(path = "/api/turmas/professor/{codigo}")
-	public List<Turma> consultarTurmaIdUsuario(@PathVariable("codigo") int codigo){
-		LOGGER.info("Requisição List<Turma> onde o professor dá aula");
+	public List<Turma> consultarTurmasProfessor(@PathVariable("codigo") int codigo){
+		LOGGER.info("Requisição List<Turma> pela disciplina");
 		List<Turma> lista;
 		TurmaDAO turmaDao = new TurmaDAO();
 		try {
 			lista = turmaDao.buscarTurmaIdUsuario(codigo);
-			LOGGER.info("Requisição List<Turma> onde o professor dá aula bem sucedida");
+			LOGGER.info("Requisição List<Turma> onde o professor da aula o  bem sucedida");
 			return lista;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			LOGGER.error("Requisição para Consultar todos Turmas onde o professor dá aula Mal Sucedida - erro - {}",e.toString());
+			LOGGER.error("Requisição para Consultar todas as Turma nde o professor da aula Mal Sucedida - erro - {}",e.toString());
 			return null;
 		}
 	}

@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import backend.api.controller.form.ProfessorNotasForm;
+import backend.api.controller.form.UsuarioDisciplinaForm;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.UsuarioDisciplina;
+import persistencia.jdbc.ProfessorDAO;
 import persistencia.jdbc.UsuarioDisciplinaDAO;
 
 /**
@@ -168,6 +172,28 @@ public class UsuarioDisciplinaController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir UsuarioDisciplina Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
 			return 0;
+		}
+	}
+	
+	/**
+	 * Verifica as disciplinas do aluno (GET)
+	 * @return disciplinas
+	 * @param int idAluno
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/usuario/disciplinas/{idUsuario}")
+	public List<UsuarioDisciplinaForm> consultarAlunosDisciplinas(@PathVariable("idUsuario") int idUsuario) {
+		LOGGER.info("Requisição Disciplinas usuario Existentes");
+		List<UsuarioDisciplinaForm> usuarioDisciplinaForm;
+		UsuarioDisciplinaDAO usuarioDisciplinaDao = new UsuarioDisciplinaDAO();
+		try {
+			usuarioDisciplinaForm = usuarioDisciplinaDao.buscarDisciplinasAluno(idUsuario);
+			LOGGER.info("Requisição Disciplinas Usuario Existentes bem sucedida idAluno - {}",idUsuario);
+			return usuarioDisciplinaForm;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para verificar Disciplinas Usuario Existentes idUsuario - {} Mal Sucedida - erro - {}",idUsuario,e.toString());
+			return null;
 		}
 	}
 }
