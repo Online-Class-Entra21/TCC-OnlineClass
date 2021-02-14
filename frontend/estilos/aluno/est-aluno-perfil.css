@@ -252,15 +252,8 @@ Config. das alteracoes especificas
 Config. das sections
 */
 #corpo {
-<<<<<<< Updated upstream
     width: 100%;
     height: 100vh;
-=======
-    width: 94%;
-    height: 105%;
-    margin: 3%;
-    margin-bottom:3%;
->>>>>>> Stashed changes
     display: flex;
     float: left;
     justify-content: center;
