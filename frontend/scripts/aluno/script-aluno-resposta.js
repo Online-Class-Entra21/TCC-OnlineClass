@@ -61,6 +61,7 @@ async function carregarTitulo() {
     var resposta = await usarApi("GET", "http://localhost:8080/api/atividade/" + idAtividade);
     var atividade = JSON.parse(resposta);
     document.getElementById('inputTitulo').innerHTML = atividade.titulo;
+    document.getElementById('texto-desc').innerHTML = atividade.descricao;
 
     //Verifica se ja foi enviado uma resposta
     resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + idAtividade + "/" + idAluno);

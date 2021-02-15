@@ -279,7 +279,7 @@ Config. da area de texto
   padding: 6px 20px;
 }
 #areaText {
-  margin-top: 70px;
+  margin-top: 5%;
 }
 #area {
   border: 2px solid white;
@@ -312,6 +312,7 @@ Config. da area
   border: 2px solid white;
   height: 100%;
   padding: 6px;
+  overflow: auto;
   text-align: center;
 }
 #sec{
@@ -319,4 +320,23 @@ Config. da area
 }
 #divv{
   height: 100%;
+}
+
+/*
+Config. da descricao
+*/
+#descricao{
+  min-height: 15%;
+}
+#texto-desc{
+  text-align: justify;
+  font-weight: justify;
+  margin: 2%;
+}
+
+/*
+Config. do titulo 
+*/
+#inputTitulo{
+  margin: 2%;
 }
