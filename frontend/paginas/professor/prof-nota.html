@@ -94,29 +94,35 @@
                 <table>
                     <tbody>
                         <td>
-                            <select name="nmSelect" id="SelectDisciplina">
+                            <select name="nmSelectT" id="SelectTurma">
+                                <option value="defaultTurma">Escolha a Turma</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="nmSelectA" id="SelectAlunos" disabled>
+                                <option value="defaultAluno">Escolha o Aluno</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="nmSelect" id="SelectDisciplina" disabled>
                                 <option value="defaultDisciplina">Escolha a Disciplina</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="nmSelectT" id="SelectTurma" disabled>
-                                <option value="defaultDisciplina">Escolha a Turma</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="nmSelectA" id="SelectDisciplina" disabled>
-                                <option value="defaultDisciplina">Escolha o Aluno</option>
                             </select>
                         </td>
                     </tbody>
                 </table>
-                <table id="tabelaAlunos">
-                    <tr>
-                        <th>Turma</th>
-                        <th>Data</th>
-                        <th>Atividade</th>
-                        <th>Nota</th>
-                    </tr>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Turma</th>
+                            <th>Data</th>
+                            <th>Atividade</th>
+                            <th>Nota</th>
+                            <th>Disciplina</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaAlunos">
+
+                    </tbody>
                 </table>
             </section>
             </div>

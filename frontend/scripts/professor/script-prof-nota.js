@@ -28,16 +28,71 @@ if(idUsuario != 0 && idUsuario != null){
     // window.location = "/frontend/index.html";
 }
 
-carregarSelect();
+carregarSelectTurmas();
 
+var selectDisciplina = document.getElementById('SelectDisciplina');
+var selectTurma = document.getElementById('SelectTurma');
+var selectAluno = document.getElementById('SelectAlunos');
+
+$( "#SelectTurma" ).change(function() {
+    var turmaEscolhida = $('#SelectTurma :selected').val();
+    if (turmaEscolhida == 'defaultTurma') {
+        $("#SelectDisciplina").val("defaultDisciplina");
+        $("#SelectAlunos").val("defaultAluno");
+        selectDisciplina.disabled = true;
+        selectAluno.disabled = true;
+        $("#tabelaAlunos").empty();
+    } else {
+        $("#SelectAlunos").empty();
+        var opt = document.createElement("option");
+        opt.value = "defaultAluno";
+        opt.textContent = "Selecione um aluno"
+        document.getElementById("SelectAlunos").append(opt)
+        carregarSelectAlunos(turmaEscolhida)
+        selectAluno.disabled = false;
+
+        $("#SelectDisciplina").empty();
+        var opt = document.createElement("option");
+        opt.value = "defaultDisciplina";
+        opt.textContent = "Selecione uma disciplina"
+        document.getElementById("SelectDisciplina").append(opt)
+        carregarSelectDisciplinas(turmaEscolhida)
+    }
+});
+
+$("#SelectAlunos").change(function() {
+    var alunoEscolhido = $('#SelectAlunos :selected').val();
+    if (alunoEscolhido == 'defaultAluno') {
+        $("#SelectDisciplina").val("defaultDisciplina");
+        selectDisciplina.disabled = true;
+    } else {
+        selectDisciplina.disabled = false;
+
+        //Chama a resposta
+        $("#tabelaAlunos").empty();
+        carregarTabela(alunoEscolhido);
+
+    }
+})
 
 //Método para carregar os selects
-async function carregarSelect() {
-    var selectDisciplina = document.getElementById('SelectDisciplina');
-    var selectTurma = document.getElementById('SelectTurma');
-    var selectAluno = document.getElementById('SelectAluno');
+async function carregarSelectTurmas() {
+    //Carrega o Select das Turmas
+    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/usuario/" + idUsuario);
+    var turmas = JSON.parse(resposta);
+    for (let index = 0; index < turmas.length; index++) {
+       var option = document.createElement('option');
+       option.textContent = turmas[index].ano;
+       option.value = turmas[index].idTurma;
+
+       selectTurma.appendChild(option);    
+    }
+}
+
+async function carregarSelectDisciplinas(idTurma) {
+    
     //Carrega o Select das Disciplinas
-    var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/disciplinas/" + idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/api/disciplinas/turma/" + idTurma);
     var disciplinas = JSON.parse(resposta);
     for (let index = 0; index < disciplinas.length; index++) {
        var option = document.createElement('option');
@@ -46,19 +101,33 @@ async function carregarSelect() {
 
        selectDisciplina.appendChild(option);    
     }
-    
-    //Carrega o Select das Turmas
+}
 
+async function carregarSelectAlunos(idTurma) {
+   //Carrega o Select dos alunos da turmas
+   resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + idTurma);
+   var alunos = JSON.parse(resposta);
+   for (let index = 0; index < alunos.length; index++) {
+        resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + alunos[index].fk_usuario);
+        var usuario = JSON.parse(resposta);
+        var option = document.createElement('option');
+        option.textContent = usuario.nome;
+        option.value = alunos[index].idAluno;
 
+        selectAluno.appendChild(option);    
+   }
 }
 
 //Método para carregar a tabela pelo aluno informado
-async function carregarTabela() {
-    var idAluno = 22;
+async function carregarTabela(idAluno) {
     var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/notas/" + idAluno);
     var notasAluno = JSON.parse(resposta);
 
     for (let index = 0; index < notasAluno.length; index++) {
+
+        var dataEntrega = new Date(notasAluno[index].dataEntrega);
+        dataEntrega = dataFormatada2(dataEntrega);
+
 
         var linha = document.createElement('tr');
         var colunaAno = document.createElement('td');
@@ -67,7 +136,7 @@ async function carregarTabela() {
         linha.append(colunaAno);
 
         var colunaData = document.createElement('td');
-        colunaData.append(notasAluno[index].dataEntrefa);
+        colunaData.append(dataEntrega.slice(0,10));
         colunaData.classList.add('tdTabela');
         linha.append(colunaData)
 
@@ -79,6 +148,11 @@ async function carregarTabela() {
         var colunaNota = document.createElement('td');
         colunaNota.append(notasAluno[index].nota);
         colunaNota.classList.add('tdTabela');
+        linha.append(colunaNota);
+
+        var colunaDisciplina = document.createElement('td');
+        colunaDisciplina.append(notasAluno[index].nota);
+        colunaDisciplina.classList.add('tdTabela');
         linha.append(colunaNota);
 
         document.getElementById('tabelaAlunos').appendChild(linha);

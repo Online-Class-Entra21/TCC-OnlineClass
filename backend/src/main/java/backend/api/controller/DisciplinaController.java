@@ -240,4 +240,27 @@ public class DisciplinaController {
 			return null;
 		}
 	}
+	
+	/**
+	 * Retorna a lista de disciplinas registrados no sistema na turma especifica {GET}
+	 * @return lista de disciplinas registrados no banco na turma especifica
+	 * @param int idTurma 
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/disciplinas/turma/{idTurma}")
+	public List<Disciplina> consultarTurma(@PathVariable int idTurma) {
+		LOGGER.info("Requisição List<Disciplina>");
+		List<Disciplina> lista;
+		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
+		try {
+			lista = disciplinaDao.buscarTodosTurma(idTurma);
+			LOGGER.info("Requisição List<Disciplina> bem sucedida idTurma - {}",idTurma);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Disciplina idTurma - {} Mal Sucedida - erro - {}",idTurma,e.toString());
+			return null;
+		}
+	}
+	
 }
