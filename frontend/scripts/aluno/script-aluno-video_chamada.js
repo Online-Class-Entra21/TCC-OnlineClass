@@ -4,10 +4,6 @@ var listaalunos;
 getListaParticipante();
 entraChamada();
 
-setTimeout(function(){
-    usuarioOnline();
-},3000);
-
 var usuario;
 var sala;
 var api;
@@ -38,32 +34,33 @@ async function entraChamada() {
     api.addListener("emailChange",function(){
         api.executeCommand("email","usuario.email")
     });
-    api.addListener("participantJoined",function(){
-        usuarioOnline();
-    });
 }
 
 
 
 
 
-function usuarioOnline() {
+const interval = setInterval(() => {
     var participantes = api.getParticipantsInfo();
+    var partOnline = [];
+    var partTodos = [];
     participantes.forEach(element => {
-        console.log(listaalunos);
-        listaalunos.forEach(element2 => {
-            if (element.displayName==element2.nomecompleto) {
-                console.log("on");
-                document.getElementById(element2.nomecompleto).className = 'online';
-            }else{
-                console.log("off");
-            }
-            
-        });
-        
+        partOnline.push(element.displayName);
     });
-}
-
+    listaalunos.forEach(element => {
+        partTodos.push(element.nomecompleto);
+    });
+    for (var i = 0; i < partTodos.length; i++){
+        const part = partTodos[i];
+        var indexPart = partOnline.indexOf(part);
+        if (indexPart !== -1){
+            document.getElementById(part).className = 'online';
+        }else{
+            document.getElementById(part).className = 'offline';
+        }
+    }
+}, 1000);
+ 
 async function getListaParticipante() {
     var aluno = JSON.parse(await usarApi("GET","http://localhost:8080/api/aluno/usuario/"+idUsuario))
     var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/participantes/"+aluno.fk_turma));

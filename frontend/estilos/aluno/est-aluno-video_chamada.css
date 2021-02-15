@@ -274,6 +274,9 @@ ul{
 li::marker {
     color: red
 }
+li.offline::marker {
+    color: red
+}
 li.online::marker{
     color: green
 }
