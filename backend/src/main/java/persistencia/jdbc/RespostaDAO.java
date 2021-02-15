@@ -243,7 +243,7 @@ public class RespostaDAO {
 	public List<RespostaVisualizacaoForm> consultarRespostasTurma(int idTurma, int idDisciplina) throws SQLException {
 		List<RespostaVisualizacaoForm> lista =  new ArrayList<RespostaVisualizacaoForm>();
 		String sql = "select resposta.idResposta,\r\n"
-				+ "	   atividade.descricao,\r\n"
+				+ "	   atividade.titulo,\r\n"
 				+ "	   atividade.tipoatividade,\r\n"
 				+ "	   resposta.fk_aluno,\r\n"
 				+ "	   resposta.dataEntrega,\r\n"
@@ -268,7 +268,7 @@ public class RespostaDAO {
 		while (resultSet.next()) {
 			RespostaVisualizacaoForm respostaVisualizacaoForm = new RespostaVisualizacaoForm();
 			respostaVisualizacaoForm.setIdResposta(resultSet.getInt(1));
-			respostaVisualizacaoForm.setDescricao(resultSet.getString(2));
+			respostaVisualizacaoForm.setTitulo(resultSet.getString(2));
 			respostaVisualizacaoForm.setTipoAvaliacao(resultSet.getInt(3));
 			respostaVisualizacaoForm.setFk_aluno(resultSet.getInt(4));
 			respostaVisualizacaoForm.setDataEntrega(resultSet.getTimestamp(5));

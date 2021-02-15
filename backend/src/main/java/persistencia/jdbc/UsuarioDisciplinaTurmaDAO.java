@@ -10,7 +10,6 @@ import java.util.List;
 
 import backend.api.controller.form.UsuarioDisciplinaForm;
 import backend.api.controller.form.UsuarioDisciplinaTurmaForm;
-import entidade.Turma;
 import entidade.UsuarioDisciplinaTurma;
 
 /**

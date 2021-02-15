@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class RespostaVisualizacaoForm {
 	
 	private int idResposta;
-	private String descricao;
+	private String titulo;
 	private int tipoAvaliacao;
 	private int fk_aluno; 
 	private Timestamp dataEntrega;
@@ -18,18 +18,20 @@ public class RespostaVisualizacaoForm {
 	
 	/**
 	 * Metodo construtor da classe resposta 
-	 * @param descricao
+	 * @param idResposta
+	 * @param titulo
 	 * @param tipoAvaliacao
 	 * @param fk_aluno
 	 * @param dataEntrega
 	 * @param fk_arquivo
 	 * @param nota
+	 * @param comentario
 	 */
-	public RespostaVisualizacaoForm(int idResposta, String descricao, int tipoAvaliacao, int fk_aluno, Timestamp dataEntrega,
+	public RespostaVisualizacaoForm(int idResposta, String titulo, int tipoAvaliacao, int fk_aluno, Timestamp dataEntrega,
 			int fk_arquivo, double nota, String comentario) {
 		
 		setIdResposta(idResposta);
-		setDescricao(descricao);
+		setTitulo(titulo);
 		setTipoAvaliacao(tipoAvaliacao);
 		setFk_aluno(fk_aluno);
 		setDataEntrega(dataEntrega);
@@ -55,19 +57,19 @@ public class RespostaVisualizacaoForm {
 	}
 
 	/**
-	 * Meotodo para retorno da descricao 
-	 * @return String descricao 
+	 * Meotodo para retorno da titulo 
+	 * @return String titulo 
 	 */
-	public String getDescricao() {
-		return descricao;
+	public String getTitulo() {
+		return titulo;
 	}
 	
 	/**
-	 * Metodo para insercao da descricao 
-	 * @param String descricao
+	 * Metodo para insercao da titulo 
+	 * @param String titulo
 	 */
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	
 	/**

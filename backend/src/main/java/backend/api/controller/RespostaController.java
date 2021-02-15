@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import backend.api.controller.form.NotasForm;
 import backend.api.controller.form.RespostaForm;
@@ -111,9 +110,7 @@ public class RespostaController {
 	@PutMapping(path = "/api/resposta/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		LOGGER.info("Requisição Atualizar Resposta - {}",json);
-	    GsonBuilder gsonBuilder = new GsonBuilder();
-	    gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
-		Gson gson = gsonBuilder.create();
+	    Gson gson = new Gson();
 		Resposta resposta = gson.fromJson(json, Resposta.class);
 		RespostaDAO respostaDAO = new RespostaDAO();
 		try {
