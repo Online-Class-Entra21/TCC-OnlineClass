@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Aluno;
-import entidade.Turma;
 
 /**
  * Metodo para consulta do aluno no banco de dados 
