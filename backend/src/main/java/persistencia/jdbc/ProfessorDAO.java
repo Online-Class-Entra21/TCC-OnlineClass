@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import backend.api.controller.form.ProfessorNotasForm;
-import backend.api.controller.form.TurmaAtividadeForm;
 import entidade.Professor;
 import entidade.Usuario;
 

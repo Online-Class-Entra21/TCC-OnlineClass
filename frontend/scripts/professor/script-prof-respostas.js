@@ -112,7 +112,7 @@ async function buscarRespostas(turmaEscolhida, disciplinaEscolhida){
 
         var colunaAtividade = document.createElement("td");
         colunaAtividade.scope = "col";
-        colunaAtividade.textContent = element.descricao;
+        colunaAtividade.textContent = element.titulo;
 
         var colunaTipo = document.createElement("td");
         colunaTipo.scope = "col";
@@ -150,7 +150,7 @@ async function buscarRespostas(turmaEscolhida, disciplinaEscolhida){
         var buttonDownload = document.createElement("button");
         buttonDownload.classList.add("btn");
         buttonDownload.className += "  btn-primary anexo";
-        buttonDownload.value = element.fk_arquivo;
+        buttonDownload.value = i;
         buttonDownload.textContent = "Visualizar";
 
         colunaBotao.append(buttonDownload);
@@ -198,26 +198,16 @@ async function buscarRespostas(turmaEscolhida, disciplinaEscolhida){
         lista.append(linha);
 
     }
+    //Abre a visualizacao do arquivo e observao da resposta 
     $( ".anexo" ).click(function() {
-        var fk_arquivo = this.value;
-    
-        //Faz o download da atividade
-        var xhr2 = new XMLHttpRequest(); 
-        xhr2.open("GET", "http://localhost:8080/api/arquivo/"+fk_arquivo);
-
-        xhr2.addEventListener("load", function(){
-            var resposta6 = xhr2.responseText; 
-            var arquivoDown = JSON.parse(resposta6);
-            var caminhoArquivo = arquivoDown.caminhoArquivo;
-
-            //Visualizar descricao 
-
-            //Faz o download
-            downloadFile(caminhoArquivo);
-        })
-        xhr2.send();    
+        var index = this.value;
+        sessionStorage.setItem("idArquivo",respostas[index].fk_arquivo);
+        sessionStorage.setItem("idResposta",respostas[index].idResposta);
+        sessionStorage.setItem("idAluno",usuario.idUsuario);
+        novaJanela = window.open ("/frontend/paginas/professor/prof-resposta-aberta.html", "popup", "width="+screen.width/3+", height="+screen.height/1.5+", left="+(screen.width-(screen.width/3))/2+", top="+(screen.height-(screen.height/1.5))/2);   
     });  
 
+    //Salva a alteração da nota 
     $( ".salvar" ).click(async function() {
         var idResposta = this.value;
         var nota = $('#input-'+idResposta).val();
@@ -227,18 +217,14 @@ async function buscarRespostas(turmaEscolhida, disciplinaEscolhida){
 
         xhr2.addEventListener("load", function(){
             var resposta6 = xhr2.responseText;
-            console.log(resposta6);
+            var status = JSON.parse(resposta6);
 
+            if(status){
+                alert("Nota salva com sucesso");
+            }else{
+                alert("Erro ao salvar nota!");
+            }
         })
         xhr2.send();    
     });   
-}
-
-//Visualiza a resposta do usuario
-async function visualizarAnexo(idArquivo){
-    //Busca o arquivo da resposta - caminho  
-    var resposta = await usarApi('GET','http://localhost:8080/api/arquivo/'+idArquivo);
-    arquivo = JSON.parse(resposta);
-
-    console.log(arquivo)
 }
