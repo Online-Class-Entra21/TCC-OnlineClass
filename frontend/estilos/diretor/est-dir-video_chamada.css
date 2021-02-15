@@ -73,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color: #ffc400;
+    color:yellow;
 }
 .img-opcoes{
     width: 9%;
@@ -101,7 +101,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:#4b005e;
+    background-color:rgb(87, 16, 16);
 }
 
 /*
@@ -133,12 +133,13 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: #4b005e;
+    background-color: rgb(87, 16, 16);
     border-right: 1px solid;
     border-color: white;
     position: absolute;
     display: none;
     position: fixed;
+    z-index: 9999;
 }
 
 /*
@@ -225,10 +226,15 @@ Config. Dados do usuario
 }
 
 /*
-Config. da div do botão de saida 
+Config. da div do botão de excluir
 */
-#sair{
-    margin-top: 35%;
+#ancoraExcluir {
+    color: white;
+}
+#ancoraExcluir:hover {
+    color: #e72525;
+    cursor: pointer;
+    transition: 1s;
 }
 
 /**************************
