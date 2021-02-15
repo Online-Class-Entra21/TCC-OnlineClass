@@ -35,6 +35,7 @@ var selectTurma = document.getElementById('SelectTurma');
 var selectAluno = document.getElementById('SelectAlunos');
 
 $( "#SelectTurma" ).change(function() {
+    $("#tabelaAlunos").empty();
     var turmaEscolhida = $('#SelectTurma :selected').val();
     if (turmaEscolhida == 'defaultTurma') {
         $("#SelectDisciplina").val("defaultDisciplina");
