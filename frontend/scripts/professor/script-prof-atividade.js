@@ -1,3 +1,33 @@
+// Pegando id do usuário que logou 
+var idUsuario = sessionStorage.getItem("idUsuario");
+
+//Verifica se o idUsuario é válido 
+if(idUsuario != 0 && idUsuario != null){
+    //Busca dos dados do usuário
+    var xhr = new XMLHttpRequest(); 
+
+        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            var dadosUsuario = JSON.parse(resposta);
+            //Adiciona o nome 
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
+            //Adiciona a foto de perfil do usuario
+            var img = document.querySelector("#idFotoPerfil");
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
+        })
+
+    xhr.send();
+    
+}else{
+    // alert('Sessão expirada - Erro (0002)')
+    // window.location = "/frontend/index.html";
+}
+
 var idProfessor = sessionStorage.getItem('idUsuario');
 $('#idDisci').prop('disabled',true);
 pegarTurmas();
@@ -69,57 +99,57 @@ $('#btnEnviar').click(async function (){
         $('<input type="submit">').hide().appendTo(form).click().remove();
     }else{
         if ($('#idTipo')!=0) {
-            
-            if ($('#idDisci').val()!='0') {
+            if(arquivo!=undefined){
+                if ($('#idDisci').val()!='0') {
+                    
                 
-            
-                var descricao = $('textarea').val();
-                var incioatividae = new Date().toISOString().replace('T',' ').replace('Z',' ');
-                var tipoatividade = $('#idTipo').val();
-                var finalatividae = new Date($('#idDateTime').val()).toISOString().replace('T',' ').replace('Z',' ');
-                var titulo = $('#idTitle').val();
-                
-                var json = JSON.stringify({fk_usuario:idProfessor,fk_disciplina:$('#idDisci').val()});
-                var fk_usuario_disciplina = await usarApi('POST','http://localhost:8080/api/usuarioDisciplina/inserirAlterar/'+json);
-                var fk_arquivo
-                alert('00');
-                if(arquivo!=undefined){
+                    var descricao = $('textarea').val();
+                    var incioatividae = new Date().toISOString().replace('T',' ').replace('Z',' ');
+                    var tipoatividade = $('#idTipo').val();
+                    var finalatividae = new Date($('#idDateTime').val()).toISOString().replace('T',' ').replace('Z',' ');
+                    var titulo = $('#idTitle').val();
+                    
+                    var json = JSON.stringify({fk_usuario:idProfessor,fk_disciplina:$('#idDisci').val()});
+                    var fk_usuario_disciplina = await usarApi('POST','http://localhost:8080/api/usuarioDisciplina/inserirAlterar/'+json);
+                    var fk_arquivo
+                    
                     fk_arquivo = await enviarArquivo(arquivo,'http://localhost:8080/api/upload/file/return/'+idProfessor);
+                    
+                    
+                    console.log("descricao : "+descricao);
+                    console.log("inicioatividade : "+incioatividae);
+                    console.log("finalatividae : "+finalatividae);
+                    console.log("tipoatividade : "+tipoatividade);
+                    console.log("fk_usuario_disciplina : "+fk_usuario_disciplina);
+                    console.log("titulo : "+titulo);
+                    console.log("fk_arquivo : "+fk_arquivo);
+                    var json = JSON.stringify({
+                        descricao       : descricao,
+                        inicioAtividade : '2021-02-14 22:04:03',
+                        finalAtividade  : finalatividae,
+                        tipoAtividade   : tipoatividade,
+                        fk_usuarioDisciplina : fk_usuario_disciplina,
+                        titulo          : titulo,
+                        fk_arquivo      : fk_arquivo
+                    });
+                    console.log(json)
+                    var idAtividade = await usarApi('POST','http://localhost:8080/api/atividade/inserir/return/'+json);
+                    var jsonTurmaAtividade = JSON.stringify({
+                        fk_turma:$('#idTurma').val(),
+                        fk_atividade:idAtividade
+                    });
+                    console.log(jsonTurmaAtividade)
+                    
+                    await usarApi('POST','http://localhost:8080/api/turmaAtividade/inserir/'+jsonTurmaAtividade);
+                    alert('secesso enviado')
                 }else{
-                    fk_arquivo = null;
+                    alert('Insira 1 Materia')
                 }
-                alert('01');
-                console.log("descricao : "+descricao);
-                console.log("inicioatividade : "+incioatividae);
-                console.log("finalatividae : "+finalatividae);
-                console.log("tipoatividade : "+tipoatividade);
-                console.log("fk_usuario_disciplina : "+fk_usuario_disciplina);
-                console.log("titulo : "+titulo);
-                console.log("fk_arquivo : "+fk_arquivo);
-                var json = JSON.stringify({
-                    descricao       : descricao,
-                    inicioAtividade : '2021-02-14 22:04:03',
-                    finalAtividade  : finalatividae,
-                    tipoAtividade   : tipoatividade,
-                    fk_usuarioDisciplina : fk_usuario_disciplina,
-                    titulo          : titulo,
-                    fk_arquivo      : fk_arquivo
-                });
-                console.log(json)
-                var idAtividade = await usarApi('POST','http://localhost:8080/api/atividade/inserir/return/'+json);
-                var jsonTurmaAtividade = JSON.stringify({
-                    fk_turma:$('#idTurma').val(),
-                    fk_atividade:idAtividade
-                });
-                console.log(jsonTurmaAtividade)
-                alert('02');
-                await usarApi('POST','http://localhost:8080/api/turmaAtividade/inserir/'+jsonTurmaAtividade);
-                alert('03');
             }else{
-                alert('informe uma Materia');
+                alert('Insira 1 arquivo')
             }
         }else{
-            alert('informe um tipo da atividade');
+            alert('Insira 1 tipo')
         }
         
     }
@@ -133,7 +163,7 @@ async function enviarArquivo(file,url){
         if(size < 1048576) { //1MB
         
         } else {           
-          alert('Arquivo não enviado maior que 1 MB'); //Acima do limite
+          alert('Arquivo muito grande envie outro com menos de 1 mega')
           return;
         }
         

@@ -4,9 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import backend.api.controller.form.NotasForm;
 import backend.api.controller.form.RespostaForm;
+import backend.api.controller.form.RespostaVisualizacaoForm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,7 +111,9 @@ public class RespostaController {
 	@PutMapping(path = "/api/resposta/alterar/{codigo}/{json}")
 	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
 		LOGGER.info("Requisição Atualizar Resposta - {}",json);
-		Gson gson = new Gson();
+	    GsonBuilder gsonBuilder = new GsonBuilder();
+	    gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
+		Gson gson = gsonBuilder.create();
 		Resposta resposta = gson.fromJson(json, Resposta.class);
 		RespostaDAO respostaDAO = new RespostaDAO();
 		try {
@@ -187,5 +191,48 @@ public class RespostaController {
 		}
 	}
 
+	/**
+	 * Retorna uma lista de respostas de uma turma em uma disciplina (GET)
+	 * @return List<RespostaVisualizacaoForm> lista
+	 * @param int idTurma
+	 * @param int idDisciplina 
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/atividade/resposta/turma/{idTurma}/{idDisciplina}")
+	public List<RespostaVisualizacaoForm> consultarRespostasTurma(@PathVariable("idTurma") int idTurma, @PathVariable("idDisciplina") int idDisciplina) {
+		LOGGER.info("Requisição List<RespostaVisualizacaoForm> iniciada");
+		List<RespostaVisualizacaoForm> lista;
+		RespostaDAO respostaDao = new RespostaDAO();
+		try {
+			lista = respostaDao.consultarRespostasTurma(idTurma, idDisciplina);
+			LOGGER.info("Requisição List<RespostaVisualizacaoForm> sucedida idTurma - {} - idDisciplina - {}",idTurma, idDisciplina);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição List<RespostaVisualizacaoForm> Mal Sucedida idTurma - {} - idDisciplina - {} - erro - {}",idTurma, idDisciplina,e.toString());
+			return null;
+		}
+	}
 	
+	/**
+	 * Metodo para alteração da nota da resposta que corresponde ao codigo informado {PUT}
+	 * @param int codigo
+	 * @param double nota
+	 * @author Andre
+	 * @return boolean situacao da operacao
+	 */
+	@PutMapping(path = "/api/resposta/alterar/nota/{codigo}/{nota}")
+	public boolean alterarNota(@PathVariable("codigo") int codigo, @PathVariable("nota") double nota) {
+		LOGGER.info("Requisição Atualizar Nota da Resposta - {}",codigo);
+		RespostaDAO respostaDAO = new RespostaDAO();
+		try {
+			respostaDAO.updateNota(codigo, nota);
+			LOGGER.info("Requisição Atualizar Nota da Resposta - {} - Bem Sucedida",codigo);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Atualizar Nota da Resposta Mal Sucedida - Resposta {} - erro - {}",codigo,e.toString());
+			return false;
+		}
+	}
 }
