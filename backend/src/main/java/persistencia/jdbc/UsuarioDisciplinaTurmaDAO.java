@@ -178,7 +178,7 @@ public class UsuarioDisciplinaTurmaDAO {
 	public List<UsuarioDisciplinaTurma> buscarUsuarioDisciplinaTurmaIdTurmaIdProfessor(int idTurma, int idProfessor) throws SQLException {
 		List<UsuarioDisciplinaTurma> lista = new ArrayList<UsuarioDisciplinaTurma>(); 
 		String sql = "SELECT\r\n"
-				+ "	disciplina.nome\r\n"
+				+ "	usuario_disciplina_turma.*\r\n"
 				+ "from\r\n"
 				+ "	disciplina,\r\n"
 				+ "    turma,\r\n"
