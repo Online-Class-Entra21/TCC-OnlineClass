@@ -147,29 +147,35 @@ public class ProfessorDAO {
 	/**
 	 * Metodo para selecionar as notas do aluno.
 	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja buscar
+	 * @param int idTurma
 	 * @param int idAluno
 	 * @author Andrey
 	 * @throws SQLException 
 	 */
-	public List<ProfessorNotasForm> buscarNotasAluno(int idAluno) throws SQLException {
+	public List<ProfessorNotasForm> buscarNotasAluno(int idTurma, int idAluno) throws SQLException {
 		List<ProfessorNotasForm> notas = new ArrayList<ProfessorNotasForm>();
-		String sql = "select turma.ano, resposta.dataentrega, atividade.titulo, resposta.nota "
-				+ "from "
-				+ "	turma, "
-				+ "    resposta, "
-				+ "    atividade, "
-				+ "    turma_atividade, "
-				+ "    aluno "
-				+ "where "
-				+ "	turma.idturma = turma_atividade.fk_turma "
-				+ "    and turma_atividade.fk_atividade = atividade.idatividade "
-				+ "    and resposta.fk_aluno = aluno.idaluno "
-				+ "    and resposta.fk_atividade = atividade.idatividade "
-				+ "    and aluno.idaluno = ?"
-				+ "order by atividade.finalatividade";
+		String sql = "select distinct turma.ano, resposta.dataentrega, atividade.titulo, resposta.nota, disciplina.nome\r\n"
+				+ "from\r\n"
+				+ "	turma,\r\n"
+				+ "	aluno,\r\n"
+				+ "    resposta,\r\n"
+				+ "    atividade,\r\n"
+				+ "    usuario_disciplina,\r\n"
+				+ "    disciplina,\r\n"
+				+ "    usuario_disciplina_turma\r\n"
+				+ "where\r\n"
+				+ "	turma.idturma = aluno.fk_turma\r\n"
+				+ "    and aluno.idaluno = resposta.fk_aluno\r\n"
+				+ "    and resposta.fk_atividade = atividade.idatividade\r\n"
+				+ "    and atividade.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina\r\n"
+				+ "    and usuario_disciplina.fk_disciplina = disciplina.iddisciplina\r\n"
+				+ "    and usuario_disciplina.id_usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina\r\n"
+				+ "	and turma.idturma = ?\r\n"
+				+ "    and aluno.idaluno = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setInt(1, idAluno);
+		comandoSql.setInt(1, idTurma);
+		comandoSql.setInt(2, idAluno);
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {
@@ -178,6 +184,7 @@ public class ProfessorDAO {
 			professorNotasForm.setDataEntrega(resultSet.getTimestamp(2));
 			professorNotasForm.setTitulo(resultSet.getString(3));
 			professorNotasForm.setNota(resultSet.getDouble(4));
+			professorNotasForm.setNome(resultSet.getString(5));
 			
 			notas.add(professorNotasForm);
 		
@@ -185,5 +192,57 @@ public class ProfessorDAO {
 		comandoSql.close();
 		return notas;
 	}
+	
+	/**
+	 * Metodo para selecionar as notas do aluno.
+	 * O <code>idAluno</code> deve ser igual ao do aluno que deseja buscar
+	 * @param int idTurma
+	 * @param int idAluno
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public List<ProfessorNotasForm> buscarNotasAlunoDisciplina(int idTurma, int idAluno, int idDisciplina) throws SQLException {
+		List<ProfessorNotasForm> notas = new ArrayList<ProfessorNotasForm>();
+		String sql = "select distinct turma.ano, resposta.dataentrega, atividade.titulo, resposta.nota, disciplina.nome\r\n"
+				+ "from\r\n"
+				+ "	turma,\r\n"
+				+ "	aluno,\r\n"
+				+ "    resposta,\r\n"
+				+ "    atividade,\r\n"
+				+ "    usuario_disciplina,\r\n"
+				+ "    disciplina,\r\n"
+				+ "    usuario_disciplina_turma\r\n"
+				+ "where\r\n"
+				+ "	turma.idturma = aluno.fk_turma\r\n"
+				+ "    and aluno.idaluno = resposta.fk_aluno\r\n"
+				+ "    and resposta.fk_atividade = atividade.idatividade\r\n"
+				+ "    and atividade.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina\r\n"
+				+ "    and usuario_disciplina.fk_disciplina = disciplina.iddisciplina\r\n"
+				+ "    and usuario_disciplina.id_usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina\r\n"
+				+ "	and turma.idturma = ?\r\n"
+				+ "    and aluno.idaluno = ?\r\n"
+				+ "    and disciplina.iddisciplina = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idTurma);
+		comandoSql.setInt(2, idAluno);
+		comandoSql.setInt(3, idDisciplina);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			ProfessorNotasForm professorNotasForm = new ProfessorNotasForm();
+			professorNotasForm.setAno(resultSet.getString(1));
+			professorNotasForm.setDataEntrega(resultSet.getTimestamp(2));
+			professorNotasForm.setTitulo(resultSet.getString(3));
+			professorNotasForm.setNota(resultSet.getDouble(4));
+			professorNotasForm.setNome(resultSet.getString(5));
+			
+			notas.add(professorNotasForm);
+		
+		}
+		comandoSql.close();
+		return notas;
+	}
+	
 	
 }

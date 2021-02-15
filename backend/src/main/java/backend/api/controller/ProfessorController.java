@@ -128,20 +128,45 @@ public class ProfessorController {
 	 * @param int idAluno
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/aluno/notas/{idAluno}")
-	public List<ProfessorNotasForm> consultarProfessorNotas(@PathVariable("idAluno") int idAluno) {
+	@GetMapping(path = "/api/aluno/notas/{idTurma}/{idAluno}")
+	public List<ProfessorNotasForm> consultarProfessorNotas(@PathVariable("idTurma") int idTurma,@PathVariable("idAluno") int idAluno) {
 		LOGGER.info("Requisição Notas aluno Existentes");
 		List<ProfessorNotasForm> professorNotasForm;
 		ProfessorDAO professorDao = new ProfessorDAO();
 		try {
-			professorNotasForm = professorDao.buscarNotasAluno(idAluno);
-			LOGGER.info("Requisição Notas Aluno Existentes bem sucedida idAluno - {}",idAluno);
+			professorNotasForm = professorDao.buscarNotasAluno(idTurma, idAluno);
+			LOGGER.info("Requisição Notas Aluno Existentes bem sucedida idTurma - {} - idAluno - {}",idTurma,idAluno);
 			return professorNotasForm;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			LOGGER.error("Requisição para verificar Notas Aluno Existentes idAluno - {} Mal Sucedida - erro - {}",idAluno,e.toString());
+			LOGGER.error("Requisição para verificar Notas Aluno Existentes idTurma - {} - idAluno - {} Mal Sucedida - erro - {}",idTurma,idAluno,e.toString());
 			return null;
 		}
 	}
-}
 
+
+	/**
+	 * Verifica as notas do aluno por disciplina (GET)
+	 * @return notas pelo idDisciplina
+	 * @param int idTurma
+	 * @param int idAluno
+	 * @param int idDisciplina
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/aluno/notas/disciplina/{idTurma}/{idAluno}/{idDisciplina}")
+	public List<ProfessorNotasForm> consultarProfessorNotasDisciplina(@PathVariable("idTurma") int idTurma,@PathVariable("idAluno") int idAluno, @PathVariable("idDisciplina") int idDisciplina) {
+		LOGGER.info("Requisição Notas aluno Existentes");
+		List<ProfessorNotasForm> professorNotasForm;
+		ProfessorDAO professorDao = new ProfessorDAO();
+		try {
+			professorNotasForm = professorDao.buscarNotasAlunoDisciplina(idTurma, idAluno, idDisciplina);
+			LOGGER.info("Requisição Notas Aluno Existentes bem sucedida idTurma - {} - idAluno - {} idDisciplina - {}",idTurma,idAluno, idDisciplina);
+			return professorNotasForm;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para verificar Notas Aluno Existentes idTurma - {} - idAluno - {} idDisciplina - {} Mal Sucedida - erro - {}",idTurma,idAluno,idDisciplina,e.toString());
+			return null;
+		}
+	}
+
+}

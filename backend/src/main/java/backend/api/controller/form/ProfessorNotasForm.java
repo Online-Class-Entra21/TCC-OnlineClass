@@ -7,6 +7,7 @@ public class ProfessorNotasForm {
 	private Timestamp dataEntrega;
 	private String titulo;
 	private double nota;
+	private String nome;
 	
 	public ProfessorNotasForm() {
 		
@@ -18,11 +19,12 @@ public class ProfessorNotasForm {
 	 * @param titulo
 	 * @param nota
 	 */
-	public ProfessorNotasForm(String ano, Timestamp dataEntrega, String titulo, double nota) {
-		this.ano = ano;
-		this.dataEntrega = dataEntrega;
-		this.titulo = titulo;
-		this.nota = nota;
+	public ProfessorNotasForm(String ano, Timestamp dataEntrega, String titulo, double nota, String nome) {
+		setAno(ano);
+		setDataEntrega(dataEntrega);
+		setTitulo(titulo);
+		setNota(nota);
+		setNome(nome);
 	}
 	/**
 	 * @return the ano
@@ -71,6 +73,20 @@ public class ProfessorNotasForm {
 	 */
 	public void setNota(double nota) {
 		this.nota = nota;
+	}
+
+	/**
+	 * @return the nome
+	 */
+	public String getNome() {
+		return nome;
+	}
+
+	/**
+	 * @param nome the nome to set
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	

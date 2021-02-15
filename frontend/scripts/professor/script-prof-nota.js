@@ -62,6 +62,7 @@ $( "#SelectTurma" ).change(function() {
 
 $("#SelectAlunos").change(function() {
     var alunoEscolhido = $('#SelectAlunos :selected').val();
+    var turmaEscolhida = $('#SelectTurma :selected').val();
     if (alunoEscolhido == 'defaultAluno') {
         $("#SelectDisciplina").val("defaultDisciplina");
         selectDisciplina.disabled = true;
@@ -70,10 +71,30 @@ $("#SelectAlunos").change(function() {
 
         //Chama a resposta
         $("#tabelaAlunos").empty();
-        carregarTabela(alunoEscolhido);
+        carregarTabela(turmaEscolhida, alunoEscolhido);
 
     }
 })
+
+$("#SelectDisciplina").change(function() {
+    var alunoEscolhido = $('#SelectAlunos :selected').val();
+    var turmaEscolhida = $('#SelectTurma :selected').val();
+    var disciplinaEscolhida = $('#SelectDisciplina :selected').val();
+    if (disciplinaEscolhida == 'defaultDisciplina') {
+        $("#SelectDisciplina").val("defaultDisciplina");
+        $("#tabelaAlunos").empty();
+        carregarTabela(turmaEscolhida, alunoEscolhido);
+        selectDisciplina.disabled = true;
+    } else {
+        selectDisciplina.disabled = false;
+
+        //Chama a resposta
+        $("#tabelaAlunos").empty();
+        carregarTabelaDisciplina(turmaEscolhida, alunoEscolhido, disciplinaEscolhida);
+
+    }
+})
+
 
 //Método para carregar os selects
 async function carregarSelectTurmas() {
@@ -119,8 +140,8 @@ async function carregarSelectAlunos(idTurma) {
 }
 
 //Método para carregar a tabela pelo aluno informado
-async function carregarTabela(idAluno) {
-    var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/notas/" + idAluno);
+async function carregarTabela(idTurma ,idAluno) {
+    var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/notas/" + idTurma + "/" + idAluno);
     var notasAluno = JSON.parse(resposta);
 
     for (let index = 0; index < notasAluno.length; index++) {
@@ -151,9 +172,51 @@ async function carregarTabela(idAluno) {
         linha.append(colunaNota);
 
         var colunaDisciplina = document.createElement('td');
-        colunaDisciplina.append(notasAluno[index].nota);
+        colunaDisciplina.append(notasAluno[index].nome);
         colunaDisciplina.classList.add('tdTabela');
+        linha.append(colunaDisciplina);
+
+        document.getElementById('tabelaAlunos').appendChild(linha);
+        
+    }
+}
+
+//Método para carregar a tabela pela disciplina informado
+async function carregarTabelaDisciplina(idTurma ,idAluno, idDisciplina) {
+    var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/notas/disciplina/" + idTurma + "/" + idAluno + "/" + idDisciplina);
+    var notasAluno = JSON.parse(resposta);
+
+    for (let index = 0; index < notasAluno.length; index++) {
+
+        var dataEntrega = new Date(notasAluno[index].dataEntrega);
+        dataEntrega = dataFormatada2(dataEntrega);
+
+
+        var linha = document.createElement('tr');
+        var colunaAno = document.createElement('td');
+        colunaAno.append(notasAluno[index].ano);
+        colunaAno.classList.add('tdTabela');
+        linha.append(colunaAno);
+
+        var colunaData = document.createElement('td');
+        colunaData.append(dataEntrega.slice(0,10));
+        colunaData.classList.add('tdTabela');
+        linha.append(colunaData)
+
+        var colunaTitulo = document.createElement('td');
+        colunaTitulo.append(notasAluno[index].titulo);
+        colunaTitulo.classList.add('tdTabela');
+        linha.append(colunaTitulo);
+
+        var colunaNota = document.createElement('td');
+        colunaNota.append(notasAluno[index].nota);
+        colunaNota.classList.add('tdTabela');
         linha.append(colunaNota);
+
+        var colunaDisciplina = document.createElement('td');
+        colunaDisciplina.append(notasAluno[index].nome);
+        colunaDisciplina.classList.add('tdTabela');
+        linha.append(colunaDisciplina);
 
         document.getElementById('tabelaAlunos').appendChild(linha);
         
