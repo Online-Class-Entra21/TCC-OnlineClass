@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import backend.api.controller.form.UsuarioDisciplinaTurmaForm;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -193,4 +195,27 @@ public class UsuarioDisciplinaTurmaController {
 			return null;
 		}
 	}
+	
+	/**
+	 * Retorna a lista das turmas do professor pelo id do usuario
+	 * @return lista de turmas registradas no banco
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/turmas/usuario/{idUsuario}")
+	public List<UsuarioDisciplinaTurmaForm> consultarTurmaUsuario(@PathVariable int idUsuario){
+		LOGGER.info("Requisição List<UsuarioDisciplinaTurmaForm> idProfessor {}",idUsuario);
+		List<UsuarioDisciplinaTurmaForm> lista;
+		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDao = new UsuarioDisciplinaTurmaDAO();
+		try {
+			lista = usuarioDisciplinaTurmaDao.buscarTurmasIdUsuario(idUsuario);
+			LOGGER.info("Requisição List<UsuarioDisciplinaTurmaForm> idUsuario {} bem sucedida",idUsuario);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos UsuarioDisciplinaTurmaForm idUsuario {} Mal Sucedida - erro - {}",idUsuario,e.toString());
+			return null;
+		}
+	}
+	
+	
 }

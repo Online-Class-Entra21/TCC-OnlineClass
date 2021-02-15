@@ -266,4 +266,44 @@ public class DisciplinaDAO {
 		comandoSql.close();
 		return lista;
 	}
+	
+	/**
+	 * Metodo para selecionar todas as disciplinas do banco de dados
+	 * @return lista de disciplinas resgistradas no banco 
+	 * @param int idTurma
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public List<Disciplina> buscarTodosTurma(int idTurma) throws SQLException {
+		List<Disciplina> lista = new ArrayList<Disciplina>();
+		String sql = "select disciplina.* "
+				+ "from "
+				+ "	disciplina,  "
+				+ "    usuario, "
+				+ "    turma, "
+				+ "    usuario_disciplina, "
+				+ "    usuario_disciplina_turma "
+				+ "where "
+				+ "	disciplina.iddisciplina = usuario_disciplina.fk_disciplina "
+				+ "    and usuario_disciplina.fk_usuario = usuario.idusuario "
+				+ "    and usuario_disciplina.id_usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina "
+				+ "    and usuario_disciplina_turma.fk_turma = turma.idturma "
+				+ "    and turma.idturma = ? "
+				+ "";
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idTurma);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Disciplina disciplina = new Disciplina();
+			disciplina.setIdDisciplina(resultSet.getInt(1));
+			disciplina.setNome(resultSet.getString(2));
+			disciplina.setFk_escola(resultSet.getInt(3));
+			
+			lista.add(disciplina);
+		}
+		comandoSql.close();
+		return lista;
+	}
 }

@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.api.controller.form.UsuarioDisciplinaForm;
+import backend.api.controller.form.UsuarioDisciplinaTurmaForm;
+import entidade.Turma;
 import entidade.UsuarioDisciplinaTurma;
 
 /**
@@ -175,7 +178,7 @@ public class UsuarioDisciplinaTurmaDAO {
 	public List<UsuarioDisciplinaTurma> buscarUsuarioDisciplinaTurmaIdTurmaIdProfessor(int idTurma, int idProfessor) throws SQLException {
 		List<UsuarioDisciplinaTurma> lista = new ArrayList<UsuarioDisciplinaTurma>(); 
 		String sql = "SELECT\r\n"
-				+ "	usuario_disciplina_turma.*\r\n"
+				+ "	disciplina.nome\r\n"
 				+ "from\r\n"
 				+ "	disciplina,\r\n"
 				+ "    turma,\r\n"
@@ -207,4 +210,76 @@ public class UsuarioDisciplinaTurmaDAO {
 		return lista;
 	}
 	
+	/**
+	 * Metodo para selecionar as disciplinas do aluno.
+	 * O <code>idUsuario</code> deve ser igual ao do usuario que deseja buscar
+	 * @param int idAluno
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public List<UsuarioDisciplinaForm> buscarDisciplinasAluno(int idUsuario) throws SQLException {
+		List<UsuarioDisciplinaForm> disciplinas = new ArrayList<UsuarioDisciplinaForm>();
+		String sql = "select distinct disciplina.nome, disciplina.iddisciplina "
+				+ "from "
+				+ "	disciplina, "
+				+ "    usuario, "
+				+ "    aluno, "
+				+ "    usuario_disciplina "
+				+ "where "
+				+ "    usuario.idusuario = usuario_disciplina.fk_usuario "
+				+ "    and usuario_disciplina.fk_disciplina = disciplina.iddisciplina "
+				+ "    and usuario.idusuario = ? "
+				+ "";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idUsuario);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			UsuarioDisciplinaForm usuarioDisciplinaForm = new UsuarioDisciplinaForm();
+			usuarioDisciplinaForm.setNome(resultSet.getString(1));
+			usuarioDisciplinaForm.setIdDisciplina(resultSet.getInt(2));
+			
+			
+			disciplinas.add(usuarioDisciplinaForm);
+		
+		}
+		comandoSql.close();
+		return disciplinas;
+	}
+	
+	/**
+	 * Metodo de busca de todas as informacoes de uma linha
+	 * da tabela Turma do banco de dados onde o professor da aula ocorre.
+	 * O <code>idUsuario</code> deve ser igual ao da turma que deseja buscar
+	 * @param int idUsuario
+	 * @return turmas 
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public List<UsuarioDisciplinaTurmaForm> buscarTurmasIdUsuario(int idUsuario) throws SQLException {
+		List<UsuarioDisciplinaTurmaForm> lista = new ArrayList<UsuarioDisciplinaTurmaForm>(); 
+		String sql = "select distinct turma.idturma, turma.ano "
+				+ "   from turma,"
+				+ "        usuario_disciplina,"
+				+ "        usuario_disciplina_turma"
+				+ "    where turma.idturma = usuario_disciplina_turma.fk_turma"
+				+ "    and   usuario_disciplina_turma.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina"
+				+ "    and   usuario_disciplina.fk_usuario = ?";
+			
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idUsuario);
+		
+		ResultSet resultSet = comandoSql.executeQuery(); 
+			
+		while (resultSet.next()) {
+			UsuarioDisciplinaTurmaForm usuarioDisciplinaTurmaForm = new UsuarioDisciplinaTurmaForm(); 
+			usuarioDisciplinaTurmaForm.setIdTurma(resultSet.getInt(1));
+			usuarioDisciplinaTurmaForm.setAno(resultSet.getString(2));
+			lista.add(usuarioDisciplinaTurmaForm); 
+		}
+		comandoSql.close();
+		return lista;
+	}	
 }
