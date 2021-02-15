@@ -4,6 +4,10 @@ var listaalunos;
 getListaParticipante();
 entraChamada();
 
+setTimeout(function(){
+    usuarioOnline();
+},3000);
+
 var usuario;
 var sala;
 var api;
@@ -30,7 +34,6 @@ async function entraChamada() {
     api = new JitsiMeetExternalAPI(domain, options);
     api.addListener("displayNameChange",function() {
         api.executeCommand("displayName",nome);
-        usuarioOnline();
     });
     api.addListener("emailChange",function(){
         api.executeCommand("email","usuario.email")
@@ -62,18 +65,21 @@ function usuarioOnline() {
 }
 
 async function getListaParticipante() {
-    var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/participantes/1"));
+    var aluno = JSON.parse(await usarApi("GET","http://localhost:8080/api/aluno/usuario/"+idUsuario))
+    var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/participantes/"+aluno.fk_turma));
     usuarios.sort(function(a,b) {
         return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
     });
+    console.log(sala)
+    console.log(usuarios)
     usuarios.forEach(element => {
         var li = $("<li></li>").text(element.nome).attr('id',element.nomecompleto);
         $("#listaAlunos").append(li);
         
     });
     listaalunos = usuarios;
+    
 }
-
 
 
 
@@ -159,3 +165,4 @@ function jitsiSize() {
         $("#divParticipantes").height(altura+"px");
     }
 }
+

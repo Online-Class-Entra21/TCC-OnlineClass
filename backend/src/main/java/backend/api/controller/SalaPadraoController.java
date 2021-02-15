@@ -73,24 +73,25 @@ public class SalaPadraoController {
 	}
 	
 	/**
-	 * Retorna a lista das salasPadroes registrados no sistema {GET}
+	 * Retorna a lista de Usuarios registrados no sistema {GET}
+	 * que participaram dessa salaPadrao
 	 * @return lista de salasPadroes registradas no banco
 	 * @author Breno
 	 */
 	@GetMapping(path = "/api/salasPadroes/participantes/{codigo}")
 	public List<UsuarioDTO> consultarIdSala(@PathVariable("codigo") int codigo){
-		LOGGER.info("Requisição List<Usuario>");
+		LOGGER.info("Requisição List<Usuario> da sala {}",codigo);
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		try {
 			AlunoDAO alunoDAO = new AlunoDAO();
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			List<Aluno> alunos = alunoDAO.buscarTodosIdSala(codigo);
+			List<Aluno> alunos = alunoDAO.buscarTodosTurma(codigo);
 			for (Aluno aluno : alunos) {
 				usuarios.add(usuarioDAO.buscarId(aluno.getFk_usuario()));
 			}
 			List<UsuarioDTO> usuarioDTOs;
 			usuarioDTOs = UsuarioDTO.converter(usuarios);
-			LOGGER.info("Requisição List<Usuario> bem sucedida");
+			LOGGER.info("Requisição List<Usuario> da Sala {} bem sucedida",codigo);
 			return usuarioDTOs;
 		} catch (SQLException e) {
 			e.printStackTrace();
