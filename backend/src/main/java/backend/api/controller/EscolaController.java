@@ -126,22 +126,23 @@ public class EscolaController {
 	 * Insere uma nova escola no banco de dados só com o nome {POST}
 	 * @param String json
 	 * @author Andrey
-	 * @return boolean situacao da operacao
+	 * @return int idEscola
 	 */
 	@PostMapping(path = "/api/escola/inserir/nome/{json}")
-	public boolean inserirNome(@PathVariable("json") String json) {
+	public int inserirNome(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Inserir Nome Escola - {}",json);
+		int idEscola = 0;
 		Gson gson = new Gson();
 		Escola escola = gson.fromJson(json, Escola.class);
 		EscolaDAO escolaDAO = new EscolaDAO();
 		try {
-			escolaDAO.insertNome(escola);
+			idEscola = escolaDAO.insertNome(escola);
 			LOGGER.info("Requisição Inserir Nome Escola - {} - Bem Sucedida",json);
-			return true;
+			return idEscola;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Nome Escola Mal Sucedida - Escola {} - erro - {}",json,e.toString());
-			return false;
+			return idEscola;
 		}
 	}
 	
