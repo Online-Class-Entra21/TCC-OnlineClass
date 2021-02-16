@@ -45,7 +45,6 @@ $("#idDateTime").attr("min",dataAgora);
 $('#customFile').change(function(){
     var nomeArquivo = $(this).val().substring(12);
     arquivo = this.files;
-    console.log(nomeArquivo);
     $('.custom-file-label').text(nomeArquivo);
 });
 
@@ -116,13 +115,6 @@ $('#btnEnviar').click(async function (){
                     fk_arquivo = await enviarArquivo(arquivo,'http://localhost:8080/api/upload/file/return/'+idProfessor);
                     
                     
-                    console.log("descricao : "+descricao);
-                    console.log("inicioatividade : "+incioatividae);
-                    console.log("finalatividae : "+finalatividae);
-                    console.log("tipoatividade : "+tipoatividade);
-                    console.log("fk_usuario_disciplina : "+fk_usuario_disciplina);
-                    console.log("titulo : "+titulo);
-                    console.log("fk_arquivo : "+fk_arquivo);
                     var json = JSON.stringify({
                         descricao       : descricao,
                         inicioAtividade : '2021-02-14 22:04:03',
@@ -132,16 +124,14 @@ $('#btnEnviar').click(async function (){
                         titulo          : titulo,
                         fk_arquivo      : fk_arquivo
                     });
-                    console.log(json)
                     var idAtividade = await usarApi('POST','http://localhost:8080/api/atividade/inserir/return/'+json);
                     var jsonTurmaAtividade = JSON.stringify({
                         fk_turma:$('#idTurma').val(),
                         fk_atividade:idAtividade
                     });
-                    console.log(jsonTurmaAtividade)
                     
                     await usarApi('POST','http://localhost:8080/api/turmaAtividade/inserir/'+jsonTurmaAtividade);
-                    alert('secesso enviado')
+                    alert('Enviado com sucesso')
                 }else{
                     alert('Insira 1 Materia')
                 }
@@ -159,7 +149,6 @@ $('#btnEnviar').click(async function (){
 async function enviarArquivo(file,url){
     return new Promise(function (resolve, reject) {
         var size = file[0].size;
-        console.log(size)
         if(size < 1048576) { //1MB
         
         } else {           

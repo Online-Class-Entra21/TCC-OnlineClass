@@ -15,7 +15,7 @@ if(idUsuario != 0 && idUsuario != null){
             dadosUsuario = JSON.parse(resposta);
             userEmail = dadosUsuario.email;
             //Adiciona o nome
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome+" "+dadosUsuario.sobrenome;
             $("#idDestinatario").val(dadosUsuario.nome).prop("disabled", true);
             var dataAgora = new Date();
             var dia  = String(dataAgora.getDate()).padStart(2, '0');
@@ -186,7 +186,20 @@ carregarSelect();
 async function carregarSelect() {
     //Chama a api e retorna um arrays com as turmas pertencentes à escola e há esse professor
     var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/professor/"+idUsuario);
-    var turmas = JSON.parse(resposta);
+    var turmaArray = JSON.parse(resposta);
+
+    //comparacao de turmas iguais
+    turmas = [];
+    turmasId = [];
+    for(var i = 0; i <turmaArray.length;i++){
+        const turma = turmaArray[i];
+        var index = turmasId.indexOf(turma.idTurma);
+        if (index==-1) {
+            turmasId.push(turma.idTurma);
+            turmas.push(turma);
+        }
+    }
+
     var select = document.getElementById('lista-turmas');
 
     //Cria os options do select

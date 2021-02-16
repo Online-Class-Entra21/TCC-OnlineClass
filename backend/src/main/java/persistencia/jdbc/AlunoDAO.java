@@ -29,8 +29,8 @@ public class AlunoDAO {
 				   + "situacaoanoletivo, fk_usuario, fk_turma) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setInt(1, aluno.getRa());
-		comandoSql.setInt(2, aluno.getMatricula());
+		comandoSql.setString(1, aluno.getRa());
+		comandoSql.setString(2, aluno.getMatricula());
 		comandoSql.setBoolean(3, aluno.getDeficiencia());
 		comandoSql.setString(4, aluno.getNomeMae());
 		comandoSql.setString(5, aluno.getNomePai());
@@ -56,8 +56,8 @@ public class AlunoDAO {
 				+ "situacaoanoletivo = ?, fk_usuario = ?, fk_turma = ? where idaluno = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setInt(1, aluno.getRa());
-		comandoSql.setInt(2, aluno.getMatricula());
+		comandoSql.setString(1, aluno.getRa());
+		comandoSql.setString(2, aluno.getMatricula());
 		comandoSql.setBoolean(3, aluno.getDeficiencia());
 		comandoSql.setString(4, aluno.getNomeMae());
 		comandoSql.setString(5, aluno.getNomePai());
@@ -106,8 +106,8 @@ public class AlunoDAO {
 		
 		if (resultSet.next()) {
 			aluno.setIdAluno(resultSet.getInt(1));
-			aluno.setRa(resultSet.getInt(2));
-			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setRa(resultSet.getString(2));
+			aluno.setMatricula(resultSet.getString(3));
 			aluno.setDeficiencia(resultSet.getBoolean(4));
 			aluno.setNomeMae(resultSet.getString(5));
 			aluno.setNomePai(resultSet.getString(6));
@@ -136,8 +136,8 @@ public class AlunoDAO {
 		while (resultSet.next()) {
 			Aluno aluno = new Aluno();
 			aluno.setIdAluno(resultSet.getInt(1));
-			aluno.setRa(resultSet.getInt(2));
-			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setRa(resultSet.getString(2));
+			aluno.setMatricula(resultSet.getString(3));
 			aluno.setDeficiencia(resultSet.getBoolean(4));
 			aluno.setNomeMae(resultSet.getString(5));
 			aluno.setNomePai(resultSet.getString(6));
@@ -194,8 +194,8 @@ public class AlunoDAO {
 		
 		if (resultSet.next()) {
 			aluno.setIdAluno(resultSet.getInt(1));
-			aluno.setRa(resultSet.getInt(2));
-			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setRa(resultSet.getString(2));
+			aluno.setMatricula(resultSet.getString(3));
 			aluno.setDeficiencia(resultSet.getBoolean(4));
 			aluno.setNomeMae(resultSet.getString(5));
 			aluno.setNomePai(resultSet.getString(6));
@@ -227,8 +227,8 @@ public class AlunoDAO {
 		while (resultSet.next()) {
 			Aluno aluno = new Aluno();
 			aluno.setIdAluno(resultSet.getInt(1));
-			aluno.setRa(resultSet.getInt(2));
-			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setRa(resultSet.getString(2));
+			aluno.setMatricula(resultSet.getString(3));
 			aluno.setDeficiencia(resultSet.getBoolean(4));
 			aluno.setNomeMae(resultSet.getString(5));
 			aluno.setNomePai(resultSet.getString(6));

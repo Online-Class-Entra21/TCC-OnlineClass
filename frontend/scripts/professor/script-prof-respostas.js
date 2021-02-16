@@ -37,8 +37,19 @@ document.getElementById("idDisci").disabled = true;
 //Carrega as turmas do professor
 async function carregarTurmas(){
     var resposta = await usarApi('GET','http://localhost:8080/api/turmas/professor/'+idUsuario);
-    turmas = JSON.parse(resposta);
-    
+    turmaArray = JSON.parse(resposta);
+
+    //comparacao de turmas iguais
+    turmas = [];
+    turmasId = [];
+    for(var i = 0; i <turmaArray.length;i++){
+        const turma = turmaArray[i];
+        var index = turmasId.indexOf(turma.idTurma);
+        if (index==-1) {
+            turmasId.push(turma.idTurma);
+            turmas.push(turma);
+        }
+    }
     var select = document.getElementById('idTipo');
 
     //Cria os options do select
@@ -211,20 +222,26 @@ async function buscarRespostas(turmaEscolhida, disciplinaEscolhida){
     $( ".salvar" ).click(async function() {
         var idResposta = this.value;
         var nota = $('#input-'+idResposta).val();
+
+        if(nota <= 10 && nota >= 0){
         
-        var xhr2 = new XMLHttpRequest(); 
-        xhr2.open("PUT", "http://localhost:8080/api/resposta/alterar/nota/"+idResposta+'/'+nota);
+            var xhr2 = new XMLHttpRequest(); 
+            xhr2.open("PUT", "http://localhost:8080/api/resposta/alterar/nota/"+idResposta+'/'+nota);
 
-        xhr2.addEventListener("load", function(){
-            var resposta6 = xhr2.responseText;
-            var status = JSON.parse(resposta6);
+            xhr2.addEventListener("load", function(){
+                var resposta6 = xhr2.responseText;
+                var status = JSON.parse(resposta6);
 
-            if(status){
-                alert("Nota salva com sucesso");
-            }else{
-                alert("Erro ao salvar nota!");
-            }
-        })
-        xhr2.send();    
+                if(status){
+                    alert("Nota salva com sucesso");
+                }else{
+                    alert("Erro ao salvar nota!");
+                }
+            })
+            xhr2.send();  
+        }else{
+            alert("Nota inválida!")
+        }
     });   
 }
+

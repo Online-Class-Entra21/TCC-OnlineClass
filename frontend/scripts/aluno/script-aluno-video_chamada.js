@@ -55,7 +55,7 @@ var sala;
 async function entraChamada() {
     usuario = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/"+idUsuario));
     sala = JSON.parse(await usarApi("GET","http://localhost:8080/api/salaidreuniao/"+idReuniao));
-
+console.log("oi")
     var nome = usuario.nome+" "+usuario.sobrenome
     var domain = "classeonline.tk";
     var options = {
@@ -73,6 +73,7 @@ async function entraChamada() {
 
     };
     api = new JitsiMeetExternalAPI(domain, options);
+    console.log("oi")
     api.addListener("displayNameChange",function() {
         api.executeCommand("displayName",nome);
         usuarioOnline();
@@ -122,7 +123,7 @@ const interval = setInterval(() => {
     listaParticipantes.forEach(element => {
         partTodos.push(element.nomecompleto);
     });
-    
+    console.log(listaParticipantes);
     for (var i = 0; i < partTodos.length; i++){
         const part = partTodos[i];
         var indexPart = partOnline.indexOf(part);

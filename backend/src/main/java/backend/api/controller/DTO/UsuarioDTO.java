@@ -21,7 +21,7 @@ public class UsuarioDTO {
 	 * @param usuario
 	 */
     public UsuarioDTO(Usuario usuario){
-        setNomecompleto(getNome()+" "+usuario.getSobrenome());
+        setNomecompleto(usuario.getNome()+" "+usuario.getSobrenome());
         setNome(usuario.getNome());
         setSobrenome(usuario.getSobrenome());
         setEmail(usuario.getEmail());

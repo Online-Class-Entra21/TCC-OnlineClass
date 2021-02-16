@@ -384,7 +384,6 @@ Config. dos botoes do form
 /*
 Config. coordenadores existentes
 */
-
 #coordExist {
     float: right;
     text-align: left;
@@ -392,6 +391,9 @@ Config. coordenadores existentes
     margin-right: 17vh;
 }
 
+/*
+Config. da tabela
+*/
 table {
     margin: 4%;
 }
@@ -401,23 +403,19 @@ fieldset {
     height: 100%;
     float: right;
 }
-
 li {
     list-style: none;
 }
 .multiselect {
     width:300px;
-}
-  
+} 
 .selectBox {
     position: relative;
 }
-  
 .selectBox select {
     width: 45vh;
     font-weight: bold;
 }
-  
 .overSelect {
     position: absolute;
     left: 0;
@@ -425,8 +423,6 @@ li {
     top: 0;
     bottom: 0;
 }
-
-
 .radioMenu{
     position: absolute;
     z-index: 1;
@@ -441,15 +437,12 @@ li {
     border: 1px #dadada solid;
     z-index: 1;
 }
-
 .radioMenu label {
     display: block;
 }
-
 .radioMenu label:hover {
     background-color: #1e90ff;
 }
-
 .materias{
     border: 2px solid black;
     width: 100%;
@@ -457,7 +450,9 @@ li {
     overflow:auto;
 }
 
-
+/*
+Config. dos botoes 
+*/
 #btnAvancar{
     border: 1px solid#571010;
     margin-top: 5%;

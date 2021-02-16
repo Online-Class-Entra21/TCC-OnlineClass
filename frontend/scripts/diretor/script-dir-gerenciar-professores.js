@@ -64,7 +64,7 @@ async function criarPopUp(idProfessor){
         $('#tabelaDisciplinas').append('<tr id="'+disc.idUsuario_disciplina_turma+'">'
                                             +'<th scope="row">'+turma.idTurma+'</td>'
                                             +'<td>'+turma.ano+'</td>'
-                                            +'<td>'+disciplina.nome+'<input type="button" id="btnDeletar-'+disc.idUsuario_disciplina_turma+'" value="deletar" class="float-right btn-danger"></td>'
+                                            +'<td>'+disciplina.nome+'<input type="button" id="btnDeletar-'+disc.idUsuario_disciplina_turma+'" value="Deletar" class="float-right btn-danger"></td>'
                                         +'</tr>');
         $('#btnDeletar-'+disc.idUsuario_disciplina_turma).click(async function(){
             await usarApi('DELETE', 'http://localhost:8080/api/usuarioDisciplinaTurma/deletar/'+disc.idUsuario_disciplina_turma);

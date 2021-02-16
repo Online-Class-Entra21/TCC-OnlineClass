@@ -14,7 +14,7 @@ if(idUsuario != 0 && idUsuario != null){
             dadosUsuario = JSON.parse(resposta);
             userEmail = dadosUsuario.email;
             //Adiciona o nome
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome+" "+dadosUsuario.sobrenome;
             $("#idDestinatario").val(dadosUsuario.nome).prop("disabled", true);
             var dataAgora = new Date();
             var dia  = String(dataAgora.getDate()).padStart(2, '0');

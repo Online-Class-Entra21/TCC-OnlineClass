@@ -16,7 +16,7 @@ if (idUsuario != 0 && idUsuario != null) {
     
         dadosUsuario = JSON.parse(resposta);
         //Adiciona o nome 
-        document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+        document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome+" "+dadosUsuario.sobrenome;
         idEscola = dadosUsuario.fk_escola;
         //Adiciona a foto de perfil do usuario
         var img = document.querySelector("#idFotoPerfil");
@@ -97,7 +97,7 @@ async function getTurmas() {
     turmas = JSON.parse(turmas);
     for (var i = 0; i < turmas.length; i++){
         const turm = turmas[i];
-        $("#turma").append('<label for="turma'+turm.idTurma+'"><input type="checkbox" name="'+turm.ano+'" id="turma'+turm.idTurma+'">turma '+turm.ano+'</label>')
+        $("#turma").append('<label for="turma'+turm.idTurma+'"><input type="checkbox" name="'+turm.ano+'" id="turma'+turm.idTurma+'"> '+turm.ano+'</label>')
     }
 }
 
