@@ -134,6 +134,10 @@ public class SalaDAO {
 		comandoSql.close(); 
 		return lista;
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Realiza o registro de uma sala no banco de dados

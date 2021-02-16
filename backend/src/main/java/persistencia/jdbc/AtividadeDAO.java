@@ -145,6 +145,10 @@ public class AtividadeDAO {
 		comandoSql.close();
 		return lista;
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Metodo para selecionar uma atividade do banco de dados.
@@ -221,5 +225,4 @@ public class AtividadeDAO {
 		comandoSql.close();
 		return idEndereco;
 	}
-	
 }

@@ -122,6 +122,10 @@ public class UsuarioDisciplinaDAO {
 		comandoSql.close();
 		return lista;
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Metodo para selecionar o idUsuarioDisciplina no banco de dados.

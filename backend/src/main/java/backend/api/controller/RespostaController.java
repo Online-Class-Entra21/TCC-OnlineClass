@@ -144,6 +144,10 @@ public class RespostaController {
 			return false;
 		}
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Retorna a lista das notas registradas no sistema {GET}

@@ -54,6 +54,17 @@ public class SalaPadraoController {
 			return null;
 		}
 	}
+	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Retorna a lista das salasPadroes registrados no sistema pelo codigo do usuario {GET}
+	 * @return lista de salasPadroes registradas no banco com o codigo do usuario
+	 * @param int codigo
+	 * @author Breno
+	 */
 	@GetMapping(path = "/api/salasPadroes/usuario/{codigo}")
 	public String consultarIdUsuario(@PathVariable("codigo") int codigo) {
 		AlunoDAO alunoDAO = new AlunoDAO();

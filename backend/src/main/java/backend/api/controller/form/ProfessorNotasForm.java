@@ -3,17 +3,21 @@ package backend.api.controller.form;
 import java.sql.Timestamp;
 
 public class ProfessorNotasForm {
+
 	private String ano;
 	private Timestamp dataEntrega;
 	private String titulo;
 	private double nota;
 	private String nome;
 	
-	public ProfessorNotasForm() {
-		
+	/**
+	 * Metodo construtor padrao 
+	 */
+	public ProfessorNotasForm() {	
 	}
 	
 	/**
+	 * Metodo construtor que preenche todos os atributos da classe
 	 * @param ano
 	 * @param dataEntrega
 	 * @param titulo
@@ -26,68 +30,84 @@ public class ProfessorNotasForm {
 		setNota(nota);
 		setNome(nome);
 	}
+
 	/**
-	 * @return the ano
+	 * Metodo para retorno do ano 
+	 * @return String ano
 	 */
 	public String getAno() {
 		return ano;
 	}
+
 	/**
-	 * @param ano the ano to set
+	 * Metodo para insercao do ano
+	 * @param String ano 
 	 */
 	public void setAno(String ano) {
 		this.ano = ano;
 	}
+
 	/**
-	 * @return the dataEntrega
+	 * Metodo para retorno da data de entrega 
+	 * @return Timestamp dataEntrega
 	 */
 	public Timestamp getDataEntrega() {
 		return dataEntrega;
 	}
+
 	/**
-	 * @param dataEntrega the dataEntrega to set
+	 * Metodo para insercao da data de entrega 
+	 * @param Timestamp dataEntrega
 	 */
 	public void setDataEntrega(Timestamp dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
+
 	/**
-	 * @return the titulo
+	 * Metodo para retorno do titulo
+	 * @return String titulo 
 	 */
 	public String getTitulo() {
 		return titulo;
 	}
+
 	/**
-	 * @param titulo the titulo to set
+	 * Metodo para insercao do titulo
+	 * @param String titulo 
 	 */
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+
 	/**
-	 * @return the nota
+	 * Metodo para retorno da nota 
+	 * @return double nota 
 	 */
 	public double getNota() {
 		return nota;
 	}
+
 	/**
-	 * @param nota the nota to set
+	 * Metodo para insercao da nota 
+	 * @param double nota
 	 */
 	public void setNota(double nota) {
 		this.nota = nota;
 	}
 
 	/**
-	 * @return the nome
+	 * Metodo para retorno do nome 
+	 * @return String nome 
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
-	 * @param nome the nome to set
+	 * Metodo para insercao do nome 
+	 * @param String nome 
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
 }

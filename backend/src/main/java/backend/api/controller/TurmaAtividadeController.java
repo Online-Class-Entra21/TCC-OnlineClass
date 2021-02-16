@@ -140,6 +140,10 @@ public class TurmaAtividadeController {
 		}
 	}
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
 	/**
 	 * Retorna a lista das turmasAtividades registrados no sistema {GET}
 	 * @return lista de turmasAtividades registradas no banco

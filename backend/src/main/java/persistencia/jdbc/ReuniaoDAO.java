@@ -173,11 +173,7 @@ public class ReuniaoDAO {
 		comandoSql.close();
 		return lista;
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
-	//------------------------------------------------------------------
-	
+
 	/**
 	 * Metodo para selecionar todas as reunioes do banco de dados onde o usuario participou 
 	 * @return lista de reunioes resgistradas no banco onde o usuario participou

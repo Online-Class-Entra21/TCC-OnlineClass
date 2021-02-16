@@ -86,7 +86,7 @@ public class ProfessorDAO {
 	}
 	
 	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
+	//Método Extras - Fora dos 2 principais 
 	//------------------------------------------------------------------
 		
 	/**
@@ -243,6 +243,4 @@ public class ProfessorDAO {
 		comandoSql.close();
 		return notas;
 	}
-	
-	
 }

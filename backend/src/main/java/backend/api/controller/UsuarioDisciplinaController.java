@@ -142,6 +142,10 @@ public class UsuarioDisciplinaController {
 		}
 	}
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
 	/**
 	 * Verifica se existe alguem usuarioDisciplina identico no
 	 * banco e Insere um novo usuarioDisciplina no banco de dados
