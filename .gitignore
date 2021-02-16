@@ -350,7 +350,7 @@ MigrationBackup/
 .ionide/
 
 # Configuração da workSpace do VS Code
-.vscode/
+#.vscode/
 
 # Logs da aplicação
 .backend/logs/
