@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Reuniao;
+import entidade.Usuario;
 
 /**
  * Metodo para consulta da reuniao no banco de dados 
@@ -246,5 +247,49 @@ public class ReuniaoDAO {
         int idReuniao = rs.getInt(1);
 		comandoSql.close();
 		return idReuniao;
+	}
+	
+	/**
+	 * Retorna todos os usuarios listados da reuniao do banco de dados 
+	 * @return lista de usuarios registrados no banco que participam da reuniao
+	 * @param int idReuniao 
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public List<Usuario> buscarTodosParticipantesReuniao(int idReuniao) throws SQLException {
+		List<Usuario> lista = new ArrayList<Usuario>(); 
+		String sql = "select usuario.*\r\n"
+				+ "from\r\n"
+				+ "	usuario,\r\n"
+				+ "    reuniao_usuario\r\n"
+				+ "where \r\n"
+				+ "	usuario.idusuario = reuniao_usuario.fk_usuario\r\n"
+				+ "    and reuniao_usuario.fk_reuniao = ?"; 
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idReuniao);
+		ResultSet resultSet = comandoSql.executeQuery();
+			
+		while (resultSet.next()) {
+			Usuario usuario = new Usuario(); 
+			usuario.setIdUsuario(resultSet.getInt(1));
+			usuario.setNome(resultSet.getString(2));
+			usuario.setSobrenome(resultSet.getString(3));
+			usuario.setCpf(resultSet.getString(4));
+			usuario.setTelefone(resultSet.getString(5));
+			usuario.setCelular(resultSet.getString(6));
+			usuario.setTipoUsuario(resultSet.getInt(7));
+			usuario.setEmail(resultSet.getString(8));
+			usuario.setSenha(resultSet.getString(9));
+			usuario.setHorarioFinalExpediente(resultSet.getTimestamp(10));
+			usuario.setHorarioInicioExpediente(resultSet.getTimestamp(11));
+			usuario.setFotoUsuario(resultSet.getString(12));
+			usuario.setFk_endereco(resultSet.getInt(13));
+			usuario.setFk_escola(resultSet.getInt(14));
+			
+			lista.add(usuario); 
+		}
+		comandoSql.close(); 
+		return lista;
 	}
 }

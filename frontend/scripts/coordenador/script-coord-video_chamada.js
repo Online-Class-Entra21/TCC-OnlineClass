@@ -1,6 +1,9 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
-
+console.log(idUsuario);
+//Pega o id da reuniao 
+var idReuniao = sessionStorage.getItem("idReuniao");
+console.log(idReuniao);
 //Verifica se o idUsuario é válido 
 if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
@@ -10,20 +13,22 @@ if(idUsuario != 0 && idUsuario != null){
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
-            dadosUsuario = JSON.parse(resposta);
+            var dadosUsuario = JSON.parse(resposta);
             //Adiciona o nome 
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
             //Adiciona a foto de perfil do usuario
             var img = document.querySelector("#idFotoPerfil");
-            img.setAttribute('src', dadosUsuario.fotoUsuario);
-            img.style.borderRadius = "80%";
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
         })
 
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/index.html";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
 }
 
 //Evento de abertura do menu 
@@ -44,11 +49,13 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
     document.getElementById("menu").style.display = "none";
 })
 
+entraChamada();
+var usuario;
+var sala;
 async function entraChamada() {
-    idReuniao = sessionStorage.getItem("idReuniao");
     usuario = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/"+idUsuario));
-    sala = JSON.parse(await usarApi("GET","http://localhost:8080/api/salaidreuniao/usuario/"+idUsuario));
-    console.log(usuario);
+    sala = JSON.parse(await usarApi("GET","http://localhost:8080/api/salaidreuniao/"+idReuniao));
+
     var nome = usuario.nome+" "+usuario.sobrenome
     var domain = "classeonline.tk";
     var options = {
@@ -76,7 +83,57 @@ async function entraChamada() {
     api.addListener("participantJoined",function(){
         usuarioOnline();
     });
+    api.addListener("participantLeft",function(){
+        usuarioOnline();
+    });
+    getListaParticipante();
 }
+
+
+async function getListaParticipante() {
+    var reuniao = JSON.parse(await usarApi('GET','http://localhost:8080/api/reuniao/'+idReuniao));
+    var dono = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/dto/"+reuniao.dono));
+    var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/api/reuniao/usuarios/participantes/"+idReuniao));
+    console.log(usuarios);
+    usuarios.push(dono);
+    usuarios.sort(function(a,b) {
+        return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
+    });
+    console.log(sala)
+    
+    usuarios.forEach(element => {
+        console.log(element);
+        var li = $("<li></li>").text(element.nome).attr('id',element.nomecompleto);
+        console.log(li)
+        $("#listaParticipantes").append(li);
+        
+    });
+    listaParticipantes = usuarios;
+    console.log(listaParticipantes);
+}
+
+const interval = setInterval(() => {
+    var participantes = api.getParticipantsInfo();
+    var partOnline = [];
+    var partTodos = [];
+    participantes.forEach(element => {
+        partOnline.push(element.displayName);
+    });
+    listaParticipantes.forEach(element => {
+        partTodos.push(element.nomecompleto);
+    });
+    
+    for (var i = 0; i < partTodos.length; i++){
+        const part = partTodos[i];
+        var indexPart = partOnline.indexOf(part);
+        if (indexPart !== -1){
+            document.getElementById(part).className = 'online';
+        }else{
+            console.log(part)
+            document.getElementById(part).className = 'offline';
+        }
+    }
+}, 1000);
 
 //Método para chamada da API - requisição de lista de escolas 
 function usarApi(method, url) {
