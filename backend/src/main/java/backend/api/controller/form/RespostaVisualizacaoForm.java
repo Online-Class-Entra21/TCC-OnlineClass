@@ -13,6 +13,9 @@ public class RespostaVisualizacaoForm {
 	private double nota;
 	private String comentario;
 	
+	/**
+	 * Metodo construtor padrao
+	 */
 	public RespostaVisualizacaoForm(){
 	}
 	

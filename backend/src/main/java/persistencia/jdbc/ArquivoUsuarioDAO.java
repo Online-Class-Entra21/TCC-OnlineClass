@@ -122,6 +122,10 @@ public class ArquivoUsuarioDAO {
 		comandoSql.close();
 		return lista;
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Realiza o registro de um arquivoUsuario no banco de dados

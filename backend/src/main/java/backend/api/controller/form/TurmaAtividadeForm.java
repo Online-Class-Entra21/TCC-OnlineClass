@@ -3,6 +3,7 @@ package backend.api.controller.form;
 import java.sql.Timestamp;
 
 public class TurmaAtividadeForm {
+
 	private int idAtividade;
 	private String tituloAtividade;
 	private int tipoAtividade;
@@ -11,11 +12,14 @@ public class TurmaAtividadeForm {
 	private int idDisciplina;
 	private String disciplinaNome;
 	
+	/**
+	 * Metodo contrutor padrao
+	 */
 	public TurmaAtividadeForm() {
-		
 	}
 	
 	/**
+	 * Metodo construtor que preenche todos os atributos 
 	 * @param idAtividade
 	 * @param tituloAtividade
 	 * @param finalAtividade
@@ -24,112 +28,123 @@ public class TurmaAtividadeForm {
 	 */
 	public TurmaAtividadeForm(int idAtividade, String tituloAtividade, Timestamp finalAtividade, int idDisciplina,
 			String disciplinaNome) {
-		this.idAtividade = idAtividade;
-		this.tituloAtividade = tituloAtividade;
-		this.finalAtividade = finalAtividade;
-		this.idDisciplina = idDisciplina;
-		this.disciplinaNome = disciplinaNome;
+
+		setIdDisciplina(idDisciplina);
+		setTituloAtividade(tituloAtividade);
+		setFinalAtividade(finalAtividade);
+		setIdDisciplina(idDisciplina);
+		setDisciplinaNome(disciplinaNome);
 	}
 
 	/**
-	 * @return the idAtividade
+	 * Metodo para retorno do idAtividade 
+	 * @return int idAtividade
 	 */
 	public int getIdAtividade() {
 		return idAtividade;
 	}
 
 	/**
-	 * @param idAtividade the idAtividade to set
+	 * Metodo para insercao do idAtividade 
+	 * @param int idAtividade
 	 */
 	public void setIdAtividade(int idAtividade) {
 		this.idAtividade = idAtividade;
 	}
 
 	/**
-	 * @return the tituloAtividade
+	 * Metodo para retorno do tituloAtividade 
+	 * @return String tituloAtividade
 	 */
 	public String getTituloAtividade() {
 		return tituloAtividade;
 	}
 
 	/**
-	 * @param tituloAtividade the tituloAtividade to set
+	 * Metodo para insercao do tituloAtividade 
+	 * @param String tituloAtividade
 	 */
 	public void setTituloAtividade(String tituloAtividade) {
 		this.tituloAtividade = tituloAtividade;
 	}
 
 	/**
-	 * @return the finalAtividade
+	 * Metodo para retorno do finalAtividade
+	 * @return Timestamp finalAtividade
 	 */
 	public Timestamp getFinalAtividade() {
 		return finalAtividade;
 	}
 
 	/**
-	 * @param finalAtividade the finalAtividade to set
+	 * Metodo para insercao do finalAtividade 
+	 * @param Timestamp finalAtividade
 	 */
 	public void setFinalAtividade(Timestamp finalAtividade) {
 		this.finalAtividade = finalAtividade;
 	}
 
 	/**
-	 * @return the idDisciplina
+	 * Metodo para retorno do idDisciplina 
+	 * @return int idDisciplina
 	 */
 	public int getIdDisciplina() {
 		return idDisciplina;
 	}
 
 	/**
-	 * @param idDisciplina the idDisciplina to set
+	 * Metodo para insercao do idDisciplina 
+	 * @param int idDisciplina
 	 */
 	public void setIdDisciplina(int idDisciplina) {
 		this.idDisciplina = idDisciplina;
 	}
 
 	/**
-	 * @return the disciplinaNome
+	 * Metodo para retorno da disciplinaNome
+	 * @return String disciplinaNome
 	 */
 	public String getDisciplinaNome() {
 		return disciplinaNome;
 	}
 
 	/**
-	 * @param disciplinaNome the disciplinaNome to set
+	 * Metodo para insercao da disciplinaNome 
+	 * @param String disciplinaNome
 	 */
 	public void setDisciplinaNome(String disciplinaNome) {
 		this.disciplinaNome = disciplinaNome;
 	}
 
 	/**
-	 * @return the tipoAtividade
+	 * Metodo para retorno do tipoAtividade
+	 * @return int tipoAtividade
 	 */
 	public int getTipoAtividade() {
 		return tipoAtividade;
 	}
 
 	/**
-	 * @param tipoAtividade the tipoAtividade to set
+	 * Metodo para insercao do tipoAtividade
+	 * @param int tipoAtividade
 	 */
 	public void setTipoAtividade(int tipoAtividade) {
 		this.tipoAtividade = tipoAtividade;
 	}
 
 	/**
-	 * @return the fk_arquivo
+	 * Metodo para retorno do fk_arquivo 
+	 * @return int fk_arquivo
 	 */
 	public int getFk_arquivo() {
 		return fk_arquivo;
 	}
 
 	/**
-	 * @param fk_arquivo the fk_arquivo to set
+	 * Metodo para insercao do fk_arquivo 
+	 * @param int fk_arquivo
 	 */
 	public void setFk_arquivo(int fk_arquivo) {
 		this.fk_arquivo = fk_arquivo;
 	}
-	
-	
-	
-	
 }

@@ -137,6 +137,9 @@ public class TurmaDAO {
 		return lista;
 	}	
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Metodo de busca de todas as informacoes de uma linha
@@ -166,7 +169,6 @@ public class TurmaDAO {
 		comandoSql.close(); 
 		return turma;
 	}
-	
 	
 	/**
 	 * Metodo de busca de todas as informacoes de uma linha
@@ -283,6 +285,4 @@ public class TurmaDAO {
 		comandoSql.close();
 		return lista;
 	}
-	
-	
 }

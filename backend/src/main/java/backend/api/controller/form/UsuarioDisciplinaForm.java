@@ -1,49 +1,55 @@
 package backend.api.controller.form;
 
 public class UsuarioDisciplinaForm {
+
 	private String nome;
 	private int idDisciplina;
 	
+	/**
+	 * Metodo construtor padrao 
+	 */
 	public UsuarioDisciplinaForm() {
-		
 	}
 
 	/**
+	 * Metodo construtor que preenche todos os atributos da classe 
 	 * @param nome
+	 * @param idDisciplina 
 	 */
 	public UsuarioDisciplinaForm(String nome, int idDisciplina) {
-		this.nome = nome;
-		this.idDisciplina = idDisciplina;
+		setNome(nome);
+		setIdDisciplina(idDisciplina);
 	}
 
 	/**
-	 * @return the nome
+	 * Metodo para retorno do nome 
+	 * @return String nome
 	 */
 	public String getNome() {
 		return nome;
 	}
 
 	/**
-	 * @param nome the nome to set
+	 * Metodo para insercao do nome 
+	 * @param String nome 
 	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
 	/**
-	 * @return the idDisciplina
+	 * Metodo para retorno do idDisciplina 
+	 * @return int idDisciplina
 	 */
 	public int getIdDisciplina() {
 		return idDisciplina;
 	}
 
 	/**
-	 * @param idDisciplina the idDisciplina to set
+	 * Metodo para insercao do idDisciplina 
+	 * @param int idDisciplina
 	 */
 	public void setIdDisciplina(int idDisciplina) {
 		this.idDisciplina = idDisciplina;
 	}
-	
-	
-	
 }

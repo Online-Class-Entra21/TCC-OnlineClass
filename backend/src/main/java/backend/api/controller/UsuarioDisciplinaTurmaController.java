@@ -141,6 +141,10 @@ public class UsuarioDisciplinaTurmaController {
 			return false;
 		}
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Verifica se existe alguem UsuarioDisciplinaTurma identico no
@@ -216,6 +220,4 @@ public class UsuarioDisciplinaTurmaController {
 			return null;
 		}
 	}
-	
-	
 }

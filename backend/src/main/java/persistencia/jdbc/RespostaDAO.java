@@ -145,6 +145,10 @@ public class RespostaDAO {
 		comandoSql.close();
 		return lista;
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Metodo para selecionar todas as notas, materias e periodos das respostas do banco de dados

@@ -140,6 +140,10 @@ public class EnderecoDAO {
 		comandoSql.close();
 		return lista;
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Realiza o registro de um endereco no banco de dados

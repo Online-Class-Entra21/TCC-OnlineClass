@@ -129,6 +129,10 @@ public class ArquivoDAO {
 		comandoSql.close();
 		return lista;
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Metodo para inserir um arquivo no banco de dados
@@ -155,5 +159,4 @@ public class ArquivoDAO {
 		comandoSql.close();
 		return idEndereco;
 	}
-	
 }

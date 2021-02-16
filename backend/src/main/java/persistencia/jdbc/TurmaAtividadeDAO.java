@@ -121,6 +121,10 @@ public class TurmaAtividadeDAO {
 		comandoSql.close();
 		return lista;
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Retorna todos os dados listados da tabela TurmaAtividade do banco de dados

@@ -9,6 +9,9 @@ public class NotasForm {
 	private String tipoAvaliacao;
 	private double nota;
 	
+	/**
+	 * Metodo construtor padrao
+	 */
 	public NotasForm() {
 	}
 	

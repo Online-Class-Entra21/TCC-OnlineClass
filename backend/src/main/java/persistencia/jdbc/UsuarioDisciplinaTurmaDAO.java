@@ -124,6 +124,10 @@ public class UsuarioDisciplinaTurmaDAO {
 		return lista;
 	}
 
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+
 	/**
 	 * Metodo para selecionar o idUsuarioDisciplinaTurma no banco de dados.
 	 * O objeto usuarioDisciplinaTurma ter os atributos iguais aos do banco de dados
@@ -169,7 +173,7 @@ public class UsuarioDisciplinaTurmaDAO {
 	 * Metodo para selecionar as disciplinas
 	 * que um professor idProfessor da na turma
 	 * idTurma especifica
-	 * 
+	 * @author Andre
 	 * @throws SQLException 
 	 * @param idTurma
 	 * @param idProfessor
@@ -238,10 +242,8 @@ public class UsuarioDisciplinaTurmaDAO {
 			UsuarioDisciplinaForm usuarioDisciplinaForm = new UsuarioDisciplinaForm();
 			usuarioDisciplinaForm.setNome(resultSet.getString(1));
 			usuarioDisciplinaForm.setIdDisciplina(resultSet.getInt(2));
-			
-			
+
 			disciplinas.add(usuarioDisciplinaForm);
-		
 		}
 		comandoSql.close();
 		return disciplinas;

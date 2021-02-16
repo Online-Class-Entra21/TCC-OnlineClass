@@ -142,6 +142,10 @@ public class SalaController {
 		}
 	}
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
 	/**
 	 * Retorna a sala que corresponde ao idReuniao informado
 	 * @param int codigo - idReuniao

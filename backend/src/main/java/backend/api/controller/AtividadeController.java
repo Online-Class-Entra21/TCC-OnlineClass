@@ -142,6 +142,10 @@ public class AtividadeController {
 			return false;
 		}
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Retorna a lista de atividades correspondentes ao id da turma informado (GET)
