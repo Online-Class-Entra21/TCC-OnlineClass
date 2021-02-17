@@ -6,9 +6,9 @@ verificações de campos e outros recursos para ajudar na experiência do usuari
 
 Curso: Java/JavaScript - Programa Entra21
 
-Alunos: 
-    *André Luís Ovidio 
-    *Andrey Alan Romig
-    *Breno Augusto Comandolli
-    *Ian Vicenzo Meneghelli
-    *Ruan Daniel Camargo de Souza
+## Alunos: 
+* André Luís Ovidio 
+* Andrey Alan Romig
+* Breno Augusto Comandolli
+* Ian Vicenzo Meneghelli
+* Ruan Daniel Camargo de Souza
