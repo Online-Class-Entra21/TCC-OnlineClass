@@ -17,7 +17,7 @@ public class ConexaoFactory {
 			Class.forName("org.postgresql.Driver");
 			
 			if (conexao == null) {
-				conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OnlineClassBanco", "postgres","adm123");
+				conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/OnlineClassBD", "postgres","33367743");
 			}
 			return conexao;
 		} catch (Exception e) {

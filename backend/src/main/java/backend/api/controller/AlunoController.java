@@ -1,15 +1,19 @@
 package backend.api.controller;
 
+import java.net.URI;
 import java.sql.SQLException;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -23,6 +27,7 @@ import persistencia.jdbc.AlunoDAO;
  *
  */
 @RestController
+@RequestMapping("/alunos")
 public class AlunoController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -34,8 +39,9 @@ public class AlunoController {
 	 * @author Andrey
 	 * @throws SQLException 
 	 */
-	@GetMapping(path = "/api/aluno/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping("/{codigo}")
+	public String consultar(@PathVariable int codigo) {
 		LOGGER.info("Requisição Aluno codigo {} iniciada", codigo);
 		Aluno aluno;
 		AlunoDAO alunoDao = new AlunoDAO();
@@ -57,7 +63,8 @@ public class AlunoController {
 	 * @return lista de aluno registrados no banco 
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/alunos")
+	@CrossOrigin
+	@GetMapping
 	public List<Aluno> consultar(){
 		LOGGER.info("Requisição List<Aluno>");
 		List<Aluno> lista;
@@ -79,19 +86,18 @@ public class AlunoController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PostMapping(path = "api/aluno/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Aluno - {}",json);
-		Gson gson = new Gson();
-		Aluno aluno = gson.fromJson(json.toString(), Aluno.class);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Aluno aluno) {
+		LOGGER.info("Requisição Inserir Aluno - {}",aluno);
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			alunoDao.insert(aluno);
-			LOGGER.info("Requisição Inserir Aluno - {} - Bem Sucedida",json);
+			LOGGER.info("Requisição Inserir Aluno - {} - Bem Sucedida",aluno);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			LOGGER.error("Requisição Inserir Aluno - {} - Mal Sucedida erro : {}",json,e.toString());
+			LOGGER.error("Requisição Inserir Aluno - {} - Mal Sucedida erro : {}",aluno,e.toString());
 			return false;
 		}
 	}
