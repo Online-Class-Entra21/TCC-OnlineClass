@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import entidade.Aluno;
-import entidade.Turma;
 
 /**
  * Metodo para consulta do aluno no banco de dados 
@@ -30,8 +29,8 @@ public class AlunoDAO {
 				   + "situacaoanoletivo, fk_usuario, fk_turma) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setInt(1, aluno.getRa());
-		comandoSql.setInt(2, aluno.getMatricula());
+		comandoSql.setString(1, aluno.getRa());
+		comandoSql.setString(2, aluno.getMatricula());
 		comandoSql.setBoolean(3, aluno.getDeficiencia());
 		comandoSql.setString(4, aluno.getNomeMae());
 		comandoSql.setString(5, aluno.getNomePai());
@@ -57,8 +56,8 @@ public class AlunoDAO {
 				+ "situacaoanoletivo = ?, fk_usuario = ?, fk_turma = ? where idaluno = ?";
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		
-		comandoSql.setInt(1, aluno.getRa());
-		comandoSql.setInt(2, aluno.getMatricula());
+		comandoSql.setString(1, aluno.getRa());
+		comandoSql.setString(2, aluno.getMatricula());
 		comandoSql.setBoolean(3, aluno.getDeficiencia());
 		comandoSql.setString(4, aluno.getNomeMae());
 		comandoSql.setString(5, aluno.getNomePai());
@@ -107,8 +106,8 @@ public class AlunoDAO {
 		
 		if (resultSet.next()) {
 			aluno.setIdAluno(resultSet.getInt(1));
-			aluno.setRa(resultSet.getInt(2));
-			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setRa(resultSet.getString(2));
+			aluno.setMatricula(resultSet.getString(3));
 			aluno.setDeficiencia(resultSet.getBoolean(4));
 			aluno.setNomeMae(resultSet.getString(5));
 			aluno.setNomePai(resultSet.getString(6));
@@ -137,8 +136,8 @@ public class AlunoDAO {
 		while (resultSet.next()) {
 			Aluno aluno = new Aluno();
 			aluno.setIdAluno(resultSet.getInt(1));
-			aluno.setRa(resultSet.getInt(2));
-			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setRa(resultSet.getString(2));
+			aluno.setMatricula(resultSet.getString(3));
 			aluno.setDeficiencia(resultSet.getBoolean(4));
 			aluno.setNomeMae(resultSet.getString(5));
 			aluno.setNomePai(resultSet.getString(6));
@@ -176,6 +175,7 @@ public class AlunoDAO {
 		comandoSql.close();
 		return qtdAlunos;
 	}
+
 	/**
 	 * Metodo para selecionar o aluno do banco de dados apartir do id do usuario.
 	 * O <code>fk_Usuario</code> deve ser igual ao do aluno que deseja buscar
@@ -194,8 +194,8 @@ public class AlunoDAO {
 		
 		if (resultSet.next()) {
 			aluno.setIdAluno(resultSet.getInt(1));
-			aluno.setRa(resultSet.getInt(2));
-			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setRa(resultSet.getString(2));
+			aluno.setMatricula(resultSet.getString(3));
 			aluno.setDeficiencia(resultSet.getBoolean(4));
 			aluno.setNomeMae(resultSet.getString(5));
 			aluno.setNomePai(resultSet.getString(6));
@@ -208,40 +208,6 @@ public class AlunoDAO {
 		return aluno;
 	}
 	
-	/**
-	 * Metodo para selecionar do banco de dados todos os alunos cadastrados
-	 * @author Andre
-	 * @return lista de alunos registrados no banco 
-	 * @throws SQLException
-	 */
-	public List<Aluno> buscarTodosIdSala(int idSala) throws SQLException {
-		List<Aluno> lista = new ArrayList<Aluno>();
-		TurmaDAO turmaDao = new TurmaDAO();
-		Turma turma = turmaDao.buscarIdSala(idSala);
-		String sql = "select * from aluno where fk_turma = ?";
-		
-		PreparedStatement comandoSql = conexao.prepareStatement(sql);
-		comandoSql.setInt(1, turma.getIdTurma());
-		ResultSet resultSet = comandoSql.executeQuery();
-		
-		while (resultSet.next()) {
-			Aluno aluno = new Aluno();
-			aluno.setIdAluno(resultSet.getInt(1));
-			aluno.setRa(resultSet.getInt(2));
-			aluno.setMatricula(resultSet.getInt(3));
-			aluno.setDeficiencia(resultSet.getBoolean(4));
-			aluno.setNomeMae(resultSet.getString(5));
-			aluno.setNomePai(resultSet.getString(6));
-			aluno.setNomeResponsavel(resultSet.getString(7));
-			aluno.setSituacaoAnoLetivo(resultSet.getBoolean(8));
-			aluno.setFk_usuario(resultSet.getInt(9));
-			aluno.setFk_turma(resultSet.getInt(10));
-			
-			lista.add(aluno);
-		}
-		comandoSql.close();
-		return lista;
-	}
 	
 	/**
 	 * Metodo para selecionar do banco de dados todos os alunos cadastrados em uma turma
@@ -261,8 +227,8 @@ public class AlunoDAO {
 		while (resultSet.next()) {
 			Aluno aluno = new Aluno();
 			aluno.setIdAluno(resultSet.getInt(1));
-			aluno.setRa(resultSet.getInt(2));
-			aluno.setMatricula(resultSet.getInt(3));
+			aluno.setRa(resultSet.getString(2));
+			aluno.setMatricula(resultSet.getString(3));
 			aluno.setDeficiencia(resultSet.getBoolean(4));
 			aluno.setNomeMae(resultSet.getString(5));
 			aluno.setNomePai(resultSet.getString(6));
@@ -295,5 +261,30 @@ public class AlunoDAO {
 		
 		comandoSql.execute();
 		comandoSql.close();
+	}
+
+	/**
+	 * Metodo para retorno da quantidade de alunos em uma turma no banco de dados
+	 * @return int qtdAlunos
+	 * @author Breno
+	 * @throws SQLException
+	 */
+	public int buscarQuantidadeAlunos(int idTurma) throws SQLException {
+		int qtdAlunos = 0;
+		String sql = "select count(idAluno)"
+				    +" from aluno,"
+					+"      turma"
+					+" where aluno.fk_turma = turma.idTurma "
+					+" and   idTurma = ?";
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idTurma);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			qtdAlunos = (resultSet.getInt(1));
+		}
+		comandoSql.close();
+		return qtdAlunos;
 	}
 }

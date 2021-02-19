@@ -1,6 +1,6 @@
 package entidade;
 
-import java.util.*;
+import java.sql.Timestamp;
 
 /**
  * Classe contendo metodos e atributos para a criacao de atividades.
@@ -11,11 +11,13 @@ public class Atividade {
 	
     private int idAtividade;
     private String descricao;
-    private Date inicioAtividade;
-    private Date finalAtividade;
+    private Timestamp inicioAtividade;
+    private Timestamp finalAtividade;
     private int tipoAtividade;
     private double pesoNota;
     private int fk_usuarioDisciplina;
+    private String titulo;
+    private int fk_arquivo;
 
     /**
      * Construtor usado ao instanciar a classe Atividade.
@@ -35,7 +37,7 @@ public class Atividade {
      * @param pesoNota
      * @param fk_usuario_disciplina
      */
-    public Atividade(int idAtividade, String descricao, Date inicioAtividade, Date finalAtividade, int tipoAtividade,
+    public Atividade(int idAtividade, String descricao, Timestamp inicioAtividade, Timestamp finalAtividade, int tipoAtividade,
 					 double pesoNota, int fk_usuario_disciplina) {
     	
 		setIdAtividade(idAtividade);
@@ -45,6 +47,24 @@ public class Atividade {
 		setTipoAtividade(tipoAtividade);
 		setPesoNota(pesoNota);
 		setFk_usuarioDisciplina(fk_usuario_disciplina);
+	}
+
+    
+    
+    /**
+     * Metodo para retorno do FK do arquivo 
+     * @return
+     */
+	public int getFk_arquivo() {
+		return fk_arquivo;
+	}
+
+	/**
+	 * Metodo para setar o FK do arquivo
+	 * @param fk_arquivo
+	 */
+	public void setFk_arquivo(int fk_arquivo) {
+		this.fk_arquivo = fk_arquivo;
 	}
 
 	/** 
@@ -83,7 +103,7 @@ public class Atividade {
      * Metodo para retorno da data de inicio da atividade.
      * @return Date inicioAtividade 
      */
-    public Date getInicioAtividade() {
+    public Timestamp getInicioAtividade() {
         return inicioAtividade;
     }
 
@@ -91,7 +111,7 @@ public class Atividade {
      * Metodo para insercao da data de incio da atividade 
      * @param Date inicioAtividade
      */
-    public void setInicioAtividade(Date inicioAtividade) {
+    public void setInicioAtividade(Timestamp inicioAtividade) {
         this.inicioAtividade = inicioAtividade;
     }
 
@@ -99,7 +119,7 @@ public class Atividade {
      * Metodo para retorno da data final da atividade.
      * @return Date finalAtividade 
      */
-    public Date getFinalAtividade() {
+    public Timestamp getFinalAtividade() {
         return finalAtividade;
     }
 
@@ -107,7 +127,7 @@ public class Atividade {
      * Metodo para insercao da data final da atividade 
      * @param Date finalAtividade
      */
-    public void setFinalAtividade(Date finalAtividade) {
+    public void setFinalAtividade(Timestamp finalAtividade) {
         this.finalAtividade = finalAtividade;
     }
 
@@ -158,4 +178,22 @@ public class Atividade {
 	public void setFk_usuarioDisciplina(int fk_usuarioDisciplina) {
 		this.fk_usuarioDisciplina = fk_usuarioDisciplina;
 	}
+	
+	/**
+	 * Metodo para retorno do titulo da atividade
+	 * @return string titulo
+	 */
+	public String getTitulo() {
+		return titulo;
+	}
+
+	/**
+	 * Metodo para insercao do titulo da atividade
+	 * @param string titulo
+	 */
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+	
+	
 }

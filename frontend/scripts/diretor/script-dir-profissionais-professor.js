@@ -1,6 +1,5 @@
 // Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
-
 var idEscola;
 
 $(".alert").hide();
@@ -10,7 +9,6 @@ if (idUsuario != 0 && idUsuario != null) {
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest();
 
-
     dadosUsuario();
     async function dadosUsuario() {
     
@@ -18,7 +16,7 @@ if (idUsuario != 0 && idUsuario != null) {
     
         dadosUsuario = JSON.parse(resposta);
         //Adiciona o nome 
-        document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+        document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome+" "+dadosUsuario.sobrenome;
         idEscola = dadosUsuario.fk_escola;
         //Adiciona a foto de perfil do usuario
         var img = document.querySelector("#idFotoPerfil");
@@ -26,10 +24,6 @@ if (idUsuario != 0 && idUsuario != null) {
         img.style.borderRadius = "80%";
     }
     
-    
-
-
-
 } else {
     alert('Sessão expirada - Erro (0002)')
     window.location = "/frontend/index.html";
@@ -103,13 +97,9 @@ async function getTurmas() {
     turmas = JSON.parse(turmas);
     for (var i = 0; i < turmas.length; i++){
         const turm = turmas[i];
-        $("#turma").append('<label for="turma'+turm.idTurma+'"><input type="checkbox" name="'+turm.ano+'" id="turma'+turm.idTurma+'">turma '+turm.ano+'</label>')
+        $("#turma").append('<label for="turma'+turm.idTurma+'"><input type="checkbox" name="'+turm.ano+'" id="turma'+turm.idTurma+'"> '+turm.ano+'</label>')
     }
 }
-
-
-
-
 
 function getSelTurmas() {
     var turmas = $('input[id^="turma"]:checked');
@@ -123,11 +113,6 @@ function getSelTurmas() {
 $('#testebtn').click(function(){
     getSelTurmas();
 })
-
-
-
-
-
 
 //Evento de abertura do menu 
 document.getElementById("mostrar").addEventListener("mouseover", function () {
@@ -147,11 +132,9 @@ document.getElementById("menu").addEventListener("mouseleave", function () {
     document.getElementById("menu").style.display = "none";
 })
 
-
 //---> Referencia checkbox inside select
 //---> https://stackoverflow.com/questions/17714705/how-to-use-checkbox-inside-select-option
 //-> Checkbox Inside Select code:
-
 
 function optionTurmas() {
     $('#turma').toggle();
@@ -210,9 +193,7 @@ $('#btnAvancar').click(async function(){
             alert('Senha Invalida.');
         }
     }
-
 });
-
 
 async function getMaterias(idTurma) {
     var disciplinas = await usarApi('GET','http://localhost:8080/api/disciplinas');
@@ -241,7 +222,6 @@ async function getMaterias(idTurma) {
         $("#"+idTSel).toggle();
     });
 }
-
 
 $('#btnCadastrar').click(async function() {
     //posta o endereco no banco de dados
@@ -298,6 +278,4 @@ $('#btnCadastrar').click(async function() {
     
         await usarApi('POST','http://localhost:8080/api/usuarioDisciplinaTurma/inserir/'+JSON.stringify(insertTurmaDisciplina))
     }
-    
-
 });

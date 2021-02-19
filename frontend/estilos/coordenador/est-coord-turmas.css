@@ -290,7 +290,9 @@ tr:hover {
     cursor: pointer;
     background-color: lightblue;
 }
-/* Config. Botões */
+/* 
+Config. Botões 
+*/
 .but{
     align-items: center;
     justify-content: center;
@@ -301,7 +303,10 @@ tr:hover {
     background-color: white;
     border-radius: 1vh;
 }
-/* Config. impede que de conflito nas tabelas com os formularios */
+
+/* 
+Config. impede que de conflito nas tabelas com os formularios 
+*/
 #dGridPessoas{
     z-index: 1;
 }
@@ -312,7 +317,6 @@ tr:hover {
 #btnAtualizar {
     float: left;
 }
-
 #idBtn {
     float: left;
 }

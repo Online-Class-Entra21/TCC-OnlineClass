@@ -381,7 +381,6 @@ Config da div de imagem
     display: flex;
 }
 
-
 /*
 Config. dos componentes de add de imagem 
 */
@@ -407,14 +406,16 @@ Config. dos componentes de add de imagem
     padding: 0;
     margin-left: 2%;
 }
-
 #tr-salvar{
     justify-content: center;
     align-items: center;
     display: flex;
     margin-top: 4%;
 }
-/* Config. Botão*/
+
+/*
+Config. Botão
+*/
 .but{
     align-items: center;
     justify-content: center;

@@ -1,16 +1,61 @@
+// Pegando id do usuário que logou 
 var idUsuario = sessionStorage.getItem("idUsuario");
-console.log(idUsuario)
-var listaalunos;
-getListaParticipante();
-entraChamada();
+console.log(idUsuario);
+//Pega o id da reuniao 
+var idReuniao = sessionStorage.getItem("idReuniao");
+console.log(idReuniao);
+//Verifica se o idUsuario é válido 
+if(idUsuario != 0 && idUsuario != null){
+    //Busca dos dados do usuário
+    var xhr = new XMLHttpRequest(); 
 
+        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+
+        xhr.addEventListener("load", function(){
+            var resposta = xhr.responseText; 
+            var dadosUsuario = JSON.parse(resposta);
+            //Adiciona o nome 
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome +" "+dadosUsuario.sobrenome;
+            //Adiciona a foto de perfil do usuario
+            var img = document.querySelector("#idFotoPerfil");
+            if(dadosUsuario.fotoUsuario != null){
+                img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
+                img.style.borderRadius = "80%";
+            }
+        })
+
+    xhr.send();
+    
+}else{
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
+}
+
+//Evento de abertura do menu 
+document.getElementById("mostrar").addEventListener("mouseover", function(){
+    abrirMenu();
+})
+document.getElementById("idImgMenu").addEventListener("mouseover", function(){
+    abrirMenu();
+})
+
+//Abertura do menu
+function abrirMenu(){
+    document.getElementById("menu").style.display = "block";
+}
+
+//Evento de fechamento do menu 
+document.getElementById("menu").addEventListener("mouseleave", function(){
+    document.getElementById("menu").style.display = "none";
+})
+
+entraChamada();
 var usuario;
 var sala;
-var api;
 async function entraChamada() {
     usuario = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/"+idUsuario));
-    sala = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/usuario/"+idUsuario));
-    console.log(usuario);
+    sala = JSON.parse(await usarApi("GET","http://localhost:8080/api/salaidreuniao/"+idReuniao));
+console.log("oi")
     var nome = usuario.nome+" "+usuario.sobrenome
     var domain = "classeonline.tk";
     var options = {
@@ -28,6 +73,7 @@ async function entraChamada() {
 
     };
     api = new JitsiMeetExternalAPI(domain, options);
+    console.log("oi")
     api.addListener("displayNameChange",function() {
         api.executeCommand("displayName",nome);
         usuarioOnline();
@@ -38,59 +84,57 @@ async function entraChamada() {
     api.addListener("participantJoined",function(){
         usuarioOnline();
     });
-}
-
-
-
-
-
-function usuarioOnline() {
-    var participantes = api.getParticipantsInfo();
-    participantes.forEach(element => {
-        console.log(listaalunos);
-        listaalunos.forEach(element2 => {
-            if (element.displayName==element2.nomecompleto) {
-                console.log("on");
-                document.getElementById(element2.nomecompleto).className = 'online';
-            }else{
-                console.log("off");
-            }
-            
-        });
-        
+    api.addListener("participantLeft",function(){
+        usuarioOnline();
     });
+    getListaParticipante();
 }
+
 
 async function getListaParticipante() {
-    var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/api/salasPadroes/participantes/1"));
+    var reuniao = JSON.parse(await usarApi('GET','http://localhost:8080/api/reuniao/'+idReuniao));
+    var dono = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/dto/"+reuniao.dono));
+    var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/api/reuniao/usuarios/participantes/"+idReuniao));
+    console.log(usuarios);
+    usuarios.push(dono);
     usuarios.sort(function(a,b) {
         return a.nome < b.nome ? -1 : a.nome > b.nome ? 1 : 0;
     });
+    console.log(sala)
+    
     usuarios.forEach(element => {
+        console.log(element);
         var li = $("<li></li>").text(element.nome).attr('id',element.nomecompleto);
-        $("#listaAlunos").append(li);
+        console.log(li)
+        $("#listaParticipantes").append(li);
         
     });
-    listaalunos = usuarios;
+    listaParticipantes = usuarios;
+    console.log(listaParticipantes);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const interval = setInterval(() => {
+    var participantes = api.getParticipantsInfo();
+    var partOnline = [];
+    var partTodos = [];
+    participantes.forEach(element => {
+        partOnline.push(element.displayName);
+    });
+    listaParticipantes.forEach(element => {
+        partTodos.push(element.nomecompleto);
+    });
+    console.log(listaParticipantes);
+    for (var i = 0; i < partTodos.length; i++){
+        const part = partTodos[i];
+        var indexPart = partOnline.indexOf(part);
+        if (indexPart !== -1){
+            document.getElementById(part).className = 'online';
+        }else{
+            console.log(part)
+            document.getElementById(part).className = 'offline';
+        }
+    }
+}, 1000);
 
 //Método para chamada da API - requisição de lista de escolas 
 function usarApi(method, url) {
@@ -121,41 +165,4 @@ function usarApi(method, url) {
         };
         xhr.send();
     });
-}
-
-function jitsiSize() {
-    var altura = $(window).height();
-    var largura = $(window).width();
-    var sizeTela;
-    var x;
-    console.log(largura)
-    if (largura<1003) {
-        altura = altura - (0.20*altura);
-        largura = largura - (0.20*largura);
-        sizeTela = largura/altura;
-        if (sizeTela>1.77) {
-            x = altura/9;
-            largura = x*16;
-        }else{
-            x = largura/16;
-            altura = x*9;
-        }
-        $("#divJitsi").height(altura+"px").width(largura+"px");
-        $("#divParticipantes").width(largura+"px");
-        $("#divParticipantes").height("480px");
-    }else{
-        altura = altura - (0.20*altura);
-        largura = largura - (0.20*largura);
-        sizeTela = largura/altura;
-        if (sizeTela>1.77) {
-            x = altura/9;
-            largura = x*16;
-        }else{
-            x = largura/16;
-            altura = x*9;
-        }
-        $("#divJitsi").height(altura+"px").width(largura+"px");
-        $("#divParticipantes").width("170px");
-        $("#divParticipantes").height(altura+"px");
-    }
 }

@@ -92,29 +92,41 @@
         <div id="centralizacao">
             <section id="selec">
                 <table>
-                    <tr>
-                        <th>Turma</th>
-                        <th>Data</th>
-                        <th>Atividade</th>
-                        <th>Nota</th>
-                    </tr>
-                    <tr>
+                    <tbody>
                         <td>
-                            01
+                            <select name="nmSelectT" id="SelectTurma">
+                                <option value="defaultTurma">Escolha a Turma</option>
+                            </select>
                         </td>
                         <td>
-                            05/08
+                            <select name="nmSelectA" id="SelectAlunos" disabled>
+                                <option value="defaultAluno">Escolha o Aluno</option>
+                            </select>
                         </td>
                         <td>
-                            Funções
+                            <select name="nmSelect" id="SelectDisciplina" disabled>
+                                <option value="defaultDisciplina">Escolha a Disciplina</option>
+                            </select>
                         </td>
-                        <td>
-                            8.9
-                        </td>
-                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Turma</th>
+                            <th>Data</th>
+                            <th>Atividade</th>
+                            <th>Nota</th>
+                            <th>Disciplina</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaAlunos">
+
+                    </tbody>
                 </table>
             </section>
-        </div>
+            </div>
+        
     </main>
         <!-- Script - JS -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"></script>

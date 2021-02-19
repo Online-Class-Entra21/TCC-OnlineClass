@@ -13,16 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
-import entidade.Diretor;
-import entidade.Disciplina;
+import backend.api.controller.form.ProfessorNotasForm;
 import entidade.Professor;
-import entidade.Turma;
 import entidade.Usuario;
-import entidade.UsuarioDisciplina;
-import persistencia.jdbc.DiretorDAO;
 import persistencia.jdbc.ProfessorDAO;
 import persistencia.jdbc.UsuarioDAO;
-import persistencia.jdbc.UsuarioDisciplinaDAO;
 
 /**
  * Metodo controller do professor para consulta no banco de dados através da API Rest
@@ -126,5 +121,52 @@ public class ProfessorController {
 			return false;
 		}
 	}
-}
+	
+	/**
+	 * Verifica se as notas do aluno (GET)
+	 * @return notas
+	 * @param int idAluno
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/aluno/notas/{idTurma}/{idAluno}")
+	public List<ProfessorNotasForm> consultarProfessorNotas(@PathVariable("idTurma") int idTurma,@PathVariable("idAluno") int idAluno) {
+		LOGGER.info("Requisição Notas aluno Existentes");
+		List<ProfessorNotasForm> professorNotasForm;
+		ProfessorDAO professorDao = new ProfessorDAO();
+		try {
+			professorNotasForm = professorDao.buscarNotasAluno(idTurma, idAluno);
+			LOGGER.info("Requisição Notas Aluno Existentes bem sucedida idTurma - {} - idAluno - {}",idTurma,idAluno);
+			return professorNotasForm;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para verificar Notas Aluno Existentes idTurma - {} - idAluno - {} Mal Sucedida - erro - {}",idTurma,idAluno,e.toString());
+			return null;
+		}
+	}
 
+
+	/**
+	 * Verifica as notas do aluno por disciplina (GET)
+	 * @return notas pelo idDisciplina
+	 * @param int idTurma
+	 * @param int idAluno
+	 * @param int idDisciplina
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/aluno/notas/disciplina/{idTurma}/{idAluno}/{idDisciplina}")
+	public List<ProfessorNotasForm> consultarProfessorNotasDisciplina(@PathVariable("idTurma") int idTurma,@PathVariable("idAluno") int idAluno, @PathVariable("idDisciplina") int idDisciplina) {
+		LOGGER.info("Requisição Notas aluno Existentes");
+		List<ProfessorNotasForm> professorNotasForm;
+		ProfessorDAO professorDao = new ProfessorDAO();
+		try {
+			professorNotasForm = professorDao.buscarNotasAlunoDisciplina(idTurma, idAluno, idDisciplina);
+			LOGGER.info("Requisição Notas Aluno Existentes bem sucedida idTurma - {} - idAluno - {} idDisciplina - {}",idTurma,idAluno, idDisciplina);
+			return professorNotasForm;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para verificar Notas Aluno Existentes idTurma - {} - idAluno - {} idDisciplina - {} Mal Sucedida - erro - {}",idTurma,idAluno,idDisciplina,e.toString());
+			return null;
+		}
+	}
+
+}

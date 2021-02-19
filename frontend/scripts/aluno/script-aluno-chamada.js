@@ -14,7 +14,7 @@ if(idUsuario != 0 && idUsuario != null){
             dadosUsuario = JSON.parse(resposta);
             userEmail = dadosUsuario.email;
             //Adiciona o nome
-            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome;
+            document.getElementById("idNomeUsuario").textContent = dadosUsuario.nome+" "+dadosUsuario.sobrenome;
             $("#idDestinatario").val(dadosUsuario.nome).prop("disabled", true);
             var dataAgora = new Date();
             var dia  = String(dataAgora.getDate()).padStart(2, '0');
@@ -36,9 +36,10 @@ if(idUsuario != 0 && idUsuario != null){
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/";
 }
+
 var convidados = [];
 async function criarReuniao(){
     var data;
@@ -82,18 +83,18 @@ async function criarReuniao(){
             fk_sala: sala.idSala
         };
         reuniao = JSON.stringify(reuniao);
-        usarApi('POST','http://localhost:8080/api/reuniao/personalizada/inserir/'+reuniao);
+        var idReuniao = await usarApi('POST','http://localhost:8080/api/reuniao/personalizada/inserir/return/'+reuniao);
         $('#reuniaoCriada').text('Reunião criada com sucesso').show(300);
         for (var i = 0; i < convidados.length; i++) {
             const element = convidados[i];
+            console.log(element);
             var convite = {
-                destinatario: element.idUsuario,
-                salaConvite: sala.idSala,
-                fk_usuario: idUsuario
+                fk_reuniao: idReuniao,
+                fk_usuario: element.idUsuario
             }
             convite = JSON.stringify(convite);
-            usarApi('POST','http://localhost:8080/api/convite/inserir/'+convite);
-            
+            usarApi('POST','http://localhost:8080/api/reuniaoUsuario/inserir/'+convite);
+    
         }
     }
     

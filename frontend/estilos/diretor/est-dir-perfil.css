@@ -284,7 +284,9 @@ Config. das tds
     width: 10vh;
 }
 .cont{
-    width: 30vh;
+    width: 70%;
+    margin-right: 10%;
+    
 }
 
 /*
@@ -299,8 +301,8 @@ Config. do titulo
 Config. dos inputs 
 */
 .inputs {
-    width: 100%;
-    margin-left: 22%;
+    width: 90%;
+    margin-left: 15%;
     font-size: 80%;
 }
 
@@ -322,12 +324,15 @@ Config. divs do form
 Config. dados pessoais div
 */
 #dados-pessoais {
-    width: 63vh;
-    height: 87vh;
-    border-radius: 3vh;
     border: 2px solid black;
+    border-radius: 2vh;
+    float: left;
     padding: 2%;
-    margin: 2.5%;
+    margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 70vh;
+    height: 100%;
 }
 
 /*

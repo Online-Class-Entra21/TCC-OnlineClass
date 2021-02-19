@@ -120,5 +120,36 @@ public class TurmaAtividadeDAO {
 		}
 		comandoSql.close();
 		return lista;
+	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Retorna todos os dados listados da tabela TurmaAtividade do banco de dados
+	 * @return lista de TurmasAtividades registradas no banco
+	 * @author Andrey 
+	 * @throws SQLException 
+	 */
+	public List<TurmaAtividade> buscarTodosIdTurma(int idTurma) throws SQLException {
+		List<TurmaAtividade> lista = new ArrayList<TurmaAtividade>(); 
+		String sql = "select * from turma_Atividade where fk_turma = ?"; 
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idTurma);
+		
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) { 
+			TurmaAtividade turmaAtividade = new TurmaAtividade();
+			turmaAtividade.setIdTurmaAtividade(resultSet.getInt(1));
+			turmaAtividade.setFk_turma(resultSet.getInt(2));
+			turmaAtividade.setFk_atividade(resultSet.getInt(3));
+			
+			lista.add(turmaAtividade); 
+		}
+		comandoSql.close();
+		return lista;
 	}	
 }

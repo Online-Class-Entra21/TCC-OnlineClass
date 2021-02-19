@@ -247,7 +247,6 @@ Config. das alteracoes especificas
 /*
 Config. das atividades do usuarios
 */
-
 .materia {
     margin-left: 10%;
     margin-top: -15%;
@@ -261,10 +260,9 @@ Config. das atividades do usuarios
     cursor: pointer;
 }
 .descricao{
-    min-width: 85%;
-    min-height: 25vh;
-    max-width: 85%;
-    max-height: 25vh;
+    min-height: 100px;
+    max-width: 600px;
+    max-height: 100px;
     padding-left: 1%;
     padding-top: 5%;
     margin-left: 10%;
@@ -275,6 +273,9 @@ Config. das atividades do usuarios
     float: right;
 }
 
+/*
+Config. dos botoes 
+*/
 .but{
     align-items: center;
     justify-content: center;
@@ -287,18 +288,16 @@ Config. das atividades do usuarios
     color: white;
     background-color: black;
 }
-
 .Principal{
     width: 50vh;
     float: right;
 
 }
-
 #btnEnviar{
     background: black;
     border-radius: 1vh;
     border: 1px solid black;
 }
-.adicionar{
-    width: 50vh;
+#descricaoDiv{
+    width: 90%;
 }

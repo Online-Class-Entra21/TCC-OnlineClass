@@ -235,7 +235,9 @@ Config. da div do botão de saida
 Config. das alteracoes especificas
 ***************************/
 
-
+/*
+Config. padroes da pagina 
+*/
 html{
     height: 95%;
     background: url(/frontend/imagens/fundo.png);
@@ -250,6 +252,9 @@ main{
     background: url(/frontend/imagens/fundo.png);
 }
 
+/*
+Config. da lista de participantes 
+*/
 ul{
     margin-left: auto;
     margin-right: auto;
@@ -272,7 +277,13 @@ ul{
     float: left;
 }
 
+/*
+Config. dos pontos online - offline 
+*/
 li::marker {
+    color: red
+}
+li.offline::marker {
     color: red
 }
 li.online::marker{

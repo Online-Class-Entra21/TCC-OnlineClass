@@ -7,6 +7,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import backend.api.controller.DTO.UsuarioDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -274,6 +276,29 @@ public class ReuniaoController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir Reuniao Mal Sucedida - Reuniao {} - erro - {}",json,e.toString());
 			return 0;
+		}
+	}
+	
+	/**
+	 * Retorna a lista de usuarios registrados no sistema que participam da reuniao  {GET}
+	 * @return lista de usuarios registrados no banco que participam da reuniao
+	 * @param int idReuniao
+	 * @author Breno
+	 */
+	@GetMapping(path = "/api/reuniao/usuarios/participantes/{idReuniao}")
+	public List<UsuarioDTO> consultarParticipantes(@PathVariable("idReuniao") int idReuniao){
+		LOGGER.info("Requisição List<Usuario> idReuniao - {}",idReuniao);
+		List<Usuario> lista;
+		ReuniaoDAO reuniaoDao = new ReuniaoDAO();
+		try {
+			lista = reuniaoDao.buscarTodosParticipantesReuniao(idReuniao);
+			LOGGER.info("Requisição List<Usuario> bem sucedida idReuniao - {}",idReuniao);
+			List<UsuarioDTO> listaDTO = UsuarioDTO.converter(lista);
+			return listaDTO;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos Usuario idReuniao - {} Mal Sucedida - erro - {}",idReuniao,e.toString());
+			return null;
 		}
 	}
 }

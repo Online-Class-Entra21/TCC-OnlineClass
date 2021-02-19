@@ -261,6 +261,9 @@ Config dos inputs
     margin-right: 10%;
 }
 
+/*
+Config. dos botoes 
+*/
 .btnCriarReuniao{
     display:flex;
     flex-wrap: wrap;

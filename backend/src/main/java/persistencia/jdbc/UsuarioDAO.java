@@ -338,8 +338,7 @@ public class UsuarioDAO {
         rs.next();
         int idUsuario = rs.getInt(1);
 		comandoSql.close(); 
-		
-        
+
 		return idUsuario;
 	}
 	

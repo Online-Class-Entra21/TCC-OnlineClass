@@ -1,6 +1,6 @@
 package entidade;
 
-import java.util.*;
+import java.sql.Timestamp;
 
 /**
  * Classe contendo metodos e atributos para a criacao e uso de arquivos
@@ -10,7 +10,7 @@ public class Arquivo {
 	
     private int idArquivo;
     private String extensao;
-    private Date dataEnvio;
+    private Timestamp dataEnvio;
     private int remetente;
     private String caminhoArquivo;
 
@@ -29,7 +29,7 @@ public class Arquivo {
      * @param remetente
      * @param caminhoArquivo
      */
-    public Arquivo(int idArquivo, String extensao, Date dataEnvio, int remetente, String caminhoArquivo) {
+    public Arquivo(int idArquivo, String extensao, Timestamp dataEnvio, int remetente, String caminhoArquivo) {
 		setIdArquivo(idArquivo);
 		setExtensao(extensao);
 		setDataEnvio(dataEnvio);
@@ -68,17 +68,17 @@ public class Arquivo {
     }
 
     /** Metodo para retorno da data de envio
-     * @return Date dataEnvio 
+     * @return Timestamp dataEnvio 
      */
-    public Date getDataEnvio() {
+    public Timestamp getDataEnvio() {
         return dataEnvio;
     }
 
     /**
      * Metodo para insercao da data de envio do arquivo 
-     * @param Date dataEnvio
+     * @param Timestamp dataEnvio
      */
-    public void setDataEnvio(Date dataEnvio) {
+    public void setDataEnvio(Timestamp dataEnvio) {
         this.dataEnvio = dataEnvio;
     }
 

@@ -27,8 +27,8 @@ if(idUsuario != 0 && idUsuario != null){
     xhr.send();
     
 }else{
-    // alert('Sessão expirada - Erro (0002)')
-    // window.location = "/frontend/index.html";
+    alert('Sessão expirada - Erro (0002)')
+    window.location = "/frontend/index.html";
 }
 
 //Evento de abertura do menu 
@@ -195,7 +195,7 @@ async function cadastrar() {
                                 if (!insertUsuario || !insertEndereco) {
                                     alert("Ocorreu um erro no cadastro do usuario!")
                                 } else {
-
+                                    var idTurma = Number($('#SelectTurma :selected').val());
                                   //Cria o objeto Aluno
                                     var inserirAluno = {
                                       ra: ra,
@@ -206,7 +206,7 @@ async function cadastrar() {
                                       nomeResponsavel: nomeResponsavel,
                                       situacaoAnoLetivo: null,
                                       fk_usuario: idUsuarioJson,
-                                      fk_turma: $('#SelectTurma :selected').val()
+                                      fk_turma: idTurma
                                     }
 
                                     var alunoJson = JSON.stringify(inserirAluno);

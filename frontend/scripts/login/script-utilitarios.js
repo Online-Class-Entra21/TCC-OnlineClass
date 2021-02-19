@@ -69,6 +69,31 @@ function UploadFile(file,url){
     xhr.open("POST", url, true);
     xhr.send(fd);
 }
+//Adiciona imagem no arquivo raiz 
+async function enviarArquivo(file,url){
+    var size = file[0].size;
+    console.log(size)
+    if(size < 1048576) { //1MB
+      
+    } else {           
+      alert('Arquivo não enviado maior que 1 MB'); //Acima do limite
+      return;
+    }
+    
+    var files = file[0];
+    var xhr = new XMLHttpRequest();
+    var fd = new FormData();
+
+    fd.append( "file", files, files.name);
+    xhr.open("POST", url, true);
+    var idArquivo;
+    xhr.addEventListener("load", function(){
+        var resposta = xhr.responseText;
+        idArquivo = JSON.parse(resposta); 
+        return idArquivo;
+    });
+    xhr.send(fd);
+}
 
 /**
  * Formatacao de datas 
@@ -170,14 +195,17 @@ function TestaCPF(strCPF) {
     return true;
 }
 
-//Evento para apagar a conta do usuário 
-document.getElementById("ancoraExcluir").addEventListener("click",function(){
-    var isConfirm = confirm("Deseja realmente excluir");
+var ancora = document.getElementById("ancoraExcluir");
+if(ancora != null){
+    //Evento para apagar a conta do usuário 
+    document.getElementById("ancoraExcluir").addEventListener("click",function(){
+        var isConfirm = confirm("Deseja realmente excluir");
 
-    if(isConfirm){
-        apagarConta();
-    }
-})
+        if(isConfirm){
+            apagarConta();
+        }
+    })
+}
 
 //Apaga a conta do usuario logado
 async function apagarConta(){

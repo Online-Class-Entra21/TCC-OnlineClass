@@ -55,7 +55,7 @@ public class CoordenadorDAO {
 	}
 	
 	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais 
+	//Método Extras - Fora do principal
 	//------------------------------------------------------------------
 	
 	/**
@@ -142,5 +142,4 @@ public class CoordenadorDAO {
 		comandoSql.execute();
 		comandoSql.close();
 	}
-	
 }

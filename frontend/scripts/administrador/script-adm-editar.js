@@ -85,7 +85,7 @@ async function editarEscola(idEscola) {
         //Verifica se o email já existe no sistema 
         var email = document.getElementById('inputEmail').value
         var verificacaoEmail = await usarApi("GET", "http://localhost:8080/api/verificar/"+email)
-        var isValido = JSON.parse(verificacaoEmail)
+        var isValido = !(JSON.parse(verificacaoEmail))
         
         if(isValido || emailSelecionado == email){
 

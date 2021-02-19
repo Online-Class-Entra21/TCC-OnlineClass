@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import backend.api.controller.form.UsuarioDisciplinaForm;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -145,26 +147,30 @@ public class UsuarioDisciplinaController {
 		}
 	}
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
 	/**
-	 * Verifica se existe alguem endereco identico no
-	 * banco e Insere um novo endereco no banco de dados
-	 * caso nao tenha um igual ou retorna o id do enderco
+	 * Verifica se existe alguem usuarioDisciplina identico no
+	 * banco e Insere um novo usuarioDisciplina no banco de dados
+	 * caso nao tenha um igual ou retorna o id do usuarioDisciplina
 	 * ja existente
 	 * 
 	 * @param String json
 	 * @author Andre
-	 * @return boolean situacao da operacao
+	 * @return int idUsuarioDisciplina
 	 */	
 	@PostMapping(path = "/api/usuarioDisciplina/inserirAlterar/{json}")
-	public int inserirDisciplinaTurma(@PathVariable("json") String json) {
+	public int inserirAlterarReturnID(@PathVariable("json") String json) {
 		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
 		Gson gson = new Gson();
-		UsuarioDisciplina usuarioDisciplinas = gson.fromJson(json, UsuarioDisciplina.class);
+		UsuarioDisciplina usuarioDisciplina = gson.fromJson(json, UsuarioDisciplina.class);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
 		try {
-			int idUserDisc = usuarioDisciplinaDAO.buscarIgual(usuarioDisciplinas);
+			int idUserDisc = usuarioDisciplinaDAO.buscarIgual(usuarioDisciplina);
 			if (idUserDisc==0) {
-				idUserDisc = usuarioDisciplinaDAO.insertReturn(usuarioDisciplinas);
+				idUserDisc = usuarioDisciplinaDAO.insertReturn(usuarioDisciplina);
 			}
 			
 			LOGGER.info("Requisição Inserir UsuarioDisciplina - Bem Sucedida - {}",json);
@@ -173,6 +179,28 @@ public class UsuarioDisciplinaController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Inserir UsuarioDisciplina Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
 			return 0;
+		}
+	}
+	
+	/**
+	 * Verifica as disciplinas do aluno (GET)
+	 * @return disciplinas
+	 * @param int idAluno
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/usuario/disciplinas/{idUsuario}")
+	public List<UsuarioDisciplinaForm> consultarAlunosDisciplinas(@PathVariable("idUsuario") int idUsuario) {
+		LOGGER.info("Requisição Disciplinas usuario Existentes");
+		List<UsuarioDisciplinaForm> usuarioDisciplinaForm;
+		UsuarioDisciplinaDAO usuarioDisciplinaDao = new UsuarioDisciplinaDAO();
+		try {
+			usuarioDisciplinaForm = usuarioDisciplinaDao.buscarDisciplinasAluno(idUsuario);
+			LOGGER.info("Requisição Disciplinas Usuario Existentes bem sucedida idAluno - {}",idUsuario);
+			return usuarioDisciplinaForm;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para verificar Disciplinas Usuario Existentes idUsuario - {} Mal Sucedida - erro - {}",idUsuario,e.toString());
+			return null;
 		}
 	}
 }

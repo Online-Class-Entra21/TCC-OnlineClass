@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    
     <head>
         <meta charset="UTF-8">
         <!-- Icone da página -->
@@ -10,174 +11,135 @@
         <link rel="stylesheet" href="/frontend/frameworks/bootstrap-4.5.3-dist/css/bootstrap.css">
         <title>Notas - Aluno</title>
     </head>
+
     <body>
-    <!-- Menu latral -->
-    <div id="mostrar"></div>
-    <div id="menu">
-        <div id="menu-titulo">
-            <h4 id="idMenuTitulo">Aluno</h4>
+        <!-- Menu latral -->
+        <div id="mostrar"></div>
+        <div id="menu">
+            <div id="menu-titulo">
+                <h4 id="idMenuTitulo">Aluno</h4>
+            </div>
+            <section id="perfil" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/dir-perfil.png" alt="Perfil" title="Perfil" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-perfil.html">Perfil</a>
+                </figure>
+            </section>
+            <section id="notas" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/notas.png" alt="Notas" title="Notas" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-notas.html">Notas</a>
+                </figure>
+            </section>
+            <section id="comunicacao" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/comunicacao2.png" alt="Comunicacao" title="Comuniçacão" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-comunicacao.html">Comunicação</a>
+                </figure>
+            </section>
+            <section id="aulas" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/videoconferencia.png" alt="Aulas" title="Aulas" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-aulas.html">Aulas</a>
+                </figure>
+            </section>
+            <section id="relatorio" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/Relatorios.png" alt="Relatorio" title="Relatório" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-relatorio.html">Relatório</a>
+                </figure>
+            </section>
+            <section id="chamada" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/comunicacao.png" alt="chamada" title="Chamada" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-chamada.html">Chamada</a>
+                </figure>
+            </section>
+            <section id="tela-principal" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
+                    <a href="/frontend/paginas/aluno/aluno-principal.html">Tela Principal</a>
+                </figure>
+            </section>
+            <section id="sair" class="opcoes">
+                <figure class="figure-opcoes">
+                    <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
+                    <a id="ancoraSair" href="/frontend/index.html">Sair</a>
+                </figure>
+            </section>
+            
         </div>
-        <section id="perfil" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/dir-perfil.png" alt="Perfil" title="Perfil" class="img-opcoes">
-                <a href="/frontend/paginas/aluno/aluno-perfil.html">Perfil</a>
-            </figure>
-        </section>
-        <section id="notas" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/notas.png" alt="Notas" title="Notas" class="img-opcoes">
-                <a href="/frontend/paginas/aluno/aluno-notas.html">Notas</a>
-            </figure>
-        </section>
-        <section id="comunicacao" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/comunicacao2.png" alt="Comunicacao" title="Comuniçacão" class="img-opcoes">
-                <a href="/frontend/paginas/aluno/aluno-comunicacao.html">Comunicação</a>
-            </figure>
-        </section>
-        <section id="aulas" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/videoconferencia.png" alt="Aulas" title="Aulas" class="img-opcoes">
-                <a href="/frontend/paginas/aluno/aluno-aulas.html">Aulas</a>
-            </figure>
-        </section>
-        <section id="relatorio" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/Relatorios.png" alt="Relatorio" title="Relatório" class="img-opcoes">
-                <a href="/frontend/paginas/aluno/aluno-relatorio.html">Relatório</a>
-            </figure>
-        </section>
-        <section id="chamada" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/comunicacao.png" alt="chamada" title="Chamada" class="img-opcoes">
-                <a href="/frontend/paginas/aluno/aluno-chamada.html">Chamada</a>
-            </figure>
-        </section>
-        <section id="tela-principal" class="opcoes">
-            <figure class="figure-opcoes">
-                <img src="/frontend/imagens/casa.png" alt="Menu Principal" title="Menu Principal" class="img-opcoes">
-                <a href="/frontend/paginas/aluno/aluno-principal.html">Tela Principal</a>
-            </figure>
-        </section>
-        <section id="sair" class="opcoes">
-            <figure class="figure-opcoes">
-                <img id="img-sair" src="/frontend/imagens/porta.png" alt="Sair" title="Sair" class="img-opcoes">
-                <a id="ancoraSair" href="/frontend/index.html">Sair</a>
-            </figure>
-        </section>
-        
-    </div>
-    <!-- Cabecalho -->
-    <header>
-        <nav id="cabecalho">
-            <div id="lado-esquerdo">
-                <div id="botao-menu">
-                    <figure id="figure-menu">
-                        <img id="idImgMenu" src="/frontend/imagens/botao-menu.png" alt="Menu" title="Menu" name="menu">
+        <!-- Cabecalho -->
+        <header>
+            <nav id="cabecalho">
+                <div id="lado-esquerdo">
+                    <div id="botao-menu">
+                        <figure id="figure-menu">
+                            <img id="idImgMenu" src="/frontend/imagens/botao-menu.png" alt="Menu" title="Menu" name="menu">
+                        </figure>
+                    </div>
+                </div>
+                <div id="lado-direito">
+                    <figure id="figure-perfil">
+                        <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil"
+                            title="Foto de Perfil">
+                        <label id="idNomeUsuario" for="foto-perfil" name="nome-usuario" title="Nome">Nome</label>
                     </figure>
                 </div>
-            </div>
-            <div id="lado-direito">
-                <figure id="figure-perfil">
-                    <img id="idFotoPerfil" src="/frontend/imagens/perfil.png" alt="Foto-Perfil" name="foto-perfil"
-                        title="Foto de Perfil">
-                    <label id="idNomeUsuario" for="foto-perfil" name="nome-usuario" title="Nome">Nome</label>
-                </figure>
-            </div>
-        </nav>
-    </header>
-    
-    <main>
-        <div id="centralizacao" class="nav justify-content-center">
-            <section id="selec">
-                <table class="table" id="tbPessoas" class=" table-striped">
-                    <tr>
-                        <th>Período</th>
-                        <th>Matéria</th>
-                        <th>Data</th>
-                        <th>Nota</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            1º Trimestre
-                        </td>
-                        <td>
-                            Matématica
-                        </td>
-                        <td>
-                            05/08
-                        </td>
-                        <td>
-                            8.9
-                        </td>
-                    </tr>
-                </table>
-            </section>
-        </div>
-        
-    </main>
-    <div id="idBoletim" style="display: none;">
-        <section id="informacoes-escola">
-            <div>
-                <table id="i">
-                    <tr>
-                        <th id="i">Escola</th>
-                        <th id="i">Turma</th>
-                        <th id="i">Ano</th>
-                    </tr>
-                    <tr>
-                        <td id="i">Cedup</td>
-                        <td id="i">3º Ano A</td>
-                        <td id="i">2021</td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-        <section id="informações-notas">
-            <div>
-                <table id="t">
-                    <tr>
-                        <th id="t">Matéria</th>
-                        <th id="t">1º Trimestre</th>
-                        <th id="t">2º Trimestre</th>
-                        <th id="t">3º Trimestre</th>
-                        <th id="t">Média Trim.</th>
-                    </tr>
-                    <tr>
-                        <td id="t"></td>
-                        <td id="t">Nota</td>
-                        <td id="t">Nota</td>
-                        <td id="t">Nota</td>
-                        <td id="t"></td>
-                    </tr>
-                    <tr>
-                        <td id="t">Matemática</td>
-                        <td id="t">8.0</td>
-                        <td id="t">9.5</td>
-                        <td id="t">9.0</td>
-                        <td id="t">8.8</td>
-                    </tr>
-                    <tr>
-                        <td id="t">Química</td>
-                        <td id="t">7.5</td>
-                        <td id="t">9.0</td>
-                        <td id="t">7.0</td>
-                        <td id="t">7.8</td>
-                    </tr>
-                    <tr>
-                        <td id="t">Física</td>
-                        <td id="t">8.5</td>
-                        <td id="t">10</td>
-                        <td id="t">5.0</td>
-                        <td id="t">7.8</td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-      </div>  
+            </nav>
+        </header>
 
-    <footer>
-            <button id="gerar-boletim">Gerar Boletim</button>
+        <main>
+            <div id="centralizacao" class="nav justify-content-center">
+                <section id="selec">
+                    <table id="tabela-notas" class="table" id="tbPessoas" class=" table-striped">
+                        <tr>
+                            <th>Período</th>
+                            <th>Matéria</th>
+                            <th>Data</th>
+                            <th>Avaliação</th>
+                            <th>Nota</th>
+                        </tr>
+                    </table>
+                </section>
+            </div>
+        </main>
+        <div id="idBoletim" style="display: none;">
+            <section id="informacoes-escola">
+                <div>
+                    <table id="idTabela">
+                        <tr>
+                            <th >Escola</th>
+                            <th >Turma</th>
+                            <th >Ano</th>
+                        </tr>
+                        <tr>
+                            <td id="nome-escola">Cedup</td>
+                            <td id="turma">3º Ano A</td>
+                            <td id="ano">2021</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+            <section id="informações-notas">
+                <div>
+                    <table id="tabela-notas-boletim"></table>
+                </div>
+            </section>
+            <section id="informações-finais">
+                <div>
+                    <table id="resultado-final">
+                        <tr id="linha-final">
+                            <td>Resultado</td>
+                            <td id="situacao"></td>
+                            <td id="media"></td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </div> 
+        <footer>
+                <button id="gerar-boletim">Gerar Boletim</button>
         </footer>
         <!-- Script - JS -->
         <script src="/frontend/scripts/aluno/script-aluno-boletim.js"></script>

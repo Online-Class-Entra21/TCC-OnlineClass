@@ -18,6 +18,7 @@ public class Resposta {
     private Date dataEntrega;
     private int fk_aluno;
     private int fk_atividade;
+    private int fk_arquivo;
 
     /**
      * Construtor padrao
@@ -159,4 +160,22 @@ public class Resposta {
 	public void setFk_atividade(int fk_atividade) {
 		this.fk_atividade = fk_atividade;
 	}
+
+	/**
+	 * @return the fk_arquivo
+	 */
+	public int getFk_arquivo() {
+		return fk_arquivo;
+	}
+
+	/**
+	 * @param fk_arquivo the fk_arquivo to set
+	 */
+	public void setFk_arquivo(int fk_arquivo) {
+		this.fk_arquivo = fk_arquivo;
+	}
+	
+	
+	
+	
 }

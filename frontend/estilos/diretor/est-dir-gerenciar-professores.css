@@ -133,7 +133,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: rgb(87, 16, 16);
+    background-color: #571010;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
@@ -248,11 +248,11 @@ main{
     height: 80%;
 }
 
+
 /*
 Config. da tabela de turmas 
 */
 #divPrincial{
-    border: 1px solid;
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -273,8 +273,7 @@ th, td {
     border-left: 1px solid #111;
     font-family: cursive;
 }
-th{
-    
+th{ 
     border-top: 1px solid #111;
 }
 td.alunoExib {
@@ -284,4 +283,39 @@ tr:hover {
     background-color: #c3e6e5;
 }
 
+#tbTurmas{
+    background-color: white;
+}
+#popUp {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60%;
+    height: 85%;
+    margin-left: -30%;
+    margin-top: -100px;
+    background-color: white;
+    border: 2px solid;
+    z-index: 1000; 
+}
+#tabela{
+    height: 80%;
+    overflow: auto;
+}
+#btnConcluido{
+    float: right;
+}
 
+#divDesativar{
+    background-color:rgba(0, 0, 0, 0.383);
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height:100%;
+}
+.table .thead-red th {
+    color: #fff;
+    background-color: #571010;
+    border-color: #571010;
+}

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
+import backend.api.controller.DTO.UsuarioDTO;
 import entidade.Usuario;
 import persistencia.jdbc.UsuarioDAO;
 
@@ -356,6 +357,31 @@ public class UsuarioController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar Usuario Mal Sucedida - Usuario {} - erro - {}",json,e.toString());
 			return false;
+		}
+	}
+	
+	/**
+	 * Retorna o usuárioDTO que corresponde ao id indicado {GET}
+	 * @param int codigo
+	 * @return String json
+	 * @author Andre
+	 */
+	@GetMapping(path = "/api/usuario/dto/{codigo}")
+	public String consultarDTO(@PathVariable("codigo") int codigo) {
+		LOGGER.info("Requisição UsuarioDTO codigo {} iniciada", codigo);
+		UsuarioDTO usuariodto;
+		UsuarioDAO usuarioDao = new UsuarioDAO();
+		try {
+			usuariodto = new UsuarioDTO(usuarioDao.buscarId(codigo));
+			
+			Gson gson = new Gson();
+			String json = gson.toJson(usuariodto);
+			LOGGER.info("Requisição UsuarioDTO codigo {} bem sucedida",codigo);
+			return json;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar UsuarioDTO Mal Sucedida - Usuario {} - erro - {}",codigo,e.toString());
+			return null;
 		}
 	}
 }

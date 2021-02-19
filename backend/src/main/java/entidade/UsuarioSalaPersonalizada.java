@@ -1,7 +1,7 @@
 package entidade;
 
 /**
- * Classe contendo m�todos e atributos para a liga��o do Usuario � Sala Personalizada
+ * Classe contendo metodos e atributos para a ligacao do Usuario a Sala Personalizada
  * @see Usuario
  * @see SalaPersonalizada
  * @author Breno

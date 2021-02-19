@@ -173,7 +173,12 @@ async function carregarListaDisciplinas(disciplinaEscolhida) {
             //Cria a coluna de n° de alunos 
             var colunaNumAlunos = document.createElement("td");
             colunaNumAlunos.classList.add("colunaNumAlunos")
-            var numAlunos = turmas[i].qtdAluno;
+
+            //Busca a quantidade de alunos 
+            var resposta2 = await usarApi("GET", "http://localhost:8080/api/alunos/quantidade/"+turmas[i].idTurma);
+            var qtdAlunos = JSON.parse(resposta2);
+
+            var numAlunos = qtdAlunos;
             colunaNumAlunos.append(numAlunos);
             linha.append(colunaNumAlunos);
 

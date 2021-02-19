@@ -137,6 +137,9 @@ public class TurmaDAO {
 		return lista;
 	}	
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
 	
 	/**
 	 * Metodo de busca de todas as informacoes de uma linha
@@ -166,7 +169,6 @@ public class TurmaDAO {
 		comandoSql.close(); 
 		return turma;
 	}
-	
 	
 	/**
 	 * Metodo de busca de todas as informacoes de uma linha
@@ -243,4 +245,44 @@ public class TurmaDAO {
 		comandoSql.close();
 		return lista;
 	}	
+
+	/**
+	 * Metodo de busca de todas as informacoes de uma linha
+	 * da tabela Turma do banco de dados onde o professor da aula ocorre.
+	 * O <code>idUsuario</code> deve ser igual ao da turma que deseja buscar
+	 * @param int idUsuario
+	 * @return Turma turma 
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public List<Turma> buscarTurmaIdUsuario(int idUsuario) throws SQLException {
+		List<Turma> lista = new ArrayList<Turma>(); 
+		String sql = "select * "
+				+ "   from turma,"
+				+ "        usuario_disciplina,"
+				+ "        usuario_disciplina_turma"
+				+ "    where turma.idturma = usuario_disciplina_turma.fk_turma"
+				+ "    and   usuario_disciplina_turma.fk_usuario_disciplina = usuario_disciplina.id_usuario_disciplina"
+				+ "    and   usuario_disciplina.fk_usuario = ?";
+			
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idUsuario);
+		
+		ResultSet resultSet = comandoSql.executeQuery(); 
+			
+		while (resultSet.next()) {
+			Turma turma = new Turma(); 
+			turma.setIdTurma(resultSet.getInt(1));
+			turma.setAno(resultSet.getString(2));
+			turma.setQtdAluno(resultSet.getInt(3));
+			turma.setHorarioInicioAula(resultSet.getTimestamp(4));
+			turma.setHorarioFinalAula(resultSet.getTimestamp(5));
+			turma.setFk_sala(resultSet.getInt(6));
+			turma.setFk_escola(resultSet.getInt(7));
+			lista.add(turma); 
+		}
+		comandoSql.close();
+		return lista;
+	}
 }

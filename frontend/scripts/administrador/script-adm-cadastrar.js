@@ -71,11 +71,7 @@ async function cadastrar() {
             //Chama a api para cadastrar a escola
             var insertEscola = await usarApi("POST", "http://localhost:8080/api/escola/inserir/nome/" + escolaJson);
 
-            //Busca o id da escola cadastrada pelo nome
-            var resposta =  await usarApi("GET", "http://localhost:8080/api/escola/buscar/nome/" + inserirEscola.nome);
-            var escolaNome = JSON.parse(resposta);
-
-            if(escolaNome != null){
+            if(insertEscola != null){
                 //Cria o objeto usuario com as informações a serem registradas no banco de dados
                 var inserirUsuario = {
                     nome: nome,
@@ -84,7 +80,7 @@ async function cadastrar() {
                     celular: celular,
                     email: email,
                     senha: senha,
-                    fk_escola: escolaNome.idEscola
+                    fk_escola: insertEscola
                 }
                 
                 //Converte para JSON

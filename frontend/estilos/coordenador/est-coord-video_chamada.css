@@ -73,7 +73,7 @@ Config figures opcoes e img opcoes
 .figure-opcoes a:hover{
     list-style: none;
     text-decoration: none;
-    color:yellow;
+    color: #ffc400;
 }
 .img-opcoes{
     width: 9%;
@@ -101,7 +101,7 @@ Config. de nav - cabecalho
 #cabecalho{
     height: 100%;
     width: 100%;
-    background-color:rgb(87, 16, 16);
+    background-color:#4b005e;
 }
 
 /*
@@ -133,7 +133,7 @@ Config. do menu
 #menu{
     width: 42vh;
     height: 100%;
-    background-color: rgb(87, 16, 16);
+    background-color: #4b005e;
     border-right: 1px solid;
     border-color: white;
     position: absolute;
@@ -225,12 +225,75 @@ Config. Dados do usuario
 }
 
 /*
-Config. da div do botão de saida 
+Config. da div do botão de excluir
 */
-#sair{
-    margin-top: 20%;
+#excluir{
+    margin-top: 25%;
+}
+#ancoraExcluir {
+    color: white;
+}
+#ancoraExcluir:hover {
+    color: #e72525;
+    cursor: pointer;
+    transition: 1s;
 }
 
 /**************************
 Config. das alteracoes especificas
 ***************************/
+
+/*
+Config. padroes da pagina 
+*/
+html{
+    height: 95%;
+    background: url(/frontend/imagens/fundo.png);
+}
+body{
+    height: 100%;
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    background: url(/frontend/imagens/fundo.png);
+}
+
+/*
+Config. da lista de participantes 
+*/
+ul{
+    margin-left: auto;
+    margin-right: auto;
+}
+#divJitsi{
+    width: 75%;
+    border: solid;
+    color: white;
+    margin: 2%;
+    float: left;
+}
+#divParticipantes{
+    width: 25vh;
+    height: auto;
+    margin: 2%;
+    color: white;
+    background: #ffffff60;
+    border-radius: 3vh;
+    border: solid;
+    float: left;
+}
+
+/*
+Config. dos pontos online - offline 
+*/
+li::marker {
+    color: red
+}
+li.offline::marker {
+    color: red
+}
+li.online::marker{
+    color: green
+}

@@ -9,8 +9,8 @@ package entidade;
 public class Aluno {
     
 	private int idAluno;
-    private int ra;
-    private int matricula;
+    private String ra;
+    private String matricula;
     private boolean deficiencia;
     private String nomeMae;
     private String nomePai;
@@ -39,7 +39,7 @@ public class Aluno {
      * @param fk_usuario
      * @param fk_turma
      */
-    public Aluno(int idAluno, int ra, int matricula, boolean deficiencia, String nomeMae, String nomePai,
+    public Aluno(int idAluno, String ra, String matricula, boolean deficiencia, String nomeMae, String nomePai,
 				 String nomeResponsavel, boolean situacaoAnoLetivo, int fk_usuario, int fk_turma) {
 
     	setIdAluno(idAluno);
@@ -72,33 +72,33 @@ public class Aluno {
 
     /** 
      * Metodo para retorno do RA do aluno
-     * @return int ra
+     * @return String ra
      */
-    public int getRa() {
+    public String getRa() {
         return ra;
     }
 
     /**
      * Metodo para inserção do RA
-     * @param int ra
+     * @param String ra
      */
-    public void setRa(int ra) {
+    public void setRa(String ra) {
         this.ra = ra;
     }
 
     /** 
      * Metodo para retorno da matricula do aluno
-     * @return int matricula
+     * @return String matricula
      */
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
     /**
      * Metodo para inserção de matricula 
-     * @param int matricula
+     * @param String matricula
      */
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

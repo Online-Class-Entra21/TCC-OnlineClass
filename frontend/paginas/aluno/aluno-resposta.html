@@ -13,25 +13,31 @@
     </head>
     <body>
         <main>
-            <div>
-                <section class="nav justify-content-center">
+            <div id="divv">
+                <section id="sec" class="justify-content-center">
                     <fieldset id="field" >
-                        <legend>Atividade ....</legend>
+                        <h3 id="inputTitulo"></h3>
+                            <div id="descricao">
+                                <p id="texto-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                                Qui aliquid quasi nobis numquam eveniet, illo sit cumque, aut, ipsum 
+                                voluptatum asperiores doloribus voluptate. Nobis animi perferendis modi 
+                                delectus explicabo voluptas?</p>
+                            </div>
                             <label for="selecao-arquivo" id="selecao">Adicionar Anexo</label>
-                            <input type="file" id="selecao-arquivo">
+                            <input type="file" id="selecao-arquivo" required>
+                            <br>
+                            <label id="nome-arquivo" for="">Selecione um arquivo</label>
                             <br>
                             <label id="areaText"><b>Obervação</b></label><br>
-                            <textarea id="area" rows="5" cols="33">
-                            </textarea>
+                            <textarea id="area" rows="5" cols="33"></textarea>
                             <br>
-                            <button id="botao" type="submit">Enviar</button>
+                            <button class="btn btn-primary" id="botao" type="button">Enviar</button>
                     </fieldset>
                 </section>
             </div>
         </main>
         <!-- Script - JS -->
         <script src="/frontend/frameworks/jquery/jquery-3.5.1.min.js"> </script>
-        <script src="/frontend/scripts/login/script-utilitarios.js"></script>
-        <script src="/frontend/scripts/aluno/script-aluno-resposta.js"></script>
+    <script src="/frontend/scripts/aluno/script-aluno-resposta.js"></script>
     </body>
 </html>

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import backend.api.controller.form.TurmaAtividadeForm;
 import entidade.Atividade;
 import persistencia.jdbc.AtividadeDAO;
 
@@ -140,4 +142,58 @@ public class AtividadeController {
 			return false;
 		}
 	}
+
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais 
+	//------------------------------------------------------------------
+	
+	/**
+	 * Retorna a lista de atividades correspondentes ao id da turma informado (GET)
+	 * @return lista de atividade registrados no banco na turma específica
+	 * @param int idTurma
+	 * @author Andrey
+	 */
+	@GetMapping(path = "/api/atividades/turma/{idTurma}")
+	public List<TurmaAtividadeForm> consultarTurmaAtividade(@PathVariable int idTurma) {
+		LOGGER.info("Requisição List<TurmaAtividadeForm>");
+		List<TurmaAtividadeForm> lista;
+		AtividadeDAO atividadeDao = new AtividadeDAO();
+		try {
+			lista = atividadeDao.buscarTurmaAtividade(idTurma);
+			LOGGER.info("Requisição List<TurmaAtividadeForm> bem sucedida idTurma - {}",idTurma);
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todos TurmaAtividade idTurma - {} Mal Sucedida - erro - {}",idTurma,e.toString());
+			return null;
+		}
+	}
+	
+	/**
+	 * Insere uma nova atividade no banco de dados {POST}
+	 * e retorna o idAtividade gerado
+	 * @param String json
+	 * @return int idAtividade
+	 * @author Andrey
+	 */
+	@PostMapping(path = "api/atividade/inserir/return/{json}")
+	public int inserirReturnID(@PathVariable("json") String json) {
+		System.out.println(json.toString());
+		LOGGER.info("Requisição Inserir Atividade - {}",json);
+	    GsonBuilder gsonBuilder = new GsonBuilder();
+	    gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
+		Gson gson = gsonBuilder.create();
+		Atividade atividade = gson.fromJson(json.toString(), Atividade.class);
+		AtividadeDAO atividadeDao = new AtividadeDAO();
+		try {
+			int idAtividade = atividadeDao.insertReturnID(atividade);
+			LOGGER.info("Requisição Inserir Atividade - {} - Bem Sucedida",json);
+			return idAtividade;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Inserir Atividade Mal Sucedida - Atividade {} - erro - {}",json,e.toString());
+			return 0;
+		}
+	}
+	
 }

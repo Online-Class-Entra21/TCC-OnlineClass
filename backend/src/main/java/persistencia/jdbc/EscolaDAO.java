@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,17 +118,22 @@ public class EscolaDAO {
 	/**
 	 * Metodo para inserir a escola no banco de dados só com o nome
 	 * @param Escola escola 
+	 * @return int idEscola
 	 * @author Andrey
 	 * @throws SQLException 
 	 */	
-	public void insertNome(Escola escola) throws SQLException {
+	public int insertNome(Escola escola) throws SQLException {
 		String sql = "insert into escola (nome) values (?)";
-		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		PreparedStatement comandoSql = conexao.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		
 		comandoSql.setString(1, escola.getNome());
 		
 		comandoSql.execute();
+        ResultSet rs = comandoSql.getGeneratedKeys();
+        rs.next();
+        int idEscola = rs.getInt(1);
 		comandoSql.close();
+		return idEscola;
 	}
 	
 	/**

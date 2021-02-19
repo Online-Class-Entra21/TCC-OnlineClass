@@ -99,29 +99,53 @@
         <main>
             <div id="divPrincial">
                 <section id="selec">
-                    <table id="turmasExib" class="table table-bordered">
-                        <thead class="thead-dark">
+                    <table id="tableProfessor" class="table table-bordered">
+                        <thead class="thead-red">
                             <tr>
                                 <th scope="col">Id</th>
                                 <th scope="col">Nome Professore</th>
                             </tr>
                         </thead>
                         <tbody id="tbProfessores">
-                            <tr>
-                                <th scope="row">1</td>
-                                <td>Roberto Antonio</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</td>
-                                <td>Roberto Antonio</td>
-                            </tr>  
-                            <tr>
-                                <th scope="row">3</td>
-                                <td>Roberto Antonio</td>
-                            </tr>  
                         </tbody>
                     </table>   
                 </section>
+            </div>
+            <div id="popUp"> 
+                <div id="tabela">
+                    <table id="tbTurmas" class="table table-bordered">
+                        <thead class="thead-red">
+                            <th scope="col">Id</th>
+                            <th scope="col">Turma</th>
+                            <th scope="col">Materia</th>
+                        </thead>
+                        <tbody id="tabelaDisciplinas">
+                            <tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="d-flex justify-content-between ml-2 mr-2 mt-1">
+                    <div class="d-flex justify-content-between border border-dark">
+                        <div>
+                            <label class="m-0 p-0" for="turmaSelect">Turma</label>
+                            <select id="turmaSelect" name="turma" class="form-control m-0">
+                                
+                            </select>
+                        </div>
+                        <div>
+                            <label class="m-0 p-0" for="materiaSelect">Materia</label>
+                            <select id="materiaSelect" name="materia" class="form-control m-0">
+                                
+                            </select>
+                        </div>
+                            <input type="button" id="btnAdicionar" class="p-0 mt-3 mb-3 btn-primary btn-sm" value="Adicionar">
+                    </div>
+                    <input type="button" id="btnConcluido" class="p-0 ml-1 mt-3 mb-3 btn-primary btn-sm" value="Concluido">
+                </div>
+            </div>
+            <div id="divDesativar">
             </div>
         </main>
         <!-- JS - Script -->

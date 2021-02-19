@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import backend.api.controller.form.DisciplinaTurmaForm;
 import entidade.Disciplina;
 
 /**
@@ -138,6 +139,160 @@ public class DisciplinaDAO {
 		
 		PreparedStatement comandoSql = conexao.prepareStatement(sql);
 		comandoSql.setInt(1, fk_escola);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Disciplina disciplina = new Disciplina();
+			disciplina.setIdDisciplina(resultSet.getInt(1));
+			disciplina.setNome(resultSet.getString(2));
+			disciplina.setFk_escola(resultSet.getInt(3));
+			
+			lista.add(disciplina);
+		}
+		comandoSql.close();
+		return lista;
+	}
+	
+	/**
+	 * Metodo para selecionar disciplina e suas turmas no banco de dados de um usuario.
+	 * O <code>idUsuario</code> deve ser igual ao do usuario que deseja buscar as informaçoes
+	 * @param int idUsuario
+	 * @return DisciplinaTurmaForm disciplinaTurma 
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public List<DisciplinaTurmaForm> buscarDisciplinasTurmaIdUsuario(int idUsuario) throws SQLException {
+		List<DisciplinaTurmaForm> disciplinaTurmas =	new ArrayList<DisciplinaTurmaForm>();
+		String sql = "select usuario_disciplina_turma.idusuario_disciplina_turma, usuario_disciplina.fk_disciplina, usuario_disciplina_turma.fk_turma"
+				+ " from"
+				+ "	usuario_disciplina,"
+				+ " usuario_disciplina_turma,"
+				+ " usuario"
+				+ " where"
+				+ "	usuario_disciplina.id_usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina"
+				+ " and usuario.idusuario = usuario_disciplina.fk_usuario"
+				+ " and usuario.idusuario = ?;";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idUsuario);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			DisciplinaTurmaForm disciplinaTurma = new DisciplinaTurmaForm();
+			disciplinaTurma.setIdUsuario_disciplina_turma(resultSet.getInt(1));
+			disciplinaTurma.setIdDisciplina(resultSet.getInt(2));
+			disciplinaTurma.setIdTurma(resultSet.getInt(3));
+			
+			disciplinaTurmas.add(disciplinaTurma);
+		}
+		comandoSql.close();
+		return disciplinaTurmas;
+	}
+
+	/**
+	 * Metodo para selecionar disciplina e suas turmas no banco de dados de um aluno.
+	 * O <code>idAluno</code> deve ser igual ao do usuario que deseja buscar as informaçoes
+	 * @param int idAluno
+	 * @return DisciplinaTurmaForm disciplinaTurma 
+	 * @author Andre
+	 * @throws SQLException 
+	 */
+	public List<Disciplina> buscarDisciplinasTurmaIdAluno(int idAluno) throws SQLException {
+		List<Disciplina> lista = new ArrayList<Disciplina>();
+		String sql = "select *"
+					+ " from"
+					+ " disciplina,"
+					+ "	usuario_disciplina,"
+					+ " usuario_disciplina_turma,"
+					+ " turma,"
+					+ " aluno"
+					+ " where"
+					+ "		disciplina.idDisciplina = usuario_disciplina.fk_disciplina"
+					+ " and usuario_disciplina.id_Usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina"
+					+ " and usuario_disciplina_turma.fk_turma = turma.idTurma"
+					+ " and turma.idTurma = aluno.fk_turma"
+					+ " and aluno.idAluno = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		
+		comandoSql.setInt(1, idAluno);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Disciplina disciplina = new Disciplina();
+			disciplina.setIdDisciplina(resultSet.getInt(1));
+			disciplina.setNome(resultSet.getString(2));
+			disciplina.setFk_escola(resultSet.getInt(3));
+			
+			lista.add(disciplina);
+		}
+		comandoSql.close();
+		return lista;
+	}
+
+	/**
+	 * Metodo para selecionar disciplina do professor na turma.
+	 * O <code>idUsuario</code> deve ser igual ao do usuario que deseja buscar as informaçoes
+	 * O <code>idTurma</code> deve ser igual ao a turma que deseja buscar as informaçoes
+	 * @param int idUsuario
+	 * @param int idTurma
+	 * @return Disciplina disciplina 
+	 * @author Breno
+	 * @throws SQLException 
+	 */
+	public List<Disciplina> buscarTurmaProfessor(int idUsuario, int idTurma) throws SQLException {
+		List<Disciplina> lista = new ArrayList<Disciplina>();
+		String sql = "select * "
+		           + "  from disciplina, "
+			       + "       usuario_disciplina,"
+			       + "       usuario_disciplina_turma"
+		           + "  where disciplina.iddisciplina = usuario_disciplina.fk_disciplina"
+		           + "  and   usuario_disciplina.id_usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina"
+		           + "  and   usuario_disciplina.fk_usuario = ?"
+		           + "  and   usuario_disciplina_turma.fk_turma = ?";
+
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idUsuario);
+		comandoSql.setInt(2, idTurma);
+		ResultSet resultSet = comandoSql.executeQuery();
+		
+		while (resultSet.next()) {
+			Disciplina disciplina = new Disciplina();
+			disciplina.setIdDisciplina(resultSet.getInt(1));
+			disciplina.setNome(resultSet.getString(2));
+			disciplina.setFk_escola(resultSet.getInt(3));
+			
+			lista.add(disciplina);
+		}
+		comandoSql.close();
+		return lista;
+	}
+	
+	/**
+	 * Metodo para selecionar todas as disciplinas do banco de dados
+	 * @return lista de disciplinas resgistradas no banco 
+	 * @param int idTurma
+	 * @author Andrey
+	 * @throws SQLException 
+	 */
+	public List<Disciplina> buscarTodosTurma(int idTurma) throws SQLException {
+		List<Disciplina> lista = new ArrayList<Disciplina>();
+		String sql = "select disciplina.* "
+				+ "from "
+				+ "	disciplina,  "
+				+ "    usuario, "
+				+ "    turma, "
+				+ "    usuario_disciplina, "
+				+ "    usuario_disciplina_turma "
+				+ "where "
+				+ "	disciplina.iddisciplina = usuario_disciplina.fk_disciplina "
+				+ "    and usuario_disciplina.fk_usuario = usuario.idusuario "
+				+ "    and usuario_disciplina.id_usuario_disciplina = usuario_disciplina_turma.fk_usuario_disciplina "
+				+ "    and usuario_disciplina_turma.fk_turma = turma.idturma "
+				+ "    and turma.idturma = ? "
+				+ "";
+		
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+		comandoSql.setInt(1, idTurma);
 		ResultSet resultSet = comandoSql.executeQuery();
 		
 		while (resultSet.next()) {

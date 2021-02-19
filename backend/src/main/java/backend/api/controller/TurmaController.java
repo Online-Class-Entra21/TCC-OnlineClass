@@ -45,6 +45,7 @@ public class TurmaController {
 			turma = turmaDao.buscarId(codigo);
 			Gson gson = new Gson();
 			String json = gson.toJson(turma);
+			System.out.println(json);
 			LOGGER.info("Requisição Turma codigo {} bem sucedida",codigo);
 			return json;
 		} catch (SQLException e) {
@@ -147,6 +148,10 @@ public class TurmaController {
 		}
 	}
 	
+	//------------------------------------------------------------------
+	//Método Extras - Fora dos 5 principais
+	//------------------------------------------------------------------
+		
 	/**
 	 * Retorna a lista das turmas registrados no sistema pelo id da escola {GET}
 	 * @return lista de turmas registradas no banco pelo id da escola
@@ -168,11 +173,7 @@ public class TurmaController {
 			return null;
 		}
 	}
-	
-	//------------------------------------------------------------------
-	//Método Extras - Fora dos 5 principais
-	//------------------------------------------------------------------
-	
+
 	/**
 	 * Retorna a lista das turmas registrados no sistema onde ocorre aquela disciplina {GET}
 	 * @return lista de turmas registradas no banco onde ocorre aquela disciplina
@@ -192,6 +193,28 @@ public class TurmaController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar todos Turma pela disciplina Mal Sucedida - erro - {}",e.toString());
+			return null;
+		}
+	}
+
+	/**
+	 * Retorna a lista das turmas registrados no sistema onde ocorre aquela onde o professor da aula {GET}
+	 * @return lista de turmas registradas no banco onde ocorre onde o professor da aula 
+	 * @author Breno
+	 * @param int codigo 
+	 */
+	@GetMapping(path = "/api/turmas/professor/{codigo}")
+	public List<Turma> consultarTurmasProfessor(@PathVariable("codigo") int codigo){
+		LOGGER.info("Requisição List<Turma> pela disciplina");
+		List<Turma> lista;
+		TurmaDAO turmaDao = new TurmaDAO();
+		try {
+			lista = turmaDao.buscarTurmaIdUsuario(codigo);
+			LOGGER.info("Requisição List<Turma> onde o professor da aula o  bem sucedida");
+			return lista;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			LOGGER.error("Requisição para Consultar todas as Turma nde o professor da aula Mal Sucedida - erro - {}",e.toString());
 			return null;
 		}
 	}
