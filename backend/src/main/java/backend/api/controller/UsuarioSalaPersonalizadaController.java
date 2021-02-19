@@ -7,13 +7,7 @@ import com.google.gson.Gson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import entidade.UsuarioSalaPersonalizada;
 import persistencia.jdbc.UsuarioSalaPersonalizadaDAO;
@@ -78,15 +72,16 @@ public class UsuarioSalaPersonalizadaController {
 	
 	/**
 	 * Insere um novo usuarioSalaPersonalizada no banco de dados {POST}
-	 * @param String json
+	 * @param UsuarioSalaPersonalizada usuarioSalaPersonalizada
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/usuarioSalaPersonalizada/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir UsuarioSalaPersonalizada - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody UsuarioSalaPersonalizada usuarioSalaPersonalizada) {
 		Gson gson = new Gson();
-		UsuarioSalaPersonalizada usuarioSalaPersonalizada = gson.fromJson(json, UsuarioSalaPersonalizada.class);
+		String json = gson.toJson(usuarioSalaPersonalizada);
+		LOGGER.info("Requisição Inserir UsuarioSalaPersonalizada - {}",json);
 		UsuarioSalaPersonalizadaDAO usuarioSalaPersonalizadaDAO = new UsuarioSalaPersonalizadaDAO();
 		try {
 			usuarioSalaPersonalizadaDAO.insert(usuarioSalaPersonalizada);
@@ -101,16 +96,16 @@ public class UsuarioSalaPersonalizadaController {
 
 	/**
 	 * Metodo para alteração do usuarioSalaPersonalizada que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param UsuarioSalaPersonalizada usuarioSalaPersonalizada
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/usuarioSalaPersonalizada/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar UsuarioSalaPersonalizada - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody UsuarioSalaPersonalizada usuarioSalaPersonalizada) {
 		Gson gson = new Gson();
-		UsuarioSalaPersonalizada usuarioSalaPersonalizada = gson.fromJson(json, UsuarioSalaPersonalizada.class);
+		String json = gson.toJson(usuarioSalaPersonalizada);
+		LOGGER.info("Requisição Atualizar UsuarioSalaPersonalizada - {}",json);
 		UsuarioSalaPersonalizadaDAO usuarioSalaPersonalizadaDAO = new UsuarioSalaPersonalizadaDAO();
 		try {
 			usuarioSalaPersonalizadaDAO.update(usuarioSalaPersonalizada);

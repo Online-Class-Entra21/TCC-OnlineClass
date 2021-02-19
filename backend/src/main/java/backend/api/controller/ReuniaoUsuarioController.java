@@ -7,12 +7,7 @@ import com.google.gson.Gson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import entidade.ReuniaoUsuario;
 import persistencia.jdbc.ReuniaoUsuarioDAO;
@@ -23,17 +18,19 @@ import persistencia.jdbc.ReuniaoUsuarioDAO;
  *
  */
 @RestController
+@RequestMapping("reuniaousuarios")
 public class ReuniaoUsuarioController {
-	
+
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
-	
+
 	/**
 	 * Retorna a reuniaoUsuario que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @return String json
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/reuniaoUsuario/{codigo}")
+	@CrossOrigin
+	@GetMapping("/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição ReuniaoUsuario codigo {} iniciada", codigo);
 		ReuniaoUsuarioDAO reuniaoUsuarioDao = new ReuniaoUsuarioDAO();
@@ -50,13 +47,13 @@ public class ReuniaoUsuarioController {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Retorna a lista das reunioesUsuarios registrados no sistema {GET}
 	 * @return lista de reunioesUsuarios registradas no banco
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/reunioesUsuarios")
+	@GetMapping
 	public List<ReuniaoUsuario> consultar(){
 		LOGGER.info("Requisição List<ReuniaoUsuario>");
 		List<ReuniaoUsuario> lista;
@@ -71,18 +68,19 @@ public class ReuniaoUsuarioController {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Insere uma nova reuniaoUsuario no banco de dados {POST}
-	 * @param String json
+	 * @param ReuniaoUsuario reuniaoUsuario
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/reuniaoUsuario/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir ReuniaoUsuario - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody ReuniaoUsuario reuniaoUsuario) {
 		Gson gson = new Gson();
-		ReuniaoUsuario reuniaoUsuario = gson.fromJson(json, ReuniaoUsuario.class);
+		String json = gson.toJson(reuniaoUsuario);
+		LOGGER.info("Requisição Inserir ReuniaoUsuario - {}",json);
 		ReuniaoUsuarioDAO reuniaoUsuarioDAO = new ReuniaoUsuarioDAO();
 		try {
 			reuniaoUsuarioDAO.insert(reuniaoUsuario);
@@ -97,16 +95,16 @@ public class ReuniaoUsuarioController {
 
 	/**
 	 * Metodo para alteração da reuniaoUsuario que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param ReuniaoUsuario reuniaoUsuario
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/reuniaoUsuario/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar ReuniaoUsuario - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody ReuniaoUsuario reuniaoUsuario) {
 		Gson gson = new Gson();
-		ReuniaoUsuario reuniaoUsuario = gson.fromJson(json, ReuniaoUsuario.class);
+		String json = gson.toJson(reuniaoUsuario);
+		LOGGER.info("Requisição Atualizar ReuniaoUsuario - {}",json);
 		ReuniaoUsuarioDAO reuniaoUsuarioDAO = new ReuniaoUsuarioDAO();
 		try {
 			reuniaoUsuarioDAO.update(reuniaoUsuario);
@@ -116,16 +114,17 @@ public class ReuniaoUsuarioController {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Atualizar ReuniaoUsuario Mal Sucedida - ReuniaoUsuario {} - erro - {}",json,e.toString());
 			return false;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Método de exclusão da reuniaoUsuario que corresponde ao codigo informado {DELETE}
 	 * @param int codigo
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/reuniaoUsuario/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar ReuniaoUsuario id - {}",codigo);
 		ReuniaoUsuarioDAO reuniaoUsuarioDAO = new ReuniaoUsuarioDAO();

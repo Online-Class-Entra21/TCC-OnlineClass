@@ -8,13 +8,7 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.SimpleEmail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.google.gson.Gson;
 
@@ -30,9 +24,9 @@ import persistencia.jdbc.UsuarioDAO;
 @RestController
 @RequestMapping("usuarios")
 public class UsuarioController {
-	
+
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
-	
+
 	/**
 	 * Retorna o usuário que corresponde ao id indicado {GET}
 	 * @param int codigo
@@ -57,7 +51,7 @@ public class UsuarioController {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Retorna a lista de usuarios registrados no sistema {GET}
 	 * @return lista de usuarios registrados no banco
@@ -79,18 +73,19 @@ public class UsuarioController {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Insere uma novo usuário no banco de dados {POST}
-	 * @param String json
+	 * @param Usuario usuario
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/usuario/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Usuario - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Usuario usuario) {
 		Gson gson = new Gson();
-		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
+		String json = gson.toJson(usuario);
+		LOGGER.info("Requisição Inserir Usuario - {}",json);
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			usuarioDao.insert(usuario);
@@ -105,26 +100,18 @@ public class UsuarioController {
 	
 	/**
 	 * Metodo para alteração do usuario que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param Usuario usuario
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/usuario/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Usuario - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Usuario usuario) {
 		Gson gson = new Gson();
-		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
+		String json = gson.toJson(usuario);
+		LOGGER.info("Requisição Atualizar Usuario - {}",json);
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
-			System.out.println("");
-			System.out.println("");
-			System.out.println("");
-			System.out.println(usuario.getHorarioFinalExpediente());
-			System.out.println(usuario.getHorarioInicioExpediente());
-			System.out.println("");
-			System.out.println("");
-			System.out.println("");
 			usuarioDao.update(usuario);
 			LOGGER.info("Requisição Atualizar Usuario - {} - Bem Sucedida",json);
 			return true;
@@ -168,7 +155,7 @@ public class UsuarioController {
 	 * @author Breno
 	 */
 	@CrossOrigin
-	@GetMapping("/{email}")
+	@GetMapping("/cosnultaremail/{email}")
 	public String consultarEmail(@PathVariable("email") String email) {
 		LOGGER.info("Requisição Usuario email - {}",email);
 		Usuario usuario;
@@ -193,7 +180,7 @@ public class UsuarioController {
 	 * @author Breno
 	 */
 	@CrossOrigin
-	@GetMapping("/{email}")
+	@GetMapping("/verificar/{email}")
 	public boolean verificarEmail(@PathVariable("email") String email) {
 		LOGGER.info("Requisição de verificação Usuario por email - {}",email);
 		Usuario usuario;
@@ -219,7 +206,7 @@ public class UsuarioController {
 	 * @author Andre
 	 */
 	@CrossOrigin
-	@GetMapping("/{email}")
+	@GetMapping("/codigo/{email}")
 	public String codigo(@PathVariable("email") String email){
 		LOGGER.info("Requisição de código de recuperação de senha por email - {}",email);
 		String codigo = "";
@@ -262,6 +249,7 @@ public class UsuarioController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
+	@CrossOrigin
 	@PutMapping(path = "/api/mudar/senha/{email}/{senha-digitada}")
 	public boolean mudarSenha(@PathVariable("email") String email, @PathVariable("senha-digitada") String senha) {
 		LOGGER.info("Requisição de mudança de senha email - {} - senha - {}",email,senha);
@@ -293,7 +281,7 @@ public class UsuarioController {
 	 * @author Breno
 	 */
 	@CrossOrigin
-	@GetMapping("/{cpf}")
+	@GetMapping("/cpf/{cpf}")
 	public boolean verificarCpf(@PathVariable("cpf") String cpf) {
 		LOGGER.info("Requisição de verificação Usuario por cpf - {}",cpf);
 		Usuario usuario;
@@ -315,15 +303,16 @@ public class UsuarioController {
 	/**
 	 * Insere um novo usuario no banco de dados {POST}
 	 * e retorna o idUsuario gerado
-	 * @param String json
+	 * @param Usuario usuario
 	 * @author Andrey
 	 * @return int idUsuario
 	 */
-	@PostMapping(path = "api/usuario/inserir/return/{json}")
-	public int inserirReturn(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Usuario - {}",json);
+	@CrossOrigin
+	@PostMapping("/return")
+	public int inserirReturn(@RequestBody Usuario usuario) {
 		Gson gson = new Gson();
-		Usuario usuario = gson.fromJson(json, Usuario.class);
+		String json = gson.toJson(usuario);
+		LOGGER.info("Requisição Inserir Usuario - {}",json);
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		try {
 			int idUsuario = usuarioDAO.insertReturnID(usuario);
@@ -338,16 +327,16 @@ public class UsuarioController {
 	
 	/**
 	 * Metodo para alteração do usuario que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param Usuario usuario
 	 * @author Andrey
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/usuario/alterar/aluno/{json}")
-	public boolean alterarUsuarioAluno(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Usuario - {}",json);
+	@CrossOrigin
+	@PutMapping("/aluno")
+	public boolean alterarUsuarioAluno(@RequestBody Usuario usuario) {
 		Gson gson = new Gson();
-		Usuario usuario = gson.fromJson(json.toString(), Usuario.class);
+		String json = gson.toJson(usuario);
+		LOGGER.info("Requisição Atualizar Usuario - {}",json);
 		UsuarioDAO usuarioDao = new UsuarioDAO();
 		try {
 			usuarioDao.updateUsuarioAluno(usuario);
@@ -366,7 +355,8 @@ public class UsuarioController {
 	 * @return String json
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/usuario/dto/{codigo}")
+	@CrossOrigin
+	@GetMapping("/dto/{codigo}")
 	public String consultarDTO(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição UsuarioDTO codigo {} iniciada", codigo);
 		UsuarioDTO usuariodto;

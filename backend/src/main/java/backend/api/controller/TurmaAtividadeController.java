@@ -7,12 +7,7 @@ import com.google.gson.Gson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import entidade.TurmaAtividade;
 import persistencia.jdbc.TurmaAtividadeDAO;
@@ -23,6 +18,7 @@ import persistencia.jdbc.TurmaAtividadeDAO;
  *
  */
 @RestController
+@RequestMapping("turmaatividades")
 public class TurmaAtividadeController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -33,7 +29,8 @@ public class TurmaAtividadeController {
 	 * @return String json
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/turmaAtividade/{codigo}")
+	@CrossOrigin
+	@GetMapping("/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição TurmaAtividade codigo {} iniciada", codigo);
 		TurmaAtividadeDAO turmaAtividadeDao = new TurmaAtividadeDAO();
@@ -56,7 +53,8 @@ public class TurmaAtividadeController {
 	 * @return lista de turmasAtividades registradas no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/turmasAtividades")
+	@CrossOrigin
+	@GetMapping
 	public List<TurmaAtividade> consultar(){
 		LOGGER.info("Requisição List<TurmaAtividade>");
 		List<TurmaAtividade> lista;
@@ -74,15 +72,16 @@ public class TurmaAtividadeController {
 	
 	/**
 	 * Insere uma nova turmaAtividade no banco de dados {POST}
-	 * @param String json
+	 * @param TurmaAtividade turmaAtividade
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/turmaAtividade/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir TurmaAtividade - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody TurmaAtividade turmaAtividade) {
 		Gson gson = new Gson();
-		TurmaAtividade turmaAtividade = gson.fromJson(json, TurmaAtividade.class);
+		String json = gson.toJson(turmaAtividade);
+		LOGGER.info("Requisição Inserir TurmaAtividade - {}",json);
 		TurmaAtividadeDAO turmaAtividadeDAO = new TurmaAtividadeDAO();
 		try {
 			turmaAtividadeDAO.insert(turmaAtividade);
@@ -97,16 +96,16 @@ public class TurmaAtividadeController {
 
 	/**
 	 * Metodo para alteração da turmaAtividade que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param TurmaAtividade turmaAtividade
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/turmaAtividade/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar TurmaAtividade - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody TurmaAtividade turmaAtividade) {
 		Gson gson = new Gson();
-		TurmaAtividade turmaAtividade = gson.fromJson(json, TurmaAtividade.class);
+		String json = gson.toJson(turmaAtividade);
+		LOGGER.info("Requisição Atualizar TurmaAtividade - {}",json);
 		TurmaAtividadeDAO turmaAtividadeDAO = new TurmaAtividadeDAO();
 		try {
 			turmaAtividadeDAO.update(turmaAtividade);
@@ -125,7 +124,8 @@ public class TurmaAtividadeController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/turmaAtividade/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar TurmaAtividade id - {}",codigo);
 		TurmaAtividadeDAO turmaAtividadeDAO = new TurmaAtividadeDAO();
@@ -149,7 +149,7 @@ public class TurmaAtividadeController {
 	 * @return lista de turmasAtividades registradas no banco
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/turmas/atividades/turma/{idTurma}")
+	@GetMapping("/turma/{idTurma}")
 	public List<TurmaAtividade> consultarTodosIdTurma(@PathVariable("idTurma") int idTurma){
 		LOGGER.info("Requisição List<TurmaAtividade>");
 		List<TurmaAtividade> lista;

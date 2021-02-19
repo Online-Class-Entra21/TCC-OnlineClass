@@ -7,13 +7,7 @@ import com.google.gson.Gson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import entidade.Turma;
 import persistencia.jdbc.TurmaDAO;
@@ -24,7 +18,7 @@ import persistencia.jdbc.TurmaDAO;
  *
  */
 @RestController
-@RequestMapping("turmas")
+@RequestMapping("/turmas")
 public class TurmaController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -36,7 +30,7 @@ public class TurmaController {
 	 * @author Breno
 	 */
 	@CrossOrigin
-	@GetMapping(path = "/{codigo}")
+	@GetMapping("/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Turma codigo {} iniciada", codigo);
 		TurmaDAO turmaDao = new TurmaDAO();
@@ -61,7 +55,7 @@ public class TurmaController {
 	 * @author Breno
 	 */
 	@CrossOrigin
-	@GetMapping()
+	@GetMapping
 	public List<Turma> consultar(){
 		LOGGER.info("Requisição List<Turma>");
 		List<Turma> lista;
@@ -79,16 +73,16 @@ public class TurmaController {
 	
 	/**
 	 * Insere uma nova turma no banco de dados {POST}
-	 * @param String json
+	 * @param Turma turma
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/turma/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Turma - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Turma turma) {
 		Gson gson = new Gson();
-		Turma turma = gson.fromJson(json, Turma.class);
-		System.out.println(turma.getHorarioInicioAula());
+		String json = gson.toJson(turma);
+		LOGGER.info("Requisição Inserir Turma - {}",json);
 		TurmaDAO turmaDAO = new TurmaDAO();
 		try {
 			turmaDAO.insert(turma);
@@ -103,16 +97,16 @@ public class TurmaController {
 
 	/**
 	 * Metodo para alteração da turma que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param Turma turma
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/turma/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Turma - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Turma turma) {
 		Gson gson = new Gson();
-		Turma turma = gson.fromJson(json, Turma.class);
+		String json = gson.toJson(turma);
+		LOGGER.info("Requisição Atualizar Turma - {}",json);
 		System.out.println(turma.getHorarioFinalAula());
 		TurmaDAO turmaDAO = new TurmaDAO();
 		try {
@@ -158,7 +152,7 @@ public class TurmaController {
 	 * @author Andrey
 	 */
 	@CrossOrigin
-	@GetMapping("/{codigo}")
+	@GetMapping("/idescola/{codigo}")
 	public List<Turma> consultarIdEscola(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Turma> pelo fk_escola");
 		List<Turma> lista;
@@ -181,7 +175,7 @@ public class TurmaController {
 	 * @param int codigo 
 	 */
 	@CrossOrigin
-	@GetMapping("/{codigo}")
+	@GetMapping("/disciplina/{codigo}")
 	public List<Turma> consultarDisciplina(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Turma> pela disciplina");
 		List<Turma> lista;
@@ -203,7 +197,7 @@ public class TurmaController {
 	 * @author Breno
 	 * @param int codigo 
 	 */
-	@GetMapping(path = "/api/turmas/professor/{codigo}")
+	@GetMapping("/turmas/professor/{codigo}")
 	public List<Turma> consultarTurmasProfessor(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Turma> pela disciplina");
 		List<Turma> lista;

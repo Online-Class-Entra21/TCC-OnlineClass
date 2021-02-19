@@ -7,12 +7,7 @@ import com.google.gson.Gson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import entidade.Reuniao;
 import entidade.Sala;
@@ -25,6 +20,7 @@ import persistencia.jdbc.SalaDAO;
  * 
  */
 @RestController
+@RequestMapping("salas")
 public class SalaController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -35,7 +31,8 @@ public class SalaController {
 	 * @return String json
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/sala/{codigo}")
+	@CrossOrigin
+	@GetMapping("/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Sala codigo {} iniciada", codigo);
 		SalaDAO salaDao = new SalaDAO();
@@ -58,7 +55,8 @@ public class SalaController {
 	 * @return lista de salas registradas no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/salas")
+	@CrossOrigin
+	@GetMapping
 	public List<Sala> consultar(){
 		LOGGER.info("Requisição List<Sala>");
 		List<Sala> lista;
@@ -76,15 +74,16 @@ public class SalaController {
 	
 	/**
 	 * Insere uma nova sala no banco de dados {POST}
-	 * @param String json
+	 * @param Sala sala
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/sala/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Sala - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Sala sala) {
 		Gson gson = new Gson();
-		Sala sala = gson.fromJson(json, Sala.class);
+		String json = gson.toJson(sala);
+		LOGGER.info("Requisição Inserir Sala - {}",json);
 		SalaDAO salaDAO = new SalaDAO();
 		try {
 			salaDAO.insert(sala);
@@ -99,16 +98,16 @@ public class SalaController {
 
 	/**
 	 * Metodo para alteração da sala que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param Sala sala
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/sala/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Sala - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Sala sala) {
 		Gson gson = new Gson();
-		Sala sala = gson.fromJson(json, Sala.class);
+		String json = gson.toJson(sala);
+		LOGGER.info("Requisição Atualizar Sala - {}",json);
 		SalaDAO salaDAO = new SalaDAO();
 		try {
 			salaDAO.update(sala);
@@ -127,7 +126,8 @@ public class SalaController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/sala/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Sala id - {}",codigo);
 		SalaDAO salaDAO = new SalaDAO();
@@ -152,7 +152,8 @@ public class SalaController {
 	 * @return String json
 	 * @author André
 	 */
-	@GetMapping(path = "/api/salaidreuniao/{codigo}")
+	@CrossOrigin
+	@GetMapping("/salaidreuniao/{codigo}")
 	public String consultarIdReuniao(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Sala da Reuniao {} iniciada", codigo);
 		SalaDAO salaDao = new SalaDAO();
@@ -181,15 +182,16 @@ public class SalaController {
 	/**
 	 * Insere uma nova sala no banco de dados {POST}
 	 * e retorna o json da sala inserida
-	 * @param String json
+	 * @param Sala sala
 	 * @author André
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/sala/inserir/return/{json}")
-	public String inserirReturn(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Sala - {}",json);
+	@CrossOrigin
+	@PostMapping("/return")
+	public String inserirReturn(@RequestBody Sala sala) {
 		Gson gson = new Gson();
-		Sala sala = gson.fromJson(json, Sala.class);
+		String json = gson.toJson(sala);
+		LOGGER.info("Requisição Inserir Sala - {}",json);
 		SalaDAO salaDAO = new SalaDAO();
 		try {
 			int idSala = salaDAO.insertReturnID(sala);

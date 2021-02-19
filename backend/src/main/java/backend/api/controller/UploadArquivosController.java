@@ -6,9 +6,7 @@ import java.sql.Timestamp;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import entidade.Arquivo;
@@ -20,6 +18,7 @@ import SalvarArquivos.SalvarDisco;
 
 
 @RestController
+@RequestMapping("uploadarquivos")
 public class UploadArquivosController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -32,7 +31,8 @@ public class UploadArquivosController {
 	 * @param foto
 	 * @param idUsuario
 	 */
-	@PostMapping(path = "/api/upload/{codigo}")
+	@CrossOrigin
+	@PostMapping("/fotoperfil/{codigo}")
 	public void upAvatar(MultipartFile foto,@PathVariable("codigo") int idUsuario){
 		LOGGER.info("Enviando foto do usuario {}",idUsuario);
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -53,7 +53,7 @@ public class UploadArquivosController {
 	 * @return int idArquivo 
 	 * @author Andre
 	 */
-	@PostMapping(path = "/api/upload/file/return/{idUsuario}")
+	@PostMapping("/file/return/{idUsuario}")
 	public int upGenericFile(MultipartFile file, @PathVariable("idUsuario") int idUsuario){
 		int idArquivo = 0;
 		LOGGER.info("Enviando Arquivo {} ",file.getOriginalFilename());

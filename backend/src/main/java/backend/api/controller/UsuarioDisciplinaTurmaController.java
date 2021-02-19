@@ -9,13 +9,7 @@ import backend.api.controller.form.UsuarioDisciplinaTurmaForm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import entidade.UsuarioDisciplinaTurma;
 import persistencia.jdbc.UsuarioDisciplinaTurmaDAO;
@@ -62,7 +56,7 @@ public class UsuarioDisciplinaTurmaController {
 	 * @author Breno
 	 */
 	@CrossOrigin
-	@GetMapping()
+	@GetMapping
 	public List<UsuarioDisciplinaTurma> consultar(){
 		LOGGER.info("Requisição List<UsuarioDisciplinaTurma>");
 		List<UsuarioDisciplinaTurma> lista;
@@ -80,15 +74,16 @@ public class UsuarioDisciplinaTurmaController {
 	
 	/**
 	 * Insere um novo usuarioDisciplinaTurma no banco de dados {POST}
-	 * @param String json
+	 * @param UsuarioDisciplinaTurma usuarioDisciplinaTurma
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/usuarioDisciplinaTurma/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir UsuarioDisciplinaTurma - {}",json);
+	@CrossOrigin
+	@PostMapping("/inserir")
+	public boolean inserir(@RequestBody UsuarioDisciplinaTurma usuarioDisciplinaTurma) {
 		Gson gson = new Gson();
-		UsuarioDisciplinaTurma usuarioDisciplinaTurma = gson.fromJson(json, UsuarioDisciplinaTurma.class);
+		String json = gson.toJson(usuarioDisciplinaTurma);
+		LOGGER.info("Requisição Inserir UsuarioDisciplinaTurma - {}",json);
 		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDAO = new UsuarioDisciplinaTurmaDAO();
 		try {
 			usuarioDisciplinaTurmaDAO.insert(usuarioDisciplinaTurma);
@@ -103,16 +98,16 @@ public class UsuarioDisciplinaTurmaController {
 
 	/**
 	 * Metodo para alteração do usuarioDisciplinaTurma que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param UsuarioDisciplinaTurma usuarioDisciplinaTurma
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/usuarioDisciplinaTurma/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar UsuarioDisciplinaTurma - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody UsuarioDisciplinaTurma usuarioDisciplinaTurma) {
 		Gson gson = new Gson();
-		UsuarioDisciplinaTurma usuarioDisciplinaTurma = gson.fromJson(json, UsuarioDisciplinaTurma.class);
+		String json = gson.toJson(usuarioDisciplinaTurma);
+		LOGGER.info("Requisição Atualizar UsuarioDisciplinaTurma - {}",json);
 		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDAO = new UsuarioDisciplinaTurmaDAO();
 		try {
 			usuarioDisciplinaTurmaDAO.update(usuarioDisciplinaTurma);
@@ -157,15 +152,16 @@ public class UsuarioDisciplinaTurmaController {
 	 * caso nao tenha um igual ou retorna o id do UsuarioDisciplinaTurma
 	 * ja existente
 	 * 
-	 * @param String json
+	 * @param UsuarioDisciplinaTurma usuarioDisciplinaTurma
 	 * @author Andre
 	 * @return id idUsuarioDisciplinaTurma
-	 */	
-	@PostMapping(path = "/api/usuarioDisciplinaTurma/inserirAlterar/{json}")
-	public int inserirAlterarReturnID(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
+	 */
+	@CrossOrigin
+	@PostMapping("/inserirAlterar")
+	public int inserirAlterarReturnID(@RequestBody UsuarioDisciplinaTurma usuarioDisciplinaTurma) {
 		Gson gson = new Gson();
-		UsuarioDisciplinaTurma usuarioDisciplinaTurma = gson.fromJson(json, UsuarioDisciplinaTurma.class);
+		String json = gson.toJson(usuarioDisciplinaTurma);
+		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
 		UsuarioDisciplinaTurmaDAO usuarioDisciplinaTurmaDAO = new UsuarioDisciplinaTurmaDAO();
 		try {
 			int idUserDisc = usuarioDisciplinaTurmaDAO.buscarIgual(usuarioDisciplinaTurma);
@@ -185,11 +181,12 @@ public class UsuarioDisciplinaTurmaController {
 	/**
 	 * Retorna a lista dos usuarioDisciplinaTurma das disciplinas do
 	 * professor idProfessor registrados no sistema {GET} com o idTurma,
-	 *  
+	 *
 	 * @return lista de usuariosDisciplinasTurmas registradas no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/turmasUsuariosDisciplinas/{idTurma}/{idProfessor}")
+	@CrossOrigin
+	@GetMapping("/turmasUsuariosDisciplinas/{idTurma}/{idProfessor}")
 	public List<UsuarioDisciplinaTurma> consultarTurmaProfessor(@PathVariable int idTurma,@PathVariable int idProfessor){
 		LOGGER.info("Requisição List<UsuarioDisciplinaTurma> idTurma {}, idProfessor {}",idTurma,idProfessor);
 		List<UsuarioDisciplinaTurma> lista;
@@ -204,13 +201,14 @@ public class UsuarioDisciplinaTurmaController {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Retorna a lista das turmas do professor pelo id do usuario
 	 * @return lista de turmas registradas no banco
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/turmas/usuario/{idUsuario}")
+	@CrossOrigin
+	@GetMapping("/usuario/{idUsuario}")
 	public List<UsuarioDisciplinaTurmaForm> consultarTurmaUsuario(@PathVariable int idUsuario){
 		LOGGER.info("Requisição List<UsuarioDisciplinaTurmaForm> idProfessor {}",idUsuario);
 		List<UsuarioDisciplinaTurmaForm> lista;

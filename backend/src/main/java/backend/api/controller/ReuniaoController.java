@@ -11,12 +11,7 @@ import backend.api.controller.DTO.UsuarioDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import entidade.Reuniao;
 import entidade.Usuario;
@@ -28,6 +23,7 @@ import persistencia.jdbc.UsuarioDAO;
  * @author Andre
  */
 @RestController
+@RequestMapping("reunioes")
 public class ReuniaoController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -38,7 +34,7 @@ public class ReuniaoController {
 	 * @return String json
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/reuniao/{codigo}")
+	@GetMapping("/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Reuniao codigo {} iniciada", codigo);
 		ReuniaoDAO reuniaoDao = new ReuniaoDAO();
@@ -61,7 +57,7 @@ public class ReuniaoController {
 	 * @return lista de reunioes registradas no banco
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/reunioes")
+	@GetMapping
 	public List<Reuniao> consultar(){
 		LOGGER.info("Requisição List<Reuniao>");
 		List<Reuniao> lista;
@@ -79,17 +75,16 @@ public class ReuniaoController {
 	
 	/**
 	 * Insere uma nova reuniao no banco de dados {POST}
-	 * @param String json
+	 * @param Reuniao reuniao
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/reuniao/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Reuniao reuniao) {
+		Gson gson = new Gson();
+		String json = gson.toJson(reuniao);
 		LOGGER.info("Requisição Inserir Reuniao - {}",json);
-	    GsonBuilder gsonBuilder = new GsonBuilder();
-	    gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
-		Gson gson = gsonBuilder.create();
-		Reuniao reuniao = gson.fromJson(json, Reuniao.class);
 		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
 		try {
 			reuniaoDAO.insertReuniaoGenerica(reuniao);
@@ -107,16 +102,16 @@ public class ReuniaoController {
 
 	/**
 	 * Metodo para alteração da reuniao que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param Reuniao reuniao
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/reuniao/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Reuniao - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Reuniao reuniao) {
 		Gson gson = new Gson();
-		Reuniao reuniao = gson.fromJson(json, Reuniao.class);
+		String json = gson.toJson(reuniao);
+		LOGGER.info("Requisição Atualizar Reuniao - {}",json);
 		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
 		try {
 			reuniaoDAO.update(reuniao);
@@ -135,7 +130,8 @@ public class ReuniaoController {
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/reuniao/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Reuniao id - {}",codigo);
 		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
@@ -160,7 +156,8 @@ public class ReuniaoController {
 	 * @param int codigo
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/reunioes/{codigo}")
+	@CrossOrigin
+	@GetMapping("/dono/{codigo}")
 	public List<Reuniao> consultarId(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Reuniao> codigo dono - {}",codigo);
 		List<Reuniao> lista;
@@ -182,7 +179,8 @@ public class ReuniaoController {
 	 * @param int codigo
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/reunioes/participantes/{codigo}")
+	@CrossOrigin
+	@GetMapping("/participantes/{codigo}")
 	public List<Reuniao> consultarPerticipanteId(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Reuniao> codigo participante - {}",codigo);
 		List<Reuniao> lista;
@@ -200,17 +198,16 @@ public class ReuniaoController {
 	
 	/**
 	 * Insere uma nova reuniao no banco de dados {POST}
-	 * @param String json
+	 * @param Reuniao reuniao
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/reuniao/personalizada/inserir/{json}")
-	public boolean inserirReuniaoPersonalizada(@PathVariable("json") String json) {
+	@CrossOrigin
+	@PostMapping("/personalizada")
+	public boolean inserirReuniaoPersonalizada(@RequestBody Reuniao reuniao) {
+		Gson gson = new Gson();
+		String json = gson.toJson(reuniao);
 		LOGGER.info("Requisição Inserir Reuniao - {}",json);
-	    GsonBuilder gsonBuilder = new GsonBuilder();
-	    gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
-		Gson gson = gsonBuilder.create();
-		Reuniao reuniao = gson.fromJson(json, Reuniao.class);
 		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
 		try {
 			reuniaoDAO.insertReuniaoGenerica(reuniao);
@@ -229,7 +226,8 @@ public class ReuniaoController {
 	 * @param int codigo 
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/aulas/{codigo}")
+	@CrossOrigin
+	@GetMapping("/aulas/{codigo}")
 	public List<Reuniao> consultarAulas(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Reuniao>");
 		List<Reuniao> listaReunioes;
@@ -256,17 +254,16 @@ public class ReuniaoController {
 	
 	/**	 
 	 * Insere uma nova reuniao no banco de dados {POST}
-	 * @param String json
+	 * @param Reuniao reuniao
 	 * @author Andre
 	 * @return int idReuniao
 	 */
-	@PostMapping(path = "api/reuniao/personalizada/inserir/return/{json}")
-	public int inserirReturnID(@PathVariable("json") String json) {
+	@CrossOrigin
+	@PostMapping("/personalizada/return")
+	public int inserirReturnID(@RequestBody Reuniao reuniao) {
+		Gson gson = new Gson();
+		String json = gson.toJson(reuniao);
 		LOGGER.info("Requisição Inserir Reuniao - {}",json);
-	    GsonBuilder gsonBuilder = new GsonBuilder();
-	    gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss");
-		Gson gson = gsonBuilder.create();
-		Reuniao reuniao = gson.fromJson(json, Reuniao.class);
 		ReuniaoDAO reuniaoDAO = new ReuniaoDAO();
 		try {
 			int idReuniao = reuniaoDAO.insertReuniaoGenericaReturnID(reuniao);
@@ -285,7 +282,8 @@ public class ReuniaoController {
 	 * @param int idReuniao
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/reuniao/usuarios/participantes/{idReuniao}")
+	@CrossOrigin
+	@GetMapping("/usuarios/participantes/{idReuniao}")
 	public List<UsuarioDTO> consultarParticipantes(@PathVariable("idReuniao") int idReuniao){
 		LOGGER.info("Requisição List<Usuario> idReuniao - {}",idReuniao);
 		List<Usuario> lista;

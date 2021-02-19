@@ -9,13 +9,7 @@ import backend.api.controller.form.UsuarioDisciplinaForm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import entidade.UsuarioDisciplina;
 import persistencia.jdbc.UsuarioDisciplinaDAO;
@@ -80,15 +74,16 @@ public class UsuarioDisciplinaController {
 	
 	/**
 	 * Insere um novo usuarioDisciplina no banco de dados {POST}
-	 * @param String json
+	 * @param UsuarioDisciplina usuarioDisciplina
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/usuarioDisciplina/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody UsuarioDisciplina usuarioDisciplina) {
 		Gson gson = new Gson();
-		UsuarioDisciplina usuarioDisciplina = gson.fromJson(json, UsuarioDisciplina.class);
+		String json = gson.toJson(usuarioDisciplina);
+		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
 		try {
 			usuarioDisciplinaDAO.insert(usuarioDisciplina);
@@ -103,16 +98,16 @@ public class UsuarioDisciplinaController {
 
 	/**
 	 * Metodo para alteração do usuarioDisciplina que corresponde ao codigo informado {PUT}
-	 * @param int codigo
-	 * @param String json
+	 * @param UsuarioDisciplina usuarioDisciplina
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/usuarioDisciplina/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar UsuarioDisciplina - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody UsuarioDisciplina usuarioDisciplina) {
 		Gson gson = new Gson();
-		UsuarioDisciplina usuarioDisciplina = gson.fromJson(json, UsuarioDisciplina.class);
+		String json = gson.toJson(usuarioDisciplina);
+		LOGGER.info("Requisição Atualizar UsuarioDisciplina - {}",json);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
 		try {
 			usuarioDisciplinaDAO.update(usuarioDisciplina);
@@ -157,15 +152,16 @@ public class UsuarioDisciplinaController {
 	 * caso nao tenha um igual ou retorna o id do usuarioDisciplina
 	 * ja existente
 	 * 
-	 * @param String json
+	 * @param UsuarioDisciplina usuarioDisciplina
 	 * @author Andre
 	 * @return int idUsuarioDisciplina
-	 */	
-	@PostMapping(path = "/api/usuarioDisciplina/inserirAlterar/{json}")
-	public int inserirAlterarReturnID(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
+	 */
+	@CrossOrigin
+	@PostMapping("/inserirAlterar")
+	public int inserirAlterarReturnID(@RequestBody UsuarioDisciplina usuarioDisciplina) {
 		Gson gson = new Gson();
-		UsuarioDisciplina usuarioDisciplina = gson.fromJson(json, UsuarioDisciplina.class);
+		String json = gson.toJson(usuarioDisciplina);
+		LOGGER.info("Requisição Inserir UsuarioDisciplina - {}",json);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
 		try {
 			int idUserDisc = usuarioDisciplinaDAO.buscarIgual(usuarioDisciplina);
@@ -188,7 +184,8 @@ public class UsuarioDisciplinaController {
 	 * @param int idAluno
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/usuario/disciplinas/{idUsuario}")
+	@CrossOrigin
+	@GetMapping("/disciplinas/{idUsuario}")
 	public List<UsuarioDisciplinaForm> consultarAlunosDisciplinas(@PathVariable("idUsuario") int idUsuario) {
 		LOGGER.info("Requisição Disciplinas usuario Existentes");
 		List<UsuarioDisciplinaForm> usuarioDisciplinaForm;

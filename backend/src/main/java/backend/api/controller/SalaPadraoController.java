@@ -8,9 +8,7 @@ import com.google.gson.Gson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import backend.api.controller.DTO.UsuarioDTO;
 import entidade.Aluno;
@@ -30,6 +28,7 @@ import persistencia.jdbc.UsuarioDAO;
  *
  */
 @RestController
+@RequestMapping("salapadroes")
 public class SalaPadraoController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -39,7 +38,8 @@ public class SalaPadraoController {
 	 * @return lista de salasPadroes registradas no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/salasPadroes")
+	@CrossOrigin
+	@GetMapping
 	public List<SalaPadrao> consultar(){
 		LOGGER.info("Requisição List<SalaPadrao>");
 		List<SalaPadrao> lista;
@@ -65,7 +65,8 @@ public class SalaPadraoController {
 	 * @param int codigo
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/salasPadroes/usuario/{codigo}")
+	@CrossOrigin
+	@GetMapping("/usuario/{codigo}")
 	public String consultarIdUsuario(@PathVariable("codigo") int codigo) {
 		AlunoDAO alunoDAO = new AlunoDAO();
 		TurmaDAO turmaDAO = new TurmaDAO();
@@ -89,7 +90,8 @@ public class SalaPadraoController {
 	 * @return lista de salasPadroes registradas no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/salasPadroes/participantes/{codigo}")
+	@CrossOrigin
+	@GetMapping("/participantes/{codigo}")
 	public List<UsuarioDTO> consultarIdSala(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Usuario> da sala {}",codigo);
 		List<Usuario> usuarios = new ArrayList<Usuario>();
