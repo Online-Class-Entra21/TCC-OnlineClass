@@ -88,7 +88,7 @@ async function cadastrar(){
         var disciplinaJson = JSON.stringify(disciplina);
 
         //Chama a api para cadastrar a disciplina
-        var insertDisciplina = await usarApi("POST", "http://localhost:8080/api/disciplina/inserir/" + disciplinaJson)
+        var insertDisciplina = await usarApi("POST", "http://localhost:8080/disciplinas/" + disciplinaJson)
 
         if (!insertDisciplina) {
             alert("Ocorreu um erro ao cadastrar a disciplina!");
@@ -116,7 +116,7 @@ $("#SelectDisciplina").change(function() {
 //Método para carregar o select com as turmas existentes
 async function carregarSelect() {
     //Chama a api e retorna um arrays com as disciplinas pertencentes à escola
-    var resposta = await usarApi("GET", "http://localhost:8080/api/disciplinas/"+fk_escola);
+    var resposta = await usarApi("GET", "http://localhost:8080/disciplinas/escola/"+fk_escola);
     var disciplinas = JSON.parse(resposta);
     var select = document.getElementById('SelectDisciplina');
 
@@ -135,7 +135,7 @@ async function carregarSelect() {
 //Método para carregar os campos da disciplina selecionada
 async function carregarCampos(disciplina) {
     //Busca os dados da disciplina selecionado no checkbox 
-    var resposta = await usarApi("GET", "http://localhost:8080/api/disciplina/" + disciplina)
+    var resposta = await usarApi("GET", "http://localhost:8080/disciplinas/" + disciplina)
     var disciplina = JSON.parse(resposta)
 
     //Dados Disciplina
@@ -232,7 +232,7 @@ async function atualizar(disciplinaEscolhida){
         var disciplinaJson = JSON.stringify(disciplina);
 
         //Chama a api para editar a disciplina
-        var insertDisciplina = await usarApi("PUT", "http://localhost:8080/api/disciplina/alterar/" + disciplinaJson)
+        var insertDisciplina = await usarApi("PUT", "http://localhost:8080/disciplinas/" + disciplinaJson)
 
         if (!insertDisciplina) {
             alert("Ocorreu um erro ao editar a disciplina!");
@@ -254,7 +254,7 @@ document.getElementById("idBtnExcluir").addEventListener("click",function (){
 //Deleta a disciplina
 async function deletar(disciplinaEscolhida){
     //Deletar a disciplina deletar 
-    var isDeletado = await usarApi("DELETE", "http://localhost:8080/api/disciplina/deletar/" + disciplinaEscolhida)
+    var isDeletado = await usarApi("DELETE", "http://localhost:8080/disciplinas/" + disciplinaEscolhida)
 
     //situacao mensagem 
     if(isDeletado){

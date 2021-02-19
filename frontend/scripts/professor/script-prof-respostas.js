@@ -77,7 +77,7 @@ $( "#idTipo" ).change(function() {
 
 //Carrega as disciplinas escolhidas
 async function carregarDisciplinas(turmaEscolhida){
-    var resposta = await usarApi('GET','http://localhost:8080/api/disciplinas/turmas/aluno/'+idUsuario+'/'+turmaEscolhida);
+    var resposta = await usarApi('GET','http://localhost:8080/disciplinas/turmas/aluno/'+idUsuario+'/'+turmaEscolhida);
     disciplinas = JSON.parse(resposta);
     
     var select = document.getElementById('idDisci');

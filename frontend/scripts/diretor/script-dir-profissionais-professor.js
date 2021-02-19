@@ -196,7 +196,7 @@ $('#btnAvancar').click(async function(){
 });
 
 async function getMaterias(idTurma) {
-    var disciplinas = await usarApi('GET','http://localhost:8080/api/disciplinas');
+    var disciplinas = await usarApi('GET','http://localhost:8080/disciplinas');
     disciplinas = JSON.parse(disciplinas);
 
     $('td#'+idTurma).append('<div name="materias'+idTurma+'" class="selectBox">'
@@ -235,7 +235,7 @@ $('#btnCadastrar').click(async function() {
         complemento: $("#inputTipoLogradouro").val()
     };
     var jsonendereco = JSON.stringify(endereco);
-    var idEndereco = await usarApi('POST', 'http://localhost:8080/api/endereco/inseriralterar/'+jsonendereco);
+    var idEndereco = await usarApi('POST', 'http://localhost:8080/enderecos/inserirAlterar'+jsonendereco);
     var horarioFinal = document.getElementById('inputHorarioFinal').valueAsDate;
     var horaInicial = document.getElementById('inputHorarioInicial').valueAsDate;
     horarioFinal.setHours(horarioFinal.getHours()+3);

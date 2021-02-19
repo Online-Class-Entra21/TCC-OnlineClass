@@ -43,7 +43,7 @@ async function buscarProfessores(){
                     +'<td>'+prof.nome+' '+prof.sobrenome+'</td>'
                  +'</tr>');
         $('#prof-'+prof.idUsuario).click(async function(){
-            var disciplinas = await usarApi("GET", "http://localhost:8080/api/disciplinas/turmas/"+prof.idUsuario);
+            var disciplinas = await usarApi("GET", "http://localhost:8080/disciplinas/turmas/"+prof.idUsuario);
             // console.log(disciplinas);
             criarPopUp(prof.idUsuario);
         });
@@ -53,13 +53,13 @@ async function buscarProfessores(){
 async function criarPopUp(idProfessor){
     $('#tabelaDisciplinas').empty();
     curentProfessore = idProfessor;
-    var disciplinas = await usarApi("GET", "http://localhost:8080/api/disciplinas/turmas/"+idProfessor);
+    var disciplinas = await usarApi("GET", "http://localhost:8080/disciplinas/turmas/"+idProfessor);
     disciplinas = JSON.parse(disciplinas);
     for (var i = 0; i < disciplinas.length; i++){
         const disc = disciplinas[i];
         var turma = await usarApi('GET', "http://localhost:8080/api/turma/"+disc.idTurma);
         turma = JSON.parse(turma);
-        var disciplina = await usarApi('GET', "http://localhost:8080/api/disciplina/"+disc.idDisciplina);
+        var disciplina = await usarApi('GET', "http://localhost:8080/disciplinas/"+disc.idDisciplina);
         disciplina = JSON.parse(disciplina);
         $('#tabelaDisciplinas').append('<tr id="'+disc.idUsuario_disciplina_turma+'">'
                                             +'<th scope="row">'+turma.idTurma+'</td>'
@@ -109,7 +109,7 @@ async function buscarTurmas(){
     }
 }
 async function buscarMaterias(){
-    var materias = await usarApi("GET","http://localhost:8080/api/disciplinas");
+    var materias = await usarApi("GET","http://localhost:8080/disciplinas");
     materias = JSON.parse(materias);
     var select = $('#materiaSelect');
     for (var i = 0; i <materias.length; i++){

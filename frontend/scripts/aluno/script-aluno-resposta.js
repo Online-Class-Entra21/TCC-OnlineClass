@@ -58,7 +58,7 @@ carregarTitulo();
 
 //Método para carregar o titulo da atividade e verifica 
 async function carregarTitulo() {
-    var resposta = await usarApi("GET", "http://localhost:8080/api/atividade/" + idAtividade);
+    var resposta = await usarApi("GET", "http://localhost:8080/atividades/ + idAtividade);
     var atividade = JSON.parse(resposta);
     document.getElementById('inputTitulo').innerHTML = atividade.titulo;
     document.getElementById('texto-desc').innerHTML = atividade.descricao;

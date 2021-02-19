@@ -59,7 +59,7 @@ async function colocarTabela(alunos){
 //Exclui a conta do aluno 
 async function apagar(idAluno){
 
-    var alunoResposta = await usarApi("GET", "http://localhost:8080/api/aluno/"+idAluno)
+    var alunoResposta = await usarApi("GET", "http://localhost:8080/alunos/"+idAluno)
     var aluno = JSON.parse(alunoResposta);
 
     var resposta = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/"+aluno.fk_usuario);

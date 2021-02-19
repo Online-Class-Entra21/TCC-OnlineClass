@@ -51,7 +51,7 @@ async function carregarCampos() {
     document.getElementById('inputEscola').value = escola.nome;
     idEscolaSelecionada = escola.idEscola;
 
-    resposta = await usarApi("GET", "http://localhost:8080/api/diretor/escola/" + idEscolaSelecionada)
+    resposta = await usarApi("GET", "http://localhost:8080//diretores/escola/" + idEscolaSelecionada)
     var diretor = JSON.parse(resposta);
  
     if (diretor == null) {
@@ -152,7 +152,7 @@ async function editarDiretor() {
     }
     var diretorJson = JSON.stringify(alterarDiretor);
 
-    var updateEscola = await usarApi("PUT", "http://localhost:8080/api/diretor/alterar/"+diretorJson)
+    var updateEscola = await usarApi("PUT", "http://localhost:8080/diretores/"+diretorJson)
     var resposta = JSON.parse(updateEscola)
 
     if (!resposta) {

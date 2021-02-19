@@ -164,7 +164,7 @@ async function cadastrar() {
                             var enderecoJson =  JSON.stringify(inserirEndereco);
 
                             //Chamada da api para registrar o Endereço no banco de dados
-                            var insertEndereco = await usarApi("POST", "http://localhost:8080/api/endereco/inserir/return/"+enderecoJson);
+                            var insertEndereco = await usarApi("POST", "http://localhost:8080/enderecos/return/"+enderecoJson);
                             var idEndereco =  JSON.parse(insertEndereco);
 
                             if(idEndereco != 0){

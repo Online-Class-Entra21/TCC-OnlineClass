@@ -182,7 +182,7 @@ async function alterar(){
     }
 
     var json = JSON.stringify(perfil);
-    var resposta =  await usarApi("PUT", "http://localhost:8080/api/diretor/alterar/" + json); 
+    var resposta =  await usarApi("PUT", "http://localhost:8080/diretores/" + json); 
     var isCorreto = JSON.parse(resposta);
 
     if(isCorreto){

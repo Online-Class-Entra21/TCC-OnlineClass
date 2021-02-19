@@ -44,7 +44,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca a quantidade de coordenadores 
     var xhr3 = new XMLHttpRequest(); 
 
-        xhr3.open("GET", "http://localhost:8080/api/coordenadores/quantidade");
+        xhr3.open("GET", "http://localhost:8080/coordenadores/quantidade");
 
         xhr3.addEventListener("load", function(){
             var resposta3 = xhr3.responseText; 

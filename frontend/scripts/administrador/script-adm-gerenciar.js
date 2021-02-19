@@ -91,7 +91,7 @@ async function listaEscolas(){
             coluna.append(input);
             linha.append(coluna);
             
-            var diretor = await usarApiLocal("GET","http://localhost:8080/api/diretor/escola/"+escolas[i].idEscola);
+            var diretor = await usarApiLocal("GET","http://localhost:8080//diretores/escola/"+escolas[i].idEscola);
             diretor = JSON.parse(diretor);
 
             //Verifica se a escola tem um diretor 

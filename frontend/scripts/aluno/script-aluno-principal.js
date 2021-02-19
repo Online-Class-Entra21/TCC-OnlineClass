@@ -37,7 +37,7 @@ async function carregarLinhas() {
     var idTurma = aluno.fk_turma;
 
     //Retorna as atividades da turma
-    resposta = await usarApi("GET", "http://localhost:8080/api/atividades/turma/" + idTurma);
+    resposta = await usarApi("GET", "http://localhost:8080/atividades/turma/" + idTurma);
     var turmasAtividades = JSON.parse(resposta);
 
     //Retorna os dados para popular a tabela
@@ -114,7 +114,7 @@ async function carregarLinhas() {
     
         //Faz o download da atividade
         var xhr = new XMLHttpRequest(); 
-        xhr.open("GET", "http://localhost:8080/api/arquivo/"+fk_arquivo);
+        xhr.open("GET", "http://localhost:8080/arquivos/"+fk_arquivo);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 

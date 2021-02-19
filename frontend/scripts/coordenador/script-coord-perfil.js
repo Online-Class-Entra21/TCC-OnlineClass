@@ -133,7 +133,7 @@ function buscaEndereco(fk_endereco){
     //Busca dos dados do endereco
     var xhr = new XMLHttpRequest(fk_endereco); 
 
-        xhr.open("GET", "http://localhost:8080/api/endereco/"+fk_endereco);
+        xhr.open("GET", "http://localhost:8080/enderecos/"+fk_endereco);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -270,7 +270,7 @@ async function editar() {
                             var enderecoJson =  JSON.stringify(inserirEndereco);
 
                             //Chamada da api para registrar o Endereço no banco de dados
-                            var insertEndereco = await usarApi("POST", "http://localhost:8080/api/endereco/inserir/"+enderecoJson);
+                            var insertEndereco = await usarApi("POST", "http://localhost:8080/enderecos/"+enderecoJson);
 
                             //Cria o objeto Coordenador
                             var inserirCoordenador = {
@@ -298,7 +298,7 @@ async function editar() {
                             var coordenadorJson = JSON.stringify(inserirCoordenador);
 
                             //Chamada da api para registrar o Coordenador no banco de dados
-                            var insertUsuario = await usarApi("PUT", "http://localhost:8080/api/coordenador/alterar/"+coordenadorJson);
+                            var insertUsuario = await usarApi("PUT", "http://localhost:8080/coordenadores/"+coordenadorJson);
 
                             if (!insertUsuario || !insertEndereco) {
                                 alert("Ocorreu um erro ao editar coordenador!")

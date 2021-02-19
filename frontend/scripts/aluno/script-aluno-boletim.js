@@ -82,7 +82,7 @@ async function gerarBoletim() {
     var notas = JSON.parse(resposta);
 
     //Pegar as materias do aluno
-    var resposta = await usarApi("GET", "http://localhost:8080/api/disciplinas/turmas/aluno/"+aluno.idAluno);
+    var resposta = await usarApi("GET", "http://localhost:8080/disciplinas/turmas/aluno/"+aluno.idAluno);
     var disciplinasAluno = JSON.parse(resposta);
 
     var medias = [];

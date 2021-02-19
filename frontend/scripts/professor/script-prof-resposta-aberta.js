@@ -10,7 +10,7 @@ carregarTela();
 function carregarTela(){
     var xhr2 = new XMLHttpRequest(); 
 
-        xhr2.open("GET", "http://localhost:8080/api/arquivo/"+idArquivo);
+        xhr2.open("GET", "http://localhost:8080/arquivos/"+idArquivo);
 
         xhr2.addEventListener("load", function(){
             var resposta = xhr2.responseText; 
