@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.UsuarioSalaPersonalizada;
@@ -23,6 +24,7 @@ import persistencia.jdbc.UsuarioSalaPersonalizadaDAO;
  *
  */
 @RestController
+@RequestMapping("usuariosalapersonalizadas")
 public class UsuarioSalaPersonalizadaController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -33,7 +35,8 @@ public class UsuarioSalaPersonalizadaController {
 	 * @return String json
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/usuarioSalaPersonalizada/{codigo}")
+	@CrossOrigin
+	@GetMapping("/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Arquivo codigo {} iniciada", codigo);
 		UsuarioSalaPersonalizadaDAO usuarioSalaPersonalizadaDao = new UsuarioSalaPersonalizadaDAO();
@@ -56,7 +59,8 @@ public class UsuarioSalaPersonalizadaController {
 	 * @return lista de usuariosSalasPersonalizadas registrados no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/usuariosSalasPersonalizadas")
+	@CrossOrigin
+	@GetMapping()
 	public List<UsuarioSalaPersonalizada> consultar(){
 		LOGGER.info("Requisição List<Arquivo>");
 		List<UsuarioSalaPersonalizada> lista;
@@ -125,7 +129,8 @@ public class UsuarioSalaPersonalizadaController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/usuarioSalaPersonalizada/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar UsuarioSalaPersonalizada id - {}",codigo);
 		UsuarioSalaPersonalizadaDAO usuarioSalaPersonalizadaDAO = new UsuarioSalaPersonalizadaDAO();

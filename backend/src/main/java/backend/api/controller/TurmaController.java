@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.Turma;
@@ -23,6 +24,7 @@ import persistencia.jdbc.TurmaDAO;
  *
  */
 @RestController
+@RequestMapping("turmas")
 public class TurmaController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -33,7 +35,8 @@ public class TurmaController {
 	 * @return String json
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/turma/{codigo}")
+	@CrossOrigin
+	@GetMapping(path = "/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Turma codigo {} iniciada", codigo);
 		TurmaDAO turmaDao = new TurmaDAO();
@@ -57,7 +60,8 @@ public class TurmaController {
 	 * @return lista de turmas registradas no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/turmas")
+	@CrossOrigin
+	@GetMapping()
 	public List<Turma> consultar(){
 		LOGGER.info("Requisição List<Turma>");
 		List<Turma> lista;
@@ -128,7 +132,8 @@ public class TurmaController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/turma/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Turma id - {}",codigo);
 		TurmaDAO turmaDAO = new TurmaDAO();
@@ -152,7 +157,8 @@ public class TurmaController {
 	 * @return lista de turmas registradas no banco pelo id da escola
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/turmas/escola/{codigo}")
+	@CrossOrigin
+	@GetMapping("/{codigo}")
 	public List<Turma> consultarIdEscola(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Turma> pelo fk_escola");
 		List<Turma> lista;
@@ -174,7 +180,8 @@ public class TurmaController {
 	 * @author Breno
 	 * @param int codigo 
 	 */
-	@GetMapping(path = "/api/turmas/disciplina/{codigo}")
+	@CrossOrigin
+	@GetMapping("/{codigo}")
 	public List<Turma> consultarDisciplina(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Turma> pela disciplina");
 		List<Turma> lista;

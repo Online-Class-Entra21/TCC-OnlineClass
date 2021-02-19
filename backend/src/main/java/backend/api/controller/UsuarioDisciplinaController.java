@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.UsuarioDisciplina;
@@ -25,6 +26,7 @@ import persistencia.jdbc.UsuarioDisciplinaDAO;
  *
  */
 @RestController
+@RequestMapping("usuariodisciplinas")
 public class UsuarioDisciplinaController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -35,7 +37,8 @@ public class UsuarioDisciplinaController {
 	 * @return String json
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/usuarioDisciplina/{codigo}")
+	@CrossOrigin
+	@GetMapping("/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição UsuarioDisciplina codigo {} iniciada", codigo);
 		UsuarioDisciplinaDAO usuarioDisciplinaDao = new UsuarioDisciplinaDAO();
@@ -58,7 +61,8 @@ public class UsuarioDisciplinaController {
 	 * @return lista de usuariosDisciplinas registrados no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/usuariosDisciplinas")
+	@CrossOrigin
+	@GetMapping()
 	public List<UsuarioDisciplina> consultar(){
 		LOGGER.info("Requisição List<UsuarioDisciplina>");
 		List<UsuarioDisciplina> lista;
@@ -127,7 +131,8 @@ public class UsuarioDisciplinaController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "api/usuarioDisciplina/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar UsuarioDisciplina id - {}",codigo);
 		UsuarioDisciplinaDAO usuarioDisciplinaDAO = new UsuarioDisciplinaDAO();
