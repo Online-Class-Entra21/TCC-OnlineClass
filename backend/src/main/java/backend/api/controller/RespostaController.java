@@ -11,11 +11,14 @@ import backend.api.controller.form.RespostaVisualizacaoForm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.Resposta;
@@ -27,6 +30,7 @@ import persistencia.jdbc.RespostaDAO;
  *
  */
 @RestController
+@RequestMapping("/respostas")
 public class RespostaController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -37,17 +41,16 @@ public class RespostaController {
 	 * @return String json
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/resposta/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping("/{codigo}")
+	public Resposta consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Resposta codigo {} iniciada", codigo);
 		RespostaDAO respostaDao = new RespostaDAO();
 		Resposta resposta;
 		try {
 			resposta = respostaDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(resposta);
 			LOGGER.info("Requisição Resposta codigo {} bem sucedida",codigo);
-			return json;
+			return resposta;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Resposta Mal Sucedida - Resposta {} - erro - {}",codigo,e.toString());
@@ -60,7 +63,8 @@ public class RespostaController {
 	 * @return lista de respostas registrados no banco
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/respostas")
+	@CrossOrigin
+	@GetMapping
 	public List<Resposta> consultar(){
 		LOGGER.info("Requisição List<Resposta>");
 		List<Resposta> lista;
@@ -78,16 +82,16 @@ public class RespostaController {
 	
 	/**
 	 * Insere uma nova resposta no banco de dados {POST}
-	 * @param String json
+	 * @param Resposta resposta
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "/api/resposta/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		System.out.println("Entrou");
-		LOGGER.info("Requisição Inserir Resposta - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Resposta resposta) {
 		Gson gson = new Gson();
-		Resposta resposta = gson.fromJson(json, Resposta.class);
+		String json = gson.toJson(resposta);
+		LOGGER.info("Requisição Inserir Resposta - {}",json);
 		RespostaDAO respostaDAO = new RespostaDAO();
 		try {
 			respostaDAO.insert(resposta);
@@ -103,15 +107,16 @@ public class RespostaController {
 	/**
 	 * Metodo para alteração da resposta que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Resposta resposta
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "/api/resposta/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Resposta resposta) {
+		Gson gson = new Gson();
+		String json = gson.toJson(resposta);
 		LOGGER.info("Requisição Atualizar Resposta - {}",json);
-	    Gson gson = new Gson();
-		Resposta resposta = gson.fromJson(json, Resposta.class);
 		RespostaDAO respostaDAO = new RespostaDAO();
 		try {
 			respostaDAO.update(resposta);
@@ -130,7 +135,8 @@ public class RespostaController {
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/resposta/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Resposta id - {}",codigo);
 		RespostaDAO respostaDAO = new RespostaDAO();
@@ -154,7 +160,8 @@ public class RespostaController {
 	 * @return lista de respostas registrados no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/notas/{idUsuario}")
+	@CrossOrigin
+	@GetMapping("/notas/{idUsuario}")
 	public List<NotasForm> consultarNotas(@PathVariable("idUsuario") int idUsuario){
 		LOGGER.info("Requisição List<NotasForm>");
 		List<NotasForm> lista;
@@ -176,7 +183,8 @@ public class RespostaController {
 	 * @param int idAtividade
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/atividade/resposta/{idAtividade}/{idAluno}")
+	@CrossOrigin
+	@GetMapping("/atividade/{idAtividade}/{idAluno}")
 	public RespostaForm consultarTurmaAtividade(@PathVariable("idAtividade") int idAtividade, @PathVariable("idAluno") int idAluno) {
 		LOGGER.info("Requisição Resposta Atividade Existente");
 		RespostaForm respostaForm;
@@ -199,7 +207,8 @@ public class RespostaController {
 	 * @param int idDisciplina 
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/atividade/resposta/turma/{idTurma}/{idDisciplina}")
+	@CrossOrigin
+	@GetMapping("atividade/turma/{idTurma}/{idDisciplina}")
 	public List<RespostaVisualizacaoForm> consultarRespostasTurma(@PathVariable("idTurma") int idTurma, @PathVariable("idDisciplina") int idDisciplina) {
 		LOGGER.info("Requisição List<RespostaVisualizacaoForm> iniciada");
 		List<RespostaVisualizacaoForm> lista;
@@ -222,7 +231,8 @@ public class RespostaController {
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "/api/resposta/alterar/nota/{codigo}/{nota}")
+	@CrossOrigin
+	@PutMapping("/nota/{codigo}/{nota}")
 	public boolean alterarNota(@PathVariable("codigo") int codigo, @PathVariable("nota") double nota) {
 		LOGGER.info("Requisição Atualizar Nota da Resposta - {}",codigo);
 		RespostaDAO respostaDAO = new RespostaDAO();

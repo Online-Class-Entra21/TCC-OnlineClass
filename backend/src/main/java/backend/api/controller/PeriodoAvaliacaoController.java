@@ -7,11 +7,14 @@ import com.google.gson.Gson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.PeriodoAvaliacao;
@@ -23,6 +26,7 @@ import persistencia.jdbc.PeriodoAvaliacaoDAO;
  *
  */
 @RestController
+@RequestMapping("/periodoAvaliacoes")
 public class PeriodoAvaliacaoController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -33,17 +37,16 @@ public class PeriodoAvaliacaoController {
 	 * @return String json
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/periodoAvaliacao/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping("/{codigo}")
+	public PeriodoAvaliacao consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição PeriodoAvaliacao codigo {} iniciada", codigo);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDao = new PeriodoAvaliacaoDAO();
 		PeriodoAvaliacao periodoAvaliacao;
 		try {
 			periodoAvaliacao = periodoAvaliacaoDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(periodoAvaliacao);
 			LOGGER.info("Requisição PeriodoAvaliacao codigo {} bem sucedida",codigo);
-			return json;
+			return periodoAvaliacao;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar PeriodoAvaliacao Mal Sucedida - PeriodoAvaliacao {} - erro - {}",codigo,e.toString());
@@ -56,7 +59,8 @@ public class PeriodoAvaliacaoController {
 	 * @return lista de periodosAvaliacoes registrados no banco
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/periodosAvaliacoes")
+	@CrossOrigin
+	@GetMapping
 	public List<PeriodoAvaliacao> consultar(){
 		LOGGER.info("Requisição List<PeriodoAvaliacao>");
 		List<PeriodoAvaliacao> lista;
@@ -74,15 +78,16 @@ public class PeriodoAvaliacaoController {
 	
 	/**
 	 * Insere um novo periodoAvaliacao no banco de dados {POST}
-	 * @param String json
+	 * @param PeriodoAvaliacao periodoAvaliacao
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/periodoAvaliacao/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir PeriodoAvaliacao - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody PeriodoAvaliacao periodoAvaliacao) {
 		Gson gson = new Gson();
-		PeriodoAvaliacao periodoAvaliacao = gson.fromJson(json, PeriodoAvaliacao.class);
+		String json = gson.toJson(periodoAvaliacao);
+		LOGGER.info("Requisição Inserir PeriodoAvaliacao - {}",json);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDAO = new PeriodoAvaliacaoDAO();
 		try {
 			periodoAvaliacaoDAO.insert(periodoAvaliacao);
@@ -99,14 +104,15 @@ public class PeriodoAvaliacaoController {
 	 * Metodo para alteração do periodoAvaliacao que corresponde ao codigo informado {PUT}
 	 * @param int codigo
 	 * @author Andre
-	 * @param String json
+	 * @param PeriodoAvaliacao periodoAvaliacao
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/periodoAvaliacao/alterar/{codigo}/{json}")
-	public boolean  alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar PeriodoAvaliacao - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean  alterar(@RequestBody PeriodoAvaliacao periodoAvaliacao) {
 		Gson gson = new Gson();
-		PeriodoAvaliacao periodoAvaliacao = gson.fromJson(json, PeriodoAvaliacao.class);
+		String json = gson.toJson(periodoAvaliacao);
+		LOGGER.info("Requisição Atualizar PeriodoAvaliacao - {}",json);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDAO = new PeriodoAvaliacaoDAO();
 		try {
 			periodoAvaliacaoDAO.update(periodoAvaliacao);
@@ -125,7 +131,8 @@ public class PeriodoAvaliacaoController {
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/periodoAvaliacao/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar PeriodoAvaliacao id - {}",codigo);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDAO = new PeriodoAvaliacaoDAO();
@@ -150,7 +157,8 @@ public class PeriodoAvaliacaoController {
 	 * @param int fk_escola
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/periodosAvaliacoes/{fk_escola}")
+	@CrossOrigin
+	@GetMapping("/escola/{fk_escola}")
 	public List<PeriodoAvaliacao> consultarEscola(@PathVariable("fk_escola") int fk_escola){
 		LOGGER.info("Requisição List<PeriodoAvaliacao>");
 		List<PeriodoAvaliacao> lista;
@@ -172,7 +180,8 @@ public class PeriodoAvaliacaoController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/periodoAvaliacao/deletar/escola/{fk_escola}")
+	@CrossOrigin
+	@DeleteMapping("/escola/{fk_escola}")
 	public boolean deletarFk(@PathVariable("fk_escola") int fk_escola) {
 		LOGGER.info("Requisição para Deletar PeriodoAvaliacao fk_escola - {}",fk_escola);
 		PeriodoAvaliacaoDAO periodoAvaliacaoDAO = new PeriodoAvaliacaoDAO();

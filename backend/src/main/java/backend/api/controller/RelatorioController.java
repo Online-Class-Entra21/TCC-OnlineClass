@@ -7,11 +7,14 @@ import com.google.gson.Gson;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.Relatorio;
@@ -23,6 +26,7 @@ import persistencia.jdbc.RelatorioDAO;
  *
  */
 @RestController
+@RequestMapping("/relatorios")
 public class RelatorioController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -31,19 +35,18 @@ public class RelatorioController {
 	 * Retorna o relatorio que corresponde ao id indicado {GET}
 	 * @param int codigo
 	 * @author Andre
-	 * @return String json
+	 * @return Relatorio relatorio
 	 */
-	@GetMapping(path = "/api/relatorio/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping("/{codigo}")
+	public Relatorio consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Relatorio codigo {} iniciada", codigo);
 		RelatorioDAO relatorioDao = new RelatorioDAO();
 		Relatorio relatorio;
 		try {
 			relatorio = relatorioDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(relatorio);
 			LOGGER.info("Requisição Relatorio codigo {} bem sucedida",codigo);
-			return json;
+			return relatorio;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Relatorio Mal Sucedida - Relatorio {} - erro - {}",codigo,e.toString());
@@ -56,7 +59,8 @@ public class RelatorioController {
 	 * @author Andre
 	 * @return lista de relatorios registrados no banco
 	 */
-	@GetMapping(path = "/api/relatorios")
+	@CrossOrigin
+	@GetMapping
 	public List<Relatorio> consultar(){
 		LOGGER.info("Requisição List<Relatorio>");
 		List<Relatorio> lista;
@@ -76,13 +80,14 @@ public class RelatorioController {
 	 * Insere um novo relatorio no banco de dados {POST}
 	 * @author Andre
 	 * @return boolean situacao da operacao
-	 * @param String json
+	 * @param Relatorio relatorio
 	 */
-	@PostMapping(path = "api/relatorio/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Relatorio - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Relatorio relatorio) {
 		Gson gson = new Gson();
-		Relatorio relatorio = gson.fromJson(json, Relatorio.class);
+		String json = gson.toJson(relatorio);
+		LOGGER.info("Requisição Inserir Relatorio - {}",json);
 		RelatorioDAO relatorioDAO = new RelatorioDAO();
 		try {
 			relatorioDAO.insert(relatorio);
@@ -98,15 +103,16 @@ public class RelatorioController {
 	/**
 	 * Metodo para alteração do relatorio que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Relatorio relatorio
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/relatorio/alterar/{codigo}/{json}")
-	public boolean alterar(@PathVariable("codigo") int codigo, @PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Relatorio - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Relatorio relatorio) {
 		Gson gson = new Gson();
-		Relatorio relatorio = gson.fromJson(json, Relatorio.class);
+		String json = gson.toJson(relatorio);
+		LOGGER.info("Requisição Atualizar Relatorio - {}",json);
 		RelatorioDAO relatorioDAO = new RelatorioDAO();
 		try {
 			relatorioDAO.update(relatorio);
@@ -125,7 +131,8 @@ public class RelatorioController {
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/relatorio/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Relatorio id - {}",codigo);
 		RelatorioDAO relatorioDAO = new RelatorioDAO();
@@ -151,7 +158,8 @@ public class RelatorioController {
 	 * @author Breno
 	 * @return lista de relatorios registrados no banco onde fk_usuario é igual ao codigo
 	 */
-	@GetMapping(path = "/api/relatorios/enviados/{fk_usuario}")
+	@CrossOrigin
+	@GetMapping("/enviados/{fk_usuario}")
 	public List<Relatorio> consultarFk(@PathVariable("fk_usuario") int fk_usuario){
 		LOGGER.info("Requisição List<Relatorio>");
 		List<Relatorio> lista;
@@ -174,7 +182,8 @@ public class RelatorioController {
 	 * @author Breno
 	 * @return lista de relatorios registrados no banco onde fk_usuario é igual ao codigo
 	 */
-	@GetMapping(path = "/api/relatorios/recebidos/{destinatario}")
+	@CrossOrigin
+	@GetMapping("/recebidos/{destinatario}")
 	public List<Relatorio> consultarDestinatario(@PathVariable("destinatario") int destinatario){
 		LOGGER.info("Requisição List<Relatorio>");
 		List<Relatorio> lista;

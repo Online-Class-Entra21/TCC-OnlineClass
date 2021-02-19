@@ -5,17 +5,19 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
 import backend.api.controller.form.ProfessorNotasForm;
 import entidade.Professor;
-import entidade.Usuario;
 import persistencia.jdbc.ProfessorDAO;
 import persistencia.jdbc.UsuarioDAO;
 
@@ -25,6 +27,7 @@ import persistencia.jdbc.UsuarioDAO;
  *
  */
 @RestController
+@RequestMapping("/professores")
 public class ProfessorController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -33,7 +36,8 @@ public class ProfessorController {
 	 * Retorna a lista dos professores registrados no sistema {GET}
 	 * @return lista de professores registrados no banco
 	 */
-	@GetMapping(path = "/api/professores")
+	@CrossOrigin
+	@GetMapping
 	public List<Professor> consultar(){
 		LOGGER.info("Requisição List<Professor>");
 		List<Professor> lista;
@@ -58,7 +62,8 @@ public class ProfessorController {
 	 * @return int qtdProfessores
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/professores/quantidade")
+	@CrossOrigin
+	@GetMapping("/quantidade")
 	public int buscarQuantidade() {
 		LOGGER.info("Requisição quantidade de professores");
 		int qtdProfessores;
@@ -77,18 +82,19 @@ public class ProfessorController {
 	/**
 	 * Insere um novo professor no banco de dados {POST}
 	 * e retorna um 
-	 * @param String json
+	 * @param Professor professor
 	 * @author Andre
 	 * @return int idProfessor
 	 */
-	@PostMapping(path = "/api/professor/inserir/return/{json}")
-	public int inserirReturn(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Usuario - {}",json);
+	@CrossOrigin
+	@PostMapping("/return")
+	public int inserirReturn(@RequestBody Professor professor) {
 		Gson gson = new Gson();
-		Usuario usuario = gson.fromJson(json, Usuario.class);
+		String json = gson.toJson(professor);
+		LOGGER.info("Requisição Inserir Usuario - {}",json);
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		try {
-			int idUsuario = usuarioDAO.insertReturnID(usuario);
+			int idUsuario = usuarioDAO.insertReturnID(professor);
 			LOGGER.info("Requisição Inserir Usuario - {} - Bem Sucedida",json);
 			return idUsuario;
 		} catch (SQLException e) {
@@ -101,15 +107,16 @@ public class ProfessorController {
 	/**
 	 * Metodo para alteração do professor que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Professor professor
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "/api/professor/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Professor - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Professor professor) {
 		Gson gson = new Gson();
-		Professor professor = gson.fromJson(json.toString(), Professor.class);
+		String json = gson.toJson(professor);
+		LOGGER.info("Requisição Atualizar Professor - {}",json);
 		ProfessorDAO professorDao = new ProfessorDAO();
 		try {
 			professorDao.update(professor);
@@ -128,7 +135,8 @@ public class ProfessorController {
 	 * @param int idAluno
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/aluno/notas/{idTurma}/{idAluno}")
+	@CrossOrigin
+	@GetMapping("/notas/{idTurma}/{idAluno}")
 	public List<ProfessorNotasForm> consultarProfessorNotas(@PathVariable("idTurma") int idTurma,@PathVariable("idAluno") int idAluno) {
 		LOGGER.info("Requisição Notas aluno Existentes");
 		List<ProfessorNotasForm> professorNotasForm;
@@ -153,8 +161,11 @@ public class ProfessorController {
 	 * @param int idDisciplina
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/aluno/notas/disciplina/{idTurma}/{idAluno}/{idDisciplina}")
-	public List<ProfessorNotasForm> consultarProfessorNotasDisciplina(@PathVariable("idTurma") int idTurma,@PathVariable("idAluno") int idAluno, @PathVariable("idDisciplina") int idDisciplina) {
+	@CrossOrigin
+	@GetMapping("/notas/disciplina/{idTurma}/{idAluno}/{idDisciplina}")
+	public List<ProfessorNotasForm> consultarProfessorNotasDisciplina(@PathVariable("idTurma") int idTurma,@PathVariable("idAluno") 
+		   int idAluno, @PathVariable("idDisciplina") int idDisciplina) {
+		
 		LOGGER.info("Requisição Notas aluno Existentes");
 		List<ProfessorNotasForm> professorNotasForm;
 		ProfessorDAO professorDao = new ProfessorDAO();
