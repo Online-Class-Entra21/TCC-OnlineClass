@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -26,6 +27,7 @@ import persistencia.jdbc.UsuarioDAO;
  *
  */
 @RestController
+@RequestMapping("usuarios")
 public class UsuarioController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -36,7 +38,8 @@ public class UsuarioController {
 	 * @return String json
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/usuario/{codigo}")
+	@CrossOrigin
+	@GetMapping("/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Usuario codigo {} iniciada", codigo);
 		Usuario usuario;
@@ -59,7 +62,8 @@ public class UsuarioController {
 	 * @return lista de usuarios registrados no banco
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/usuarios")
+	@CrossOrigin
+	@GetMapping()
 	public List<Usuario> consultar(){
 		LOGGER.info("Requisição List<Usuario>");
 		List<Usuario> lista;
@@ -136,7 +140,8 @@ public class UsuarioController {
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/usuario/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Usuario id - {}",codigo);
 		UsuarioDAO usuarioDao = new UsuarioDAO();
@@ -161,7 +166,8 @@ public class UsuarioController {
 	 * @return String json 
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/usuario/email/{email}")
+	@CrossOrigin
+	@GetMapping("/{email}")
 	public String consultarEmail(@PathVariable("email") String email) {
 		LOGGER.info("Requisição Usuario email - {}",email);
 		Usuario usuario;
@@ -185,7 +191,8 @@ public class UsuarioController {
 	 * @return boolean situacao de existencia do usuario
 	 * @author Breno
 	 */
-	@GetMapping(path = "api/verificar/{email}")
+	@CrossOrigin
+	@GetMapping("/{email}")
 	public boolean verificarEmail(@PathVariable("email") String email) {
 		LOGGER.info("Requisição de verificação Usuario por email - {}",email);
 		Usuario usuario;
@@ -210,7 +217,8 @@ public class UsuarioController {
 	 * @return Strinf codigo
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/codigo/{email}")
+	@CrossOrigin
+	@GetMapping("/{email}")
 	public String codigo(@PathVariable("email") String email){
 		LOGGER.info("Requisição de código de recuperação de senha por email - {}",email);
 		String codigo = "";
@@ -283,7 +291,8 @@ public class UsuarioController {
 	 * @return boolean situacao de existencia do usuario
 	 * @author Breno
 	 */
-	@GetMapping(path = "api/verificar/cpf/{cpf}")
+	@CrossOrigin
+	@GetMapping("/{cpf}")
 	public boolean verificarCpf(@PathVariable("cpf") String cpf) {
 		LOGGER.info("Requisição de verificação Usuario por cpf - {}",cpf);
 		Usuario usuario;
