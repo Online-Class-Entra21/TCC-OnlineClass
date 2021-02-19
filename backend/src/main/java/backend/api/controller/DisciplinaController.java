@@ -9,11 +9,14 @@ import backend.api.controller.form.DisciplinaTurmaForm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import entidade.Disciplina;
@@ -26,6 +29,7 @@ import persistencia.jdbc.DisciplinaDAO;
  *
  */
 @RestController
+@RequestMapping("/disciplinas")
 public class DisciplinaController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -36,17 +40,16 @@ public class DisciplinaController {
 	 * @return String json
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/disciplina/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping("/{codigo}")
+	public Disciplina consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Disciplina codigo {} iniciada", codigo);
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		Disciplina disciplina;
 		try {
 			disciplina = disciplinaDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(disciplina);
 			LOGGER.info("Requisição Disciplina codigo {} bem sucedida",codigo);
-			return json;
+			return disciplina;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Disciplina Mal Sucedida - Disciplina {} - erro - {}",codigo,e.toString());
@@ -59,7 +62,8 @@ public class DisciplinaController {
 	 * @return lista de disciplinas registrados no banco
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/disciplinas")
+	@CrossOrigin
+	@GetMapping
 	public List<Disciplina> consultar() {
 		LOGGER.info("Requisição List<Disciplina>");
 		List<Disciplina> lista;
@@ -77,15 +81,16 @@ public class DisciplinaController {
 
 	/**
 	 * Insere uma nova disciplina no banco de dados {POST}
-	 * @param String json
+	 * @param Disciplina disciplina
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/disciplina/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Disciplina - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Disciplina disciplina) {
 		Gson gson = new Gson();
-		Disciplina disciplina = gson.fromJson(json, Disciplina.class);
+		String json = gson.toJson(disciplina);
+		LOGGER.info("Requisição Inserir Disciplina - {}",json);
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		try {
 			disciplinaDao.insert(disciplina);
@@ -100,15 +105,16 @@ public class DisciplinaController {
 
 	/**
 	 * Metodo para alteração da disciplina que corresponde ao codigo informado {PUT}
-	 * @param String json
+	 * @param Disciplina disciplina
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/disciplina/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Disciplina Disciplina - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Disciplina disciplina) {
 		Gson gson = new Gson();
-		Disciplina disciplina = gson.fromJson(json, Disciplina.class);
+		String json = gson.toJson(disciplina);
+		LOGGER.info("Requisição Disciplina Disciplina - {}",json);
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
 		try {
 			disciplinaDao.update(disciplina);
@@ -127,7 +133,8 @@ public class DisciplinaController {
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/disciplina/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Disciplina id - {}",codigo);
 		DisciplinaDAO disciplinaDao = new DisciplinaDAO();
@@ -152,7 +159,8 @@ public class DisciplinaController {
 	 * @param int fk_escola 
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/disciplinas/{fk_escola}")
+	@CrossOrigin
+	@GetMapping("/escola/{fk_escola}")
 	public List<Disciplina> consultarFk(@PathVariable int fk_escola) {
 		LOGGER.info("Requisição List<Disciplina>");
 		List<Disciplina> lista;
@@ -176,7 +184,8 @@ public class DisciplinaController {
 	 * @param int idProfessor 
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/disciplinas/turmas/{idProfessor}")
+	@CrossOrigin
+	@GetMapping("/turmas/{idProfessor}")
 	public List<DisciplinaTurmaForm> consultarDisciplinasTurmasIdProfessor(@PathVariable int idProfessor) {
 		LOGGER.info("Requisição List<DisciplinaTurmaForm>");
 		List<DisciplinaTurmaForm> lista;
@@ -200,7 +209,8 @@ public class DisciplinaController {
 	 * @param int idAluno 
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/disciplinas/turmas/aluno/{idAluno}")
+	@CrossOrigin
+	@GetMapping("/turmas/aluno/{idAluno}")
 	public List<Disciplina> consultarDisciplinasTurmasIdAluno(@PathVariable int idAluno) {
 		LOGGER.info("Requisição List<Disciplina>");
 		List<Disciplina> lista;
@@ -225,7 +235,8 @@ public class DisciplinaController {
 	 * @param int idTurma
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/disciplinas/turmas/aluno/{idUsuario}/{idTurma}")
+	@CrossOrigin
+	@GetMapping(path = "/turmas/aluno/{idUsuario}/{idTurma}")
 	public List<Disciplina> buscarTurmaProfessor(@PathVariable("idUsuario") int idUsuario, @PathVariable("idTurma") int idTurma) {
 		LOGGER.info("Requisição List<Disciplina>");
 		List<Disciplina> lista;
@@ -247,7 +258,8 @@ public class DisciplinaController {
 	 * @param int idTurma 
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/disciplinas/turma/{idTurma}")
+	@CrossOrigin
+	@GetMapping("/turma/{idTurma}")
 	public List<Disciplina> consultarTurma(@PathVariable int idTurma) {
 		LOGGER.info("Requisição List<Disciplina>");
 		List<Disciplina> lista;
@@ -262,5 +274,4 @@ public class DisciplinaController {
 			return null;
 		}
 	}
-	
 }

@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -23,6 +26,7 @@ import persistencia.jdbc.ConviteDAO;
  *
  */
 @RestController
+@RequestMapping("/convites")
 public class ConviteController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -30,20 +34,19 @@ public class ConviteController {
 	/**
 	 * Retorna o convite que corresponde ao id indicado {GET}
 	 * @param int codigo
-	 * @return String json
+	 * @return Convite convite
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/convite/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping("/{codigo}")
+	public Convite consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Convite codigo {} iniciada", codigo);
 		Convite convite;
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			convite = conviteDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(convite);
 			LOGGER.info("Requisição Convite codigo {} bem sucedida",codigo);
-			return json;
+			return convite;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Convite Mal Sucedida - Convite {} - erro - {}",codigo,e.toString());
@@ -57,7 +60,8 @@ public class ConviteController {
 	 * @return lista de convites registrados no banco
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/convites")
+	@CrossOrigin
+	@GetMapping
 	public List<Convite> consultar(){
 		LOGGER.info("Requisição List<Convite>");
 		List<Convite> lista;
@@ -75,15 +79,16 @@ public class ConviteController {
 	
 	/**
 	 * Insere um novo convite no banco de dados {POST}
-	 * @param String json
+	 * @param Convite convite
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PostMapping(path = "api/convite/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Convite - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Convite convite) {
 		Gson gson = new Gson();
-		Convite convite = gson.fromJson(json.toString(), Convite.class);
+		String json = gson.toJson(convite);
+		LOGGER.info("Requisição Inserir Convite - {}",json);
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			conviteDao.insert(convite);
@@ -99,15 +104,16 @@ public class ConviteController {
 	/**
 	 * Metodo para alteração do convite que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Convite convite
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/convite/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Convite - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Convite convite) {
 		Gson gson = new Gson();
-		Convite convite = gson.fromJson(json.toString(), Convite.class);
+		String json = gson.toJson(convite);
+		LOGGER.info("Requisição Atualizar Convite - {}",json);
 		ConviteDAO conviteDao = new ConviteDAO();
 		try {
 			conviteDao.update(convite);
@@ -126,7 +132,8 @@ public class ConviteController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@DeleteMapping(path = "/api/convite/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Convite id - {}",codigo);
 		ConviteDAO conviteDao = new ConviteDAO();

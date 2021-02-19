@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -23,6 +26,7 @@ import persistencia.jdbc.ArquivoUsuarioDAO;
  *
  */
 @RestController
+@RequestMapping("/arquivoUsuarios")
 public class ArquivoUsuarioController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");  
@@ -30,20 +34,19 @@ public class ArquivoUsuarioController {
 	/**
 	 * Retorna o arquivoUsuario que corresponde ao id indicado {GET}
 	 * @param int codigo
-	 * @return String json
+	 * @return ArquivoUsuario arquivoUsuario
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/arquivoUsuario/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping("/{codigo}")
+	public ArquivoUsuario consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição ArquivoUsuario codigo {} iniciada", codigo);
 		ArquivoUsuario arquivoUsuario = new ArquivoUsuario();
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuario = arquivoUsuarioDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(arquivoUsuario);
 			LOGGER.info("Requisição ArquivoUsuario codigo {} bem sucedida",codigo);
-			return json;
+			return arquivoUsuario;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição de Consultar ArquivoUsuario Mal sucedida - ArquivoUsuario {} - erro - {}",codigo,e.toString());
@@ -57,7 +60,8 @@ public class ArquivoUsuarioController {
 	 * @return lista de arquivosUsuarios registrados no banco
 	 * @author Andrey 
 	 */
-	@GetMapping(path = "/api/arquivosUsuarios")
+	@CrossOrigin
+	@GetMapping
 	public List<ArquivoUsuario> consultar(){
 		LOGGER.info("Requisição List<ArquivoUsuario>");
 		List<ArquivoUsuario> lista;
@@ -75,15 +79,16 @@ public class ArquivoUsuarioController {
 	
 	/**
 	 * Insere uma novo arquivosUsuario no banco de dados {POST}
-	 * @param String json
+	 * @param ArquivoUsuario arquivoUsuario
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PostMapping(path = "api/aluno/arquivosUsuario/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir ArquivoUsuario - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody ArquivoUsuario arquivoUsuario) {
 		Gson gson = new Gson();
-		ArquivoUsuario arquivoUsuario = gson.fromJson(json.toString(), ArquivoUsuario.class);
+		String json = gson.toJson(arquivoUsuario);
+		LOGGER.info("Requisição Inserir ArquivoUsuario - {}",json);
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuarioDao.insert(arquivoUsuario);
@@ -99,15 +104,16 @@ public class ArquivoUsuarioController {
 	/**
 	 * Metodo para alteração do arquivoUsuario que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param ArquivoUsuario arquivoUsuario
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/arquivoUsuario/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar ArquivoUsuario - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody ArquivoUsuario arquivoUsuario) {
 		Gson gson = new Gson();
-		ArquivoUsuario arquivoUsuario = gson.fromJson(json.toString(), ArquivoUsuario.class);
+		String json = gson.toJson(arquivoUsuario);
+		LOGGER.info("Requisição Atualizar ArquivoUsuario - {}",json);
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();
 		try {
 			arquivoUsuarioDao.update(arquivoUsuario);
@@ -126,7 +132,8 @@ public class ArquivoUsuarioController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@DeleteMapping(path = "/api/arquivoUsuario/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/codigo")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar ArquivoUsuario id - {}",codigo);
 		ArquivoUsuarioDAO arquivoUsuarioDao = new ArquivoUsuarioDAO();

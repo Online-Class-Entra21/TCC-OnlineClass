@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -23,6 +26,7 @@ import persistencia.jdbc.EnderecoDAO;
  *
  */
 @RestController
+@RequestMapping("/enderecos")
 public class EnderecoController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -30,21 +34,20 @@ public class EnderecoController {
 	/**
 	 * Retorna o endereco que corresponde ao id indicado {GET}
 	 * @param int codigo
-	 * @return String json
+	 * @return Endereco endereco
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@GetMapping(path = "/api/endereco/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping("/{codigo}")
+	public Endereco consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Endereco codigo {} iniciada", codigo);
 		EnderecoDAO enderecoDao = new EnderecoDAO();
 		Endereco endereco;
 		try {
 			endereco = enderecoDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(endereco);
 			LOGGER.info("Requisição Endereco codigo {} bem sucedida",codigo);
-			return json;
+			return endereco;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Endereco Mal Sucedida - Endereco {} - erro - {}",codigo,e.toString());
@@ -57,7 +60,8 @@ public class EnderecoController {
 	 * @return lista de enderecos registrados no banco
 	 * @author Andre
 	 */
-	@GetMapping(path = "/api/enderecos")
+	@CrossOrigin
+	@GetMapping
 	public List<Endereco> consultar() {
 		LOGGER.info("Requisição List<Endereco>");
 		List<Endereco> lista;
@@ -75,15 +79,16 @@ public class EnderecoController {
 
 	/**
 	 * Insere um novo endereco no banco de dados {POST}
-	 * @param String json
+	 * @param Endereco endereco
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/endereco/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Endereco - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Endereco endereco) {
 		Gson gson = new Gson();
-		Endereco endereco = gson.fromJson(json, Endereco.class);
+		String json = gson.toJson(endereco);
+		LOGGER.info("Requisição Inserir Endereco - {}",json);
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		try {
 			enderecoDAO.insert(endereco);
@@ -99,15 +104,16 @@ public class EnderecoController {
 	/**
 	 * Metodo para alteração do endereco que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Endereco endereco
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PutMapping(path = "api/endereco/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Endereco - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Endereco endereco) {
 		Gson gson = new Gson();
-		Endereco endereco = gson.fromJson(json, Endereco.class);
+		String json = gson.toJson(endereco);
+		LOGGER.info("Requisição Atualizar Endereco - {}",json);
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		try {
 			enderecoDAO.update(endereco);
@@ -126,7 +132,8 @@ public class EnderecoController {
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@DeleteMapping(path = "/api/endereco/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Endereco id - {}",codigo);
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
@@ -147,15 +154,16 @@ public class EnderecoController {
 	
 	/**
 	 * Insere um novo endereco no banco de dados {POST}
-	 * @param String json
+	 * @param Endereco endereco
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/endereco/inserir/return/{json}")
-	public int inserirReturn(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Endereco - {}",json);
+	@CrossOrigin
+	@PostMapping("/return")
+	public int inserirReturn(@RequestBody Endereco endereco) {
 		Gson gson = new Gson();
-		Endereco endereco = gson.fromJson(json, Endereco.class);
+		String json = gson.toJson(endereco);
+		LOGGER.info("Requisição Inserir Endereco - {}",json);
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		try {
 			int idEndereco = enderecoDAO.insertReturnID(endereco);
@@ -175,15 +183,16 @@ public class EnderecoController {
 	 * caso nao tenha um igual ou retorna o id do enderco
 	 * ja existente
 	 * 
-	 * @param String json
+	 * @param Endereco endereco
 	 * @author Andre
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "api/endereco/inseriralterar/{json}")
-	public int inserirAlterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição InserirAlterar Endereco - {}",json);
+	@CrossOrigin
+	@PostMapping("/inserirAlterar")
+	public int inserirAlterar(@RequestBody Endereco endereco) {
 		Gson gson = new Gson();
-		Endereco endereco = gson.fromJson(json, Endereco.class);
+		String json = gson.toJson(endereco);
+		LOGGER.info("Requisição InserirAlterar Endereco - {}",json);
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		try {
 			int idEndereco = enderecoDAO.buscarIgual(endereco);
@@ -198,5 +207,4 @@ public class EnderecoController {
 			return 0;
 		}
 	}
-	
 }

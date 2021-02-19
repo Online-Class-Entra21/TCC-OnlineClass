@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -22,6 +25,7 @@ import persistencia.jdbc.DiretorDAO;
  *
  */
 @RestController
+@RequestMapping("/diretores")
 public class DiretorController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -31,7 +35,8 @@ public class DiretorController {
 	 * @return lista de diretores registrados no banco
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/diretores")
+	@CrossOrigin
+	@GetMapping
 	public List<Diretor> consultar(){
 		LOGGER.info("Requisição List<Diretor>");
 		List<Diretor> lista;
@@ -49,15 +54,16 @@ public class DiretorController {
 	
 	/**
 	 * Insere uma novo usuário diretor no banco de dados {POST}
-	 * @param String json
+	 * @param Diretor diretor
 	 * @author Breno
 	 * @return boolean situacao da operacao
 	 */
-	@PostMapping(path = "/api/diretor/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Usuario - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Diretor diretor) {
 		Gson gson = new Gson();
-		Diretor diretor = gson.fromJson(json.toString(), Diretor.class);
+		String json = gson.toJson(diretor);
+		LOGGER.info("Requisição Inserir Usuario - {}",json);
 		DiretorDAO diretorDao = new DiretorDAO();
 		try {
 			diretorDao.insert(diretor);
@@ -73,15 +79,16 @@ public class DiretorController {
 	/**
 	 * Metodo para alteração do diretor que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Diretor diretor
 	 * @return boolean situacao da operacao
 	 * @author Breno
 	 */
-	@PutMapping(path = "/api/diretor/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Diretor - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Diretor diretor) {
 		Gson gson = new Gson();
-		Diretor diretor = gson.fromJson(json.toString(), Diretor.class);
+		String json = gson.toJson(diretor);
+		LOGGER.info("Requisição Atualizar Diretor - {}",json);
 		DiretorDAO diretorDao = new DiretorDAO();
 		try {
 			diretorDao.update(diretor);
@@ -101,20 +108,19 @@ public class DiretorController {
 	/**
 	 * Retorna o diretor que comanda o a escola com o fk informado atrvés dos parametros {GET}
 	 * @param codigo
-	 * @return String json 
+	 * @return lista de diretores na escola indicada 
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/diretor/escola/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo){
+	@CrossOrigin
+	@GetMapping("/escola/{codigo}")
+	public Diretor consultar(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição Diretor codigo {} iniciada", codigo);
 		Diretor diretor;
 		DiretorDAO diretorDao = new DiretorDAO();
 		try {
 			diretor = diretorDao.buscarDiretorEscola(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(diretor);
 			LOGGER.info("Requisição Diretor codigo {} bem sucedida",codigo);
-			return json;
+			return diretor;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Diretor Mal Sucedida - Diretor {} - erro - {}",codigo,e.toString());
@@ -127,7 +133,8 @@ public class DiretorController {
 	 * @return int qtdDiretores
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/diretores/quantidade")
+	@CrossOrigin
+	@GetMapping("/quantidade")
 	public int buscarQuantidade() {
 		LOGGER.info("Requisição quantidade de diretores");
 		int qtdDiretores;

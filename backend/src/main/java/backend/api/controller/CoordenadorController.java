@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -20,6 +23,7 @@ import persistencia.jdbc.CoordenadorDAO;
  *
  */
 @RestController
+@RequestMapping("/coordenadores")
 public class CoordenadorController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -29,7 +33,8 @@ public class CoordenadorController {
 	 * @return lista de coordenadores registrados no banco
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/coordenadores")
+	@CrossOrigin
+	@GetMapping
 	public List<Coordenador> consultar(){
 		LOGGER.info("Requisição List<Coordenador>");
 		List<Coordenador> lista;
@@ -54,7 +59,8 @@ public class CoordenadorController {
 	 * @return int qtdCoordenadores
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/coordenadores/quantidade")
+	@CrossOrigin
+	@GetMapping("/quantidade")
 	public int buscarQuantidade() {
 		LOGGER.info("Requisição quantidade de coordenadores");
 		int qtdCoordenadores;
@@ -73,10 +79,11 @@ public class CoordenadorController {
 	/**
 	 * Retorna o coordenador que corresponde ao id da escola indicado {GET}
 	 * @param int codigo escola
-	 * @return String json
+	 * @return lista de coordenadores do sistema naquela escola 
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/coordenador/escola/{codigo}")
+	@CrossOrigin
+	@GetMapping("/escola/{codigo}")
 	public List<Coordenador> consultarEscola(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição List<Coordenador> pelo id escola");
 		List<Coordenador> lista;
@@ -95,15 +102,16 @@ public class CoordenadorController {
 	/**
 	 * Metodo para alteração do coordenador que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Coordenador coordenador
 	 * @return boolean situacao da operacao
 	 * @author Breno
 	 */
-	@PutMapping(path = "/api/coordenador/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Coordenador - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Coordenador coordenador) {
 		Gson gson = new Gson();
-		Coordenador coordenador = gson.fromJson(json.toString(), Coordenador.class);
+		String json = gson.toJson(coordenador);
+		LOGGER.info("Requisição Atualizar Coordenador - {}",json);
 		CoordenadorDAO coordenadorDao = new CoordenadorDAO();
 		try {
 			coordenadorDao.update(coordenador);

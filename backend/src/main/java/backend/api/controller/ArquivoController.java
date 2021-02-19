@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -23,6 +26,7 @@ import persistencia.jdbc.ArquivoDAO;
  *
  */
 @RestController
+@RequestMapping("/arquivos")
 public class ArquivoController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -30,20 +34,19 @@ public class ArquivoController {
 	/**
 	 * Retorna o arquivo que corresponde ao id indicado {GET}
 	 * @param int codigo
-	 * @return String json
+	 * @return Arquivo arquivo
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/arquivo/{codigo}")
-	public String consultar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping("/{codigo}")
+	public Arquivo consultar(@PathVariable int codigo) {
 		LOGGER.info("Requisição Arquivo codigo {} iniciada", codigo);
 		Arquivo arquivo;
 		ArquivoDAO arquivoDao = new ArquivoDAO();
 		try {
 			arquivo = arquivoDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(arquivo);
 			LOGGER.info("Requisição Arquivo codigo {} bem sucedida",codigo);
-			return json;
+			return arquivo;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição para Consultar Arquivo Mal Sucedida - Arquivo {} - erro - {}",codigo,e.toString());
@@ -57,7 +60,8 @@ public class ArquivoController {
 	 * @return lista de arquivos registrados no banco 
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/arquivos")
+	@CrossOrigin
+	@GetMapping
 	public List<Arquivo> consultar(){
 		LOGGER.info("Requisição List<Arquivo>");
 		List<Arquivo> lista;
@@ -75,15 +79,16 @@ public class ArquivoController {
 	
 	/**
 	 * Insere uma novo arquivo no banco de dados {POST}
-	 * @param String json
+	 * @param Arquivo arquivo
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PostMapping(path = "api/arquivo/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Arquivo - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Arquivo arquivo) {
 		Gson gson = new Gson();
-		Arquivo arquivo = gson.fromJson(json.toString(), Arquivo.class);
+		String json = gson.toJson(arquivo);
+		LOGGER.info("Requisição Inserir Arquivo - {}",json);
 		ArquivoDAO arquivoDao = new ArquivoDAO();
 		try {
 			arquivoDao.insert(arquivo);
@@ -99,15 +104,16 @@ public class ArquivoController {
 	/**
 	 * Metodo para alteração do arquivo que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Arquivo arquivo
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/arquivo/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Arquivo - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Arquivo arquivo) {
 		Gson gson = new Gson();
-		Arquivo arquivo = gson.fromJson(json.toString(), Arquivo.class);
+		String json = gson.toJson(arquivo);
+		LOGGER.info("Requisição Atualizar Arquivo - {}",json);
 		ArquivoDAO arquivoDao = new ArquivoDAO();
 		try {
 			arquivoDao.update(arquivo);
@@ -126,8 +132,9 @@ public class ArquivoController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@DeleteMapping(path = "/api/arquivo/deletar/{codigo}")
-	public boolean deletar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
+	public boolean deletar(@PathVariable int codigo) {
 		LOGGER.info("Requisição para Deletar Arquivo id - {}",codigo);
 		ArquivoDAO arquivoDao = new ArquivoDAO();
 		try {

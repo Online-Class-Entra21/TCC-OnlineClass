@@ -5,11 +5,14 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -23,6 +26,7 @@ import persistencia.jdbc.ChamadaDAO;
  *
  */
 @RestController
+@RequestMapping("/chamadas")
 public class ChamadaController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger("backend.api");
@@ -30,10 +34,11 @@ public class ChamadaController {
 	/**
 	 * Retorna a chamada que corresponde ao id indicado {GET}
 	 * @param int codigo
-	 * @return String json
+	 * @return Chamada chamada
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/chamada/{codigo}")
+	@CrossOrigin
+	@GetMapping("/{codigo}")
 	public String consultar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição Chamada codigo {} iniciada", codigo);
 		Chamada chamada;
@@ -57,7 +62,8 @@ public class ChamadaController {
 	 * @return lista de chamadas registradas no banco
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/chamadas")
+	@CrossOrigin
+	@GetMapping
 	public List<Chamada> consultar(){
 		LOGGER.info("Requisição List<Chamada>");
 		List<Chamada> lista;
@@ -79,11 +85,12 @@ public class ChamadaController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PostMapping(path = "api/chamada/inserir/{json}")
-	public boolean inserir(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Inserir Chamada - {}",json);
+	@CrossOrigin
+	@PostMapping
+	public boolean inserir(@RequestBody Chamada chamada) {
 		Gson gson = new Gson();
-		Chamada chamada = gson.fromJson(json.toString(), Chamada.class);
+		String json = gson.toJson(chamada);
+		LOGGER.info("Requisição Inserir Chamada - {}",json);
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamadaDao.insert(chamada);
@@ -103,11 +110,12 @@ public class ChamadaController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/chamada/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Chamada - {}",json);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Chamada chamada) {
 		Gson gson = new Gson();
-		Chamada chamada = gson.fromJson(json.toString(), Chamada.class);
+		String json = gson.toJson(chamada);
+		LOGGER.info("Requisição Atualizar Chamada - {}",json);
 		ChamadaDAO chamadaDao = new ChamadaDAO();
 		try {
 			chamadaDao.update(chamada);
@@ -126,7 +134,8 @@ public class ChamadaController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@DeleteMapping(path = "/api/chamada/deletar/{codigo}")
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
 	public boolean deletar(@PathVariable("codigo") int codigo) {
 		LOGGER.info("Requisição para Deletar Chamada id - {}",codigo);
 		ChamadaDAO chamadaDao = new ChamadaDAO();
