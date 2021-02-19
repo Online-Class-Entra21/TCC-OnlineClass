@@ -35,22 +35,20 @@ public class AlunoController {
 	/**
 	 * Retorna o aluno que corresponde ao id indicado {GET}
 	 * @param int codigo
-	 * @return String json
+	 * @return Aluno aluno
 	 * @author Andrey
 	 * @throws SQLException 
 	 */
 	@CrossOrigin
 	@GetMapping("/{codigo}")
-	public String consultar(@PathVariable int codigo) {
+	public Aluno consultar(@PathVariable int codigo) {
 		LOGGER.info("Requisição Aluno codigo {} iniciada", codigo);
 		Aluno aluno;
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			aluno = alunoDao.buscarId(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(aluno);
 			LOGGER.info("Requisição Aluno codigo {} bem sucedida",codigo);
-			return json;
+			return aluno;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição Aluno codigo {} mal sucedida erro : {}",codigo,e.toString());
@@ -82,7 +80,7 @@ public class AlunoController {
 	
 	/**
 	 * Insere uma novo aluno no banco de dados {POST}
-	 * @param String json
+	 * @param Aluno aluno
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
@@ -105,23 +103,22 @@ public class AlunoController {
 	/**
 	 * Metodo para alteração do aluno que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Aluno aluno
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/aluno/alterar/{json}")
-	public boolean alterar(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Aluno - {}",json);
-		Gson gson = new Gson();
-		Aluno aluno = gson.fromJson(json.toString(), Aluno.class);
+	@CrossOrigin
+	@PutMapping
+	public boolean alterar(@RequestBody Aluno aluno) {
+		LOGGER.info("Requisição Atualizar Aluno - {}",aluno);
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			alunoDao.update(aluno);
-			LOGGER.info("Requisição Atualizar Aluno - {} - Bem Sucedida",json);
+			LOGGER.info("Requisição Atualizar Aluno - {} - Bem Sucedida",aluno);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			LOGGER.error("Requisição Atualizar Aluno - {} - Mal Sucedida {}",json,e.toString());
+			LOGGER.error("Requisição Atualizar Aluno - {} - Mal Sucedida {}",aluno,e.toString());
 			return false;
 		}
 	}
@@ -132,8 +129,9 @@ public class AlunoController {
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@DeleteMapping(path = "/api/aluno/deletar/{codigo}")
-	public boolean deletar(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@DeleteMapping("/{codigo}")
+	public boolean deletar(@PathVariable int codigo) {
 		LOGGER.info("Requisição para Deletar Aluno id - {}",codigo);
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
@@ -156,7 +154,8 @@ public class AlunoController {
 	 * @return int qtdAlunos
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/alunos/quantidade")
+	@CrossOrigin
+	@GetMapping(path = "/quantidade")
 	public int buscarQuantidade() {
 		LOGGER.info("Requisição quantidade de alunos");
 		int qtdAlunos;
@@ -178,8 +177,9 @@ public class AlunoController {
 	 * @param int idTurma
 	 * @author Andrey
 	 */
-	@GetMapping(path = "/api/alunos/{idTurma}")
-	public List<Aluno> consultarTurma(@PathVariable("idTurma") int idTurma){
+	@CrossOrigin
+	@GetMapping(path = "/turma/{idTurma}")
+	public List<Aluno> consultarTurma(@PathVariable int idTurma){
 		LOGGER.info("Requisição List<Aluno>");
 		List<Aluno> lista;
 		AlunoDAO alunoDao = new AlunoDAO();
@@ -197,21 +197,20 @@ public class AlunoController {
 	/**
 	 * Retorna o aluno que corresponde ao id do usuario {GET}
 	 * @param int codigo 
-	 * @return String json
+	 * @return Aluno aluno
 	 * @author Andrey
 	 * @throws SQLException 
 	 */
-	@GetMapping(path = "/api/aluno/usuario/{codigo}")
-	public String consultarIdUsuario(@PathVariable("codigo") int codigo) {
+	@CrossOrigin
+	@GetMapping(path = "/usuario/{codigo}")
+	public Aluno consultarIdUsuario(@PathVariable int codigo) {
 		LOGGER.info("Requisição Aluno pelo idUsuario {} iniciada", codigo);
 		Aluno aluno;
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			aluno = alunoDao.buscarIdUsuario(codigo);
-			Gson gson = new Gson();
-			String json = gson.toJson(aluno);
 			LOGGER.info("Requisição Aluno pelo idUsuario {} bem sucedida",codigo);
-			return json;
+			return aluno;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			LOGGER.error("Requisição Aluno pelo idUsuario {} mal sucedida erro : {}",codigo,e.toString());
@@ -222,23 +221,22 @@ public class AlunoController {
 	/**
 	 * Metodo para alteração do aluno que corresponde ao codigo informado {PUT}
 	 * @param int codigo
-	 * @param String json
+	 * @param Aluno aluno
 	 * @return boolean situacao da operacao
 	 * @author Andrey
 	 */
-	@PutMapping(path = "api/aluno/alterar/perfil/{json}")
-	public boolean alterarAluno(@PathVariable("json") String json) {
-		LOGGER.info("Requisição Atualizar Aluno - {}",json);
-		Gson gson = new Gson();
-		Aluno aluno = gson.fromJson(json.toString(), Aluno.class);
+	@CrossOrigin
+	@PutMapping(path = "/alterar/perfil")
+	public boolean alterarAluno(@RequestBody Aluno aluno) {
+		LOGGER.info("Requisição Atualizar Aluno - {}",aluno);
 		AlunoDAO alunoDao = new AlunoDAO();
 		try {
 			alunoDao.updateAluno(aluno);
-			LOGGER.info("Requisição Atualizar Aluno - {} - Bem Sucedida",json);
+			LOGGER.info("Requisição Atualizar Aluno - {} - Bem Sucedida",aluno);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			LOGGER.error("Requisição Atualizar Aluno - {} - Mal Sucedida {}",json,e.toString());
+			LOGGER.error("Requisição Atualizar Aluno - {} - Mal Sucedida {}",aluno,e.toString());
 			return false;
 		}
 	}
@@ -249,8 +247,9 @@ public class AlunoController {
 	 * @param int idTurma
 	 * @author Breno
 	 */
-	@GetMapping(path = "/api/alunos/quantidade/{idTurma}")
-	public int buscarQuantidade(@PathVariable("idTurma") int idTurma) {
+	@CrossOrigin
+	@GetMapping(path = "/quantidade/{idTurma}")
+	public int buscarQuantidade(@PathVariable int idTurma) {
 		LOGGER.info("Requisição quantidade de alunos");
 		int qtdAlunos;
 		AlunoDAO alunoDao = new AlunoDAO();
