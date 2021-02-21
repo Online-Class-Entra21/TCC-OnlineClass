@@ -7,7 +7,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -29,7 +29,7 @@ if(idUsuario != 0 && idUsuario != null){
         
         var xhr2 = new XMLHttpRequest(); 
         
-        xhr2.open("GET", "http://localhost:8080/api/aulas/"+idUsuario);
+        xhr2.open("GET", "http://localhost:8080/reunioes/aulas/"+idUsuario);
        
         xhr2.addEventListener("load", function(){
             var resposta2 = xhr2.responseText; 
@@ -162,7 +162,7 @@ if(idUsuario != 0 && idUsuario != null){
             coluna.className = "td-lista foto-usuario";
 
             //Busca os dados do usuario dono da reuniao
-            var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+reunioesMarcadas[i].dono);
+            var resposta = await usarApi("GET", "http://localhost:8080/usuarios/"+reunioesMarcadas[i].dono);
             var usuario = JSON.parse(resposta);
             
             //Cria a imagem dentro da coluna 1
@@ -228,7 +228,7 @@ if(idUsuario != 0 && idUsuario != null){
             //Busca dos reunioes passadas do usuário
             var xhr = new XMLHttpRequest(); 
 
-            xhr.open("GET", "http://localhost:8080/api/reuniao/"+idReuniao);
+            xhr.open("GET", "http://localhost:8080/reunioes/"+idReuniao);
 
             xhr.addEventListener("load", function(){
                 var resposta = xhr.responseText; 

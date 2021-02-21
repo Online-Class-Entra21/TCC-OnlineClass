@@ -2,7 +2,7 @@ var idRelatorio = sessionStorage.getItem("idRelatorio");
 
 var xhr = new XMLHttpRequest(); 
 
-    xhr.open("GET", "http://localhost:8080/api/relatorio/"+idRelatorio);
+    xhr.open("GET", "http://localhost:8080/relatorios/"+idRelatorio);
 
     xhr.addEventListener("load", function(){
         var resposta = xhr.responseText; 
@@ -40,7 +40,7 @@ return diaF+"/"+mesF+"/"+anoF+" - "+horaF+":"+minutosF;
 function buscarDestinatario(){
     var xhr = new XMLHttpRequest(); 
 
-    xhr.open("GET", "http://localhost:8080/api/usuario/"+dadosUsuario.destinatario);
+    xhr.open("GET", "http://localhost:8080/usuarios/"+dadosUsuario.destinatario);
 
     xhr.addEventListener("load", function(){
         var resposta = xhr.responseText; 

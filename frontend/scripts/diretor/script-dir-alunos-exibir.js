@@ -5,7 +5,7 @@ carregarAlunos();
 function carregarAlunos(){
     var xhr = new XMLHttpRequest(); 
 
-    xhr.open("GET", "http://localhost:8080/api/alunos/"+idTurma);
+    xhr.open("GET", "http://localhost:8080/alunos/turma/"+idTurma);
 
     xhr.addEventListener("load", function(){
         var resposta = xhr.responseText; 
@@ -31,7 +31,7 @@ async function colocarTabela(alunos){
         colunaRa.textContent = element.matricula;
 
         //Busca os dados do usuario no banco 
-        var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+element.fk_usuario);
+        var resposta = await usarApi("GET", "http://localhost:8080/usuarios/"+element.fk_usuario);
         var usuario = JSON.parse(resposta);
 
         //Coluna do nome
@@ -62,7 +62,7 @@ async function apagar(idAluno){
     var alunoResposta = await usarApi("GET", "http://localhost:8080/alunos/"+idAluno)
     var aluno = JSON.parse(alunoResposta);
 
-    var resposta = await usarApi("DELETE", "http://localhost:8080/api/usuario/deletar/"+aluno.fk_usuario);
+    var resposta = await usarApi("DELETE", "http://localhost:8080/usuarios/"+aluno.fk_usuario);
     var isApagou = JSON.parse(resposta);
 
     if(isApagou){

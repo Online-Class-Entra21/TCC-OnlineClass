@@ -6,7 +6,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -100,7 +100,7 @@ $("#SelectDisciplina").change(function() {
 //Método para carregar os selects
 async function carregarSelectTurmas() {
     //Carrega o Select das Turmas
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/usuario/" + idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/usuariodisciplinaturmas/usuario/" + idUsuario);
     var turmas = JSON.parse(resposta);
     for (let index = 0; index < turmas.length; index++) {
        var option = document.createElement('option');
@@ -127,10 +127,10 @@ async function carregarSelectDisciplinas(idTurma) {
 
 async function carregarSelectAlunos(idTurma) {
    //Carrega o Select dos alunos da turmas
-   resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + idTurma);
+   resposta = await usarApi("GET", "http://localhost:8080/alunos/turma/" + idTurma);
    var alunos = JSON.parse(resposta);
    for (let index = 0; index < alunos.length; index++) {
-        resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + alunos[index].fk_usuario);
+        resposta = await usarApi("GET", "http://localhost:8080/usuarios/" + alunos[index].fk_usuario);
         var usuario = JSON.parse(resposta);
         var option = document.createElement('option');
         option.textContent = usuario.nome;
@@ -142,7 +142,7 @@ async function carregarSelectAlunos(idTurma) {
 
 //Método para carregar a tabela pelo aluno informado
 async function carregarTabela(idTurma ,idAluno) {
-    var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/notas/" + idTurma + "/" + idAluno);
+    var resposta = await usarApi("GET", "http://localhost:8080/professores/notas/" + idTurma + "/" + idAluno);
     var notasAluno = JSON.parse(resposta);
 
     for (let index = 0; index < notasAluno.length; index++) {
@@ -184,7 +184,7 @@ async function carregarTabela(idTurma ,idAluno) {
 
 //Método para carregar a tabela pela disciplina informado
 async function carregarTabelaDisciplina(idTurma ,idAluno, idDisciplina) {
-    var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/notas/disciplina/" + idTurma + "/" + idAluno + "/" + idDisciplina);
+    var resposta = await usarApi("GET", "http://localhost:8080/professores/notas/disciplina/" + idTurma + "/" + idAluno + "/" + idDisciplina);
     var notasAluno = JSON.parse(resposta);
 
     for (let index = 0; index < notasAluno.length; index++) {

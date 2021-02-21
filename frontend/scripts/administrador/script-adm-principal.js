@@ -7,7 +7,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -31,7 +31,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca a quantidade de diretores 
     var xhr2 = new XMLHttpRequest(); 
 
-        xhr2.open("GET", "http://localhost:8080/api/diretores/quantidade");
+        xhr2.open("GET", "http://localhost:8080/diretores/quantidade");
 
         xhr2.addEventListener("load", function(){
             var resposta2 = xhr2.responseText; 
@@ -57,7 +57,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca a quantidade de professores 
     var xhr4 = new XMLHttpRequest(); 
 
-        xhr4.open("GET", "http://localhost:8080/api/professores/quantidade");
+        xhr4.open("GET", "http://localhost:8080/professores/quantidade");
 
         xhr4.addEventListener("load", function(){
             var resposta4 = xhr4.responseText; 
@@ -70,7 +70,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca a quantidade de alunos 
     var xhr5 = new XMLHttpRequest(); 
 
-        xhr5.open("GET", "http://localhost:8080/api/alunos/quantidade");
+        xhr5.open("GET", "http://localhost:8080/alunos/quantidade");
 
         xhr5.addEventListener("load", function(){
             var resposta5 = xhr5.responseText; 

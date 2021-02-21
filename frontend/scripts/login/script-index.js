@@ -23,7 +23,7 @@ function logar(email, senha) {
         alert('Preencha o campo de e-mail!')
     } else {
         //Consumindo API
-        fetch('http://localhost:8080/api/usuario/email/' + email)
+        fetch('http://localhost:8080/usuarios/cosnultaremail/' + email)
             .then(function(response) {
                 return response.json()
             })

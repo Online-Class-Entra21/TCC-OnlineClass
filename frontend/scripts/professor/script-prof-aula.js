@@ -8,7 +8,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -63,7 +63,6 @@ async function criarReuniao(){
     if (valido) {
         data = new Date($("#idDateTime").val());
         nome = $('#idNomeReu').val();
-        data = timeStampFormat(data);
         
         var sala = {
             nome:"Reuniao: "+nome,
@@ -73,7 +72,7 @@ async function criarReuniao(){
             link: nome.replace(" ","_")
         }
         sala = JSON.stringify(sala);
-        sala = await usarApi('POST','http://localhost:8080/api/sala/inserir/return/'+sala);
+        sala = await usarApi('POST','http://localhost:8080/salas/return',sala);
         sala = JSON.parse(sala);
         var reuniao = {
             descricao : nome,
@@ -82,18 +81,18 @@ async function criarReuniao(){
             fk_sala: sala.idSala
         };
         reuniao = JSON.stringify(reuniao);
-        var idReuniao = await usarApi('POST','http://localhost:8080/api/reuniao/personalizada/inserir/return/'+reuniao);
+        var idReuniao = await usarApi('POST','http://localhost:8080/reunioes/personalizada/return',reuniao);
         $('#reuniaoCriada').text('Aula criada com sucesso').show(300);
 
         //Adiciona a tuma na lista de convidados 
         if(TurmaSelecionada != 'default'){
             //Chama a api e retorna um arrays com os alunos pertencentes à turma selecionada
-            var resposta = await usarApi("GET", "http://localhost:8080/api/alunos/"+TurmaSelecionada);
+            var resposta = await usarApi("GET", "http://localhost:8080/alunos/turma/"+TurmaSelecionada);
             var alunos = JSON.parse(resposta);
     
             for(var i = 0; i < alunos.length; i++){
                 //Chama a api e retorna um arrays com o usuario pertencente ao aluno do indice
-                var resposta2 = await usarApi("GET", "http://localhost:8080/api/usuario/"+alunos[i].fk_usuario);
+                var resposta2 = await usarApi("GET", "http://localhost:8080/usuarios/"+alunos[i].fk_usuario);
                 var usuario = JSON.parse(resposta2);
                 convidados.push(usuario);
             }
@@ -106,10 +105,9 @@ async function criarReuniao(){
                 fk_usuario: element.idUsuario
             }
             convite = JSON.stringify(convite);
-            usarApi('POST','http://localhost:8080/api/reuniaoUsuario/inserir/'+convite);
+            usarApi('POST','http://localhost:8080/reuniaousuarios',convite);
         }
     }
-    
 }
 
 $('#btnCriarReuniao').click(criarReuniao);
@@ -129,7 +127,7 @@ async function convidar(){
             $('#erroEmail').text('Não insira o seu email').show(300);
             setTimeout(function(){$('#erroEmail').hide(300)},1500);
         }else{
-            var user = JSON.parse(await usarApi('GET','http://localhost:8080/api/usuario/email/'+email));
+            var user = JSON.parse(await usarApi('GET','http://localhost:8080/usuarios/cosnultaremail/'+email));
             if (user.idUsuario==0) {
                 $('#erroEmail').text('usuario nao existe').show(300);
                 setTimeout(function(){$('#erroEmail').hide(300)},1500)
@@ -185,7 +183,7 @@ carregarSelect();
 //Método para carregar o select com as turmas existentes
 async function carregarSelect() {
     //Chama a api e retorna um arrays com as turmas pertencentes à escola e há esse professor
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/professor/"+idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/turmas/professor//"+idUsuario);
     var turmaArray = JSON.parse(resposta);
 
     //comparacao de turmas iguais

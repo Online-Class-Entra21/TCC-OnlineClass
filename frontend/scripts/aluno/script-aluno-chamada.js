@@ -7,7 +7,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -63,8 +63,7 @@ async function criarReuniao(){
     if (valido) {
         data = new Date($("#idDateTime").val());
         nome = $('#idNomeReu').val();
-        data = timeStampFormat(data);
-        console.log(data)
+
         
         var sala = {
             nome:"Reuniao: "+nome,
@@ -74,7 +73,7 @@ async function criarReuniao(){
             link: nome.replace(" ","_")
         }
         sala = JSON.stringify(sala);
-        sala = await usarApi('POST','http://localhost:8080/api/sala/inserir/return/'+sala);
+        sala = await usarApi('POST','http://localhost:8080/salas/return',sala);
         sala = JSON.parse(sala);
         var reuniao = {
             descricao : nome,
@@ -83,7 +82,7 @@ async function criarReuniao(){
             fk_sala: sala.idSala
         };
         reuniao = JSON.stringify(reuniao);
-        var idReuniao = await usarApi('POST','http://localhost:8080/api/reuniao/personalizada/inserir/return/'+reuniao);
+        var idReuniao = await usarApi('POST','http://localhost:8080/reunioes/personalizada/return',reuniao);
         $('#reuniaoCriada').text('Reunião criada com sucesso').show(300);
         for (var i = 0; i < convidados.length; i++) {
             const element = convidados[i];
@@ -93,7 +92,7 @@ async function criarReuniao(){
                 fk_usuario: element.idUsuario
             }
             convite = JSON.stringify(convite);
-            usarApi('POST','http://localhost:8080/api/reuniaoUsuario/inserir/'+convite);
+            usarApi('POST','http://localhost:8080/reuniaousuarios',convite);
     
         }
     }
@@ -119,7 +118,7 @@ async function convidar(){
             $('#erroEmail').text('Não insira o seu email').show(300);
             setTimeout(function(){$('#erroEmail').hide(300)},1500);
         }else{
-            var user = JSON.parse(await usarApi('GET','http://localhost:8080/api/usuario/email/'+email));
+            var user = JSON.parse(await usarApi('GET','http://localhost:8080/usuarios/cosnultaremail/'+email));
             if (user.idUsuario==0) {
                 $('#erroEmail').text('usuario nao existe').show(300);
                 setTimeout(function(){$('#erroEmail').hide(300)},1500)

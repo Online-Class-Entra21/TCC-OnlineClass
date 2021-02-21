@@ -10,7 +10,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -61,7 +61,7 @@ function carregarDadosEscola(fk_escola){
     //Busca dos dados da escola 
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/escola/"+fk_escola);
+        xhr.open("GET", "http://localhost:8080/escolas/"+fk_escola);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -149,7 +149,7 @@ $("#botao-salvar").click(function(){
                 console.log("if "+imagem)
                 //Altera a imagem
                 if (imagem!=undefined) {
-                    UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                    UploadFile(imagem,"http://localhost:8080/uploadarquivos/fotoperfil/"+idUsuario);
                 }
                 //Altera os dados 
                 alterar(); 
@@ -158,7 +158,7 @@ $("#botao-salvar").click(function(){
             //Altera a imagem
             console.log("else "+imagem)
             if (imagem!=undefined) {
-                UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                UploadFile(imagem,"http://localhost:8080/uploadarquivos/fotoperfil/"+idUsuario);
             }
             //Altera os dados 
             alterar(); 
@@ -182,7 +182,7 @@ async function alterar(){
     }
 
     var json = JSON.stringify(perfil);
-    var resposta =  await usarApi("PUT", "http://localhost:8080/diretores/" + json); 
+    var resposta =  await usarApi("PUT", "http://localhost:8080/diretores/" , json); 
     var isCorreto = JSON.parse(resposta);
 
     if(isCorreto){

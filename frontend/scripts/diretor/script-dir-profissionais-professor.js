@@ -12,7 +12,7 @@ if (idUsuario != 0 && idUsuario != null) {
     dadosUsuario();
     async function dadosUsuario() {
     
-        var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + idUsuario);
+        var resposta = await usarApi("GET", "http://localhost:8080/usuarios/" + idUsuario);
     
         dadosUsuario = JSON.parse(resposta);
         //Adiciona o nome 
@@ -40,10 +40,7 @@ $("#inputCep").change(async function () {
         cep = cep.replace("-", "");
         var ende = await usarApi('GET', 'https://viacep.com.br/ws/' + cep + '/json/');
         ende = JSON.parse(ende);
-        if (ende.erro) {
-        
-        } else {
-        
+        if (!ende.erro) {
             $("#inputEstado").val(ende.uf)
             $("#inputCidade").val(ende.localidade)
             $("#inputBairro").val(ende.bairro)
@@ -93,7 +90,7 @@ getMaterias($('#turma1').attr('id'));
 getMaterias($('#turma2').attr('id'));
 
 async function getTurmas() {
-    turmas = await usarApi('GET','http://localhost:8080/api/turmas');
+    turmas = await usarApi('GET','http://localhost:8080/turmas');
     turmas = JSON.parse(turmas);
     for (var i = 0; i < turmas.length; i++){
         const turm = turmas[i];
@@ -148,7 +145,7 @@ $('#btnAvancar').click(async function(){
     }else{
         if ($("#inputSenha").val().length>7 && $("#inputSenha").val()==$("#inputConfirmSenha").val()) {
             var email = $("#inputEmail").val();
-            var resp = await usarApi("GET", "http://localhost:8080/api/verificar/"+ email);
+            var resp = await usarApi("GET", "http://localhost:8080/usuarios/verificar/"+ email);
             var isExisteEmail = JSON.parse(resp);
 
             if(!isExisteEmail){
@@ -235,7 +232,7 @@ $('#btnCadastrar').click(async function() {
         complemento: $("#inputTipoLogradouro").val()
     };
     var jsonendereco = JSON.stringify(endereco);
-    var idEndereco = await usarApi('POST', 'http://localhost:8080/enderecos/inserirAlterar'+jsonendereco);
+    var idEndereco = await usarApi('POST', 'http://localhost:8080/enderecos/inserirAlterar',jsonendereco);
     var horarioFinal = document.getElementById('inputHorarioFinal').valueAsDate;
     var horaInicial = document.getElementById('inputHorarioInicial').valueAsDate;
     horarioFinal.setHours(horarioFinal.getHours()+3);
@@ -256,7 +253,7 @@ $('#btnCadastrar').click(async function() {
         tipoUsuario: 4,
         fk_escola: idEscola
     };
-    var idProfessor = await usarApi('POST','http://localhost:8080/api/usuario/inserir/return/'+JSON.stringify(inserirProf));
+    var idProfessor = await usarApi('POST','http://localhost:8080/usuarios/return',JSON.stringify(inserirProf));
     alert('Professor cadastrado com sucesso');
 
     //pega o professor e junta nas tabeelas
@@ -270,12 +267,12 @@ $('#btnCadastrar').click(async function() {
         var idTurma = disciplina.id;
         idTurma = idTurma.substr(idTurma.indexOf("turma"));
         idTurma = parseInt(idTurma.replace('turma', ''));
-        var idUsuarioDisciplinaTurma = await usarApi('POST','http://localhost:8080/api/usuarioDisciplina/inserirAlterar/'+JSON.stringify({fk_usuario:idProfessor,fk_disciplina:idDisciplina}));
+        var idUsuarioDisciplinaTurma = await usarApi('POST','http://localhost:8080/usuariodisciplinas/inserirAlterar/',JSON.stringify({fk_usuario:idProfessor,fk_disciplina:idDisciplina}));
         var insertTurmaDisciplina = {
             fk_turma:idTurma,
             fk_usuariorDisciplina:idUsuarioDisciplinaTurma
         }
     
-        await usarApi('POST','http://localhost:8080/api/usuarioDisciplinaTurma/inserir/'+JSON.stringify(insertTurmaDisciplina))
+        await usarApi('POST','http://localhost:8080/usuariodisciplinaturmas/inserirAlterar/',JSON.stringify(insertTurmaDisciplina))
     }
 });

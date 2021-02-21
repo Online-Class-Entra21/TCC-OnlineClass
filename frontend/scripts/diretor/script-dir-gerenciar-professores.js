@@ -7,7 +7,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -20,7 +20,6 @@ if(idUsuario != 0 && idUsuario != null){
                 img.setAttribute('src', "/imagens-usuarios/"+dadosUsuario.fotoUsuario);
                 img.style.borderRadius = "80%";
             }
-            carregarListasTipo1();
         })
     xhr.send();
 
@@ -33,7 +32,7 @@ if(idUsuario != 0 && idUsuario != null){
 buscarProfessores();
 var curentProfessore = 0;
 async function buscarProfessores(){
-    var professores = await usarApi('GET','http://localhost:8080/api/professores');
+    var professores = await usarApi('GET','http://localhost:8080/professores');
     professores = JSON.parse(professores);
     var tb = $('#tbProfessores');
     for(var i = 0; i <professores.length; i++){
@@ -57,7 +56,7 @@ async function criarPopUp(idProfessor){
     disciplinas = JSON.parse(disciplinas);
     for (var i = 0; i < disciplinas.length; i++){
         const disc = disciplinas[i];
-        var turma = await usarApi('GET', "http://localhost:8080/api/turma/"+disc.idTurma);
+        var turma = await usarApi('GET', "http://localhost:8080/turmas/"+disc.idTurma);
         turma = JSON.parse(turma);
         var disciplina = await usarApi('GET', "http://localhost:8080/disciplinas/"+disc.idDisciplina);
         disciplina = JSON.parse(disciplina);
@@ -67,7 +66,7 @@ async function criarPopUp(idProfessor){
                                             +'<td>'+disciplina.nome+'<input type="button" id="btnDeletar-'+disc.idUsuario_disciplina_turma+'" value="Deletar" class="float-right btn-danger"></td>'
                                         +'</tr>');
         $('#btnDeletar-'+disc.idUsuario_disciplina_turma).click(async function(){
-            await usarApi('DELETE', 'http://localhost:8080/api/usuarioDisciplinaTurma/deletar/'+disc.idUsuario_disciplina_turma);
+            await usarApi('DELETE', 'http://localhost:8080/usuariodisciplinas/'+disc.idUsuario_disciplina_turma);
             criarPopUp(idProfessor);
         });
     }
@@ -89,18 +88,18 @@ $('#btnAdicionar').click(async function(){
         fk_disciplina: idDisciplina
     }
     insertDisciplina = JSON.stringify(insertDisciplina);
-     var idDisciplinaUsuario = await usarApi("POST","http://localhost:8080/api/usuarioDisciplina/inserirAlterar/"+insertDisciplina);
+     var idDisciplinaUsuario = await usarApi("POST","http://localhost:8080/usuariodisciplinas/inserirAlterar",insertDisciplina);
      var insertDisciplinaTurma = JSON.stringify({
         fk_turma:idTurma,
         fk_usuariorDisciplina:idDisciplinaUsuario
      });
-     var insertTurmaDisciplina = await usarApi("POST","http://localhost:8080/api/usuarioDisciplinaTurma/inserirAlterar/"+insertDisciplinaTurma);
+     var insertTurmaDisciplina = await usarApi("POST","http://localhost:8080/usuariodisciplinaturmas/inserirAlterar",insertDisciplinaTurma);
      criarPopUp(curentProfessore);
 });
 buscarMaterias();
 buscarTurmas();
 async function buscarTurmas(){
-    var turmas = await usarApi("GET", "http://localhost:8080/api/turmas");
+    var turmas = await usarApi("GET", "http://localhost:8080/turmas");
     turmas = JSON.parse(turmas);
     var select = $('#turmaSelect');
     for (var i = 0; i <turmas.length; i++){

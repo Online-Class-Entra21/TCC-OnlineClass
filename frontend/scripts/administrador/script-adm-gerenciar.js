@@ -6,7 +6,7 @@ if(idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -67,7 +67,7 @@ async function listaEscolas(){
     document.getElementById("idLoad").style.display = "block";
 
     //Faz a buscar na API
-    var resposta = await usarApiLocal("GET", "http://localhost:8080/api/escolas");
+    var resposta = await usarApiLocal("GET", "http://localhost:8080/escolas");
     var escolas = JSON.parse(resposta);
 
     //Verifica se tem alguma escola no banco de dados
@@ -90,8 +90,8 @@ async function listaEscolas(){
                     
             coluna.append(input);
             linha.append(coluna);
-            
-            var diretor = await usarApiLocal("GET","http://localhost:8080//diretores/escola/"+escolas[i].idEscola);
+
+            var diretor = await usarApiLocal("GET","http://localhost:8080/diretores/escola/"+escolas[i].idEscola);
             diretor = JSON.parse(diretor);
 
             //Verifica se a escola tem um diretor 

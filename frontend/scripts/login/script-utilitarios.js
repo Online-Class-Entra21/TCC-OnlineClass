@@ -24,12 +24,14 @@ document.getElementById("menu").addEventListener("mouseleave", function(){
 /**
  * Chmada de API no formato async 
  */
-
-//Método para chamada da API async
-function usarApi(method, url) {
+//Método para chamada da API async Com from-date 
+function usarApi(method, url, json) {
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url);
+        if (json!=undefined){
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        }
         xhr.onload = function () {
             if (this.status >= 200 && this.status < 300) {
                 resolve(xhr.response);
@@ -46,7 +48,11 @@ function usarApi(method, url) {
                 statusText: xhr.statusText
             });
         };
-        xhr.send();
+        if (json!=undefined){
+            xhr.send(json);
+        }else{
+            xhr.send();
+        }
     });
 }
 
@@ -209,7 +215,7 @@ if(ancora != null){
 
 //Apaga a conta do usuario logado
 async function apagarConta(){
-    var isDeletado = await usarApi('DELETE','http://localhost:8080/api/usuario/deletar/'+idUsuario);
+    var isDeletado = await usarApi('DELETE','http://localhost:8080/usuarios/'+idUsuario);
 
     if(isDeletado){
         alert("Conta apagada com sucesso!");

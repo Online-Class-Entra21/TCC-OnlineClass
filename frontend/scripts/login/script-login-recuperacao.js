@@ -5,7 +5,7 @@ function mandarCodigo(email){
 
     if(email != ""){
         //Verifica se o email existe antes de enviar o código
-        fetch('http://localhost:8080/api/verificar/' + email)
+        fetch('http://localhost:8080/usuarios/verificar/' + email)
         .then(function(response) {
             return response.json()
         })
@@ -13,7 +13,7 @@ function mandarCodigo(email){
             //Verifica se a resposta é true ou false
             if(resposta){
 
-                fetch('http://localhost:8080/api/codigo/' + email)
+                fetch('http://localhost:8080/usuarios/codigo/' + email)
                 .then(function(response) {
                     return response.json()
                 })
@@ -92,9 +92,8 @@ function verificarCodigo(codigo, senha, senhaRepetida){
                     mode: 'cors',
                     cache: 'default'
                 }
-                console.log(senha)
-                //Muda a senha do usuario 
-                fetch('http://localhost:8080/api/mudar/senha/'+ salvarCodigo.getEmail() +'/'+ senha,options)
+                //Muda a senha do usuario
+                fetch('http://localhost:8080/usuarios/senha/'+ salvarCodigo.getEmail() +'/'+ senha,options)
                 .then(function() {
                     alert('Senha alterada com sucesso!')
                     window.open('javascript:window.open("", "_self", "");window.close();', '_self');

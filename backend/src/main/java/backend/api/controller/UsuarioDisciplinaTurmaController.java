@@ -79,7 +79,7 @@ public class UsuarioDisciplinaTurmaController {
 	 * @return boolean situacao da operacao
 	 */
 	@CrossOrigin
-	@PostMapping("/inserir")
+	@PostMapping
 	public boolean inserir(@RequestBody UsuarioDisciplinaTurma usuarioDisciplinaTurma) {
 		Gson gson = new Gson();
 		String json = gson.toJson(usuarioDisciplinaTurma);

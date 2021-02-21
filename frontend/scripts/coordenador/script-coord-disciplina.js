@@ -8,7 +8,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -88,7 +88,7 @@ async function cadastrar(){
         var disciplinaJson = JSON.stringify(disciplina);
 
         //Chama a api para cadastrar a disciplina
-        var insertDisciplina = await usarApi("POST", "http://localhost:8080/disciplinas/" + disciplinaJson)
+        var insertDisciplina = await usarApi("POST", "http://localhost:8080/disciplinas/" , disciplinaJson)
 
         if (!insertDisciplina) {
             alert("Ocorreu um erro ao cadastrar a disciplina!");
@@ -145,7 +145,7 @@ async function carregarCampos(disciplina) {
 //Método para carregar a lista de turmas da disciplina selecionada
 async function carregarListaDisciplinas(disciplinaEscolhida) {
     //Faz a buscar na API
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/disciplina/" + disciplinaEscolhida);
+    var resposta = await usarApi("GET", "http://localhost:8080/turmas/disciplina/" + disciplinaEscolhida);
     var turmas = JSON.parse(resposta);
 
     //Verifica se tem alguma turma no banco de dados
@@ -175,7 +175,7 @@ async function carregarListaDisciplinas(disciplinaEscolhida) {
             colunaNumAlunos.classList.add("colunaNumAlunos")
 
             //Busca a quantidade de alunos 
-            var resposta2 = await usarApi("GET", "http://localhost:8080/api/alunos/quantidade/"+turmas[i].idTurma);
+            var resposta2 = await usarApi("GET", "http://localhost:8080/alunos/quantidade/"+turmas[i].idTurma);
             var qtdAlunos = JSON.parse(resposta2);
 
             var numAlunos = qtdAlunos;
@@ -232,7 +232,7 @@ async function atualizar(disciplinaEscolhida){
         var disciplinaJson = JSON.stringify(disciplina);
 
         //Chama a api para editar a disciplina
-        var insertDisciplina = await usarApi("PUT", "http://localhost:8080/disciplinas/" + disciplinaJson)
+        var insertDisciplina = await usarApi("PUT", "http://localhost:8080/disciplinas/" , disciplinaJson)
 
         if (!insertDisciplina) {
             alert("Ocorreu um erro ao editar a disciplina!");

@@ -12,19 +12,19 @@ async function gerarBoletim() {
     //Primeira parte da tabela - dados importantes
 
     //Busca os dados do usuario
-    var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/usuarios/"+idUsuario);
     var usuario = JSON.parse(resposta);
 
     //Busca os dados da escola 
-    var resposta = await usarApi("GET", "http://localhost:8080/api/escola/"+usuario.fk_escola);
+    var resposta = await usarApi("GET", "http://localhost:8080/escolas/"+usuario.fk_escola);
     var escola = JSON.parse(resposta);
 
     //Busca os dados da escola 
-    var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/usuario/"+idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/alunos/usuario/"+idUsuario);
     var aluno = JSON.parse(resposta);
 
     //Busca os dados da turma
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turma/"+aluno.fk_turma);
+    var resposta = await usarApi("GET", "http://localhost:8080/turmas/"+aluno.fk_turma);
     var turma = JSON.parse(resposta);
 
     now = new Date();
@@ -36,7 +36,7 @@ async function gerarBoletim() {
     //Segunda parte da tabela - periodos 
 
     //Busca os periodos de avaliacao
-    var resposta = await usarApi("GET", "http://localhost:8080/api/periodosAvaliacoes/"+fk_escola);
+    var resposta = await usarApi("GET", "http://localhost:8080/periodoAvaliacoes/escola/"+fk_escola);
     var periodosBuscados = JSON.parse(resposta);
     var tipoPeriodo;
 
@@ -78,7 +78,7 @@ async function gerarBoletim() {
     //Terceira parte da tabela - notas e materias 
     
     //Busca os as notas do aluno
-    var resposta = await usarApi("GET", "http://localhost:8080/api/notas/"+idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/respostas/notas/"+idUsuario);
     var notas = JSON.parse(resposta);
 
     //Pegar as materias do aluno

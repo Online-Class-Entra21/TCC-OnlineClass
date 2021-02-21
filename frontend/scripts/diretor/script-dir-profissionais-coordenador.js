@@ -7,7 +7,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -99,7 +99,7 @@ async function cadastrar() {
         }else{
 
             //Verifica o email se já está sendo usado 
-            var resp = await usarApi("GET", "http://localhost:8080/api/verificar/"+ email);
+            var resp = await usarApi("GET", "http://localhost:8080/usuarios/verificar/"+ email);
             var isExisteEmail = JSON.parse(resp);
 
             if(!isExisteEmail){
@@ -114,7 +114,7 @@ async function cadastrar() {
                 if(isValido){
 
                     //Verifica se o cpf já está sendo usado  
-                    var resp = await usarApi("GET", "http://localhost:8080/api/verificar/cpf/"+ cpf);
+                    var resp = await usarApi("GET", "http://localhost:8080/usuarios/cpf/"+ cpf);
                     var isExisteCpf =  JSON.parse(resp);
 
                     if(!isExisteCpf){
@@ -137,7 +137,7 @@ async function cadastrar() {
                             var enderecoJson =  JSON.stringify(inserirEndereco);
 
                             //Chamada da api para registrar o Endereço no banco de dados
-                            var insertEndereco = await usarApi("POST", "http://localhost:8080/enderecos/return/"+enderecoJson);
+                            var insertEndereco = await usarApi("POST", "http://localhost:8080/enderecos/return/",enderecoJson);
                             var idEndereco =  JSON.parse(insertEndereco);
 
                             if(idEndereco != 0){
@@ -164,7 +164,7 @@ async function cadastrar() {
                                 var coordenadorJson = JSON.stringify(inserirCoordenador);
 
                                 //Chamada da api para registrar o Coordenador no banco de dados
-                                var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/"+coordenadorJson);
+                                var insertUsuario = await usarApi("POST", "http://localhost:8080/usuarios/",coordenadorJson);
                                 
                                 if (!insertUsuario || !insertEndereco) {
                                     alert("Ocorreu um erro no cadastro do coordenador!")

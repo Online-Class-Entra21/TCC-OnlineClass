@@ -10,7 +10,7 @@ if(idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -45,7 +45,7 @@ carregarCampos();
 async function carregarCampos() {
 
     //Busca os dados da escola 
-    var resposta = await usarApi("GET", "http://localhost:8080/api/escola/" + idEscolaSelecionada)
+    var resposta = await usarApi("GET", "http://localhost:8080/escolas/" + idEscolaSelecionada)
     var escola = JSON.parse(resposta)
 
     document.getElementById('inputEscola').value = escola.nome;
@@ -84,7 +84,7 @@ async function editarEscola(idEscola) {
 
         //Verifica se o email já existe no sistema 
         var email = document.getElementById('inputEmail').value
-        var verificacaoEmail = await usarApi("GET", "http://localhost:8080/api/verificar/"+email)
+        var verificacaoEmail = await usarApi("GET", "http://localhost:8080/usuarios/verificar/"+email)
         var isValido = !(JSON.parse(verificacaoEmail))
         
         if(isValido || emailSelecionado == email){
@@ -102,7 +102,7 @@ async function editarEscola(idEscola) {
                         nome: document.getElementById('inputEscola').value,
                     }
                     var escolaJson = JSON.stringify(alterarEscola);
-                    var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/administrador/"+escolaJson)
+                    var updateEscola = await usarApi("PUT", "http://localhost:8080/escolas/alterar/administrador/",escolaJson)
                     var resposta = JSON.parse(updateEscola)
                     
                     if (!resposta) {
@@ -120,7 +120,7 @@ async function editarEscola(idEscola) {
                 }
                 
                 var escolaJson = JSON.stringify(alterarEscola);
-                var updateEscola = await usarApi("PUT", "http://localhost:8080/api/escola/alterar/administrador/"+escolaJson)
+                var updateEscola = await usarApi("PUT", "http://localhost:8080/escolas/alterar/administrador/",escolaJson)
                 var resposta = JSON.parse(updateEscola)
 
                 if (!resposta) {
@@ -152,7 +152,7 @@ async function editarDiretor() {
     }
     var diretorJson = JSON.stringify(alterarDiretor);
 
-    var updateEscola = await usarApi("PUT", "http://localhost:8080/diretores/"+diretorJson)
+    var updateEscola = await usarApi("PUT", "http://localhost:8080/diretores/",diretorJson)
     var resposta = JSON.parse(updateEscola)
 
     if (!resposta) {
