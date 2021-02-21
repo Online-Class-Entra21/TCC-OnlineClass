@@ -365,4 +365,22 @@ public class UsuarioDAO {
 		comandoSql.execute(); 
 		comandoSql.close(); 
 	}
+	
+	/**
+	 * Realiza atualizacao da senha do usuario no banco de dados.
+	 * O <code>idUsuario</code> deve ser igual ao da usuario que deseja atualizar
+	 * @param Usuario usuario
+	 * @author André
+	 * @throws SQLException 
+	 */
+	public void updateSenha(Usuario usuario) throws SQLException {
+		String sql = "update usuario set senha = ? where idUsuario = ?";
+		PreparedStatement comandoSql = conexao.prepareStatement(sql);
+
+		comandoSql.setString(1, usuario.getSenha());
+		comandoSql.setInt(2, usuario.getIdUsuario());
+		
+		comandoSql.execute(); 
+		comandoSql.close(); 
+	}
 }

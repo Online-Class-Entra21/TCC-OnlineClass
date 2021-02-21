@@ -7,7 +7,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -40,7 +40,7 @@ function carregarDadosEscola(fk_escola){
     //Busca dos dados da escola 
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/escola/"+fk_escola);
+        xhr.open("GET", "http://localhost:8080/escolas/"+fk_escola);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -102,7 +102,7 @@ async function atualizaDadosEscola(){
 
             //Altera os dados da escola 
             var json = JSON.stringify(escola);
-            var resposta =  await usarApi("PUT", "http://localhost:8080/api/escola/alterar/"+json); 
+            var resposta =  await usarApi("PUT", "http://localhost:8080/escolas/",json); 
             var isCorreto = JSON.parse(resposta);
 
             if(isCorreto){
@@ -153,7 +153,7 @@ async function inserirPeriodoAvaliativo(){
 
             //insere os periodos avaliativos no sistema  
             var json = JSON.stringify(periodo);
-            var resposta =  await usarApi("POST", "http://localhost:8080/api/periodoAvaliacao/inserir/"+json); 
+            var resposta =  await usarApi("POST", "http://localhost:8080/periodoAvaliacoes/",json); 
             var isCorreto = JSON.parse(resposta);
 
             if(isCorreto){

@@ -6,7 +6,7 @@ if(idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -67,9 +67,9 @@ async function cadastrar() {
 
             //Converte para JSON
             var escolaJson = JSON.stringify(inserirEscola);
-
+            console.log(escolaJson);
             //Chama a api para cadastrar a escola
-            var insertEscola = await usarApi("POST", "http://localhost:8080/api/escola/inserir/nome/" + escolaJson);
+            var insertEscola = await usarApi("POST", "http://localhost:8080/escolas/inserir/nome/",escolaJson);
 
             if(insertEscola != null){
                 //Cria o objeto usuario com as informações a serem registradas no banco de dados
@@ -87,7 +87,7 @@ async function cadastrar() {
                 var usuarioJson = JSON.stringify(inserirUsuario);
                 
                 //Chama a api para cadastrar o usuário
-                var insertUsuario = await usarApi("POST", "http://localhost:8080/api/diretor/inserir/" + usuarioJson);
+                var insertUsuario = await usarApi("POST", "http://localhost:8080/diretores/",usuarioJson);
                 
                 if (insertUsuario == false || insertEscola == false) {
                     alert("Ocorreu um erro ao cadastrar!");

@@ -6,7 +6,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -32,7 +32,7 @@ if(idUsuario != 0 && idUsuario != null){
 carregarLinhas();
 
 async function carregarLinhas() {
-    var resposta = await usarApi("GET", "http://localhost:8080/api/aluno/usuario/" + idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/alunos/usuario/" + idUsuario);
     var aluno = JSON.parse(resposta);
     var idTurma = aluno.fk_turma;
 
@@ -41,7 +41,7 @@ async function carregarLinhas() {
     var turmasAtividades = JSON.parse(resposta);
 
     //Retorna os dados para popular a tabela
-    resposta = await usarApi("GET", "http://localhost:8080/api/turmas/atividades/turma/" + idTurma);
+    resposta = await usarApi("GET", "http://localhost:8080/turmaatividades/turma/" + idTurma);
     var dados = JSON.parse(resposta);
     if (dados[0] == null) {
         var linha = document.createElement('tr');
@@ -94,7 +94,7 @@ async function carregarLinhas() {
         linha.append(colunaDownload);
 
         var colunaSituacao = document.createElement('td');
-        resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + turmasAtividades[index].idAtividade + "/" + aluno.idAluno);
+        resposta = await usarApi("GET", "http://localhost:8080/respostas/atividade/" + turmasAtividades[index].idAtividade + "/" + aluno.idAluno);
         var respostaExistente = JSON.parse(resposta);
         if (respostaExistente.dataEntrega == null) {
             colunaSituacao.append('Não Respondida')

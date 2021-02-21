@@ -197,7 +197,7 @@ public class TurmaController {
 	 * @author Breno
 	 * @param int codigo 
 	 */
-	@GetMapping("/turmas/professor/{codigo}")
+	@GetMapping("/professor/{codigo}")
 	public List<Turma> consultarTurmasProfessor(@PathVariable("codigo") int codigo){
 		LOGGER.info("Requisição List<Turma> pela disciplina");
 		List<Turma> lista;

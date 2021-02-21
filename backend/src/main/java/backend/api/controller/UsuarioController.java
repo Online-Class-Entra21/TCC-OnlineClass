@@ -250,7 +250,7 @@ public class UsuarioController {
 	 * @return boolean situacao da operacao
 	 */
 	@CrossOrigin
-	@PutMapping(path = "/api/mudar/senha/{email}/{senha-digitada}")
+	@PutMapping("/senha/{email}/{senha-digitada}")
 	public boolean mudarSenha(@PathVariable("email") String email, @PathVariable("senha-digitada") String senha) {
 		LOGGER.info("Requisição de mudança de senha email - {} - senha - {}",email,senha);
 		Usuario usuario = new Usuario();
@@ -264,7 +264,7 @@ public class UsuarioController {
 		}
 		usuario.setSenha(senha);
 		try {
-			usuarioDao.update(usuario);
+			usuarioDao.updateSenha(usuario);
 			LOGGER.info("Requisição de mudança de senha email - Bem Sucedida - Email do Usuario {} - senha {}",email,senha);
 			return true;
 		} catch (SQLException e) {
@@ -274,7 +274,7 @@ public class UsuarioController {
 		}
 	}
 
-	/**
+	/*
 	 * Verifica se o usuario existe no banco de dados  {GET}
 	 * @param String cpf
 	 * @return boolean situacao de existencia do usuario

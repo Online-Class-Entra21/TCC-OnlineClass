@@ -6,7 +6,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -122,7 +122,7 @@ btnAtualizar.addEventListener("click", function() {
             if(isConfirmado){
                 //Altera a imagem
                 if (imagem!=undefined) {
-                    UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                    UploadFile(imagem,"http://localhost:8080/uploadarquivos/fotoperfil/"+idUsuario);
                 }
                 //Altera os dados 
                 atualizar(); 
@@ -130,7 +130,7 @@ btnAtualizar.addEventListener("click", function() {
         }else{
             //Altera a imagem
             if (imagem!=undefined) {
-                UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                UploadFile(imagem,"http://localhost:8080/uploadarquivos/fotoperfil/"+idUsuario);
             }
             //Altera os dados 
             atualizar(); 
@@ -141,13 +141,13 @@ btnAtualizar.addEventListener("click", function() {
 //Método para carregar os campos
 async function carregarCampos() {
     //Chama a api
-    var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/usuarios/" + idUsuario);
     var usuarioAluno = JSON.parse(resposta);
-    resposta = await usarApi("GET", "http://localhost:8080/api/escola/" +   usuarioAluno.fk_escola);
+    resposta = await usarApi("GET", "http://localhost:8080/escolas/" +   usuarioAluno.fk_escola);
     var escola = JSON.parse(resposta);
-    resposta = await usarApi("GET", "http://localhost:8080/api/aluno/usuario/" + usuarioAluno.idUsuario);
+    resposta = await usarApi("GET", "http://localhost:8080/alunos/usuario/" + usuarioAluno.idUsuario);
     var aluno = JSON.parse(resposta);
-    resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + aluno.fk_turma);
+    resposta = await usarApi("GET", "http://localhost:8080/turmas/" + aluno.fk_turma);
     var turma = JSON.parse(resposta);
 
     
@@ -219,8 +219,8 @@ async function atualizar() {
     var updateUsuario = JSON.stringify(atualizarUsuario);
     var updateAluno = JSON.stringify(atualizarAluno);
     
-    var situacaoUpdateUsuario = await usarApi("PUT", "http://localhost:8080/api/usuario/alterar/aluno/" + updateUsuario);
-    var situacaoUpdateAluno = await usarApi("PUT", "http://localhost:8080/api/aluno/alterar/perfil/" + updateAluno);
+    var situacaoUpdateUsuario = await usarApi("PUT", "http://localhost:8080/usuarios/aluno" , insertDisciplinaTurmaupdateUsuario);
+    var situacaoUpdateAluno = await usarApi("PUT", "http://localhost:8080/alterar/perfil/" , updateAluno);
     if (situacaoUpdateUsuario == false && situacaoUpdateAluno == false)  {
         alert('Ocorreu um erro na edição do aluno!')
     } else {

@@ -6,7 +6,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -37,7 +37,7 @@ async function carregarTurmas(){
     document.getElementById("idLoad").style.display = "block";
 
     //Busca as turmas 
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas");
+    var resposta = await usarApi("GET", "http://localhost:8080/turmas");
     var turmas = JSON.parse(resposta);
     
     for (let i = 0; i < turmas.length; i++) {
@@ -52,7 +52,7 @@ async function carregarTurmas(){
         colunaAno.textContent = element.ano;
 
         //Busca a quantidade de alunos 
-        var resposta2 = await usarApi("GET", "http://localhost:8080/api/alunos/quantidade/"+element.idTurma);
+        var resposta2 = await usarApi("GET", "http://localhost:8080/alunos/quantidade/"+element.idTurma);
         var qtdAlunos = JSON.parse(resposta2);
 
         //Coluna de dataFinal

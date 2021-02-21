@@ -34,7 +34,7 @@ function carregarRespostaTitulo(idResposta){
 
     var xhr2 = new XMLHttpRequest(); 
 
-        xhr2.open("GET", "http://localhost:8080/api/resposta/"+idResposta);
+        xhr2.open("GET", "http://localhost:8080/respostas/"+idResposta);
 
         xhr2.addEventListener("load", function(){
             var resposta = xhr2.responseText; 
@@ -53,7 +53,7 @@ function carregarRespostaTitulo(idResposta){
 function carregarNome(idAluno){
     var xhr2 = new XMLHttpRequest(); 
 
-        xhr2.open("GET", "http://localhost:8080/api/usuario/"+idAluno);
+        xhr2.open("GET", "http://localhost:8080/usuarios/"+idAluno);
 
         xhr2.addEventListener("load", function(){
             var resposta = xhr2.responseText; 

@@ -1,8 +1,11 @@
 //Método para chamada da API async
-function usarApi(method, url) {
+function usarApi(method, url, json) {
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.open(method, url);
+        if (json!=undefined){
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+        }
         xhr.onload = function () {
             if (this.status >= 200 && this.status < 300) {
                 resolve(xhr.response);
@@ -19,7 +22,11 @@ function usarApi(method, url) {
                 statusText: xhr.statusText
             });
         };
-        xhr.send();
+        if (json!=undefined){
+            xhr.send(json);
+        }else{
+            xhr.send();
+        }
     });
 }
 
@@ -58,13 +65,13 @@ carregarTitulo();
 
 //Método para carregar o titulo da atividade e verifica 
 async function carregarTitulo() {
-    var resposta = await usarApi("GET", "http://localhost:8080/atividades/ + idAtividade);
+    var resposta = await usarApi("GET", "http://localhost:8080/atividades/" + idAtividade);
     var atividade = JSON.parse(resposta);
     document.getElementById('inputTitulo').innerHTML = atividade.titulo;
     document.getElementById('texto-desc').innerHTML = atividade.descricao;
 
     //Verifica se ja foi enviado uma resposta
-    resposta = await usarApi("GET", "http://localhost:8080/api/atividade/resposta/" + idAtividade + "/" + idAluno);
+    resposta = await usarApi("GET", "http://localhost:8080/respostas/atividade/" + idAtividade + "/" + idAluno);
     var respostaExistente = JSON.parse(resposta);
     if (respostaExistente.dataEntrega != null) {
         var confirmar = confirm("Você ja respondeu essa atividade, responder novamente?\nAo clicar em OK, a resposta enviada anteriormente será removida.")
@@ -72,7 +79,7 @@ async function carregarTitulo() {
             window.close();
         } else{
             //Exclui a resposta atual
-            await usarApi("DELETE", "http://localhost:8080/api/resposta/deletar/" + respostaExistente.idResposta);
+            await usarApi("DELETE", "http://localhost:8080/respostas" + respostaExistente.idResposta);
         }
     } 
 }
@@ -101,7 +108,7 @@ async function enviar() {
         var fd = new FormData();
     
         fd.append( "file", files, files.name);
-        xhr.open("POST", "http://localhost:8080/api/upload/file/return/" + idUsuario, true);
+        xhr.open("POST", "http://localhost:8080/uploadarquivos/file/return/" + idUsuario, true);
         xhr.addEventListener("load", async function(){
             var resposta = xhr.responseText;
             idArquivo = JSON.parse(resposta); 
@@ -115,7 +122,7 @@ async function enviar() {
                 fk_arquivo: idArquivo
             }
             var insertResposta = JSON.stringify(resposta);
-            var resposta = await usarApi("POST", "http://localhost:8080/api/resposta/inserir/" + insertResposta);
+            var resposta = await usarApi("POST", "http://localhost:8080/respostas",insertResposta);
             
             if (resposta == false) {
                 alert("Ocorreu um erro ao enviar a resposta");

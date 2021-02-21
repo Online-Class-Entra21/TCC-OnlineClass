@@ -8,7 +8,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -124,7 +124,7 @@ btnAtualizar.addEventListener("click", function() {
             if(isConfirmado){
                 //Altera a imagem
                 if (imagem!=undefined) {
-                    UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                    UploadFile(imagem,"http://localhost:8080/uploadarquivos/fotoperfil/"+idUsuario);
                 }
                 //Altera os dados 
                 atualizar(); 
@@ -132,7 +132,7 @@ btnAtualizar.addEventListener("click", function() {
         }else{
             //Altera a imagem
             if (imagem!=undefined) {
-                UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                UploadFile(imagem,"http://localhost:8080/uploadarquivos/fotoperfil/"+idUsuario);
             }
             //Altera os dados 
             atualizar(); 
@@ -143,9 +143,9 @@ btnAtualizar.addEventListener("click", function() {
 //Método para carregar os campos
 async function carregarCampos() {
     //Chama a api para carregar o usuario e escola do banco
-    var resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/usuarios/" + idUsuario);
     var professor = JSON.parse(resposta);
-    resposta = await usarApi("GET", "http://localhost:8080/api/escola/" + professor.fk_escola);
+    resposta = await usarApi("GET", "http://localhost:8080/escolas/" + professor.fk_escola);
     var escola = JSON.parse(resposta);
 
     document.getElementById('inputEscola').value = escola.nome;
@@ -231,7 +231,7 @@ async function atualizar() {
 
         var updateProfessor = JSON.stringify(atualizarProfessor);
         
-        var situacaoUpdate = await usarApi("PUT", "http://localhost:8080/api/professor/alterar/" + updateProfessor);
+        var situacaoUpdate = await usarApi("PUT", "http://localhost:8080/professores" , updateProfessor);
 
         if (situacaoUpdate == false) {
             alert('Ocorreu um erro na edição do professor!')

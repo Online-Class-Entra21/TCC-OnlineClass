@@ -8,7 +8,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -36,7 +36,7 @@ if(idUsuario != 0 && idUsuario != null){
 async function buscarNotas(){
     
     //Busca as notas do aluno
-    var resposta = await usarApi("GET", "http://localhost:8080/api/notas/"+idUsuario);
+    var resposta = await usarApi("GET", "http://localhost:8080/respostas/notas/"+idUsuario);
     var dados = JSON.parse(resposta);
     
     for (let i = 0; i < dados.length; i++) {
@@ -51,7 +51,7 @@ async function buscarNotas(){
         periodo.className = "td-lista";
 
         //Busca os dados do usuario dono da reuniao
-        var resposta2 = await usarApi("GET", "http://localhost:8080/api/periodosAvaliacoes/"+fk_escola);
+        var resposta2 = await usarApi("GET", "http://localhost:8080/periodoAvaliacoes/escola/"+fk_escola);
         var periodosBuscados = JSON.parse(resposta2);
 
         if(!(periodosBuscados.length > 1 && periodosBuscados.length < 5)){

@@ -9,7 +9,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -53,8 +53,8 @@ entraChamada();
 var usuario;
 var sala;
 async function entraChamada() {
-    usuario = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/"+idUsuario));
-    sala = JSON.parse(await usarApi("GET","http://localhost:8080/api/salaidreuniao/"+idReuniao));
+    usuario = JSON.parse(await usarApi("GET","http://localhost:8080/usuarios/"+idUsuario));
+    sala = JSON.parse(await usarApi("GET","http://localhost:8080/salas/salaidreuniao/"+idReuniao));
 
     var nome = usuario.nome+" "+usuario.sobrenome
     var domain = "classeonline.tk";
@@ -91,9 +91,9 @@ async function entraChamada() {
 
 
 async function getListaParticipante() {
-    var reuniao = JSON.parse(await usarApi('GET','http://localhost:8080/api/reuniao/'+idReuniao));
-    var dono = JSON.parse(await usarApi("GET","http://localhost:8080/api/usuario/dto/"+reuniao.dono));
-    var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/api/reuniao/usuarios/participantes/"+idReuniao));
+    var reuniao = JSON.parse(await usarApi('GET','http://localhost:8080/reunioes/'+idReuniao));
+    var dono = JSON.parse(await usarApi("GET","http://localhost:8080/usuarios/dto/"+reuniao.dono));
+    var usuarios = JSON.parse(await usarApi("GET","http://localhost:8080/reunioes/usuarios/participantes/"+idReuniao));
     console.log(usuarios);
     usuarios.push(dono);
     usuarios.sort(function(a,b) {

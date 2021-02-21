@@ -4,7 +4,7 @@ function consultarPeriodos(){
     //Busca dos periodos avaliativos 
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/periodosAvaliacoes");
+        xhr.open("GET", "http://localhost:8080/periodoAvaliacoes");
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -55,7 +55,7 @@ function consultarPeriodos(){
 
 //Apaga o periodo de avaliacao
 async function apagar(idPeriodo){
-    var resposta = await usarApi("DELETE", "http://localhost:8080/api/periodoAvaliacao/deletar/"+idPeriodo);
+    var resposta = await usarApi("DELETE", "http://localhost:8080/periodoAvaliacoes/"+idPeriodo);
     var isApagou = JSON.parse(resposta);
 
     if(isApagou){

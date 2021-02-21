@@ -7,7 +7,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -160,7 +160,7 @@ async function cadastrar() {
         var turmaJson = JSON.stringify(inserirTurma);
 
         //Chama a api para cadastrar a turma
-        var insertTurma = await usarApi("POST", "http://localhost:8080/api/turma/inserir/" + turmaJson);
+        var insertTurma = await usarApi("POST", "http://localhost:8080/turmas" , turmaJson);
 
         if (insertTurma == false) {
             alert("Ocorreu um erro ao cadastrar a turma.")
@@ -208,7 +208,7 @@ async function atualizar() {
 
         //Converte para Json
         var turmaJson = JSON.stringify(alterarTurma);
-        var updateEscola = await usarApi("PUT", "http://localhost:8080/api/turma/alterar/"+turmaJson);
+        var updateEscola = await usarApi("PUT", "http://localhost:8080/turmas",turmaJson);
         var resposta = JSON.parse(updateEscola)
                     
         if (!resposta) {
@@ -239,7 +239,7 @@ async function atualizar() {
 //Método para carregar o select com as turmas existentes
 async function carregarSelect() {
     //Chama a api e retorna um arrays com as turmas pertencentes à escola
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/escola/"+fk_escola);
+    var resposta = await usarApi("GET", "http://localhost:8080/turmas/idescola/"+fk_escola);
     var turmas = JSON.parse(resposta);
     var select = document.getElementById('SelectTurma');
 
@@ -258,7 +258,7 @@ async function carregarSelect() {
 //Método para carregar os campos da turma selecionada
 async function carregarCampos(turma) {
     //Busca os dados da turma selecionado no checkbox 
-    var resposta = await usarApi("GET", "http://localhost:8080/api/turma/" + turma)
+    var resposta = await usarApi("GET", "http://localhost:8080/turmas/" + turma)
     var turma = JSON.parse(resposta)
 
     //Converte as datas para só pegar o horário
@@ -295,7 +295,7 @@ async function carregarCampos(turma) {
 
     //Faz a contagem dos alunos da turma
      //Busca a quantidade de alunos 
-     var resposta2 = await usarApi("GET", "http://localhost:8080/api/alunos/quantidade/"+turma.idTurma);
+     var resposta2 = await usarApi("GET", "http://localhost:8080/alunos/quantidade/"+turma.idTurma);
      var qtd = JSON.parse(resposta2);
     var qtdaluno = qtd
     document.getElementById('InputQtdAlunos').value = qtdaluno; 
@@ -305,7 +305,7 @@ async function carregarCampos(turma) {
 async function carregarListaAlunos(idTurma, nomeTurma) {
 
     //Faz a buscar na API
-    var resposta = await usarApi("GET", "http://localhost:8080/api/alunos/" + idTurma);
+    var resposta = await usarApi("GET", "http://localhost:8080/alunos/turma/" + idTurma);
     var alunos = JSON.parse(resposta);
     
     //Verifica se tem algum aluno no banco de dados
@@ -319,7 +319,7 @@ async function carregarListaAlunos(idTurma, nomeTurma) {
         var alunosIndex = []
         for (let i = 0; i < alunos.length; i++) {
 
-            resposta = await usarApi("GET", "http://localhost:8080/api/usuario/" + alunos[i].fk_usuario);
+            resposta = await usarApi("GET", "http://localhost:8080/usuarios/" + alunos[i].fk_usuario);
             var usuarioNome = JSON.parse(resposta);
 
             alunosIndex.push(alunos[i]);
@@ -349,7 +349,7 @@ async function carregarListaAlunos(idTurma, nomeTurma) {
 async function deletarTurma() {
     var idTurmaDelete = $('#SelectTurma :selected').val();
     
-    var resposta = await usarApi("DELETE", "http://localhost:8080/api/turma/deletar/" + idTurmaDelete);
+    var resposta = await usarApi("DELETE", "http://localhost:8080/turmas/" + idTurmaDelete);
     var deletarTurma = JSON.parse(resposta);
      if (deletarTurma == true) {
         alert("Turma deletada com sucesso.")

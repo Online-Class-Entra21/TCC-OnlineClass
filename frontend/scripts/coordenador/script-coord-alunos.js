@@ -9,7 +9,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -126,7 +126,7 @@ async function cadastrar() {
         }else{
 
             //Verifica o email se já está sendo usado 
-            var resp = await usarApi("GET", "http://localhost:8080/api/verificar/"+ email);
+            var resp = await usarApi("GET", "http://localhost:8080/usuarios/verificar/"+ email);
             var isExisteEmail = JSON.parse(resp);
 
             if(!isExisteEmail){
@@ -141,7 +141,7 @@ async function cadastrar() {
                 if(isValido){
 
                     //Verifica se o cpf já está sendo usado  
-                    var resp = await usarApi("GET", "http://localhost:8080/api/verificar/cpf/"+ cpf);
+                    var resp = await usarApi("GET", "http://localhost:8080/usuarios/cpf/"+ cpf);
                     var isExisteCpf =  JSON.parse(resp);
 
                     if(!isExisteCpf){
@@ -164,7 +164,7 @@ async function cadastrar() {
                             var enderecoJson =  JSON.stringify(inserirEndereco);
 
                             //Chamada da api para registrar o Endereço no banco de dados
-                            var insertEndereco = await usarApi("POST", "http://localhost:8080/enderecos/return/"+enderecoJson);
+                            var insertEndereco = await usarApi("POST", "http://localhost:8080/enderecos/return/",enderecoJson);
                             var idEndereco =  JSON.parse(insertEndereco);
 
                             if(idEndereco != 0){
@@ -190,7 +190,7 @@ async function cadastrar() {
                                 var UsuarioJson = JSON.stringify(inserirUsuario);
 
                                 //Chamada da api para registrar o Coordenador no banco de dados
-                                var insertUsuario = await usarApi("POST", "http://localhost:8080/api/usuario/inserir/return/"+UsuarioJson);
+                                var insertUsuario = await usarApi("POST", "http://localhost:8080/usuarios/return",UsuarioJson);
                                 var idUsuarioJson = JSON.parse(insertUsuario);
                                 if (!insertUsuario || !insertEndereco) {
                                     alert("Ocorreu um erro no cadastro do usuario!")
@@ -210,7 +210,7 @@ async function cadastrar() {
                                     }
 
                                     var alunoJson = JSON.stringify(inserirAluno);
-                                    var insertAluno = await usarApi("POST", "http://localhost:8080/api/aluno/inserir/"+alunoJson);
+                                    var insertAluno = await usarApi("POST", "http://localhost:8080/alunos",alunoJson);
                                 }
                                 if (inserirAluno != false) {
                                   alert("Aluno cadastrado com sucesso.");
@@ -242,7 +242,7 @@ async function cadastrar() {
 //Método para carregar o select com as turmas existentes
 async function carregarSelect() {
   //Chama a api e retorna um arrays com as turmas pertencentes à escola
-  var resposta = await usarApi("GET", "http://localhost:8080/api/turmas/escola/"+fk_escola);
+  var resposta = await usarApi("GET", "http://localhost:8080/turmas/idescola/"+fk_escola);
   var turmas = JSON.parse(resposta);
   var select = document.getElementById('SelectTurma');
 

@@ -7,7 +7,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -47,7 +47,7 @@ document.getElementById("idSalvar").addEventListener("click",function(){
 async function verificarEmail(email){
     
     //insere os relatorios  
-    var resposta =  await usarApi("GET", "http://localhost:8080/api/verificar/"+email); 
+    var resposta =  await usarApi("GET", "http://localhost:8080/usuarios/verificar/"+email); 
     var verificacao = JSON.parse(resposta);
 
     if(email == userEmail){
@@ -63,7 +63,7 @@ async function verificarEmail(email){
 async function buscarUsuario(email){
     
     //insere os relatorios  
-    var resposta =  await usarApi("GET", "http://localhost:8080/api/usuario/email/"+email); 
+    var resposta =  await usarApi("GET", "http://localhost:8080/usuarios/cosnultaremail/"+email); 
     var usuario = JSON.parse(resposta);
 
     var idDestinatario = usuario.idUsuario;
@@ -83,7 +83,7 @@ async function buscarUsuario(email){
 async function cadastrar(relatorio){
     //insere os relatorios  
     var json = JSON.stringify(relatorio);
-    var resposta =  await usarApi("POST", "http://localhost:8080/api/relatorio/inserir/"+json); 
+    var resposta =  await usarApi("POST", "http://localhost:8080/relatorios",json); 
     var isCorreto = JSON.parse(resposta);
 
     if(isCorreto){

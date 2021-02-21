@@ -8,7 +8,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -36,7 +36,7 @@ document.getElementById("idDisci").disabled = true;
 
 //Carrega as turmas do professor
 async function carregarTurmas(){
-    var resposta = await usarApi('GET','http://localhost:8080/api/turmas/professor/'+idUsuario);
+    var resposta = await usarApi('GET','http://localhost:8080/turmas/professor//'+idUsuario);
     turmaArray = JSON.parse(resposta);
 
     //comparacao de turmas iguais
@@ -109,7 +109,7 @@ document.getElementById("botao-pesquisar").addEventListener("click", function(){
 //Buscar resultados 
 async function buscarRespostas(turmaEscolhida, disciplinaEscolhida){
     $("#tbLista").empty();
-    var resposta = await usarApi('GET','http://localhost:8080/api/atividade/resposta/turma/'+turmaEscolhida+'/'+disciplinaEscolhida);
+    var resposta = await usarApi('GET','http://localhost:8080/respostas/atividade/turma/'+turmaEscolhida+'/'+disciplinaEscolhida);
     respostas = JSON.parse(resposta);
     
     //Adiciona as respostas na tabela 
@@ -142,9 +142,9 @@ async function buscarRespostas(turmaEscolhida, disciplinaEscolhida){
         }
 
         //Busca o aluno da resposta - nome 
-        var resposta2 = await usarApi('GET','http://localhost:8080/api/aluno/'+element.fk_aluno);
+        var resposta2 = await usarApi('GET','http://localhost:8080/alunos/'+element.fk_aluno);
         aluno = JSON.parse(resposta2);
-        var resposta4 = await usarApi('GET','http://localhost:8080/api/usuario/'+aluno.fk_usuario);
+        var resposta4 = await usarApi('GET','http://localhost:8080/usuarios/'+aluno.fk_usuario);
         usuario = JSON.parse(resposta4);
 
         var colunaAluno = document.createElement("td");
@@ -226,7 +226,7 @@ async function buscarRespostas(turmaEscolhida, disciplinaEscolhida){
         if(nota <= 10 && nota >= 0){
         
             var xhr2 = new XMLHttpRequest(); 
-            xhr2.open("PUT", "http://localhost:8080/api/resposta/alterar/nota/"+idResposta+'/'+nota);
+            xhr2.open("PUT", "http://localhost:8080/respostas/nota/"+idResposta+'/'+nota);
 
             xhr2.addEventListener("load", function(){
                 var resposta6 = xhr2.responseText;

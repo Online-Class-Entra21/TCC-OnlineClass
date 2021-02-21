@@ -6,7 +6,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -61,14 +61,14 @@ async function pegarTurmas(){
     }
     for (let index = 0; index < turmasID.length; index++) {
         const idTurma = turmasID[index];
-        var turma = await usarApi("GET", "http://localhost:8080/api/turma/"+idTurma);
+        var turma = await usarApi("GET", "http://localhost:8080/turmas/"+idTurma);
         turma = JSON.parse(turma);
         $('#idTurma').append('<option value="'+idTurma+'">'+turma.ano+'</option>');
     }
 }
 var turma_usuario_disciplina;
 async function pegarMaterias(idTurma){
-    var turma_disciplina = await usarApi("GET", "http://localhost:8080/api/turmasUsuariosDisciplinas/"+idTurma+"/"+idProfessor);
+    var turma_disciplina = await usarApi("GET", "http://localhost:8080/usuariodisciplinaturmas/turmasUsuariosDisciplinas/"+idTurma+"/"+idProfessor);
     turma_disciplina = JSON.parse(turma_disciplina);
     turma_usuario_disciplina = turma_disciplina;
     $('#idDisci').prop('disabled',false);
@@ -76,7 +76,7 @@ async function pegarMaterias(idTurma){
     $('#idDisci').append('<option value="0">-Seleciona a Disciplina</option>'); 
     for (var i = 0; i <turma_disciplina.length; i++){
         var turmadisci = turma_disciplina[i].fk_usuariorDisciplina
-        var idDisciplina = JSON.parse(await usarApi("GET", "http://localhost:8080/api/usuarioDisciplina/"+turmadisci)).fk_disciplina;
+        var idDisciplina = JSON.parse(await usarApi("GET", "http://localhost:8080/usuariodisciplinas/"+turmadisci)).fk_disciplina;
         var disciplina = JSON.parse(await usarApi("GET", "http://localhost:8080/disciplinas/"+idDisciplina));
         $('#idDisci').append('<option value="'+idDisciplina+'">'+disciplina.nome+'</option>');
     }
@@ -103,34 +103,34 @@ $('#btnEnviar').click(async function (){
                     
                 
                     var descricao = $('textarea').val();
-                    var incioatividae = new Date().toISOString().replace('T',' ').replace('Z',' ');
+                    var incioatividae = new Date();
                     var tipoatividade = $('#idTipo').val();
-                    var finalatividae = new Date($('#idDateTime').val()).toISOString().replace('T',' ').replace('Z',' ');
+                    var finalatividae = new Date($('#idDateTime').val());
                     var titulo = $('#idTitle').val();
                     
                     var json = JSON.stringify({fk_usuario:idProfessor,fk_disciplina:$('#idDisci').val()});
-                    var fk_usuario_disciplina = await usarApi('POST','http://localhost:8080/api/usuarioDisciplina/inserirAlterar/'+json);
+                    var fk_usuario_disciplina = await usarApi('POST','http://localhost:8080/usuariodisciplinas/inserirAlterar/',json);
                     var fk_arquivo
                     
-                    fk_arquivo = await enviarArquivo(arquivo,'http://localhost:8080/api/upload/file/return/'+idProfessor);
-                    
+                    fk_arquivo = await enviarArquivo(arquivo,'http://localhost:8080/uploadarquivos/file/return/'+idProfessor);
                     
                     var json = JSON.stringify({
                         descricao       : descricao,
-                        inicioAtividade : '2021-02-14 22:04:03',
+                        inicioAtividade : incioatividae,
                         finalAtividade  : finalatividae,
                         tipoAtividade   : tipoatividade,
                         fk_usuarioDisciplina : fk_usuario_disciplina,
                         titulo          : titulo,
                         fk_arquivo      : fk_arquivo
                     });
-                    var idAtividade = await usarApi('POST','http://localhost:8080/atividades/return'+json);
+                    console.log(json);
+                    var idAtividade = await usarApi('POST','http://localhost:8080/atividades/return',json);
                     var jsonTurmaAtividade = JSON.stringify({
                         fk_turma:$('#idTurma').val(),
                         fk_atividade:idAtividade
                     });
                     
-                    await usarApi('POST','http://localhost:8080/api/turmaAtividade/inserir/'+jsonTurmaAtividade);
+                    await usarApi('POST','http://localhost:8080/turmaatividades',jsonTurmaAtividade);
                     alert('Enviado com sucesso')
                 }else{
                     alert('Insira 1 Materia')

@@ -14,7 +14,7 @@ if(idUsuario != 0 && idUsuario != null){
     //Busca dos dados do usuário
     var xhr = new XMLHttpRequest(); 
 
-        xhr.open("GET", "http://localhost:8080/api/usuario/"+idUsuario);
+        xhr.open("GET", "http://localhost:8080/usuarios/"+idUsuario);
 
         xhr.addEventListener("load", function(){
             var resposta = xhr.responseText; 
@@ -228,7 +228,7 @@ async function editar() {
         }else{
 
             //Verifica o email se já está sendo usado 
-            var resp = await usarApi("GET", "http://localhost:8080/api/verificar/"+ email);
+            var resp = await usarApi("GET", "http://localhost:8080/usuarios/verificar/"+ email);
             var isExisteEmail = JSON.parse(resp);
 
             if(!isExisteEmail || email == emailDigitado){
@@ -247,7 +247,7 @@ async function editar() {
                 if(isValido){
 
                     //Verifica se o cpf já está sendo usado  
-                    var resp = await usarApi("GET", "http://localhost:8080/api/verificar/cpf/"+ cpf);
+                    var resp = await usarApi("GET", "http://localhost:8080/usuarios/cpf/"+ cpf);
                     var isExisteCpf =  JSON.parse(resp);
 
                     if(!isExisteCpf || (cpfValida == cpfPadrao)){
@@ -270,7 +270,7 @@ async function editar() {
                             var enderecoJson =  JSON.stringify(inserirEndereco);
 
                             //Chamada da api para registrar o Endereço no banco de dados
-                            var insertEndereco = await usarApi("POST", "http://localhost:8080/enderecos/"+enderecoJson);
+                            var insertEndereco = await usarApi("POST", "http://localhost:8080/enderecos/",enderecoJson);
 
                             //Cria o objeto Coordenador
                             var inserirCoordenador = {
@@ -291,14 +291,14 @@ async function editar() {
 
                              //Altera a imagem
                             if (imagem!=undefined) {
-                                caminho = UploadFile(imagem,"http://localhost:8080/api/upload/"+idUsuario);
+                                caminho = UploadFile(imagem,"http://localhost:8080/uploadarquivos/fotoperfil/"+idUsuario);
                             }
 
                             //Converte o coordenador para JSON
                             var coordenadorJson = JSON.stringify(inserirCoordenador);
 
                             //Chamada da api para registrar o Coordenador no banco de dados
-                            var insertUsuario = await usarApi("PUT", "http://localhost:8080/coordenadores/"+coordenadorJson);
+                            var insertUsuario = await usarApi("PUT", "http://localhost:8080/coordenadores/",coordenadorJson);
 
                             if (!insertUsuario || !insertEndereco) {
                                 alert("Ocorreu um erro ao editar coordenador!")
