@@ -114,7 +114,7 @@ async function carregarSelectTurmas() {
 async function carregarSelectDisciplinas(idTurma) {
     
     //Carrega o Select das Disciplinas
-    var resposta = await usarApi("GET", "http://localhost:8080/disciplinas/turmas/" + idTurma);
+    var resposta = await usarApi("GET", "http://localhost:8080/disciplinas/turma/" + idTurma);
     var disciplinas = JSON.parse(resposta);
     for (let index = 0; index < disciplinas.length; index++) {
        var option = document.createElement('option');
