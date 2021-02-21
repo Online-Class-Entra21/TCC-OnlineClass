@@ -16,7 +16,11 @@ import persistencia.jdbc.ArquivoUsuarioDAO;
 import persistencia.jdbc.UsuarioDAO;
 import SalvarArquivos.SalvarDisco;
 
-
+/**
+ * Metodo controller para update de arquivos para consulta no banco de dados através da API Rest
+ * @author Breno
+ *
+ */
 @RestController
 @RequestMapping("uploadarquivos")
 public class UploadArquivosController {
