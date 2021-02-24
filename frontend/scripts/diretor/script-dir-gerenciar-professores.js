@@ -66,7 +66,7 @@ async function criarPopUp(idProfessor){
                                             +'<td>'+disciplina.nome+'<input type="button" id="btnDeletar-'+disc.idUsuario_disciplina_turma+'" value="Deletar" class="float-right btn-danger"></td>'
                                         +'</tr>');
         $('#btnDeletar-'+disc.idUsuario_disciplina_turma).click(async function(){
-            await usarApi('DELETE', 'http://localhost:8080/usuariodisciplinas/'+disc.idUsuario_disciplina_turma);
+            await usarApi('DELETE', 'http://localhost:8080/usuariodisciplinaturmas/'+disc.idUsuario_disciplina_turma);
             criarPopUp(idProfessor);
         });
     }
