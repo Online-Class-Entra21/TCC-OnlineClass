@@ -1,0 +1,31 @@
+--Apague essas linhas
+--Docker compose para criar o Banco de dados Postgres para ser usado na aplicação
+--creditos docker postgres: https://renatogroffe.medium.com/postgresql-pgadmin-4-docker-compose-montando-rapidamente-um-ambiente-para-uso-55a2ab230b89
+
+version: '3'
+
+services:
+  teste-postgres-compose:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "adm123"
+    ports:
+      - "15432:5432"
+    networks:
+      - postgres-compose-network
+      
+  teste-pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "andreovidio55@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "adm123"
+    ports:
+      - "16543:80"
+    depends_on:
+      - teste-postgres-compose
+    networks:
+      - postgres-compose-network
+
+networks: 
+  postgres-compose-network:
+    driver: bridge
