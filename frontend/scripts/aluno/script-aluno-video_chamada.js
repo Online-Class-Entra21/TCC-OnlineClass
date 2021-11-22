@@ -57,7 +57,7 @@ async function entraChamada() {
     sala = JSON.parse(await usarApi("GET","http://localhost:8080/salas/salaidreuniao/"+idReuniao));
 console.log("oi")
     var nome = usuario.nome+" "+usuario.sobrenome
-    var domain = "classeonline.tk";
+    var domain = "meet.jit.si";
     var options = {
         roomName: sala.link,
         parentNode: divJitsi,
