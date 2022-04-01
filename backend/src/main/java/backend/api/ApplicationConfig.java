@@ -17,33 +17,28 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import backend.api.persistencia.configuration.PostgresConfi;
 import persistencia.jdbc.ConexaoFactory;
 
 @Configuration
 public class ApplicationConfig implements WebMvcConfigurer {
 		
-	/**
-	 * Configura o servidor para realizar os métodos padrões 
-	 * de uma API, além de desbloquear o acesso dela no 
-	 * site do sistema web
-	 * @return
-	 */
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**")
-					.allowedMethods("GET","POST","PUT","DELETE")
-					.allowedHeaders("*")
-					.allowedOrigins("http://localhost:5500","http://127.0.0.1:5500","*");
-			}
-		};
+	@Autowired
+	private PostgresConfi pConfi;
+	
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**")
+			.allowedMethods("GET","POST","PUT","DELETE")
+			.allowedHeaders("*")
+			.allowedOrigins("http://localhost:5500","http://127.0.0.1:5500","*");
 	}
+	
 	
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
 		try {
+			ConexaoFactory.getInstance().setPostgresConfi(pConfi);
 			String pathStr = new File(".").getCanonicalPath();
 			Path path = Paths.get(pathStr);
 			String htmlFront = "file:"+path.getParent().toString()+"\\frontend\\";
@@ -52,5 +47,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 			e.printStackTrace();
 		}
     }
+    
+    
         
 }

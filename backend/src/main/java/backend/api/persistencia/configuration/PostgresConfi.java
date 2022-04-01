@@ -1,13 +1,10 @@
-package persistencia.configuration;
+package backend.api.persistencia.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Service;
 
 @Configuration
-@Service
-@ConfigurationProperties("postgres")
+@ConfigurationProperties(prefix = "postgres")
 public class PostgresConfi {
 	
     public String ip;

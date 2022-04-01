@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  postgres-compose:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "adm123"
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres-compose-network
+    volumes:
+      - ./postgresFiles/cria_banco.sql:/docker-entrypoint-initdb.d/cria_banco.sql
+      
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "andreovidio55@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "adm123"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-compose
+    networks:
+      - postgres-compose-network
+
+networks: 
+  postgres-compose-network:
+    driver: bridge

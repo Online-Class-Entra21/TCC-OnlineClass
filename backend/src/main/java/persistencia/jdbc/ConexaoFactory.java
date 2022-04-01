@@ -3,31 +3,40 @@ package persistencia.jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
+
+import backend.api.persistencia.configuration.PostgresConfi;
 
 /**
  * Estabelece a conexão com o banco de dados 
  * @author Breno
  *
  */
-@Component
+@Configuration
 public class ConexaoFactory {
 	
-	private static Connection conexao = null;
-	private static String ip;
-	private static String porta;
-	private static String database;
-	private static String login;
-	private static String senha;
+	private Connection conexao = null;
+	private static ConexaoFactory conexaoFactory; 	
 	
-	public static Connection getConnection() {
+	private PostgresConfi postgresConfi;
+	
+	public static ConexaoFactory getInstance() {
+		if(conexaoFactory == null) {
+			conexaoFactory = new ConexaoFactory();
+		}
+		return conexaoFactory;
+	}
+	
+	public Connection getConexao() {
 		try {
 			Class.forName("org.postgresql.Driver");
 			
 			if (conexao == null) {
-				conexao = DriverManager.getConnection("jdbc:postgresql://"+ip+":"+porta+"/"+database+"", login,senha);
+				conexao = DriverManager.getConnection("jdbc:postgresql://"+postgresConfi.getIp()+":"+postgresConfi.getPorta()+"/"+postgresConfi.getDatabase(), postgresConfi.getLogin(),postgresConfi.getSenha());
 			}
 			return conexao;
 		} catch (Exception e) {
@@ -36,11 +45,12 @@ public class ConexaoFactory {
 		return null;
 	}
 	
-	public static void setConfiguracaoDB(String ipDB, String portaDB, String databaseDB, String loginDB, String senhaDB) {
-		ip = ipDB;
-		porta = portaDB;
-		database = databaseDB;
-		login = loginDB;
-		senha = senhaDB;
+	public static Connection getConnection() {
+		return getInstance().getConexao();		
 	}
+
+	public void setPostgresConfi(PostgresConfi postgresConfi) {
+		this.postgresConfi = postgresConfi;
+	}
+	
 }
